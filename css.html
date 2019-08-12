@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Text wrap</title>
+    <meta charset="utf8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script>
+        function switchTab(e) {
+            const a = e.currentTarget
+            const key = a.dataset.key
+            const text = a.dataset.text
+
+            const _case = document.querySelector('#ACFFRDRVMIJN')
+            const h4 = _case.querySelector('h4')
+            h4.innerText = `${key} ${text}`
+            const div = _case.querySelector('div')
+            div.style.whiteSpace = key
+        }
+    </script>
+</head>
+
+<body>
+    <h2>详解 word-break、word-wrap、overflow-wrap、white-space</h2>
+    <p class="tips">
+        CJK 表示 中/日/韩 文字，
+        <br>
+        Non-CJK 表示非 中/日/韩 文字。
+        <br>
+        <b>Boundary / B</b> 表示单词（或字）边界，<b>Middle / M</b> 表示单词间
+    </p>
+    <section>
+        <h3> word-break </h3>
+        <div>
+            <em>word-break</em> 指定怎样在<b>单词</b>内断行。
+            <br>
+            提供了以下4个枚举值：
+            <ul>
+                <li>normal</li>
+                <li>break-all</li>
+                <li>keep-all</li>
+                <li>break-word</li>
+            </ul>
+            <div class="grid">
+                <div class="grid__header"></div>
+                <div class="grid__header">normal</div>
+                <div class="grid__header">break-all</div>
+                <div class="grid__header">keep-all</div>
+                <div class="grid__header">break-word<em>（non-standard）</em></div>
+                
+                <div class="grid__header">CJK</div>
+                <div>B</div>
+                <div>B & M</div>
+                <div>B</div>
+                <div>？</div>
+
+                <div class="grid__header">Non-CJK</div>
+                <div>B</div>
+                <div>B</div>
+                <div></div>
+                <div>B</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h3>
+            word-wrap / overflow-wrap
+        </h3>
+        <div>
+            <em>word-wrap / overflow-wrap</em> 指定当一个单词太长、溢出了容器时该如何表现。
+            <em>word-wrap</em> 原本是微软为IE浏览器定制的属性，现在 CSS3 以 <em>overflow-wrap</em> 规范了该属性，
+            但 <em>word-wrap</em> 依旧作为别名保留。
+            <br>
+            该属性提供以下 2 个枚举值：
+            <ul>
+                <li><label>normal</label> 表现为：B</li>
+                <li><label>break-word</label> 表现为：B & M</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h3>
+            white-space
+        </h3>
+        <div>
+            <em>white-space</em> 指定如何来处理空白字符，空白字符包括 空格、换行、制表。
+            <br>
+            该属性提供以下 5 个枚举值：
+            <ul>
+                <li><label>normal</label></li>
+                <li><label>nowrap</label></li>
+                <li><label>pre</label></li>
+                <li><label>pre-wrap</label></li>
+                <li><label>pre-line</label></li>
+            </ul>
+            下边一一讲解。
+            <br><br>
+            <div class="case-controls">
+                <a href="javascript:void(0);" data-key="normal" data-text="连续的空白符会被合并，换行符会被当作空白符来处理。填充line盒子时，必要的话会换行" onclick="switchTab(event)">normal</a>
+                <a href="javascript:void(0);" data-key="nowrap" data-text="和 normal 一样，连续的空白符会被合并。但文本内的换行无效" onclick="switchTab(event)">nowrap</a>
+                <a href="javascript:void(0);" data-key="pre" data-text="连续的空白符会被保留。在遇到换行符或者&lt;br&gt;元素时才会换行" onclick="switchTab(event)">pre</a>
+                <a href="javascript:void(0);" data-key="pre-wrap" data-text="连续的空白符会被保留。在遇到换行符或者&lt;br&gt;元素，或者需要为了填充line盒子时才会换行" onclick="switchTab(event)">pre-wrap</a>
+                <a href="javascript:void(0);" data-key="pre-line" data-text="连续的空白符会被合并。在遇到换行符或者&lt;br&gt;元素，或者需要为了填充line盒子时会换行" onclick="switchTab(event)">pre-line</a>
+            </div>
+            <div class="case" id="ACFFRDRVMIJN">
+                <h4>
+                    normal
+                    连续的空白符会被合并，换行符会被当作空白符来处理。填充line盒子时，必要的话会换行
+                </h4>
+                <div style="white-space: normal;">
+                    Let's to learn White-space.
+                    Next we have 3 New-Lines bellow:<i class="ws-token">^</i>
+
+
+
+                    <i class="ws-token">$</i>
+                    and 3 Tabs<i class="ws-token">^</i>         <i class="ws-token">$</i>And a <b>BR</b> tag<i class="ws-token">^</i><br><i class="ws-token">$</i> here. Yeah, Here is the end.
+                    <div style="width: 100px;" class="with-border">
+                        This box is with width of 100px.
+                        And there is a very loooooooooooooooooooooooooooooooooooooo哈哈oooooooooooooooooooooooooooooooooooooong word.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
