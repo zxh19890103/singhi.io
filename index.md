@@ -1,0 +1,7 @@
+- [About](/pages/about.md)
+- [Javascript](/pages/javascript)
+	- [How Closure Works](/pages/javascript/how-closure-works.md)
+	- [Index](/pages/javascript/index.md)
+- [Tech](/pages/tech)
+	- [Index](/pages/tech/index.md)
+	- [What Is Mac](/pages/tech/what-is-mac.md)
