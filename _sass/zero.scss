@@ -352,6 +352,8 @@ footer {
 // Listing of documents
 .documents {
 	margin-top: 4rem;
+	padding-left: 0;
+    list-style: none;
 	&__item {
 		border-bottom: 1px solid #efefef;
 	}
@@ -453,6 +455,10 @@ footer {
 	iframe {
 		border-left: 2px solid #efefef;
 	}
+}
+
+.article__page {
+	margin-top: 4rem;
 }
 
 // Photo viewer
