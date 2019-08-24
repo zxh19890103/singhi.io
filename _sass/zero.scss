@@ -1,0 +1,504 @@
+$themeColor: seagreen;
+$textColor: #1a2a3a;
+$textColor-1: #1a2a3a;
+$textColor-2: #3a4a5a;
+$textColor-3: #5a6a7a;
+$textColor-4: #7a8a9a;
+$paperColor: lighten(#f5f5d5, 8);
+$leftWidth: 30%;
+$rightWidth: 70%;
+
+@import "./zero/mixins";
+
+html {
+	height: 100%;
+	color: $textColor;
+	letter-spacing: 0.5px;
+	word-spacing: 1px;
+	box-sizing: border-box;
+	overflow-y: scroll;
+	font: 100%/1.75 Futura, -apple-system, SF UI Text, Arial, PingFang SC,
+		Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	color: $themeColor;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+ul,
+ol {
+	padding: 0;
+	margin: 0;
+}
+ul {
+	list-style: none;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: skyblue;
+	height: 100%;
+	overflow: hidden;
+	@include linearGradient(skyblue, white);
+}
+
+blockquote {
+	display: block;
+	padding: 1rem;
+	margin: 0;
+	color: $textColor-2;
+	border-radius: 4px;
+	background: #f3f5f9;
+	p {
+		margin: 0;
+	}
+}
+
+h2,
+h3,
+.h2,
+.h3 {
+	display: block;
+	font-size: 1.24rem;
+}
+
+h4,
+h5,
+h6,
+.h4,
+.h5,
+.h6 {
+	display: block;
+	font-size: 1.12rem;
+}
+
+.blur {
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+	filter: blur(5px);
+}
+
+.form {
+	&__group {
+		position: relative;
+		margin: 6px 0;
+		&--captcha {
+			padding-left: 80px;
+			height: 60px;
+			a {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 80px;
+			}
+			input {
+				margin-top: 12px;
+			}
+		}
+	}
+	&__control {
+		display: inline-block;
+		padding: 5px 1rem;
+		width: 100%;
+		outline: none;
+		@include boxSizing(border-box);
+		border: 1px solid #ddd;
+		border-radius: 3px 4px;
+		color: inherit;
+		&:focus {
+			border-color: $themeColor;
+		}
+		&::-webkit-input-placeholder,
+		&::-moz-placeholder {
+			color: $textColor-4;
+		}
+	}
+	&__button {
+		padding: 6px 2rem;
+		background-color: $themeColor;
+		font-size: 1rem;
+		color: #fff;
+		border: none;
+		border-radius: 3px 4px;
+		outline: none;
+		&:hover,
+		&:focus {
+			background-color: lighten($themeColor, 8);
+		}
+	}
+}
+
+.pagination {
+	margin: 18px 0 0 0;
+	@include flexBox;
+	&__item {
+		width: 30px;
+		a.active {
+			cursor: not-allowed;
+			color: $textColor-4;
+		}
+	}
+}
+
+.panel {
+	&__title {
+		padding: 4px 8px;
+		margin-bottom: 0;
+		color: $textColor-2;
+		small {
+			color: rgba(0, 0, 0, 0.5);
+			font-size: 0.8em;
+		}
+	}
+	&__body {
+		padding: 6px 8px;
+	}
+}
+
+.text-bubble {
+	position: absolute;
+	font-size: 1.2rem;
+	color: rgba(255, 0, 0, 0.6);
+}
+
+.page-wrapper {
+	height: 100%;
+	overflow: auto;
+}
+
+.page {
+	width: 21cm;
+	margin: 12px auto;
+	padding: 5px 1rem;
+	@include boxSizing(border-box);
+	border-radius: 5px;
+	background-color: $paperColor;
+}
+
+.header {
+	@include flexBox(flex-start, stretch);
+	&__logo {
+		width: $leftWidth;
+		margin: 0;
+		.logo {
+			margin: -5px 5px 0 0;
+			padding: 5px 8px 0 8px;
+			height: 100%;
+			text-align: center;
+			@include linearGradient(aliceblue, white);
+			border-bottom-right-radius: 6px;
+			border-bottom-left-radius: 6px;
+			box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.3);
+			&__title {
+				img {
+					width: 40px;
+					float: left;
+					border-radius: 50%;
+					margin-right: .5rem;
+				}
+				text-align: left;
+				font-size: 1.2rem;
+				line-height: 45px;
+				letter-spacing: 0;
+				font-weight: bold;
+				margin-bottom: 6px;
+				border-bottom: 1px inset #999;
+				color: lighten($textColor, 15);
+			}
+			&__motto {
+				color: lighten($textColor, 28);
+				font-weight: bold;
+				line-height: 1.2rem;
+				font-size: 0.9rem;
+			}
+		}
+	}
+	&__menu {
+		width: $rightWidth;
+		.menu {
+			display: flex;
+			display: -webkit-flex;
+			justify-content: flex-start;
+			align-items: flex-start;
+			list-style: none;
+			font-size: 1.2rem;
+			li {
+				flex: 1;
+				&:first-child {
+					a {
+						border-top-left-radius: 4px;
+						border-bottom-left-radius: 4px;
+					}
+				}
+				&:last-child {
+					a {
+						border-top-right-radius: 4px;
+						border-bottom-right-radius: 4px;
+					}
+				}
+				a {
+					background-color: $textColor;
+					display: block;
+					margin: 0 0;
+					padding: 4px 6px;
+					text-align: center;
+					color: #fff;
+					&:hover {
+						background-color: lighten($textColor, 12);
+					}
+				}
+			}
+		}
+	}
+}
+
+main {
+	@include flexBox;
+}
+
+aside {
+	flex-basis: $leftWidth;
+	width: $leftWidth;
+	flex-shrink: 0;
+	border-right: 1px dotted #ddd;
+	.panel {
+		margin-right: 20px;
+		border-bottom: 1px dotted #ddd;
+	}
+	.categories {
+		li {
+			margin: 2px 0 3px 0;
+			&.active {
+				a {
+					cursor: not-allowed;
+					color: $textColor-2;
+				}
+			}
+		}
+	}
+	.recently {
+		li {
+			margin: 2px 0 6px 0;
+		}
+	}
+	.news {
+		li {
+			margin: 2px 0 6px 0;
+		}
+		h4,
+		.h4 {
+			margin: 0;
+			font-weight: normal;
+		}
+		p {
+			margin: 0;
+			padding: 0;
+			color: $textColor-2;
+		}
+	}
+}
+
+article {
+	// let it auto fix
+	width: 100%;
+	flex-grow: 1;
+}
+
+footer {
+	margin-top: 30px;
+	text-align: center;
+}
+
+.ad {
+	position: relative;
+	height: 88px;
+	margin: 4px 0 0 0;
+	overflow: hidden;
+	border-radius: 4px;
+	&__img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		// @include transition(left, top 3s linear);
+		animation: playslide 14s linear 0.5s infinite alternate forwards;
+		-webkit-animation: playslide 14s linear 0.5s infinite alternate forwards;
+		-o-animation: playslide 14s linear 0.5s infinite alternate forwards;
+		img {
+			width: 100%;
+			display: block;
+		}
+	}
+}
+
+@keyframes playslide {
+	0% {
+		top: 0;
+		left: 0;
+	}
+	100% {
+		top: -211px;
+		left: 0;
+	}
+}
+
+// Listing of documents
+.documents {
+	margin-top: 4rem;
+	&__item {
+		border-bottom: 1px solid #efefef;
+	}
+}
+
+.document {
+	h3,
+	.h3 {
+		margin-bottom: 0;
+	}
+
+	p {
+		margin-top: 0;
+		color: $textColor-3;
+		time {
+			color: $textColor-4;
+			font-size: .9em;
+		}
+	}
+}
+
+// Post & Page
+.article {
+	&__title {
+		margin: 4rem 0 2rem 0;
+		font-size: 1.5rem;
+		font-weight: bold;
+		color: $textColor-2;
+		text-align: center;
+	}
+	&__subtitle {
+		font-size: 13px; // as icon's size is 16px
+		color: $textColor-4;
+	}
+	&__body {
+		margin-bottom: 4rem;
+		h1,
+		.h1,
+		.title {
+			color: $textColor-2;
+		}
+		h2,
+		h3,
+		h4,
+		.h2,
+		.h3,
+		.h4 {
+			color: $textColor-2;
+		}
+		h2,
+		h3,
+		.h2,
+		.h3 {
+			margin: 4rem 0 2rem 0;
+			text-align: center;
+		}
+		h4,
+		.h4 {
+			margin-top: 2rem;
+			margin-left: -1rem;
+			padding-left: 0.6rem;
+			border-left: 0.4rem solid lighten($themeColor, 50);
+		}
+		ul {
+			list-style: square;
+		}
+		ol,
+		ul {
+			padding-left: 3em;
+			// list-style-position: inside;
+		}
+		iframe {
+			border-left: 2px solid #efefef;
+		}
+	}
+	&__tags {
+		a {
+			margin-right: 0.5rem;
+			text-decoration: underline;
+			&:hover {
+				color: lighten($themeColor, 20);
+			}
+		}
+	}
+	&__src,
+	&__tags {
+		color: $textColor-4;
+	}
+	hr {
+		margin-left: 0;
+		margin-right: 0;
+		margin-top: 0;
+		padding-bottom: 0;
+		padding-left: 0;
+		padding-right: 0;
+		padding-top: 0;
+		margin-bottom: calc(1.75rem - 1px);
+		background: rgba(0, 0, 0, 0.2);
+		border: none;
+		height: 1px;
+	}
+}
+
+// Photo viewer
+.photo-modal {
+	cursor: zoom-out;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.56);
+	&__content {
+		@include flexBox(center, center);
+		padding: 10px 0 10px;
+		width: 100%;
+		height: 100%;
+		@include boxSizing(border-box);
+		img {
+			max-width: 100%;
+			max-height: 100%;
+			padding: 6px;
+			background: #fff;
+			border-radius: 4px;
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+		}
+	}
+}
+
+.photo {
+	margin: 0 -1rem;
+	// text-align: center;
+	&-wrapper {
+		// todo:
+	}
+	&__entity {
+		max-width: 100%;
+		// "inline" let img has a space bellow.
+		// to remove it.
+		display: block;
+		margin: 0 auto;
+	}
+	&__title {
+		font-size: 0.9rem;
+		color: $textColor-3;
+		text-align: center;
+	}
+}
+
+@import "./zero/identities", "./zero/github";

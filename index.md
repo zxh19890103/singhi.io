@@ -1,29 +1,17 @@
-- [About](/pages/about.md)
-- [Javascript](/pages/javascript)
-	- [How Closure Works](/pages/javascript/how-closure-works.md)
-	- [Index](/pages/javascript/index.md)
-- [Tech](/pages/tech)
-	- [Index](/pages/tech/index.md)
-	- [What Is Mac](/pages/tech/what-is-mac.md)
+---
+layout: page
+---
 
-
-## categories
-
-{% for category in site.categories %}
-  <h3>{{ category[0] }}</h3>
-  <ul>
-    {% for post in category[1] %}
-      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
-{% endfor %}
-
-## my posts
-
-<ul>
+<ul class="documents">
   {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
+    <li class="documents__item">
+      <div class="document">
+        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+        <p>
+        <time>{{ post.date | date: "%d,%b" }} • </time>
+        {{ post.excerpt | strip_html | truncate: 140 }}
+        </p>
+      </div>
     </li>
   {% endfor %}
 </ul>

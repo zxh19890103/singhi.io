@@ -1,0 +1,15 @@
+<div class="photo-wrapper">
+  <div class="photo">
+    <img
+      class="photo__entity"
+      alt="{{ include.alt | default include.title }}"
+      title="{{ include.title }}"
+      src="{{ include.src }}"
+    />
+    {% if include.title %}
+    <div class="photo__title">
+      {{ include.title }}
+    </div>
+    {% endif %}
+  </div>
+</div>

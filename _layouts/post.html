@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<div class="article__title">
+  {{ page.title }}
+  <div class="article__subtitle">
+    <span>{{ page.date | date: "%a, %b %d, %y" }}</span>
+    <i class="iconfont icon-coffee"></i>
+  </div>
+</div>
+<div class="article__body">
+  {{ content }}
+</div>
+
+<hr />
+
+{% if page.src %}
+<div class="article__src">
+  <i class="iconfont icon-homepagenormal"></i>：<a href="{{ page.src }}">{{
+    page.src
+  }}</a>
+</div>
+{% endif %} {% if page.tags.size > 0 %}
+<div class="article__tags">
+  <i class="iconfont icon-Hash-Tag"></i>：{% for tag in page.tags %}<a href="#">{{ tag }}</a>{% endfor %}
+</div>
+{% endif %}
