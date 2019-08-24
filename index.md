@@ -9,7 +9,11 @@ layout: page
         <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
         <p>
         <time>{{ post.date | date: "%d,%b" }} • </time>
-        {{ post.excerpt | strip_html | truncate: 140 }}
+        {% if post.short %}
+          {{ post.short }}
+        {% else %}
+          {{ post.excerpt | strip_html | truncate: 140 }}
+        {% endif %}
         </p>
       </div>
     </li>

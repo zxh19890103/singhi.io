@@ -1,6 +1,7 @@
 ---
 layout: post
 title: TS 中何时使用“never”与“unknown”类型
+short: TypeScript 在版本 2.0 和 3.0 分别引入了 never 和 unknown 两个基本类型。这完善了 TS 类型系统的基础性和全面性。TypeScript 严格遵循了类型设计原则
 src: https://blog.logrocket.com/when-to-use-never-and-unknown-in-typescript-5e4d6c5799ad/
 tags: 
   - Typescript

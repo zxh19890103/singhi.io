@@ -1,6 +1,7 @@
 ---
 layout: post
 title: LeetCode 超级回文数
+short: 如果一个正整数自身是回文数，而且它也是一个回文数的平方，那么我们称这个数为超级回文数
 tags:
   - LeetCode
   - Palindrome
