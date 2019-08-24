@@ -163,12 +163,6 @@ h6,
 	}
 }
 
-.text-bubble {
-	position: absolute;
-	font-size: 1.2rem;
-	color: rgba(255, 0, 0, 0.6);
-}
-
 .page-wrapper {
 	height: 100%;
 	overflow: auto;
@@ -352,8 +346,8 @@ footer {
 // Listing of documents
 .documents {
 	margin-top: 4rem;
-	padding-left: 0;
-    list-style: none;
+	padding-left: 0 !important;
+    list-style: none !important;
 	&__item {
 		border-bottom: 1px solid #efefef;
 	}
