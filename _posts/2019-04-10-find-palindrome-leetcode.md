@@ -29,7 +29,7 @@ tags:
 
 代码如下：
 
-```es6
+```js
 let N = 1
 let D = 0
 let C = 0
@@ -58,7 +58,7 @@ while ((D = N * N) <= R) {
 
 比如，存在一个函数 `m = ƒ(n)`，其中 `n` 是一个回文数，`m` 是下一个回文数（`m > n`）。
 
-```es6
+```js
 ƒ(1) = 2
 ƒ(2) = 3
 ...
@@ -71,7 +71,7 @@ while ((D = N * N) <= R) {
 
 这是有规律的，因此可以写出函数的形式：
 
-```es6
+```js
 const nextPalindrome = (expr) => {
     if (expr === '9') return 11
     if (expr.length === 1) {
@@ -102,7 +102,7 @@ const nextPalindrome = (expr) => {
 
 再来写上面的循环，就应该是：
 
-```es6
+```js
 function superpalindromesInRange(L, R) {
     let r = 0
     const min = BigInt(L) - 1n
