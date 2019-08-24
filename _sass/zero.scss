@@ -415,17 +415,6 @@ footer {
 			padding-left: 0.6rem;
 			border-left: 0.4rem solid lighten($themeColor, 50);
 		}
-		ul {
-			list-style: square;
-		}
-		ol,
-		ul {
-			padding-left: 3em;
-			// list-style-position: inside;
-		}
-		iframe {
-			border-left: 2px solid #efefef;
-		}
 	}
 	&__tags {
 		a {
@@ -452,6 +441,17 @@ footer {
 		background: rgba(0, 0, 0, 0.2);
 		border: none;
 		height: 1px;
+	}
+	ul {
+		list-style: square;
+	}
+	ol,
+	ul {
+		padding-left: 3em;
+		// list-style-position: inside;
+	}
+	iframe {
+		border-left: 2px solid #efefef;
 	}
 }
 
