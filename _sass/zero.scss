@@ -312,8 +312,9 @@ footer {
 }
 
 .ad {
+	$ad-client-height: 88px;
 	position: relative;
-	height: 88px;
+	height: $ad-client-height;
 	margin: 4px 0 0 0;
 	overflow: hidden;
 	border-radius: 4px;
