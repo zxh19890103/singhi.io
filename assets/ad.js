@@ -31,6 +31,8 @@
       text.classList.add("ad__img-title--over")
       return
     }
+    text.textContent = "Loading..."
+    text.classList.add("ad__img-title--over")
     const src = srcset[i].src
     const wrapper = await loadIMG(src)
     wrapper.addEventListener("animationend", (e) => {
