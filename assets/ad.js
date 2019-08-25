@@ -49,6 +49,7 @@
     })
     imgList.appendChild(wrapper)
     text.textContent = srcset[i].title
+    text.classList.remove("ad__img-title--over")
     obj.i += 1
   }
 
