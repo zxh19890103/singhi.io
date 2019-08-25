@@ -1,6 +1,122 @@
-// if(!windowPromise) throw new Error("Your broswer doesn't support this script.")
 
-// ;(function() {
-//   const ad_ele = document.querySelector('#ref_ad')
+;(function(window) {
 
-// }());
+  if(!window.Promise) throw new Error("Your broswer doesn't support this script.")
+
+  const log = (...args) => {
+    console.log("LOG:", ...args)
+  }
+  const srcset = window.__SRCSET__
+
+  const imgList = document.querySelector('#ref_adImgs')
+  const text = document.createElement("div")
+  text.className = "ad__img-title"
+  text.textContent = ''
+  imgList.appendChild(text)
+
+  const { clientWidth: vW, clientHeight: vH } = imgList
+
+  const obj = {
+    i: 0,
+    aniClasses: {}
+  }
+  const ANIMATION_DURATION = 60
+  const KEYFRAME_DURATION_PERCENT = 15
+
+  const iterate = async () => {
+    const i = obj.i
+    log('iter', i)
+    if (i === srcset.length) {
+      text.textContent = "Play Over !"
+      text.classList.add("ad__img-title--over")
+      return
+    }
+    const src = srcset[i].src
+    const wrapper = await loadIMG(src)
+    wrapper.addEventListener("animationend", (e) => {
+      const aname = e.animationName
+      log("end", aname)
+      imgList.removeChild(e.currentTarget)
+      iterate()
+    })
+    wrapper.addEventListener("mouseenter", e => {
+      e.currentTarget.classList.add('paused')
+    })
+    wrapper.addEventListener("mouseleave", e => {
+      e.currentTarget.classList.remove('paused')
+    })
+    imgList.appendChild(wrapper)
+    text.textContent = srcset[i].title
+    obj.i += 1
+  }
+
+  iterate()
+
+  function loadIMG(src) {
+    return new Promise((done, error) => {
+      const img = new Image()
+      img.onload = () => {
+        img.onload = null
+        const { naturalHeight, naturalWidth } = img
+        const imgH = Math.floor(naturalHeight * vW / naturalWidth)
+        const aniClass = generateKeyframes(imgH - vH)
+        const wrapper = document.createElement("div")
+        wrapper.className = `ad__img`
+        wrapper.classList.add(aniClass)
+        wrapper.appendChild(img)
+        done(wrapper)
+      }
+      img.onerror = error
+      img.src = src
+    })
+  }
+
+  function generateKeyframes(h) {
+    if (h <= 0) return "slideleft-in"
+    const className = `slideleft-in-withHeightDiff_${h}`
+    if (className in obj.aniClasses) return className
+    const styleTag = document.createElement("style")
+    const r = Math.random().toString(36).substr(2)
+    const styleState = {
+      top: 0,
+      left: 0,
+      opacity: 1,
+      toStyle() {
+        return `{
+          top: ${this.top}px;
+          left: ${this.left}px;
+          opacity: ${this.opacity};
+        }
+        `.replace(/[\n\t\s]/g, '')
+      }
+    }
+    const frames = []
+    let time = 4
+    for (; time < 100; time += KEYFRAME_DURATION_PERCENT) {
+      frames.push(`${time}% ${styleState.toStyle()}`)
+      if (styleState.top === 0) styleState.top = -h
+      else styleState.top = 0
+    }
+
+    styleState.opacity = 0
+    // the last frame
+    frames.push(`100% ${styleState.toStyle()}`)
+
+    styleTag.innerHTML = `
+    @keyframes keyframes_${r} {
+      ${frames.join('\n')}
+    }
+    .${className} {
+      top: 0;
+      left: 100%;
+      animation:
+        keyframes_${r} ${ANIMATION_DURATION}s linear .5s 1 alternate forwards;
+      -webkit-animation:
+        keyframes_${r} ${ANIMATION_DURATION}s linear .5s 1 alternate forwards
+    }
+    `.replace(/[\n\t]/g, '')
+    document.head.appendChild(styleTag)
+    obj.aniClasses[className] = 1
+    return className
+  }
+}(window));
