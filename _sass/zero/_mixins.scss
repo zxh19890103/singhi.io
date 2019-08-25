@@ -26,3 +26,9 @@
     -o-transition: $val;
     -moz-transition: $val;
 }
+
+@mixin animation($name, $duration, $times: 1) {
+	animation: $name $duration linear 0.5s $times alternate forwards;
+	-webkit-animation: $name $duration linear 0.5s $times alternate forwards;
+	-o-animation: $name $duration linear 0.5s $times alternate forwards;
+}
