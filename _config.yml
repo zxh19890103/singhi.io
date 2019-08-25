@@ -5,7 +5,7 @@ motto: Every line of code represents an ethical and moral decision.
 plugins:
   - jekyll-feed
   - jekyll-sitemap
-#   - jekyll-seo-tag
+  - jekyll-seo-tag
 
 feed:
   path: /feed.xml

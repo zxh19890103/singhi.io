@@ -21,7 +21,8 @@
     aniClasses: {}
   }
   const ANIMATION_DURATION = 60
-  const KEYFRAME_DURATION_PERCENT = 15
+  const KEYFRAME_DURATION_PERCENT = 20
+  const INITIAL_KEYFRAME_DURATION_PERCENT = 5
 
   const iterate = async () => {
     const i = obj.i
@@ -31,8 +32,9 @@
       text.classList.add("ad__img-title--over")
       return
     }
-    text.textContent = "Loading..."
-    text.classList.add("ad__img-title--over")
+    text.textContent = "loading..."
+    text.style.color = "#fff"
+    text.classList.add("ad__img-title--loading")
     const src = srcset[i].src
     const wrapper = await loadIMG(src)
     wrapper.addEventListener("animationend", (e) => {
@@ -48,8 +50,9 @@
       e.currentTarget.classList.remove('paused')
     })
     imgList.appendChild(wrapper)
+    text.classList.remove("ad__img-title--loading")
     text.textContent = srcset[i].title
-    text.classList.remove("ad__img-title--over")
+    text.style.color = srcset[i].tcolor || "#fff"
     obj.i += 1
   }
 
@@ -94,7 +97,7 @@
       }
     }
     const frames = []
-    let time = 4
+    let time = INITIAL_KEYFRAME_DURATION_PERCENT
     for (; time < 100; time += KEYFRAME_DURATION_PERCENT) {
       frames.push(`${time}% ${styleState.toStyle()}`)
       if (styleState.top === 0) styleState.top = -h

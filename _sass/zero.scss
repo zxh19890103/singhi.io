@@ -8,6 +8,8 @@ $paperColor: lighten(#f5f5d5, 8);
 $leftWidth: 30%;
 $rightWidth: 70%;
 
+$mobileWidth: 768px;
+
 @import "./zero/mixins";
 
 html {
@@ -173,8 +175,11 @@ h6,
 	margin: 12px auto;
 	padding: 5px 1rem;
 	@include boxSizing(border-box);
-	border-radius: 5px;
+	border-radius: 4px;
 	background-color: $paperColor;
+	@media screen and (max-width: $mobileWidth) {
+		width: 100%;
+	}
 }
 
 .header {
@@ -214,6 +219,9 @@ h6,
 				font-size: 0.9rem;
 			}
 		}
+		@media screen and (max-width: $mobileWidth) {
+			display: none;
+		}
 	}
 	&__menu {
 		width: $rightWidth;
@@ -251,6 +259,73 @@ h6,
 				}
 			}
 		}
+		@media screen and (max-width: $mobileWidth) {
+			width: 100%;
+			margin: 0 -1rem;
+			background: $textColor;
+			position: fixed;
+			width: 100%;
+			top: 0;
+		}
+	}
+}
+
+.ad {
+	$ad-client-height: 88px;
+	position: relative;
+	height: $ad-client-height;
+	margin: 4px 0 0 0;
+	overflow: hidden;
+	border-radius: 4px;
+	&__img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		&-title {
+			position: absolute;
+			z-index: 1;
+			font-size: 0.8rem;
+			line-height: 0.8rem;
+			bottom: 4px;
+			right: 4px;
+			color: #fff;
+			font-family: fantasy;
+			@include transition(all 3s);
+			&--over {
+				width: 100%;
+				height: 88px;
+				top: 0;
+				left: 0;
+				text-align: center;
+				font-size: 4rem;
+				line-height: 88px;
+				opacity: 1;
+				@include animation(wink, 5s, infinite);
+			}
+			&--loading {
+				opacity: 1;
+				@include animation(wink, 1s, infinite);
+			}
+		}
+		&.slideleft-in {
+			top: 0;
+			left: 100%;
+			opacity: 1;
+			@include animation(slide-left-in, 30s, 1);
+		}
+		&.paused {
+			animation-play-state: paused;
+			-webkit-animation-play-state: paused;
+		}
+		img {
+			width: 100%;
+			min-height: $ad-client-height;
+			display: block;
+		}
+	}
+	@media screen and (max-width: $mobileWidth) {
+		display: none;
 	}
 }
 
@@ -309,58 +384,6 @@ article {
 footer {
 	margin-top: 30px;
 	text-align: center;
-}
-
-.ad {
-	$ad-client-height: 88px;
-	position: relative;
-	height: $ad-client-height;
-	margin: 4px 0 0 0;
-	overflow: hidden;
-	border-radius: 4px;
-	&__img {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		&-title {
-			position: absolute;
-			z-index: 1;
-			font-size: 0.8rem;
-			line-height: 0.8rem;
-			bottom: 4px;
-			right: 4px;
-			color: #fff;
-			font-family: fantasy;
-			@include transition(all 3s);
-			&--over {
-				width: 100%;
-				height: 88px;
-				top: 0;
-				left: 0;
-				text-align: center;
-				font-size: 4rem;
-				line-height: 88px;
-				opacity: 1;
-				@include animation(wink, 5s, infinite);
-			}
-		}
-		&.slideleft-in {
-			top: 0;
-			left: 100%;
-			opacity: 1;
-			@include animation(slide-left-in, 30s, 1);
-		}
-		&.paused {
-			animation-play-state: paused;
-			-webkit-animation-play-state: paused;
-		}
-		img {
-			width: 100%;
-			min-height: $ad-client-height;
-			display: block;
-		}
-	}
 }
 
 @keyframes wink {
