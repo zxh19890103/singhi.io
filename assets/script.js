@@ -1,4 +1,5 @@
 
+// ad
 ;(function(window) {
 
   if(!window.Promise) throw new Error("Your broswer doesn't support this script.")
@@ -126,3 +127,28 @@
     return className
   }
 }(window));
+
+
+function showPhotoModal(src) {
+  var _pvbg = document.createElement("div") // $('<div id="pvBg" class="pvbg"/>');
+  _pvbg.className = "photo-modal"
+  _pvbg.addEventListener('click', () => {
+    document.body.removeChild(_pvbg)
+    document.querySelector("#page").classList.remove('blur')
+  })
+
+  var _pv = document.createElement("div") // $('<div class="pv"/>');
+  _pv.className = "photo-modal__content"
+  _pv.innerHTML = "loading..."
+  _pvbg.appendChild(_pv)
+
+  document.body.appendChild(_pvbg)
+  document.querySelector("#page").classList.add('blur')
+
+  var img = new Image()
+  img.onload = () => {
+    _pv.innerHTML = ""
+    _pv.appendChild(img)
+  }
+  img.src = src
+}

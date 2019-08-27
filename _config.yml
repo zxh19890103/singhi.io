@@ -1,6 +1,7 @@
 title: Blog by Singhi John
 description: 张星海的文档,专注前端技术总结,记录生活点滴,网站建设,个人博客搭建,曾经的大连,未来的武汉
 motto: Every line of code represents an ethical and moral decision.
+version: 0.2.3
 
 plugins:
   - jekyll-feed

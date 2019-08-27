@@ -1,5 +1,21 @@
 [
   {
+    "title": "Home",
+    "src": "/assets/images/home.jpg"
+  },
+  {
+    "title": "Sea in Dalian",
+    "src": "/assets/images/sea-in-dalian.jpg"
+  },
+  {
+    "title": "Interior Royal Albert Hall",
+    "src": "https://cn.bing.com/th?id=OHR.InteriorRoyalAlbertHall_EN-CN0916063965_UHD.jpg&rf=LaDigue_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4"
+  },
+  {
+    "title": "Krakatoa",
+    "src": "https://cn.bing.com/th?id=OHR.Krakatoa_EN-CN1177253936_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4"
+  },
+  {
     "title": "Mara River Crossing",
     "src": "https://www.bing.com/th?id=OHR.MaraRiverCrossing_EN-CN9012483440_UHD.jpg&rf=LaDigue_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4"
   },

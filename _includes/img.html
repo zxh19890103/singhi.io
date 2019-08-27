@@ -1,5 +1,5 @@
 <div class="photo-wrapper">
-  <div class="photo">
+  <div class="photo" onclick="showPhotoModal('{{include.src}}')">
     <img
       class="photo__entity"
       alt="{{ include.alt | default include.title }}"

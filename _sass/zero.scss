@@ -24,6 +24,10 @@ html {
 	-webkit-font-smoothing: antialiased;
 }
 
+.COCOGOOSE {
+	font-family: 'COCOGOOSE';
+}
+
 a {
 	color: $themeColor;
 	text-decoration: none;
@@ -270,66 +274,6 @@ h6,
 	}
 }
 
-.ad {
-	$ad-client-height: 88px;
-	position: relative;
-	height: $ad-client-height;
-	margin: 4px 0 0 0;
-	overflow: hidden;
-	border-radius: 4px;
-	background: olivedrab url(/assets/images/starfield-banner.jpg) repeat;
-	&__img {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		&-title {
-			position: absolute;
-			z-index: 1;
-			font-size: 0.8rem;
-			line-height: 0.8rem;
-			bottom: 4px;
-			right: 4px;
-			color: #fff;
-			font-family: fantasy;
-			@include transition(all 3s);
-			&--over {
-				width: 100%;
-				height: 88px;
-				top: 0;
-				left: 0;
-				text-align: center;
-				font-size: 4rem;
-				line-height: 88px;
-				opacity: 1;
-				@include animation(wink, 5s, infinite);
-			}
-			&--loading {
-				opacity: 1;
-				@include animation(wink, 1s, infinite);
-			}
-		}
-		&.slideleft-in {
-			top: 0;
-			left: 100%;
-			opacity: 1;
-			@include animation(slide-left-in, 30s, 1);
-		}
-		&.paused {
-			animation-play-state: paused;
-			-webkit-animation-play-state: paused;
-		}
-		img {
-			width: 100%;
-			min-height: $ad-client-height;
-			display: block;
-		}
-	}
-	@media screen and (max-width: $mobileWidth) {
-		display: none;
-	}
-}
-
 main {
 	@include flexBox;
 }
@@ -385,33 +329,6 @@ article {
 footer {
 	margin-top: 30px;
 	text-align: center;
-}
-
-@keyframes wink {
-	75% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-
-@keyframes slide-left-in {
-	20% {
-		top: 0;
-		left: 0;
-		opacity: 1;
-	}
-	75% {
-		top: 0;
-		left: 0;
-		opacity: 1;
-	}
-	100% {
-		top: 0;
-		left: 0;
-		opacity: 0;
-	}
 }
 
 // Listing of documents
@@ -543,6 +460,7 @@ footer {
 		padding: 10px 0 10px;
 		width: 100%;
 		height: 100%;
+		color: #fff;
 		@include boxSizing(border-box);
 		img {
 			max-width: 100%;
@@ -560,6 +478,7 @@ footer {
 	// text-align: center;
 	&-wrapper {
 		// todo:
+		cursor: zoom-in;
 	}
 	&__entity {
 		max-width: 100%;
@@ -575,4 +494,4 @@ footer {
 	}
 }
 
-@import "./zero/identities", "./zero/github";
+@import "./zero/ad", "./zero/identities", "./zero/github";
