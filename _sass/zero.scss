@@ -61,8 +61,11 @@ blockquote {
 	color: $textColor-2;
 	border-radius: 4px;
 	background: #f3f5f9;
+	// word-break: break-word;
+    // white-space: pre-wrap;
 	p {
 		margin: 0;
+		color: cadetblue;
 	}
 }
 
@@ -399,8 +402,12 @@ footer {
 			padding-left: 0.6rem;
 			border-left: 0.4rem solid lighten($themeColor, 50);
 		}
-		p > em {
-			color: cadetblue;
+		p {
+			word-break: break-word;
+			white-space: pre-wrap;
+			> em {
+				color: cadetblue;
+			}
 		}
 	}
 	&__tags {

@@ -1,13 +1,17 @@
 
 // ad
-;(function(window) {
+;(async function(window) {
 
-  if(!window.Promise) throw new Error("Your broswer doesn't support this script.")
+  if(!window.fetch) throw new Error("Your broswer doesn't support this script.")
 
   const log = (...args) => {
     console.log("LOG:", ...args)
   }
-  const srcset = window.__SRCSET__
+
+  const data = await fetch('/assets/ad.json')
+  const srcset = await data.json()
+  // console.log(d)
+  // const srcset = window.__SRCSET__ || []
 
   const imgList = document.querySelector('#ref_adImgs')
   const text = document.createElement("div")
