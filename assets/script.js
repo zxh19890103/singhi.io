@@ -25,6 +25,7 @@
     i: 0,
     aniClasses: {}
   }
+
   const ANIMATION_DURATION = 60
   const KEYFRAME_DURATION_PERCENT = 20
   const INITIAL_KEYFRAME_DURATION_PERCENT = 5
