@@ -6,7 +6,10 @@ layout: default
   {{ page.title }}
   <div class="article__subtitle">
     <span>{{ page.date | date: "%a, %b %d, %y" }}</span>
+    {% if page.nocoffe %}
+    {% else %}
     <i class="iconfont icon-coffee"></i>
+    {% endif %}
   </div>
 </div>
 <div class="article__body">

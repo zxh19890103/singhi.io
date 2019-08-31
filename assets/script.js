@@ -19,10 +19,19 @@
   text.textContent = ''
   imgList.appendChild(text)
 
+  imgList.querySelector('.ad__next').addEventListener('click', () => {
+    obj.requestNext = 1
+    if (obj.cur) {
+      obj.cur.classList.add('interrupt')
+    }
+  })
+
   const { clientWidth: vW, clientHeight: vH } = imgList
 
   const obj = {
     i: 0,
+    requestNext: 0,
+    cur: null,
     aniClasses: {}
   }
 
@@ -33,19 +42,23 @@
   const iterate = async () => {
     const i = obj.i
     log('iter', i)
+
     if (i === srcset.length) {
       text.textContent = "Play Over !"
       text.classList.add("ad__img-title--over")
       return
     }
+
     text.textContent = "loading..."
     text.style.color = "#fff"
     text.classList.add("ad__img-title--loading")
+
     const src = srcset[i].src
     const wrapper = await loadIMG(src)
     wrapper.addEventListener("animationend", (e) => {
       const aname = e.animationName
       log("end", aname)
+      obj.cur = null
       imgList.removeChild(e.currentTarget)
       iterate()
     })
@@ -56,10 +69,13 @@
       e.currentTarget.classList.remove('paused')
     })
     imgList.appendChild(wrapper)
+
     text.classList.remove("ad__img-title--loading")
     text.textContent = srcset[i].title
     text.style.color = srcset[i].tcolor || "#fff"
+
     obj.i += 1
+    obj.cur = wrapper
   }
 
   iterate()

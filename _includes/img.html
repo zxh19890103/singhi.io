@@ -1,9 +1,10 @@
 <div class="photo-wrapper">
   <div class="photo" onclick="showPhotoModal('{{include.src}}')">
+    {% assign title = include.title | default: site.title %}
     <img
       class="photo__entity"
-      alt="{{ include.alt | default include.title }}"
-      title="{{ include.title }}"
+      alt="{{ include.alt | default: title }}"
+      title="{{ title }}"
       src="{{ include.src }}"
     />
     {% if include.title %}
