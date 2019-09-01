@@ -1,4 +1,4 @@
-.highlight  { background: #1e2426; color: #babdb6}
+.highlight  { background: #1e2426; color: #babdb6; border-radius: 4px;}
 .highlight .hll { background-color: #ffffcc }
 .highlight .c { color: #656763} /* Comment */
 .highlight .err { color: #babdb6} /* Error */
@@ -81,8 +81,6 @@ code.highlighter-rouge {
 
 pre.highlight {
 	padding: 1rem;
-	background: #202020;
 	color: #d0d0d0;
-	border-radius: 4px;
 	overflow: auto;
-  }
+}
