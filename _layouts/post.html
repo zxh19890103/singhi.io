@@ -21,7 +21,7 @@ layout: default
 {% if page.src %}
 <div class="article__src">
   <i class="iconfont icon-homepagenormal"></i>：<a href="{{ page.src }}">{{
-    page.src
+    page.src | truncate: 45
   }}</a>
 </div>
 {% endif %} {% if page.tags.size > 0 %}

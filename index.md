@@ -1,5 +1,6 @@
 ---
 layout: page
+title: 博客
 ---
 
 <ul class="documents">
@@ -8,7 +9,7 @@ layout: page
       <div class="document">
         <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
         <p>
-        <time>{{ post.date | date: "%d,%b %y" }} <span style="color: #aaa">•</span></time>
+        <time>{{ post.date | date: "%d,%b %y" }} <span style="color: #aaa;">•</span></time>
         {% if post.short %}
           {{ post.short }}...
         {% else %}

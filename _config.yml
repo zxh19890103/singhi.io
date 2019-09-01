@@ -3,6 +3,13 @@ description: 张星海的文档,专注前端技术总结,记录生活点滴,网�
 motto: Every line of code represents an ethical and moral decision.
 version: 0.2.3
 
+collections_dir: group
+collections:
+  patterns:
+    title: 设计模式
+    sort_by: date
+    output: true
+
 plugins:
   - jekyll-feed
   - jekyll-sitemap
