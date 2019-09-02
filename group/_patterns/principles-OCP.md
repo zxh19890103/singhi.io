@@ -1,6 +1,7 @@
 ---
 layout: post
-title: 7大原则 - 开闭原则
+title: 7大原则 - 开闭原则（OCP）
+sort: 1
 ---
 
 ### 开闭原则的定义
@@ -10,6 +11,7 @@ title: 7大原则 - 开闭原则
 开闭原则（Open Closed Principle，OCP）由勃兰特·梅耶（Bertrand Meyer）提出，他在 1988 年的著作《面向对象软件构造》（Object Oriented Software Construction）中提出：*软件实体应当对扩展开放，对修改关闭*（Software entities should be open for extension，but closed for modification），这就是开闭原则的经典定义。
 
 这里的软件实体包括以下几个部分：
+
 - 项目中划分出的模块
 - 类与接口
 - 方法
@@ -40,4 +42,3 @@ title: 7大原则 - 开闭原则
 **分析**：Windows 的主题是桌面背景图片、窗口颜色和声音等元素的组合。用户可以根据自己的喜爱更换自己的桌面主题，也可以从网上下载新的主题。这些主题有共同的特点，可以为其定义一个抽象类（Abstract Subject），而每个具体的主题（Specific Subject）是其子类。用户窗体可以根据需要选择或者增加新的主题，而不需要修改原代码，所以它是满足开闭原则的，其类图如图 1 所示。
 
 {% include img.html src="http://c.biancheng.net/uploads/allimg/181113/3-1Q113100151L5.gif" title="Windows的桌面主题类图" %}
-
