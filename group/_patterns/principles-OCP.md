@@ -1,7 +1,9 @@
 ---
 layout: post
 title: 7大原则 - 开闭原则（OCP）
-sort: 1
+sort: 99
+short: Software entities should be open for extension，but closed for modification
+date: 2019-08-31
 ---
 
 ### 开闭原则的定义

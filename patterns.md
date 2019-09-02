@@ -7,10 +7,17 @@ title: 专栏 - 设计模式
 
 {% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/personal-site/laptop-desk-computer-work-man-working-coffee-people-technology-internet-sitting-corporate-office-professional-business-modern-workstation-label-monitor-brand-product-design-eye-document-644378.jpg" %}
 
+<ul class="documents">
 {% for doc in site.patterns %}
-  <h2>
-    <a href="{{ doc.url }}">
-      {{ doc.title }}
-    </a>
-  </h2>
+  <li class="documents__item">
+    <div class="document">
+      <h3>
+        <a href="{{ doc.url }}">
+          {{ doc.title }}
+        </a>
+      </h3>
+      <p>{{ doc.short }}</p>    
+    </div>
+  </li>
 {% endfor %}
+</ul>
