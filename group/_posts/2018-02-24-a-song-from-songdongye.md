@@ -2,6 +2,7 @@
 layout: post
 title: 空港曲 - By 宋冬野
 short: 今天下午听喜马拉雅FM发现了这个歌曲
+song: 1
 tags:
   - 宋冬野
   - 空巷曲
@@ -11,7 +12,7 @@ tags:
 
 今天下午听喜马拉雅FM发现了这个歌曲。
 
-听：[https://www.kugou.com/song/#hash=769B620814915E8195928CA8CAEBF1FB&album_id=1995365](https://www.kugou.com/song/#hash=769B620814915E8195928CA8CAEBF1FB&album_id=1995365)
+听：[https://www.kugou.com/song...](https://www.kugou.com/song/#hash=769B620814915E8195928CA8CAEBF1FB&album_id=1995365)
 
 作者宋冬野，载以歌词。
 

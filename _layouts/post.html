@@ -12,7 +12,7 @@ layout: default
     {% endif %}
   </div>
 </div>
-<div class="article__body">
+<div class="article__body{% if page.song %} article__body--song{% endif %}">
   {{ content }}
 </div>
 

@@ -17,3 +17,6 @@ plugins:
 
 feed:
   path: /feed.xml
+
+exclude:
+  - tools
