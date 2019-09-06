@@ -8,6 +8,8 @@ date: 2019-09-04
 
 ### 单一职责原则的定义
 
+> There should never be more than one reason for a class to change.
+
 单一职责原则（Single Responsibility Principle，SRP）又称单一功能原则，由罗伯特·C.马丁（Robert C. Martin）于《敏捷软件开发：原则、模式和实践》一书中提出的。这里的职责是指类变化的原因，单一职责原则规定*一个类应该有且仅有一个引起它变化的原因*，否则类应该被拆分（There should never be more than one reason for a class to change）。
 
 该原则提出对象不应该承担太多职责，如果一个对象承担了太多的职责，至少存在以下两个缺点：
