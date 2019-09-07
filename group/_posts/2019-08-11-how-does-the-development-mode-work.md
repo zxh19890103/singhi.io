@@ -211,7 +211,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 ```
 
-也就只能在这里，你的打包工具将 ‘development’ 或 ‘production’ 以字符串形式插入到代码中做环境判断的地方，继而，代码压缩工具抛开 development-only 的那些依赖（require）。
+也就只能在这里，你的打包工具将 `development` 或 `production` 以字符串形式插入到代码中做环境判断的地方，继而，代码压缩工具抛开 development-only 的那些依赖（require）。
 
 react.production.min.js 和 react.development.js 二者都不会再有基于 process.env.NODE_ENV 的环境检查了。这非常棒，因为在 Node.js 环境中运行的时候，访问 process.env 会导致系统变慢。提前为两种模式编译好文件包，也能让我们更加一致地来优化文件大小，而不用考虑使用何种打包和压缩工具。
 
