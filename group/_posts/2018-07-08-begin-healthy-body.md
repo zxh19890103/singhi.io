@@ -142,7 +142,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 ### 胸肌
 
-{% include img.html src="http://i1.hoopchina.com.cn/user/190/3060190/1257137547.jpg" %}
+{% include img.html src="http://ht.changsha.cn/upload/docnews/5137/20130720/5137_1374326897.jpg" %}
 
 胸肌就是胸部的肌肉，由左右两部分构成，又称胸大肌。胸大肌（pectoralis major）通常称为胸肌，成扇型。位于胸廓的前上部，起自锁骨内侧半，胸骨和第1~6肋软骨，肌束向外侧集中，止于肱骨大结节嵴。
 
