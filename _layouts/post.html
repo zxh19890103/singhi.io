@@ -6,8 +6,7 @@ layout: default
   {{ page.title }}
   <div class="article__subtitle">
     <span>{{ page.date | date: "%a, %b %d, %y" }}</span>
-    {% if page.nocoffe %}
-    {% else %}
+    {% if page.nocoffe %} {% else %}
     <i class="iconfont icon-coffee"></i>
     {% endif %}
   </div>
@@ -26,6 +25,28 @@ layout: default
 </div>
 {% endif %} {% if page.tags.size > 0 %}
 <div class="article__tags">
-  <i class="iconfont icon-Hash-Tag"></i>：{% for tag in page.tags %}<a href="#">{{ tag }}</a>{% endfor %}
+  <i class="iconfont icon-Hash-Tag"></i>：{% for tag in page.tags %}<a
+    href="#"
+    >{{ tag }}</a
+  >{% endfor %}
 </div>
 {% endif %}
+
+<div id="gitmentContainer"></div>
+<link
+  rel="stylesheet"
+  href="https://imsun.github.io/gitment/style/default.css"
+/>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+  const gitment = new Gitment({
+    owner: 'zxh19890103',
+    repo: "singhi.io",
+    redirect_uri: location.href,
+    oauth: {
+      client_id: "8f12af399879a21edfb4",
+      client_secret: "89caf3baee7c9962dddc6f6fa3c8db0825c51f1f"
+    }
+  });
+  gitment.render("gitmentContainer");
+</script>
