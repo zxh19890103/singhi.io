@@ -1,17 +1,15 @@
+const log = (...args) => {
+  console.log("LOG:", ...args)
+}
 
-// ad
-;(async function(window) {
+const adrun = async () => {
 
-  if(!window.fetch) throw new Error("Your broswer doesn't support this script.")
-
-  const log = (...args) => {
-    console.log("LOG:", ...args)
+  if (!window.fetch) {
+    return log(`Your broswer doesn't support this script.`)
   }
 
   const data = await fetch('/assets/ad.json')
   const srcset = await data.json()
-  // console.log(d)
-  // const srcset = window.__SRCSET__ || []
 
   const imgList = document.querySelector('#ref_adImgs')
   const text = document.createElement("div")
@@ -97,8 +95,6 @@
     obj.cur = wrapper
   }
 
-  iterate()
-
   function loadIMG(src) {
     return new Promise((done, error) => {
       const img = new Image()
@@ -166,90 +162,10 @@
     obj.aniClasses[className] = 1
     return className
   }
-}(window));
 
+  iterate()
+}
 
-function showPhotoModal(src) {
-  const _pvbg = document.createElement("div")
-  let reuqestClose = 0b0
-  _pvbg.className = "photo-modal"
-  _pvbg.addEventListener('click', () => {
-    img.style = `width: 0; height: 0; opacity: .5;`
-    reuqestClose = 0b1
-  })
-
-  const _pv = document.createElement("div")
-  _pv.className = "photo-modal__content"
-  _pv.innerHTML = "loading..."
-  _pvbg.appendChild(_pv)
-
-  document.body.appendChild(_pvbg)
-  document.querySelector("#page").classList.add('blur')
-
-  const img = new Image()
-  img.style = `width: 0; height: 0;`
-
-  const r = Math.round
-  const YLES = 1024
-
-  const correctSize = () => {
-    console.log('------')
-    const xW = _pv.clientWidth - 20 - 12
-    const xH = _pv.clientHeight - 20 - 12
-    const xR = (xW * YLES / xH) >> 0
-    const iW = img.naturalWidth
-    const iH = img.naturalHeight
-    const iR = (iW * YLES / iH) >> 0
-    console.log(iW, iH, iR, xW, xH, xR)
-    let vW = 0, vH = 0
-    if (xW >= iW) {
-      if (xH >= iH) {
-        vW = iW
-        vH = iH
-        console.log('0')
-      } else {
-        vH = xH
-        vW = r(iR * vH / YLES)
-        console.log('1')
-      }
-    } else {
-      if (xH >= iH) {
-        vW = xW
-        vH = r(vW * YLES / iR)
-        console.log('2')
-      } else {
-        if (xR > iR) {
-          vH = xH
-          vW = r(iR * vH / YLES)
-          console.log('3')
-        } else {
-          vW = xW
-          vH = r(vW * YLES / iR)
-          console.log('4')
-        }
-      }
-    }
-    img.style = `width: ${vW}px; height: ${vH}px;`
-  }
-
-  const debouncedCorrectSize = debounce(correctSize, 300)
-
-  window.addEventListener('resize', debouncedCorrectSize)
-
-  img.addEventListener('transitionend', (e) => {
-    if (reuqestClose) {
-      console.log('haha', e)
-      document.body.removeChild(_pvbg)
-      document.querySelector("#page").classList.remove('blur')
-      window.removeEventListener('resize', debouncedCorrectSize)
-      reuqestClose = 0b0
-    }
-  })
-
-  img.onload = () => {
-    _pv.innerHTML = ""
-    _pv.appendChild(img)
-    correctSize()
-  }
-  img.src = src
+export {
+  adrun
 }

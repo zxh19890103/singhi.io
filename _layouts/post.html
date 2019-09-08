@@ -17,24 +17,26 @@ layout: default
 
 <hr />
 
-{% if page.src %}
-<div class="article__src">
-  <i class="iconfont icon-homepagenormal"></i>：<a href="{{ page.src }}">{{
-    page.src | truncate: 45
-  }}</a>
+<div class="article__attrs">
+  {% if page.src %}
+  <div class="article__attrs-src">
+    <i class="iconfont icon-homepagenormal"></i>：<a href="{{ page.src }}">{{
+      page.src | truncate: 45
+    }}</a>
+  </div>
+  {% endif %} {% if page.tags.size > 0 %}
+  <div class="article__attrs-tags">
+    <i class="iconfont icon-Hash-Tag"></i>：{% for tag in page.tags %}<a
+      href="#"
+      >{{ tag }}</a
+    >{% endfor %}
+  </div>
+  {% endif %}
 </div>
-{% endif %} {% if page.tags.size > 0 %}
-<div class="article__tags">
-  <i class="iconfont icon-Hash-Tag"></i>：{% for tag in page.tags %}<a
-    href="#"
-    >{{ tag }}</a
-  >{% endfor %}
-</div>
-{% endif %}
 
 <hr />
 
-<div id="gitmentContainer"></div>
+<!-- <div id="gitmentContainer"></div>
 <link
   rel="stylesheet"
   href="https://imsun.github.io/gitment/style/default.css"
@@ -44,11 +46,10 @@ layout: default
   const gitment = new Gitment({
     owner: "zxh19890103",
     repo: "singhi.io",
-    redirect_uri: location.href,
     oauth: {
       client_id: "8f12af399879a21edfb4",
       client_secret: "89caf3baee7c9962dddc6f6fa3c8db0825c51f1f"
     }
   });
   gitment.render("gitmentContainer");
-</script>
+</script> -->

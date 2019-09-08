@@ -34,3 +34,5 @@ feed:
 
 exclude:
   - tools
+  - node_modules
+  - scripts

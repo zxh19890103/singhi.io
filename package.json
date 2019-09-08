@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "bundle": "cd ./scripts && rollup -c ./rollup.config.js"
+  },
+  "dependencies": {
+    "gitment": "^0.0.3",
+    "rollup": "^1.20.3",
+    "rollup-plugin-uglify": "^6.0.3"
+  }
+}
