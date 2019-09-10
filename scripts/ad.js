@@ -1,9 +1,8 @@
 const log = (...args) => {
-  console.log("LOG:", ...args)
+  console.log('LOG:', ...args)
 }
 
 const adrun = async () => {
-
   if (!window.fetch) {
     return log(`Your broswer doesn't support this script.`)
   }
@@ -12,8 +11,8 @@ const adrun = async () => {
   const srcset = await data.json()
 
   const imgList = document.querySelector('#ref_adImgs')
-  const text = document.createElement("div")
-  text.className = "ad__img-title"
+  const text = document.createElement('div')
+  text.className = 'ad__img-title'
   text.textContent = ''
   text.addEventListener('click', () => {
     const i = obj.i - 1
@@ -21,14 +20,14 @@ const adrun = async () => {
     if (detail) {
       const anchor = document.createElement('a')
       anchor.href = detail
-      anchor.target = "_blank"
+      anchor.target = '_blank'
       anchor.click()
     }
   })
-  imgList.addEventListener('click', (e) => {
+  imgList.addEventListener('click', e => {
     e.stopPropagation()
     // console.log('000000', e.currentTarget)
-    if(e.target instanceof Image) {
+    if (e.target instanceof Image) {
       const i = obj.i - 1
       const { src } = srcset[i]
       showPhotoModal(src)
@@ -49,7 +48,7 @@ const adrun = async () => {
     i: 0,
     requestNext: 0,
     cur: null,
-    aniClasses: {}
+    aniClasses: {},
   }
 
   const ANIMATION_DURATION = 60
@@ -61,35 +60,35 @@ const adrun = async () => {
     log('iter', i)
 
     if (i === srcset.length) {
-      text.textContent = "Play Over !"
-      text.classList.add("ad__img-title--over")
+      text.textContent = 'Play Over !'
+      text.classList.add('ad__img-title--over')
       return
     }
 
-    text.textContent = "loading..."
-    text.style.color = "#fff"
-    text.classList.add("ad__img-title--loading")
+    text.textContent = 'loading...'
+    text.style.color = '#fff'
+    text.classList.add('ad__img-title--loading')
 
     const src = srcset[i].src
     const wrapper = await loadIMG(src)
-    wrapper.addEventListener("animationend", (e) => {
+    wrapper.addEventListener('animationend', e => {
       const aname = e.animationName
-      log("end", aname)
+      log('end', aname)
       obj.cur = null
       imgList.removeChild(e.currentTarget)
       iterate()
     })
-    wrapper.addEventListener("mouseenter", e => {
+    wrapper.addEventListener('mouseenter', e => {
       e.currentTarget.classList.add('paused')
     })
-    wrapper.addEventListener("mouseleave", e => {
+    wrapper.addEventListener('mouseleave', e => {
       e.currentTarget.classList.remove('paused')
     })
     imgList.appendChild(wrapper)
 
-    text.classList.remove("ad__img-title--loading")
+    text.classList.remove('ad__img-title--loading')
     text.textContent = srcset[i].title
-    text.style.color = srcset[i].tcolor || "#fff"
+    text.style.color = srcset[i].tcolor || '#fff'
 
     obj.i += 1
     obj.cur = wrapper
@@ -101,9 +100,9 @@ const adrun = async () => {
       img.onload = () => {
         img.onload = null
         const { naturalHeight, naturalWidth } = img
-        const imgH = Math.floor(naturalHeight * vW / naturalWidth)
+        const imgH = Math.floor((naturalHeight * vW) / naturalWidth)
         const aniClass = generateKeyframes(imgH - vH)
-        const wrapper = document.createElement("div")
+        const wrapper = document.createElement('div')
         wrapper.className = `ad__img`
         wrapper.classList.add(aniClass)
         wrapper.appendChild(img)
@@ -115,11 +114,13 @@ const adrun = async () => {
   }
 
   function generateKeyframes(h) {
-    if (h <= 0) return "slideleft-in"
+    if (h <= 0) return 'slideleft-in'
     const className = `slideleft-in-withHeightDiff_${h}`
     if (className in obj.aniClasses) return className
-    const styleTag = document.createElement("style")
-    const r = Math.random().toString(36).substr(2)
+    const styleTag = document.createElement('style')
+    const r = Math.random()
+      .toString(36)
+      .substr(2)
     const styleState = {
       top: 0,
       left: 0,
@@ -131,7 +132,7 @@ const adrun = async () => {
           opacity: ${this.opacity};
         }
         `.replace(/[\n\t\s]/g, '')
-      }
+      },
     }
     const frames = []
     let time = INITIAL_KEYFRAME_DURATION_PERCENT
@@ -166,6 +167,4 @@ const adrun = async () => {
   iterate()
 }
 
-export {
-  adrun
-}
+export { adrun }

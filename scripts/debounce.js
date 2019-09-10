@@ -60,7 +60,7 @@
  * const status = debounced.pending() ? "Pending..." : "Ready"
  */
 
-const isObject = (value) => {
+const isObject = value => {
   const type = typeof value
   return value != null && (type == 'object' || type == 'function')
 }
@@ -68,12 +68,7 @@ const isObject = (value) => {
 const root = window
 
 function debounce(func, wait, options) {
-  let lastArgs,
-    lastThis,
-    maxWait,
-    result,
-    timerId,
-    lastCallTime
+  let lastArgs, lastThis, maxWait, result, timerId, lastCallTime
 
   let lastInvokeTime = 0
   let leading = false
@@ -81,7 +76,8 @@ function debounce(func, wait, options) {
   let trailing = true
 
   // Bypass `requestAnimationFrame` by explicitly setting `wait=0`.
-  const useRAF = (!wait && wait !== 0 && typeof root.requestAnimationFrame === 'function')
+  const useRAF =
+    !wait && wait !== 0 && typeof root.requestAnimationFrame === 'function'
 
   if (typeof func !== 'function') {
     throw new TypeError('Expected a function')
@@ -145,8 +141,12 @@ function debounce(func, wait, options) {
     // Either this is the first call, activity has stopped and we're at the
     // trailing edge, the system time has gone backwards and we're treating
     // it as the trailing edge, or we've hit the `maxWait` limit.
-    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
-      (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait))
+    return (
+      lastCallTime === undefined ||
+      timeSinceLastCall >= wait ||
+      timeSinceLastCall < 0 ||
+      (maxing && timeSinceLastInvoke >= maxWait)
+    )
   }
 
   function timerExpired() {
@@ -215,7 +215,4 @@ function debounce(func, wait, options) {
   return debounced
 }
 
-export {
-  isObject,
-  debounce
-}
+export { isObject, debounce }

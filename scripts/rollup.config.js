@@ -1,7 +1,7 @@
-import { uglify } from "rollup-plugin-uglify";
-import babel from 'rollup-plugin-babel';
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
+import { uglify } from 'rollup-plugin-uglify'
+import babel from 'rollup-plugin-babel'
+import resolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
 
 module.exports = {
   input: 'index.js',
@@ -14,17 +14,17 @@ module.exports = {
     commonjs({
       include: /node_modules/,
       namedExports: {
-        '../node_modules/@babel/runtime/helpers/typeof.js': ['typeof']
-      }
+        '../node_modules/@babel/runtime/helpers/typeof.js': ['typeof'],
+      },
     }),
     babel({
       exclude: 'node_modules/**', // only transpile our source code
-      runtimeHelpers: true
+      runtimeHelpers: true,
     }),
     uglify({
       compress: {
-        drop_console: true
-      }
+        drop_console: true,
+      },
     }),
-  ]
+  ],
 }
