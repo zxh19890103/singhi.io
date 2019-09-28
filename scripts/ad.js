@@ -7,7 +7,7 @@ const adrun = async () => {
     return log(`Your broswer doesn't support this script.`)
   }
 
-  const data = await fetch('/assets/ad.json')
+  const data = await fetch(`/assets/ad.json?v=${Date.now()}`)
   const srcset = await data.json()
 
   const imgList = document.querySelector('#ref_adImgs')
