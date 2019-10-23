@@ -229,4 +229,5 @@ a();
 
 ### 在异步任务中驻留 zone
 
-
+javascript 开发的不同点之一就是异步编程。许多刚入门的 js 开发者都会很熟练地使用 setTimeout 方法来延迟一个函数的执行。Zone 称 setTimeout 为异步任务，具体来说，是一个宏任务。另一批任务被叫做微任务，比如 promise.then。
+这是浏览器专业术语，Jake Archibald 在文章[“Tasks, microtasks,queues and schedules.”](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) 作出了深刻的解释。
