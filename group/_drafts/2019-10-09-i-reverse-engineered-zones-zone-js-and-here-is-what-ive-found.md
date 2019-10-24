@@ -231,3 +231,40 @@ a();
 
 javascript 开发的不同点之一就是异步编程。许多刚入门的 js 开发者都会很熟练地使用 setTimeout 方法来延迟一个函数的执行。Zone 称 setTimeout 为异步任务，具体来说，是一个宏任务。另一批任务被叫做微任务，比如 promise.then。
 这是浏览器专业术语，Jake Archibald 在文章[“Tasks, microtasks,queues and schedules.”](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) 作出了深刻的解释。
+
+让我们来看看 Zone 到底是如何处理像 setTimeout 这样的异步操作的。我们还是使用上面的代码，只是将对 c 的直接调用改为使用 setTimeout 来回调。这样，函数会在将来的某个时间点执行于一个独立的栈中。
+
+```ts
+const zoneBC = Zone.current.fork({name: 'BC'});
+
+function c() {
+    console.log(Zone.current.name);  // BC
+}
+
+function b() {
+    console.log(Zone.current.name);  // BC
+    setTimeout(c, 2000);
+}
+
+function a() {
+    console.log(Zone.current.name);  // <root>
+    zoneBC.run(b);
+}
+
+a();
+```
+
+我们上面已经提到，如果我们在一个 zone 中执行一个函数，那么所有在其中调用的函数将始终在这个 zone 中被执行。这个特点对于异步操作也是适用的。如果我们对一个异步操作指明了一个回调函数，那么它执行时所在的 zone 和任务发派时的 zone 是同一个。
+
+因此，我们可以绘制出下面这个调用栈图：
+
+{% include img.html src="https://miro.medium.com/max/548/1*_lTVsXAh9_mFIr5QVrq8yA.png" %}
+
+非常好！然后这个图隐藏了一些细节。在底层，Zone 必须为每个异步任务保存正确的 zone。欲如此，我们必须记住任务执行时理应所在的那个 zone，做法则是持有对与任务相关的 zone 的引用。这个 zone 将会用于在 root zone 中来对任务进行调用。
+
+这意味着，每一个异步任务的回调都是从 root zone 开始的，它首先使用与任务相关的信息来恢复到正确的 zone，然后执行。下面这张图更为精确：
+
+{% include img.html src="https://miro.medium.com/max/548/1*90FaJGpYiclfiBLRZLk0qg.png" %}
+
+### 异步任务之间传播上下文
+
