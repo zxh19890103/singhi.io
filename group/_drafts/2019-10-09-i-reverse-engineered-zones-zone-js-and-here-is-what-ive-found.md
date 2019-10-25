@@ -229,10 +229,10 @@ a();
 
 ### 在异步任务中驻留 zone
 
-javascript 开发的不同点之一就是异步编程。许多刚入门的 js 开发者都会很熟练地使用 setTimeout 方法来延迟一个函数的执行。Zone 称 setTimeout 为异步任务，具体来说，是一个宏任务。另一批任务被叫做微任务，比如 promise.then。
+JavaScript 开发的不同点之一就是异步编程。许多刚入门的 `js` 开发者都会很熟练地使用 `setTimeout` 方法来延迟一个函数的执行。`Zone` 称 `setTimeout` 为异步任务，具体来说，是一个宏任务。另一批任务被叫做微任务，比如 `promise.then`。
 这是浏览器专业术语，Jake Archibald 在文章[“Tasks, microtasks,queues and schedules.”](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) 作出了深刻的解释。
 
-让我们来看看 Zone 到底是如何处理像 setTimeout 这样的异步操作的。我们还是使用上面的代码，只是将对 c 的直接调用改为使用 setTimeout 来回调。这样，函数会在将来的某个时间点执行于一个独立的栈中。
+让我们来看看 `Zone` 到底是如何处理像 `setTimeout` 这样的异步操作的。我们还是使用上面的代码，只是将对 `c` 的直接调用改为使用 `setTimeout` 来回调。这样，函数会在将来的某个时间点执行于一个独立的栈中。
 
 ```ts
 const zoneBC = Zone.current.fork({name: 'BC'});
@@ -254,23 +254,23 @@ function a() {
 a();
 ```
 
-我们上面已经提到，如果我们在一个 zone 中执行一个函数，那么所有在其中调用的函数将始终在这个 zone 中被执行。这个特点对于异步操作也是适用的。如果我们对一个异步操作指明了一个回调函数，那么它执行时所在的 zone 和任务发派时的 zone 是同一个。
+我们上面已经提到，如果我们在一个 `zone` 中执行一个函数，那么所有在其中调用的函数将始终在这个 `zone` 中被执行。这个特点对于异步操作也是适用的。如果我们对一个异步操作指明了一个回调函数，那么它执行时所在的 `zone` 和任务发派时的 `zone` 是同一个。
 
 因此，我们可以绘制出下面这个调用栈图：
 
 {% include img.html src="https://miro.medium.com/max/548/1*_lTVsXAh9_mFIr5QVrq8yA.png" %}
 
-非常好！然后这个图隐藏了一些细节。在底层，Zone 必须为每个异步任务保存正确的 zone。欲如此，我们必须记住任务执行时理应所在的那个 zone，做法则是持有对与任务相关的 zone 的引用。这个 zone 将会用于在 root zone 中来对任务进行调用。
+非常好！然后这个图隐藏了一些细节。在底层，`Zone` 必须为每个异步任务恢复到正确的 `zone`。欲如此，我们必须记住任务执行时理应所在的那个 `zone`，做法则是持有对与任务相关的 `zone` 的引用。这个 `zone` 将会用于在 `root zone` 中来对任务进行调用。
 
-这意味着，每一个异步任务的回调都是从 root zone 开始的，它首先使用与任务相关的信息来恢复到正确的 zone，然后执行。下面这张图更为精确：
+这意味着，每一个异步任务的回调都是从 `root zone` 开始的，它首先使用与任务相关的信息来恢复到正确的 `zone`，然后执行。下面这张图更为精确：
 
 {% include img.html src="https://miro.medium.com/max/548/1*90FaJGpYiclfiBLRZLk0qg.png" %}
 
 ### 异步任务之间传播上下文
 
-Zone 有很多有趣的性质，能够帮助到开发者。其中之一就是上下文转播功能。简单说，Zone 能够为一个 zone 挂载数据，然后在同一个 zone 环境下执行的异步任务里可以访问到。
+`Zone` 有很多有趣的性质，能够帮助到开发者。其中之一就是上下文转播功能。简单说，`Zone` 能够为一个 `zone` 挂载数据，然后在同一个 `zone` 环境下执行的异步任务里可以访问到。
 
-让我们来结合一个例子，看看 Zone 是如何在 setTimeout 异步任务中持久数据的。正如我们之前了解到的，forking 一个新的 zone，需要传入一个 spec 对象，这里又一个可选项 properties。我们能用这个选项来为 zone 关联数据，像下面这样：
+让我们来结合一个例子，看看 `Zone` 是如何在 `setTimeout` 异步任务中持久数据的。正如我们之前了解到的，`forking` 一个新的 `zone`，需要传入一个 `spec` 对象，这里又一个可选项 `properties`。我们能用这个选项来为 `zone` 关联数据，像下面这样：
 
 ```ts
 const zoneBC = Zone.current.fork({
@@ -281,7 +281,7 @@ const zoneBC = Zone.current.fork({
 });
 ```
 
-然后，我们使用 zone.get 方法访问数据：
+然后，我们使用 `zone.get` 方法访问数据：
 
 ```ts
 function a() {
@@ -296,9 +296,9 @@ function b() {
 zoneBC.run(b);
 ```
 
-properties 对象是 shallow-immutable 的，这意味着你不能 添加/移除 它的属性。这很大程度上是因为 Zone 没有提供相应的方法来处理这些。因此，上面的例子中，我们不能修改 properties.data 的值。
+`properties` 对象是 `shallow-immutable` 的，这意味着你不能 添加/移除 它的属性。这很大程度上是因为 `Zone` 没有提供相应的方法来处理这些。因此，上面的例子中，我们不能修改 `properties.data` 的值。
 
-但是我们可以将 data 定义为一个对象，而非基本类型数据，这样，我们就可以修改里面的数据了：
+但是我们可以将 `data` 定义为一个对象，而非基本类型数据，这样，我们就可以修改里面的数据了：
 
 ```ts
 const zoneBC = Zone.current.fork({
@@ -323,7 +323,7 @@ function b() {
 zoneBC.run(b);
 ```
 
-还有一点很有意思，就是 propetties 的继承性。使用 fork 方法创建的 zone 继承了 parent zone 的 properties 中的内容。
+还有一点很有意思，就是 `propetties` 的继承性。使用 `fork` 方法创建的 `zone` 继承了 `parent zone` 的 `properties` 中的内容。
 
 ```ts
 const parent = Zone.current.fork({
@@ -341,20 +341,20 @@ child.run(() => {
 
 ### 跟踪异步任务
 
-另一个特性，更为有趣的，就是 Zone 能够跟踪异步的宏任务或微任务。Zone 会将所有的异步任务放到一个队列里。要在这个队列的状态发生改变的时候，收到通知，你需要使用 zone 上的 onHasTask 钩子函数。下面是它的签名：
+另一个特性，更为有趣的，就是 `Zone` 能够跟踪异步的宏任务或微任务。`Zone` 会将所有的异步任务放到一个队列里。要在这个队列的状态发生改变的时候，收到通知，你需要使用 `zone` 上的 `onHasTask` 钩子。下面是它的签名：
 
 ```ts
 onHasTask(delegate, currentZone, targetZone, hasTaskState);
 ```
 
-因为，parent zones 能够拦截到 child zones 的事件，Zone 提供了 currentZone 和 targetZone 参数来区别事件发生所在的那个 zone 和 接收事件通知的 zone。例如，如果你需要确定我拦截的是当前的这个 zone，只需比较这两个值：
+因为，`parent zones` 能够拦截到 `child zones` 的事件，`Zone` 提供了 `currentZone` 和 `targetZone` 参数来区别事件发生所在的那个 `zone` 和 接收事件通知的 `zone`。例如，如果你需要确定我拦截的是当前的这个 `zone`，只需比较这两个值：
 
 ```ts
 // We are only interested in event which originate from our zone
 if (currentZone === targetZone) { ... }
 ```
 
-传入的最后一个参数是 hasTaskState， 它描述的是任务队列的状态，下面是它的签名：
+传入的最后一个参数是 `hasTaskState`， 它描述的是任务队列的状态，下面是它的签名：
 
 ```ts
 type HasTaskState = {
@@ -365,7 +365,7 @@ type HasTaskState = {
 };
 ```
 
-因此，如果我们在一个 zone 中调用了 setTimeout ，我们将收到下面这个对象：
+因此，如果我们在一个 `zone` 中调用了 `setTimeout` ，我们将收到下面这个对象：
 
 ```ts
 {
@@ -376,9 +376,9 @@ type HasTaskState = {
 }
 ```
 
-这表示，队列中存在一个 pending 状态的宏任务，队列状态的改变源自 macrotask。
+这表示，队列中存在一个 `pending` 状态的宏任务，队列状态的改变源自 `macrotask`。
 
-我们：
+我们来实际看看：
 
 ```ts
 const z = Zone.current.fork({
@@ -401,4 +401,194 @@ function b() {
 z.run(b);
 ```
 
-我们
+得到如下输出：
+
+```
+macroTask
+true
+{
+    "microTask": false,
+    "macroTask": true,
+    "eventTask": false,
+    "change": "macroTask"
+}
+```
+
+大概`2`秒之后，`timeout` 结束执行，`onHasTask` 再次触发：
+
+```
+macroTask
+false
+{
+    "microTask": false,
+    "macroTask": false,
+    "eventTask": false,
+    "change": "macroTask"
+}
+```
+
+这里需要提醒一下，使用 `onHasTask` 我们只能跟踪整个任务队列的 `empty/non-empty` 状态的变化。你不能用它来跟踪单个任务的状态。如果你运行下边的代码：
+
+```ts
+let timer;
+
+const z = Zone.current.fork({
+    name: 'z',
+    onHasTask(delegate, current, target, hasTaskState) {
+        console.log(Date.now() - timer);
+        console.log(hasTaskState.change);
+        console.log(hasTaskState.macroTask);
+    }
+});
+
+function a1() {}
+function a2() {}
+
+function b() {
+    timer = Date.now();
+    setTimeout(a1, 2000);
+    setTimeout(a2, 4000);
+}
+
+z.run(b);
+```
+
+你将得到这样的结果：
+
+```
+1
+macroTask
+true
+
+4006
+macroTask
+false
+```
+
+你可以看到这里没有出现 `2` 秒的那个定时任务的事件。`onHasTask` 在第一个 `setTimeout` 派发任务之后，由于队列由空变为非空，从而触发一次。在 `4` 秒的那个定时任务执行结束后，队列的状态由非空变为空，其再一次触发。
+
+如果你想跟踪单个任务，你需要使用 `onSheduleTask` 和 `onInvoke` 这两个钩子。
+
+#### onSheduleTask and onInvokeTask
+
+`Zone spec` 定义了两个钩子函数，借此，你可以追踪每个任务的进度。
+
+- **onScheduleTask**，检测到异步操作时（例如 `setTimeout`）执行。
+- **onInvokeTask**，在异步的回调函数执行之后执行。
+
+下面的代码使用了这两个钩子来追踪任务进度：
+
+```ts
+let timer;
+
+const z = Zone.current.fork({
+    name: 'z',
+    onScheduleTask(delegate, currentZone, targetZone, task) {
+      const result = delegate.scheduleTask(targetZone, task);
+      const name = task.callback.name;
+      console.log(
+          Date.now() - timer, 
+         `task with callback '${name}' is added to the task queue`
+      );
+      return result;
+    },
+    onInvokeTask(delegate, currentZone, targetZone, task, ...args) {
+      const result = delegate.invokeTask(targetZone, task, ...args);
+      const name = task.callback.name;
+      console.log(
+        Date.now() - timer, 
+       `task with callback '${name}' is removed from the task queue`
+     );
+     return result;
+    }
+});
+
+function a1() {}
+function a2() {}
+
+function b() {
+    timer = Date.now();
+    setTimeout(a1, 2000);
+    setTimeout(a2, 4000);
+}
+
+z.run(b);
+```
+
+输出：
+
+```
+1 “task with callback ‘a1’ is added to the task queue”
+2 “task with callback ‘a2’ is added to the task queue”
+2001 “task with callback ‘a1’ is removed from the task queue”
+4003 “task with callback ‘a2’ is removed from the task queue”
+```
+
+#### 通过 onInvoke 拦截 zone 的切换
+
+一个 `zone` 会由于显式地调用了 `z.run` 或 隐式地调用一个任务而切成当前 `zone`。在上一节，我解释了 `onInvokeTask` 用于拦截内部执行异步任务的回调时导致的 `zone` 的切换。另一个钩子 `onInvoke`，你可用于监听`zone` 由执行 `run` 方法而发生的切换。
+
+下面是一个用例：
+
+```ts
+const z = Zone.current.fork({
+    name: 'z',
+    onInvoke(delegate, current, target, callback, ...args) {
+        console.log(`entering zone '${target.name}'`);
+        return delegate.invoke(target, callback, ...args);
+    }
+});
+
+function b() {}
+
+z.run(b);
+```
+
+输出：
+
+```
+entering zone ‘z’
+```
+
+### `Zone.current` 的工作原理
+
+当前 `zone` 保存在 `_currentZoneFrame` 的变量中。它被保存在一个闭包中，并在 `Zone.current` 的 `getter` 方法中返回。因此，要切换 `zone`，只需要简单地更新一下 `_currentZoneFrame`。现在你可以通过 执行 `z.run` 或者调用一个任务来切换 `zone`。
+
+下面的代码展示了 `run` 方法中给 `_currentZoneFrame` 赋值的操作：
+
+```ts
+class Zone {
+   ...
+   run(callback, applyThis, applyArgs,source) {
+      ...
+      _currentZoneFrame = {parent: _currentZoneFrame, zone: this};
+```
+
+对于 `runTask` 方法，赋值操作如下：
+
+```ts
+class Zone {
+   ...
+   runTask(task, applyThis, applyArgs) {
+      ...
+      _currentZoneFrame = { parent: _currentZoneFrame, zone: this };
+```
+
+`runTask` 方法在 `task` 的 `invokeTask` 方法中调用：
+
+```ts
+class ZoneTask {
+    invokeTask() {
+         _numberOfNestedTaskFrames++;
+      try {
+          self.runCount++;
+          return self.zone.runTask(self, this, arguments);
+```
+
+每个任务被创建后，将 `zone` 保存在一个 `zone` 属性中。这个 `zone` 就是在将来执行任务回调时用到的 `zone`。
+
+```ts
+self.zone.runTask(self, this, arguments);
+```
+
+（完）
