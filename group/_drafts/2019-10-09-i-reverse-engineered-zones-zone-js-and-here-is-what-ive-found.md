@@ -268,3 +268,137 @@ a();
 
 ### 异步任务之间传播上下文
 
+Zone 有很多有趣的性质，能够帮助到开发者。其中之一就是上下文转播功能。简单说，Zone 能够为一个 zone 挂载数据，然后在同一个 zone 环境下执行的异步任务里可以访问到。
+
+让我们来结合一个例子，看看 Zone 是如何在 setTimeout 异步任务中持久数据的。正如我们之前了解到的，forking 一个新的 zone，需要传入一个 spec 对象，这里又一个可选项 properties。我们能用这个选项来为 zone 关联数据，像下面这样：
+
+```ts
+const zoneBC = Zone.current.fork({
+    name: 'BC',
+    properties: {
+        data: 'initial'
+    }
+});
+```
+
+然后，我们使用 zone.get 方法访问数据：
+
+```ts
+function a() {
+    console.log(Zone.current.get('data')); // 'initial'
+}
+
+function b() {
+    console.log(Zone.current.get('data')); // 'initial'
+    setTimeout(a, 2000);
+}
+
+zoneBC.run(b);
+```
+
+properties 对象是 shallow-immutable 的，这意味着你不能 添加/移除 它的属性。这很大程度上是因为 Zone 没有提供相应的方法来处理这些。因此，上面的例子中，我们不能修改 properties.data 的值。
+
+但是我们可以将 data 定义为一个对象，而非基本类型数据，这样，我们就可以修改里面的数据了：
+
+```ts
+const zoneBC = Zone.current.fork({
+    name: 'BC',
+    properties: {
+        data: {
+            value: 'initial'
+        }
+    }
+});
+
+function a() {
+    console.log(Zone.current.get('data').value); // 'updated'
+}
+
+function b() {
+    console.log(Zone.current.get('data').value); // 'initial'
+    Zone.current.get('data').value = 'updated';
+    setTimeout(a, 2000);
+}
+
+zoneBC.run(b);
+```
+
+还有一点很有意思，就是 propetties 的继承性。使用 fork 方法创建的 zone 继承了 parent zone 的 properties 中的内容。
+
+```ts
+const parent = Zone.current.fork({
+    name: 'parent',
+    properties: { data: 'data from parent' }
+});
+
+const child = parent.fork({name: 'child'});
+
+child.run(() => {
+    console.log(Zone.current.name); // 'child'
+    console.log(Zone.current.get('data')); // 'data from parent'
+});
+```
+
+### 跟踪异步任务
+
+另一个特性，更为有趣的，就是 Zone 能够跟踪异步的宏任务或微任务。Zone 会将所有的异步任务放到一个队列里。要在这个队列的状态发生改变的时候，收到通知，你需要使用 zone 上的 onHasTask 钩子函数。下面是它的签名：
+
+```ts
+onHasTask(delegate, currentZone, targetZone, hasTaskState);
+```
+
+因为，parent zones 能够拦截到 child zones 的事件，Zone 提供了 currentZone 和 targetZone 参数来区别事件发生所在的那个 zone 和 接收事件通知的 zone。例如，如果你需要确定我拦截的是当前的这个 zone，只需比较这两个值：
+
+```ts
+// We are only interested in event which originate from our zone
+if (currentZone === targetZone) { ... }
+```
+
+传入的最后一个参数是 hasTaskState， 它描述的是任务队列的状态，下面是它的签名：
+
+```ts
+type HasTaskState = {
+    microTask: boolean; 
+    macroTask: boolean; 
+    eventTask: boolean; 
+    change: 'microTask'|'macroTask'|'eventTask';
+};
+```
+
+因此，如果我们在一个 zone 中调用了 setTimeout ，我们将收到下面这个对象：
+
+```ts
+{
+    microTask: false,
+    macroTask: true,
+    eventTask: false,
+    change: 'macroTask',
+}
+```
+
+这表示，队列中存在一个 pending 状态的宏任务，队列状态的改变源自 macrotask。
+
+我们：
+
+```ts
+const z = Zone.current.fork({
+    name: 'z',
+    onHasTask(delegate, current, target, hasTaskState) {
+        console.log(hasTaskState.change);          // "macroTask"
+        console.log(hasTaskState.macroTask);       // true
+        console.log(JSON.stringify(hasTaskState));
+    }
+});
+
+function a() {}
+
+function b() {
+    // synchronously triggers `onHasTask` event with
+    // change === "macroTask" since `setTimeout` is a macrotask
+    setTimeout(a, 2000);
+}
+
+z.run(b);
+```
+
+我们
