@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 深入研究Zone.js之后的发现
+title: 深入研究Zone.js之后的发现（完善中）
 short: Zones 是帮助开发人员处理多个有逻辑关联性的异步操作的新机制。它将每个异步操作通过 zone 关联起来
 src: https://blog.angularindepth.com/i-reverse-engineered-zones-zone-js-and-here-is-what-ive-found-1f48dc87659b
 tags:
