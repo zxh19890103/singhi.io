@@ -7,7 +7,7 @@ title: 博客
   {% for post in site.posts %}
     <li class="documents__item">
       <div class="document">
-        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+        <h3><a target="_blank" href="{{ post.url }}">{{ post.title }}</a></h3>
         <p>
         <time>{{ post.date | date: "%d,%b %y" }} <span style="color: #aaa;">•</span></time>
         {% if post.short %}
