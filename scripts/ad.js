@@ -44,8 +44,9 @@ const adrun = async () => {
 
   const { clientWidth: vW, clientHeight: vH } = imgList
 
+  const first = Number(localStorage.getItem("CURRENT_AD_INDEX"))
   const obj = {
-    i: 0,
+    i: first,
     requestNext: 0,
     cur: null,
     aniClasses: {},
@@ -59,9 +60,13 @@ const adrun = async () => {
     const i = obj.i
     log('iter', i)
 
+    localStorage.setItem("CURRENT_AD_INDEX", i)
+
     if (i === srcset.length) {
-      text.textContent = 'Play Over !'
-      text.classList.add('ad__img-title--over')
+      obj.i = 0
+      iterate()
+      // text.textContent = 'Play Over !'
+      // text.classList.add('ad__img-title--over')
       return
     }
 
