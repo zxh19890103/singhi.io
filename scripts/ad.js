@@ -9,6 +9,7 @@ const adrun = async () => {
 
   const data = await fetch(`/assets/ad.json?v=${Date.now()}`)
   const srcset = await data.json()
+  const MAX = srcset.length
 
   const imgList = document.querySelector('#ref_adImgs')
   const text = document.createElement('div')
@@ -57,18 +58,11 @@ const adrun = async () => {
   const INITIAL_KEYFRAME_DURATION_PERCENT = 5
 
   const iterate = async () => {
+    if (obj.i >= MAX) obj.i = 0
     const i = obj.i
     log('iter', i)
 
     localStorage.setItem("CURRENT_AD_INDEX", i)
-
-    if (i === srcset.length) {
-      obj.i = 0
-      iterate()
-      // text.textContent = 'Play Over !'
-      // text.classList.add('ad__img-title--over')
-      return
-    }
 
     text.textContent = 'loading...'
     text.style.color = '#fff'
