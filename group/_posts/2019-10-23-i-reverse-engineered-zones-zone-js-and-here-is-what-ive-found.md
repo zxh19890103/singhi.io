@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 深入研究Zone.js之后的发现（完善中）
-short: Zones 是帮助开发人员处理多个有逻辑关联性的异步操作的新机制。它将每个异步操作通过 zone 关联起来
+title: 深入研究Zone.js之后的发现
+short: Zones 是帮助开发人员处理多个有逻辑关联性异步操作的新机制。它将每个异步操作通过 zone 关联起来
 src: https://blog.angularindepth.com/i-reverse-engineered-zones-zone-js-and-here-is-what-ive-found-1f48dc87659b
 tags:
   - Zone.js
@@ -9,7 +9,7 @@ tags:
 
 {% include img.html src="https://cn.bing.com/th?id=OHR.CountyBridge_ZH-CN6500717169_UHD.jpg&rf=LaDigue_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4" %}
 
-Zones 是帮助开发人员处理多个有逻辑关联性的异步操作的新机制。它将每个异步操作通过 zone 关联起来。使用 Zones 开发人员将得到以下好处：
+Zones 是帮助开发人员处理多个有逻辑关联性异步操作的新机制。它将每个异步操作通过 zone 关联起来。使用 Zones 开发人员将得到以下好处：
 
 - 贯穿（共享）数据，类似其它编程语言的“线程本地存储”，它可以通过 zone 在任何异步操作中访问到这些数据。
 - 自动追踪异步操作，以执行“清理”、“渲染”、“测试断言”等。
