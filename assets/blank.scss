@@ -67,11 +67,12 @@ p {
 		background: #effefe;
 		overflow: auto;
 	}
-	padding: 2rem;
+	padding: 1rem 2rem;
 	margin: 0 auto;
-	overflow: hidden; // for
 	width: 81rem;
 	height: 114rem;
+	box-sizing: border-box;
+	overflow: hidden; // for
 	background: white;
 	font-size: 1.4rem;
 	color: #456;
