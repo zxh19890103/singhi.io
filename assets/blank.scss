@@ -1,0 +1,110 @@
+---
+---
+
+html {
+	font: 62.5% / 1.25 Futura, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+h2 {
+	text-align: center;
+	margin: 0;
+}
+
+h3 {
+	em {
+		color: #678;
+		font-size: .9em;
+		text-transform: uppercase;
+	}
+	&:after {
+		content: "";
+		display: block;
+		margin: 4px 0 1rem 0;
+		width: 13rem;
+		height: 2px;
+		background: #abc;
+		transform: skew(45deg);
+	}
+}
+
+ul {
+	list-style-type: square;
+	list-style-position: outside;
+	padding-left: 2rem;
+	margin: 4px 0;
+}
+
+ol {
+	padding-left: 2rem;
+	margin: 0;
+}
+
+table {
+	width: 100%;
+	th {
+		text-align: left;
+	}
+}
+
+p {
+	margin: 0;
+	padding: 0;
+}
+
+.page {
+	&-wrapper {
+		padding: 0 1rem;
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+		background: #effefe;
+		overflow: auto;
+	}
+	padding: 2rem;
+	margin: 0 auto;
+	overflow: hidden; // for
+	width: 81rem;
+	height: 114rem;
+	background: white;
+	font-size: 1.4rem;
+	color: #456;
+}
+
+.table {
+	.row {
+		width: 100%;
+		flex-flow: row wrap;
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+		justify-content: flex-start;
+	}
+	.cell {
+		&--l {
+			flex-basis: 8rem;
+		}
+		&--t {
+			flex-basis: 1rem;
+			flex-grow: 1;
+			flex-shrink: 0;
+			text-align: left;
+		}
+		&--h {
+			color: #223344;
+			font-size: 1.5rem;
+			&.t-center {
+				text-align: center;
+			}
+			&.t-right {
+				text-align: right;
+			}
+		}
+	}
+}

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 回来 - By 罗琦
-short: 2002 发行的歌曲，听着想哭
+short: 2002年发行的歌曲，听着想哭
 song: 1
 tags:
   - 回来
