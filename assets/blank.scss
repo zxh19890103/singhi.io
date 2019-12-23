@@ -36,15 +36,40 @@ h3 {
 }
 
 ul {
-	list-style-type: square;
+	list-style-type: none;
 	list-style-position: outside;
-	padding-left: 2rem;
+	padding-left: 0;
 	margin: 4px 0;
+	&.withLabel {
+		> li {
+			position: relative;
+			padding-left: 4rem;
+			label {
+				position: absolute;
+				left: 0;
+				color: #234;
+			}
+		}
+	}
 }
 
 ol {
-	padding-left: 2rem;
+	padding-left: 0;
 	margin: 0;
+	list-style-type: none;
+	> li {
+		position: relative;
+		padding-left: 2rem;
+		@for $i from 1 through 6 {
+			&:nth-child(#{$i}) {
+				&:before {
+					content: "#{$i}.";
+					position: absolute;
+					left: 0;
+				}
+			}
+		}
+	}
 }
 
 table {

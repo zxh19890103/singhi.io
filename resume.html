@@ -90,21 +90,21 @@ layout: blank
   <h3>工作<em> / jobs</em></h3>
   <div>
     {% include tr.html field0="2018.11 - 2019.12" field1="丽珠医药集团有限公司" field2="高级前端工程师" %}
-    <ul>
+    <ol>
       <li>负责内部药品库存管理系统(React、Apollo、antd)的架设及基础元素的设计、开发；参与运营后台系统若干需求的开发工作</li>
       <li>项目进度跟踪、代码审查</li>
-    </ul>
+    </ol>
     {% include tr.html field0="2015.03 - 2018.09" field1="大唐鸿业科技有限公司" field2="前端工程师" %}
-    <ul>
+    <ol>
       <li>负责淘宝ISV无线应用(angularjs)、淘宝商家工具(PC / VueJs)、OnGoing Monitor(试验项目 / Meteor)、菜鸟洗衣项目管理端(Angular5)、菜鸟洗衣项目会员端(Ejs /
         Express)的开发工作；参与ERP(Angular5)、美国医师资质认证系统的开发(Angular5)</li>
       <li>辅导新同事、代码审查</li>
-    </ul>
+    </ol>
     {% include tr.html field0="2013.09 - 2015.03" field1="大连奈特科技有限公司" field2="软件工程师" %}
-    <ul>
+    <ol>
       <li>负责 CMS 产品(ASP.NET / MSSQL)的研发</li>
       <li>辅导新同事、业务部门产品培训</li>
-    </ul>
+    </ol>
   </div>
 </section>
 
@@ -112,40 +112,58 @@ layout: blank
 <section>
   <h3>项目<em> / works</em></h3>
   {% include tr.html field0="2019.04 - 2019.11" field1="药品库存管理系统" field2="丽珠医药集团有限公司" %}
-  <ul>
-    <li>描述：内部系统，用于管理药品的进销存以及配发药，属于升级版本；主要技术包括 React、React-router、Typescript、Apollo</li>
-    <li>职责：
+  <ul class="withLabel">
+    <li>
+      <label>描述：</label>
+      内部系统，用于管理药品的进销存以及配发药；主要技术包括 React、React-router、Typescript、Apollo</li>
+    <li>
+      <label>职责：</label>
       <ol>
         <li>基础架构建设，基于 create-react-app 生成工具</li>
         <li>实现基于配置的路由系统（基于 react-router）</li>
         <li>业务组件库提供（基于 antd 基础组件库）</li>
-        <li>设计数据接入层（DAL）及领域模型层（Domain），提供基础的“类”</li>
+        <li>设计数据接入层（DAL）及领域模型层（Domain），提供基础的“类” </li>
       </ol>
     </ol>
-    <li>业绩：按期完成开发并通过测试，已发布上线、用户反馈积极，系统运行良好</li>
-  </ul>
+    <li>
+      <label>业绩：</label>
+      按期完成开发并通过测试，已发布上线、用户反馈积极，系统运行良好
+    </li>
+  </ul class="withLabel">
   {% include tr.html field0="2018.02 - 2018.12" field1="菜鸟驿站洗衣服务平台会员端/运营端" field2="大唐鸿业科技有限公司" %}
-  <ul>
-    <li>描述：一个 2C 项目的运营端和会员端，整合区域“驿站”、某洗衣工厂、物流等资源，向用户提供“衣物清洗”服务；主要技术包括 Nodejs、Express、Ejs、Angular5、PrimeNg</li>
-    <li>职责：
+  <ul class="withLabel">
+    <li>
+      <label>描述：</label>
+      一个 2C 项目的运营端和会员端，整合区域“驿站”、某洗衣工厂、物流等资源，向用户提供“衣物清洗”服务；主要技术包括 Nodejs、Express、Ejs、Angular5、PrimeNg</li>
+    <li>
+      <label>职责：</label>
       <ol>
         <li>项目基础架构建设，其中会员端为基于 webpack + babel + express + ejs 的服务端渲染的多页面应用，运营端为基于 ngCLI + Angular5 + PrimeNg 的单页面应用</li>
         <li>会员端，实现基本的组件库和工具库（基于 ES6）以及微信授权、支付、扫码等功能；运营端，对需求进行逻辑抽象并结合面向对象技术实现通用逻辑，对组件进行最细粒度地拆分</li>
         <li>会员端的设计思路：<a href="https://www.zhangxinghai.cn/2019/04/19/an-architecture-design.html">从设计到上线：基于微信侧的“洗衣服务”项目客户端</a></li>
       </ol>
     </li>
-    <li>业绩：两个月基本完成“运营端”的功能开发且达到可用，未出现严重bug；会员端按期完成开发并上线，达到商业可用</li>
+    <li>
+      <label>业绩：</label>
+      两个月基本完成“运营端”的功能开发且达到可用，未出现严重bug；会员端按期完成开发并上线，达到商业可用
+    </li>
   </ul>
   {% include tr.html field0="2016.05 - 2017.11" field1="店铺通(淘宝 ISV 服务)前端" field2="大唐鸿业科技有限公司" %}
-  <ul>
-    <li>描述：一个基于阿里开发平台的商品管理工具，用于提升淘宝/天猫商户的商品管理效率，项目分为六个子应用；主要技术包括 VUE2.0、jQuery、Bootstrap</li>
-    <li>职责：
+  <ul class="withLabel">
+    <li>
+      <label>描述：</label>
+      一个基于阿里开放平台的商品管理工具，用于提升淘宝/天猫商户的商品管理效率，项目分为六个子应用；主要技术包括 VUE2.0、jQuery、Bootstrap
+    </li>
+    <li>
+      <label>职责：</label>
       <ol>
         <li>前端基础架构建设（基于 Vue 脚手架），提供选择性构建、自动化部署功能（基于 NodeJs）</li>
         <li>基础组件库的提供（基于 Bootstrap 样式库）</li>
       </ol>
     </li>
-    <li>业绩：按期完成功能、通过测试并顺利上线，达到预期商业目标</li>
+    <li>
+      <label>业绩：</label>
+      按期完成功能、通过测试并顺利上线，达到预期商业目标</li>
   </ul>
 </section>
 
