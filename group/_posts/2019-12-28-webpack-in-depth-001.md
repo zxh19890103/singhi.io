@@ -90,7 +90,7 @@ console.log(DESC)
 
 执行 `npm run mms`，终端输出：
 
-{% include img.html src="https://github.com/zxh19890103/learnwebpack/blob/master/snapshots/1577547568939.jpg?raw=true" %}
+{% include img.html src="https://raw.githubusercontent.com/zxh19890103/learnwebpack/master/snapshots/1577547568939.jpg" %}
 
 `minSize` 发现了 `foo` 和 `bar` 之间的“共享”部分，并将其分离为`bar~foo`。
 
@@ -142,7 +142,7 @@ import "./shared-extra"
 
 再执行 `npm run mms`，终端输出：
 
-{% include img.html src="https://github.com/zxh19890103/learnwebpack/blob/master/snapshots/1577550216256.png?raw=true" %}
+{% include img.html src="https://raw.githubusercontent.com/zxh19890103/learnwebpack/master/snapshots/B08CDE08-BA5E-4CAB-B50E-8DC36947B81A.jpg" %}
 
 可以看到 `bar~foo~84b2f14a.chunk.42d51b7.js` 的内容正是来自`shared-extra.js`，shared-extra 确实被分离出去了！
 
