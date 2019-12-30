@@ -111,13 +111,11 @@ alert(DESC)
 
 下面就是其打包结果：
 
-| Asset | Size | Chunks Names |
-| :--- | :--- | :--- |
-| bar.bundle.a831d0e.js  | 6.21 KiB  |  bar |
-| default~bar.chunk.9d38e0a.js | 531 bytes | default~bar |
-| default~bar~foo.chunk.7141de8.js  | 205 bytes | default~bar~foo |
-| default~foo.chunk.ea7a1f5.js | 531 bytes | default~foo |
-| foo.bundle.a831d0e.js | 6.21 KiB | foo |
+- bar.bundle.a831d0e.js
+- default~bar.chunk.9d38e0a.js
+- default~bar~foo.chunk.7141de8.js
+- default~foo.chunk.ea7a1f5.js
+- foo.bundle.a831d0e.js
 
 
 
