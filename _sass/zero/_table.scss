@@ -1,7 +1,7 @@
 table {
 	width: 100%;
 	border-collapse: collapse;
-	td {
+	th, td {
 		padding: 6px 8px;
 		border: 1px solid #DDDDDD;
 		&:first-child {
@@ -10,5 +10,10 @@ table {
 		&:last-child {
 			border-right-color: transparent;
 		}
+	}
+	th {
+		border-top-color: transparent;
+		background-color: #def;
+		color: #346;
 	}
 }
