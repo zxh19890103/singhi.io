@@ -6,7 +6,7 @@ layout: blank
 
 <!-- 介绍 -->
 <section>
-  <h3>介绍<em> / intro</em></h3>
+  <h3>个人信息<em> / intro</em></h3>
   <div class="table">
     <div class="row">
       <div class="cell cell--l">
@@ -19,7 +19,7 @@ layout: blank
         <label>出生日期:</label>
       </div>
       <div class="cell cell--t">
-        <span>八九年二月八日</span>
+        <span>19890103</span>
       </div>
     </div>
 
@@ -52,46 +52,40 @@ layout: blank
         <span>18742538743</span>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="row">
-      <div class="cell cell--l">
-        <label>学历: </label>
-      </div>
-      <div class="cell cell--t">
-        <span>本科</span>
-      </div>
-      <div class="cell cell--l">
-        <label>毕业院校:</label>
-      </div>
-      <div class="cell cell--t">
-        <span>大连大学(DLU)</span>
-      </div>
-    </div>
+<section>
+  <h3>综述<em> / summary</em></h3>
+  <div>
+    <ol>
+      <li>高级前端工程师，从事软件行业 6 年以上，5 年前端经验，有一定的架构经验</li>
+      <li>项目经验丰富，主导过 10 个以上大中型商业项目</li>
+      <li>JS 基础知识扎实，对 Ng / React / VUE 3 大框架有较深刻的理解与相当熟练的运用，能灵活运用 webpack / babel / Typescript 配置项目环境，熟悉常见的设计模式</li>
+      <li>了解 Hybrid 开发原理，有一定的项目经验，对软件性能优化有一定的经验</li>
+      <li>团队协作顺畅，能熟练运用基本的开发工具，有极高的工作效率</li>
+    </ol>
+  </div>
+</section>
 
-    <div class="row">
-      <div class="cell cell--l">
-        <label>求职意向:</label>
-      </div>
-      <div class="cell cell--t">
-        <span>前端工程师</span>
-      </div>
-      <div class="cell cell--l">
-        <label>基本技能: </label>
-      </div>
-      <div class="cell cell--t">
-        <span>TypeScript | React | Angular | Vue</span>
-      </div>
-    </div>
+<section>
+  <h3>技术能力<em> / skills</em></h3>
+  <div>
+    <ol>
+      <li>前端语言 & 框架：Javascript(ES6)、Typescript、HTML、CSS、SASS、Angular、React、VUE、Express、koa</li>
+      <li>后端语言 & 数据库：NodeJs、ASP.NET、PHP、Python、MySQL、MSSQL</li>
+      <li>工具：webpack / babel、gulp、markdown、Chrome DEV Tools、VSCode、Git、PostMan、Docker、VirtualBox</li>
+    </ol>
   </div>
 </section>
 
 <!--工作 -->
 <section>
-  <h3>工作<em> / jobs</em></h3>
+  <h3>工作经历<em> / jobs</em></h3>
   <div>
     {% include tr.html field0="2018.11 - 2019.12" field1="丽珠医药集团有限公司" field2="新项目拓展部/高级前端工程师" %}
     <ol>
-      <li>负责药品进销存系统(基于技术栈：React、Apollo、antd)的架设及基础元素的设计、开发</li>
+      <li>负责药品进销存系统(技术栈：React、Apollo、antd)的设计及基础元素（组件、工具函数）提供</li>
       <li>参与运营后台系统若干需求的开发工作；公司各系统的日常维护</li>
       <li>项目进度跟踪、代码审查、技术辅导</li>
     </ol>
@@ -112,7 +106,7 @@ layout: blank
 
 <!-- 项目 -->
 <section>
-  <h3>项目<em> / works</em></h3>
+  <h3>项目经验<em> / works</em></h3>
   {% include tr.html field0="2019.04 - 2019.11" field1="药品进销存系统" field2="丽珠医药集团有限公司" %}
   <ul class="withLabel">
     <li>
@@ -167,11 +161,35 @@ layout: blank
       <label>业绩：</label>
       按期完成功能、通过测试并顺利上线，达到预期商业目标</li>
   </ul>
+
+  {% include tr.html field0="2014.02 - 2015.02" field1="Netin CMS内容管理系统" field2="大连奈特网络科技有限公司" %}
+  <ul class="withLabel">
+    <li>
+      <label>描述：</label>
+      旧 CMS 技术架构陈旧、不易维护，采用性能更优的 .NET + MSSQL 重新搭建；
+      基于 Task 机制解 决了(非伪)静态化、配合 SEO 部门实现相关优化工具、一键部署；
+      实现了 SQL 生成工具(类ORM)
+    </li>
+    <li>
+      <label>职责：</label>
+      <ol>
+        <li>数据库模型设计、系统架构设计、实现、测试与部署</li>
+        <li>督促设计师和前端工程师出界面</li>
+        <li>确保规定时间内实现可用</li>
+        <li>内部业务部门培训</li>
+        <li>公司官网和老系统升级</li>
+      </ol>
+    </li>
+    <li>
+      <label>业绩：</label>
+      极大提高了网站访问速度、加快了产出效率
+    </li>
+  </ul>
 </section>
 
 <!-- 教育 -->
 <section>
-  <h3>教育<em> / edu</em></h3>
+  <h3>教育背景<em> / edu</em></h3>
   {% include tr.html field0="2009.09 - 2013.06" field1="大连大学" field2="计算机网络(本科) " %}
   <ul class="withLabel">
     <li>
@@ -179,7 +197,12 @@ layout: blank
       C 语言基础、ASP 网页制作、ASP.Net 网站制作、C++ 基础、关系型数据库设计原理、Flash 实践、VB 基础</li>
     <li>
       <label>证书：</label>
-      CET-4
+      <ol>
+        <li>大学英语四级</li>
+        <li>大连大学英语写作一等奖</li>
+        <li>大连市数学竞赛三等奖</li>
+        <li>全国高等院校数学竞赛辽宁省三等奖</li>
+      </ol>
     </li>
   </ul>
 </section>

@@ -2,7 +2,7 @@
 ---
 
 html {
-	font: 62.5% / 1.25 Futura, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+	font: 62.5% / 1.75 Futura, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
 	height: 100%;
 }
 
@@ -18,7 +18,7 @@ h2 {
 }
 
 h3 {
-	margin: 1.5rem 0 1rem 0;
+	margin: 2rem 0 1rem 0;
 	em {
 		color: #678;
 		font-size: .9em;
@@ -28,7 +28,7 @@ h3 {
 		content: "";
 		display: block;
 		margin: 4px 0 1rem 0;
-		width: 13rem;
+		width: 15rem;
 		height: 2px;
 		background: #abc;
 		transform: skew(45deg);
@@ -96,7 +96,7 @@ p {
 	padding: 1rem 2rem;
 	margin: 0 auto;
 	width: 21cm;
-	height: 29.7cm;
+	height: (29.7cm * 2);
 	box-sizing: border-box;
 	overflow: hidden; // for
 	background: white;
