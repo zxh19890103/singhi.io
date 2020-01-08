@@ -23,15 +23,17 @@ h3 {
 		font-size: .9em;
 		text-transform: uppercase;
 	}
-	&:after {
-		content: "";
-		display: block;
-		margin: 4px 0 1rem 0;
-		width: 15rem;
-		height: 2px;
-		background: #abc;
-		transform: skew(45deg);
-	}
+	width: 15rem;
+	border-bottom: 2px solid #abc;
+	// &:after {
+	// 	content: "";
+	// 	display: block;
+	// 	margin: 4px 0 1rem 0;
+	// 	width: 15rem;
+	// 	height: 2px;
+	// 	background: #abc;
+	// 	transform: skew(45deg);
+	// }
 }
 
 ul {
