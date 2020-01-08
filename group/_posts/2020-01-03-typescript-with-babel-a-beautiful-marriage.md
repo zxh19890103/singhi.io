@@ -2,7 +2,7 @@
 layout: post
 title: TypeScript 与 Babel 的完美婚姻
 short: 由 TypeScript 和 Babel 两大研发团队，历时一年之久，专为 TypeScript 打造出了 Babel 插件 @babel/preset-typescript。得益于此，TypeScript 的使用从未如此简单！本文将从 4 点来陈述为什么 TypeScript 和 Babel 是一场完美的搭配；以及，如何花十分钟，一步一步地将项目迁移至 TypeScript 语言
-source: https://iamturns.com/typescript-babel/
+src: https://iamturns.com/typescript-babel/
 tags:
   - typescript
   - webpack
