@@ -202,9 +202,9 @@ compiler.run((err, stat) => {
 
 ### runtime 和 polyfills
 
-为了性能，Babel 官方建议使用插件 [@babel/babel-plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime)。这个插件有什么作用呢？
+为了性能，Babel 官方建议使用插件 [@babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime)。这个插件有什么作用呢？
 
-#### 不使用 babel-plugin-transform-runtime
+#### 不使用 plugin-transform-runtime
 
 提供如下 ts 脚本内容：
 
@@ -263,7 +263,20 @@ function () {
 - _createClass
 - _defineProperty
 
-它们都是用来创建类`Animal`的，我们的类`Animal`被转换了。需要注意，Babel 会为每个模块（js 文件）写入这样段内容，如果我们有 1000 个模块，那么就会有 1000 段这样的“东西”，这是内容上的重复。为了复用，Babel 允许我们配置这个插件。我们来看看配置后的输出：
+它们都是用来创建类`Animal`的，我们的类`Animal`被转换了。需要注意，Babel 会为每个模块（js 文件）写入这样段内容，如果我们有 1000 个模块，那么就会有 1000 段这样的“东西”，这是内容上的重复。为了复用，Babel 允许我们配置这个插件。
+
+#### 使用 plugin-transform-runtime
+
+配置如下：
+
+```json
+"plugins": [
+  "@babel/plugin-transform-runtime",
+  // ...
+]
+```
+
+我们来看看配置后的输出：
 
 ```js
 ...
@@ -283,11 +296,11 @@ var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/de
 npm i -S @babel/runtime
 ```
 
-`@babel/runtime` 为我们提供了一些额外的函数，以辅助语言的降级转换。而 `babel-plugin-transform-runtime` 插件则基于 `@babel/runtime` 避免了内容上的重复，从而减小了程序包的体积。
+`@babel/runtime` 为我们提供了一些额外的函数，以辅助语言的降级转换。而 `plugin-transform-runtime` 插件则基于 `@babel/runtime` 避免了内容上的重复，从而减小了程序包的体积。
 
 与`@babel/runtime`不同，**polyfills** 用于提供 API，如 `Array.from`、`String.prototype.split` 等。我们可以在 preset-env 下配置 **polyfills**，corejs 是 Babel 使用的内置 polyfills 库。
 
-默认，polyfills 会写入全局环境，插件 `babel-plugin-transform-runtime` 提供了“隔离”能力，你只需修改一下默认配置：`corejs: 3` 或者 `corejs: 2`。配置项`corejs`默认为`false`，也就是不管 polyfills 那部分工作。但`corejs`被设置为`2`或`3`的时候，你需要额外安装：
+默认，polyfills 会写入全局环境，插件 `plugin-transform-runtime` 提供了“隔离”能力，你只需修改一下默认配置：`corejs: 3` 或者 `corejs: 2`。配置项`corejs`默认为`false`，也就是不管 polyfills 那部分工作。但`corejs`被设置为`2`或`3`的时候，你需要额外安装：
 
 ```sh
 npm i -S @babel/runtime-corejs2
@@ -309,4 +322,4 @@ require("@babel/runtime-corejs3/core-js-stable/promise")
 
 ### 综上
 
-有了 @babel/preset-typescript ，配置 Ts 环境确实方便了很多。需要注意的时，@babel/preset-typescript 只做语法转换，不做类型检查，因为类型检查的任务可以交给 IDE （或者用 tsc）去做。另外，Babel 负责两件事：1）语法转换，由各种 transform 插件、runtime 完成；2）对于可 polyfillable 的 API 提供，由 corejs 实现。@babel/plugin-transform-runtime 插件可用于减少生成代码的量，以及对 corejs 提供的 API 与 runtime 提供的帮助函数（helpers）进行模块隔离。
+有了 @babel/preset-typescript ，配置 Ts 环境确实方便了很多。需要注意的是，@babel/preset-typescript 只做语法转换，不做类型检查，因为类型检查的任务可以交给 IDE （或者用 tsc）去做。另外，Babel 负责两件事：1）语法转换，由各种 transform 插件、runtime 完成；2）对于可 polyfillable 的 API 提供，由 corejs 实现。@babel/plugin-transform-runtime 插件可用于减少生成代码的量，以及对 corejs 提供的 API 与 runtime 提供的帮助函数（helpers）进行模块隔离。
