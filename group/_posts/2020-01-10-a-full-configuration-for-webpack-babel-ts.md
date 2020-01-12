@@ -9,11 +9,11 @@ tags:
   - es6
 ---
 
-> 本文将展示，如何使用 @babel/preset-typescript 和 @babel/preset-env 配置一个最小但完整的编译环境，打包工具使用 webpack@4.41.2。
+> 本文将展示，如何使用 @babel/preset-typescript 和 @babel/preset-env 配置一个最小但完整的编译环境，打包工具使用 webpack@4.41.2
 
-### preset-typescript
+### 插件集 preset-typescript
 
-**preset-typescript** 是 Babel 提供的预设插件集之一，Babel 官方对其有一篇简短的介绍：
+preset-typescript 是 Babel 提供的预设插件集之一，Babel 官方对其有一篇简短的介绍：
 
 [https://babeljs.io/docs/en/babel-preset-typescript](https://babeljs.io/docs/en/babel-preset-typescript)
 
@@ -21,16 +21,16 @@ tags:
 
 顾名思义，它的作用是转换 Ts 代码。
 
-### preset-env
+### 插件集 preset-env
 
-**preset-env** 也是 Babel 提供的预设插件集之一，它可以将 ES6 转换为 ES5。**preset-env** 对于插件的选择是基于某些开源项目的，比如 [browserslist](https://github.com/browserslist/browserslist)、[compat-table](https://github.com/kangax/compat-table) 以及  [electron-to-chromium](https://github.com/Kilian/electron-to-chromium)。我们常用 `.browserslistrc` 来设置我们预想满足的目标运行环境，如：
+preset-env 也是 Babel 提供的预设插件集之一，它可以将 ES6 转换为 ES5。preset-env 对于插件的选择是基于某些开源项目的，比如 [browserslist](https://github.com/browserslist/browserslist)、[compat-table](https://github.com/kangax/compat-table) 以及  [electron-to-chromium](https://github.com/Kilian/electron-to-chromium)。我们常用 `.browserslistrc` 来设置我们预想满足的目标运行环境，如：
 
 ```yaml
 > 0.25%
 not dead
 ```
 
-这里不详细展开 browserslist 的使用，有时间会专门写一篇文章。我现在要详细说的是 **preset-env** 的重要配置之一：`useBuiltIns`。
+这里不详细展开 browserslist 的使用，有时间会专门写一篇文章。我现在要详细说的是 preset-env 的重要配置之一：`useBuiltIns`。
 
 `useBuiltIns` 从其名字来说是“使用内置”，“内置”的什么呢？从官方看来是“polyfills”。它的取值可以是以下三种：
 
@@ -40,7 +40,7 @@ not dead
 
 2） `"entry"`：
 
-只在“入口模块”处导入“polyfills”，你需要“根模块”写上`import "core-js"` 和 `import "regenerator-runtime/runtime"`，babel 会自动展开全部必要模块导入`import "core-js/modules/X"`，X 是根据你配置的目标环境选择出来的 polyfill，如`es.string.pad-start`、`es.array.unscopables.flat`。注意，如果你没有写`import "core-js"`，则不会展开任何导入（import）语句。
+只在“入口模块”处导入“polyfills”，你需要在“根模块”写上`import "core-js"` 和 `import "regenerator-runtime/runtime"`，babel 会自动展开全部必要模块导入`import "core-js/modules/X"`，X 是根据你配置的目标环境选择出来的 polyfill，如`es.string.pad-start`、`es.array.unscopables.flat`。注意，如果你没有写`import "core-js"`，则不会展开任何导入（import）语句。
 
 3） `"usage"`：
 
@@ -65,10 +65,10 @@ npm i -S core-js@3
 有好几个包需要下载安装，它们分别是：
 
 - @babel/core
-- @babel/plugin-proposal-class-properties
-- @babel/plugin-proposal-object-rest-spread
 - @babel/preset-env
 - @babel/preset-typescript
+- @babel/plugin-proposal-class-properties
+- @babel/plugin-proposal-object-rest-spread
 
 其中包含了 2 个插件 plugin-proposal-class-properties 和 plugin-proposal-object-rest-spread，分别用于转换语法特性“类属性”、“对象展开”，二者均处于“提议”阶段。
 
@@ -200,7 +200,7 @@ compiler.run((err, stat) => {
 
 执行打包：`npm run pack`
 
-### runtime 和 polyfills
+### 区别 runtime 和 polyfills
 
 为了性能，Babel 官方建议使用插件 [@babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime)。这个插件有什么作用呢？
 
@@ -263,7 +263,7 @@ function () {
 - _createClass
 - _defineProperty
 
-它们都是用来创建类`Animal`的，我们的类`Animal`被转换了。需要注意，Babel 会为每个模块（js 文件）写入这样段内容，如果我们有 1000 个模块，那么就会有 1000 段这样的“东西”，这是内容上的重复。为了复用，Babel 允许我们配置这个插件。
+它们都是用来创建类`Animal`的，我们的类`Animal`被转换了。需要注意，Babel 会为每个模块（js 文件）写入这样一段内容，如果我们有 1000 个模块，那么就会有 1000 段这样的“东西”，这是内容上的重复。为了复用，Babel 允许我们配置这个插件。
 
 #### 使用 plugin-transform-runtime
 
@@ -319,6 +319,14 @@ npm i -S @babel/runtime-corejs3
 ```js
 require("@babel/runtime-corejs3/core-js-stable/promise")
 ```
+
+你可能会疑惑，当我们未安装包 *@babel/runtime* 的时候，Babel 从哪里获得 helpers？这个问题参考我在 github 上的一个提问：
+
+[https://github.com/babel/babel/issues/10984#issuecomment-573347933](https://github.com/babel/babel/issues/10984#issuecomment-573347933)
+
+维护者 **nicolo-ribaudo** 给出了回答：
+
+{% include img.html src="/assets/posts/202001/122143.jpg" %}
 
 ### 综上
 
