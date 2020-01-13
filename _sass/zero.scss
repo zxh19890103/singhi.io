@@ -48,10 +48,10 @@ ul {
 body {
 	margin: 0;
 	padding: 0;
-	background: skyblue;
+	background: aliceblue;
 	height: 100%;
 	overflow: hidden;
-	@include linearGradient(skyblue, white);
+	@include linearGradient(darken(aliceblue, 4), white);
 }
 
 blockquote {
@@ -202,7 +202,7 @@ h6,
 			@include linearGradient(aliceblue, white);
 			border-bottom-right-radius: 6px;
 			border-bottom-left-radius: 6px;
-			box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.3);
+			// box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.3);
 			&__title {
 				img {
 					width: 40px;
@@ -254,15 +254,12 @@ h6,
 					}
 				}
 				a {
-					background-color: $textColor;
+					@include linearGradient(aliceblue, white);
 					display: block;
 					margin: 0 0;
 					padding: 4px 6px;
 					text-align: center;
-					color: #fff;
-					&:hover {
-						background-color: lighten($textColor, 12);
-					}
+					color: lighten($textColor, 15);
 				}
 			}
 		}

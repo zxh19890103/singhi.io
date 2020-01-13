@@ -6,7 +6,9 @@
 	margin: 4px 0 0 0;
 	overflow: hidden;
 	border-radius: 4px;
-	background: olivedrab url(/assets/images/starfield-banner.jpg) repeat;
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAQElEQVQ4T2O8e/fufwYigJKSEhGqGBgYRw3EGU6jYYgzaIZAsvn//z9ROeXevXvE5ZRRA3GG02gY4s4pgz7ZAACzhGnJVk2rbAAAAABJRU5ErkJggg==');
+	background-repeat: repeat;
+	// background: olivedrab url(/assets/images/starfield-banner.jpg) repeat;
 	&__next {
 		cursor: pointer;
 		color: rgba(255, 255, 255, .68);
