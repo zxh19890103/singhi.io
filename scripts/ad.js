@@ -65,7 +65,7 @@ const adrun = async () => {
     localStorage.setItem("CURRENT_AD_INDEX", i)
 
     text.textContent = 'loading...'
-    text.style.color = '#fff'
+    text.style.color = '#456'
     text.classList.add('ad__img-title--loading')
 
     const src = srcset[i].src
@@ -87,7 +87,11 @@ const adrun = async () => {
 
     text.classList.remove('ad__img-title--loading')
     text.textContent = srcset[i].title
-    text.style.color = srcset[i].tcolor || '#fff'
+    text.style.color = srcset[i].tcolor || '#456'
+
+    setTimeout(() => {
+      text.style.color = srcset[i].tcolor || '#fff'
+    }, 1000);
 
     obj.i += 1
     obj.cur = wrapper
