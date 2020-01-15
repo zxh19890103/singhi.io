@@ -402,9 +402,9 @@ footer {
 		p {
 			word-break: break-word;
 			white-space: pre-wrap;
-			> em {
-				color: cadetblue;
-			}
+			// > em {
+			// 	color: cadetblue;
+			// }
 		}
 		&--song {
 			text-align: center;
