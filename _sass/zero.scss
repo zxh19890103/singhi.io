@@ -207,7 +207,6 @@ h6,
 				img {
 					width: 40px;
 					float: left;
-					border-radius: 50%;
 					margin-right: 0.5rem;
 				}
 				text-align: left;
@@ -216,14 +215,18 @@ h6,
 				letter-spacing: 0;
 				font-weight: bold;
 				margin-bottom: 6px;
-				border-bottom: 1px inset #999;
+				border-bottom: 1px inset #ededed;
 				color: lighten($textColor, 15);
 			}
 			&__motto {
 				color: lighten($textColor, 28);
 				font-weight: bold;
 				line-height: 1.2rem;
-				font-size: 0.9rem;
+				font-size: 1rem;
+				small {
+					font-size: .7em;
+					color: lighten($textColor, 40);
+				}
 			}
 		}
 		@media screen and (max-width: $mobileWidth) {
