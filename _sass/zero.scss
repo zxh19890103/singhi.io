@@ -63,6 +63,7 @@ blockquote {
 	background: #f3f5f9;
 	// word-break: break-word;
 	// white-space: pre-wrap;
+	font-size: .9em;
 	p, ul {
 		margin: 0;
 		color: cadetblue;
@@ -386,28 +387,32 @@ footer {
 		.h2,
 		.h3,
 		.h4 {
-			color: $textColor-2;
+			color: $textColor-1;
 		}
 		h2,
 		h3,
 		.h2,
 		.h3 {
 			margin: 4rem 0 2rem 0;
-			text-align: center;
+			padding-bottom: 1rem;
+			width: 61.8%;
+			font-weight: normal;
+			border-bottom: 1px solid #ddd;
 		}
 		h4,
 		.h4 {
-			margin-top: 2rem;
-			margin-left: -1rem;
-			padding-left: 0.6rem;
-			border-left: 0.4rem solid lighten($themeColor, 50);
+			margin: 2rem 0rem 1rem;
+			font-weight: normal;
+			&:before {
+				content: "\00b7";
+				padding: 0 4px 0 0;
+				font-family: "COCOGOOSE";
+				color: $textColor-3;
+			}
 		}
 		p {
 			word-break: break-word;
 			white-space: pre-wrap;
-			// > em {
-			// 	color: cadetblue;
-			// }
 		}
 		&--song {
 			text-align: center;
