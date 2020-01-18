@@ -270,10 +270,10 @@ h6,
 		@media screen and (max-width: $mobileWidth) {
 			width: 100%;
 			margin: 0 -1rem;
-			background: $textColor;
 			position: fixed;
 			width: 100%;
 			top: 0;
+			opacity: .8;
 		}
 	}
 }
@@ -394,10 +394,15 @@ footer {
 		.h2,
 		.h3 {
 			margin: 4rem 0 2rem 0;
-			padding-bottom: 1rem;
-			width: 61.8%;
 			font-weight: normal;
-			border-bottom: 1px solid #ddd;
+			&:after {
+				content: "";
+				display: block;
+				width: 61.8%;
+				height: 1px;
+				margin: 1rem 0 0 0;
+				background: #ddd;
+			}
 		}
 		h4,
 		.h4 {
