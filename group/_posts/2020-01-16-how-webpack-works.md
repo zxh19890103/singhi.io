@@ -196,8 +196,7 @@ apply 方法将所有的待更新模块标记为 invalid。对于每一个 inval
       - compile &rArr; `Complilation`
         - addEntry(dependency)
         - finish
-          - once errors
-        - seal（process、Optimize、Sort、Ids、Record、Hash、Assets）
+        - seal（Process、Optimize、Sort、Ids、Record、Hash、Assets）
       - emit &rArr; write assets
     - `Compiler.watch()`
       - run
