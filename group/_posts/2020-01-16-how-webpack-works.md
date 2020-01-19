@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Webpack 是如何工作的
-short: 不解读源码，从表象上来理解 Webpack 的工作机制
+title: 关于 Webpack 一些基本
+short: 不解读源码，从表象上来看看 Webpack
 tags:
  - webpack
 ---
