@@ -221,12 +221,14 @@ h6,
 			}
 			&__motto {
 				color: lighten($textColor, 28);
-				font-weight: bold;
+				// font-weight: bold;
 				line-height: 1.2rem;
 				font-size: 1rem;
 				small {
 					font-size: .7em;
 					color: lighten($textColor, 40);
+					line-height: 0;
+					font-weight: lighter;
 				}
 			}
 		}

@@ -1,5 +1,5 @@
 {
-  "editor.fontSize": 16,
+  "editor.fontSize": 26,
   "files.exclude": {
     "**/node_modules": true
   }
