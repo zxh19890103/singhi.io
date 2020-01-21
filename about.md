@@ -9,9 +9,9 @@ title: 关于我
 
 访客您好：
 
-我叫“张星海”，是一名软件工程师，目前主要做“前端”。2013 年本科毕业，做过 2 年的 .NET 开发，期间产出 2 个中型规模系统（CMS、E-Commerce）。2015 - 2016 年技术栈逐渐过渡到前端，系统学习了 JavaScript 语言和当下流行的各大框架、工具链，期间产出颇丰，接手的大中型 Web 项目 6 个以上，具备了基本的架构经验。
+我叫张猩猩，是一名软件工程师，目前主要做前端。2013 年本科毕业，做过 2 年的 .NET 开发，期间产出 2 个中型规模系统（CMS、E-Commerce）。2015 - 2016 年技术栈逐渐过渡到前端，系统学习了 JavaScript 语言和当下流行的各大框架、工具链，期间产出颇丰，接手的大中型 Web 项目 6 个以上，具备了基本的架构经验。
 
-虽工作 7 年，个人仍然对“技术”抱有热情，平时也喜欢倒腾一些小玩意。
+虽工作 7 年，个人仍然对技术抱有热情，平时也喜欢倒腾一些小玩意。
 
 **但是......**
 
@@ -40,15 +40,17 @@ title: 关于我
 
 ### 联系方式
 
-微信: zxh198964
+微信：zxh198964
 
-邮箱(Google): zhangxinghai79@gmail.com
+邮箱(Google)：zhangxinghai79@gmail.com
 
-邮箱(QQ): 1210372315@qq.com
+QQ：1210372315
 
-Github: https://github.com/zxh19890103
+知乎：https://www.zhihu.com/people/zhangxingxing89
 
-OSC: https://my.oschina.net/xxrr
+Github：https://github.com/zxh19890103
+
+OSC：https://my.oschina.net/xxrr
 
 <p style="text-align: right">
 感谢!
