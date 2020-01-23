@@ -23,7 +23,7 @@ module 是类型 [Module](https://github.com/webpack/webpack/blob/master/lib/Mod
 - 由 entry splitpoint 和 async splitpoint 拆分出来的
 - 依赖 module（就是函数 name 的第一个变量的值） 
 
-不考虑优化拆包，webpack 只在“入口分离点”与“异步依赖分离点”会分别产生代码块（称为：原始代码块，英文称为：Origin Chunk）。往昔的 [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) 插件和如今的 [optimization.runtimeChunk](https://webpack.js.org/plugins/split-chunks-plugin/) 配置项都是对于这个基础来说的。
+不考虑优化拆包，webpack 只在“入口分离点”与“异步依赖分离点”会分别产生代码块（称为：原始代码块，英文称为：Origin Chunk）。往昔的 [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) 插件和如今的 [optimization.splitChunks](https://webpack.js.org/plugins/split-chunks-plugin/) 配置项都是对于这个基础来说的。
 
 如果“异步依赖分离点”对应的代码块 A 是 B 的子代码块，且 A、B 均依赖 module，那么提供给函数 name 的 chunks 变量里只有 B。其中，A 是 B 的子代码块是指，B 中包含了 `import(/* webpackChunkName: "A"*/ ...)`。
 
