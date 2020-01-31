@@ -1,3 +1,5 @@
+$mobileWidth: 768px;
+
 @mixin linearGradient($from, $to) {
     background: linear-gradient(to top, $from, $to);
     background: -webkit-linear-gradient(bottom, $from, $to);
@@ -31,4 +33,10 @@
 	animation: $name $duration linear 0.5s $times alternate forwards;
 	-webkit-animation: $name $duration linear 0.5s $times alternate forwards;
 	-o-animation: $name $duration linear 0.5s $times alternate forwards;
+}
+
+@mixin ifmob {
+	@media screen and (max-width: $mobileWidth) {
+		@content
+	}
 }

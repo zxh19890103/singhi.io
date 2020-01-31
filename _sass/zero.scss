@@ -8,8 +8,6 @@ $paperColor: lighten(#f5f5d5, 8);
 $leftWidth: 30%;
 $rightWidth: 70%;
 
-$mobileWidth: 768px;
-
 @import "./zero/mixins";
 
 html {
@@ -19,9 +17,16 @@ html {
 	word-spacing: 1px;
 	box-sizing: border-box;
 	overflow-y: scroll;
-	font: 100%/1.75 Futura, -apple-system, SF UI Text, Arial, PingFang SC,
-		Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+	font: 16px/1.5 -apple-system,BlinkMacSystemFont,'Helvetica Neue', 'PingFang TC','Microsoft YaHei','Source Han Sans TC','Noto Sans CJK TC', 'WenQuanYi Micro Hei',sans-serif;
+	// font: 16px/1.5 Futura, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+	-webkit-text-size-adjust: 100%;
+	background-color: #ffffff;
+	word-break: break-word;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+	-webkit-tap-highlight-color: transparent;
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeSpeed;
 }
 
 .COCOGOOSE {
@@ -31,9 +36,6 @@ html {
 a {
 	color: $themeColor;
 	text-decoration: none;
-	&:hover {
-		text-decoration: underline;
-	}
 }
 
 ul,
@@ -185,7 +187,7 @@ h6,
 	@include boxSizing(border-box);
 	border-radius: 4px;
 	background-color: $paperColor;
-	@media screen and (max-width: $mobileWidth) {
+	@include ifmob {
 		width: 100%;
 	}
 }
@@ -203,7 +205,6 @@ h6,
 			@include linearGradient(aliceblue, white);
 			border-bottom-right-radius: 6px;
 			border-bottom-left-radius: 6px;
-			// box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.3);
 			&__title {
 				img {
 					width: 40px;
@@ -221,7 +222,6 @@ h6,
 			}
 			&__motto {
 				color: lighten($textColor, 28);
-				// font-weight: bold;
 				line-height: 1.2rem;
 				font-size: 1rem;
 				small {
@@ -232,7 +232,7 @@ h6,
 				}
 			}
 		}
-		@media screen and (max-width: $mobileWidth) {
+		@include ifmob {
 			display: none;
 		}
 	}
@@ -269,7 +269,7 @@ h6,
 				}
 			}
 		}
-		@media screen and (max-width: $mobileWidth) {
+		@include ifmob {
 			width: 100%;
 			margin: 0 -1rem;
 			position: fixed;
@@ -327,7 +327,6 @@ aside {
 }
 
 article {
-	// let it auto fix
 	width: 100%;
 	flex-grow: 1;
 }
@@ -348,16 +347,18 @@ footer {
 }
 
 .document {
+	margin: .5rem 0 1rem 0;
 	h3,
 	.h3 {
-		margin-bottom: 0;
+		margin: 0;
+		font-weight: 400;
 	}
 
 	p {
-		margin-top: 0;
-		color: $textColor-3;
+		margin: 0;
+		color: $textColor-4;
 		time {
-			color: $textColor-4;
+			color: lighten($textColor-4, 20);
 			font-size: 0.9em;
 		}
 	}
@@ -366,7 +367,7 @@ footer {
 // Post & Page
 .article {
 	&__title {
-		margin: 4rem 0 2rem 0;
+		margin: 2rem 0 2rem 0;
 		font-size: 1.5rem;
 		font-weight: bold;
 		color: $textColor-2;
@@ -389,39 +390,38 @@ footer {
 		.h2,
 		.h3,
 		.h4 {
+			display: inline-block;
 			color: $textColor-1;
+			font-weight: normal;
+			position: relative;
 		}
 		h2,
 		h3,
 		.h2,
 		.h3 {
 			margin: 4rem 0 2rem 0;
-			font-weight: normal;
-			&:after {
-				content: "";
-				display: block;
-				width: 61.8%;
-				height: 1px;
-				margin: 1rem 0 0 -1rem;
-				background: #ddd;
-			}
 		}
 		h4,
 		.h4 {
-			margin: 2rem -1rem 1rem;
-			font-weight: normal;
-			&:before {
-				content: "✓";
-				display: inline-block;
-				width: 1rem;
-				text-align: center;
-				font-family: "COCOGOOSE";
-				color: $textColor-3;
+			margin: 2rem 0 1rem;
+			&:after {
+				content: "";
+				position: absolute;
+				top: 86%;
+				left: -0.1em;
+				right: -0.1em;
+				bottom: 0;
+				// transition: top 200ms cubic-bezier(0, .8, .13, 1);
+				background-color: rgba($themeColor, 0.3);
 			}
 		}
 		p {
 			word-break: break-word;
 			white-space: pre-wrap;
+			line-height: 1.875;
+		}
+		a {
+			text-decoration: underline;
 		}
 		&--song {
 			text-align: center;
