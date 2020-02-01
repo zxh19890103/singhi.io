@@ -224,11 +224,13 @@ h6,
 				color: lighten($textColor, 28);
 				line-height: 1.2rem;
 				font-size: 1rem;
+				transform: translateY(14px);
 				small {
 					font-size: .7em;
 					color: lighten($textColor, 40);
 					line-height: 0;
 					font-weight: lighter;
+					text-transform: uppercase;
 				}
 			}
 		}
@@ -369,7 +371,6 @@ footer {
 	&__title {
 		margin: 2rem 0 2rem 0;
 		font-size: 1.5rem;
-		font-weight: bold;
 		color: $textColor-2;
 		text-align: center;
 	}
