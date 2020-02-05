@@ -1,5 +1,9 @@
 [
   {
+    "title": "The Yellow crane tower in Wuhan",
+    "src": "/assets/images/huanghelou.jpg"
+  },
+  {
     "title": "Tien Shan in Xinjiang in 2017",
     "src": "https://zxh1989.oss-cn-qingdao.aliyuncs.com/personal-site/Tien%20Shan.jpg"
   },
@@ -34,10 +38,6 @@
   {
     "title": "Safranbolu",
     "src": "/assets/images/fan-hong-hua-cheng.jpg"
-  },
-  {
-    "title": "The Yellow crane tower in Wuhan",
-    "src": "/assets/images/huanghelou.png"
   },
   {
     "title": "Flowers photoed in Dalian, a beautiful city.",
