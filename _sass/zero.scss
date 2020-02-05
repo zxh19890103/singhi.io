@@ -373,6 +373,7 @@ footer {
 		font-size: 1.5rem;
 		color: $textColor-2;
 		text-align: center;
+		font-weight: bold;
 	}
 	&__subtitle {
 		font-size: 13px; // as icon's size is 16px
@@ -392,7 +393,6 @@ footer {
 		.h3,
 		.h4 {
 			color: $textColor-1;
-			font-weight: normal;
 			position: relative;
 		}
 		h2,
