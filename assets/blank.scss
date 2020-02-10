@@ -2,6 +2,7 @@
 ---
 
 html {
+	// font: 62.5%/1.75 -apple-system,BlinkMacSystemFont,'Helvetica Neue', 'PingFang TC','Microsoft YaHei','Source Han Sans TC','Noto Sans CJK TC', 'WenQuanYi Micro Hei',sans-serif;
 	font: 62.5% / 1.75 Futura, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
 	// height: 100%;
 }
@@ -25,15 +26,6 @@ h3 {
 	}
 	width: 15rem;
 	border-bottom: 2px solid #abc;
-	// &:after {
-	// 	content: "";
-	// 	display: block;
-	// 	margin: 4px 0 1rem 0;
-	// 	width: 15rem;
-	// 	height: 2px;
-	// 	background: #abc;
-	// 	transform: skew(45deg);
-	// }
 }
 
 ul {
@@ -102,7 +94,7 @@ p {
 	background: white;
 	font-size: 1.4rem;
 	color: #456;
-	border-bottom: 1px dashed #ddd;
+	// border-bottom: 1px dashed #ddd;
 }
 
 .table {
