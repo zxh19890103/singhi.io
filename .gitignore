@@ -5,3 +5,5 @@ _site/
 .DS_Store
 node_modules/
 yarn-error.log
+lzzm.html
+assets/images/yeah.gif

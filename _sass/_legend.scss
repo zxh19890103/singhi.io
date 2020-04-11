@@ -1,0 +1,76 @@
+.form {
+	&__group {
+		position: relative;
+		margin: 6px 0;
+		&--captcha {
+			padding-left: 80px;
+			height: 60px;
+			a {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 80px;
+			}
+			input {
+				margin-top: 12px;
+			}
+		}
+	}
+	&__control {
+		display: inline-block;
+		padding: 5px 1rem;
+		width: 100%;
+		outline: none;
+		@include boxSizing(border-box);
+		border: 1px solid #ddd;
+		border-radius: 3px 4px;
+		color: inherit;
+		&:focus {
+			border-color: $themeColor;
+		}
+		&::-webkit-input-placeholder,
+		&::-moz-placeholder {
+			color: $textColor-4;
+		}
+	}
+	&__button {
+		padding: 6px 2rem;
+		background-color: $themeColor;
+		font-size: 1rem;
+		color: #fff;
+		border: none;
+		border-radius: 3px 4px;
+		outline: none;
+		&:hover,
+		&:focus {
+			background-color: lighten($themeColor, 8);
+		}
+	}
+}
+
+.pagination {
+	margin: 18px 0 0 0;
+	@include flexBox;
+	&__item {
+		width: 30px;
+		a.active {
+			cursor: not-allowed;
+			color: $textColor-4;
+		}
+	}
+}
+
+.panel {
+	&__title {
+		padding: 4px 8px;
+		margin-bottom: 0;
+		color: $textColor-2;
+		small {
+			color: rgba(0, 0, 0, 0.5);
+			font-size: 0.8em;
+		}
+	}
+	&__body {
+		padding: 6px 8px;
+	}
+}

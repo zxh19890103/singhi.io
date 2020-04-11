@@ -1,5 +1,7 @@
 {
   "editor.fontSize": 26,
+  "editor.formatOnSave": false,
+  "prettier.useEditorConfig": true,
   "files.exclude": {
     "**/node_modules": true
   }
