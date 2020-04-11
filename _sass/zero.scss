@@ -299,6 +299,9 @@ footer {
 .article {
 	&__title {
 		width: 61.8%;
+		@include ifmob {
+			width: 100%;
+		}
 		margin: 2rem auto;
 		font-size: 1.1rem;
 		color: $textColor-2;
@@ -339,11 +342,11 @@ footer {
 			&:after {
 				content: "";
 				position: absolute;
-				top: 86%;
 				left: -0.1em;
 				right: -0.1em;
 				bottom: 0;
-				// transition: top 200ms cubic-bezier(0, .8, .13, 1);
+				height: .5em;
+				transition: height 200ms cubic-bezier(0, .8, .13, 1);
 				background-color: rgba($themeColor, 0.3);
 			}
 		}
