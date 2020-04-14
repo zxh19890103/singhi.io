@@ -7,7 +7,7 @@ const adrun = async () => {
     return log(`Your broswer doesn't support this script.`)
   }
 
-  const data = await fetch(`/assets/ad.json?v=${Date.now()}`)
+  const data = await fetch(`https://zxh1989.oss-cn-qingdao.aliyuncs.com/personal-site/index.json`)
   const srcset = await data.json()
   const MAX = srcset.length
 
