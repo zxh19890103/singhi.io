@@ -10,6 +10,11 @@ $rightWidth: 70%;
 
 @import "./zero/mixins";
 
+@font-face {
+	font-family: Aspergit;
+	src: url("/assets/fonts/aspergit/Aspergit\ Bold.otf");
+}
+
 html {
 	height: 100%;
 	color: $textColor;
@@ -18,7 +23,8 @@ html {
 	box-sizing: border-box;
 	overflow-y: scroll;
 	// font: 16px/1.5 -apple-system,BlinkMacSystemFont,'Helvetica Neue', 'PingFang TC','Microsoft YaHei','Source Han Sans TC','Noto Sans CJK TC', 'WenQuanYi Micro Hei',sans-serif;
-	font: 16px/1.5 Futura, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+	font: 16px/1.5 Aspergit, Futura, -apple-system, SF UI Text, Arial, PingFang SC,
+		Hiragino Sans GB, Microsoft YaHei, sans-serif;
 	// font: 16px/1.5 Titillium,"Lucida Sans Typewriter","Helvetica Neue",Helvetica,Arial,"\5FAE\8F6F\96C5\9ED1","Microsoft YaHei","\5B8B\4F53";
 	// font: 300 16px Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	-webkit-text-size-adjust: 100%;
@@ -29,14 +35,15 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeSpeed;
+	font-display: swap;
 }
 
 .COCOGOOSE {
-	font-family: "COCOGOOSE";
 	/*
 	The font-display API specifies how a font is displayed. swap tells the browser that text using the font should be displayed immediately using a system font. Once the custom font is ready, it replaces the system font.
 	*/
 	font-display: swap;
+	font-weight: bold;
 }
 
 a {
@@ -71,8 +78,9 @@ blockquote {
 	background: #f3f5f9;
 	// word-break: break-word;
 	// white-space: pre-wrap;
-	font-size: .9em;
-	p, ul {
+	font-size: 0.9em;
+	p,
+	ul {
 		margin: 0;
 		color: cadetblue;
 	}
@@ -155,7 +163,7 @@ h6,
 				font-size: 1rem;
 				transform: translateY(14px);
 				small {
-					font-size: .7em;
+					font-size: 0.7em;
 					color: lighten($textColor, 40);
 					line-height: 0;
 					font-weight: lighter;
@@ -206,7 +214,7 @@ h6,
 			position: fixed;
 			width: 100%;
 			top: 0;
-			opacity: .8;
+			opacity: 0.8;
 		}
 	}
 }
@@ -278,7 +286,7 @@ footer {
 }
 
 .document {
-	margin: .5rem 0 1rem 0;
+	margin: 0.5rem 0 1rem 0;
 	h3,
 	.h3 {
 		margin: 0;
@@ -345,8 +353,8 @@ footer {
 				left: -0.1em;
 				right: -0.1em;
 				bottom: 0;
-				height: .5em;
-				transition: height 200ms cubic-bezier(0, .8, .13, 1);
+				height: 0.5em;
+				transition: height 200ms cubic-bezier(0, 0.8, 0.13, 1);
 				background-color: rgba($themeColor, 0.3);
 			}
 		}
@@ -478,4 +486,5 @@ footer {
 	}
 }
 
-@import "./zero/ad", "./zero/identities", "./zero/github", './zero/font', './zero/table';
+@import "./zero/ad", "./zero/identities", "./zero/github", "./zero/font",
+	"./zero/table";

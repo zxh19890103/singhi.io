@@ -38,7 +38,6 @@
 			bottom: 4px;
 			right: 4px;
 			color: #fff;
-			@extend .COCOGOOSE;
 			@include transition(all 3s);
 			&:hover {
 				color: #ddd;
