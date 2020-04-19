@@ -1,7 +1,7 @@
 ---
 layout: post
 title: We're all experiencing a big change of the world
-short: Today is April 18th, 2020. Now the time is 6 o'clock and a half, afternoon
+short: COVID-19 brings a big change to the world. How will the world change? I'm not sure. But I feel it will be one
 ---
 
 COVID-19 brings a big change to the world. How will the world change? I'm not sure. But I feel it will be one.
