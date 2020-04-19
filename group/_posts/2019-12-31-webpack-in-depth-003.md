@@ -93,7 +93,7 @@ module.exports = {
 
 我们的目录结构如下：
 
-{% include img.html src="https://raw.githubusercontent.com/zxh19890103/learnwebpack/master/snapshots/maxrequests-001.jpg" %}
+{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/posts/webpack-in-depth-003/maxrequests-001.jpg" %}
 
 主要看 foo.js 中的内容。
 
@@ -116,7 +116,7 @@ console.log(DESC)
 
 执行 `npm run mr`，终端输出：
 
-{% include img.html src="https://raw.githubusercontent.com/zxh19890103/learnwebpack/master/snapshots/maxrequests-002.jpg" %}
+{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/posts/webpack-in-depth-003/maxrequests-002.jpg" %}
 
 奇怪！🤔，好像模块 foo-dep-03 并未被分离出来！我打开 foo.bundle.22c18e3.js 文件，它在里面。
 
@@ -131,6 +131,6 @@ console.log(DESC)
 
 根据第一条，我们将 maxInitialRequests 改为 4，结果符合我们的预期：
 
-{% include img.html src="https://raw.githubusercontent.com/zxh19890103/learnwebpack/master/snapshots/maxrequests-003.jpg" %}
+{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/posts/webpack-in-depth-003/maxrequests-003.jpg" %}
 
 maxAsyncRequests 与 maxInitialRequests 作用类似，只不过“入口”点是“import()”，而不是 entry。

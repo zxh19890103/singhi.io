@@ -97,13 +97,13 @@ alert(DESC)
 
 执行 `npm run mc`，终端输出：
 
-{% include img.html src="https://raw.githubusercontent.com/zxh19890103/learnwebpack/master/snapshots/7NJNJHGFDSAQW3455.jpg" %}
+{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/posts/webpack-in-depth-003/7NJNJHGFDSAQW3455.jpg" %}
 
 现在，我们将 `splitChunks.default.minChunks` 设置为 3，我们期望 webpack 不分离 `m.js`。
 
 打包结果如下：
 
-{% include img.html src="https://raw.githubusercontent.com/zxh19890103/learnwebpack/master/snapshots/78FVH766T5FCFCGVHV.jpg" %}
+{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/posts/webpack-in-depth-003/78FVH766T5FCFCGVHV.jpg" %}
 
 可以看到，如其所愿！
 
