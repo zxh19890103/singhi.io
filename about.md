@@ -36,21 +36,24 @@ title: 关于我
 - jQuery
 - RxJs
 
-*有好交流技术者或公司有职位推荐，可与我取得联系。*
+**有好交流技术者或公司有职位推荐，可与我取得联系。**
+
+### 可扫码添加好友
+{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/20181105/151627_71615.jpg" alt="张星海的微信二维码" %}
 
 ### 联系方式
 
 微信：zxh198964
 
-邮箱(Google)：zhangxinghai79@gmail.com
+邮箱：zhangxinghai79@gmail.com
 
 QQ：1210372315
 
-知乎：https://www.zhihu.com/people/zhangxingxing89
+知乎：[https://www.zhihu.com/people/zhangxingxing89](https://www.zhihu.com/people/zhangxingxing89)
 
-Github：https://github.com/zxh19890103
+Github：[https://github.com/zxh19890103](https://github.com/zxh19890103)
 
-OSC：https://my.oschina.net/xxrr
+OSC：[https://my.oschina.net/xxrr](https://github.com/zxh19890103)
 
 <p style="text-align: right">
 感谢!

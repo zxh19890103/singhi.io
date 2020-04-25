@@ -62,4 +62,4 @@ JsonViewer 接收 `3` 个参数，第一个是显示 JSON 内容的元素 ID，�
 
 ## 效果
 
-{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/demo.gif" title="json editor" %}
+{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/posts/json-editor/demo.gif" title="json editor" %}
