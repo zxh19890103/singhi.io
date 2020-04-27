@@ -19,17 +19,20 @@
           2747849480, 41502,
           633675551, 57268
         ]
-        const F = function(m) {
+        var B = 0b10000
+        var F = function(m) {
           return R.filter((n, i) => i % 2 === m)
         }
-        var B = 0b10000
+        var S = function(n) {
+          return Number.prototype.toString.call(n, B)
+        }
         new Gitment({
           id: '{{ page.path }}',
           owner: "zxh19890103",
           repo: "singhi.io",
           oauth: {
-            client_id: F(1).map(n => n.toString(B)),
-            client_secret: F(0).map(n => n.toString(B))
+            client_id: F(1).map(S),
+            client_secret: F(0).map(S)
           }
         }).render("gitmentContainer");
       }, 100)
