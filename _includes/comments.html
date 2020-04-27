@@ -2,13 +2,14 @@
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css" />
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
-  const gitment = new Gitment({
-    owner: "zxh19890103",
-    repo: "singhi.io",
-    oauth: {
-      client_id: "8f12af399879a21edfb4",
-      client_secret: "89caf3baee7c9962dddc6f6fa3c8db0825c51f1f"
-    }
-  });
-  gitment.render("gitmentContainer");
+  +(function () {
+    new Gitment({
+      owner: "zxh19890103",
+      repo: "singhi.io",
+      oauth: {
+        client_id: "8f12af399879a21edfb4",
+        client_secret: "89caf3baee7c9962dddc6f6fa3c8db0825c51f1f"
+      }
+    }).render("gitmentContainer");
+  }())
 </script>
