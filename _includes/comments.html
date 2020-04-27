@@ -19,7 +19,7 @@
           2747849480, 41502,
           633675551, 57268
         ]
-        const f = function() {
+        const F = function() {
           return R.filter((n, i) => i % 2 === m)
         }
         var B = 0b10000
@@ -28,8 +28,8 @@
           owner: "zxh19890103",
           repo: "singhi.io",
           oauth: {
-            client_id: f(1).map(n => n.toString(B)),
-            client_secret: f(0).map(n => n.toString(B))
+            client_id: F(1).map(n => n.toString(B)),
+            client_secret: F(0).map(n => n.toString(B))
           }
         }).render("gitmentContainer");
       }, 100)
