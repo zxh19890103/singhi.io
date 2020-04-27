@@ -1,16 +1,40 @@
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="/assets/gitment.css" />
-<script src="/assets/gitment.min.js"></script>
 <script>
-  ;(function () {
-    new Gitment({
-      id: '{{ page.path }}',
-      owner: "zxh19890103",
-      repo: "singhi.io",
-      oauth: {
-        client_id: "8f12af399879a21edfb4",
-        client_secret: "89caf3baee7c9962dddc6f6fa3c8db0825c51f1f"
-      }
-    }).render("gitmentContainer");
+  ; (function () {
+    var W = window.innerWidth
+    if (W < 992) return
+    var c = document.createElement.bind(document), h = document.head
+    var css = c("link")
+    css.rel = "stylesheet"
+    css.href = "/assets/gitment.css"
+    var script = c("script")
+    script.src = "/assets/gitment.min.js"
+    script.onload = function () {
+      script.onload = null
+      setTimeout(function () {
+        var R = [
+          2311779258, 36626,
+          4001143138, 44857,
+          3722211183, 39033,
+          2747849480, 41502,
+          633675551, 57268
+        ]
+        const f = function() {
+          return R.filter((n, i) => i % 2 === m)
+        }
+        var B = 0b10000
+        new Gitment({
+          id: '{{ page.path }}',
+          owner: "zxh19890103",
+          repo: "singhi.io",
+          oauth: {
+            client_id: f(1).map(n => n.toString(B)),
+            client_secret: f(0).map(n => n.toString(B))
+          }
+        }).render("gitmentContainer");
+      }, 100)
+    }
+    h.appendChild(css)
+    h.appendChild(script)
   }())
 </script>
