@@ -2,6 +2,7 @@
   "editor.fontSize": 26,
   "editor.formatOnSave": false,
   "prettier.useEditorConfig": true,
+  "editor.fontFamily": "Wawati SC, Menlo, Monaco, 'Courier New', monospace",
   "terminal.integrated.fontFamily": "monospace",
   "terminal.integrated.letterSpacing": -1,
   "terminal.integrated.fontSize": 14,

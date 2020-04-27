@@ -14,7 +14,7 @@ layout: default
 <div class="article__body{% if page.song %} article__body--song{% endif %}">
   {{ content }}
 </div>
-
+{%- include comments.html -%}
 <hr />
 
 <div class="article__attrs">
