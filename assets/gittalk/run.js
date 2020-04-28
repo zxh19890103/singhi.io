@@ -32,13 +32,17 @@
                 .substr(5, 50)
                 .toUpperCase()
               }
+              lo = function(s) {
+                console.log(s)
+                return s
+              }
             new Gitalk({
               id: m("{{ page.path }}"),
               owner: "zxh19890103",
               repo: "singhi.io",
               admin: ["zxh19890103"],
-              clientID: n(1).map(e),
-              clientSecret: n(0).map(e)
+              clientID: n(1).map(e).join(""),
+              clientSecret: n(0).map(e).join("")
             }).render("gitalkContainer")
           }, 100)
       }),
