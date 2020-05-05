@@ -55,6 +55,14 @@ Github：[https://github.com/zxh19890103](https://github.com/zxh19890103)
 
 OSC：[https://my.oschina.net/xxrr](https://github.com/zxh19890103)
 
+Medium：[https://medium.com/@zhangxinghai79](https://medium.com/@zhangxinghai79)
+
+Lofter：[https://stars-in-the-sea.lofter.com/](https://stars-in-the-sea.lofter.com/)
+
+Quora： [https://www.quora.com/profile/Singhi-John](https://www.quora.com/profile/Singhi-John)
+
+StackOverflow：[https://stackoverflow.com/users/5721861/singhi-john](https://stackoverflow.com/users/5721861/singhi-john)
+
 <p style="text-align: right">
 感谢!
 <br>  
