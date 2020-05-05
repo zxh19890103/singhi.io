@@ -14,7 +14,9 @@ layout: default
 <div class="article__body{% if page.song %} article__body--song{% endif %}">
   {{ content }}
 </div>
-{%- include comments.html -%}
+{% if jekyll.environment == "production" %}
+  {%- include comments.html -%}
+{% endif %}
 <hr />
 
 <div class="article__attrs">
