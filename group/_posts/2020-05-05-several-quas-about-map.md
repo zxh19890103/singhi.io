@@ -22,12 +22,12 @@ tags:
 
 ### 在有限的范围内容纳全部的坐标点
 
-这是我要做的一件很重要的事情，腾讯地图或者高德地图给了我功能强大的接口，但是需要我来提供合适的参数。这些参数是什么呢？
+这是我要做的一件很重要的事情，腾讯地图或者高德地图给了我功能强大的接口，但是需要我来提供合适的条件。这些条件是什么呢？
 
 - 缩放级别，腾讯谓之 scale，高德称以 zoom
 - 四个坐标点，其依次连接而形成的梯形（想一想，为什么是梯形？）恰如其分地将全部的坐标点融入梯形当中
-- 计算实际的横纵距离
-- 计算“地理/地图”分辨率
+- 实际的横纵距离
+- “地理/地图”分辨率
 
 四个坐标点的选取全仗我们的坐标点集合，我将坐标点集合定义为以下结构：
 
@@ -206,8 +206,12 @@ Page({
 ```
 {% endraw %}
 
-最后看一下效果：
+看一下效果：
 
 {% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/posts/several-quas-about-map/staticmap.jpg" title="高德静态地图" %}
 
 {% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/posts/several-quas-about-map/WechatIMG12.jpeg" title="微信小程序界面" %}
+
+### 如何将多个近邻的坐标点融合为一个
+
+这是第二个问题，比较复杂。问题是由于高德静态地图的 marker 数量限制。下一篇我将详细地分析这个问题。
