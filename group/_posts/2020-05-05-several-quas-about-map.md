@@ -57,6 +57,17 @@ interface Edge<X extends number, Y extends number> {
 
 其中 L（left）、R（right）、T（top）、B（bottom） 就是我们要求得的值。
 
+先让我们用 T、R、B、L 来定义一个梯形结构吧：
+
+```typescript
+interface Trapezium {
+  T: number
+  R: number
+  B: number
+  L: number
+}
+```
+
 ```js
 function getTRBL(points) {
   let L = 135.083333 // maximum left
@@ -70,22 +81,12 @@ function getTRBL(points) {
     if (latitude < B) B = latitude
     if (latitude > T) T = latitude
   }
-  return [T, R, B, L]
+  /**@type  Trapezium*/
+  return { T, R, B, L }
 }
 ```
 
-让我们用 T、R、B、L 来定义一个梯形吧：
-
-```typescript
-interface Trapezium {
-  T: number
-  R: number
-  B: number
-  L: number
-}
-```
-
-注意到我为 T、R、B、L 赋予了初始值，`[53.55, 135.083333, 3.85, 73.55]` 刚好把中国围了起来。我们这里只考虑国内的情况。
+注意到我为 T、R、B、L 赋予了初始值，`{ T: 53.55, R: 135.083333, L: 3.85, B: 73.55 }` 刚好把中国围了起来。我们这里只考虑国内的情况。
 
 我们有了 4 条线，现在要计算 `Distance(L, R)` 和 `Distance(T, B)`。我在网上查阅了资料，发现：
 
@@ -93,7 +94,7 @@ interface Trapezium {
 - 在横线上，也就是纬线（Latitude Line），一个经度的变化所能引起的地表位移是“纬度”的函，它是 `111 * cos(la) ` km。
 
 ```js
-function disance(l, r, t, b) {
+function distance(l, r, t, b) {
   return [
     (r - l) * 111 * Math.cos(b * Math.PI / 180 ),
     (t - b) * 111
@@ -183,9 +184,7 @@ const center = { longitude: (T + B) / 2, latitude: (R + L) / 2 }
 
 对于高德静态地图：
 
-```
 https://restapi.amap.com/v3/staticmap?key=[your key]&size=414*256&zoom=14&scale=2&traffic=1&markers=large%2C%2CF%3A113.807343%2C22.683340%7Clarge%2C%2C1%3A113.822260%2C22.688535%7Clarge%2C%2C1%3A113.822307%2C22.691457%7Clarge%2C%2C1%3A113.813363%2C22.688976
-```
 
 对于微信小程序：
 {% raw %}
