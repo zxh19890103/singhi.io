@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Black Lives Matter
-short: Since 05.25, the U.S. protests in every states for .
+short: Since 05.25, the U.S. protests in every states for George Floyd's death.
 tags: 
   - Black Lives Matter
   - America Chaos
