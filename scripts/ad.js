@@ -8,6 +8,7 @@ const adrun = async () => {
   }
 
   const data = await fetch(`https://zxh1989.oss-cn-qingdao.aliyuncs.com/personal-site/index.json`)
+  /**@type {{ detail: string; src: string; title: string }} */
   const srcset = await data.json()
   const MAX = srcset.length
 
@@ -19,15 +20,11 @@ const adrun = async () => {
     const i = obj.i - 1
     const { detail } = srcset[i]
     if (detail) {
-      const anchor = document.createElement('a')
-      anchor.href = detail
-      anchor.target = '_blank'
-      anchor.click()
+      window.open(detail, '_blank')
     }
   })
   imgList.addEventListener('click', e => {
     e.stopPropagation()
-    // console.log('000000', e.currentTarget)
     if (e.target instanceof Image) {
       const i = obj.i - 1
       const { src } = srcset[i]
