@@ -16,7 +16,7 @@ tags:
 
 这里有一点不便，即每次都要 `git push`，但这似乎无法避免！
 
-然而，除此之外，有一个更不妙的地方。GIT 要求中心仓库必须是 bare 的，bare 的仓库不存在工作区，只有索引区。关于 bare，可以查看这篇[文章](http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/)。因此，需要在 windows 上另外再 clone 一份代码，以其作为网站的资源目录。
+然而，除此之外，有一个更不妙的地方。GIT 要求中心仓库必须 bare，bare 仓库不存在工作区，只有索引区。关于 bare，可以查看这篇[文章](http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/)。因此，需要在 windows 上另外再 clone 一份代码，以其作为网站的资源目录。
 
 ```bash
 cd ~
@@ -35,15 +35,17 @@ git clone ???
 
 **git clone 的路径该怎么写呢？**
 
-根据官方的文档 https://www.git-scm.com/docs/git-clone#_git_urls，我可以选择 ssh 协议来 clone。那么命令可能是：
+根据官方的[文档](https://www.git-scm.com/docs/git-clone#_git_urls)，我可以选择 ssh 协议来 clone。那么命令可能是：
 
 ```bash
-git clone ssh:user@192.168.10.243??
+git clone ssh://user@192.168.10.243??
 ```
 
 需要在 windows 上安装 SSH 服务了。在 windows10 上安装 SSH 服务是比较方便的，windows10 已经预设了该功能，只需要你点点鼠标就能安装。具体的操作是：
 
+```
 设置 > 应用 > 应用和功能 > 可选功能 > 添加可选功能 > 点击“OpenSSH Server”
+```
 
 等服务安装好，在 win10 的万能搜索框中输入“services.msc”打开服务管理器。找到 OpenSSH Server，设置为自行启动。
 
@@ -58,18 +60,18 @@ user 默认使用 windows 系统本地账户，此时需要你输入相应的密
 OK，现在我们有了 ssh 和 git，回到上边的问题：如何写 git 中心仓库的地址？
 
 ```bash
-git clone ssh:user@192.168.10.243 ??? // 后边是什么呢？
+git clone ssh://user@192.168.10.243 ??? // 后边是什么呢？
 ```
 
-这个“小问题”困扰了我一个下午，不管你信或不信。我尝试了各种拼写方式，搜索了 google、bing，甚至不惜动用了百度 😂。
+这个“小问题”困扰了我一个下午，不管你信或不信。我尝试了各种拼写方式，搜索了 google、bing，甚至忍辱动用了百度 😂。
 
 比如：
 
 ```bash
-git clone ssh:user@192.168.10.243/~/plants
+git clone ssh://user@192.168.10.243/~/plants
 ```
 
-使用了 ~，因为我在 windows 上使用的是 bash 终端。~ 表示了当前用户的 home 目录。Mac 上，这个命令返回了错误提示：
+使用了 **~**，因为我在 windows 上使用的是 bash 终端。**~** 表示了当前用户的 home 目录。Mac 上，这个命令返回了错误提示：
 
 ```bash
 'git-upload-pack' ?????ڲ????ⲿ???Ҳ???ǿ????еĳ???
@@ -94,7 +96,7 @@ git clone ~/pants plants_run
 
 我使用 `ssh user@localhost` 登录到系统，进入 ~/plants_run 目录，执行了 `git pull` 和 `git push`，也没什么问题。
 
-索性搜索一下 git-upload-pack 和 Could not read from remote repository，得到了一些相似问题的分析，其中书声的博客所写的[Git 克隆远程仓库提示...](https://php.cn/blog/detail/18277.html)与我当前的问题十分相近，也许乱码的部分就是“未找到命令”。
+索性搜索一下 `git-upload-pack` 和 `Could not read from remote repository`，得到了一些相似问题的分析，其中书声的博客所写的[Git 克隆远程仓库提示...](https://php.cn/blog/detail/18277.html)与我当前的问题十分相近，也许乱码的部分就是“未找到命令”。
 
 按照这个思路，我猜测 git-upload-pack 是一个命令，在我们需要远程下载仓库的时候用到了它。那么，它在什么地方呢？是谁使用了它？客户端还是服务端？
 
@@ -106,11 +108,11 @@ C:\Program Files\Git\mingw64\bin\git-upload-pack.exe
 
 如此，事实与猜测不符了 😢
 
-无奈之下，我又逐行阅读了 cnblogs 上的一篇[文章](https://www.cnblogs.com/sparkdev/p/10166061.html)。这篇文章指导了我安装 OpenSSH Server。
+无奈之下，我又逐行阅读了 cnblogs 上的一篇[文章](https://www.cnblogs.com/sparkdev/p/10166061.html)。这篇文章指导我安装了 OpenSSH Server。
 
 当读到“*连接成功后默认的 shell 是 Windows Command shell (cmd.exe) 程序：*”的时候，我似乎有了主意。
 
-难道，当我在 mac 上使用 `git clone ssh:...` 的时候，服务端启动了 windows 上的 cmd 来提供命令执行环境？
+难道，当我在 mac 上使用 `git clone ssh://...` 的时候，服务端启动了 windows 上的 cmd 来提供命令执行环境？
 
 **的确如此！**
 
@@ -120,7 +122,7 @@ C:\Program Files\Git\mingw64\bin\git-upload-pack.exe
 
 找到 git-upload-pack 所在的 bin 目录，将其路径添加到系统环境变量中。
 
-再来在 mac 上试一下命令 `git clone ssh:user@192.168.10.243/~/plants`，以为这下没问题了，结果😭：
+再来在 mac 上试一下命令 `git clone ssh://user@192.168.10.243/~/plants`，以为这下没问题了，结果😭：
 
 ```bash
 fatal: ''~/plants'' does not appear to be a git repository
@@ -134,7 +136,7 @@ and the repository exists.
 
 那么，应该怎么写呢？
 
-既然，openSSH Server 启动 cmd 作为执行环境，那么这个路径的书写应该遵循 cmd 的规则。cmd 的规则中没有 ~，写绝对路径吧？
+既然，OpenSSH Server 启动 cmd 作为执行环境，那么这个路径的书写应该遵循 cmd 的规则。cmd 是不认识 **~** 的，写绝对路径吧？
 
 ```bash
 git clone ssh://user@192.168.10.243/C://.../plants
@@ -144,6 +146,8 @@ git clone ssh://user@192.168.10.243/C://.../plants
 
 ```bash
 git clone ssh://user@192.168.10.243/%HOME%/plants
+# OR
+git clone ssh://user@192.168.10.243%HOME%/plants
 ```
 
 **不对！（3）**参照[GIT 官方网站](https://git-scm.com/docs/git-clone#_git_urls) 再试：
@@ -154,9 +158,9 @@ git clone ssh://user@192.168.10.243/~user/plants
 
 **还是不对！（4）**Google、Bing、甚至 Baidu 也都用尽了，没能探寻出答案。
 
-远不止 4 次尝试，因为我记得自己消耗在这上的时间以小时计的。
+远不止 *4* 次尝试，因为我记得自己消耗在这上的时间是以小时计的。
 
-但是这不应该是个大问题，一个路径而已，到底该怎么写？竟然找不到任何正统的说明，左一嘴右一舌头，每一个解决我的问题，真的气死人😠
+但是这不应该是个大问题，一个路径而已嘛，到底该怎么写？竟然找不到任何正统的说明，左一嘴唇右一舌头，没一个能解决我的问题，真气死我也😠
 
 **换终端！**不用这个 cmd 了，太多的毛病，早些年还很喜欢的。
 
@@ -188,9 +192,9 @@ git pull
 
 还有一件事可以简化流程，就是使用 SSH 的 publicKEY 做登录验证，避免重复地输入密码。
 
-客户端使用 `ssh-keygen` 脚手架生成私钥和公钥。将公钥复制到服务端（这里就是我的那台 windows 电脑）的 authorized_keys 文件中，换行间隔多个 key。
+客户端使用 `ssh-keygen` 脚手架生成私钥和公钥。将公钥复制到服务端（这里就是我的那台 windows 电脑）的 `authorized_keys` 文件中，换行间隔多个 key。
 
-有人可能会问 authorized_keys 在哪啊？默认在 ~/.ssh/ 目录下，如果没有，你自己新建一个吧。
+那有人可能会问 `authorized_keys` 在哪啊？默认在 `~/.ssh/` 目录下，如果没有，你自己新建一个吧。
 
 再来执行 git 操作，你会发现没啥 *GP* 效果。这是因为还有事情没做，你需要打开 /c/ProgramData/ssh/sshd_config（bash）编辑一下：
 
