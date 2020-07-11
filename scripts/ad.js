@@ -7,9 +7,48 @@ const adrun = async () => {
     return log(`Your broswer doesn't support this script.`)
   }
 
-  const data = await fetch(`https://zxh1989.oss-cn-qingdao.aliyuncs.com/personal-site/index.json`)
+  const data = await fetch(`https://plants2019.oss-cn-shenzhen.aliyuncs.com/202007.index`)
   /**@type {{ detail: string; src: string; title: string }} */
-  const srcset = await data.json()
+  const srcset = await data.text().then(txt => {
+    return txt
+      .split('BOUNDARY-------------------------')
+      .map(part => JSON.parse(part))
+      .map(p => `${p.key}.plant/meta`)
+  }).then(names => {
+    return Promise.all(
+      names.map(
+        name => fetch(`https://plants2019.oss-cn-shenzhen.aliyuncs.com/${name}`)
+          .then(r => r.json())
+      ))
+  }).then((collections) => {
+    return collections.map(({ pictures, key }) => {
+      return pictures.map(pic => {
+        let title = pic.text
+        if (!title && pic.loc && pic.loc.t) {
+          const t = pic.loc.t
+          const street = t.streetNumber ? t.streetNumber.street : ""
+          title = t.province + t.city + t.district + t.township + street
+        } else {
+          title = "No words"
+        }
+        title +=  '@' + new Date(pic.date).toLocaleDateString()
+        return {
+          title,
+          src: `https://plants2019.oss-cn-shenzhen.aliyuncs.com/${key}.plant/${pic.key}.jpg`
+        }
+      })
+    })
+  }).then(groups => {
+    // todo: why not all.concat(...groups)
+    console.log(groups)
+    const all = []
+    groups.forEach(group => {
+      all.push(...group)
+    })
+    return all
+  })
+  console.log(srcset)
+  // const srcset = await data.text()
   const MAX = srcset.length
 
   const imgList = document.querySelector('#ref_adImgs')
