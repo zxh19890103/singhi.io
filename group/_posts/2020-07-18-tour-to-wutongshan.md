@@ -26,17 +26,17 @@ tags:
 
 山里有险道，名曰“泰山涧”。其为涧者，乃山中长流，为丛树遮蔽，可远闻激流之音。我与 S 先取小道行进约一二公里，便至涧边小径，是为石板砌成的台阶，丈其宽约一米或余。小径弯曲，依涧水而舞，两旁怪树丛生、花艳草野，虽烈日当中，举头难见也。
 
-{% include img.html src="http://plants2019.oss-cn-shenzhen.aliyuncs.com/17340abb057e4b.plant/17340f1423f2546.jpg" title="溪水" %}
+{% include img.html src="http://plants2019.oss-cn-shenzhen.aliyuncs.com/17340abb057e4b.plant/17340f1423f2546.jpg" title="高山流水遇知音" %}
 
 路上行人不少，前后皆可见，或往或返，个个大汗淋漓，然而情绪高亢。
 
 行之一处，需凭卵石跨涧水。水异常清澈，水底石块纹路分明，有小鱼小虾在其中游动，水面有浮虫。伸手入水，冰凉透骨，正暑热难当，岂不爽快哉？
 
-{% include img.html src="http://plants2019.oss-cn-shenzhen.aliyuncs.com/1735f6e28511b24.plant/1735ff89fea240.jpg" title="溪水" %}
+{% include img.html src="http://plants2019.oss-cn-shenzhen.aliyuncs.com/1735f6e28511b24.plant/1735ff89fea240.jpg" title="清涧透骨人间极乐" %}
 
 台阶路并不总有，或遇急陡坡面，全仗突石与藤木攀登。此绝非常人能为，唯身强力壮者，方能征服这般险难。
 
-{% include img.html src="http://plants2019.oss-cn-shenzhen.aliyuncs.com/17340abb057e4b.plant/17340e8e4481a9f.jpg" title="溪水" %}
+{% include img.html src="http://plants2019.oss-cn-shenzhen.aliyuncs.com/17340abb057e4b.plant/17340e8e4481a9f.jpg" title="蜀道难，难于上青天" %}
 
 如此危道，蜿蜒拾上数公里，我与 S 为此耗费了大量的体力。虽累，心中还是充满了正能量。
 
@@ -56,9 +56,9 @@ S 道：“不知这诗如何能成为名篇，不过极其寻常的拜访和询
 
 此时，天朗气清，一目万里，青云移走，留影高山，草木葱郁，鸟鸣虫吟，一片生机。
 
-{% include img.html src="http://plants2019.oss-cn-shenzhen.aliyuncs.com/1735f6e28511b24.plant/173605ee52d1547.jpg" title="高山之端" %}
+{% include img.html src="http://plants2019.oss-cn-shenzhen.aliyuncs.com/1735f6e28511b24.plant/173605ee52d1547.jpg" title="高山阔目，极野能收" %}
 
-{% include img.html src="http://plants2019.oss-cn-shenzhen.aliyuncs.com/1735f6e28511b24.plant/1736039a34924f2.jpg" title="高山之端" %}
+{% include img.html src="http://plants2019.oss-cn-shenzhen.aliyuncs.com/1735f6e28511b24.plant/1736039a34924f2.jpg" title="高处人罕至" %}
 
 山顶有乐队演唱，十多人对面坐听。乐队名“纵声”，他们每周末都会来这里表演，为了自己心中的理想——在深圳湾体育馆办一场万人演唱会——来此既是表演也是推广、售票。我每次登顶，都会来听上几首，一是休息，二是表达我对他们的敬佩之情，在此预祝他们成功，他们会成功的。
 
