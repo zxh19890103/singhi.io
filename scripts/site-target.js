@@ -6,12 +6,10 @@ a.style = `
   left: 0;
   display: block;
   width: 4em;
-  height: 1.4em;
-  line-height: 1.4em;
   text-align: center;
-  font-size: 14px;
-  color: #FFF;
-  background-color: ${isChinaSite ? "#035C97" : "#E60118"}
+  font-size: 13px;
+  color: ${isChinaSite ? "#035C97" : "#E60118"};
 `
 a.textContent = isChinaSite ? "境外站" : "大陆站"
+a.href = isChinaSite ? "https://zhangxinghai.cn" : "https://china.zhangxinghai.cn"
 document.body.appendChild(a)
