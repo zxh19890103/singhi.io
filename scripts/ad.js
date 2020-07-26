@@ -21,7 +21,7 @@ const adrun = async () => {
         if (!title) {
           title = "No words"
         }
-        title += ' @ ' + new Date(pic.date).toLocaleDateString()
+        title += ' • ' + new Date(pic.date).toLocaleDateString()
         return {
           title,
           src: `https://plants2019.oss-cn-shenzhen.aliyuncs.com/${key}.plant/${pic.key}.jpg`
