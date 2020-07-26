@@ -31,12 +31,14 @@
 		opacity: .4;
 		&-title {
 			cursor: pointer;
+			background: rgba(0,0,0,.6);
+			padding: 4px 6px;
 			position: absolute;
 			z-index: 1;
 			font-size: 0.8rem;
 			line-height: 0.8rem;
-			bottom: 4px;
-			right: 4px;
+			bottom: 0px;
+			right: 0px;
 			color: #fff;
 			@include transition(all 3s);
 			&:hover {
