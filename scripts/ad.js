@@ -172,9 +172,9 @@ const adrun = async () => {
       top: 0;
       left: 100%;
       animation:
-        keyframes_${r} ${h * .5}s linear .5s 1 alternate forwards;
+        keyframes_${r} ${h * .3}s linear .5s 1 alternate forwards;
       -webkit-animation:
-        keyframes_${r} ${h * .5}s linear .5s 1 alternate forwards;
+        keyframes_${r} ${h * .3}s linear .5s 1 alternate forwards;
     }
     `.replace(/[\n\t]/g, '')
     document.head.appendChild(styleTag)
