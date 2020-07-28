@@ -184,11 +184,6 @@ h6,
 			font-size: 1.2rem;
 			li {
 				flex: 1;
-				&:last-child {
-					a {
-						border-right: 1px inset transparent;
-					}
-				}
 				a {
 					display: block;
 					margin: 7px 6px;
@@ -196,8 +191,10 @@ h6,
 					color: $textColor;
 					font-size: 1rem;
 					line-height: 1.2rem;
+					border-bottom: 2px solid transparent;
 					&:hover {
 						color: $textColor-3;
+						border-bottom-color: darkseagreen;
 					}
 				}
 			}

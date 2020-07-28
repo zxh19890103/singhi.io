@@ -68,8 +68,8 @@ const adrun = async () => {
     aniClasses: {},
   }
 
-  const ANIMATION_DURATION = 60
-  const KEYFRAME_DURATION_PERCENT = 20
+  // const ANIMATION_DURATION = 60
+  const KEYFRAME_DURATION_PERCENT = 33
   const INITIAL_KEYFRAME_DURATION_PERCENT = 5
 
   const iterate = async () => {
@@ -102,11 +102,7 @@ const adrun = async () => {
 
     text.classList.remove('ad__img-title--loading')
     text.textContent = srcset[i].title
-    text.style.color = srcset[i].tcolor || '#456'
-
-    setTimeout(() => {
-      text.style.color = srcset[i].tcolor || '#fff'
-    }, 1000);
+    text.style.color = srcset[i].tcolor || '#fff'
 
     obj.i += 1
     obj.cur = wrapper
