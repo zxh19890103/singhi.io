@@ -205,7 +205,11 @@ h6,
 			position: fixed;
 			width: 100%;
 			top: 0;
-			opacity: 0.8;
+			background: #245;
+			z-index: 1;
+			li a {
+				color: #FFF;
+			}
 		}
 	}
 }
