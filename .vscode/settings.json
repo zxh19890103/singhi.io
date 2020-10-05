@@ -1,7 +1,9 @@
 {
-  "editor.fontSize": 26,
+  "editor.fontSize": 21,
   "editor.formatOnSave": false,
+  "editor.fontFamily": "SimHei, Consolas, 'Courier New', monospace",
   "prettier.useEditorConfig": true,
+  "editor.minimap.enabled": false,
   "terminal.integrated.fontFamily": "monospace",
   "terminal.integrated.fontSize": 14,
   "files.exclude": {
