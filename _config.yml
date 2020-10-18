@@ -10,7 +10,6 @@ collections:
     output: true
   myworld:
     title: 我的世界
-    sort_by: sort
     output: true
 
 plugins:
