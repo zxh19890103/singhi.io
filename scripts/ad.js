@@ -51,12 +51,14 @@ const adrun = async () => {
   })
   imgList.appendChild(text)
 
-  imgList.querySelector('.ad__next').addEventListener('click', () => {
+  imgList.querySelector('.ad__next').addEventListener('click', playNext)
+
+  function playNext() {
     obj.requestNext = 1
     if (obj.cur) {
       obj.cur.classList.add('interrupt')
     }
-  })
+  }
 
   const { clientWidth: vW, clientHeight: vH } = imgList
 
@@ -178,6 +180,77 @@ const adrun = async () => {
     return className
   }
 
+  function drawIndex() {
+    const thumbs = srcset.map(({ title, src }) => {
+      return {
+        title,
+        src: `${src}?x-oss-process=style/s72`
+      }
+    })
+
+    const refadImgs = document.querySelector("#ref_adImgs")
+
+    const clientW = refadImgs.clientWidth
+    const clientH = refadImgs.clientHeight
+
+    const cW = clientW * devicePixelRatio
+    const cH = clientH * devicePixelRatio
+
+    const canvas = document.createElement("canvas")
+    const context = canvas.getContext("2d")
+
+    canvas.width = cW
+    canvas.height = cH
+    canvas.style = `position: absolute; top: 0; left: 0; width: ${clientW}px; height: ${clientH}px;`
+
+    refadImgs.appendChild(canvas)
+
+    imgList.querySelector('.ad__index').addEventListener('click', () => {
+      canvas.style.zIndex = 1 - canvas.style.zIndex
+    })
+
+    const calc = () => {
+      return [18, 3, 38 * devicePixelRatio]
+    }
+
+    const draw = async () => {
+
+      const [, , unitSize] = calc()
+      const nX = Math.floor(cW / unitSize)
+
+      canvas.onclick = (ev) => {
+        const x = 0 ^ ev.offsetX / 36
+        const y = 0 ^ ev.offsetY / 36
+        const index = nX * y + x
+        obj.i = index
+        canvas.style.zIndex = 0
+        playNext()
+      }
+
+      let x = 0
+      let y = 0
+      const img = new Image(unitSize, unitSize)
+
+      for (const item of thumbs) {
+        img.src = item.src
+        const promise = new Promise((r, e) => {
+          img.onload = r
+          img.onerror = e
+        })
+        await promise
+        context.drawImage(img, x, y, unitSize, unitSize)
+        x += unitSize
+        if (x + unitSize > cW) {
+          x = 0
+          y += unitSize
+        }
+      }
+    }
+
+    draw()
+  }
+
+  drawIndex()
   iterate()
 }
 

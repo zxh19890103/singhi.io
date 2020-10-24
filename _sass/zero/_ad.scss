@@ -9,18 +9,22 @@
 	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAQElEQVQ4T2O8e/fufwYigJKSEhGqGBgYRw3EGU6jYYgzaIZAsvn//z9ROeXevXvE5ZRRA3GG02gY4s4pgz7ZAACzhGnJVk2rbAAAAABJRU5ErkJggg==');
 	background-repeat: repeat;
 	// background: olivedrab url(/assets/images/starfield-banner.jpg) repeat;
-	&__next {
+	&__control {
 		cursor: pointer;
+		right: 0;
 		color: rgba(255, 255, 255, .68);
 		position: absolute;
-		right: 0;
-		top: 50%;
 		z-index: 10;
-		transform: translateY(-50%);
 		&:hover {
 			color: #FFF;
 			text-decoration: none;
 		}
+	}
+	&__next {
+		top: 36px;
+	}
+	&__index {
+		top: 5px;
 	}
 	&__img {
 		cursor: zoom-in;

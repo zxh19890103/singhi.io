@@ -15,7 +15,7 @@ title: 我的世界
 </blockquote>
 
 <ul class="documents">
-{% for doc in site.myworld | sort: 'date' | reverse%}
+{% for doc in site.myworld %}
   <li class="documents__item">
     <div class="document">
       <h3>
