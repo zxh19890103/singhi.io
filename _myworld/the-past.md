@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 过去
-short: 哈哈
+short: 我，看着电脑里的一张照片，陷入了对往事的回忆
 sort: 40
 date: 2020-11-13
 ---
