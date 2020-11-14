@@ -198,6 +198,11 @@ h6,
 					}
 				}
 			}
+			@include ifmob {
+				li:nth-child(5), li:nth-child(6) {
+					display: none;
+				}
+			}
 		}
 		@include ifmob {
 			width: 100%;
@@ -207,6 +212,7 @@ h6,
 			top: 0;
 			background: #245;
 			z-index: 1;
+
 			.menu li a {
 				color: #FFF;
 			}
@@ -479,6 +485,12 @@ footer {
 		color: $textColor-3;
 		text-align: center;
 		padding: 0 2rem;
+	}
+}
+
+.hidden-if-mobi {
+	@include ifmob() {
+		display: none;
 	}
 }
 
