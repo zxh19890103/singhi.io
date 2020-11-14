@@ -1,3 +1,5 @@
+import { debounce } from './debounce'
+
 const log = (...args) => {
   console.log('LOG:', ...args)
 }
@@ -210,26 +212,40 @@ const adrun = async () => {
     })
 
     const calc = () => {
-      return [18, 3, 38 * devicePixelRatio]
+      const count = thumbs.length
+      const yN = 2
+      const yS = Math.ceil(cH / yN)
+      const xS = Math.ceil((cW * yN) / count)
+      const xN = Math.ceil(cW / xS)
+      return [xN, xS, yN, yS, xS / devicePixelRatio, yS / devicePixelRatio]
+    }
+
+    const getIndex = (x, y, w, h, xN) => {
+      const nx = 0 ^ x / w
+      const ny = 0 ^ y / h
+      return xN * ny + nx
     }
 
     const draw = async () => {
-
-      const [, , unitSize] = calc()
-      const nX = Math.floor(cW / unitSize)
+      const [xN, xS, yN, yS, w, h] = calc()
 
       canvas.onclick = (ev) => {
-        const x = 0 ^ ev.offsetX / 36
-        const y = 0 ^ ev.offsetY / 36
-        const index = nX * y + x
-        obj.i = index
+        obj.i = getIndex(ev.offsetX, ev.offsetY, w, h, xN)
         canvas.style.zIndex = 0
         playNext()
       }
 
+      let lastIndex = -1
+      canvas.onmousemove = debounce((ev) => {
+        const i = getIndex(ev.offsetX, ev.offsetY, w, h, xN)
+        if (i === lastIndex) return
+        canvas.title = thumbs[i].title
+        lastIndex = i
+      }, 500)
+
       let x = 0
       let y = 0
-      const img = new Image(unitSize, unitSize)
+      const img = new Image(xS, yS)
 
       for (const item of thumbs) {
         img.src = item.src
@@ -238,12 +254,12 @@ const adrun = async () => {
           img.onerror = e
         })
         await promise
-        context.drawImage(img, x, y, unitSize, unitSize)
-        x += unitSize
-        if (x + unitSize > cW) {
+        if (x >= cW) {
           x = 0
-          y += unitSize
+          y += yS
         }
+        context.drawImage(img, x, y, xS, yS)
+        x += xS
       }
     }
 
