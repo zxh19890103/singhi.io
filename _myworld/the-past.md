@@ -6,6 +6,8 @@ sort: 40
 date: 2020-11-13
 ---
 
+{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/posts/myworld/picture-of-the-past.jpg" title="Photo in the past." %}
+
 我，看着电脑里的一张照片，陷入了对往事的回忆。
 
 这张图片在一个 QQ 群的聊天记录里，时间是二〇一六年十二月二十三日。照片本身拍摄于这个时间之前，或许是二零一四年吧。
