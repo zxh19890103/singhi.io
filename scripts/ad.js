@@ -192,7 +192,7 @@ const adrun = async () => {
 
     const refadImgs = document.querySelector("#ref_adImgs")
 
-    const clientW = refadImgs.clientWidth
+    const clientW = refadImgs.clientWidth - 26
     const clientH = refadImgs.clientHeight
 
     const cW = clientW * devicePixelRatio
@@ -214,10 +214,10 @@ const adrun = async () => {
     const calc = () => {
       const count = thumbs.length
       const yN = 2
+      const xN = Math.ceil(count / yN)
       const yS = Math.ceil(cH / yN)
-      const xS = Math.ceil((cW * yN) / count)
-      const xN = Math.ceil(cW / xS)
-      return [xN, xS, yN, yS, xS / devicePixelRatio, yS / devicePixelRatio]
+      const xS = Math.ceil(cW / xN)
+      return [xN, yN, xS, yS, xS / devicePixelRatio, yS / devicePixelRatio]
     }
 
     const getIndex = (x, y, w, h, xN) => {
@@ -227,7 +227,7 @@ const adrun = async () => {
     }
 
     const draw = async () => {
-      const [xN, xS, yN, yS, w, h] = calc()
+      const [xN, yN, xS, yS, w, h] = calc()
 
       canvas.onclick = (ev) => {
         obj.i = getIndex(ev.offsetX, ev.offsetY, w, h, xN)
@@ -238,7 +238,7 @@ const adrun = async () => {
       let lastIndex = -1
       canvas.onmousemove = debounce((ev) => {
         const i = getIndex(ev.offsetX, ev.offsetY, w, h, xN)
-        if (i === lastIndex) return
+        if (i === lastIndex || thumbs[i] === undefined) return
         canvas.title = thumbs[i].title
         lastIndex = i
       }, 500)
