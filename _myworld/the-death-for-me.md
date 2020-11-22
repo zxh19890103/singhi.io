@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 疾病与死亡
-short: 疾病与死亡
+short: 理解死亡，体谅疾病，享受健康与生活
 sort: 50
 date: 2020-11-22
 ---
