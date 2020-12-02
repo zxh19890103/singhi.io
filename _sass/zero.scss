@@ -364,6 +364,9 @@ footer {
 			white-space: pre-wrap;
 			line-height: 1.875;
 			font-size: 18px;
+			@include ifmob() {
+				line-height: 1.4;
+			}
 		}
 		a {
 			text-decoration: underline;
