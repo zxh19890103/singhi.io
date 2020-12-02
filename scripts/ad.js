@@ -192,7 +192,7 @@ const adrun = async () => {
 
     const refadImgs = document.querySelector("#ref_adImgs")
 
-    const clientW = refadImgs.clientWidth - 26
+    const clientW = refadImgs.clientWidth
     const clientH = refadImgs.clientHeight
 
     const cW = clientW * devicePixelRatio
