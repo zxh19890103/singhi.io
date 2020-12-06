@@ -8,9 +8,7 @@ title: 我的世界
 <blockquote>
   <p>
     The unexamined life is not worth living.
-  </p>
-  <p style="text-align: right;">
-    -- Socrates
+       <em style="float: right;"> -- by Socrates</em>
   </p>
 </blockquote>
 
@@ -19,7 +17,7 @@ title: 我的世界
   <li class="documents__item">
     <div class="document">
       <h3>
-        <a href="{{ doc.url }}">
+        <a href="{{ doc.url }}" target="_blank">
           {{ doc.date | date: "%b %d" }} - {{ doc.title }}
         </a>
       </h3>

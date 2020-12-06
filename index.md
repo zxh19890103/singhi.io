@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: with-nav
 title: 博客
 ---
 

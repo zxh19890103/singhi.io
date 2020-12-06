@@ -12,7 +12,7 @@ title: 专栏 - 设计模式
   <li class="documents__item">
     <div class="document">
       <h3>
-        <a href="{{ doc.url }}">
+        <a href="{{ doc.url }}" target="_blank">
           {{ doc.title }}
         </a>
       </h3>

@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: with-nonav
 ---
 
 <div class="article__title">
@@ -17,7 +17,10 @@ layout: default
 {% if jekyll.environment == "production" %}
   {%- include comments.html -%}
 {% endif %}
-<hr />
+
+<div class="end-line">
+  <span class="end-line__bull">&bull;</span>
+</div>
 
 <div class="article__attrs">
   {% if page.src %}

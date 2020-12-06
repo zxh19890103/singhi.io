@@ -32,7 +32,7 @@ const adrun = async () => {
     })
   const MAX = srcset.length
 
-  const imgList = document.querySelector('#ref_adImgs')
+  const imgList = document.querySelector('#refAdImgsCon')
   const text = document.createElement('div')
   text.className = 'ad__img-title'
   text.textContent = ''
@@ -53,7 +53,7 @@ const adrun = async () => {
   })
   imgList.appendChild(text)
 
-  imgList.querySelector('.ad__next').addEventListener('click', playNext)
+  document.querySelector('#refAdImgsControls .ad__next').addEventListener('click', playNext)
 
   function playNext() {
     obj.requestNext = 1
@@ -190,7 +190,7 @@ const adrun = async () => {
       }
     })
 
-    const refadImgs = document.querySelector("#ref_adImgs")
+    const refadImgs = document.querySelector("#refAdImgsCon")
 
     const clientW = refadImgs.clientWidth
     const clientH = refadImgs.clientHeight
@@ -207,7 +207,7 @@ const adrun = async () => {
 
     refadImgs.appendChild(canvas)
 
-    imgList.querySelector('.ad__index').addEventListener('click', () => {
+    document.querySelector('#refAdImgsControls .ad__index').addEventListener('click', () => {
       canvas.style.zIndex = 1 - canvas.style.zIndex
     })
 

@@ -1,0 +1,78 @@
+html {
+	height: 100%;
+	color: $textColor;
+	letter-spacing: 0.5px;
+	word-spacing: 1px;
+	box-sizing: border-box;
+	font: 16px/1.5 Aspergit, -apple-system,BlinkMacSystemFont,'Helvetica Neue', 'PingFang TC','Microsoft YaHei','Source Han Sans TC','Noto Sans CJK TC', 'WenQuanYi Micro Hei',sans-serif;
+	// font: 16px/1.5 Aspergit, Futura, -apple-system, SF UI Text, Arial, PingFang SC,Hiragino Sans GB, Microsoft YaHei, sans-serif;
+	// font: 16px/1.5 Titillium,"Lucida Sans Typewriter","Helvetica Neue",Helvetica,Arial,"\5FAE\8F6F\96C5\9ED1","Microsoft YaHei","\5B8B\4F53";
+	// font: 300 16px Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	-webkit-text-size-adjust: 100%;
+	background-color: #ffffff;
+	word-break: break-word;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeSpeed;
+	font-display: swap;
+}
+
+a {
+	color: $themeColor;
+	text-decoration: none;
+}
+
+ul,
+ol {
+	padding: 0;
+	margin: 0;
+}
+ul {
+	list-style: none;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: aliceblue;
+	height: 100%;
+	overflow: hidden;
+	@include linearGradient(darken(aliceblue, 4), white);
+}
+
+blockquote {
+	display: block;
+	padding: 1rem;
+	margin: 0;
+	color: $textColor-2;
+	border-radius: 4px;
+	background: #f3f5f9;
+	// word-break: break-word;
+	// white-space: pre-wrap;
+	font-size: 0.9em;
+	p,
+	ul {
+		margin: 0;
+		color: cadetblue;
+	}
+}
+
+h2,
+h3,
+.h2,
+.h3 {
+	display: block;
+	font-size: 1.24rem;
+}
+
+h4,
+h5,
+h6,
+.h4,
+.h5,
+.h6 {
+	display: block;
+	font-size: 1.12rem;
+}
