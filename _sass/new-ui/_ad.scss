@@ -3,7 +3,8 @@
 	$ad-client-height: 120px;
 	width: 22cm;
 	height: $ad-client-height;
-	position: relative;
+	position: sticky;
+	top: 0;
 	&__con {
 		position: relative;
 		width: 100%;
