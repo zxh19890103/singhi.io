@@ -25,7 +25,7 @@ $paperColor: lighten(#f5f5d5, 8);
 
 // Listing of documents
 .documents {
-	margin-top: 4rem;
+	margin-top: 2rem;
 	padding-left: 0 !important;
 	list-style: none !important;
 	&__item {
@@ -56,6 +56,7 @@ $paperColor: lighten(#f5f5d5, 8);
 
 // Post & Page
 .article {
+	margin-top: 1rem;
 	&__title {
 		width: 61.8%;
 		@include ifmob {
@@ -191,6 +192,21 @@ $paperColor: lighten(#f5f5d5, 8);
 		height: 1px;
 		margin: 12px 0;
 		background: rgba(0, 0, 0, 0.2);
+	}
+}
+
+.page-title {
+	width: 61.8%;
+	color: $textColor-3;
+	&:after {
+		content: '';
+		display: block;
+		width: 61.8%;
+		height: 8px;
+		transform: rotate(2deg) skew(21deg);
+		-ms-transform: rotate(2deg) skew(21deg);
+		-o-transform: rotate(2deg) skew(21deg);
+		background: rgba($color: seagreen, $alpha: .31);
 	}
 }
 
