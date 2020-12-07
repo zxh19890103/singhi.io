@@ -9,6 +9,10 @@ const adrun = async () => {
     return log(`Your broswer doesn't support this script.`)
   }
 
+  if (window.innerWidth < 768) {
+    return log(`AD function do not take effect on mobile device.`)
+  }
+
   /**@type {{ detail: string; src: string; title: string }} */
   const srcset = await fetch(`https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/meta`)
     .then(r => r.json())

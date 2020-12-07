@@ -14,6 +14,19 @@
   <link rel="stylesheet" href="/assets/new-ui.css">
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1130957_6vk25nhnk3a.css" />
   <script defer src="/assets/bundle.js?v={{ site.version }}"></script>
+  <script>
+    function displayMenu() {
+      const asideEle = document.querySelector('aside');
+      if (!asideEle) return;
+      if (asideEle.__visible) {
+        asideEle.style.left = '-256px';
+        asideEle.__visible = false
+      } else {
+        asideEle.style.left = '0px';
+        asideEle.__visible = true;
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -42,6 +55,11 @@
       </div>
     </aside>
     <main id="page">
+      <div class="header">
+        <a role="button" onclick="displayMenu()" href="javascript:void(0);">
+          <i class="iconfont icon-menu"></i>
+        </a>
+      </div>
       {%- include ad.html -%}
       <article class="article">
         {{ content }}

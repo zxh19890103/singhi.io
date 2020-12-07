@@ -1,9 +1,7 @@
 ---
 layout: page
-title: 我的世界
+title: 我的世界（认识自己）
 ---
-
-<div class="article__title">我的世界（认识自己）</div>
 
 <blockquote>
   <p>
