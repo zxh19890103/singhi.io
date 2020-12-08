@@ -8,6 +8,12 @@ $headerHeight: 45px;
 }
 
 aside {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	-ms-flex-direction: column;
+	justify-content: space-around;
+	align-items: flex-start;
 	position: fixed;
 	width: 256px;
 	height: 100%;
@@ -19,6 +25,17 @@ aside {
 	@media screen and (max-width: $mobileWidth) {
 		padding-top: $headerHeight;
 		left: -256px;
+	}
+	.copyright {
+		width: 100%;
+	}
+	.logo {
+		width: 100%;
+		box-sizing: border-box;
+	}
+	nav {
+		width: 100%;
+		flex: 1;
 	}
 }
 
@@ -70,7 +87,6 @@ main {
 }
 
 .menu {
-	margin-top: 81px;
 	padding: 0 8px 0 8px;
 	list-style: none;
 	font-size: 1.2rem;
@@ -105,9 +121,7 @@ main {
 }
 
 .copyright {
-	position: absolute;
 	width: 100%;
-	padding: 8px 0;
 	bottom: 0;
 	left: 0;
 	text-align: center;
@@ -116,21 +130,29 @@ main {
 
 .header {
 	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba($color: seagreen, $alpha: .86);
+	width: 100%;
+	height: $headerHeight;
+	line-height: $headerHeight;
+	padding: 0 1rem;
+	z-index: 2;
+	@include boxSizing(border-box);
+	i.iconfont {
+		font-size: 1.2rem;
+		font-weight: bold;
+		color: #FFF;
+	}
+	text-align: center;
+	&__title {
+		color: #FFF;
+	}
+	a {
+		float: left;
+	}
 	@include ifmob {
 		display: block;
-		position: fixed;
-		top: 0;
-		left: 0;
-		background: rgba($color: seagreen, $alpha: .86);
-		width: 100%;
-    height: $headerHeight;
-    line-height: $headerHeight;
-		padding: 0 1rem;
-		z-index: 2;
-		i.iconfont {
-			font-size: 1.2rem;
-			font-weight: bold;
-			color: #FFF;
-		}
 	}
 }

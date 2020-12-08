@@ -13,13 +13,14 @@ layout: with-nonav
 <div class="article__body{% if page.song %} article__body--song{% endif %}">
   {{ content }}
 </div>
-{% if jekyll.environment == "production" %}
-  {%- include comments.html -%}
-{% endif %}
 
 <div class="end-line">
   <span class="end-line__bull">&bull;</span>
 </div>
+
+{% if jekyll.environment == "production" %}
+  {%- include comments.html -%}
+{% endif %}
 
 <div class="article__attrs">
   {% if page.src %}
