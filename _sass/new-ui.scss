@@ -56,17 +56,27 @@ $paperColor: lighten(#f5f5d5, 8);
 
 // Post & Page
 .article {
-	margin-top: 1rem;
+	padding: 120px 0 1rem 0;
+	margin: 0 0 1rem 0;
+	@include ifmob {
+		padding: 1rem 0 1rem 0;
+	}
 	&__title {
 		width: 61.8%;
 		@include ifmob {
 			width: 100%;
 		}
-		margin: 2rem auto;
-		font-size: 1.1rem;
 		color: $textColor-2;
-		text-align: center;
-		font-weight: bold;
+		&:after {
+			content: '';
+			display: block;
+			width: 61.8%;
+			height: 8px;
+			transform: rotate(2deg) skew(21deg);
+			-ms-transform: rotate(2deg) skew(21deg);
+			-o-transform: rotate(2deg) skew(21deg);
+			background: rgba($color: seagreen, $alpha: .31);
+		}
 	}
 	&__subtitle {
 		font-size: 13px; // as icon's size is 16px
@@ -195,21 +205,6 @@ $paperColor: lighten(#f5f5d5, 8);
 	}
 }
 
-.page-title {
-	width: 61.8%;
-	color: $textColor-3;
-	&:after {
-		content: '';
-		display: block;
-		width: 61.8%;
-		height: 8px;
-		transform: rotate(2deg) skew(21deg);
-		-ms-transform: rotate(2deg) skew(21deg);
-		-o-transform: rotate(2deg) skew(21deg);
-		background: rgba($color: seagreen, $alpha: .31);
-	}
-}
-
 // Photo viewer
 .photo-modal {
 	cursor: zoom-out;
@@ -260,8 +255,10 @@ $paperColor: lighten(#f5f5d5, 8);
 }
 
 .photo {
-	margin: 0 -1rem 1rem -1rem;
-	// text-align: center;
+	margin: 0 0 1rem 0;
+	@include ifmob {
+		margin: 0 -1rem 1rem -1rem;
+	}
 	&-wrapper {
 		// todo:
 		cursor: zoom-in;

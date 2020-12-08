@@ -2,15 +2,14 @@
 layout: with-nonav
 ---
 
-<div class="article__title">
-  <h1>{{ page.title }}</h1>
-  <div class="article__subtitle">
-    <span>{{ page.date | date: "%a, %b %d, %y" }}</span>
-    {% if page.nocoffe %} {% else %}
-    <i class="iconfont icon-coffee"></i>
-    {% endif %}
-  </div>
+<h1 class="article__title">{{ page.title }}</h1>
+<div class="article__subtitle">
+  <span>{{ page.date | date: "%a, %b %d, %y" }}</span>
+  {% if page.nocoffe %} {% else %}
+  <i class="iconfont icon-coffee"></i>
+  {% endif %}
 </div>
+
 <div class="article__body{% if page.song %} article__body--song{% endif %}">
   {{ content }}
 </div>

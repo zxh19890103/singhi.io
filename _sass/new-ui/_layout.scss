@@ -22,10 +22,10 @@ aside {
 	}
 }
 
-.page, main {
+main {
 	width: 21cm;
-	margin: 12px auto;
-	padding: 1rem;
+	margin: 0 auto;
+	padding: 0 1rem;
 	@include boxSizing(border-box);
 	border-radius: 4px;
 	background-color: $paperColor;

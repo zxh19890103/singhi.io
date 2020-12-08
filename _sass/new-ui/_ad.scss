@@ -3,8 +3,10 @@
 	$ad-client-height: 120px;
 	width: 22cm;
 	height: $ad-client-height;
-	position: sticky;
+	position: fixed;
 	top: 0;
+	transform: translateX(-1rem);
+	-o-transform: translateX(-1rem);
 	z-index: 1;
 	&__con {
 		position: relative;
@@ -14,8 +16,6 @@
 	}
 	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAQElEQVQ4T2O8e/fufwYigJKSEhGqGBgYRw3EGU6jYYgzaIZAsvn//z9ROeXevXvE5ZRRA3GG02gY4s4pgz7ZAACzhGnJVk2rbAAAAABJRU5ErkJggg==');
 	background-repeat: repeat;
-	transform: translateX(-1rem);
-	-ms-transform: translateX(-1rem);
 	&__controls {
 		position: absolute;
 		top: 0%;
