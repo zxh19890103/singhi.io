@@ -1,8 +1,7 @@
 
 .ad {
-	$ad-client-height: 120px;
 	width: 22cm;
-	height: $ad-client-height;
+	height: $adBoxHeight;
 	position: fixed;
 	top: 0;
 	transform: translateX(-1rem);
@@ -11,7 +10,7 @@
 	&__con {
 		position: relative;
 		width: 100%;
-		height: $ad-client-height;
+		height: $adBoxHeight;
 		overflow: hidden;
 	}
 	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAQElEQVQ4T2O8e/fufwYigJKSEhGqGBgYRw3EGU6jYYgzaIZAsvn//z9ROeXevXvE5ZRRA3GG02gY4s4pgz7ZAACzhGnJVk2rbAAAAABJRU5ErkJggg==');
@@ -92,7 +91,7 @@
 		}
 		img {
 			width: 100%;
-			min-height: $ad-client-height;
+			min-height: $adBoxHeight;
 			display: block;
 		}
 	}

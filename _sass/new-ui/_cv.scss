@@ -1,0 +1,128 @@
+.cv {
+	// font-family: Wawati SC, "Kiddy Sans", -apple-system,BlinkMacSystemFont,'Helvetica Neue', 'PingFang TC','Microsoft YaHei','Source Han Sans TC','Noto Sans CJK TC', 'WenQuanYi Micro Hei',sans-serif;
+	$head-width: 210px;
+	$head-width-mobi: 110px;
+	h2 {
+		text-align: center;
+		a {
+			font-size: 14px;
+			float: right;
+			transform: rotate(45deg);
+			-o-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			-webkit-transform: rotate(45deg);
+		}
+	}
+	&__contact {
+		text-align: center;
+		span {
+			padding: 0 4px;
+		}
+	}
+	section {
+		margin: 12px 0 26px 0;
+		padding: 8px 0 0 0;
+		border-top: 2px solid #333;
+		flex-wrap: wrap;
+		> h3 {
+			text-transform: uppercase;
+			margin: 0 0 2rem 0;
+		}
+		> div {
+			flex: 1;
+			-ms-flex: 1;
+		}
+	}
+	&__profile, &__skills {
+		@include flexBox();
+		h3 {
+			width: $head-width;
+			@include ifmob {
+				width: $head-width-mobi;
+			}
+		}
+	}
+	// IT's a ol element
+	&__works {
+		position: relative;
+		list-style-type: none;
+		li {
+			padding-left: .5rem;
+		}
+		i.iconfont {
+			position: absolute;
+			left: 0;
+		}
+	}
+	&__exper {
+		h4 {
+			margin: 0;
+			small {
+				float: right;
+				font-weight: normal;
+			}
+		}
+		ul {
+			list-style-type: none;
+			padding: 0;
+		}
+		&-item {
+			@include flexBox();
+			&-period {
+				width: $head-width;
+				em {
+					display: inline-block;
+					width: 12px;
+					border-top: 1px solid $textColor-4;
+					vertical-align: middle;
+					margin: 0 3px;
+				}
+				@include ifmob {
+					width: $head-width-mobi;
+					em {
+						display: block;
+					}
+				}
+			}
+			&-desc {
+				flex: 1;
+			}
+		}
+	}
+	&__listing {
+		list-style-type: none !important;
+		margin: 0;
+		padding: 0 !important;
+		@include flexBox(space-between);
+		flex-wrap: wrap;
+		li {
+			width: 48%;
+			label {
+				font-weight: bold;
+			}
+			span {
+				float: right;
+			}
+		}
+		&--tags {
+			display: inline-flex;
+			display: -webkit-inline-flex;
+			justify-content: flex-start;
+			li {
+				width: initial;
+				span {
+					color: $textColor-4;
+				}
+				&:last-child {
+					span {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+.article--cv {
+	padding: 1.5rem 0 1rem  0;
+}

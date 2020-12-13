@@ -1,0 +1,125 @@
+---
+layout: blank
+title: 简历
+permalink: /cv-zh
+---
+
+{% assign model = site.data.cv %}
+
+<div class="cv cv--lang-zh_CN">
+  <h2>
+    {{model.title}}
+    <a href="/cv">英文</a>
+  </h2>
+  <p class="cv__contact">
+    <span>{{model.address}}</span>
+    <span>{{model.phone}}</span>
+    <span>{{model.email}}</span>
+  </p>
+  <section class="cv__info">
+    <ul class="cv__listing">
+      <li>
+        <label>出生日期</label>
+        <span>{{model.dateOfBirth}}</span>
+      </li>
+      <li>
+        <label>民族</label>
+        <span>{{model.nationality}}</span>
+      </li>
+      <li>
+        <label>出生地点</label>
+        <span>{{model.placeOfBirth}}</span>
+      </li>
+    </ul>
+  </section>
+  <section class="cv__profile">
+    <h3>
+      <i class="iconfont icon-profile1"></i>
+      简介
+    </h3>
+    <div>
+      {{model.profile}}
+    </div>
+  </section>
+  <section class="cv__exper cv__exper--emp">
+    <h3>
+      <i class="iconfont icon-working"></i>
+      工作历史
+    </h3>
+    <div>
+      <ul>
+        {% for emp in model.employments %}
+        <li>
+          <div class="cv__exper-item">
+            <div class="cv__exper-item-period">
+              <span>{{emp.from}}<em></em>{{emp.to}}</span>
+            </div>
+            <div class="cv__exper-item-desc">
+              <h4>
+                {{emp.company}}
+                <small>{{emp.position}}</small>
+              </h4>
+              <p>
+                {{emp.description}}
+              </p>
+              <ol class="cv__works">
+                {% for work in emp.works %}
+                <li>
+                  <i class="iconfont icon-project1"></i>
+                  <p>{{work}}</p>
+                </li>
+                {% endfor %}
+              </ol>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  <section class="cv__exper cv__exper--edu">
+    {% assign eduObj = model.education %}
+    <h3>
+      <i class="iconfont icon-education"></i>
+      教育经历
+    </h3>
+    <div>
+      <ul>
+        <li>
+          <div class="cv__exper-item">
+            <div class="cv__exper-item-period">
+              <span>{{eduObj.from}}<em></em>{{eduObj.to}}</span>
+            </div>
+            <div class="cv__exper-item-desc">
+              <h4>
+                {{eduObj.college}}
+                <small>{{eduObj.major}}</small>
+              </h4>
+              <p>
+                {{eduObj.description}}
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="cv__skills">
+    <h3>
+      <i class="iconfont icon-skills"></i>
+      技能点
+    </h3>
+    <div>
+      <ul class="cv__listing cv__listing--tags">
+        {% for skill in model.skills %}
+        <li>
+          <label>{{skill.tag}}</label>
+          <span>
+            <i class="iconfont icon-comma1"></i>
+          </span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+<div>

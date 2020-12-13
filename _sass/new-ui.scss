@@ -5,15 +5,12 @@ $textColor-2: #3a4a5a;
 $textColor-3: #5a6a7a;
 $textColor-4: #7a8a9a;
 $paperColor: lighten(#f5f5d5, 8);
+$adBoxHeight: 120px;
 
 @import "./new-ui/mixins";
-@import "./new-ui/layout";
+@import "./new-ui/font";
 @import "./new-ui/init";
-
-@font-face {
-	font-family: Aspergit;
-	src: url("/assets/fonts/aspergit/Aspergit\ Bold.otf");
-}
+@import "./new-ui/layout";
 
 .blur {
 	-webkit-filter: blur(5px);
@@ -56,31 +53,44 @@ $paperColor: lighten(#f5f5d5, 8);
 
 // Post & Page
 .article {
-	padding: 120px 0 1rem 0;
+	position: relative;
+	padding: $adBoxHeight 0 1rem 0;
 	margin: 0 0 1rem 0;
 	@include ifmob {
 		padding: 1.5rem 0 1rem 0;
 	}
 	&__title {
-		width: 61.8%;
+		position: sticky;
+		top: $adBoxHeight;
+		margin: 1rem 0;
+		background: rgba($color: $paperColor, $alpha: .95);
 		@include ifmob {
-			width: 100%;
+			position: static;
+			top: 0;
+			padding-top: 1rem;
+			h1 {
+				width: 100%;
+			}
 		}
 		color: $textColor-2;
-		&:after {
-			content: '';
-			display: block;
+		h1 {
 			width: 61.8%;
-			height: 8px;
-			transform: rotate(2deg) skew(21deg);
-			-ms-transform: rotate(2deg) skew(21deg);
-			-o-transform: rotate(2deg) skew(21deg);
-			background: rgba($color: seagreen, $alpha: .31);
+			margin: 0;
+			&:after {
+				content: '';
+				display: block;
+				width: 61.8%;
+				height: 8px;
+				transform: rotate(2deg) skew(21deg);
+				-ms-transform: rotate(2deg) skew(21deg);
+				-o-transform: rotate(2deg) skew(21deg);
+				background: rgba($color: seagreen, $alpha: .31);
+			}
 		}
-	}
-	&__subtitle {
-		font-size: 13px; // as icon's size is 16px
-		color: $textColor-4;
+		&-small {
+			font-size: 13px; // as icon's size is 16px
+			color: $textColor-4;
+		}
 	}
 	&__body {
 		margin-bottom: 4rem;
@@ -287,3 +297,5 @@ $paperColor: lighten(#f5f5d5, 8);
 @import "./new-ui/ad";
 @import "./new-ui/identities", "./new-ui/github", "./new-ui/font",
 	"./new-ui/table", "./new-ui/comment";
+
+@import "./new-ui/cv";

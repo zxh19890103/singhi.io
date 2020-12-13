@@ -1,0 +1,98 @@
+title: 张星海，架构师
+email: zhangxinghai79@gmail.com
+phone: +86-18742538743
+address: 中国广东深圳
+dateOfBirth: 1989/01/03
+placeOfBirth: 中国湖北黄冈
+nationality: 汉
+profile:
+  本人从事软件行业 7 年，其中 5+ 年的前端经验，目前为前端架构师。
+  具有丰富的项目经验，曾经主导过 6 个以上大中型商业项目，
+  涉及电商、ERP、HIS、CMS、爬虫、公众号等。技术扎实，
+  对前端三大框架与流行工具链有相当熟练的运用，
+  具备 WEB 应用架构能力。
+  对项目管理、代码规范、WEB PERF、CI、CD 有一般了解，可兼做后端开发和运维。
+employments:
+  - from: 2020/01
+    to: 现在
+    company: 软通动力信息技术（集团）股份有限公司
+    position: 主任工程师 B-MAG
+    description: 技术架构设计
+    works:
+        - 项目1。
+        - 项目2。
+  - from: 2018/11
+    to: 2020/01
+    company: 丽珠医药集团有限公司（深圳）
+    position: 高级前端工程师
+    description: 负责药品进销存系统(技术栈：React、Apollo、antd)的设计及基础元素（组件、工具函数）提供。参与运营后台系统若干需求的开发工作；公司各系统的日常维护。项目进度跟踪、代码审查、技术辅导
+    works:
+        - 项目1。
+        - 项目2。
+  - from: 2015/03
+    to: 2018/09
+    company: 大唐鸿业科技有限公司（大连）
+    position: 前端工程师
+    description: 负责淘宝 ISV 无线应用(angularjs)、淘宝商家工具(PC / Vue2.0)、OnGoing Monitor(试验项目 / Meteor)、菜鸟洗衣项目管理端(Angular)、菜鸟洗衣项目会员端(Ejs、Express)的开发工作。参与ERP(Angular)、美国医师资质认证系统的开发(Angular)。技术辅导、代码审查
+    works:
+        - 项目1。
+        - 项目2。
+  - from: 2013/09
+    to: 2015/05
+    company: 大连奈特网络科技有限公司
+    position: .NET 开发工程师
+    description: 负责 CMS 产品及零售系统的研发，以及日常项目维护，涉及 ASP、PHP、服务器。
+    works:
+        - 企业级 CMS 系统：基于 .NET 4 和 MSSQL 8 开发的大型商业系统，具有一键安装、页面模板、智能 SEO、静态生成、多语言等特性。
+        - 基于 .NET & MSSQL 的零售系统：基于 CMS 系统的基础架构进化而来，其借鉴了著名开源项目 nopCommerce 的业务和技术架构，满足小规模零售商家的线上业务需求。
+education:
+  from: 2009/09
+  to: 2013/06
+  college: 大连大学（本科）
+  major: 计算机科学
+  description: 在校期间成绩优异，通过大学英语四级考试，曾荣获“大连大学英语写作一等奖”、“大连市数学竞赛三等奖”、“全国高等院校数学竞赛辽宁省三等奖”等。
+    计算机相关课程包括：C 语言基础、ASP 网页制作、ASP.Net 网站制作、C++ 基础、关系型数据库设计原理、Flash 实践、VB 基础。
+    独立研究过 Python、Java，毕业设计相关于 Python 的应用。
+skills:
+  - tag: Javascript
+  - tag: ES6
+  - tag: Typescript
+  - tag: HTML
+  - tag: CSS
+  - tag: PHP
+  - tag: Python
+  - tag: C#
+  - tag: JAVA
+  - tag: Angular
+  - tag: React
+  - tag: VUE
+  - tag: NodeJs
+  - tag: Express
+  - tag: koa
+  - tag: Yii2
+  - tag: ThinkPHP
+  - tag: ASP.NET
+  - tag: Spring MVC
+  - tag: Spring Boot
+  - tag: MySQL
+  - tag: MSSQL
+  - tag: MongoDB
+  - tag: PostresQL
+  - tag: SQLite
+  - tag: Office Access
+  - tag: webpack
+  - tag: babel
+  - tag: sass
+  - tag: less
+  - tag: gulp
+  - tag: npm
+  - tag: maven
+  - tag: composer
+  - tag: markdown
+  - tag: Chrome DEV Tools
+  - tag: VSCode
+  - tag: Eclipse Java
+  - tag: Idea
+  - tag: Git
+  - tag: Docker
+  - tag: VirtualBox
