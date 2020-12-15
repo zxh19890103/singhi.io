@@ -52,7 +52,7 @@ education:
   major: 计算机科学
   description: 在校期间成绩优异，通过大学英语四级考试，曾荣获“大连大学英语写作一等奖”、“大连市数学竞赛三等奖”、“全国高等院校数学竞赛辽宁省三等奖”等。
     计算机相关课程包括：C 语言基础、ASP 网页制作、ASP.Net 网站制作、C++ 基础、关系型数据库设计原理、Flash 实践、VB 基础。
-    独立研究过 Python、Java，毕业设计相关于 Python 的应用。
+    独立研究过 Python、Java，毕业设计关于 Python 的实际应用。
 skills:
   - tag: Javascript
   - tag: ES6
