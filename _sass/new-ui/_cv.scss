@@ -1,7 +1,7 @@
 .cv {
-	// font-family: Wawati SC, "Kiddy Sans", -apple-system,BlinkMacSystemFont,'Helvetica Neue', 'PingFang TC','Microsoft YaHei','Source Han Sans TC','Noto Sans CJK TC', 'WenQuanYi Micro Hei',sans-serif;
 	$head-width: 210px;
 	$head-width-mobi: 90px;
+	white-space: normal;
 	h2 {
 		text-align: center;
 		a {
@@ -107,6 +107,12 @@
 			span {
 				float: right;
 			}
+			@include ifmob {
+				label, span {
+					display: block;
+					float: none;
+				}
+			}
 		}
 		&--tags {
 			display: inline-flex;
@@ -114,11 +120,14 @@
 			justify-content: flex-start;
 			li {
 				width: initial;
-				span {
-					color: $textColor-4;
+				label {
+					margin-right: 5px;
+				}
+				i.iconfont {
+					color: $textColor-3;
 				}
 				&:last-child {
-					span {
+					i.iconfont {
 						display: none;
 					}
 				}

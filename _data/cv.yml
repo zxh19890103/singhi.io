@@ -33,10 +33,22 @@ employments:
     to: 2018/09
     company: 大唐鸿业科技有限公司（大连）
     position: 前端工程师
-    description: 负责淘宝 ISV 无线应用(angularjs)、淘宝商家工具(PC / Vue2.0)、OnGoing Monitor(试验项目 / Meteor)、菜鸟洗衣项目管理端(Angular)、菜鸟洗衣项目会员端(Ejs、Express)的开发工作。参与ERP(Angular)、美国医师资质认证系统的开发(Angular)。技术辅导、代码审查
+    description:
+      小型外资私企，互联网公司，淘宝 ISV，从事基于淘宝服务平台的应用开发、
+      地方政府相关项目以及美国医师资质认证系统相关研发。
+      在职期间主导公司相关前端研发工作。
     works:
-        - 项目1。
-        - 项目2。
+        - OnGoing Monitor：持续监控医师资质认证信息；基于 Meteor 和 phantomJs；
+          通过抽象抓取动作，结构化了抓取脚本，大大提高了开发的效率和后期的扩展性。
+        - 店铺通：淘宝第三方服务，商家导流工具，PC 端项目，包含 6 个子项目；
+          基于 Vue2.0 / webpack；通过扩展 Vue-CLI 实现了一键打包、一键部署功能，
+          极大方便了项目的运维；同时基于 COOKIE 和 JWT 实现了统一登录。
+        - 菜鸟洗衣服务平台管理端：用于平台运营；基于 Angular5、PrimeNG、EggJs、PostresQL；
+          对需求进行逻辑抽象并结合面向对象技术实现通用逻辑，对组件进行最细粒度地拆分以最大化代码的复用。
+        - 菜鸟洗衣服务平台会员端：公众号项目，用于平台微信端用户下单等；
+          基于 webpack + babel + express + ejs，自定义打包流程以更好适应项目；
+          基于 ES6，实现基本的组件库和工具库；
+          借助微信 JSSDK 微信授权、支付、扫码、拍照等功能。
   - from: 2013/09
     to: 2015/05
     company: 大连奈特网络科技有限公司

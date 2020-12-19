@@ -113,10 +113,9 @@ permalink: /cv-zh
       <ul class="cv__listing cv__listing--tags">
         {% for skill in model.skills %}
         <li>
-          <label>{{skill.tag}}</label>
-          <span>
-            <i class="iconfont icon-comma1"></i>
-          </span>
+          <label>
+            {{skill.tag}}<i class="iconfont icon-comma1"></i>
+          </label>
         </li>
         {% endfor %}
       </ul>
