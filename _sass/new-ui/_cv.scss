@@ -2,6 +2,7 @@
 	$head-width: 210px;
 	$head-width-mobi: 90px;
 	white-space: normal;
+	font-family: Wawati SC;
 	h2 {
 		text-align: center;
 		a {
@@ -122,9 +123,7 @@
 				width: initial;
 				label {
 					margin-right: 5px;
-				}
-				i.iconfont {
-					color: $textColor-3;
+					font-weight: normal;
 				}
 				&:last-child {
 					i.iconfont {

@@ -17,18 +17,34 @@ employments:
     to: 现在
     company: 软通动力信息技术（集团）股份有限公司
     position: 主任工程师 B-MAG
-    description: 技术架构设计
+    description: 目前从事华为 BPIT CBGIT 部门的渠道产品相关的开发工作。（持续维护中...）
     works:
-        - 项目1。
-        - 项目2。
+        - name: PMALL 商城
+          text: 引入 TS；为关键模块添加特性，如 发票核销、购物车。
+        - name: Sentinel Dashboard 项目
+          text: 基于 AngularJs、Bootstrap、G2、Gulp、Spring Boot 等；
+            可编辑表格的实现；镜面图；Brush 功能；开发环境的改良。
+        - name: 维护中...
   - from: 2018/11
     to: 2020/01
     company: 丽珠医药集团有限公司（深圳）
     position: 高级前端工程师
-    description: 负责药品进销存系统(技术栈：React、Apollo、antd)的设计及基础元素（组件、工具函数）提供。参与运营后台系统若干需求的开发工作；公司各系统的日常维护。项目进度跟踪、代码审查、技术辅导
+    description: 健康阿鹿，丽珠集团旗下品牌，全国连锁诊所。
+      阿鹿云诊所是健康阿鹿独立打造的智慧医疗平台，致力于为医护患提供全流程服务。
+      在职期间，主要负责新药品进销存系统的设计及基础组件库搭建。
     works:
-        - 项目1。
-        - 项目2。
+        - name: 新药品进销存系统
+          text: 用于诊所的药品库存管理以及配发药；
+            基于 React、react-router、Typescript、Apollo、Less 实现；
+            为了避免数据混乱，屏蔽 Appollo 数据结构的变动，
+            在 React 应用与 Apollo 之间设计了 DAO 层，
+            该层负责对 Apollo 提供的数据进行转换，以明确满足 React 组件的接口要求。
+            事实证明，这样的设计对于应用后期的可维护性起到了十分重要的作用。
+            其次，在 antd 组件库基础上，结合具体业务，对必要组件进行了再封装，
+            并建立了独立的 git 仓库来管理源代码，采用 submodule 机制实现其与宿主代码库的融合。
+            配置了一套 EditorConfig、Prettier、Eslint 规则，并鼓励 hook 优先的编码原则。
+            四个月完成基本的开发、测试工作，已发布上线、用户反馈积极，
+            相对旧系统，其运行速度有明显提升。
   - from: 2015/03
     to: 2018/09
     company: 大唐鸿业科技有限公司（大连）
@@ -38,25 +54,31 @@ employments:
       地方政府相关项目以及美国医师资质认证系统相关研发。
       在职期间主导公司相关前端研发工作。
     works:
-        - OnGoing Monitor：持续监控医师资质认证信息；基于 Meteor 和 phantomJs；
-          通过抽象抓取动作，结构化了抓取脚本，大大提高了开发的效率和后期的扩展性。
-        - 店铺通：淘宝第三方服务，商家导流工具，PC 端项目，包含 6 个子项目；
-          基于 Vue2.0 / webpack；通过扩展 Vue-CLI 实现了一键打包、一键部署功能，
-          极大方便了项目的运维；同时基于 COOKIE 和 JWT 实现了统一登录。
-        - 菜鸟洗衣服务平台管理端：用于平台运营；基于 Angular5、PrimeNG、EggJs、PostresQL；
-          对需求进行逻辑抽象并结合面向对象技术实现通用逻辑，对组件进行最细粒度地拆分以最大化代码的复用。
-        - 菜鸟洗衣服务平台会员端：公众号项目，用于平台微信端用户下单等；
-          基于 webpack + babel + express + ejs，自定义打包流程以更好适应项目；
-          基于 ES6，实现基本的组件库和工具库；
-          借助微信 JSSDK 微信授权、支付、扫码、拍照等功能。
+        - name: OnGoing Monitor
+          text: 持续监控医师资质认证信息；基于 Meteor 和 phantomJs；
+            通过抽象抓取动作，结构化了抓取脚本，大大提高了开发的效率和后期的扩展性。
+        - name: 店铺通
+          text: 淘宝第三方服务，商家导流工具，PC 端项目，包含 6 个子项目；
+            基于 Vue2.0 / webpack；通过扩展 Vue-CLI 实现了一键打包、一键部署功能，
+            极大方便了项目的运维；同时基于 COOKIE 和 JWT 实现了统一登录。
+        - name: 菜鸟洗衣服务平台管理端
+          text: 用于平台运营；基于 Angular5、PrimeNG、EggJs、PostresQL；
+            对需求进行逻辑抽象并结合面向对象技术实现通用逻辑，对组件进行最细粒度地拆分以最大化代码的复用。
+        - name: 菜鸟洗衣服务平台会员端
+          text: 公众号项目，用于平台微信端用户下单等；
+            基于 webpack + babel + express + ejs，自定义打包流程以更好适应项目；
+            基于 ES6，实现基本的组件库和工具库；
+            借助微信 JSSDK 实现微信授权、支付、扫码、拍照等功能。
   - from: 2013/09
     to: 2015/05
     company: 大连奈特网络科技有限公司
     position: .NET 开发工程师
     description: 负责 CMS 产品及零售系统的研发，以及日常项目维护，涉及 ASP、PHP、服务器。
     works:
-        - 企业级 CMS 系统：基于 .NET 4 和 MSSQL 8 开发的大型商业系统，具有一键安装、页面模板、智能 SEO、静态生成、多语言等特性。
-        - 基于 .NET & MSSQL 的零售系统：基于 CMS 系统的基础架构进化而来，其借鉴了著名开源项目 nopCommerce 的业务和技术架构，满足小规模零售商家的线上业务需求。
+        - name: 企业级 CMS 系统
+          text: 基于 .NET 4 和 MSSQL 8 开发的大型商业系统，具有一键安装、页面模板、智能 SEO、静态生成、多语言等特性。
+        - name: 基于 .NET & MSSQL 的零售系统
+          text: 基于 CMS 系统的基础架构进化而来，其借鉴了著名开源项目 nopCommerce 的业务和技术架构，满足小规模零售商家的线上业务需求。
 education:
   from: 2009/09
   to: 2013/06
@@ -64,7 +86,7 @@ education:
   major: 计算机科学
   description: 在校期间成绩优异，通过大学英语四级考试，曾荣获“大连大学英语写作一等奖”、“大连市数学竞赛三等奖”、“全国高等院校数学竞赛辽宁省三等奖”等。
     计算机相关课程包括：C 语言基础、ASP 网页制作、ASP.Net 网站制作、C++ 基础、关系型数据库设计原理、Flash 实践、VB 基础。
-    独立研究过 Python、Java，毕业设计关于 Python 的实际应用。
+    独立研究过 Python、Java，毕业设计关于 Python 在物理实验数据处理中的应用。
 skills:
   - tag: Javascript
   - tag: ES6

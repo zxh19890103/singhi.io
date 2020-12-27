@@ -66,7 +66,10 @@ permalink: /cv-zh
                 {% for work in emp.works %}
                 <li>
                   <i class="iconfont icon-project1"></i>
-                  <p>{{work}}</p>
+                  <p>
+                    <b><u>{{work.name}}</u></b>
+                    {{work.text}}
+                  </p>
                 </li>
                 {% endfor %}
               </ol>
@@ -114,7 +117,7 @@ permalink: /cv-zh
         {% for skill in model.skills %}
         <li>
           <label>
-            {{skill.tag}}<i class="iconfont icon-comma1"></i>
+            {{skill.tag}}<i class="iconfont icon-chenweixun-comma"></i>
           </label>
         </li>
         {% endfor %}
