@@ -1,4 +1,4 @@
-title: 张星海，架构师
+title: 张星海，软件工程师（前端）
 email: zhangxinghai79@gmail.com
 phone: +86-18742538743
 address: 中国广东深圳
@@ -6,25 +6,33 @@ dateOfBirth: 1989/01/03
 placeOfBirth: 中国湖北黄冈
 nationality: 汉
 profile:
-  本人从事软件行业 7 年，其中 5+ 年的前端经验，目前为前端架构师。
+  本人从事软件行业 7 年，其中 5+ 年的前端经验。
   具有丰富的项目经验，曾经主导过 6 个以上大中型商业项目，
-  涉及电商、ERP、HIS、CMS、爬虫、公众号等。技术扎实，
-  对前端三大框架与流行工具链有相当熟练的运用，
+  涉及电商、ERP、HIS、CMS、爬虫、公众号等。
+  技术扎实，对前端三大框架与流行工具链有相当熟练的运用。
   具备 WEB 应用架构能力。
-  对项目管理、代码规范、WEB PERF、CI、CD 有一般了解，可兼做后端开发和运维。
+  对项目管理、代码规范、WEB PERF、CI、CD 有一定了解，
+  可兼做后端开发和运维。
 employments:
   - from: 2020/01
     to: 现在
     company: 软通动力信息技术（集团）股份有限公司
     position: 主任工程师 B-MAG
-    description: 目前从事华为 BPIT CBGIT 部门的渠道产品相关的开发工作。（持续维护中...）
+    description: 目前从事华为 BPIT CBGIT 部门的渠道产品相关的研发工作。
     works:
         - name: PMALL 商城
-          text: 引入 TS；为关键模块添加特性，如 发票核销、购物车。
+          text: 系 Vue v2.0 项目，公司内部提供 xUI （类 Element UI）组件库，
+            日期库采用 momentJs，卡片式架构，基于 webpack 打包；
+            期间首次为该项目引入 TS，为 Vue 扩展以及应用全局实体添加类型声明；
+            为关键模块添加特性，如：购物车、分批发货、订单提交、发票核销、退换货；
+            负责整个激励对账模块的设计与开发，包括 16 张卡片。
         - name: Sentinel Dashboard 项目
-          text: 基于 AngularJs、Bootstrap、G2、Gulp、Spring Boot 等；
-            可编辑表格的实现；镜面图；Brush 功能；开发环境的改良。
-        - name: 维护中...
+          text: 隶属于平台公共服务项目，
+            用于监控全平台应用的运行状况。
+            基于 AngularJs、Bootstrap、G2、Gulp、Spring Boot 等；
+            期间主要负责控制台应用的前端开发；
+            实现了可编辑表格、镜面图功能、Brush 功能；Json 编辑、展示功能；
+            改良开发环境，支持了 ES6 特性、区别 Dev / Prod 模式。
   - from: 2018/11
     to: 2020/01
     company: 丽珠医药集团有限公司（深圳）
@@ -130,3 +138,4 @@ skills:
   - tag: Git
   - tag: Docker
   - tag: VirtualBox
+  - tag: WebGL

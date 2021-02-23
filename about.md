@@ -5,6 +5,8 @@ title: 关于我
 
 ### 我是谁
 
+{% include img.html src="https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/201304291724.jpg" title="2013" %}
+
 访客您好：
 
 我叫张猩猩，是一名软件工程师，目前主要做前端。2013 年本科毕业，做过 2 年的 .NET 开发，期间产出 2 个中型规模系统（CMS、E-Commerce）。2015 - 2016 年技术栈逐渐过渡到前端，系统学习了 JavaScript 语言和当下流行的各大框架（Angular、VUE、React）、工具链（webpack / babel），期间产出颇丰，接手的大中型 Web 项目 6 个以上，具备了基本的架构经验。

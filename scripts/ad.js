@@ -4,7 +4,12 @@ const log = (...args) => {
   console.log('LOG:', ...args)
 }
 
-const adrun = async () => {
+const adrun_l = async () => {
+
+  if (!document.querySelector("#refAdImgsCon")) {
+    return log("no dom")
+  }
+
   if (!window.fetch) {
     return log(`Your broswer doesn't support this script.`)
   }
@@ -273,5 +278,7 @@ const adrun = async () => {
   drawIndex()
   iterate()
 }
+
+const adrun = () => {}
 
 export { adrun }

@@ -5,7 +5,7 @@ $textColor-2: #3a4a5a;
 $textColor-3: #5a6a7a;
 $textColor-4: #7a8a9a;
 $paperColor: lighten(#f5f5d5, 8);
-$adBoxHeight: 120px;
+$adBoxHeight: 0px;
 
 @import "./new-ui/mixins";
 @import "./new-ui/font";
@@ -62,9 +62,12 @@ $adBoxHeight: 120px;
 	&__title {
 		position: sticky;
 		top: $adBoxHeight;
-		margin: 1rem 0;
+		margin: 1rem 0 3rem 0;
+		padding: 1rem 0 1rem 0;
 		background: rgba($color: $paperColor, $alpha: .95);
 		color: $textColor-2;
+		border-bottom: 1px dashed lighten($color: grey, $amount: 40);
+		z-index: 1;
 		h1 {
 			width: 61.8%;
 			margin: 0;

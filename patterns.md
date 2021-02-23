@@ -3,7 +3,7 @@ layout: page
 title: 专栏 - 设计模式
 ---
 
-{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/personal-site/laptop-desk-computer-work-man-working-coffee-people-technology-internet-sitting-corporate-office-professional-business-modern-workstation-label-monitor-brand-product-design-eye-document-644378.jpg" %}
+{% include img.html src="https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/Flowers.jpg" %}
 <ul class="documents">
 {% for doc in site.patterns %}
   <li class="documents__item">
