@@ -1,0 +1,24 @@
+---
+---
+
+<!DOCTYPE html>
+<html lang="en_US">
+
+<head>
+  {%- feed_meta -%}
+  {%- seo -%}
+  {%- include head.html noBundleJs="noBundleJs" -%}
+  <link rel="stylesheet" type="text/css" media="print" href="/assets/print.css">
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <main id="page">
+      <article class="article article--cv">
+        {{ content }}
+      </article>
+    </main>
+  </div>
+</body>
+
+</html>

@@ -5,7 +5,7 @@ $textColor-2: #3a4a5a;
 $textColor-3: #5a6a7a;
 $textColor-4: #7a8a9a;
 $paperColor: lighten(#f5f5d5, 8);
-$adBoxHeight: 0px;
+$adBoxHeight: 1rem;
 
 @import "./new-ui/mixins";
 @import "./new-ui/font";
@@ -55,14 +55,14 @@ $adBoxHeight: 0px;
 .article {
 	position: relative;
 	padding: $adBoxHeight 0 1rem 0;
-	margin: 0 0 1rem 0;
+	margin: 1rem 0 1rem 0;
 	@include ifmob {
 		padding: 1.5rem 0 1rem 0;
 	}
 	&__title {
 		position: sticky;
-		top: $adBoxHeight;
-		margin: 1rem 0 3rem 0;
+		top: 0;
+		margin: 0 0 3rem 0;
 		padding: 1rem 0 1rem 0;
 		background: rgba($color: $paperColor, $alpha: .95);
 		color: $textColor-2;
@@ -298,7 +298,7 @@ $adBoxHeight: 0px;
 }
 
 @import "./new-ui/ad";
-@import "./new-ui/identities", "./new-ui/github", "./new-ui/font",
+@import "./new-ui/identities", "./new-ui/github",
 	"./new-ui/table", "./new-ui/comment";
 
 @import "./new-ui/cv";

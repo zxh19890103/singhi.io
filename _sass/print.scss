@@ -1,0 +1,37 @@
+$themeColor: seagreen;
+$textColor: #1a2a3a;
+$textColor-1: #1a2a3a;
+$textColor-2: #3a4a5a;
+$textColor-3: #5a6a7a;
+$textColor-4: #7a8a9a;
+$paperColor: lighten(#f5f5d5, 8);
+$adBoxHeight: 0px;
+
+@import "./new-ui/mixins";
+@import "./new-ui/font";
+@import "./new-ui/layout";
+@import "./new-ui/cv";
+
+body {
+	height: auto;
+	overflow: initial;
+}
+
+.article {
+	margin: 0;
+}
+
+.article--cv {
+	padding: 1rem 0;
+}
+
+.cv section {
+	margin: 1rem 0 0 0;
+}
+
+main {
+	box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	width: 100%;
+	padding: 0
+}

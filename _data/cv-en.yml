@@ -1,39 +1,44 @@
-title: 张星海，软件工程师（前端）
+title: Singhi John, IT Engineer (Front end)
 email: zhangxinghai79@gmail.com
 phone: +86-18742538743
-address: 中国广东深圳
+address: Shenzhen, GuangDong, China
 dateOfBirth: 1989/01/03
-placeOfBirth: 中国湖北黄冈
-nationality: 汉
+placeOfBirth: HuangGang, Hubei, China
+nationality: Han
 profile:
-  本人从事软件行业 7 年，其中 5+ 年的前端经验。
-  具有丰富的项目经验，曾经主导过 6 个以上大中型商业项目，
-  涉及电商、ERP、HIS、CMS、爬虫、公众号等。
-  技术扎实，对前端三大框架与流行工具链有相当熟练的运用。
-  具备 WEB 应用架构能力。
-  对项目管理、代码规范、WEB PERF、CI、CD 有一定了解，
-  可兼做后端开发和运维。
+  As a senior FE engineer, I have served in IT industry for 7+ years, in which 5 years' experiences of web development.
+  Now I have some abilities to architect a web application. I really have lead many web projects, of which at least 6 are in middle or large scale.
+  With a solid master of JS basic knowledges, and really knowing well of Angular / React and Vue.
+  Beyond knowing them well, I can reasonably put them into practice.
+  Things like Webpack, Babel and Typescript, are what I usually used in actual commercial projects.
+  I really understand those patterns which are offen occurs.
+  Knowing Hybrid's mechanism someway, did some works.
+  Being interested in optimizing performances of web.
+  Liking working with members and familiar with those popular IDEs.
+  Working with high efficiency.
 employments:
   - from: 2020/01
     to: 现在
-    company: 软通动力信息技术（集团）股份有限公司
-    position: 主任工程师
-    description: 目前从事华为 BPIT CBGIT 部门的渠道产品相关的研发工作。
+    company: iSoftStone IT Group Inc.
+    position: Chief Engineer B-MAG
+    description: Serving in BPIT CBGIT department of Huawei company, developing some projects about channels.
     works:
-        - name: PMALL 商城
-          text: 系 Vue v2.0 项目，公司内部提供 xUI （类 Element UI）组件库，
-            日期库采用 momentJs，卡片式架构，基于 webpack 打包；
-            期间首次为该项目引入 TS，为 Vue 扩展以及应用全局实体添加类型声明；
-            为关键模块添加特性，如：购物车、分批发货、订单提交、发票核销、退换货；
-            负责整个激励对账模块的设计与开发，包括 16 张卡片。
-        - name: Sentinel Dashboard 项目
-          text: 隶属于平台公共服务项目，
-            用于监控全平台应用的运行状况。
-            基于 AngularJs、Bootstrap、G2、Gulp、Spring Boot 等；
-            期间主要负责控制台应用的前端开发；
-            实现了可编辑表格、镜面图功能、Brush 功能；Json 编辑、展示功能；
-            Json-Schema 解析程序的设计与编码；
-            改良开发环境，支持了 ES6 特性、区别 Dev / Prod 模式。
+        - name: PMALL
+          text:
+            Based on Vue v2.0 & a UI library named xUI, like Element UI.
+            MomentJs is used as a tool for processing data with date type.
+            It is architected on a card-style architecture & packages those cards using webpack.
+            During the last year, I am the first one trying using TypeScript to develop the card.
+            And I've provide a compeleted type declarations for Vue plugins & global variables.
+            Adding features for key modules, like buying cart, delivery batching, order submiting, invoice application & returning.
+        - name: Sentinel Dashboard
+          text:
+            It's a common projects of the whole platform,
+            being designed to monitor all apps in the platform.
+            It's based on angluarjs (Not Angular.), Bootstrap UI, G2(chart), Gulp & Spring boot, &etc.
+            I am in the role of developing the apps of web, dashboard.
+            Features I've implemented are editable table, facet, brush, json editor, json schema parser.
+            I've made the building & serving scripts more good to use.
   - from: 2018/11
     to: 2020/01
     company: 丽珠医药集团有限公司（深圳）
