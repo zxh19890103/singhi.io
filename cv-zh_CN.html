@@ -41,6 +41,32 @@ permalink: /cv-zh
       {{model.profile}}
     </div>
   </section>
+  <section class="cv__skills">
+    <h3>
+      <i class="iconfont icon-skills"></i>
+      技能
+    </h3>
+    <div>
+      {% for skillgroup in model.skills %}
+      <div class="skill-level skill-level-{{skillgroup.level}}">
+        <em class="iconfont icon-Starmarker"></em>
+        <em class="iconfont icon-Starmarker"></em>
+        <em class="iconfont icon-Starmarker"></em>
+        <em class="iconfont icon-Starmarker"></em>
+        <em class="iconfont icon-Starmarker"></em>
+      </div>
+      <ul class="cv__listing cv__listing--tags">
+        {% for skill in skillgroup.tags %}
+        <li>
+          <label>
+            {{skill.tag}}<i class="iconfont icon-weibiaoti3"></i>
+          </label>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endfor %}
+    </div>
+  </section>
   <section class="cv__exper cv__exper--emp">
     <h3>
       <i class="iconfont icon-working"></i>
@@ -107,21 +133,4 @@ permalink: /cv-zh
       </ul>
     </div>
   </section>
-  <section class="cv__skills">
-    <h3>
-      <i class="iconfont icon-skills"></i>
-      技能
-    </h3>
-    <div>
-      <ul class="cv__listing cv__listing--tags">
-        {% for skill in model.skills %}
-        <li>
-          <label>
-            {{skill.tag}}<i class="iconfont icon-chenweixun-comma"></i>
-          </label>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-  </section>
-<div>
+  <div>

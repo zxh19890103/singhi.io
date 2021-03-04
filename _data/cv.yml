@@ -71,7 +71,7 @@ employments:
             基于 Vue2.0 / webpack；通过扩展 Vue-CLI 实现了一键打包、一键部署功能，
             极大方便了项目的运维；同时基于 COOKIE 和 JWT 实现了统一登录。
         - name: 菜鸟洗衣服务平台管理端
-          text: 用于平台运营；基于 Angular5、PrimeNG、EggJs、PostresQL；
+          text: 用于平台运营；基于 Angular5、PrimeNG、EggJs、PostgreSQL；
             对需求进行逻辑抽象并结合面向对象技术实现通用逻辑，对组件进行最细粒度地拆分以最大化代码的复用。
         - name: 菜鸟洗衣服务平台会员端
           text: 公众号项目，用于平台微信端用户下单等；
@@ -97,46 +97,52 @@ education:
     计算机相关课程包括：C 语言基础、ASP 网页制作、ASP.Net 网站制作、C++ 基础、关系型数据库设计原理、Flash 实践、VB 基础。
     独立研究过 Python、Java，毕业设计关于 Python 在物理实验数据处理中的应用。
 skills:
-  - tag: Javascript
-  - tag: ES6
-  - tag: Typescript
-  - tag: HTML
-  - tag: CSS
-  - tag: PHP
-  - tag: Python
-  - tag: C#
-  - tag: JAVA
-  - tag: Angular
-  - tag: React
-  - tag: VUE
-  - tag: NodeJs
-  - tag: Express
-  - tag: koa
-  - tag: Yii2
-  - tag: ThinkPHP
-  - tag: ASP.NET
-  - tag: Spring MVC
-  - tag: Spring Boot
-  - tag: MySQL
-  - tag: MSSQL
-  - tag: MongoDB
-  - tag: PostresQL
-  - tag: SQLite
-  - tag: Office Access
-  - tag: webpack
-  - tag: babel
-  - tag: sass
-  - tag: less
-  - tag: gulp
-  - tag: npm
-  - tag: maven
-  - tag: composer
-  - tag: markdown
-  - tag: Chrome DEV Tools
-  - tag: VSCode
-  - tag: Eclipse Java
-  - tag: Idea
-  - tag: Git
-  - tag: Docker
-  - tag: VirtualBox
-  - tag: WebGL
+  - level: 4
+    tags:
+      - tag: Javascript
+      - tag: Typescript
+      - tag: ES6
+      - tag: HTML
+      - tag: CSS
+      - tag: Angular
+      - tag: React
+      - tag: VUE
+      - tag: NodeJs
+      - tag: Express
+      - tag: koa
+      - tag: sass
+      - tag: MySQL
+      - tag: webpack
+      - tag: babel
+      - tag: npm
+      - tag: Visual Studio Code
+  - level: 3
+    tags:
+      - tag: Git
+      - tag: Chrome DEV Tools
+      - tag: gulp
+      - tag: less
+      - tag: C#
+      - tag: ASP.NET
+      - tag: PHP
+      - tag: Yii2
+      - tag: ThinkPHP
+  - level: 2
+    tags:
+      - tag: Python
+      - tag: JAVA
+      - tag: Spring MVC
+      - tag: Spring Boot
+      - tag: maven
+      - tag: MSSQL
+      - tag: MongoDB
+      - tag: SQLite
+      - tag: Office Access
+      - tag: PostgresQL
+      - tag: composer
+      - tag: markdown
+      - tag: Eclipse Java
+      - tag: Idea
+      - tag: Docker
+      - tag: VirtualBox
+      - tag: WebGL

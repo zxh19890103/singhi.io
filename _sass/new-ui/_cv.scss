@@ -1,8 +1,7 @@
 .cv {
-	$head-width: 210px;
+	$head-width: 160px;
 	$head-width-mobi: 90px;
 	white-space: normal;
-	font-family: Wawati SC;
 	h2 {
 		text-align: center;
 		a {
@@ -130,6 +129,56 @@
 						display: none;
 					}
 				}
+			}
+		}
+	}
+
+	.skill-level {
+		display: flex;
+		display: -webkit-flex;
+		justify-content: flex-start;
+		align-items: center;
+		em {
+			color: #EFEFEF;
+		}
+	}
+
+	$litColor: #DDD;
+
+	.skill-level-1, .skill-level-2, .skill-level-3, .skill-level-4, .skill-level-5 {
+		em:first-child {
+			color: $litColor;
+		}
+	}
+
+	.skill-level-2, .skill-level-3, .skill-level-4, .skill-level-5 {
+		em {
+			&:nth-child(2) {
+				color: $litColor;
+			}
+		}
+	}
+
+	.skill-level-3, .skill-level-4, .skill-level-5 {
+		em {
+			&:nth-child(3) {
+				color: $litColor;
+			}
+		}
+	}
+
+	.skill-level-4, .skill-level-5 {
+		em {
+			&:nth-child(4) {
+				color: $litColor;
+			}
+		}
+	}
+
+	.skill-level-5 {
+		em {
+			&:nth-child(5) {
+				color: $litColor;
 			}
 		}
 	}
