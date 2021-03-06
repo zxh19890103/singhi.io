@@ -26,6 +26,12 @@ employments:
             期间首次为该项目引入 TS，为 Vue 扩展以及应用全局实体添加类型声明；
             为关键模块添加特性，如：购物车、分批发货、订单提交、发票核销、退换货；
             负责整个激励对账模块的设计与开发，包括 16 张卡片。
+          highlights:
+            - 为解决时序问题，解偶业务逻辑，提出了 Reusable Promise 的概念
+            - 购物车页面，对框架数据进行缓存，节省了大量接口请求开销
+            - 购物车和下单页面校验，使用 mixin 实现逻辑复用
+            - 销售数据在达量刻度表上的动画展示，使用了 requestAnimationFrame 和 nextTick 函数，并做了区间线性计算
+
         - name: Sentinel Dashboard 项目
           text: 隶属于平台公共服务项目，
             用于监控全平台应用的运行状况。
@@ -34,6 +40,11 @@ employments:
             实现了可编辑表格、镜面图功能、Brush 功能；Json 编辑、展示功能；
             Json-Schema 解析程序的设计与编码；
             改良开发环境，支持了 ES6 特性、区别 Dev / Prod 模式。
+          highlights:
+            - schema 解析：将非标准 schema 解析为标准 json schema
+            - 镜面图：使用 G2 的 facet 特性，实现 QPS 曲线与 RT 曲线镜像显示
+            - 实现 josdejong/jsoneditor 与 summerstyle/jsonTreeViewer 的交互
+
   - from: 2018/11
     to: 2020/01
     company: 丽珠医药集团有限公司（深圳）
@@ -99,27 +110,25 @@ education:
 skills:
   - level: 4
     tags:
-      - tag: Javascript
-      - tag: Typescript
+      - tag: TypeScript
       - tag: ES6
       - tag: HTML
       - tag: CSS
       - tag: Angular
       - tag: React
-      - tag: VUE
-      - tag: NodeJs
-      - tag: Express
+      - tag: Vue
+      - tag: nodeJs
+      - tag: express
       - tag: koa
       - tag: sass
       - tag: MySQL
       - tag: webpack
       - tag: babel
       - tag: npm
-      - tag: Visual Studio Code
+      - tag: HTTP
   - level: 3
     tags:
       - tag: Git
-      - tag: Chrome DEV Tools
       - tag: gulp
       - tag: less
       - tag: C#
@@ -137,12 +146,6 @@ skills:
       - tag: MSSQL
       - tag: MongoDB
       - tag: SQLite
-      - tag: Office Access
-      - tag: PostgresQL
       - tag: composer
       - tag: markdown
-      - tag: Eclipse Java
-      - tag: Idea
-      - tag: Docker
-      - tag: VirtualBox
       - tag: WebGL

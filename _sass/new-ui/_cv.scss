@@ -121,7 +121,6 @@
 			li {
 				width: initial;
 				label {
-					margin-right: 5px;
 					font-weight: normal;
 				}
 				&:last-child {
@@ -139,11 +138,11 @@
 		justify-content: flex-start;
 		align-items: center;
 		em {
-			color: #EFEFEF;
+			color: #eee;
 		}
 	}
 
-	$litColor: #DDD;
+	$litColor: #AAA;
 
 	.skill-level-1, .skill-level-2, .skill-level-3, .skill-level-4, .skill-level-5 {
 		em:first-child {

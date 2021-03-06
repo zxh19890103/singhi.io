@@ -46,24 +46,26 @@ permalink: /cv-zh
       <i class="iconfont icon-skills"></i>
       技能
     </h3>
-    <div>
+    <div style="display: flex; display: -webkit-flex; justify-content: flex-start; align-items: flex-start;">
       {% for skillgroup in model.skills %}
-      <div class="skill-level skill-level-{{skillgroup.level}}">
-        <em class="iconfont icon-Starmarker"></em>
-        <em class="iconfont icon-Starmarker"></em>
-        <em class="iconfont icon-Starmarker"></em>
-        <em class="iconfont icon-Starmarker"></em>
-        <em class="iconfont icon-Starmarker"></em>
+      <div style="flex: 1">
+        <div class="skill-level skill-level-{{skillgroup.level}}">
+          <em class="iconfont icon-star"></em>
+          <em class="iconfont icon-star"></em>
+          <em class="iconfont icon-star"></em>
+          <em class="iconfont icon-star"></em>
+          <em class="iconfont icon-star"></em>
+        </div>
+        <ul class="cv__listing cv__listing--tags">
+          {% for skill in skillgroup.tags %}
+          <li>
+            <label>
+              {{skill.tag}}<i class="iconfont icon-dunhao"></i>
+            </label>
+          </li>
+          {% endfor %}
+        </ul>
       </div>
-      <ul class="cv__listing cv__listing--tags">
-        {% for skill in skillgroup.tags %}
-        <li>
-          <label>
-            {{skill.tag}}<i class="iconfont icon-weibiaoti3"></i>
-          </label>
-        </li>
-        {% endfor %}
-      </ul>
       {% endfor %}
     </div>
   </section>
@@ -95,6 +97,13 @@ permalink: /cv-zh
                   <p>
                     <b><u>{{work.name}}</u></b>
                     {{work.text}}
+                    <ol>
+                      {% for hl in work.highlights %}
+                      <li>
+                        {{hl}}
+                      </li>
+                      {% endfor %}
+                    </ol>
                   </p>
                 </li>
                 {% endfor %}
