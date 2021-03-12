@@ -27,7 +27,7 @@ employments:
             为关键模块添加特性，如：购物车、分批发货、订单提交、发票核销、退换货；
             负责整个激励对账模块的设计与开发，包括 16 张卡片。
           highlights:
-            - 设计 Reusable Promise 的概念，结合 async/await，解决了数据刷新以及数据依赖问题
+            - 设计了 Reusable Promise 的数据模型，结合 async/await，解决了数据刷新以及数据依赖问题
             - 购物车页面，使用 ES6 的 Map 对象对框架数据进行缓存，从而节省了大量接口请求开销
             - 购物车和下单页面校验，使用 mixin 实现逻辑复用
             - 销售数据在达量刻度表上的动画展示，使用了 requestAnimationFrame 和 nextTick 函数，并做了区间线性计算
@@ -35,7 +35,7 @@ employments:
         - name: Sentinel Dashboard 项目
           text: 隶属于平台公共服务项目，
             用于监控全平台应用的运行状况。
-            基于 AngularJs、Bootstrap、G2、Gulp、Spring Boot 等；
+            基于 angularJs、Bootstrap、G2、Gulp、Spring Boot 等；
             期间主要负责控制台应用的前端开发；
             实现了可编辑表格、镜面图功能、Brush 功能；Json 编辑、展示功能；
             Json-Schema 解析程序的设计与编码；
