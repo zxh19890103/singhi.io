@@ -1,6 +1,6 @@
 .cv {
 	$head-width: 160px;
-	$head-width-mobi: 90px;
+	$head-width-mobi: 100%;
 	white-space: normal;
 	h2 {
 		text-align: center;
@@ -72,6 +72,7 @@
 		}
 		&-item {
 			@include flexBox();
+			flex-wrap: wrap;
 			&-period {
 				width: $head-width;
 				em {
@@ -83,9 +84,6 @@
 				}
 				@include ifmob {
 					width: $head-width-mobi;
-					em {
-						display: block;
-					}
 				}
 			}
 			&-desc {
