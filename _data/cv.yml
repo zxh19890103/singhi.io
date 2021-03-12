@@ -27,8 +27,8 @@ employments:
             为关键模块添加特性，如：购物车、分批发货、订单提交、发票核销、退换货；
             负责整个激励对账模块的设计与开发，包括 16 张卡片。
           highlights:
-            - 为解决时序问题，解偶业务逻辑，提出了 Reusable Promise 的概念
-            - 购物车页面，对框架数据进行缓存，节省了大量接口请求开销
+            - 设计 Reusable Promise 的概念，结合 async/await，解决了数据刷新以及数据依赖问题
+            - 购物车页面，使用 ES6 的 Map 对象对框架数据进行缓存，从而节省了大量接口请求开销
             - 购物车和下单页面校验，使用 mixin 实现逻辑复用
             - 销售数据在达量刻度表上的动画展示，使用了 requestAnimationFrame 和 nextTick 函数，并做了区间线性计算
 
@@ -41,8 +41,8 @@ employments:
             Json-Schema 解析程序的设计与编码；
             改良开发环境，支持了 ES6 特性、区别 Dev / Prod 模式。
           highlights:
-            - schema 解析：将非标准 schema 解析为标准 json schema
-            - 镜面图：使用 G2 的 facet 特性，实现 QPS 曲线与 RT 曲线镜像显示
+            - schema 解析：运用递归将非标准 schema 解析为标准 json schema，包括类型解析和结构解析，类型包括泛型、集合、对象以及基础类型
+            - 镜面图：使用 G2 的 facet 特性，实现三条 QPS 曲线与 RT 曲线镜像显示
             - 实现 josdejong/jsoneditor 与 summerstyle/jsonTreeViewer 的交互
 
   - from: 2018/11
@@ -59,12 +59,14 @@ employments:
             为了避免数据混乱，屏蔽 Appollo 数据结构的变动，
             在 React 应用与 Apollo 之间设计了 DAO 层，
             该层负责对 Apollo 提供的数据进行转换，以明确满足 React 组件的接口要求。
-            事实证明，这样的设计对于应用后期的可维护性起到了十分重要的作用。
             其次，在 antd 组件库基础上，结合具体业务，对必要组件进行了再封装，
             并建立了独立的 git 仓库来管理源代码，采用 submodule 机制实现其与宿主代码库的融合。
             配置了一套 EditorConfig、Prettier、Eslint 规则，并鼓励 hook 优先的编码原则。
-            四个月完成基本的开发、测试工作，已发布上线、用户反馈积极，
-            相对旧系统，其运行速度有明显提升。
+          highlights:
+            - 6 大模块，四个月完成基本的开发、测试工作
+            - 相对旧系统，其运行速度有明显提升
+            - 通过组件封装，对复杂可编辑表格性能优化
+            - 为老系统整理混乱的业务逻辑
   - from: 2015/03
     to: 2018/09
     company: 大唐鸿业科技有限公司（大连）
@@ -84,6 +86,8 @@ employments:
         - name: 菜鸟洗衣服务平台管理端
           text: 用于平台运营；基于 Angular5、PrimeNG、EggJs、PostgreSQL；
             对需求进行逻辑抽象并结合面向对象技术实现通用逻辑，对组件进行最细粒度地拆分以最大化代码的复用。
+          highlights:
+            - 单人一个月完成开发
         - name: 菜鸟洗衣服务平台会员端
           text: 公众号项目，用于平台微信端用户下单等；
             基于 webpack + babel + express + ejs，自定义打包流程以更好适应项目；
@@ -93,7 +97,7 @@ employments:
     to: 2015/05
     company: 大连奈特网络科技有限公司
     position: .NET 开发工程师
-    description: 负责 CMS 产品及零售系统的研发，以及日常项目维护，涉及 ASP、PHP、服务器。
+    description: 小型私企，互联网行业。负责 CMS 产品及零售系统的研发，以及日常项目维护，涉及 ASP、PHP、服务器。
     works:
         - name: 企业级 CMS 系统
           text: 基于 .NET 4 和 MSSQL 8 开发的大型商业系统，具有一键安装、页面模板、智能 SEO、静态生成、多语言等特性。
