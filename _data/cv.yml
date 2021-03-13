@@ -27,8 +27,8 @@ employments:
             为关键模块添加特性，如：购物车、分批发货、订单提交、发票核销、退换货；
             负责整个激励对账模块的设计与开发，包括 16 张卡片。
           highlights:
-            - 设计了 Reusable Promise 数据模型，结合 async/await，解决了数据刷新以及数据依赖问题
-            - 购物车页面，使用 ES6 的 Map 对象对框架数据进行缓存，从而节省了大量接口请求开销
+            - 设计了 Reusable Promise Data 数据结构，结合 async/await，以解耦业务逻辑和实现数据依赖
+            - 购物车页面，通过使用 ES6 - Map 对象对框架数据进行缓存以及插入拦截函数，节省了大量 HTTP 请求开销
             - 购物车和下单页面校验，使用 mixin 实现逻辑复用
             - 销售数据在达量刻度表上的动画展示，使用了 requestAnimationFrame 和 nextTick 函数，并做了区间线性计算
 
@@ -118,9 +118,9 @@ skills:
       - tag: ES6
       - tag: HTML
       - tag: CSS
-      - tag: Angular
       - tag: React
       - tag: Vue
+      - tag: Angular
       - tag: nodeJs
       - tag: express
       - tag: koa
@@ -133,6 +133,7 @@ skills:
   - level: 3
     tags:
       - tag: Git
+      - tag: rollup
       - tag: gulp
       - tag: less
       - tag: C#
@@ -140,6 +141,10 @@ skills:
       - tag: PHP
       - tag: Yii2
       - tag: ThinkPHP
+      - tag: RxJs
+      - tag: jQuery
+      - tag: Bootstrap UI
+      - tag: superagent
   - level: 2
     tags:
       - tag: Python
