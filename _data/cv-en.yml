@@ -18,7 +18,7 @@ profile:
   Working with high efficiency.
 employments:
   - from: 2020/01
-    to: 现在
+    to: Now
     company: iSoftStone IT Group Inc.
     position: Chief Engineer B-MAG
     description: Serving in BPIT CBGIT department of Huawei company, developing some projects about channels.
@@ -41,40 +41,47 @@ employments:
             I've made the building & serving scripts more good to use.
   - from: 2018/11
     to: 2020/01
-    company: 丽珠医药集团有限公司（深圳）
-    position: 高级前端工程师
-    description: 健康阿鹿，丽珠集团旗下品牌，全国连锁诊所。
-      阿鹿云诊所是健康阿鹿独立打造的智慧医疗平台，致力于为医护患提供全流程服务。
-      在职期间，主要负责新药品进销存系统的设计及基础组件库搭建。
+    company: Livzon Pharmaceutical Group Inc.
+    position: Senior Front-end Softare Engineer
+    description: Health a'deer, a sub company of Livzon Group.
+      It's a company managing many clinics all over the mainland of China.
+      The cloud clinic of a'deer, which is smart and quick, is the unque platform for entities by a'deer IT department,
+      with a strong aim at providing a full services for the doctors and nurses and patients.
+      During serving there, my major duty is to architect the next web system for drag managing.
     works:
-        - name: 新药品进销存系统
-          text: 用于诊所的药品库存管理以及配发药；
-            基于 React、react-router、Typescript、Apollo、Less 实现；
-            为了避免数据混乱，屏蔽 Appollo 数据结构的变动，
-            在 React 应用与 Apollo 之间设计了 DAO 层，
-            该层负责对 Apollo 提供的数据进行转换，以明确满足 React 组件的接口要求。
-            事实证明，这样的设计对于应用后期的可维护性起到了十分重要的作用。
-            其次，在 antd 组件库基础上，结合具体业务，对必要组件进行了再封装，
-            并建立了独立的 git 仓库来管理源代码，采用 submodule 机制实现其与宿主代码库的融合。
-            配置了一套 EditorConfig、Prettier、Eslint 规则，并鼓励 hook 优先的编码原则。
-            四个月完成基本的开发、测试工作，已发布上线、用户反馈积极，
-            相对旧系统，其运行速度有明显提升。
+        - name: The next generation of web system for drag managing
+          text: For drag managing and dispensing;
+            Based on React, react-router, ts, and apollo &etc.
+            To avoid the mass of data transforing, and masking the frequently mutations of API from Apollo,
+            I insert a layer named DAL, short for Data Access Layer.
+            This DAL layer can transform all the data from Apollo to very clearly meet the demand of React component's API.
+            Secondly, some components of antd were boxed again for the specified business.
+            And setup a specific git repo for managing the source.
+            Adopted the submodule feature in GIT to let it working well with the main project.
+            Configured a group of rules of editorconfig, prettier and eslint.
+            And react hooks should be the first choice.
   - from: 2015/03
     to: 2018/09
-    company: 大唐鸿业科技有限公司（大连）
-    position: 前端工程师
+    company: Lanwcther Inc.
+    position: Front end Engineer
     description:
-      小型外资私企，互联网公司，淘宝 ISV，从事基于淘宝服务平台的应用开发、
-      地方政府相关项目以及美国医师资质认证系统相关研发。
-      在职期间主导公司相关前端研发工作。
+      A small private company with foreign capital,
+      an IT company, a Taobao ISV entity, creating web apps on the Taobao Open Service platform.
+      Also, we did some projects for local goverements.
+      Lastly, we have a great big and traditional project, a system, based on C# & ASP.NET, for helping
+      American doctors & physicians group to selfly keep individual credential active.
+      I am the main employee leading all the front-end web projects.
     works:
         - name: OnGoing Monitor
-          text: 持续监控医师资质认证信息；基于 Meteor 和 phantomJs；
-            通过抽象抓取动作，结构化了抓取脚本，大大提高了开发的效率和后期的扩展性。
-        - name: 店铺通
-          text: 淘宝第三方服务，商家导流工具，PC 端项目，包含 6 个子项目；
-            基于 Vue2.0 / webpack；通过扩展 Vue-CLI 实现了一键打包、一键部署功能，
-            极大方便了项目的运维；同时基于 COOKIE 和 JWT 实现了统一登录。
+          text: Being constantly monitoring the credential informations. Based on Meteor & phantomjs.
+            Throu abstracting the action of crawl, structured the scripts,
+            which improved the efficiency of development and the scalability.
+        - name: Tong store
+          text: A third service of Taobao Open. A tool for leading the web visiters.
+            An on-PC web application, composited by 6 sub apps.
+            Based on Vue2.0 / webpack.
+            Implemented the features of one-key packaging and one-key deployment throu extending vue-cli.
+            And providing a portal app to unified login based on COOKIE and JWT.
         - name: 菜鸟洗衣服务平台管理端
           text: 用于平台运营；基于 Angular5、PrimeNG、EggJs、PostresQL；
             对需求进行逻辑抽象并结合面向对象技术实现通用逻辑，对组件进行最细粒度地拆分以最大化代码的复用。
