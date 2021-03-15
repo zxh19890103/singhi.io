@@ -1,7 +1,15 @@
+@font-face {
+  font-family: "WawatiSC";
+  src: local('Wawati SC Regular'); /* full url to font needed */
+  unicode-range: U+0000-00FF;
+}
+
 .cv {
 	$head-width: 160px;
 	$head-width-mobi: 100%;
 	white-space: normal;
+	font-family: WawatiSC, 'PingFang SC', 'Source Han Sans SC', sans-serif;
+	// font: 16px/1.5, WawatiSC;
 	h2 {
 		text-align: center;
 		a {
