@@ -5,7 +5,7 @@
 }
 
 .cv {
-	$head-width: 160px;
+	$head-width: 96px;
 	$head-width-mobi: 100%;
 	white-space: normal;
 	font-family: WawatiSC, 'PingFang SC', 'Source Han Sans SC', sans-serif;
@@ -84,14 +84,18 @@
 			&-period {
 				width: $head-width;
 				em {
-					display: inline-block;
+					display: block;
 					width: 12px;
 					border-top: 1px solid $textColor-4;
-					vertical-align: middle;
 					margin: 0 3px;
 				}
 				@include ifmob {
 					width: $head-width-mobi;
+					em {
+						display: inline-block;
+						position: relative;
+						top: -6px;
+					}
 				}
 			}
 			&-desc {

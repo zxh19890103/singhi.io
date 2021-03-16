@@ -6,10 +6,10 @@ dateOfBirth: 1989/01/03
 placeOfBirth: 中国湖北黄冈
 nationality: 汉
 profile:
-  本人从事软件行业 8 年，其中 6+ 年的前端经验。
+  本人从事软件行业 8 年，其中 6+ 年的前端经验，高级前端开发。
   具有丰富的项目经验，曾经主导过 6 个以上大中型商业项目，
   涉及电商、ERP、HIS、CMS、爬虫、公众号等。
-  技术扎实，对前端三大框架与流行工具链有相当熟练的运用。
+  技术扎实，对前端三大框架（Vue, React, Angular）与流行工具链 (Webpack, Babel) 有相当熟练的运用。
   具备 WEB 应用架构能力。
   对项目管理、代码规范、WEB PERF、CI/CD 有一定了解，
   可兼做后端开发和运维。
@@ -51,21 +51,20 @@ employments:
     position: 高级前端工程师
     description: 健康阿鹿，丽珠集团旗下品牌，全国连锁诊所。
       阿鹿云诊所是健康阿鹿独立打造的智慧医疗平台，致力于为医护患提供全流程服务。
-      在职期间，主要负责新药品进销存系统的设计及基础组件库搭建。
+      在职期间，主要负责新药品进销存系统的设计、工程搭建。
     works:
         - name: 新药品进销存系统
           text: 用于诊所的药品库存管理以及配发药；
-            基于 React、react-router、Redux、Typescript、Apollo、Less 实现；
-            在 React 应用与 Apollo 之间设计了 DAO 层，以屏蔽 Appollo 数据结构的变动，
-            该层负责对 Apollo 提供的数据进行转换，以明确满足 React 组件的接口要求。
-            其次，在 antd 组件库基础上，结合具体业务，对必要组件进行了再封装，
-            并建立了独立的 git 仓库来管理源代码，采用 submodule 机制实现其与宿主代码库的融合。
-            配置了一套 EditorConfig、Prettier、Eslint 规则，并鼓励 hook 优先的编码原则。
+            基于 React、react-router、Redux、Typescript、Apollo、less 实现；
+            在 React 应用与 Apollo 之间插入 DAO 层，以屏蔽 Apollo 数据结构的变动。
+            基于 antd 组件库封装业务组件，建立独立的 git 仓库管理源代码，
+            并以 submodule 机制实现其与主代码库的融合。
+            使用 editor config、prettier 以及 eslint，配置了一套编码规范。
           highlights:
             - 6 大模块，3 位前端开发，4 个月内完成基本的开发、测试工作
-            - 通过工具组件封装，对复杂可编辑表格性能优化
-            - 借 TypeScript 的 interface & class，定义精确的数据类型，提炼老系统混乱的业务逻辑
-            - 借 antd 的 Form.setFields，在非页面组件 render 的前提下，实现 B/S 实时数据同步功能
+            - 通过对高性能消耗组件设计 View/Edit 模式与 Lazy Load，对复杂可编辑表格性能优化
+            - 借 TypeScript 的 interface & class，定义精确的数据类型，提炼老旧系统中模糊的业务逻辑
+            - 借 antd 的 Form.setFields，在非页面组件 render 的前提下，实现 B/S 数据实时同步
   - from: 2015/03
     to: 2018/09
     company: 大唐鸿业科技有限公司（大连）
@@ -86,7 +85,7 @@ employments:
           text: 用于平台运营；基于 Angular5、PrimeNG、EggJs、PostgreSQL；
             对需求进行逻辑抽象并结合面向对象技术实现通用逻辑，对组件进行最细粒度地拆分以最大化代码的复用。
           highlights:
-            - 单人一个月完成开发
+            - 一人一月完成开发
         - name: 菜鸟洗衣服务平台会员端
           text: 公众号项目，用于平台微信端用户下单等；
             基于 webpack + babel + express + ejs，自定义打包流程以更好适应项目；
@@ -120,40 +119,29 @@ skills:
       - tag: React
       - tag: Vue
       - tag: Angular
-      - tag: nodeJs
-      - tag: express
-      - tag: koa
-      - tag: sass
-      - tag: MySQL
+      - tag: NodeJs
+      - tag: Express
+      - tag: Koa
+      - tag: Sass
       - tag: webpack
       - tag: babel
-      - tag: npm
-      - tag: HTTP
   - level: 3
     tags:
       - tag: Git
-      - tag: rollup
-      - tag: gulp
-      - tag: less
-      - tag: C#
-      - tag: ASP.NET
-      - tag: PHP
-      - tag: Yii2
-      - tag: ThinkPHP
+      - tag: Rollup
+      - tag: Gulp
+      - tag: Less
       - tag: RxJs
-      - tag: jQuery
-      - tag: Bootstrap UI
-      - tag: superagent
+      - tag: npm
+      - tag: HTTP
   - level: 2
     tags:
-      - tag: Python
-      - tag: JAVA
-      - tag: Spring MVC
-      - tag: Spring Boot
-      - tag: maven
-      - tag: MSSQL
-      - tag: MongoDB
-      - tag: SQLite
-      - tag: composer
-      - tag: markdown
+      - tag: jQuery
+      - tag: Bootstrap UI
+      - tag: eCharts
+      - tag: G2
       - tag: WebGL
+      - tag: Spring MVC
+      - tag: ASP.NET
+      - tag: YII2.0
+      - tag: MySQL
