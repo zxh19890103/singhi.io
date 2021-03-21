@@ -7,15 +7,21 @@ title: 关于我
 
 {% include img.html src="https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/201304291724.jpg" title="2013" %}
 
-访客您好：
+你好：
 
-我叫张猩猩，是一名软件工程师，目前主要做前端。2013 年本科毕业，做过 2 年的 .NET 开发，期间产出 2 个中型规模系统（CMS、E-Commerce）。2015 - 2016 年技术栈逐渐过渡到前端，系统学习了 JavaScript 语言和当下流行的各大框架（Angular、VUE、React）、工具链（webpack / babel），期间产出颇丰，接手的大中型 Web 项目 6 个以上，具备了基本的架构经验。
+我叫张猩猩，是一名软件工程师，目前主要做前端。
 
-虽工作 7 年，个人仍然对技术抱有热情，平时也喜欢倒腾一些小玩意。
+2013 年本科毕业，做过 2 年的 .NET 开发，产出 2 个中型规模系统，一个 CMS，另一个零售系统。
+
+2015 年我开始专职做前端，系统学习了 JavaScript 语言和当下流行的各大框架和工具链，接手的大中型 Web 项目 6 个以上，涉及电商系统、工具类、HIS、ERP、爬虫、公众号，具备了基本的架构能力。
+
+工作 7 年以来，个人对技术仍抱有很大热情，平时喜欢学习、研究一些新技术和思路。
+
+目前在专心研究 WebGL。
 
 **但是......**
 
-要明白，商业社会对于热情并不在意，在意的是利益。因此作为工程师，需要适当地作出妥协。也因此，我就是一个工程师、工匠，不是科学家、发明家，我需要在混乱中找到条理，为各种问题制定方案。
+我知道，商业社会对于热情并不在意，在意的是利益。因此作为工程师，需要适当地作出妥协。也因此，我就是一个工程师、工匠，不是科学家、发明家，我需要在混乱中找到条理，为各种问题制定方案。
 
 目前感兴趣的技术：
 
@@ -30,11 +36,11 @@ title: 关于我
 - Express + koa
 - Webpack + Babel
 - SASS（Dart）
-- Cordova
-- YII2.0
-- Bootstrap
+- Yii2.0
+- Bootstrap UI
 - jQuery
 - RxJs
+- Cordova
 
 **有好交流技术者或公司有职位推荐，可与我取得联系。**
 
@@ -43,25 +49,21 @@ title: 关于我
 
 ### 联系方式
 
-微信：zxh198964
+- 微信：zxh198964
 
-邮箱：zhangxinghai79@gmail.com
+- 邮箱：zhangxinghai79@gmail.com
 
-QQ：1210372315
+- QQ：1210372315
 
-知乎：[https://www.zhihu.com/people/zhangxingxing89](https://www.zhihu.com/people/zhangxingxing89)
+### 社交主页
 
-Github：[https://github.com/zxh19890103](https://github.com/zxh19890103)
-
-OSC：[https://my.oschina.net/xxrr](https://github.com/zxh19890103)
-
-Medium：[https://medium.com/@zhangxinghai79](https://medium.com/@zhangxinghai79)
-
-Lofter：[https://stars-in-the-sea.lofter.com/](https://stars-in-the-sea.lofter.com/)
-
-Quora： [https://www.quora.com/profile/Singhi-John](https://www.quora.com/profile/Singhi-John)
-
-StackOverflow：[https://stackoverflow.com/users/5721861/singhi-john](https://stackoverflow.com/users/5721861/singhi-john)
+- [知乎](https://www.zhihu.com/people/zhangxingxing89)
+- [GitHub](https://github.com/zxh19890103)
+- [OSC](https://github.com/zxh19890103)
+- [Medium](https://medium.com/@zhangxinghai79)
+- [Lofter](https://stars-in-the-sea.lofter.com/)
+- [Quora](https://www.quora.com/profile/Singhi-John)
+- [StackOverflow](https://stackoverflow.com/users/5721861/singhi-john)
 
 <p style="text-align: right">
 感谢!
