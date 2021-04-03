@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WebAssembly 系列 - JIT
-short: 你应该听说过，WebAssembly 非常的快。但是使它如此之快的缘故是什么呢？这一系列，我想向你对于这个问题做一个解释
+short: JavaScript 开始的时候运行是缓慢的，但是拜 JIT 所赐，执行速度会越来越快。那么，JIT 是如何工作的
 src: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
 ---
 
@@ -135,17 +135,11 @@ JIT 解决这个问题的办法是创建多个基线 `stub`。如果一段代码
 
 {% include img.html src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/02-08-decision_tree01.png" title="Decision tree showing 4 type checks" %}
 
-Because each line of code has its own set of stubs in the baseline compiler, the JIT needs to keep checking the types each time the line of code is executed. So for each iteration through the loop, it will have to ask the same questions.
-
 由于每一行代码在基线编译器中有它自己的 stub，每次执行该行代码的时候，JIT 需要检查变量类型。因此，每次迭代的时候，都需要问一组相同的问题。
 
 {% include img.html src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/02-09-jit_loop02.png" title="Code looping with JIT asking what types are being used in each loop" %}
 
-The code would execute a lot faster if the JIT didn’t need to repeat those checks. And that’s one of the things the optimizing compiler does.
-
 如果 JIT 不反复询问，代码的执行速度将会提升。这就是优化编译器的存在的理由。
-
-In the optimizing compiler, the whole function is compiled together. The type checks are moved so that they happen before the loop.
 
 在优化编译器里，整个函数被一起编译。类型检查从中被删除，它们被移到循环执行之前。
 
