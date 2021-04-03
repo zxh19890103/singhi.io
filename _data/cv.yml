@@ -5,6 +5,7 @@ address: 中国广东深圳
 dateOfBirth: 1989/01/03
 placeOfBirth: 中国湖北黄冈
 nationality: 汉
+eduDegree: 本科
 profile:
   本人从事软件行业 8 年，其中 6+ 年的前端经验，高级前端开发。
   具有丰富的项目经验，曾经主导过 6 个以上大中型商业项目，
@@ -27,10 +28,11 @@ employments:
             为关键模块添加特性，如：购物车、分批发货、订单提交、发票核销、退换货；
             负责整个激励对账模块的设计与开发。
           highlights:
+            - 使用命令方式创建 Vue 弹窗组件，实现用户交易协议的签署功能，涉及多处调用
             - 购物车页面，通过使用 ES6 的 Map 对象对框架数据进行缓存以及插入拦截函数，节省了大约 50% 的 HTTP 请求开销
-            - 购物车和下单页面校验，基于 ES6 的 Promise，设计了 Reusable Promise 类，可在时间轴上持续返回数据，结合 async/await，以解耦业务逻辑，并使用 mixin 实现逻辑复用
+            - 购物车和下单页面校验，基于 ES6 的 Promise，实现了一个可多次使用的异步数据包装类，结合 async/await，以解耦业务逻辑，并使用 mixin 实现逻辑复用
             - 销售数据在达量刻度表上的动画展示，使用了 requestAnimationFrame 和 nextTick 函数，并做了区间线性计算
-            - 借 Vue 的 mixin 和 extends 特性，对激励对账模块进行逻辑抽象，带领 2 个前端同事，一周半完成列表、窗体的开发，包含 16 张页面
+            - 使用 Vue 的 mixin 和 extends 特性，对激励对账模块进行逻辑抽象，带领 2 个前端同事，一周半完成列表、窗体的开发，包含 16 张页面
 
         - name: Sentinel Dashboard 项目
           text: 隶属于平台公共服务项目，

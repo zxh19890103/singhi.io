@@ -136,7 +136,7 @@ $adBoxHeight: 1rem;
 		p {
 			word-break: break-word;
 			white-space: pre-wrap;
-			line-height: 1.875;
+			line-height: 1.4;
 			font-size: 18px;
 			@include ifmob() {
 				line-height: 1.4;
