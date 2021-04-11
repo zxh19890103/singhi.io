@@ -152,19 +152,12 @@ wasm 文件中，除了 `add42` 函数本身，还存起其它部分。他们被
 可选：
 
 - **Export**.  使得函数、内存、表、全局变量，能够被外部模块（wasm 和 js）访问。这样就允许分离编译并动态连接，这就是 WebAssembly 版本的 .dll
-
 - **Import**.  声明来自其它模块（wasm 或 js）的函数、内存、表和全局变量。
-
 - **Start**. 一个函数，在 WebAssembly 被加之后能够被自动执行，基本就像是 main 函数。
-
 - **Global**. 模块内的全局变量定义
-
 - **Memory**. 定义模块内存
-
 - **Table**.  与模块外的值映射，比如 javascript 的对象。这对于允许间接函数调用非常有用。
-
 - **Data**. 本地内存初始化
-
 - **Element**.  本地表的初始化
 
 对于更多的区块（sections），有一篇[文章](https://rsms.me/wasm-intro)进行了非常深入的阐述。
