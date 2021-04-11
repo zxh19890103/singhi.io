@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WebAssembly 系列 - 运行
-short: 要想理解 WebAssembly 是如何工作的，先去理解 assembly 是什么以及编译器是如何生成它的，会很有帮助
+short: WebAssembly 是除 JavaScript，另一种可以运行在 web 页面上的编程语言。过去，当你想运行一段代码，以与页面的其它部分交互，唯一的选择就是 JavaScript
 src: https://hacks.mozilla.org/2017/02/creating-and-working-with-webassembly-modules/
 ---
 
