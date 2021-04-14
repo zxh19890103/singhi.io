@@ -29,9 +29,8 @@ employments:
             负责整个激励对账模块的设计与开发。
           highlights:
             - 使用命令方式创建 Vue 弹窗组件，实现用户交易协议的签署功能，涉及多处调用
-            - 购物车页面，通过使用 ES6 的 Map 对象对框架数据进行缓存以及插入拦截函数，节省了大约 50% 的 HTTP 请求开销
+            - 购物车页面，通过使用 ES6 的 Map 对象对框架数据进行缓存，节省了重复的 HTTP 请求开销
             - 购物车和下单页面校验，基于 ES6 的 Promise，实现了一个可多次使用的异步数据包装类，结合 async/await，以解耦业务逻辑，并使用 mixin 实现逻辑复用
-            - 销售数据在达量刻度表上的动画展示，使用了 requestAnimationFrame 和 nextTick 函数，并做了区间线性计算
             - 使用 Vue 的 mixin 和 extends 特性，对激励对账模块进行逻辑抽象，带领 2 个前端同事，一周半完成列表、窗体的开发，包含 16 张页面
 
         - name: Sentinel Dashboard 项目
@@ -45,7 +44,7 @@ employments:
           highlights:
             - schema 解析：运用递归将非标准 schema 解析为标准 json schema，包括类型解析和结构解析，类型包括泛型、集合、对象以及基础类型
             - 镜面图：使用 G2 的 facet 特性，实现三条 QPS 曲线与 RT 曲线镜像显示，并实现了异步 Brush 功能，以渲染局部详细数据
-            - 借事件冒泡机制，实现 josdejong/jsoneditor 与 summerstyle/jsonTreeViewer 的交互
+            - 通过事件冒泡机制，实现 josdejong/jsoneditor 与 summerstyle/jsonTreeViewer 的交互
 
   - from: 2018/11
     to: 2020/01
@@ -65,8 +64,7 @@ employments:
           highlights:
             - 6 大模块，3 位前端开发，4 个月内完成基本的开发、测试工作
             - 通过对高性能消耗组件设计 View/Edit 模式与 Lazy Load，对复杂可编辑表格性能优化
-            - 借 TypeScript 的 interface & class，定义精确的数据类型，提炼老旧系统中模糊的业务逻辑
-            - 借 antd 的 Form.setFields，在非页面组件 render 的前提下，实现 B/S 数据实时同步
+            - 通过 TypeScript 的 interface & class，定义精确的数据类型，提炼老旧系统中模糊的业务逻辑
   - from: 2015/03
     to: 2018/09
     company: 大唐鸿业科技有限公司（大连）
