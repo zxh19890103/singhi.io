@@ -14,6 +14,15 @@ profile:
   具备 WEB 应用架构能力。
   对项目管理、代码规范、WEB PERF、CI/CD 有一定了解，
   可兼做后端开发和运维。
+  喜好英文翻译，翻译过 Dan Abramov 的两篇对于技术的感悟小品，
+  和 in-depth.dev 社区创始人 Max Koretskyi 的三篇关于 React 的深度长文。
+links:
+  - title: Goodbye, Clean Code
+    url: https://overreacted.io/goodbye-clean-code/
+  - title: How Does the Development Mode Work?
+    url:  https://overreacted.io/how-does-the-development-mode-work/
+  - title: Inside Fiber - in-depth overview of the new reconciliation algorithm in React
+    url: https://indepth.dev/posts/1008/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react
 employments:
   - from: 2020/01
     to: 现在
@@ -22,16 +31,15 @@ employments:
     description: 目前从事华为 BPIT CBGIT 部门的渠道产品相关的研发工作。
     works:
         - name: PMALL 商城
-          text: 系 Vue v2.0 项目，公司内部提供 xUI （类 Element UI）组件库，
+          text: B 端商城。系 Vue v2.0 项目，公司内部提供 xUI （类 Element UI）组件库，
             日期库采用 momentJs，卡片式架构，基于 webpack 打包；
             期间首次为该项目引入 TypeScript，为 Vue 扩展以及应用全局实体添加类型声明；
             为关键模块添加特性，如：购物车、分批发货、订单提交、发票核销、退换货；
             负责整个激励对账模块的设计与开发。
           highlights:
-            - 使用命令方式创建 Vue 弹窗组件，实现用户交易协议的签署功能，涉及多处调用
-            - 购物车页面，通过使用 ES6 的 Map 对象对框架数据进行缓存，节省了重复的 HTTP 请求开销
-            - 购物车和下单页面校验，基于 ES6 的 Promise，实现了一个可多次使用的异步数据包装类，结合 async/await，以解耦业务逻辑，并使用 mixin 实现逻辑复用
-            - 使用 Vue 的 mixin 和 extends 特性，对激励对账模块进行逻辑抽象，带领 2 个前端同事，一周半完成列表、窗体的开发，包含 16 张页面
+            - 引入 TypeScript 支持 、完善构建系统以支持卡片的批量打包
+            - 命令方式创建 Vue 弹窗组件，实现用户交易协议的签署功能，多处调用
+            - 对激励对账模块进行逻辑抽象， 与 2 个前端同事，一周半完成列表、窗体的开发，包含 16 张页面
 
         - name: Sentinel Dashboard 项目
           text: 隶属于平台公共服务项目，
@@ -40,11 +48,11 @@ employments:
             期间主要负责控制台应用的前端开发；
             实现了可编辑表格、镜面图功能、Brush 功能；Json 编辑、展示功能；
             Json-Schema 解析程序的设计与编码；
-            改良开发环境，支持了 ES6 特性、区别 Dev/Prod 模式。
+            主要模块包括：实时监控、接口近况、降级/流控规则、簇点链路、等。
           highlights:
-            - schema 解析：运用递归将非标准 schema 解析为标准 json schema，包括类型解析和结构解析，类型包括泛型、集合、对象以及基础类型
-            - 镜面图：使用 G2 的 facet 特性，实现三条 QPS 曲线与 RT 曲线镜像显示，并实现了异步 Brush 功能，以渲染局部详细数据
-            - 通过事件冒泡机制，实现 josdejong/jsoneditor 与 summerstyle/jsonTreeViewer 的交互
+            - 构建环境的改进，引入 babel、lazyLoad，分离三方库构建
+            - 基于 G2，实现 QPS 与 RT 曲线镜面展示以及异步 Brush 功能
+            - json schema 解析程序的设计、编码，以及实现 schema 与 value 的在界面上的读写交互
 
   - from: 2018/11
     to: 2020/01
@@ -56,15 +64,16 @@ employments:
     works:
         - name: 新药品进销存系统
           text: 用于诊所的药品库存管理以及配发药；
-            基于 React、react-router、Redux、Typescript、Apollo、less 实现；
-            在 React 应用与 Apollo 之间插入 DAO 层，以屏蔽 Apollo 数据结构的变动。
-            基于 antd 组件库封装业务组件，建立独立的 git 仓库管理源代码，
-            并以 submodule 机制实现其与主代码库的融合。
-            使用 editor config、prettier 以及 eslint，配置了一套编码规范。
+            基于 React、react-router、Redux、Typescript、apollo、less 实现；
+            在 React 应用与 apollo 之间插入转换层，屏蔽 Apollo 数据结构的变动。
+            基于 antd 组件库封装业务组件，独立 git 仓，使用 submodule 引入主项目仓。
+            基于 editor config、prettier 以及 eslint 配置一套编码规范。
+            主要模块包括：配发药、库存管理、药品管理、库存盘点等。
           highlights:
             - 6 大模块，3 位前端开发，4 个月内完成基本的开发、测试工作
-            - 通过对高性能消耗组件设计 View/Edit 模式与 Lazy Load，对复杂可编辑表格性能优化
-            - 通过 TypeScript 的 interface & class，定义精确的数据类型，提炼老旧系统中模糊的业务逻辑
+            - 业务模块级别的 chunk spliting
+            - 实现药品分类的数据清洗工具
+
   - from: 2015/03
     to: 2018/09
     company: 大唐鸿业科技有限公司（大连）
@@ -84,8 +93,6 @@ employments:
         - name: 菜鸟洗衣服务平台管理端
           text: 用于平台运营；基于 Angular5、PrimeNG、EggJs、PostgreSQL；
             对需求进行逻辑抽象并结合面向对象技术实现通用逻辑，对组件进行最细粒度地拆分以最大化代码的复用。
-          highlights:
-            - 一人一月完成开发
         - name: 菜鸟洗衣服务平台会员端
           text: 公众号项目，用于平台微信端用户下单等；
             基于 webpack + babel + express + ejs，自定义打包流程以更好适应项目；

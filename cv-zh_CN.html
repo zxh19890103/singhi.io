@@ -43,6 +43,11 @@ permalink: /cv-zh
     </h3>
     <div>
       {{model.profile}}
+      <ul>
+        {% for link in model.links %}
+        <li><a href="{{link.url}}">{{link.title}}</a></li>
+        {% endfor %}
+      </ul>
     </div>
   </section>
   <section class="cv__skills">
