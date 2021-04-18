@@ -14,7 +14,7 @@ profile:
   具备 WEB 应用架构能力。
   对项目管理、代码规范、WEB PERF、CI/CD 有一定了解，
   可兼做后端开发和运维。
-  喜好英文翻译，翻译过 Dan Abramov 的两篇对于技术的感悟小品，
+  喜好英文翻译，翻译过 Dan Abramov 的两篇技术小品，
   和 in-depth.dev 社区创始人 Max Koretskyi 的三篇关于 React 的深度长文。
 links:
   - title: Goodbye, Clean Code
@@ -50,7 +50,7 @@ employments:
             Json-Schema 解析程序的设计与编码；
             主要模块包括：实时监控、接口近况、降级/流控规则、簇点链路、等。
           highlights:
-            - 构建环境的改进，引入 babel、lazyLoad，分离三方库构建
+            - 构建环境的改进，引入 babel、lazyLoad，分离三方库
             - 基于 G2，实现 QPS 与 RT 曲线镜面展示以及异步 Brush 功能
             - json schema 解析程序的设计、编码，以及实现 schema 与 value 的在界面上的读写交互
 
