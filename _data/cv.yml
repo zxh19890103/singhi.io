@@ -31,7 +31,7 @@ employments:
     description: 目前从事华为 BPIT CBGIT 部门的渠道产品相关的研发工作。
     works:
         - name: PMALL 商城
-          text: B 端商城。系 Vue v2.0 项目，公司内部提供 xUI （类 Element UI）组件库，
+          text: toB 商城。系 Vue v2.0 项目，公司内部提供 xUI （类 Element UI）组件库，
             日期库采用 momentJs，卡片式架构，基于 webpack 打包；
             期间首次为该项目引入 TypeScript，为 Vue 扩展以及应用全局实体添加类型声明；
             为关键模块添加特性，如：购物车、分批发货、订单提交、发票核销、退换货；
@@ -40,6 +40,7 @@ employments:
             - 引入 TypeScript 支持 、完善构建系统以支持卡片的批量打包
             - 命令方式创建 Vue 弹窗组件，实现用户交易协议的签署功能，多处调用
             - 对激励对账模块进行逻辑抽象， 与 2 个前端同事，一周半完成列表、窗体的开发，包含 16 张页面
+            - 基于 REPL 和 readline 的卡片迁移脚手架
 
         - name: Sentinel Dashboard 项目
           text: 隶属于平台公共服务项目，
