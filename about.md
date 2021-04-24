@@ -49,8 +49,6 @@ title: 关于我
 
 ### 联系方式
 
-- 微信：zxh198964
-
 - 邮箱：zhangxinghai79@gmail.com
 
 - QQ：1210372315
