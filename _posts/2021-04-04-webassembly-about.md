@@ -52,7 +52,7 @@ src: https://hacks.mozilla.org/2017/02/a-crash-course-in-assembly/
 
 你想将其中一种高级编程语言翻译为某种 assembly 语言（对应不同的架构）。一种方式就是创造出全部的翻译器，以将任一种高级语言翻译为任一种 assembly 语言。
 
-{% include img.html src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/03-05-langs05.png" title="左侧是 C、C++、Rust ，右侧是 x86 架构与 ARM 架构下的 Assembly 语言，它们两两相连" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-04-webassembly-about/03-05-langs05.png" title="左侧是 C、C++、Rust ，右侧是 x86 架构与 ARM 架构下的 Assembly 语言，它们两两相连" %}
 
 这看上去非常的低效。为了解决这个问题，多数的编译器会在中间放置至少一个层。编译器会将高级编程语言翻译为某种不那么高级，但也并非能与机器码那般，能直接执行的东西。这个东西被称为中介码（IR）。
 
@@ -62,7 +62,7 @@ src: https://hacks.mozilla.org/2017/02/a-crash-course-in-assembly/
 
 编译器的前端将高级编程语言编为 IR，而后端编译器则将 IR 编译为目标架构的 assembly 码。
 
-{% include img.html src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/03-07-langs09.png" title="编译器前后端示意图" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-04-webassembly-about/03-07-langs09.png" title="编译器前后端示意图" %}
 
 ## 结论
 

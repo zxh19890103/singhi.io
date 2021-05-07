@@ -25,7 +25,7 @@ src: https://hacks.mozilla.org/2017/02/what-makes-webassembly-fast/
 Js 引擎用于执行这些任务所需花费的时间取决于页面使用的 Js 脚本逻辑。这张图并没有完整地展示出执行的各个阶段。相反，它只是宏观地说出了对于一个相同的函数，Js 和 WebAssembly 各自如何处理。
 </blockquote>
 
-{% include img.html src="https://hacks.mozilla.org/files/2017/02/05-01-diagram_now01-768x198.png" title="当前 JS 引擎处理任务涉及的 5 种内容" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-18-webassembly-why-so-fast/05-01-diagram_now01-768x198.png" title="当前 JS 引擎处理任务涉及的 5 种内容" %}
 
 每一条段展示了对应具体任务的耗时长短。
 
@@ -39,7 +39,7 @@ Js 引擎用于执行这些任务所需花费的时间取决于页面使用的 J
 
 这种方式使得早期的 JS 在体验方面有了较大改善，这个过程看起来像是这样：
 
-{% include img.html src="https://hacks.mozilla.org/files/2017/02/05-02-diagram_past01-768x225.png" title="过去的 JS 引擎，只涉及 3 种类型的工作，这要比现代的 JS 引擎消耗更多的时间" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-18-webassembly-why-so-fast/05-02-diagram_past01-768x225.png" title="过去的 JS 引擎，只涉及 3 种类型的工作，这要比现代的 JS 引擎消耗更多的时间" %}
 
 刚开始，只使用解释器来运行 JS。后来，JIT 出世了，Js 的执行速度又得到了大幅度的提升。
 
@@ -51,7 +51,7 @@ Js 引擎用于执行这些任务所需花费的时间取决于页面使用的 J
 
 相对传统 web 应用，基于 WebAssembly 的应用表现如何呢？ 这里有个粗略的估算。
 
-{% include img.html src="https://hacks.mozilla.org/files/2017/02/05-03-diagram_future01-768x328.png" title="处理 WebAssembly 涉及的 3 种类型的工作，时间比上图更短" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-18-webassembly-why-so-fast/05-03-diagram_future01-768x328.png" title="处理 WebAssembly 涉及的 3 种类型的工作，时间比上图更短" %}
 
 对于不同的浏览器，处理这些阶段的方式会稍稍不同。这里使用 SpiderMonkey 作为我们的模型。
 
@@ -71,7 +71,7 @@ Js 引擎用于执行这些任务所需花费的时间取决于页面使用的 J
 
 相较之下，WebAssembly 不需要这步转换，因为它已经是 IR 语言。它只需被解码，然后校验一下以确保没有什么错误。
 
-{% include img.html src="https://hacks.mozilla.org/files/2017/02/05-04-diagram_compare02-768x259.png" title="当前 JS 引擎解析耗时比 WebAssembly 的解码耗时要长" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-18-webassembly-why-so-fast/05-04-diagram_compare02-768x259.png" title="当前 JS 引擎解析耗时比 WebAssembly 的解码耗时要长" %}
 
 #### 编译 + 优化
 
@@ -85,7 +85,7 @@ Js 引擎用于执行这些任务所需花费的时间取决于页面使用的 J
 2. 编译器不必对一段代码，基于发现的类型，生成多编译结果
 3. LLVM 事先已经做了大量的优化。因此，后续的编译和优化工作相对要少一些
 
-{% include img.html src="https://hacks.mozilla.org/files/2017/02/05-05-diagram_compare03-768x269.png" title="比较编译和优化，WebAssembly 更快" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-18-webassembly-why-so-fast/05-05-diagram_compare03-768x269.png" title="比较编译和优化，WebAssembly 更快" %}
 
 #### 再优化
 
@@ -97,7 +97,7 @@ Js 引擎用于执行这些任务所需花费的时间取决于页面使用的 J
 
 在 WebAssembly，像类型这种东西是显式的，因此 JIT 不需要在运行阶段花时间去做假设。这样就不必进入再优化的循环中。
 
-{% include img.html src="https://hacks.mozilla.org/files/2017/02/05-06-diagram_compare04-768x309.png" title="JS 中的再优化，对于 WebAssembly 是不存在的" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-18-webassembly-why-so-fast/05-06-diagram_compare04-768x309.png" title="JS 中的再优化，对于 WebAssembly 是不存在的" %}
 
 #### 执行
 
@@ -113,7 +113,7 @@ Js 引擎用于执行这些任务所需花费的时间取决于页面使用的 J
 
 由于我们人类不会直接手写 WebAssembly 代码，WebAssembly 提供了一套对机器来说非常理想的指令集。基于代码所要做的工作，这些指令在任何地方运行都能将速度提升 10% 到 800%。
 
-{% include img.html src="https://hacks.mozilla.org/files/2017/02/05-07-diagram_compare05-768x263.png" title="对比执行，WebAssembly 更快" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-18-webassembly-why-so-fast/05-07-diagram_compare05-768x263.png" title="对比执行，WebAssembly 更快" %}
 
 #### 垃圾回收
 
@@ -123,7 +123,7 @@ Js 引擎用于执行这些任务所需花费的时间取决于页面使用的 J
 
 至少现在（2017年），WebAssembly 仍然对于垃圾回收不理不睬。内存需要你自己去管理的（就像使用 C 或者 C++ 语言时那样）。在令开发者难于编码的同时，这也使得性能得到了提高。
 
-{% include img.html src="https://hacks.mozilla.org/files/2017/02/05-08-diagram_compare06-768x314.png" title="JS 中的垃圾回收，对于 WebAssembly 也是不存在的" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-18-webassembly-why-so-fast/05-08-diagram_compare06-768x314.png" title="JS 中的垃圾回收，对于 WebAssembly 也是不存在的" %}
 
 #### 结论
 

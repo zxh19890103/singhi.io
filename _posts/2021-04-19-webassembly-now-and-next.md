@@ -9,7 +9,7 @@ src: https://hacks.mozilla.org/2017/02/where-is-webassembly-now-and-whats-next/
 
 今年（2017 年）二月28日，4 大浏览器一致表示他们已经完成了针对 WebAssembly 的 MVP [版本](https://lists.w3.org/Archives/Public/public-webassembly/2017Feb/0002.html) 的发布。这意味着浏览器已经基本可以承载 WebAssembly 的基本功能。
 
-{% include img.html src="https://hacks.mozilla.org/files/2017/02/logo_party01-500x169.png" title="当代浏览器携手共进" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-19-webassembly-now-and-next/logo_party01-500x169.png" title="当代浏览器携手共进" %}
 
 这提供了一个浏览器可承载的稳定内核。这个内核并非包含了社区计划的全部的特性，但那也是够快、够用了。
 
@@ -25,7 +25,7 @@ src: https://hacks.mozilla.org/2017/02/where-is-webassembly-now-and-whats-next/
 
 目前，在 JS 代码里调用一个 WebAssembly 函数比它理所应当的要慢。因为，这里面需要做一些额外的事情，它被称为 trampolining（蹦床）。JIT 不知道如何直接操作 WebAssembly，因此，我们需要将 WebAssembly 路由过去。相关的引擎（就是用于启动和运行优化后的 WebAssembly 代码的那个）在执行这个动作的时候非常缓慢。
 
-{% include img.html src="https://hacks.mozilla.org/files/2017/02/06-02-trampoline01-768x613.png" title="Person jumping from JS on to a trampoline setup function to get to WebAssembly" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-19-webassembly-now-and-next/06-02-trampoline01-768x613.png" title="Person jumping from JS on to a trampoline setup function to get to WebAssembly" %}
 
 如果 JIT 知道如何直接处理 WebAssembly，我们的速度将提高 100 倍。
 
@@ -61,7 +61,7 @@ element.innerHTML = `...`
 
 相反，你必须通过 Js 来处理。这就是说你需要将值传回到 JavaScript 的调用者。另外一方面，这也意味着，在 WebAssembly 调用 JS 函数（无论 JS 函数或 WebAssembly 函数），可以借助 WebAssembly 模块中的 imports 指令。
 
-{% include img.html  src="https://hacks.mozilla.org/files/2017/02/06-03-dom01-768x642.png" title="在 WebAssembly 程序中，人们必须通过 Js 来访问 DOM"%}
+{% include img.html  src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-19-webassembly-now-and-next/06-03-dom01-768x642.png" title="在 WebAssembly 程序中，人们必须通过 Js 来访问 DOM"%}
 
 不管哪种方式，看起来，经由 JavaScript 比直接操作显得要慢。有些 WebAssembly 应用可能会在 DOM 处理期间挂起。
 

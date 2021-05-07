@@ -6,13 +6,13 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 ### 三角肌
 
-{% include img.html src="http://www.xjishu.com/img/yytu/rt/2532-121226145K7.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/2532-121226145K7.jpg" %}
 
 三角肌，俗称“虎头肌”，因为它的形状凸出上臂，酷似虎头，而且发达的三角肌体积比较大，显得很威猛，是男性肌肉发达的显著表现，所以它也是力量的象征。练好三角肌，可以增加肩部宽度。
 
 #### 前束前平举
 
-{% include img.html src="http://www.fitsns.cn/images/project/jianbu/221/movie.gif" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/movie.gif" %}
 
 起始姿势：两腿直立，挺胸收腹。两手正握哑玲或杠铃，两臂下垂于腿前。
 
@@ -22,7 +22,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 中束侧平举
 
-{% include img.html src="http://fitsns.cn/images/project/jianbu/200/movie.gif" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/movie.gif" %}
 
 起始姿势：两脚自然开立，两手握哑铃，下垂于身体两侧。
 
@@ -34,7 +34,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 中束侧平拉
 
-{% include img.html src="http://www.fitsns.cn/images/project/jianbu/195/movie.gif" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/movie.gif" %}
 
 起始姿势：全身直立，一脚踩套住拉力器的一个握柄或胶皮条的一端。另一手插按在腰间。
 
@@ -46,7 +46,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 俯身侧平举
 
-{% include img.html src="https://52op.net/upload/2014/12/Title2153726164.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/Title2153726164.jpg" %}
 
 起始姿势：两足开立，向前屈体90度，两手握哑铃，两臂直垂肩下。
 
@@ -58,7 +58,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 后束直立推举
 
-{% include img.html src="https://www.jianshen8.com/uploads/allimg/150422/4_150422180807_1.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/4_150422180807_1.jpg" %}
 
 起始姿势：把杠铃从地面上拉到胸上，全身直立。
 
@@ -70,7 +70,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 ### 肱二头肌
 
-{% include img.html src="http://pic.baike.soso.com/p/20140320/20140320104500-1357747573.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/20140320104500-1357747573.jpg" %}
 
 肱二头肌（Musculus biceps brachii）位于上臂前侧，整肌呈梭形。肱二头肌有长、短二头，故名。肱（gōng）二头肌（Musculus biceps brachii）属于骨骼肌三大肌群中的四肢肌。
 
@@ -110,7 +110,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 哑铃弯举
 
-{% include img.html src="http://www.fitsns.cn/images/project/shangzhi/78/movie.gif" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/movie.gif" %}
 
 哑铃弯举之所以成为锻炼肱二头肌的理想练习，是因为它们通常是交替进行，允许每个胳膊有更多的恢复时间，使你能采用尽可能大的训练重量。
 
@@ -118,7 +118,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 斜板弯举
 
-{% include img.html src="http://www.easthulk.com/wp-content/uploads/2017/07/reverse-preacher-curls.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/reverse-preacher-curls.jpg" %}
 
 确保在每次肱二头肌训练中都包括斜板弯举，这个动作能提供其它姿势无法做到的借力与孤立的组合。在肘关节被支撑的情况下，它是个借力练习，但由于肩膀也被支撑着，故它又是个孤立练习。我喜欢从两个不同的角度来做斜板弯举，当垫子保持倾斜时，我借助垫子的支撑，后拉身体以产生更多杠杆作用；当垫子垂直时，手臂笔直向下，杠杆作用减小，可迫使 [1] 更孤立地做练习。
 
@@ -126,7 +126,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 杠铃弯举
 
-{% include img.html src="http://www.fitsns.cn/images/project/shangzhi/95/movie.gif" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/movie.gif" %}
 
 前面曾说过，不得在超级组训练中采用杠铃弯举。但这并不意味着永远不用这个动作，恰恰相反，任何肱二头肌增长训练都离不开它、因为没有其他办法能促使肱二头肌及其附属肌群最大限度地增长。每个肌群都至少需要一个复合练习。 
 
@@ -142,7 +142,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 ### 胸肌
 
-{% include img.html src="http://ht.changsha.cn/upload/docnews/5137/20130720/5137_1374326897.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/5137_1374326897.jpg" %}
 
 胸肌就是胸部的肌肉，由左右两部分构成，又称胸大肌。胸大肌（pectoralis major）通常称为胸肌，成扇型。位于胸廓的前上部，起自锁骨内侧半，胸骨和第1~6肋软骨，肌束向外侧集中，止于肱骨大结节嵴。
 
@@ -150,7 +150,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 一般方法
 
-{% include img.html src="https://cn.bing.com/th?id=OIP.m3IyC4Ug2ysH9E-v8qq7_QHaKa&pid=Api&rs=1" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/th?id=OIP.m3IyC4Ug2ysH9E-v8qq7_QHaKa&pid=Api&rs=1" %}
 
 `仰卧推举`是发达胸肌最常见也是最有效的方法之一。卧推因体姿不同，又分为平卧推举、上斜推举和下斜推举。卧推所用的器械主要是`杠铃`和`哑铃`。做`杠铃卧推`是最好配一个`承接横杠`的`卧推架`。
 
@@ -172,37 +172,37 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 ### 腹肌
 
-{% include img.html src="https://member.healthyd.com/attachment/201308/17/2699_1376704289YL7Y.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/2699_1376704289YL7Y.jpg" %}
 
 腹肌是人体结缔组织组成中的重要部分，包括腹直肌、腹外斜肌，腹内斜肌和腹横肌。当它们收缩时，可以使躯干弯曲及旋转，并可以防止骨盆前倾。腹部肌肉对于腰椎的活动和稳定性也有相当重要的作用，还可以控制骨盆与脊柱的活动。软弱无力的腹肌可能导致骨盆前倾和腰椎生理弯曲增加，并增加腰背痛的几率。
 
 #### 空中蹬车
 
-{% include img.html src="http://p.jingyanben.com/0330/898fdac5bb129.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/898fdac5bb129.jpg" %}
 
 仰卧在`地板`上，下背部紧贴地面。双手放在头侧，手臂打开。将腿抬起，缓慢进行`登自行车`的动作。呼气，抬起上体，用右肘关节触碰左膝，保持姿势2秒钟，然后还原。再用左肘关节触碰右膝，同样保持2秒钟，然后慢慢回到开始姿势。
 
 #### 健身球卷腹
 
-{% include img.html src="https://cdntwrunning.biji.co/0805627ff98f2249a9b88f105cf9db19.gif" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/0805627ff98f2249a9b88f105cf9db19.gif" %}
 
 平躺在健身球上，双脚平放地上，双手放在头侧，手臂打开。下颏向胸前微收，呼气，收缩腹肌抬起上身约45度，保持2秒钟，然后慢慢回到开始姿势。为了保持平衡，两脚可以多分开些。如果增加难度，可以将双脚并起来做。
 
 #### 举腿卷腹
 
-{% include img.html src="https://pic.38fan.com/allimg/180122/64-1P122152S20-L.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/64-1P122152S20-L.jpg" %}
 
 仰卧在地板上，下背部紧贴地面。双手放在头侧，手臂打开。双腿抬起与上身呈90度，双腿交叉，膝关节微屈。呼气，收缩腹肌，抬起上身，下背部不能离地，保持2秒钟，然后慢慢回到开始姿势。要注意保持下颏向胸前微收。
 
 #### 负重卷腹
 
-{% include img.html src="http://photocdn.sohu.com/20150908/mp30918182_1441644992241_3_th_fv23.jpeg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/mp30918182_1441644992241_3_th_fv23.jpeg" %}
 
 首先调整下拉配重。龙门架支点调至最高位。双膝跪于龙门架平面一侧，膝盖距龙门架底座60-100cm,以头部不碰撞龙门架为准。双手紧握绳索拉把置于头后，保持双臂及腿部姿势固定，含胸、呼气同时收缩腹肌下拉，保持2秒钟抬起上身，然后慢慢回到开始姿势，重复。
 
 #### 反向卷腹
 
-{% include img.html src="https://pic.38fan.com/allimg/180122/64-1P122152S20-L.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/64-1P122152S20-L.jpg" %}
 
 仰卧在地板上，下背部紧贴地面，双手放在身躯两侧，双腿抬起与上身呈90度，双腿交叉，膝关节微屈。收紧腹部肌肉，然后呼气略微抬起臀部，下背部略微离地，保持2秒钟，然后慢慢回到开始姿势。
 
@@ -218,7 +218,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 仰卧起坐
 
-{% include img.html src="http://guangdong.sinaimg.cn/2014/1211/U10895P693DT20141211144717.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/U10895P693DT20141211144717.jpg" %}
 
 一旦这个动作对你开始变得简单，尝试增加难度，进行胸部负重仰卧起坐。
 
@@ -230,13 +230,13 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 两头起坐
 
-{% include img.html src="https://www.tinengwang.com/FileUpload/2016/07/1501/srm0wl3qdyj.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/srm0wl3qdyj.jpg" %}
 
 平卧在瑜伽垫上，做起坐运动，同时双脚抬起，用手触碰脚尖，坚持5分钟左右。
 
 #### 双腿抬高
 
-{% include img.html src="https://www.jianshen8.com/uploads/allimg/160330/4_160330104148_1.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/4_160330104148_1.jpg" %}
 
 仰卧在瑜伽垫上，同时双腿伸直抬高，再慢慢落下。每次3~5分钟。
 

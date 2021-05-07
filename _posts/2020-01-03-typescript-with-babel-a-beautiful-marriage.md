@@ -45,7 +45,7 @@ tags:
 
 Babel 使用 [compat-table](https://kangax.github.io/compat-table/) 来判断哪些 JavaScript 特性需要去“转”或“polyfill”，以满足其“目标环境”的需要。
 
-{% include img.html src="https://iamturns.com/static/compat-table-4011bf23893b052a3c08c9a89da0548e-44611.png" title="Take a moment to appreciate the genius who named this project ‘compat-table’." %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2020-01-03-typescript-with-babel-a-beautiful-marriage/compat-table-4011bf23893b052a3c08c9a89da0548e-44611.png" title="Take a moment to appreciate the genius who named this project ‘compat-table’." %}
 
 `create-react-app`使用了一个有趣的技巧：为了**速度**，在开发时以“最新的浏览器”为目标环境进行编译；为了**兼容**，切换为以“范围更广的浏览器”为目标环境，漂亮！
 
@@ -55,7 +55,7 @@ Babel 使用 [compat-table](https://kangax.github.io/compat-table/) 来判断哪
 
 但是请注意，如果您使用的插件大幅修改了语法，那么 TypeScript 可能无法做解析工作了。举个例子，极有可能通过标准的[“可选链特性”](https://github.com/tc39/proposal-optional-chaining)存在一个对应的插件：
 
-{% include img.html src="https://iamturns.com/static/optional-chaining-4e8453e2d02f36a6771957310609d1c5-605fa.png" title="@babel/plugin-proposal-optional-chaining" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2020-01-03-typescript-with-babel-a-beautiful-marriage/optional-chaining-4e8453e2d02f36a6771957310609d1c5-605fa.png" title="@babel/plugin-proposal-optional-chaining" %}
 
 但是不幸，TypeScript 不能理解这个语法。
 
@@ -106,7 +106,7 @@ TypeScript 有它自己的编译器，它提供了叫人称奇的超级强悍的
 
 啊——，不！这就是很多人感到非常恼火的地方，并且终于将 TypeScript 扔到 “太难使用” 的篮子里。我并不责怪他们。😄
 
-{% include img.html src="https://iamturns.com/static/simply-configure-typescript-1933ffec04eb2221fd05695a070016a5-27dc3.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2020-01-03-typescript-with-babel-a-beautiful-marriage/simply-configure-typescript-1933ffec04eb2221fd05695a070016a5-27dc3.jpg" %}
 
 **2. 明媚的日子（Babel 7 以来）**
 
@@ -116,7 +116,7 @@ TypeScript 有它自己的编译器，它提供了叫人称奇的超级强悍的
 
 这也将简化整个 Javascipt 生态。我们使用的 linter、test runners、构建系统以及配置样本从此不再依赖两个编译器，它们只需支持 Babel 就可以了。从此，你只需专心配置 Babel 就足够；从此，你将告别 [ts-node](https://github.com/TypeStrong/ts-node)、[ts-jest](https://github.com/kulshekhar/ts-jest)、[ts-karma](https://github.com/monounity/karma-typescript)、[create-react-app-typescript](https://github.com/wmonk/create-react-app-typescript)、等等，转而使用那些对 Babel 的集成组件。如今，对 Babel 的集成组件有很多，您可以去看看 [Babel setup](https://babeljs.io/en/setup) 这个文档：
 
-{% include img.html src="https://iamturns.com/static/babel-support-83d89cdf00af707da859a373ff56dbf5-30759.png" title="Babel has you covered." %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2020-01-03-typescript-with-babel-a-beautiful-marriage/babel-support-83d89cdf00af707da859a373ff56dbf5-30759.png" title="Babel has you covered." %}
 
 #### 更快的编译速度
 
@@ -175,7 +175,7 @@ Babel 是如何处理 TypeScript 代码的呢？回答是：去除它们！
 
 ### 试一下 TypeScript + Babel 新组合
 
-{% include img.html src="https://iamturns.com/static/yeah-6e69b732a6647969c78b6249f42ca636-e24d6.jpg" title="Photo by rawpixel.com" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2020-01-03-typescript-with-babel-a-beautiful-marriage/yeah-6e69b732a6647969c78b6249f42ca636-e24d6.jpg" title="Photo by rawpixel.com" %}
 
 让我们开始动手，这大概需要 10 分钟的时间。
 
@@ -275,7 +275,7 @@ npm install --save-dev typescript
 
 ### Babel + TypeScript = 一场完美的婚姻
 
-{% include img.html src="https://iamturns.com/static/love-6816a7c4005415586f0da1a9fea5407b-e24d6.jpg" title="Photo by Akshar Dave" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2020-01-03-typescript-with-babel-a-beautiful-marriage/love-6816a7c4005415586f0da1a9fea5407b-e24d6.jpg" title="Photo by Akshar Dave" %}
 
 编译器，你仅需 Babel，通过配置，它能处理任何事情。
 
@@ -287,7 +287,7 @@ Babel 和 TypeScript 的组合使编译速度变得快如闪电，并且在连�
 
 根据 Stack Overflow 最近针对开发者的调查统计，Js 是最流行的编程语言，TypeScript 排在第 12 位。这对于 TypeScript 是巨大的成就，它超过了 Ruby、Swift 和 Go。
 
-{% include img.html src="https://iamturns.com/static/dev-survey-7e7416c3e24796eb8de66d34164a8777-5afb1.png" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2020-01-03-typescript-with-babel-a-beautiful-marriage/dev-survey-7e7416c3e24796eb8de66d34164a8777-5afb1.png" %}
 
 我预测 TypeScript 将在接下来的一年里（译者：指 2020 年）进入前 10 名。
 

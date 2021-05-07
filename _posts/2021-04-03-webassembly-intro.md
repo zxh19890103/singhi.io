@@ -25,13 +25,12 @@ JavaScript 创建于 1995 年。它最初设计的时候，并不考虑速度，
 
 这些 JIT 的引入，使得 JS 在性能上产生了重大转折。执行 JS 的速度较先前提高了十倍不止。
 
-{% include img.html src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/01-01-perf_graph05.png" title="JS 性能转折点出现在 2008" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-03-webassembly-intro/01-01-perf_graph05.png" title="JS 性能转折点出现在 2008" %}
 
 有了这些性能提升，JavaScript 开始用于一些之前所不能指望的场景，比如，Node.js 代表的服务端编程。性能提升也使得 JavaScript 处理全部新型问题变得现实。
 
 鉴于 WebAssembly 的出现，我们可能处在另一个转折点。
 
-{% include img.html src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/01-02-perf_graph10.png" title="也许，2017 年是另一个性能转折点" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-03-webassembly-intro/01-02-perf_graph10.png" title="也许，2017 年是另一个性能转折点" %}
 
 那么，让我们深入研究下到底是什么让 WebAssembly 如此的快。
-

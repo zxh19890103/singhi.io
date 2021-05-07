@@ -32,11 +32,11 @@ JavaScript 开始的时候运行是缓慢的，但是拜 JIT 所赐，执行速�
 
 使用解释器，翻译的过程完全就是一行一行的，并且在程序运行的同时进行。
 
-{% include img.html src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/02-02-interp02.png" title="A person standing in front of a whiteboard, translating source code to binary as they go" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-03-webassembly-jit/02-02-interp02.png" title="A person standing in front of a whiteboard, translating source code to binary as they go" %}
 
 编译器则不同，它不会在程序运行的时候做翻译。它需要在一开始就做完翻译，然后写下翻译的结果。
 
-{% include img.html src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/02-03-compile02.png" title="A person holding up a page of translated binary" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-03-webassembly-jit/02-03-compile02.png" title="A person holding up a page of translated binary" %}
 
 以上二者所持的翻译方式各有利弊。
 
@@ -133,7 +133,7 @@ JIT 解决这个问题的办法是创建多个基线 `stub`。如果一段代码
 
 这意味着，JIT 选择 `stub` 的时候会进行多次询问。
 
-{% include img.html src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/02-08-decision_tree01.png" title="Decision tree showing 4 type checks" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-03-webassembly-jit/02-08-decision_tree01.png" title="Decision tree showing 4 type checks" %}
 
 由于每一行代码在基线编译器中有它自己的 stub，每次执行该行代码的时候，JIT 需要检查变量类型。因此，每次迭代的时候，都需要问一组相同的问题。
 

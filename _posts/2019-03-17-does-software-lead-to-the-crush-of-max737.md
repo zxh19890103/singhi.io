@@ -23,7 +23,7 @@ src: https://www.infoq.cn/article/hvlAb1e*RCQKavmv5FLN
 
 这个自动控制下压机头的系统，名叫 MCAS，意为自动纠正失速系统。波音 737 MAX 在设计上配备了更粗大更省油的发动机，而这也使得飞机容易在大迎角飞行失速。为此，波音设计师就为 737 MAX 开发了 MCAS。这是波音 737 MAX 的一种操纵辅助系统，其设计初衷是，如果机身上的传感器检测到高速失速的情况，即使在没有飞行员输入信号的情况下，该系统将强制将飞机的机头向下推。
 
-{% include img.html src="https://static001.geekbang.org/resource/image/98/41/985eb471464403837d6375da0b3f1841.jpeg" title="波音737 Max 机动特性增强系统（MCAS）" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2019-03-17-does-software-lead-to-the-crush-of-max737/985eb471464403837d6375da0b3f1841.jpeg" title="波音737 Max 机动特性增强系统（MCAS）" %}
 
 但在狮航空难事件中，该系统接收到了错误数据，导致飞机在正常情况下开始不断下压机头，飞行员在 11 分钟内连续手动拉升 20 余次终告失败，坠海罹难。
 

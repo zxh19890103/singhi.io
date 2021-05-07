@@ -131,7 +131,7 @@ if (false) {
 
 在过去的两年，这种状况得到极大改善。例如，webpack 添加了一个方便的 mode 选项，以替代之前对 process.env.NODE_ENV 的手动配置。 React DevTools 现在也会在开发模式下将图标显示为红色，以使更加显眼、甚至用于做相关报告。
 
-{% include img.html src="https://overreacted.io/static/ca1c0db064f73cc5c8e21ad605eaba26/d9514/devmode.png" title="Development mode warning in React DevTools" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2019-08-11-how-does-the-development-mode-work/devmode.png" title="Development mode warning in React DevTools" %}
 
 ```sh
 Development mode warning in React DevTools
@@ -226,4 +226,3 @@ react.production.min.js 和 react.development.js 二者都不会再有基于 pro
 区分 development 和 production 模式是一种非常重要的技术。我建议在你的开发库、应用的时候使用这样的技术，以进行那些于生产环境不值而在开发环境却非常值得（通常非常重要、必要）的环境检测。
 
 至于一些强大的特性，你可能某种程度上错用了它们。这将是下一篇的话题！
-

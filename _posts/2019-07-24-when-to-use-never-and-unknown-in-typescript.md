@@ -8,7 +8,7 @@ tags:
   - Translation
 ---
 
-{% include img.html src="https://camo.githubusercontent.com/c36a90ad59f2e7472254f1e6d972a288156b5d89/68747470733a2f2f69322e77702e636f6d2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f313630302f312a5f776837502d6a6448326f39784867466931627162772e706e673f726573697a653d31383138253243313039302673736c3d31" title="Philadelphia's Magic Gardens. This place was so cool!" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2019-07-24-when-to-use-never-and-unknown-in-typescript/68747470733a2f2f69322e77702e636f6d2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f313630302f312a5f776837502d6a6448326f39784867466931627162772e706e673f726573697a653d31383138253243313039302673736c3d31" title="Philadelphia's Magic Gardens. This place was so cool!" %}
 
 TypeScript 在版本 2.0 和 3.0 分别引入了 “never” 和 “unknown” 两个基本类型。这完善了 TS 类型系统的基础性和全面性。TypeScript 严格遵循了类型设计原则；同时，它也是一门实用主义语言，它引入的每一个特性都有其实际用途，这包括 `never` 和 `unknown`。欲准确理解这些特性的用法，我们首先要问“究竟什么是类型？”。
 
@@ -18,13 +18,13 @@ TypeScript 在版本 2.0 和 3.0 分别引入了 “never” 和 “unknown” �
 
 Typescript 对基本类型的设计执念于集合理论，此外，它还有并集（union）和 交集（intersection）等高级类型。类型 `string | number` 就是一个 “union” 类型，因为它表达的是全部字符串的集合与全部数值集合的合并。
 
-{% include img.html src="https://camo.githubusercontent.com/53703ae4a59c0d54804468504f27f479a7187927/68747470733a2f2f69302e77702e636f6d2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f313630302f312a5a55534a704f4f537471545276435a384775637853772e706e673f7a6f6f6d3d3226726573697a653d3733302532433433362673736c3d31" title="Philadelphia's Magic Gardens. This place was so cool!" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2019-07-24-when-to-use-never-and-unknown-in-typescript/68747470733a2f2f69302e77702e636f6d2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f313630302f312a5a55534a704f4f537471545276435a384775637853772e706e673f7a6f6f6d3d3226726573697a653d3733302532433433362673736c3d31" title="Philadelphia's Magic Gardens. This place was so cool!" %}
 
 因为 `string | number` 包含了全部的 `string` 和 全部的 `number`，故它是类型 `string` 和 `number` 的超级类型（supertype）。
 
 `unknown` 是某些值的集合，任何值都能冠以类型 `unknown`。这意味着 `unknown` 是一切类型的超级类型（supertype）。这就是为什么 `unknown` 被称为顶端类型。
 
-{% include img.html src="https://camo.githubusercontent.com/dea95e0ecebe93e6492bb0e5c2e635d5841b9ec3/68747470733a2f2f69312e77702e636f6d2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f313630302f312a5330595a785f3064466541767032754232384d7468412e706e673f7a6f6f6d3d3226726573697a653d3733302532433533362673736c3d31" title="Philadelphia's Magic Gardens. This place was so cool!" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2019-07-24-when-to-use-never-and-unknown-in-typescript/68747470733a2f2f69312e77702e636f6d2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f313630302f312a5330595a785f3064466541767032754232384d7468412e706e673f7a6f6f6d3d3226726573697a653d3733302532433533362673736c3d31" title="Philadelphia's Magic Gardens. This place was so cool!" %}
 
 集合（或曰类型，可视作同义词）`unknown` 包含了一切其它集合。
 
@@ -184,4 +184,3 @@ Object is of type “unknown”
 - 除非你有意忽略类型检查，不要使用 `any`
 
 总之，你应该尽量使用具体的类型。`never` 是最具体的类型，因为没有哪个集合比空集合更小了；而 `unknown` 是最弱的类型，因为它包含了全部可能的值。`any` 则不为集合，它破坏了类型检查，因此请尽量不要使用 `any`！
-

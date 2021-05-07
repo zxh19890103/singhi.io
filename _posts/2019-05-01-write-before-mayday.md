@@ -7,7 +7,7 @@ tags:
   - 随感
 ---
 
-{% include img.html src="http://img1.juimg.com/160630/355843-1606301JK275.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2019-05-01-write-before-mayday/355843-1606301JK275.jpg" %}
 
 时间过得真快，来深圳已经快半年了。
 

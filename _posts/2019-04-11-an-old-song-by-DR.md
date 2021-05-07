@@ -7,7 +7,7 @@ tags:
   - 戴娆
 ---
 
-{% include img.html src="https://uploadfile.bizhizu.cn/2014/1201/20141201022315425.jpg.source.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2019-04-11-an-old-song-by-DR/20141201022315425.jpg.source.jpg" %}
 
 <audio style="margin: 1rem auto; width: 100%; border-radius: none; outline: none;" src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/%E6%88%B4%E5%A8%86%20-%20%E6%80%9D%E7%BB%AA%E5%A6%82%E6%BD%AE.mp3" controls="controls">
 您的浏览器不支持 audio 标签</audio>
