@@ -2,6 +2,10 @@ const fs = require("fs")
 const path = require("path")
 const readline = require("readline")
 const OSS = require("ali-oss")
+const http = require("http")
+const https = require("https")
+
+const logger = fs.createWriteStream("./log.txt", { encoding: "utf-8", flags: "a+" })
 
 /**
  * {% include img.html src="https://hacks.mozilla.org/files/2017/02/logo_party01-500x169.png" title="当代浏览器携手共进" %}
@@ -20,60 +24,101 @@ const xImgURLOfLine = (line) => {
 
 /**
  * @param {string} url
- * @returns {Promise<Buffer>}
+ * @returns {Promise<http.IncomingMessage>}
  */
 const download = (url) => {
-  console.log("download", url)
-  return Promise.resolve(null)
+  let _http
+  if (url.startsWith("https")) {
+    _http = https
+  } else {
+    _http = http
+  }
+  return new Promise(resolve => {
+    console.log("downloading...")
+    _http.get(
+      url,
+      resolve
+    )
+  })
 }
 
 /**
- * @param {Buffer} buffer
+ * @param {http.IncomingMessage} incomingMsg
  * @param {string} resName
- * @returns {string}
+ * @returns {Promise<string>}
  */
-const uploadToOSS = async (buffer, resName) => {
+const uploadToOSS = async (incomingMsg, resName) => {
   // http://zxh1989.oss-cn-qingdao.aliyuncs.com/20190419/184758_15199.png
+  // http://zxh1989.oss-cn-qingdao.aliyuncs.com/2021-04-03-webassembly-intro/01-01-perf_graph05.png
   const name = path.basename(nameOfPost, path.extname(nameOfPost))
   const filename = `${name}/${resName}`
-  return filename
+  console.log("uploading...")
+  return ossClient.putStream(
+    filename,
+    incomingMsg
+  ).then(res => {
+    console.log("uploaded...")
+    return filename
+  })
+}
+
+const circle = async () => {
+
+  if (URLs.length === 0) {
+    console.log("no images, skip")
+    next()
+    return
+  }
+
+  const { url, lineno } = URLs.shift()
+  const resName = path.basename(url)
+  try {
+    const incomingMsg = await download(url)
+    const ossUrl = await uploadToOSS(incomingMsg, resName)
+    REPLACE_MAP[url] = ossUrl
+
+    lines[lineno] = lines[lineno].replace(url, `//zxh1989.oss-cn-qingdao.aliyuncs.com/${ossUrl}`)
+
+  } catch (ex) {
+    logger.write("err:", nameOfPost, lineno, url)
+  } finally {
+    if (URLs.length === 0) {
+      console.log("circle over")
+      running = false
+      const entries = Object.entries(REPLACE_MAP)
+      if (entries.length === 0) {
+        console.log("no third-party images")
+      } else {
+        fs.writeFileSync(
+          POSTS_DIR + "/" + nameOfPost,
+          lines.join("\n")
+        )
+        console.log("modified")
+      }
+
+      next()
+      return
+    }
+    circle()
+  }
 }
 
 /**
  * @param {string} url
- * @returns {void}
+ * @returns {boolean}
  */
-const enqueue = (url) => {
-  if (url === null) return
-  URLs.push(url)
-  if (running) {
-    return
-  }
-  // restart Or start
-  running = true
-  circle()
+const isOssAsset = (url) => {
+  return url && url.indexOf(".aliyuncs.com") > -1
 }
 
-const circle = async () => {
-  const url = URLs.shift()
-  const resName = path.basename(url)
-  const buf = await download(url)
-  const ossUrl = await uploadToOSS(buf, resName)
-  console.log("ossUrl", ossUrl)
-  REPLACE_MAP[url] = ossUrl
-  if (URLs.length === 0) {
-    running = false
-    console.log(REPLACE_MAP)
-    return
-  }
-  circle()
-}
-
-let running = false
-let nameOfPost = ""
-const URLs = []
-const REPLACE_MAP = {}
 const POSTS_DIR = path.resolve( __dirname, "../_posts")
+let running = false
+let posts = []
+let nameOfPost = ""
+let absPath = ""
+let lines = []
+let REPLACE_MAP = {}
+const URLs = []
 
 const ossClient = new OSS({
   region: 'oss-cn-qingdao',
@@ -83,24 +128,52 @@ const ossClient = new OSS({
   endpoint: 'oss-cn-qingdao.aliyuncs.com',
 })
 
-const main = (...args) => {
-  const [postname] = args
-  if (!postname) {
-    console.log("Please provide post name.")
-    return
-  }
+/**
+ *
+ * @param {string} postname with .md
+ * @returns
+ */
+const handle = async (postname) => {
+
   console.log("post:", postname)
+
   nameOfPost = postname
-  const absPath = path.join(POSTS_DIR, postname)
+  absPath = path.join(POSTS_DIR, postname)
+  REPLACE_MAP = {}
+
   const rl = readline.createInterface({
     input: fs.createReadStream(absPath),
     output: null
   })
 
-  rl.on("line", (line) => {
+  let lineno = 0
+  lines = []
+  for await (const line of rl) {
     const url = xImgURLOfLine(line)
-    enqueue(url)
-  })
+    if (url !== null && !isOssAsset(url)) {
+      URLs.push({ url, lineno })
+    }
+    lines.push(line)
+    lineno += 1
+  }
+
+  // restart Or start
+  running = true
+  circle()
 }
 
-main("2021-04-18-webassembly-why-so-fast.md")
+const next = () => {
+  const post = posts.shift()
+  if (post === undefined) {
+    console.log("no post left.")
+    return
+  }
+  handle(post)
+}
+
+const main = (...args) => {
+  posts = fs.readdirSync("../_posts")
+  next()
+}
+
+main()
