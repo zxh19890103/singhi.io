@@ -41,7 +41,7 @@ aside {
 main {
 	width: 21cm;
 	margin: 0 auto;
-	padding: 0 1rem;
+	padding: 0 2rem;
 	@include boxSizing(border-box);
 	border-radius: 4px;
 	background-color: $paperColor;

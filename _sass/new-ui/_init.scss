@@ -4,7 +4,8 @@ html {
 	letter-spacing: 0.5px;
 	word-spacing: 1px;
 	box-sizing: border-box;
-	font: 16px/1.5 Aspergit, 'PingFang SC', 'Source Han Sans SC', sans-serif;
+	// font: 16px/1.5 Aspergit, 'PingFang SC', 'Source Han Sans SC', sans-serif;
+	font: 16px/1.6 "Microsoft JhengHei", "PT Sans", Helvetica, Arial, sans-serif;
 	-webkit-text-size-adjust: 100%;
 	background-color: #ffffff;
 	word-break: break-word;
@@ -40,16 +41,6 @@ body {
 	background-size: cover;
 	-webkit-background-size: cover;
 	background-image: url(https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/wuhandaqiao.jpg);
-	// background-image: url(https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/Flowers.jpg);
-}
-
-canvas.ad {
-	position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-	z-index: 0;
 }
 
 blockquote {
@@ -59,9 +50,6 @@ blockquote {
 	color: $textColor-2;
 	border-radius: 4px;
 	background: #f3f5f9;
-	// word-break: break-word;
-	// white-space: pre-wrap;
-	font-size: 0.9em;
 	p,
 	ul {
 		margin: 0;

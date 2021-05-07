@@ -5,6 +5,7 @@ title: 别人家的好的博客
 
 以下是我日常搜集到的一些别人家的博客，各有特色，非常精彩，可供日常学习之用。
 
+- [Cythilya](https://cythilya.github.io/)
 - [Dan Abramov](https://overreacted.io/)
 - [Kent C. Dodds](https://kentcdodds.com/blog/)
 - [Evan You](https://evanyou.me/)

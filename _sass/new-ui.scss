@@ -5,7 +5,6 @@ $textColor-2: #3a4a5a;
 $textColor-3: #5a6a7a;
 $textColor-4: #7a8a9a;
 $paperColor: lighten(#f5f5d5, 8);
-$adBoxHeight: 1rem;
 
 @import "./new-ui/mixins";
 @import "./new-ui/font";
@@ -54,7 +53,7 @@ $adBoxHeight: 1rem;
 // Post & Page
 .article {
 	position: relative;
-	padding: $adBoxHeight 0 1rem 0;
+	padding: 1rem 0 1rem 0;
 	margin: 1rem 0 1rem 0;
 	@include ifmob {
 		padding: 1.5rem 0 1rem 0;
@@ -66,7 +65,7 @@ $adBoxHeight: 1rem;
 		padding: 1rem 0 1rem 0;
 		background: rgba($color: $paperColor, $alpha: .95);
 		color: $textColor-2;
-		border-bottom: 1px dashed lighten($color: grey, $amount: 40);
+		// border-bottom: 1px solid lighten($color: grey, $amount: 40);
 		z-index: 1;
 		h1 {
 			width: 61.8%;
@@ -136,8 +135,8 @@ $adBoxHeight: 1rem;
 		p {
 			word-break: break-word;
 			white-space: pre-wrap;
-			line-height: 1.4;
-			font-size: 18px;
+			line-height: 1.685;
+			font-size: 1.1rem;
 			@include ifmob() {
 				line-height: 1.4;
 			}
@@ -180,8 +179,8 @@ $adBoxHeight: 1rem;
 	}
 	ol,
 	ul {
-		padding-left: 1rem;
-		list-style-position: outside;
+		padding-left: 2rem;
+		// list-style-position: outside;
 	}
 	ul {
 		list-style-type: square;
@@ -206,7 +205,6 @@ $adBoxHeight: 1rem;
 	&__bull {
 		padding: 0 8px;
 		font-size: 20px;
-		height: 25px;
 		color: rgba(0, 0, 0, 0.2);
 	}
 	&:after {
@@ -297,7 +295,6 @@ $adBoxHeight: 1rem;
 	}
 }
 
-@import "./new-ui/ad";
 @import "./new-ui/identities", "./new-ui/github",
 	"./new-ui/table", "./new-ui/comment";
 
