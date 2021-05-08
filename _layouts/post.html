@@ -12,8 +12,7 @@ layout: with-nonav
   </div>
 </div>
 
-
-<div class="article__body{% if page.song %} article__body--song{% endif %}">
+<div class="article__body{% if page.song %} article__body--song{% endif %} {% if page.english %} article__body--english{% endif %}">
   {{ content }}
 </div>
 

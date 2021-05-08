@@ -40,13 +40,8 @@ $paperColor: lighten(#f5f5d5, 8);
 		font-weight: 400;
 	}
 
-	p {
-		margin: 0;
-		color: $textColor-4;
-		time {
-			color: lighten($textColor-4, 20);
-			font-size: 0.9em;
-		}
+	p, time {
+		color: #7a8a9a;
 	}
 }
 
@@ -147,6 +142,9 @@ $paperColor: lighten(#f5f5d5, 8);
 		&--song {
 			text-align: center;
 		}
+		&--english {
+			font-family: Aspergit;
+		}
 	}
 	&__attrs {
 		margin-bottom: 1rem;
@@ -179,8 +177,8 @@ $paperColor: lighten(#f5f5d5, 8);
 	}
 	ol,
 	ul {
-		padding-left: 2rem;
-		// list-style-position: outside;
+		padding-left: 2em;
+		list-style-position: outside;
 	}
 	ul {
 		list-style-type: square;

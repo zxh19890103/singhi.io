@@ -7,15 +7,12 @@ title: 博客
   {% for post in site.posts %}
     <li class="documents__item">
       <div class="document">
-        <h3><a target="_blank" href="{{ post.url }}">{{ post.title }}</a></h3>
-        <p>
-        <time>{{ post.date | date: "%d,%b %y" }} <span style="color: #aaa;">•</span></time>
-        {% if post.short %}
-          {{ post.short }}...
-        {% else %}
-          {{ post.excerpt | strip_html | truncate: 140 }}
-        {% endif %}
-        </p>
+        <h3>
+          <a href="{{ post.url }}" target="_blank">
+            <time>{{ post.date | date: "%b %d" }} &bull;</time> {{ post.title }}
+          </a>
+        </h3>
+        <p>{{ post.short }}...</p>
       </div>
     </li>
   {% endfor %}

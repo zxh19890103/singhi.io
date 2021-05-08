@@ -2,6 +2,7 @@
 layout: post
 title: Configure ESLint with Prettier to support Typescript
 short: I'd been frustrated by these terms for a so long time! And I think you maybe also get confused. So yesterday, I'd spend more than five hours to understand them. Now I'll write the findings for you
+english: 1
 tags:
   - ESLint
   - Prettier

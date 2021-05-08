@@ -16,7 +16,7 @@ title: 我的世界（认识自己）
     <div class="document">
       <h3>
         <a href="{{ doc.url }}" target="_blank">
-          {{ doc.date | date: "%b %d" }} - {{ doc.title }}
+          <time>{{ doc.date | date: "%b %d" }} - </time> {{ doc.title }}
         </a>
       </h3>
       <p>{{ doc.short }}...</p>
