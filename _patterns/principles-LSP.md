@@ -38,7 +38,7 @@ date: 2019-09-01
 
 **分析**：鸟一般都会飞行，如燕子的飞行速度大概是每小时 120 千米。但是新西兰的几维鸟由于翅膀退化无法飞行。假如要设计一个实例，计算这两种鸟飞行 300 千米要花费的时间。显然，拿燕子来测试这段代码，结果正确，能计算出所需要的时间；但拿几维鸟来测试，结果会发生“除零异常”或是“无穷大”，明显不符合预期，其类图如图 1 所示。
 
-{% include img.html src="http://c.biancheng.net/uploads/allimg/181113/3-1Q11311094H32.gif" title="“几维鸟不是鸟”实例的类图" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/principles-LSP/3-1Q11311094H32.gif" title="“几维鸟不是鸟”实例的类图" %}
 
 程序代码如下：
 
@@ -99,4 +99,4 @@ class BrownKiwi extends Bird
 
 程序运行错误的原因是：几维鸟类重写了鸟类的 setSpeed(double speed) 方法，这违背了里氏替换原则。正确的做法是：取消几维鸟原来的继承关系，定义鸟和几维鸟的更一般的父类，如动物类，它们都有奔跑的能力。几维鸟的飞行速度虽然为 0，但奔跑速度不为 0，可以计算出其奔跑 300 千米所要花费的时间。其类图如图 2 所示。
 
-{% include img.html src="http://c.biancheng.net/uploads/allimg/181113/3-1Q11311101SN.gif" title="“几维鸟是动物”实例的类图" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/principles-LSP/3-1Q11311101SN.gif" title="“几维鸟是动物”实例的类图" %}

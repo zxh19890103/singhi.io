@@ -46,7 +46,7 @@ date: 2019-09-05
 
 **分析**：学生成绩管理程序一般包含插入成绩、删除成绩、修改成绩、计算总分、计算均分、打印成绩信息、査询成绩信息等功能，如果将这些功能全部放到一个接口中显然不太合理，正确的做法是将它们分别放在输入模块、统计模块和打印模块等 3 个模块中，其类图如图 1 所示。
 
-{% include img.html src="http://c.biancheng.net/uploads/allimg/181113/3-1Q113141Q0X3.gif" title="学生成绩管理程序的类图" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/principles-ISP/3-1Q113141Q0X3.gif" title="学生成绩管理程序的类图" %}
 
 程序代码如下：
 

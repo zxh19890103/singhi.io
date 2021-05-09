@@ -36,11 +36,11 @@ sort: 60
 
 **分析**：汽车按“动力源”划分可分为汽油汽车、电动汽车等；按“颜色”划分可分为白色汽车、黑色汽车和红色汽车等。如果同时考虑这两种分类，其组合就很多。图 1 所示是用继淨：关系实现的汽车分类的类图。
 
-{% include img.html src="http://c.biancheng.net/uploads/allimg/181113/3-1Q113160133151.gif" title="用继承关系实现的汽车分类的类图" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/principles-DRP/3-1Q113160133151.gif" title="用继承关系实现的汽车分类的类图" %}
 
 从图 1 可以看出用继承关系实现会产生很多子类，而且增加新的“动力源”或者增加新的“颜色”都要修改源代码，这违背了开闭原则，显然不可取。但如果改用组合关系实现就能很好地解决以上问题，其类图如图 2 所示。
 
-{% include img.html src="http://c.biancheng.net/uploads/allimg/181113/3-1Q11316034X57.gif" title="用组合关系实现的汽车分类的类图" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/principles-DRP/3-1Q11316034X57.gif" title="用组合关系实现的汽车分类的类图" %}
 
 结合前几节的内容，我们一共介绍了 **7** 种设计原则，它们分别为`开闭原则`、`里氏替换原则`、`依赖倒置原则`、`单一职责原则`、`接口隔离原则`、`迪米特法则`和本节所介绍的`合成复用原则`。
 

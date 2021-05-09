@@ -91,7 +91,7 @@ const circle = async () => {
         console.log("no third-party images")
       } else {
         fs.writeFileSync(
-          POSTS_DIR + "/" + nameOfPost,
+          posts_dir + "/" + nameOfPost,
           lines.join("\n")
         )
         console.log("modified")
@@ -112,17 +112,19 @@ const isOssAsset = (url) => {
   return url && url.indexOf(".aliyuncs.com") > -1
 }
 
-const POSTS_DIR = path.resolve( __dirname, "../_posts")
+const URLs = []
+let posts_dir = ""
 let running = false
 let posts = []
 let nameOfPost = ""
 let absPath = ""
 let lines = []
 let REPLACE_MAP = {}
-const URLs = []
 
-const ossClient = new OSS({
-})
+/**
+ * @type {OSS}
+ */
+let ossClient = null
 
 /**
  *
@@ -134,7 +136,7 @@ const handle = async (postname) => {
   console.log("post:", postname)
 
   nameOfPost = postname
-  absPath = path.join(POSTS_DIR, postname)
+  absPath = path.join(posts_dir, postname)
   REPLACE_MAP = {}
 
   const rl = readline.createInterface({
@@ -168,8 +170,10 @@ const next = () => {
 }
 
 const main = (...args) => {
-  // posts = fs.readdirSync("../_posts")
-  posts = ["2018-07-08-begin-healthy-body.md"]
+  const options = JSON.parse(fs.readFileSync("./.keys", "utf-8"))
+  ossClient = new OSS(options)
+  posts_dir = path.resolve( __dirname, "../_patterns")
+  posts = fs.readdirSync("../_patterns")
   next()
 }
 

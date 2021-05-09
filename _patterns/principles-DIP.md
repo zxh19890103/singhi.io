@@ -77,7 +77,7 @@ class Customer {
 
 这样，不管顾客类 Customer 访问什么商店，或者增加新的商店，都不需要修改原有代码了，其类图如图 1 所示。
 
-{% include img.html src="http://c.biancheng.net/uploads/allimg/181113/3-1Q113131610L7.gif" title="顾客购物程序的类图" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/principles-DIP/3-1Q113131610L7.gif" title="顾客购物程序的类图" %}
 
 程序代码如下：
 

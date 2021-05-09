@@ -43,4 +43,4 @@ date: 2019-08-31
 
 **分析**：Windows 的主题是桌面背景图片、窗口颜色和声音等元素的组合。用户可以根据自己的喜爱更换自己的桌面主题，也可以从网上下载新的主题。这些主题有共同的特点，可以为其定义一个抽象类（Abstract Subject），而每个具体的主题（Specific Subject）是其子类。用户窗体可以根据需要选择或者增加新的主题，而不需要修改原代码，所以它是满足开闭原则的，其类图如图 1 所示。
 
-{% include img.html src="http://c.biancheng.net/uploads/allimg/181113/3-1Q113100151L5.gif" title="Windows的桌面主题类图" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/principles-OCP/3-1Q113100151L5.gif" title="Windows的桌面主题类图" %}
