@@ -77,6 +77,7 @@ const circle = async () => {
     const ossUrl = await uploadToOSS(incomingMsg, resName)
     REPLACE_MAP[url] = ossUrl
 
+    console.log("replace", url, ossUrl)
     lines[lineno] = lines[lineno].replace(url, `//zxh1989.oss-cn-qingdao.aliyuncs.com/${ossUrl}`)
 
   } catch (ex) {
@@ -121,11 +122,6 @@ let REPLACE_MAP = {}
 const URLs = []
 
 const ossClient = new OSS({
-  region: 'oss-cn-qingdao',
-  bucket: 'zxh1989',
-  accessKeyId: 'LTAI4FhkwzhBwynH5Ht8MfZ4',
-  accessKeySecret: 'RxTvVRMJfGfsEO8EiY3zSWT3Oek4tK',
-  endpoint: 'oss-cn-qingdao.aliyuncs.com',
 })
 
 /**
@@ -172,7 +168,8 @@ const next = () => {
 }
 
 const main = (...args) => {
-  posts = fs.readdirSync("../_posts")
+  // posts = fs.readdirSync("../_posts")
+  posts = ["2018-07-08-begin-healthy-body.md"]
   next()
 }
 

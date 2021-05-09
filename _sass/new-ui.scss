@@ -80,6 +80,9 @@ $paperColor: lighten(#f5f5d5, 8);
 			font-size: 13px; // as icon's size is 16px
 			color: $textColor-4;
 		}
+		&--english {
+			font-family: Aspergit;
+		}
 		@include ifmob {
 			position: static;
 			top: 0;

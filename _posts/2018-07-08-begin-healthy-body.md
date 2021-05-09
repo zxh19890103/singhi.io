@@ -12,7 +12,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 前束前平举
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/movie.gif" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/2ro8000480s44566265n.jpg" %}
 
 起始姿势：两腿直立，挺胸收腹。两手正握哑玲或杠铃，两臂下垂于腿前。
 
@@ -22,7 +22,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 中束侧平举
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/movie.gif" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/2p430000n267532o327r.jpg" %}
 
 起始姿势：两脚自然开立，两手握哑铃，下垂于身体两侧。
 
@@ -34,7 +34,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 中束侧平拉
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/movie.gif" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/3303000863116s2qp959.jpg" %}
 
 起始姿势：全身直立，一脚踩套住拉力器的一个握柄或胶皮条的一端。另一手插按在腰间。
 
@@ -110,7 +110,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 哑铃弯举
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/movie.gif" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/39np000098o617o1q9n3.jpg" %}
 
 哑铃弯举之所以成为锻炼肱二头肌的理想练习，是因为它们通常是交替进行，允许每个胳膊有更多的恢复时间，使你能采用尽可能大的训练重量。
 
@@ -118,7 +118,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 斜板弯举
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/reverse-preacher-curls.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/maxresdefault.jpg" %}
 
 确保在每次肱二头肌训练中都包括斜板弯举，这个动作能提供其它姿势无法做到的借力与孤立的组合。在肘关节被支撑的情况下，它是个借力练习，但由于肩膀也被支撑着，故它又是个孤立练习。我喜欢从两个不同的角度来做斜板弯举，当垫子保持倾斜时，我借助垫子的支撑，后拉身体以产生更多杠杆作用；当垫子垂直时，手臂笔直向下，杠杆作用减小，可迫使 [1] 更孤立地做练习。
 
@@ -126,7 +126,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 杠铃弯举
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/movie.gif" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/262882b12ab34516ad3cb1f8cfbf6dda.jpeg" %}
 
 前面曾说过，不得在超级组训练中采用杠铃弯举。但这并不意味着永远不用这个动作，恰恰相反，任何肱二头肌增长训练都离不开它、因为没有其他办法能促使肱二头肌及其附属肌群最大限度地增长。每个肌群都至少需要一个复合练习。 
 
@@ -142,7 +142,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 ### 胸肌
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/5137_1374326897.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/902c1fa1-e90d-4e58-bc6c-4c8f39d413fa" %}
 
 胸肌就是胸部的肌肉，由左右两部分构成，又称胸大肌。胸大肌（pectoralis major）通常称为胸肌，成扇型。位于胸廓的前上部，起自锁骨内侧半，胸骨和第1~6肋软骨，肌束向外侧集中，止于肱骨大结节嵴。
 
@@ -150,7 +150,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 一般方法
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/th?id=OIP.m3IyC4Ug2ysH9E-v8qq7_QHaKa&pid=Api&rs=1" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/a44nz80747917726296.jpg" %}
 
 `仰卧推举`是发达胸肌最常见也是最有效的方法之一。卧推因体姿不同，又分为平卧推举、上斜推举和下斜推举。卧推所用的器械主要是`杠铃`和`哑铃`。做`杠铃卧推`是最好配一个`承接横杠`的`卧推架`。
 
@@ -172,7 +172,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 ### 腹肌
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/2699_1376704289YL7Y.jpg" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/3912c69e-a401-494c-9457-8ee4350993b4.jpg" %}
 
 腹肌是人体结缔组织组成中的重要部分，包括腹直肌、腹外斜肌，腹内斜肌和腹横肌。当它们收缩时，可以使躯干弯曲及旋转，并可以防止骨盆前倾。腹部肌肉对于腰椎的活动和稳定性也有相当重要的作用，还可以控制骨盆与脊柱的活动。软弱无力的腹肌可能导致骨盆前倾和腰椎生理弯曲增加，并增加腰背痛的几率。
 
@@ -208,7 +208,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 传统卷腹
 
-{% include img.html src="https://www.jianshen8.com/uploads/allimg/171212/4_171212000838_1.gif" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/4_171212000838_1.gif" %}
 
 仰卧在地板上，下背部紧贴地面。双手放在头侧，手臂打开。双腿平放在地上并屈膝。下颏向胸前微收，收缩腹肌，呼气抬起上身，下背部不能离地，保持2秒钟，然后慢慢回到开始姿势。
 
@@ -224,7 +224,7 @@ short: 30岁的年纪，身体素质日益下降，我需要健身了
 
 #### 交臂卷腹
 
-{% include img.html src="http://5b0988e595225.cdn.sohucs.com/images/20180503/447ca53b8f1e4bf1afc5591d30ff1491.gif" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-07-08-begin-healthy-body/447ca53b8f1e4bf1afc5591d30ff1491.gif" %}
 
 双臂交叉胸前，弯曲膝盖，抬升肩部向膝盖，不要整个背部都抬升离开地面，只是上躯干部分抬起向膝盖方向弯曲。放回背部时动作要缓慢。头不要碰触地面。
 
