@@ -296,6 +296,11 @@ $paperColor: lighten(#f5f5d5, 8);
 	}
 }
 
+// font
+.pure-english {
+	font-family: Aspergit;
+}
+
 @import "./new-ui/identities", "./new-ui/github",
 	"./new-ui/table", "./new-ui/comment";
 

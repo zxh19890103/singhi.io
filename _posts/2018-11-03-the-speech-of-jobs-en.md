@@ -2,6 +2,7 @@
 layout: post
 title: Jobs 在斯坦福大学的演讲（English）
 short: This is the text of the Commencement address by Steve Jobs, CEO of Apple Computer and of Pixar Animation Studios, delivered on June 12, 2005
+english: 1
 ---
 
 "You've got to find what you love." Jobs says. 
