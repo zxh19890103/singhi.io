@@ -40,7 +40,8 @@ $paperColor: lighten(#f5f5d5, 8);
 		font-weight: 400;
 	}
 
-	p, time {
+	p,
+	time {
 		color: #7a8a9a;
 	}
 }
@@ -58,7 +59,7 @@ $paperColor: lighten(#f5f5d5, 8);
 		top: 0;
 		margin: 0 0 3rem 0;
 		padding: 1rem 0 1rem 0;
-		background: rgba($color: $paperColor, $alpha: .95);
+		background: rgba($color: $paperColor, $alpha: 0.95);
 		color: $textColor-2;
 		// border-bottom: 1px solid lighten($color: grey, $amount: 40);
 		z-index: 1;
@@ -66,14 +67,14 @@ $paperColor: lighten(#f5f5d5, 8);
 			width: 61.8%;
 			margin: 0;
 			&:after {
-				content: '';
+				content: "";
 				display: block;
 				width: 61.8%;
 				height: 8px;
 				transform: rotate(2deg) skew(21deg);
 				-ms-transform: rotate(2deg) skew(21deg);
 				-o-transform: rotate(2deg) skew(21deg);
-				background: rgba($color: seagreen, $alpha: .31);
+				background: rgba($color: seagreen, $alpha: 0.31);
 			}
 		}
 		&-small {
@@ -281,6 +282,11 @@ $paperColor: lighten(#f5f5d5, 8);
 		// to remove it.
 		display: block;
 		margin: 0 auto;
+		min-height: 300px;
+		background-image: linear-gradient(to bottom, #fff, #888);
+		&--loaded {
+			min-height: auto;
+		}
 	}
 	&__title {
 		font-size: 0.9rem;
@@ -301,7 +307,7 @@ $paperColor: lighten(#f5f5d5, 8);
 	font-family: Aspergit;
 }
 
-@import "./new-ui/identities", "./new-ui/github",
-	"./new-ui/table", "./new-ui/comment";
+@import "./new-ui/identities", "./new-ui/github", "./new-ui/table",
+	"./new-ui/comment", "./new-ui/cardstyle";
 
 @import "./new-ui/cv";

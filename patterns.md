@@ -3,8 +3,7 @@ layout: page
 title: 专栏 - 设计模式
 ---
 
-{% include img.html src="https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/Flowers.jpg" %}
-<ul class="documents">
+<ul class="documents cardstyle">
 {% for doc in site.patterns %}
   <li class="documents__item">
     <div class="document">
@@ -13,7 +12,7 @@ title: 专栏 - 设计模式
           {{ doc.title }}
         </a>
       </h3>
-      <p>{{ doc.short }}</p>    
+      <p class="Aspergit">{{ doc.short }}...</p>    
     </div>
   </li>
 {% endfor %}

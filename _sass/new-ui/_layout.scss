@@ -55,13 +55,10 @@ main {
 	padding: 0 8px 18px 8px;
 	text-align: center;
 	&__title {
-		position: relative;
 		img {
-			position: absolute;
-			top: 0;
-			left: 0;
 			width: 40px;
 			height: 40px;
+			vertical-align: middle;
 		}
 		font-size: 1.2rem;
 		line-height: 45px;

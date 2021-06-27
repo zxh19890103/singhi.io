@@ -1,0 +1,28 @@
+.documents {
+	&.cardstyle {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+
+		.documents__item {
+			width: 50%;
+			border-bottom: none;
+			@include ifmob() {
+				width: 100%;
+			}
+		}
+
+		.document {
+			margin: 6px;
+			padding: 8px;
+			border-radius: 4px;
+			margin-bottom: 8px;
+			box-shadow: 0 3px 12px 1px rgba(0, 0, 0, 0.3);
+			background-color: #fff;
+			&:hover {
+				box-shadow: 0 3px 12px 1px rgba(0, 0, 0, 0.5);
+			}
+		}
+	}
+}
