@@ -172,8 +172,8 @@ const next = () => {
 const main = (...args) => {
   const options = JSON.parse(fs.readFileSync("./.keys", "utf-8"))
   ossClient = new OSS(options)
-  posts_dir = path.resolve( __dirname, "../_patterns")
-  posts = fs.readdirSync("../_patterns")
+  posts_dir = path.resolve( __dirname, "../_drafts")
+  posts = fs.readdirSync("../_drafts")
   next()
 }
 
