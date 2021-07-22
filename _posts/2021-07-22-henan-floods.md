@@ -10,9 +10,9 @@ date: 2021-07-22
 官方报告的数字（截止 2021-07-22 21:51）：
 
 <blockquote>
-丧命：<u style="font-size: 1.5em"><del>25</del>&gt; 33</u> (其中地铁五号线死亡 12 人)
+丧命：<u style="font-size: 1.5em"><del>25</del>33</u> (其中地铁五号线死亡 12 人)
 <br />
-失联：<u style="font-size: 1.2em">&gt; 8</u>
+失联：<u style="font-size: 1.2em">8</u>
 </blockquote>
 
 地铁五号线遭到爆量雨水冲灌！女孩儿们的尸体横竖于站台，惨绝人寰！
