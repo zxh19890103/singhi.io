@@ -17,4 +17,4 @@ date: 2021-07-22
 
 网易新闻的头条居然尽是对党的歌功颂德，去他妈的！这样的老调子、老套路真他妈让我呕吐🤮
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/henan-floods/6a20f05bc0c0f581c24faeb0cb18a7f5c254917a.jpg@336w_190h_1c.webp" title="cao ta ma de."  %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/henan-floods/6a20f05bc0c0f581c24faeb0cb18a7f5c254917a.jpg@336w_190h_1c.webp" title="生死是常态"  %}
