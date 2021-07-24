@@ -56,6 +56,7 @@ date: 2021-07-22
 | 冯丽静 | 女 | -- | 郑州某公司会计 |
 
 我知道，每一个名字都对应一个曾经活生生的、存在的、真实的人。
+
 逝者安息 !
 
 {% include img.html src="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20190414/000531_89225.jpg" title="R.I.P." %}
