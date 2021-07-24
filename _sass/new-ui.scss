@@ -166,17 +166,11 @@ $paperColor: lighten(#f5f5d5, 8);
 		}
 	}
 	hr {
-		margin-left: 0;
-		margin-right: 0;
-		margin-top: 0;
-		padding-bottom: 0;
-		padding-left: 0;
-		padding-right: 0;
-		padding-top: 0;
-		margin-bottom: calc(1.75rem - 1px);
-		background: rgba(0, 0, 0, 0.2);
-		border: none;
-		height: 1px;
+		padding: 0;
+		margin: 0;
+    margin-bottom: calc(1.75rem - 1px);
+    border: 1px dashed rgba(46, 139, 87, 0.6);
+    transform: scaleY(.3);
 	}
 	ol,
 	ul {
