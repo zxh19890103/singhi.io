@@ -12,7 +12,9 @@ title: 专栏 - 设计模式
           {{ doc.title }}
         </a>
       </h3>
-      <p class="Aspergit">{{ doc.short }}...</p>    
+      {% if doc.short %}
+      <p class="Aspergit">{{ doc.short }}...</p>
+      {% endif %}
     </div>
   </li>
 {% endfor %}

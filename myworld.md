@@ -20,7 +20,9 @@ title: 我的世界（认识自己）
           {{ doc.title }}
         </a>
       </h3>
+      {% if doc.short %}
       <p>{{ doc.short }}...</p>
+      {% endif %}
     </div>
   </li>
 {% endfor %}

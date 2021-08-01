@@ -13,7 +13,9 @@ title: 博客
             <span>{{ post.title }}</span>
           </a>
         </h3>
+        {% if post.short %}
         <p>{{ post.short }}...</p>
+        {% endif %}
       </div>
     </li>
   {% endfor %}
