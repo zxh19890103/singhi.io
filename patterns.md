@@ -3,7 +3,7 @@ layout: page
 title: 专栏 - 设计模式
 ---
 
-<ul class="documents cardstyle">
+<ul class="documents">
 {% for doc in site.patterns %}
   <li class="documents__item">
     <div class="document">
