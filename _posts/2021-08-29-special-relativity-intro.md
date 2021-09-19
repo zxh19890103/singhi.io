@@ -1,10 +1,13 @@
 ---
 layout: post
 title: 狭义相对论介绍
+short: 过去 200 余年里，牛顿提出的运动方程被认为是对自然的正确描述，然而这个自然定律存在的问题首次被发现的时候，修正的方法也一同被提出。问题和修正方法都由爱因斯坦于 1905 年提出
 src: https://feynmanlectures.caltech.edu/I_15.html
 ---
 
 ### 目录：
+
+- 相对性原则
 
 ### 相对性原则
 
@@ -35,3 +38,30 @@ m = m0 / (1 - (v/c) ** 2) ** 1/2
 </blockquote>
 
 这意味着，比如说，一个宇宙飞船以匀速运动，那么在这个飞船内的全部实验结论、现象和这个飞船在静止的情况下表现一致，当然假设主体（人）不向窗外看。这就是相对性原则的意思。这是个非常简单明了的观点，唯一的问题是静止和运动系统中的物理实验是否表现一致。我们先来看看牛顿的定律是否在动系下是否表现一致。
+
+{% include img.html src="https://feynmanlectures.caltech.edu/img/FLP_I/f15-01/f15-01_tc_big.svgz" title="图1. 两个沿 x 轴匀速运行的系统" %}
+
+Suppose that Moe is moving in the x-direction with a uniform velocity u, and he measures the position of a certain point, shown in Fig. 15–1. He designates the “x-distance” of the point in his coordinate system as x′. Joe is at rest, and measures the position of the same point, designating its x-coordinate in his system as x. The relationship of the coordinates in the two systems is clear from the diagram. After time t Moe’s origin has moved a distance ut, and if the two systems originally coincided,
+
+假设 Moe 沿着 x 方向匀速移动，速度为 u，并且他标记了一个某个点的位置，如图1。他表示这个点的在 x 方向上的距离是 x'。Joe 是静止的，并且测量了同一个点，表示在他的系统下 x 方向上的距离是 x。从上图可以清楚的知道 x 和 x' 的关系。时间过去了 t 个单位，Moe 所在系统的原点移动了一个距离 u * t，这里假设两个系统原本是重合的。
+
+```
+x' = x - u * t
+y' = y
+z' = z
+t'=t
+```
+
+如果我们将这个坐标系转换代入牛顿的定律，就会发现转换后的定律跟转换之前是一样的。也就是说，牛顿定律的形式在静系和在动系中保持不变。也因此，我们无法通过物理实验来检测到系统的静与动。
+
+相对性原则已经在动力学中应用了很长时间。许多人，尤其是 Huygens（惠更斯），曾使用它来研究桌球碰撞的规律，第 10 章我们会用相同的方法来探究动量守恒。19 世纪人们对电磁和光现象的研究投入很多，对相对性原则的兴趣重新被激发。有关电磁现象的大量细致的研究以 Maxwell 的电磁场方程的问世而告终，该方程对电、磁、光进行了统一形式的描述。然而，Maxwell 的方程好像违反了相对性原则。就是说，如果我们对该方程应用以上述转换，前后的形式不一致。因此，在一个运动的飞船里，光电现象会和在一个静止的飞船中表现得不同。人们因而可以通过一些光电实验就可以计算出飞船的绝对速度。Maxwell 的方程推论之一就是，由某处场的扰动而产生的电磁波会以一致的速度，光速 c，也就是 186000 mi/sec，向各个方向传播。另一个推论是如果扰动源是运动的，由其产生的光还是会以速度 c 向外传播。这和声音的传播是类似的，声波的速度与声源的运动无关。
+
+光的与源的运动无关性导致了一个有趣的问题：
+
+假设我们以速度 u 开着一辆车，一束光以速度 c 从后边追上来，对上述方程做微分得到：
+
+```
+dx'/dt = dx/dt - u
+```
+
+显然，根据伽利略的转换，我们在车里测量到这一束光的速度不会是 c，而应该是 c - u。例如，如果汽车以 100000 mi/sec 的速度运行，这束光的速度是 186000 mi/sec，那么光通过汽车的速度就是 86000 mi/sec。无论什么情况，只要我们测量一下光通过汽车的时速度就能知道汽车的速度，这里我们假设伽利略转换对于光是正确的。基于这个想法，大量的实验企图测量出地球的速度，但是均失败 —— 所有的实验测得的速度都是 0。我们将具体看一下其中一个实验，以准确的了解当时做了什么以及问题是什么；一定哪里有问题，当然，是物理方程出了问题。那可能是什么呢？
