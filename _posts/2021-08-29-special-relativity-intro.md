@@ -39,9 +39,7 @@ m = m0 / (1 - (v/c) ** 2) ** 1/2
 
 这意味着，比如说，一个宇宙飞船以匀速运动，那么在这个飞船内的全部实验结论、现象和这个飞船在静止的情况下表现一致，当然假设主体（人）不向窗外看。这就是相对性原则的意思。这是个非常简单明了的观点，唯一的问题是静止和运动系统中的物理实验是否表现一致。我们先来看看牛顿的定律是否在动系下是否表现一致。
 
-{% include img.html src="https://feynmanlectures.caltech.edu/img/FLP_I/f15-01/f15-01_tc_big.svgz" title="图1. 两个沿 x 轴匀速运行的系统" %}
-
-Suppose that Moe is moving in the x-direction with a uniform velocity u, and he measures the position of a certain point, shown in Fig. 15–1. He designates the “x-distance” of the point in his coordinate system as x′. Joe is at rest, and measures the position of the same point, designating its x-coordinate in his system as x. The relationship of the coordinates in the two systems is clear from the diagram. After time t Moe’s origin has moved a distance ut, and if the two systems originally coincided,
+{% include img.html src="https://feynmanlectures.caltech.edu/img/FLP_I/f15-01/f15-01_tc_big.svg" title="图1. 两个沿 x 轴匀速运行的系统" %}
 
 假设 Moe 沿着 x 方向匀速移动，速度为 u，并且他标记了一个某个点的位置，如图1。他表示这个点的在 x 方向上的距离是 x'。Joe 是静止的，并且测量了同一个点，表示在他的系统下 x 方向上的距离是 x。从上图可以清楚的知道 x 和 x' 的关系。时间过去了 t 个单位，Moe 所在系统的原点移动了一个距离 u * t，这里假设两个系统原本是重合的。
 
