@@ -34,11 +34,11 @@ m / n = m 除以 n
 
 牛顿第二定律，被我们描述为以下形式：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-2.png" title="2" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-2.png" title="Eq#2" %}
 
 它假设了 `m` 是一个常量，但是我们现在知道，这不正确，物体的质量是随着速度的增加而增加的。在爱因斯坦修正后的方程里 `m` 的值以如下形式给出：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-39.png" title="3" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-39.png" title="Eq#3" %}
 
 这里，“静态质量” `m0` 被定义为物体在静止时候的质量；`c` 是光的速度，也就是 3×10<sup>5</sup> km/s，近似为 186,000 mi/sec。
 
@@ -58,7 +58,7 @@ m / n = m 除以 n
 
 假设 Moe 沿着 x 方向匀速移动，速度为 u，并且他标记了某个点 P 的位置，如上图。他表示这个点的在 x 方向上的距离是 x'。Joe 是静止的，他也测量了 P 的位置，在他的系统下 P 在 x 方向上的距离是 x。从上图可以清楚的知道 x 和 x' 的关系。时间过去了 t 个单位，Moe 所在系统的原点移动了一个距离 ut，这里假设两个系统原本是重合的。
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-11.png" title="11" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-11.png" title="Eq#11" %}
 
 如果我们将这个转换用到牛顿的力学方程中，就会发现转换后的形式跟转换之前是一样的。也就是说，牛顿定律的形式在静系和在动系中保持不变。也因此，我们无法通过物理实验来检测到系统的静与动。
 
@@ -68,7 +68,7 @@ m / n = m 除以 n
 
 假设我们以速度 u 开着一辆车，一束光以速度 c 从后边追上来，对上述方程求导得到：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-7.png" title="7" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-7.png" title="Eq#7" %}
 
 显然，根据伽利略转换，我们在车里测量到这一束光的速度不会是 c，而应该是 c - u。例如，如果汽车以 100000 mi/sec 的速度运行，这束光的速度是 186000 mi/sec，那么光通过汽车的速度就是 86000 mi/sec。无论什么情况，只要我们测量一下光通过汽车的时速度就能知道汽车的速度，这里我们假设伽利略转换对于光是正确的。基于这个想法，大量的实验企图测量出地球的速度，但是均以失败告终 —— 所有的实验测得的速度都是`0`。我们将具体看一下其中一个实验，以准确的了解当时做了什么以及问题是什么；一定哪里有问题，当然，是物理方程出了问题。那可能是什么呢？
 
@@ -78,7 +78,7 @@ m / n = m 除以 n
 
 与此同时，洛伦兹（H. A. Lorentz）发现了一个重要而新奇的事情，当他对 Maxwell 方程应用以下替换之后：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-9.png" title="9" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-9.png" title="Eq#9" %}
 
 Maxwell 的方程形式上保持了不变。上述变换就是著名的**洛伦兹变换**。爱因斯坦追随 Poincaré 最初的意见，提出**全部的物理定律必须在洛伦兹变换下保持形式的不变**。换句话，我们不应该修改电动学定律，而应该修改力学定律。我们如何修改牛顿的力学定律来使之对洛伦兹变换下形式不变呢？如果设立了这个目标，我们就需要修改牛顿方程以使之满足我们上面提到的那些条件。结论是，我们只需要修改牛顿力学方程中的质量项。这样修改之后，牛顿定律就和电动力学定律相和谐。这时，我们通过一番变换之后，再对 Moe 和 Joe 的测量结果进行比较，就无法知道究竟是谁在运动了，因为在两个系统中物理学方程的形式是一样的。
 
@@ -97,15 +97,15 @@ title="Michelson 和 Morley 当时使用的设备示意图" %}
 
 首先，让我们计算一下光从 B 到 E 并回到 B 所需的时间。设从 B 到 E，光跑完需要的时间为 t<sub>1</sub>，返回到 B 所需的时间为 t<sub>2</sub>。现在，光在 B 处，正射向镜子，设备运动了一段距离 ut<sub>1</sub>，因此光必需经过的距离是 L + ut<sub>1</sub>，以光速 c。我们可以将这个距离写为 ct<sub>1</sub>，因此我们得到：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-10.png" title="10" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-10.png" title="Eq#10" %}
 
 （从光相对设备的速度是 c - u 这点看来，此结果是显然的，如此，所需的时间就是距离 L 除以 (c - u) 以类似的方式，我们可以计算出 t<sub>2</sub>。这期间 B 前进了一段距离 ut<sub>2</sub>，因此光折返的距离就是 L - ut<sub>2</sub>。于是，我们得到：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-3.png" title="3" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-3.png" title="Eq#3" %}
 
 继而，总的时间为：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-12.png" title="12" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-12.png" title="Eq#12" %}
 
 为了后续对时间进行比较之便，我们将其写为：
 
@@ -113,15 +113,15 @@ title="Michelson 和 Morley 当时使用的设备示意图" %}
 
 我们的第二个计算是 t<sub>3</sub>，它是光从 B 到 C 所需的时间。经过时间 t<sub>3</sub>，C 移动到新的位置 C'，距离为 ut<sub>3</sub>；与此同时，光沿着三角形的弦运行了距离 ct<sub>3</sub>，标记为 BC'。 借助右侧的三角形，我们得到：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-14.png" title="14" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-14.png" title="Eq#14" %}
 
 或：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-34.png" title="34" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-34.png" title="Eq#34" %}
 
 由此，我们有：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-38.png" title="38" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-38.png" title="Eq#38" %}
 
 从对称性可以看出，由 C' 折返的距离与此相等；因此折返的时间也是相等的，那么总的时间就是 2t<sub>3</sub>。稍微经过编排，我们可以写出：
 
@@ -133,9 +133,9 @@ title="Michelson 和 Morley 当时使用的设备示意图" %}
 
 实验中，Michelson 和 Morley 将 BE 调整到接近地球的轨道行进的方向（在一个具体的时间点）。地球的轨道速度为 18 mi/sec，那么以太就会以差不多的速度后退（具体的时间上）。设备的灵敏度足够察觉到这个移动效应，然而时间差并未被测量到，地球相对以太的速度也无法得到。实验的结果是一场空。
 
-Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵局，首个富有成效的解决思路是洛伦兹想到的。他建议有质量的物体在运动的时候会发生长度上的收缩，并且收缩只发生在运动的方向上，并且如果物体静止时的长度是 L0，那么它在长度方向上以速度 u0 运行的时候，有一个新的长度，我们称之为 **L<sub>||</sub>**，按照如下公式给出：
+Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵局，首个富有成效的解决思路是洛伦兹想到的。他建议有质量的物体在运动的时候会发生长度上的收缩，并且收缩只发生在运动的方向上，并且如果物体静止时的长度是 L<sub>0</sub>，那么它在长度方向上以速度 u<sub>0</sub> 运行的时候，有一个新的长度，我们称之为 **L<sub>||</sub>**，按照如下公式给出：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-20.png" title="20" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-20.png" title="Eq#20" %}
 
 当这个修正应用到 Michelson-Morley 的干涉仪上时，B 到 C 的距离不变，但是 B 到 E 的距离缩短到：
 
@@ -143,7 +143,7 @@ Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵�
 
 因此 Eq#2 不变，但是 Eq#2 中的 L 必需按照上边的变换加以修改。操作一番，我们就得到：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-22.png" title="22" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-22.png" title="Eq#22" %}
 
 将其与 Eq#1 相比，我们看到 t<sub>1</sub>+t<sub>2</sub>=2t<sub>3</sub>。因此如果设备按上述方式收缩，我们就能理解为什么 Michelson- Morley 的实验未能给出任何差异。即便我们将洛伦兹的收缩假说考虑进来，解释了实验的否定结果，我们仍然对此表示反对，因为这是为了回避困难而发明出来的东西，过于人为。然而，许多其它企图检测以太风的实验，都会存在类似的困难，事情最终看起来似乎是大自然的一个阴谋，它引进一个新的现象来遮盖其它相关现象，以此它认为可以阻挠人类测量到地球的绝对速度。
 
@@ -165,7 +165,7 @@ Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵�
 
 我们制作了两个这样的时钟，相同的长度，并在一开始将它们调为同步；如此，它们就会在之后保持一致，因为它们的长度是一样的，光穿过两端所需的时间是相等的。我们将其中一个让人携带入飞船，并且让钟杆与飞船的运动方向保持垂直关系，这样的时钟的长度就不会收缩。我们如何知道时钟不会收缩呢？在彼此经过的时候，动系和静系中的人可以于各自系统的 y 轴上做好标记。由对称性，两个标记会出现在各自 y 轴的相同的位置，不然的话，当双方一起比较结果的时候，其中一个标记会在另一个标记的上面或者下面，那么我们就可以由此判断谁处在运动的状态。
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-32.png" title="32" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-32.png" title="Eq#32" %}
 
 现在，让我们看看运动的时钟内部发生了什么。当 Trump 将它带上飞船之前，Trump 会说它是一个漂亮、标准的时钟，然后 Trump 带着它上了飞船，Trump 还是不能发现什么异常。如果 Trump 发现了什么不同，他就会知道自己在运动 —— 如果有什么事情会因为运动而表现异样，Trump 就能知道他在运动。但是相对性原则告诉我们的是我们不可能在匀速运行的系统中判断出运动与否，因此没什么不一样。另一方面，飞船外的人习近平，在飞船经过他的时候，确实看到了光在时钟的镜面之间的运行轨迹是曲折的，因为钟杆一直都是在运动当中的。我们在 Michelson - Morley 实验那里已经研究过光的这种曲折轨迹。给定一个时间段，杆运行的距离与速度 u 成一定比例，光运行的时间与 c 是成比例的，垂直方向上的距离因此就与 **SQRT(c<sup>2</sup> - u<sup>2</sup>)** 成比例。
 
@@ -191,7 +191,7 @@ Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵�
 
 现在，让我们看看洛伦兹变换，以尝试对静系和动系之间的关系有一个更好的理解，我们将它们称为 S 和 S' 系，或者 Joe 和 Moe 的系统。我们已经知道第一个方程式基于洛伦兹的建议；我们如何证明这个收缩效应是真实发生的呢？在 Michelson - Morley 实验中，我们可以肯定的是纵向臂 BC 的长度不会发生改变，这是根据相对性原则而来的；然而，实验的否定结论要求时间必须相等。因此， 为了使实验给出否定结果，横向臂 BE 需要看上去更短，收缩的比例为 **SQRT(1 - (u/c)<sup>2</sup>)**。这个收缩是什么意思呢？是 Joe 和 Moe 的测量结果的吗？假设 Moe 随着 S' 系在 x 方向上移动，他用米尺测量了某点在  x' 轴上的坐标。他将尺子摆放了 x' 次，因此他认为这个点离开原点的距离就是 x' 米。然而在 S 系的 Joe 看来，Moe 使用了一把缩短的尺子，因此真实的距离是 **x' * SQRT(1 - (u/c)<sup>2</sup>)** 米。那么如果 S' 系远离 S 系一段距离 `ut` 之后，S 系中的观测者就会说这个相同的点，在他的系统里的位置是 **x = x' * SQRT(1 - (u/c)<sup>2</sup>)**，或者：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-16.png" title="16" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-16.png" title="Eq#16" %}
 
 这就是洛伦兹变换方程式。
 
@@ -199,7 +199,7 @@ Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵�
 
 采取类似地方式，由时间度量的不同，洛伦兹变换方程式引入了一个分母。在这个方程式中，最有意思的函项是分子中出现的 ux/c<sup>2</sup>，因为它是那么的新鲜和出乎意料。那么它的物理含义是什么呢？如果我们加以细致考量，会发现，Moe 看到的两个地点同时发生的事件，在 Joe 看来不是同时的。如果一个事件在位置 x<sub>1</sub> 和时间 t<sub>0</sub> 发生，另一个事件在 x<sub>2</sub> 和 t<sub>0</sub> （同时的）发生，我们发现这两个时间存在以下差量：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-13.png" title="13" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-13.png" title="Eq#13" %}
 
 这样的情况被称为“距离引起的同时性失效”，要搞清楚这个事情，我们来考虑如下实验。
 
@@ -209,11 +209,11 @@ Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵�
 
 让我们看看能从洛伦兹变换方程式中发现什么。可以注意到针对 x 和 t 的变换形式是很相似的，而对 x 和 y 的做旋转变换的话，我们有：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-15.png" title="15" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-15.png" title="Eq#15" %}
 
 这里，x' 是对 x 和 y 的混淆计算，y' 也是如此。类似地，洛伦兹变换中，我们看到 x' 是对 x 和 t 混淆计算，t' 是对 t 和 x 混淆。因此洛伦兹变换类似于旋转变换，只是这个旋转是在空间和时间上的，这个观念有点奇特。对如此类比的检验可以通过如下数量计算来进行：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-26.png" title="26" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-26.png" title="Eq#26" %}
 
 在这个方程式中，两边的前三项表述的含义是在三维空间中，对于当前位置到坐标系原点的距离。某点的距离总是不变的，不考虑轴线的转动。类似地，方程式表明存在某种混合，它将时间包含进来，对于洛伦兹变换保持不变。由此，将这个变换类比于旋转变换是可取的，它是对于某种向量的变换，同时对于理解相对论也非常管用。
 
@@ -225,32 +225,32 @@ Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵�
 
 我们现在来花点精力研究一下，在洛伦兹变换下，力学定律会呈现出怎样的形式（我们早先了解过长度和时间如何变化，但是没有考虑质量的变化形式，我们将在下一章做这件事）。要看到爱因斯坦对牛顿力学定律中的 m 项的修正有什么推论，我们从牛顿定律中“力是动量对时间的导数”这点开始：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-17.png" title="17" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-17.png" title="Eq#17" %}
 
 动量还是用 mv 给出，但是我们用新的 m 项时，动量表达为：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-24.png" title="24" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-24.png" title="Eq#24" %}
 
 这是爱因斯坦对牛顿定律的修正。如果作用和反作用依然相等的话（可能细节上不对，但是大概如此吧），动量守恒依然和之前一样有效，但是守恒的量不再是基于旧的 mv，而是如上述等式所示，质量存在修正。当加入这项改变之后，动量守恒依然成立。
 
 再来看看动量随速度如何变化。在牛顿的力学里，它是和速度成比例的，根据上式，不管速度如何大小，只要远小于光速，相对论效应就不明显，因为式中的平方根依然非常接近 1；但是如果接近了光速，这个平方根表达式就会趋近零，那么动量就是走向无穷大。
 
-恒定的力作用于一个物体以一段相当久的时间，会发生什么呢？对于牛顿力学，物体会持续不断地提升速度，直到速度超过光速。但是在相对论中这是不可能的。在相对论中，物体依然持续提升，但不是速度，而是动量，动量可以持续增加，因为物体的质量会不断增大。一段时间之后，速度就不再变化了，但动量还在增加。当然，一个力如果对物体的速度的改变起不到多大作用时，我们就说物体的惯性非常大，这就是我们质量相对性公式所要表达的意思 —— 它指出，惯性会随着速度接近光速而变得非常大。举个例子来说明这个效应，为了使电子在 Caltech 里的同步回旋加速器中偏转，我们需要一个比基于牛顿力学的推算强 2000 倍的磁场。换句话说，电子在加速器中的质量是平常的 2000 倍，这跟质子相当。m 2000 倍于 m0 意味着 1 - (u/c)<sup>2</sup> 必须达到 1 / 4000000，这样 v 只比光速 c 小了 1 / 8000000，电子的速度非常接近光速。如果电子和光都从加速器中出发冲向 Bridge Lab，谁先到达？当然是光了，因为光总是要快一些。要问快多少？这个就很难说了 —— 事实上，我们可以知道光进行的距离超前了多少：大概是 1/1000 英寸，或者是纸张厚度的 1/4！当电子以这般高速运动的时候，它们的质量大得惊人，但是它们的速度依然不能超过光的速度。
+恒定的力作用于一个物体以一段相当久的时间，会发生什么呢？对于牛顿力学，物体会持续不断地提升速度，直到速度超过光速。但是在相对论中这是不可能的。在相对论中，物体依然持续提升，但不是速度，而是动量，动量可以持续增加，因为物体的质量会不断增大。一段时间之后，速度就不再变化了，但动量还在增加。当然，一个力如果对物体的速度的改变起不到多大作用时，我们就说物体的惯性非常大，这就是我们质量相对性公式所要表达的意思 —— 它指出，惯性会随着速度接近光速而变得非常大。举个例子来说明这个效应，为了使电子在 Caltech 里的同步回旋加速器中偏转，我们需要一个比基于牛顿力学的推算强 2000 倍的磁场。换句话说，电子在加速器中的质量是平常的 2000 倍，这跟质子相当。m 2000 倍于 m<sub>0</sub> 意味着 1 - (u/c)<sup>2</sup> 必须达到 1 / 4000000，这样 v 只比光速 c 小了 1 / 8000000，电子的速度非常接近光速。如果电子和光都从加速器中出发冲向 Bridge Lab，谁先到达？当然是光了，因为光总是要快一些。要问快多少？这个就很难说了 —— 事实上，我们可以知道光进行的距离超前了多少：大概是 1/1000 英寸，或者是纸张厚度的 1/4！当电子以这般高速运动的时候，它们的质量大得惊人，但是它们的速度依然不能超过光的速度。
 
 现在我们看看基于对质量的相对论修正引起的更多推论。考虑一个装满气体的小容器，里面的分子做着不规则运动。当气体被加温，分子的速度就会增加，因此质量也会增加，气体就会更重。一个近似的计算公式可以表达质量增加的量，在速度很小的情况下，可以利用二项式定理，以幂级数展开：
 
-**m0 / SQRT(1- (v/c)<sup>2</sup>) = m0 (1 - (v/c)<sup>2</sup>)<sup>1/2</sup>**，
+**m<sub>0</sub> / SQRT(1- (v/c)<sup>2</sup>) = m<sub>0</sub> (1 - (v/c)<sup>2</sup>)<sup>1/2</sup>**，
 
 我们就会得到：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-31.png" title="31" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-31.png" title="Eq#31" %}
 
 可以清楚的看到，当速度不很大的时候，序列会急剧收敛，第三项之后的诸项可以忽略不计了，因而我们可以这么写：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-18.png" title="18" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-18.png" title="Eq#18" %}
 
-这里，右边的第二项表达的意思是速度的变化如何引起质量的变化。当温度增加，v2 也会线性增加，那么我们就可说质量和温度是成比例关系的。考虑到 **1/2 * m<sub>0</sub>v<sup>2</sup>** 其实是牛顿力学中的动能，我们也可以说容器中气体质量的增加等于动能除以 c 的平方，或者：
+这里，右边的第二项表达的意思是速度的变化如何引起质量的变化。当温度增加，v<sub>2</sub> 也会线性增加，那么我们就可说质量和温度是成比例关系的。考虑到 **1/2 * m<sub>0</sub>v<sup>2</sup>** 其实是牛顿力学中的动能，我们也可以说容器中气体质量的增加等于动能除以 c 的平方，或者：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-6.png" title="6" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-6.png" title="Eq#6" %}
 
 ### 质能等效（TODO）
