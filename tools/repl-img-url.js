@@ -135,6 +135,11 @@ const handle = async (postname) => {
 
   console.log("post:", postname)
 
+  if (postname.indexOf('special-relativity') === -1) {
+    next()
+    return
+  }
+
   nameOfPost = postname
   absPath = path.join(posts_dir, postname)
   REPLACE_MAP = {}
@@ -172,8 +177,8 @@ const next = () => {
 const main = (...args) => {
   const options = JSON.parse(fs.readFileSync("./.keys", "utf-8"))
   ossClient = new OSS(options)
-  posts_dir = path.resolve( __dirname, "../_drafts")
-  posts = fs.readdirSync("../_drafts")
+  posts_dir = path.resolve( __dirname, "../_posts")
+  posts = fs.readdirSync("../_posts")
   next()
 }
 
