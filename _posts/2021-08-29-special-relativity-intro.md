@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 狭义相对论介绍
-short: 过去 200 余年里，牛顿提出的运动方程被认为是对自然的正确描述，然而这个自然定律存在的问题首次被发现的时候，修正的方法也一同被提出。问题和修正方法都由爱因斯坦于 1905 年提出
+short: 过去 200 余年里，牛顿提出的运动方程被认为是对自然的正确描述，而这个自然定律存在的问题首次被发现的时候，解决的方法也一同被提出。此二者均由爱因斯坦于 1905 年提出
 src: https://feynmanlectures.caltech.edu/I_15.html
 ---
 
@@ -11,7 +11,6 @@ src: https://feynmanlectures.caltech.edu/I_15.html
 
 SQ = 取一个数的平方
 SQRT = 取一个数的平方根
-e+n = 10 的 n 次方
 × = 乘法符号
 m * n = m 乘以 n
 m / n = m 除以 n
@@ -34,11 +33,11 @@ m / n = m 除以 n
 
 牛顿第二定律，被我们描述为以下形式：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-2.png" title="Eq#2" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-2.png" title="牛顿力学方程" %}
 
 它假设了 `m` 是一个常量，但是我们现在知道，这不正确，物体的质量是随着速度的增加而增加的。在爱因斯坦修正后的方程里 `m` 的值以如下形式给出：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-39.png" title="Eq#3" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-39.png" title="Eq#1" %}
 
 这里，“静态质量” `m0` 被定义为物体在静止时候的质量；`c` 是光的速度，也就是 3×10<sup>5</sup> km/s，近似为 186,000 mi/sec。
 
@@ -54,11 +53,11 @@ m / n = m 除以 n
 
 这意味着，比如说，一个宇宙飞船以匀速运动，那么在这个飞船内的全部实验结论、现象，和这个飞船在静止的情况下表现一致，当然假设主体（人）不向窗外看。这就是相对性原则的意思。这是个非常简单明了的观点，唯一的问题是静止和运动系统中的物理实验是否表现一致。我们先来看看牛顿的定律是否在动系下表现一致。
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-40.png" title="15.2. 两个沿 x 轴匀速运行的系统" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-40.png" title="两个沿 x 轴匀速运行的系统" %}
 
 假设 Moe 沿着 x 方向匀速移动，速度为 u，并且他标记了某个点 P 的位置，如上图。他表示这个点的在 x 方向上的距离是 x'。Joe 是静止的，他也测量了 P 的位置，在他的系统下 P 在 x 方向上的距离是 x。从上图可以清楚的知道 x 和 x' 的关系。时间过去了 t 个单位，Moe 所在系统的原点移动了一个距离 ut，这里假设两个系统原本是重合的。
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-11.png" title="Eq#11" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-11.png" title="Eq#2" %}
 
 如果我们将这个转换用到牛顿的力学方程中，就会发现转换后的形式跟转换之前是一样的。也就是说，牛顿定律的形式在静系和在动系中保持不变。也因此，我们无法通过物理实验来检测到系统的静与动。
 
@@ -68,7 +67,7 @@ m / n = m 除以 n
 
 假设我们以速度 u 开着一辆车，一束光以速度 c 从后边追上来，对上述方程求导得到：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-7.png" title="Eq#7" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-7.png" title="推导" %}
 
 显然，根据伽利略转换，我们在车里测量到这一束光的速度不会是 c，而应该是 c - u。例如，如果汽车以 100000 mi/sec 的速度运行，这束光的速度是 186000 mi/sec，那么光通过汽车的速度就是 86000 mi/sec。无论什么情况，只要我们测量一下光通过汽车的时速度就能知道汽车的速度，这里我们假设伽利略转换对于光是正确的。基于这个想法，大量的实验企图测量出地球的速度，但是均以失败告终 —— 所有的实验测得的速度都是`0`。我们将具体看一下其中一个实验，以准确的了解当时做了什么以及问题是什么；一定哪里有问题，当然，是物理方程出了问题。那可能是什么呢？
 
@@ -78,7 +77,7 @@ m / n = m 除以 n
 
 与此同时，洛伦兹（H. A. Lorentz）发现了一个重要而新奇的事情，当他对 Maxwell 方程应用以下替换之后：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-9.png" title="Eq#9" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-9.png" title="Eq#3" %}
 
 Maxwell 的方程形式上保持了不变。上述变换就是著名的**洛伦兹变换**。爱因斯坦追随 Poincaré 最初的意见，提出**全部的物理定律必须在洛伦兹变换下保持形式的不变**。换句话，我们不应该修改电动学定律，而应该修改力学定律。我们如何修改牛顿的力学定律来使之对洛伦兹变换下形式不变呢？如果设立了这个目标，我们就需要修改牛顿方程以使之满足我们上面提到的那些条件。结论是，我们只需要修改牛顿力学方程中的质量项。这样修改之后，牛顿定律就和电动力学定律相和谐。这时，我们通过一番变换之后，再对 Moe 和 Joe 的测量结果进行比较，就无法知道究竟是谁在运动了，因为在两个系统中物理学方程的形式是一样的。
 
@@ -91,43 +90,43 @@ Maxwell 的方程形式上保持了不变。上述变换就是著名的**洛伦�
 如上所述，人们试图得到地球通过**以太**时的绝对速度，**以太**是一种假想的媒质，它充满了整个宇宙空间。最著名的实验由 Michelson 和 Morley 在 1887 年完成。18 年之后，实验的否定结论才最终得到解释，这源自爱因斯坦。
 
 {% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-19.png"
-title="Michelson 和 Morley 当时使用的设备示意图" %}
+title="Michelson 和 Morley 当时使用的设备的示意图" %}
 
 上图示意了 Michelson-Morley 当时实验所用到的设备。它由一个光源 A、一个半银质的玻璃盘 B（下边以 B 代指）、两面镜子 C（下边以 C 代指） 和 E（下边以 E 代指），它们都被固定在一个坚硬的基座上。两面镜子与 B 的距离都是 L。B 将光束一分为二，两束光彼此垂直地射向镜子 C 和 E，然后被镜子反射回 B。二者在 B 处汇聚，形成干涉光 D 和 F。如果光束经过 BE 的时间和经过 BC 的时间相等，那么 D 和 F 将同相增强。但是，如果这两个时间有轻微的不同，那么 D 和 F 就会不同相，从而出现干涉现象。如果设备相对以太是静止的，那么这两个时间应该相等；但是如果它以速度 u 自左向右运动，时间将不相等。先让我们看看这是为什么。
 
 首先，让我们计算一下光从 B 到 E 并回到 B 所需的时间。设从 B 到 E，光跑完需要的时间为 t<sub>1</sub>，返回到 B 所需的时间为 t<sub>2</sub>。现在，光在 B 处，正射向镜子，设备运动了一段距离 ut<sub>1</sub>，因此光必需经过的距离是 L + ut<sub>1</sub>，以光速 c。我们可以将这个距离写为 ct<sub>1</sub>，因此我们得到：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-10.png" title="Eq#10" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-10.png" title="推导" %}
 
 （从光相对设备的速度是 c - u 这点看来，此结果是显然的，如此，所需的时间就是距离 L 除以 (c - u) 以类似的方式，我们可以计算出 t<sub>2</sub>。这期间 B 前进了一段距离 ut<sub>2</sub>，因此光折返的距离就是 L - ut<sub>2</sub>。于是，我们得到：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-3.png" title="Eq#3" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-3.png" title="推导" %}
 
 继而，总的时间为：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-12.png" title="Eq#12" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-12.png" title="推导" %}
 
 为了后续对时间进行比较之便，我们将其写为：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-28.png" title="Eq#1" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-28.png" title="Eq#4" %}
 
 我们的第二个计算是 t<sub>3</sub>，它是光从 B 到 C 所需的时间。经过时间 t<sub>3</sub>，C 移动到新的位置 C'，距离为 ut<sub>3</sub>；与此同时，光沿着三角形的弦运行了距离 ct<sub>3</sub>，标记为 BC'。 借助右侧的三角形，我们得到：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-14.png" title="Eq#14" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-14.png" title="推导" %}
 
 或：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-34.png" title="Eq#34" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-34.png" title="推导" %}
 
 由此，我们有：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-38.png" title="Eq#38" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-38.png" title="推导" %}
 
 从对称性可以看出，由 C' 折返的距离与此相等；因此折返的时间也是相等的，那么总的时间就是 2t<sub>3</sub>。稍微经过编排，我们可以写出：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-25.png" title="Eq#2" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-25.png" title="Eq#5" %}
 
-我们现在就可以比较两束光运行所耗的时间。在表达式 Eq#1 和 Eq#2 中，分子是一样的，它表示的是设备静止时光需要的时间。看看分母，项 u2/c2 会非常小，除非 u 与 c 有可比较性。分母表示的是设备的移动对时间的修正。注意看，这个修正因子是不一样的，光行至 C 并返回所需的时间稍微小于 E，即便这两面镜子与 B 的距离相等，我们要做的就是精确的测量出这个差异。
+我们现在就可以比较两束光运行所耗的时间。在表达式 `Eq#4` 和 `Eq#5` 中，分子是一样的，它表示的是设备静止时光需要的时间。看看分母，项 u2/c2 会非常小，除非 u 与 c 有可比较性。分母表示的是设备的移动对时间的修正。注意看，这个修正因子是不一样的，光行至 C 并返回所需的时间稍微小于 E，即便这两面镜子与 B 的距离相等，我们要做的就是精确的测量出这个差异。
 
 这里有一个小的技术问题，我们能假设两个距离是 100% 相等的么？实际上，我们当然不能确保它们完全相等。基于此，我们简单的将设备转动 90 度，使得 BC 在地球轨道的方向上，而 BE 与之垂直。任何长度上的差异就变得无关紧要了，接下来我们需要寻找就是由转动设备引起的干涉条纹的移动。
 
@@ -135,25 +134,25 @@ title="Michelson 和 Morley 当时使用的设备示意图" %}
 
 Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵局，首个富有成效的解决思路是洛伦兹想到的。他建议有质量的物体在运动的时候会发生长度上的收缩，并且收缩只发生在运动的方向上，并且如果物体静止时的长度是 L<sub>0</sub>，那么它在长度方向上以速度 u<sub>0</sub> 运行的时候，有一个新的长度，我们称之为 **L<sub>||</sub>**，按照如下公式给出：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-20.png" title="Eq#20" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-20.png" title="Eq#6" %}
 
 当这个修正应用到 Michelson-Morley 的干涉仪上时，B 到 C 的距离不变，但是 B 到 E 的距离缩短到：
 
 **L * SQRT(1 - (u/c)<sup>2</sup>)**
 
-因此 Eq#2 不变，但是 Eq#2 中的 L 必需按照上边的变换加以修改。操作一番，我们就得到：
+因此 `Eq#5` 不变，但是 `Eq#6` 中的 L 必需按照上边的变换加以修改。操作一番，我们就得到：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-22.png" title="Eq#22" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-22.png" title="Eq#7" %}
 
-将其与 Eq#1 相比，我们看到 t<sub>1</sub>+t<sub>2</sub>=2t<sub>3</sub>。因此如果设备按上述方式收缩，我们就能理解为什么 Michelson- Morley 的实验未能给出任何差异。即便我们将洛伦兹的收缩假说考虑进来，解释了实验的否定结果，我们仍然对此表示反对，因为这是为了回避困难而发明出来的东西，过于人为。然而，许多其它企图检测以太风的实验，都会存在类似的困难，事情最终看起来似乎是大自然的一个阴谋，它引进一个新的现象来遮盖其它相关现象，以此它认为可以阻挠人类测量到地球的绝对速度。
+将其与 `Eq#5` 相比，我们看到 t<sub>1</sub>+t<sub>2</sub>=2t<sub>3</sub>。因此如果设备按上述方式收缩，我们就能理解为什么 Michelson- Morley 的实验未能给出任何差异。即便我们将洛伦兹的收缩假说考虑进来，解释了实验的否定结果，我们仍然对此表示反对，因为这是为了回避困难而发明出来的东西，过于人为。然而，许多其它企图检测以太风的实验，都会存在类似的困难，事情最终看起来似乎是大自然的一个阴谋，它引进一个新的现象来遮盖其它相关现象，以此它认为可以阻挠人类测量到地球的绝对速度。
 
 最终我们意识到，就如 Poincaré 指出的，全部的阴谋本就是自然的定律。Poincaré 随后提议存在一种自然定律，那就是：`无法采取任何实验的方式发现以太风`。这也就是说，我们无论如何都无法测量到绝对速度。
 
 ### 时间变换
 
-在检验尺度收缩理论是否与其它实验结果相符合的过程中，终于发现全部的结论都符合，只要我们再对时间做一个类似形式的变换。因为从 B 出发到达 C 再返回，光所需的时间 2t 为飞船内的人通过实验计算得到的，另一个处于静态系统的人，观察飞船而测得的时间与此不同。飞船内的人测得的时间就是 2L/c，但是飞船外的测量者测得的时间是：
+在检验尺度收缩理论是否与其它实验结果相符合的过程中，终于发现全部的结论都符合，只要我们再对时间做一个类似形式(`Eq#3`)的变换。因为从 B 出发到达 C 再返回，光所需的时间 2t<sub>3</sub> 为飞船内的人通过实验计算得到的，另一个处于静态系统的人，观察飞船而测得的时间与此不同。飞船内的人测得的时间就是 2L/c，但是飞船外的测量者测得的时间是：
 
- **(2L/c) / SQRT(1-(u/c)<sup>2</sup>)**
+ **(2L/c) / SQRT(1-(u/c)<sup>2</sup>)** (Eq#5)
  
  换句话说，当飞船外的观测者望向飞船内的人时，会发现他们点燃雪茄等等动作都变慢了，然而，对于飞船内部的人来说，一切都以正常的节拍进行。因此，不光空间尺度收缩，时间度量设备也会明显慢下来。也就是，如果飞船内的人记录了一个一秒的时间逝去，飞船外的人认为这个时间长度为:
 
@@ -165,7 +164,7 @@ Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵�
 
 我们制作了两个这样的时钟，相同的长度，并在一开始将它们调为同步；如此，它们就会在之后保持一致，因为它们的长度是一样的，光穿过两端所需的时间是相等的。我们将其中一个让人携带入飞船，并且让钟杆与飞船的运动方向保持垂直关系，这样的时钟的长度就不会收缩。我们如何知道时钟不会收缩呢？在彼此经过的时候，动系和静系中的人可以于各自系统的 y 轴上做好标记。由对称性，两个标记会出现在各自 y 轴的相同的位置，不然的话，当双方一起比较结果的时候，其中一个标记会在另一个标记的上面或者下面，那么我们就可以由此判断谁处在运动的状态。
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-32.png" title="Eq#32" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-32.png" title="a. S’（静态） 系统下的一个光脉冲钟；b. 与 a 为同一个钟，在 S’ 系移动；c. 光束在移动的情况下所行走的线路" %}
 
 现在，让我们看看运动的时钟内部发生了什么。当 Trump 将它带上飞船之前，Trump 会说它是一个漂亮、标准的时钟，然后 Trump 带着它上了飞船，Trump 还是不能发现什么异常。如果 Trump 发现了什么不同，他就会知道自己在运动 —— 如果有什么事情会因为运动而表现异样，Trump 就能知道他在运动。但是相对性原则告诉我们的是我们不可能在匀速运行的系统中判断出运动与否，因此没什么不一样。另一方面，飞船外的人习近平，在飞船经过他的时候，确实看到了光在时钟的镜面之间的运行轨迹是曲折的，因为钟杆一直都是在运动当中的。我们在 Michelson - Morley 实验那里已经研究过光的这种曲折轨迹。给定一个时间段，杆运行的距离与速度 u 成一定比例，光运行的时间与 c 是成比例的，垂直方向上的距离因此就与 **SQRT(c<sup>2</sup> - u<sup>2</sup>)** 成比例。
 
@@ -181,7 +180,7 @@ Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵�
 
 对 muon 粒子在不同速度下的平均寿命已经过测量，结果与公式计算出的结果相当接近。
 
-我们不知道为什么 muon 粒子会分裂，内部的机制是什么，但是我们知道它们的表现符合了相对性原则。这就是相对性原则的用处 —— 它可以用来做出预测，甚至是对那些我们尚不了解的事情。举个例子，在我们还不清楚 muon 粒子分裂的原因之前，我们可以预测到当它们以 9 / 10 个光速运行，它们的寿命会延长到：
+我们不知道为什么 muon 粒子会分裂，内部的机制是什么，但是我们知道它们的表现符合了相对性原则。这就是相对性原则的用处 —— 它可以用来做出预测，甚至是对那些我们尚不了解的事情。举个例子，在我们还不清楚 muon 粒子分裂的原因之前，我们可以预测到当它们以 `9 / 10` 个光速运行，它们的寿命会延长到：
 
 **(2.2×10<sup>-6</sup>)/ SQRT(1 - (9 / 10)<sup>2</sup>) sec**
 
@@ -191,7 +190,7 @@ Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵�
 
 现在，让我们看看洛伦兹变换，以尝试对静系和动系之间的关系有一个更好的理解，我们将它们称为 S 和 S' 系，或者 Joe 和 Moe 的系统。我们已经知道第一个方程式基于洛伦兹的建议；我们如何证明这个收缩效应是真实发生的呢？在 Michelson - Morley 实验中，我们可以肯定的是纵向臂 BC 的长度不会发生改变，这是根据相对性原则而来的；然而，实验的否定结论要求时间必须相等。因此， 为了使实验给出否定结果，横向臂 BE 需要看上去更短，收缩的比例为 **SQRT(1 - (u/c)<sup>2</sup>)**。这个收缩是什么意思呢？是 Joe 和 Moe 的测量结果的吗？假设 Moe 随着 S' 系在 x 方向上移动，他用米尺测量了某点在  x' 轴上的坐标。他将尺子摆放了 x' 次，因此他认为这个点离开原点的距离就是 x' 米。然而在 S 系的 Joe 看来，Moe 使用了一把缩短的尺子，因此真实的距离是 **x' * SQRT(1 - (u/c)<sup>2</sup>)** 米。那么如果 S' 系远离 S 系一段距离 `ut` 之后，S 系中的观测者就会说这个相同的点，在他的系统里的位置是 **x = x' * SQRT(1 - (u/c)<sup>2</sup>)**，或者：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-16.png" title="Eq#16" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-16.png" title="推导" %}
 
 这就是洛伦兹变换方程式。
 
@@ -199,7 +198,7 @@ Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵�
 
 采取类似地方式，由时间度量的不同，洛伦兹变换方程式引入了一个分母。在这个方程式中，最有意思的函项是分子中出现的 ux/c<sup>2</sup>，因为它是那么的新鲜和出乎意料。那么它的物理含义是什么呢？如果我们加以细致考量，会发现，Moe 看到的两个地点同时发生的事件，在 Joe 看来不是同时的。如果一个事件在位置 x<sub>1</sub> 和时间 t<sub>0</sub> 发生，另一个事件在 x<sub>2</sub> 和 t<sub>0</sub> （同时的）发生，我们发现这两个时间存在以下差量：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-13.png" title="Eq#13" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-13.png" title="推导" %}
 
 这样的情况被称为“距离引起的同时性失效”，要搞清楚这个事情，我们来考虑如下实验。
 
@@ -209,13 +208,13 @@ Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵�
 
 让我们看看能从洛伦兹变换方程式中发现什么。可以注意到针对 x 和 t 的变换形式是很相似的，而对 x 和 y 的做旋转变换的话，我们有：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-15.png" title="Eq#15" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-15.png" title="Eq#8" %}
 
 这里，x' 是对 x 和 y 的混淆计算，y' 也是如此。类似地，洛伦兹变换中，我们看到 x' 是对 x 和 t 混淆计算，t' 是对 t 和 x 混淆。因此洛伦兹变换类似于旋转变换，只是这个旋转是在空间和时间上的，这个观念有点奇特。对如此类比的检验可以通过如下数量计算来进行：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-26.png" title="Eq#26" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-26.png" title="Eq#9" %}
 
-在这个方程式中，两边的前三项表述的含义是在三维空间中，对于当前位置到坐标系原点的距离。某点的距离总是不变的，不考虑轴线的转动。类似地，方程式表明存在某种混合，它将时间包含进来，对于洛伦兹变换保持不变。由此，将这个变换类比于旋转变换是可取的，它是对于某种向量的变换，同时对于理解相对论也非常管用。
+在这个方程式中，两边的前三项表述的含义是在三维空间中，对于当前位置到坐标系原点的距离。某点的距离总是不变的，不考虑轴线的转动。类似地，方程式 `Eq#9` 表明存在某种混合，它将时间包含进来，对于洛伦兹变换保持不变。由此，将这个变换类比于旋转变换是可取的，它是对于某种向量的变换，同时对于理解相对论也非常管用。
 
 因此，我们对向量的观念有了一些延伸，在此之前我们仅仅考虑到空间分量，现在我们将时间作为一个分量考虑进来。也就是，我们希望有一种四维向量，其中三个表示我们平常理解的空间向量，存在第四个分量与之关联，这就是时间。
 
@@ -223,13 +222,13 @@ Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵�
 
 ### 动力学相对性
 
-我们现在来花点精力研究一下，在洛伦兹变换下，力学定律会呈现出怎样的形式（我们早先了解过长度和时间如何变化，但是没有考虑质量的变化形式，我们将在下一章做这件事）。要看到爱因斯坦对牛顿力学定律中的 m 项的修正有什么推论，我们从牛顿定律中“力是动量对时间的导数”这点开始：
+我们现在来花点精力研究一下，在洛伦兹变换下，力学定律会呈现出怎样的形式（我们早先了解过长度和时间如何变化，但是没有考虑质量的变化形式 (Eq#1)，我们将在下一章做这件事）。要看到爱因斯坦对牛顿力学定律中的 m 项的修正有什么推论，我们从牛顿定律中“力是动量对时间的导数”这点开始：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-17.png" title="Eq#17" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-17.png" title="牛顿方程" %}
 
 动量还是用 mv 给出，但是我们用新的 m 项时，动量表达为：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-24.png" title="Eq#24" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-24.png" title="Eq#10" %}
 
 这是爱因斯坦对牛顿定律的修正。如果作用和反作用依然相等的话（可能细节上不对，但是大概如此吧），动量守恒依然和之前一样有效，但是守恒的量不再是基于旧的 mv，而是如上述等式所示，质量存在修正。当加入这项改变之后，动量守恒依然成立。
 
@@ -243,14 +242,16 @@ Michelson 和 Morley 的实验结果是让人困扰、疑惑的。为打破僵�
 
 我们就会得到：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-31.png" title="Eq#31" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-31.png" title="展开" %}
 
 可以清楚的看到，当速度不很大的时候，序列会急剧收敛，第三项之后的诸项可以忽略不计了，因而我们可以这么写：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-18.png" title="Eq#18" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-18.png" title="Eq#11" %}
 
 这里，右边的第二项表达的意思是速度的变化如何引起质量的变化。当温度增加，v<sub>2</sub> 也会线性增加，那么我们就可说质量和温度是成比例关系的。考虑到 **1/2 * m<sub>0</sub>v<sup>2</sup>** 其实是牛顿力学中的动能，我们也可以说容器中气体质量的增加等于动能除以 c 的平方，或者：
 
-{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-6.png" title="Eq#6" %}
+{% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2021-08-29-special-relativity-intro/202109211008-6.png" title="质量变化" %}
 
-### 质能等效（TODO）
+### 质能等效
+
+
