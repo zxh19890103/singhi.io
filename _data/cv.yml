@@ -13,28 +13,32 @@ profile:
   技术扎实，对前端三大框架（Vue, React, Angular）与流行工具链 (Webpack, Babel) 有相当熟练的运用。
   具备 WEB 应用架构能力。
   对项目管理、代码规范、WEB PERF、CI/CD 有一定了解，
-  可兼做后端开发和运维。
-  喜好英文翻译，翻译过 Dan Abramov 的两篇技术小品，
-  和 in-depth.dev 社区创始人 Max Koretskyi 的三篇关于 React 的深度长文。
-links:
-  - title: Goodbye, Clean Code
-    url: https://overreacted.io/goodbye-clean-code/
-  - title: How Does the Development Mode Work?
-    url:  https://overreacted.io/how-does-the-development-mode-work/
-  - title: Inside Fiber - in-depth overview of the new reconciliation algorithm in React
-    url: https://indepth.dev/posts/1008/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react
+  可兼做后端开发和运维。注：本人不接受出差！
+
 employments:
+  - from : 2021/05
+    to: Now
+    company: 深圳市海柔创新科技有限公司
+    position: 高级前端工程师
+    description: 负责前端工程建设、地图产品研发
+    works:
+      - name: 地图产品
+        text: 地图产品，现场实时监控系统
+        highlights:
+          - 高性能
+          - UI 现代
+    
   - from: 2020/01
-    to: 现在
+    to: 2021/05
     company: 软通动力信息技术（集团）股份有限公司
     position: 主任工程师 / 导师
     description: 目前从事华为 BPIT CBGIT 部门的渠道产品相关的研发工作。
     works:
         - name: PMALL 商城
           text: toB 商城。系 Vue v2.0 项目，公司内部提供 xUI （类 Element UI）组件库，
-            日期库采用 momentJs，卡片式架构，基于 webpack 打包；
+            卡片式架构，基于 webpack 打包；
             期间首次为该项目引入 TypeScript，为 Vue 扩展以及应用全局实体添加类型声明；
-            为关键模块添加特性，如：购物车、分批发货、订单提交、发票核销、退换货；
+            为关键模块添加特性，包括：购物车、分批发货、订单提交、发票核销、退换货；
             负责整个激励对账模块的设计与开发。
           highlights:
             - 引入 TypeScript 支持 、完善构建系统以支持卡片的批量打包
@@ -45,34 +49,31 @@ employments:
         - name: Sentinel Dashboard 项目
           text: 隶属于平台公共服务项目，
             用于监控全平台应用的运行状况。
-            基于 angularJs、Bootstrap、G2、Gulp、Spring Boot 等；
-            期间主要负责控制台应用的前端开发；
-            实现了可编辑表格、镜面图功能、Brush 功能；Json 编辑、展示功能；
+            基于 angularJs、Bootstrap、G2、Gulp 等；
+            负责控制台应用的前端开发，包括：实时监控、接口近况、降级/流控规则、簇点链路、等模块。
+            实现了可编辑表格、镜面图功能、Brush 功能；Json 文本编辑、展示功能；
             Json-Schema 解析程序的设计与编码；
-            主要模块包括：实时监控、接口近况、降级/流控规则、簇点链路、等。
           highlights:
             - 构建环境的改进，引入 babel、lazyLoad，分离三方库
             - 基于 G2，实现 QPS 与 RT 曲线镜面展示以及异步 Brush 功能
-            - json schema 解析程序的设计、编码，以及实现 schema 与 value 的在界面上的读写交互
+            - JSON schema 解析程序的设计、编码，以及实现 schema 与 value 的在界面上的读写交互
 
   - from: 2018/11
     to: 2020/01
     company: 丽珠医药集团有限公司（深圳）
     position: 高级前端工程师
-    description: 健康阿鹿，丽珠集团旗下品牌，全国连锁诊所。
-      阿鹿云诊所是健康阿鹿独立打造的智慧医疗平台，致力于为医护患提供全流程服务。
+    description: 健康阿鹿，丽珠集团旗下品牌，全国连锁诊所，阿鹿云诊所是健康阿鹿独立打造的智慧医疗平台。
       在职期间，主要负责新药品进销存系统的设计、工程搭建。
     works:
         - name: 新药品进销存系统
           text: 用于诊所的药品库存管理以及配发药；
             基于 React、react-router、Redux、Typescript、apollo、less 实现；
-            在 React 应用与 apollo 之间插入转换层，屏蔽 Apollo 数据结构的变动。
             基于 antd 组件库封装业务组件，独立 git 仓，使用 submodule 引入主项目仓。
-            基于 editor config、prettier 以及 eslint 配置一套编码规范。
             主要模块包括：配发药、库存管理、药品管理、库存盘点等。
           highlights:
+            - 设计 React 应用与 apollo 之间插入转换层
+            - 基于 editor config、prettier 以及 eslint 配置一套编码规范
             - 6 大模块，3 位前端开发，4 个月内完成基本的开发、测试工作
-            - 业务模块级别的 chunk spliting
             - 实现药品分类的数据清洗工具
 
   - from: 2015/03
@@ -99,6 +100,7 @@ employments:
             基于 webpack + babel + express + ejs，自定义打包流程以更好适应项目；
             基于 ES6，实现基本的组件库和工具库；
             借助微信 JSSDK 实现微信授权、支付、扫码、拍照等功能。
+
   - from: 2013/09
     to: 2015/05
     company: 大连奈特网络科技有限公司
@@ -109,6 +111,7 @@ employments:
           text: 基于 .NET 4 和 MSSQL 8 开发的大型商业系统，具有一键安装、页面模板、智能 SEO、静态生成、多语言等特性。
         - name: 基于 .NET & MSSQL 的零售系统
           text: 基于 CMS 系统的基础架构进化而来，其借鉴了著名开源项目 nopCommerce 的业务和技术架构，满足小规模零售商家的线上业务需求。
+
 education:
   from: 2009/09
   to: 2013/06
