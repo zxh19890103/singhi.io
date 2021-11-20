@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  IF LuXun had gone to Soviet Union
+title:  假如鲁迅先生去过苏联
 short: 读《鲁迅全集》，有一个很明显的印象，即鲁迅先生对苏联赞誉有如，充满向往
 src: http://www.xys.org/xys/classics/Lu-Xun/criticism/luxun_soviet.txt
 ---
