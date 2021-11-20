@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Who am I?
+title: About
 ---
 
 ### Who am I?
