@@ -5,6 +5,8 @@ title: 关于我
 
 ### 我是谁
 
+[If you're from western contries, welcome to read another version.](about-en.md)
+
 {% include img.html src="https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/201304291724.jpg" title="2013" %}
 
 你好：
@@ -21,13 +23,14 @@ title: 关于我
 
 目前感兴趣的技术：
 
+- Typescript
 - ES6 & ES of next
 - NodeJs
 - HTML5 & CSS3
-- PHP
 
 用过的框架、库、工具：
 
+- Leaflet
 - React / Angular / Vue
 - Express + koa
 - Webpack + Babel
@@ -46,8 +49,6 @@ title: 关于我
 ### 联系方式
 
 - 邮箱：zhangxinghai79@gmail.com
-
-- QQ：1210372315
 
 ### 社交主页
 
