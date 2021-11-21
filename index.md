@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 记录/博客
+title: 记录
 ---
 
 <blockquote>
