@@ -134,9 +134,9 @@ $paperColor: lighten(#f5f5d5, 8);
 			word-break: break-word;
 			white-space: pre-wrap;
 			line-height: 1.685;
-			font-size: 1.1rem;
+			font-size: 1.24rem;
 			@include ifmob() {
-				line-height: 1.4;
+				line-height: 1.5;
 			}
 		}
 		a {
