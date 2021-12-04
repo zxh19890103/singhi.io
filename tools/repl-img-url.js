@@ -135,7 +135,7 @@ const handle = async (postname) => {
 
   console.log("post:", postname)
 
-  if (postname.indexOf('special-relativity') === -1) {
+  if (postname.indexOf('taiwan-and-me') === -1) {
     next()
     return
   }
