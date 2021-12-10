@@ -5,7 +5,7 @@ title: 关于我
 
 ### 我是谁
 
-[If you're from western contries, welcome to read another version.](about-en.md)
+<a href="/about-en.html" class="pure-english">If you're from western contries, welcome to read another version.</a>
 
 {% include img.html src="https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/201304291724.jpg" title="2013" %}
 

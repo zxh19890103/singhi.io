@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: index
 title: 专栏 - 设计模式
 ---
 

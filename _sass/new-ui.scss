@@ -1,7 +1,7 @@
-$themeColor: seagreen;
+$themeColor: rgb(46, 139, 87);
 $textColor: #1a2a3a;
 $textColor-1: #1a2a3a;
-$textColor-2: #3a4a5a;
+$textColor-2: #5d646b;
 $textColor-3: #5a6a7a;
 $textColor-4: #7a8a9a;
 $paperColor: lighten(#f5f5d5, 8);
@@ -42,7 +42,7 @@ $paperColor: lighten(#f5f5d5, 8);
 
 	p,
 	time {
-		color: #7a8a9a;
+		color: $textColor-4;
 	}
 }
 
@@ -54,7 +54,7 @@ $paperColor: lighten(#f5f5d5, 8);
 	@include ifmob {
 		padding: 1.5rem 0 1rem 0;
 	}
-	&__title {
+	&__title, .page__title {
 		position: sticky;
 		top: 0;
 		margin: 0 -2rem 3rem -2rem;
@@ -73,7 +73,7 @@ $paperColor: lighten(#f5f5d5, 8);
 				transform: rotate(2deg) skew(21deg);
 				-ms-transform: rotate(2deg) skew(21deg);
 				-o-transform: rotate(2deg) skew(21deg);
-				background: rgba($color: seagreen, $alpha: 0.31);
+				background: rgba($color: $themeColor, $alpha: 0.31);
 			}
 		}
 		&-small {

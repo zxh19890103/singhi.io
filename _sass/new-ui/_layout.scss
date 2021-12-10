@@ -23,8 +23,8 @@ aside {
 	z-index: 1;
 	@media screen and (max-width: $mobileWidth) {
 		padding-top: $headerHeight;
-		left: -256px;
 	}
+	left: -256px;
 	.copyright {
 		width: 100%;
 	}
@@ -110,7 +110,7 @@ main {
 		}
 		&:hover {
 			color: $textColor-3;
-			border-bottom-color: darkseagreen;
+			border-bottom-color: $themeColor;
 		}
 	}
 }
@@ -123,30 +123,37 @@ main {
 }
 
 .header {
-	display: none;
+	display: block;
 	position: fixed;
 	top: 0;
 	left: 0;
-	background: rgba($color: seagreen, $alpha: .86);
-	width: 100%;
+	width: auto;
+	background-color: transparent;
 	height: $headerHeight;
 	line-height: $headerHeight;
 	padding: 0 1rem;
 	z-index: 2;
 	@include boxSizing(border-box);
+	text-align: center;
+
 	i.iconfont {
 		font-size: 1.2rem;
 		font-weight: bold;
 		color: #FFF;
 	}
-	text-align: center;
+
 	&__title {
+		display: none;
 		color: #FFF;
 	}
 	a {
 		float: left;
 	}
 	@include ifmob {
-		display: block;
+		&__title {
+			display: inline;
+		}
+		background: rgba($color: seagreen, $alpha: .86);
+		width: 100%;
 	}
 }
