@@ -49,10 +49,11 @@ $paperColor: lighten(#f5f5d5, 8);
 // Post & Page
 .article {
 	position: relative;
-	padding: 1rem 0 1rem 0;
 	margin: 1rem 0 1rem 0;
+	padding: 1rem 0 1rem 0;
 	@include ifmob {
-		padding: 1.5rem 0 1rem 0;
+		margin: 0;
+		padding: 2rem 0 1rem 0;
 	}
 	&__title, .page__title {
 		position: sticky;
@@ -174,7 +175,7 @@ $paperColor: lighten(#f5f5d5, 8);
 	}
 	ol,
 	ul {
-		padding-left: 3em;
+		padding-left: 2em;
 		list-style-position: outside;
 		font-size: 1.15rem;
     color: #333;
@@ -263,10 +264,7 @@ $paperColor: lighten(#f5f5d5, 8);
 }
 
 .photo {
-	margin: 0 0 1rem 0;
-	@include ifmob {
-		margin: 0 -1rem 1rem -1rem;
-	}
+	margin: 0 -2rem 1rem -2rem;
 	&-wrapper {
 		// todo:
 		cursor: zoom-in;
