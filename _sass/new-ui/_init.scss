@@ -45,6 +45,7 @@ ul {
 }
 
 blockquote {
+	font-size: 1.1rem;
 	display: block;
 	padding: 1rem;
 	margin: 0;
@@ -53,8 +54,8 @@ blockquote {
 	background: #f3f5f9;
 	p,
 	ul, ol {
+		font-size: 1.1rem !important;
 		margin: 0;
-		color: $themeColor;
 	}
 }
 
