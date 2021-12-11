@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Jobs 在斯坦福大学的演讲（English）
+title: The speech by Jobs in Stanford
 short: This is the text of the Commencement address by Steve Jobs, CEO of Apple Computer and of Pixar Animation Studios, delivered on June 12, 2005
 english: 1
 ---
