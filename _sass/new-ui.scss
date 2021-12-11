@@ -39,10 +39,9 @@ $paperColor: lighten(#f5f5d5, 8);
 		margin: 0;
 		font-weight: 400;
 	}
-
-	p,
-	time {
+	p {
 		color: $textColor-4;
+		margin: 0;
 	}
 }
 
