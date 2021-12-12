@@ -52,9 +52,16 @@ blockquote {
 	color: $textColor-2;
 	border-radius: 4px;
 	background: rgba($themeColor, 0.15);
-	p,
-	ul, ol {
+	overflow: hidden;
+	&.poem {
+		p {
+			white-space: pre-wrap !important;
+		}
+	}
+	> p,
+	> ul, > ol {
 		font-size: 1.1rem !important;
+		white-space: normal !important;
 		margin: 0;
 	}
 }

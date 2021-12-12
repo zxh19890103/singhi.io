@@ -9,13 +9,13 @@ src: https://feynmanlectures.caltech.edu/I_15.html
 
 ### 符号约定
 
-SQ = 取一个数的平方
-SQRT = 取一个数的平方根
-× = 乘法符号
-m * n = m 乘以 n
-m / n = m 除以 n
+- `SQ`: 取一个数的平方
+- `SQRT`: 取一个数的平方根
+- `×`: 乘法符号
+- `m * n`: m 乘以 n
+- `m / n`: m 除以 n
 
-### 目录：
+### 目录
 
 - 相对性原则
 - 洛伦兹变换
