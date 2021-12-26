@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 空时
-short: 空时
+short: 相对性理论向我们表明了，不同坐标系下位置与时间之间的关系，并非如我们所直观预期的那样。非常重要的一点是，我们必须深刻地明白，洛伦兹变换对于位置和时间暗含着的那种关联，因此我们要细致地考察一下这个问题
 src: https://feynmanlectures.caltech.edu/I_17.html
 ---
 
