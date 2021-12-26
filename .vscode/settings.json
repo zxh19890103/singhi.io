@@ -1,5 +1,5 @@
 {
-  "editor.fontSize": 21,
+  "editor.fontSize": 16,
   "editor.formatOnSave": false,
   "editor.fontFamily": "Wawati SC, Consolas, 'Courier New', monospace",
   "prettier.useEditorConfig": true,
