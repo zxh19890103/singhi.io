@@ -135,7 +135,7 @@ const handle = async (postname) => {
 
   console.log("post:", postname)
 
-  if (postname.indexOf('taiwan-and-me') === -1) {
+  if (postname.indexOf('the-space-time') === -1) {
     next()
     return
   }
