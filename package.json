@@ -9,7 +9,7 @@
     "@babel/plugin-transform-runtime": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "@babel/runtime": "^7.6.0",
-    "ali-oss": "^6.15.2",
+    "ali-oss": "^6.16.0",
     "gitment": "^0.0.3",
     "rollup": "^1.20.3",
     "rollup-plugin-babel": "^4.3.3",

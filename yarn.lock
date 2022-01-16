@@ -880,10 +880,10 @@ agentkeepalive@^3.4.1:
   dependencies:
     humanize-ms "^1.2.1"
 
-ali-oss@^6.15.2:
-  version "6.15.2"
-  resolved "https://registry.npmjs.org/ali-oss/-/ali-oss-6.15.2.tgz#276c3bdff5f89460ac9feac8d1d2a0bc32a18d6c"
-  integrity sha512-sLB3a2Q6BvD4fNfHO4a0uuVn+5dlFaWUE/tExFk8bNMTevNGb4hH419kyvTSvKsO8FGLIhyezdi2NVhLHwhPqA==
+ali-oss@^6.16.0:
+  version "6.16.0"
+  resolved "https://registry.yarnpkg.com/ali-oss/-/ali-oss-6.16.0.tgz#3b7fbe10f13fbd535478fc31c7d05aaf4280269b"
+  integrity sha512-tK/+yEKtBBD+kMoHABxg6lCgC+Ad9HNjCln7qdL6LRYbUm+FFTKJubC4hT2FIooMBDb9tnI7My4MVreKnbJQRg==
   dependencies:
     address "^1.0.0"
     agentkeepalive "^3.4.1"
