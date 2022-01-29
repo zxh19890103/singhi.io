@@ -20,14 +20,18 @@ employments:
     to: Now
     company: 深圳市海柔创新科技有限公司
     position: 高级前端工程师
-    description: 负责前端工程建设、地图产品研发
+    description: 负责前端工程建设、高性能仓库实时监控系统设计与开发、仓库图形编辑系统设计与开发
     works:
       - name: 地图产品
-        text: 地图产品，现场实时监控系统
+        text: 现场实时监控系统，基于 leaflet 的图形编辑器；主要技术包括 TS、React、leaflet、Antd、MaterialUI、glMatrix
         highlights:
-          - 高性能
-          - UI 现代
-    
+          - 遵循 DDD 开发模式
+          - 可承受 50 Hz Websocket 消息推送
+          - 实时的列表、详情（React 组件）以及图形元素（位置、形态）
+          - 自定义表单接口约束，系统核心与表单组件分离，使开发更自由
+          - 自定义事件系统（包含优化）、业务对象层
+          - 图形元素分组、动态 SVG 渲染、SVG 与 Layer 互转
+
   - from: 2020/01
     to: 2021/05
     company: 软通动力信息技术（集团）股份有限公司
@@ -38,12 +42,9 @@ employments:
           text: toB 商城。系 Vue v2.0 项目，公司内部提供 xUI （类 Element UI）组件库，
             卡片式架构，基于 webpack 打包；
             期间首次为该项目引入 TypeScript，为 Vue 扩展以及应用全局实体添加类型声明；
-            为关键模块添加特性，包括：购物车、分批发货、订单提交、发票核销、退换货；
-            负责整个激励对账模块的设计与开发。
+            为关键模块添加特性。
           highlights:
             - 引入 TypeScript 支持 、完善构建系统以支持卡片的批量打包
-            - 命令方式创建 Vue 组件，实现交易协议的签署功能，方便多处切入
-            - 通过抽象公共业务逻辑，1.5 周完成激励对账模块的开发，包含 16 张页面
             - 基于 REPL 和 readline 的卡片迁移脚手架
 
         - name: Sentinel Dashboard 项目
@@ -69,11 +70,8 @@ employments:
           text: 用于诊所的药品库存管理以及配发药；
             基于 React、react-router、Redux、Typescript、apollo、less 实现；
             基于 antd 组件库封装业务组件，独立 git 仓，使用 submodule 引入主项目仓。
-            主要模块包括：配发药、库存管理、药品管理、库存盘点等。
           highlights:
             - 设计 React 应用与 apollo 之间插入转换层
-            - 基于 editor config、prettier 以及 eslint 配置一套编码规范
-            - 6 大模块，3 位前端开发，4 个月内完成基本的开发、测试工作
             - 实现药品分类的数据清洗工具
 
   - from: 2015/03

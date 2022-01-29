@@ -100,6 +100,9 @@
 			}
 			&-desc {
 				flex: 1;
+				p, ol {
+					font-size: 15px;
+				}
 			}
 		}
 	}
