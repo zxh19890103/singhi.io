@@ -8,12 +8,12 @@ nationality: 汉
 eduDegree: 本科
 profile:
   本人从事软件行业 8 年，其中 6+ 年的前端经验，高级前端开发。
-  具有丰富的项目经验，曾经主导过 6 个以上大中型商业项目，
-  涉及电商、ERP、HIS、CMS、爬虫、公众号等。
-  技术扎实，对前端三大框架（Vue, React, Angular）与流行工具链 (Webpack, Babel) 有相当熟练的运用。
+  具有丰富的项目经验，曾经主导过 8 个以上大中型商业项目，
+  涉及图形实时系统、图形编辑软件、电商、ERP、HIS、CMS、爬虫、公众号等。
+  技术扎实，对前端三大框架与流行工具链有相当熟练的运用。
   具备 WEB 应用架构能力。
   对项目管理、代码规范、WEB PERF、CI/CD 有一定了解，
-  可兼做后端开发和运维。注：本人不接受出差！
+  做后端开发和运维亦不成问题。
 
 employments:
   - from : 2021/05
@@ -25,17 +25,17 @@ employments:
       - name: 地图产品
         text: 现场实时监控系统，基于 leaflet 的图形编辑器；主要技术包括 TS、React、leaflet、Antd、MaterialUI、glMatrix
         highlights:
-          - 遵循 DDD 开发模式
+          - 基于 DDD
           - 可承受 50 Hz Websocket 消息推送
-          - 实时的列表、详情（React 组件）以及图形元素（位置、形态）
+          - 实时的列表、详情以及图形元素
           - 自定义表单接口约束，系统核心与表单组件分离，使开发更自由
-          - 自定义事件系统（包含优化）、业务对象层
+          - 自定义事件系统、业务对象层
           - 图形元素分组、动态 SVG 渲染、SVG 与 Layer 互转
 
   - from: 2020/01
     to: 2021/05
     company: 软通动力信息技术（集团）股份有限公司
-    position: 主任工程师 / 导师
+    position: 主任工程师
     description: 目前从事华为 BPIT CBGIT 部门的渠道产品相关的研发工作。
     works:
         - name: PMALL 商城
