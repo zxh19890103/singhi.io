@@ -44,10 +44,13 @@
 	&__profile, &__skills {
 		@include flexBox();
 		h3 {
-			width: $head-width;
+			width: 100%;
 			@include ifmob {
 				width: $head-width-mobi;
 			}
+		}
+		ol, ul {
+			font-size: 15px;
 		}
 	}
 	// IT's a ol element

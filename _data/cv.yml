@@ -7,9 +7,9 @@ placeOfBirth: 中国湖北黄冈
 nationality: 汉
 eduDegree: 本科
 profile:
-  本人从事软件行业 8 年，其中 6+ 年的前端经验，高级前端开发。
+  本人从事软件行业 8 年，其中 7+ 年的前端经验，高级前端开发。
   具有丰富的项目经验，曾经主导过 8 个以上大中型商业项目，
-  涉及图形实时系统、图形编辑软件、电商、ERP、HIS、CMS、爬虫、公众号等。
+  涉及实时可视化监控系统、图形编辑软件、电商、ERP、HIS、CMS、爬虫、公众号等。
   技术扎实，对前端三大框架与流行工具链有相当熟练的运用。
   具备 WEB 应用架构能力。
   对项目管理、代码规范、WEB PERF、CI/CD 有一定了解，
@@ -25,10 +25,10 @@ employments:
       - name: 地图产品
         text: 现场实时监控系统，基于 leaflet 的图形编辑器；主要技术包括 TS、React、leaflet、Antd、MaterialUI、glMatrix
         highlights:
-          - 基于 DDD
-          - 可承受 50 Hz Websocket 消息推送
-          - 实时的列表、详情以及图形元素
-          - 自定义表单接口约束，系统核心与表单组件分离，使开发更自由
+          - DDD 模式
+          - 可承载 50 Hz Websocket 消息推送
+          - 实时列表、详情以及图形元素
+          - 自定义表单接口约束，系统核心与表单组件分离，使开发更明确、更自由
           - 自定义事件系统、业务对象层
           - 图形元素分组、动态 SVG 渲染、SVG 与 Layer 互转
 
@@ -40,24 +40,21 @@ employments:
     works:
         - name: PMALL 商城
           text: toB 商城。系 Vue v2.0 项目，公司内部提供 xUI （类 Element UI）组件库，
-            卡片式架构，基于 webpack 打包；
-            期间首次为该项目引入 TypeScript，为 Vue 扩展以及应用全局实体添加类型声明；
-            为关键模块添加特性。
+            卡片式架构，基于 webpack 打包；为关键模块添加特性。
           highlights:
-            - 引入 TypeScript 支持 、完善构建系统以支持卡片的批量打包
+            - 引入 TypeScript、开展相关培训
+            - 为 Vue 扩展以及应用全局实体添加类型声明
             - 基于 REPL 和 readline 的卡片迁移脚手架
 
         - name: Sentinel Dashboard 项目
-          text: 隶属于平台公共服务项目，
-            用于监控全平台应用的运行状况。
-            基于 angularJs、Bootstrap、G2、Gulp 等；
-            负责控制台应用的前端开发，包括：实时监控、接口近况、降级/流控规则、簇点链路、等模块。
-            实现了可编辑表格、镜面图功能、Brush 功能；Json 文本编辑、展示功能；
-            Json-Schema 解析程序的设计与编码；
+          text: 隶属于平台公共服务项目，用于监控全平台应用的运行状况。
+            基于 angularJs、Bootstrap、G2、Gulp，期间负责控制台应用的前端开发。
           highlights:
+            - 实现了 Json 文本编辑、展示功能
+            - 实现了可编辑表格
+            - 实现了 QPS 与 RT 曲线镜面展示以及异步 Brush 功能
             - 构建环境的改进，引入 babel、lazyLoad，分离三方库
-            - 基于 G2，实现 QPS 与 RT 曲线镜面展示以及异步 Brush 功能
-            - JSON schema 解析程序的设计、编码，以及实现 schema 与 value 的在界面上的读写交互
+            - JSON schema 解析程序的设计、编码
 
   - from: 2018/11
     to: 2020/01
@@ -119,38 +116,9 @@ education:
     计算机相关课程包括：C 语言基础、ASP 网页制作、ASP.Net 网站制作、C++ 基础、关系型数据库设计原理、Flash 实践、VB 基础。
     独立研究过 Python、Java，毕业设计关于 Python 在物理实验数据处理中的应用。
 skills:
-  - level: 4
-    tags:
-      - tag: TypeScript
-      - tag: ES6
-      - tag: HTML
-      - tag: CSS
-      - tag: React
-      - tag: Vue
-      - tag: Angular
-      - tag: NodeJs
-      - tag: Express
-      - tag: Koa
-      - tag: Sass
-      - tag: webpack
-      - tag: babel
-  - level: 3
-    tags:
-      - tag: Git
-      - tag: Rollup
-      - tag: Gulp
-      - tag: Less
-      - tag: RxJs
-      - tag: npm
-      - tag: HTTP
-  - level: 2
-    tags:
-      - tag: jQuery
-      - tag: Bootstrap UI
-      - tag: eCharts
-      - tag: G2
-      - tag: WebGL
-      - tag: Spring MVC
-      - tag: ASP.NET
-      - tag: YII2.0
-      - tag: MySQL
+  - 设计并实现了一个高实时 WEB 监控系统（仓储自动化行业）
+  - 设计并实现了一个大型协同图形编辑器，基于 leaflet 和 React
+  - 有多个大型 WEB 系统设计和实现经验
+  - 有一定的团队管理经验、乐于分享
+  - 工于 Web 体系、ES6、TypeScript、React/Vue/Angular
+  - 工于 Design Patterns、编程规范、工程化

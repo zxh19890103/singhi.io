@@ -53,29 +53,14 @@ permalink: /cv-zh
   <section class="cv__skills">
     <h3>
       <i class="iconfont icon-skills"></i>
-      技能
+      做过/擅长
     </h3>
-    <div style="display: flex; display: -webkit-flex; justify-content: flex-start; align-items: flex-start;">
-      {% for skillgroup in model.skills %}
-      <div style="flex: 1">
-        <div class="skill-level skill-level-{{skillgroup.level}}">
-          <em class="iconfont icon-star"></em>
-          <em class="iconfont icon-star"></em>
-          <em class="iconfont icon-star"></em>
-          <em class="iconfont icon-star"></em>
-          <em class="iconfont icon-star"></em>
-        </div>
-        <ul class="cv__listing cv__listing--tags">
-          {% for skill in skillgroup.tags %}
-          <li>
-            <label>
-              {{skill.tag}}<i class="iconfont icon-dunhao"></i>
-            </label>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endfor %}
+    <div>
+      <ul>
+        {% for text in model.skills %}
+        <li><div>{{text}}</div></li>
+        {% endfor %}
+      </ul>
     </div>
   </section>
   <section class="cv__exper cv__exper--emp">
