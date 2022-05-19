@@ -25,9 +25,11 @@ $paperColor: lighten(#f5f5d5, 8);
 	padding-left: 0 !important;
 	list-style: none !important;
 	&__item {
-		border-bottom: 1px solid #efefef;
+		border-bottom: 1px dashed #efefef;
+		margin-bottom: 3rem;
 		&:last-child {
 			border-bottom: none;
+			margin-bottom: 0px;
 		}
 	}
 }
@@ -42,8 +44,11 @@ $paperColor: lighten(#f5f5d5, 8);
 	p {
 		color: $textColor-4;
 		margin: 0;
-		line-height: 1.4rem;
-
+    height: 1.4rem;
+    line-height: 1.4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 	}
 }
 
