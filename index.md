@@ -15,7 +15,7 @@ title: 记录
           </a>
         </h3>
         <p>
-        <time>{{ post.date | date: "%m/%d, %Y" }}</time>
+        <time class="pure-english">{{ post.date | date: "%m/%d, %Y" }}</time>
         {% if post.short %} <span style="color: #EFEFEF">&bull;</span><span> {{ post.short }}</span><a href="{{ post.url }}" style="position: relative;top: 9px;left: 6px;font-size: 1.4rem;">&dot;&dot;&dot;</a> {% endif %}
         </p>
       </div>
