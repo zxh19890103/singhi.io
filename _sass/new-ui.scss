@@ -25,7 +25,7 @@ $paperColor: lighten(#f5f5d5, 8);
 	padding-left: 0 !important;
 	list-style: none !important;
 	&__item {
-		border-bottom: 1px dashed #efefef;
+		border-bottom: 1px dashed #eee;
 		margin-bottom: 3rem;
 		&:last-child {
 			border-bottom: none;
