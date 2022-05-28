@@ -25,7 +25,7 @@ $paperColor: lighten(#f5f5d5, 8);
 	padding-left: 0 !important;
 	list-style: none !important;
 	&__item {
-		border-bottom: 1px dashed rgba(19, 122, 41, 0.298);
+		border-bottom: 1px dashed rgba(19, 122, 41, 0.2);
 		margin-bottom: 3rem;
 		@include ifmob() {
 			margin-bottom: 1rem;
