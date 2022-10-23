@@ -1,10 +1,12 @@
 ---
 layout: post
 title: 清除异己、强调忠诚：习近平如何恢复强人统治
-source: 十年前，中国看起来已经进入一个新阶段：此前反复无常的强人主导的政治似乎已经稳健过渡到了稳定、可预测的治理模式
+short: 十年前，中国看起来已经进入一个新阶段：此前反复无常的强人主导的政治似乎已经稳健过渡到了稳定、可预测的治理模式
 ---
 
->转载自：https://cn.nytimes.com/china/20221023/purges-and-loyalty-pledges-how-xi-revived-strongman-rule/
+> 转载自：纽约时报中文版
+
+https://cn.nytimes.com/china/20221023/purges-and-loyalty-pledges-how-xi-revived-strongman-rule/
 
 十年前，中国看起来已经进入一个新阶段：此前反复无常的强人主导的政治似乎已经稳健过渡到了稳定、可预测的治理模式。
 
