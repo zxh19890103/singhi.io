@@ -1,10 +1,10 @@
-$themeColor: rgb(46, 139, 87);
+$themeColor: #04568b;
 $textColor: #1a2a3a;
 $textColor-1: #1a2a3a;
 $textColor-2: #5d646b;
 $textColor-3: #5a6a7a;
 $textColor-4: #7a8a9a;
-$paperColor: lighten(#f5f5d5, 8);
+$paperColor: #ffffff;
 
 @import "./new-ui/mixins";
 @import "./new-ui/font";
@@ -25,7 +25,7 @@ $paperColor: lighten(#f5f5d5, 8);
 	padding-left: 0 !important;
 	list-style: none !important;
 	&__item {
-		border-bottom: 1px dashed rgba(19, 122, 41, 0.2);
+		border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
 		margin-bottom: 3rem;
 		@include ifmob() {
 			margin-bottom: 1rem;
@@ -47,11 +47,11 @@ $paperColor: lighten(#f5f5d5, 8);
 	p {
 		color: $textColor-4;
 		margin: 0;
-    height: 1.4rem;
-    line-height: 1.4rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+		height: 1.4rem;
+		line-height: 1.4rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 }
 
@@ -64,11 +64,12 @@ $paperColor: lighten(#f5f5d5, 8);
 		margin: 0;
 		padding: 2rem 0 1rem 0;
 	}
-	&__title, .page__title {
+	&__title,
+	.page__title {
 		position: sticky;
 		top: 0;
 		margin: 0 -2rem 3rem -2rem;
-    padding: 1rem 2rem 1rem 2rem;
+		padding: 1rem 2rem 1rem 2rem;
 		background: rgba($color: $paperColor, $alpha: 0.95);
 		color: $textColor-2;
 		z-index: 1;
@@ -178,16 +179,16 @@ $paperColor: lighten(#f5f5d5, 8);
 	hr {
 		padding: 0;
 		margin: 0;
-    margin-bottom: calc(1.75rem - 1px);
-    border: 1px dashed rgba(46, 139, 87, 0.6);
-    transform: scaleY(.3);
+		margin-bottom: calc(1.75rem - 1px);
+		border: 1px dashed rgba(0, 0, 0, 0.6);
+		transform: scaleY(0.3);
 	}
 	ol,
 	ul {
 		padding-left: 2em;
 		list-style-position: outside;
 		font-size: 1.15rem;
-    color: #333;
+		color: #333;
 	}
 	ul {
 		list-style-type: square;
