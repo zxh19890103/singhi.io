@@ -76,16 +76,7 @@ $paperColor: #ffffff;
 		h1 {
 			width: 61.8%;
 			margin: 0;
-			&:after {
-				content: "";
-				display: block;
-				width: 61.8%;
-				height: 8px;
-				transform: rotate(2deg) skew(21deg);
-				-ms-transform: rotate(2deg) skew(21deg);
-				-o-transform: rotate(2deg) skew(21deg);
-				background: rgba($color: $themeColor, $alpha: 0.31);
-			}
+			font-size: 2rem;
 		}
 		&-small {
 			font-size: 13px; // as icon's size is 16px
