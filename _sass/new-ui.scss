@@ -60,10 +60,7 @@ $paperColor: #ffffff;
 	position: relative;
 	margin: 1rem 0 1rem 0;
 	padding: 1rem 0 1rem 0;
-	@include ifmob {
-		margin: 0;
-		padding: 2rem 0 1rem 0;
-	}
+
 	&__title,
 	.page__title {
 		position: sticky;
@@ -73,25 +70,20 @@ $paperColor: #ffffff;
 		background: rgba($color: $paperColor, $alpha: 0.95);
 		color: $textColor-2;
 		z-index: 1;
-		h1 {
-			width: 61.8%;
-			margin: 0;
-			font-size: 2rem;
-		}
-		&-small {
-			font-size: 13px; // as icon's size is 16px
+		border-bottom: 1px solid #efefef;
+		font-size: 2rem;
+
+		&-createdAt {
+			font-size: 1.6rem; // as icon's size is 16px
 			color: $textColor-4;
 		}
+
 		&--english {
 			font-family: Aspergit;
 		}
 		@include ifmob {
 			position: static;
 			top: 0;
-			padding-top: 1rem;
-			h1 {
-				width: 100%;
-			}
 		}
 	}
 	&__body {

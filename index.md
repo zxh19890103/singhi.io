@@ -3,4 +3,4 @@ layout: index
 title: 记录
 ---
 
-My contents have been down for some private reasons.
+不公开内容了

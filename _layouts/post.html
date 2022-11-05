@@ -3,14 +3,8 @@ layout: with-nonav
 ---
 
 <div class="article__title{% if page.english %} article__title--english{% endif %}">
-  <h1>{{ page.title }}</h1>
-  <div class="article__title-small">
-    <span>{{ page.date | date: "%a, %b %d, %y" }}</span>
-    {% if page.nocoffe %} {% else %}
-    <i class="iconfont icon-coffee"></i>
-    {% endif %}
-    <a href="/" style="margin-left: 8px;">back</a>
-  </div>
+    {{ page.title }}
+    <span class="article__title-createdAt">{{ page.date | date: "%m/%d, %y" }}</span>
 </div>
 
 <div class="article__body{% if page.song %} article__body--song{% endif %} {% if page.english %} article__body--english{% endif %}">
