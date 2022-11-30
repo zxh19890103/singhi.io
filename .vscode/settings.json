@@ -1,9 +1,10 @@
 {
-  "editor.fontSize": 14,
+  "editor.fontSize": 18,
   "editor.formatOnSave": false,
-  "editor.fontFamily": "Heiti SC, Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "'Yuanti SC', Consolas, 'Courier New', monospace",
   "prettier.useEditorConfig": true,
   "editor.minimap.enabled": false,
+  "editor.fontWeight": "400",
   "files.exclude": {
     "**/node_modules": true
   }
