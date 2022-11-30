@@ -20,13 +20,14 @@ aside {
 	background-color: #fff;
 	transition: left 0.3s linear;
 	z-index: 2;
-	border-right: 1px dashed #ddd;
+	border-right: 2px dashed #ddd;
 
 	@media screen and (max-width: $mobileWidth) {
 		padding-top: $headerHeight;
+		display: none;
 	}
 
-	left: -256px;
+	left: 0px;
 	.copyright {
 		width: 100%;
 	}
