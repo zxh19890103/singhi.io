@@ -1,7 +1,7 @@
 {
   "editor.fontSize": 14,
   "editor.formatOnSave": false,
-  "editor.fontFamily": "Heiti SC, Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "Operator Mono Lig, Consolas, 'Courier New', monospace",
   "prettier.useEditorConfig": true,
   "editor.minimap.enabled": false,
   "files.exclude": {
