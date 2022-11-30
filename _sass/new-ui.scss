@@ -63,8 +63,8 @@ $paperColor: #ffffff;
 
 	&__title,
 	.page__title {
-		position: sticky;
-		top: 0;
+		// position: sticky;
+		// top: 0;
 		margin: 0 -2rem 3rem -2rem;
 		padding: 1rem 2rem 1rem 2rem;
 		background: rgba($color: $paperColor, $alpha: 0.95);
@@ -75,7 +75,8 @@ $paperColor: #ffffff;
 
 		&-createdAt {
 			font-size: 1.6rem; // as icon's size is 16px
-			color: $textColor-4;
+			text-align: right;
+			color: $textColor-2;
 		}
 
 		&--english {

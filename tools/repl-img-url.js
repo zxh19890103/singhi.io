@@ -6,6 +6,10 @@ const http = require("http")
 const https = require("https")
 
 const logger = fs.createWriteStream("./log.txt", { encoding: "utf-8", flags: "a+" })
+const folder = '../_articles'
+const skip = (filename) => {
+  return false;
+}
 
 /**
  * {% include img.html src="https://hacks.mozilla.org/files/2017/02/logo_party01-500x169.png" title="当代浏览器携手共进" %}
@@ -135,7 +139,7 @@ const handle = async (postname) => {
 
   console.log("post:", postname)
 
-  if (postname.indexOf('the-distance-and-time') === -1) {
+  if (skip(postname)) {
     next()
     return
   }
@@ -177,8 +181,8 @@ const next = () => {
 const main = (...args) => {
   const options = JSON.parse(fs.readFileSync("./.keys", "utf-8"))
   ossClient = new OSS(options)
-  posts_dir = path.resolve( __dirname, "../_posts")
-  posts = fs.readdirSync("../_posts")
+  posts_dir = path.resolve( __dirname, folder)
+  posts = fs.readdirSync(posts_dir)
   next()
 }
 
