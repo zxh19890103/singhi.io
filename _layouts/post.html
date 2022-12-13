@@ -3,32 +3,16 @@ layout: with-nonav
 ---
 
 <div class="article__title{% if page.english %} article__title--english{% endif %}">
-    {{ page.title }}
+  {{ page.title }}
 </div>
 
-<div class="article__body{% if page.song %} article__body--song{% endif %} {% if page.english %} article__body--english{% endif %}">
+<div
+  class="article__body{% if page.song %} article__body--song{% endif %} {% if page.english %} article__body--english{% endif %}">
   {{ content }}
 </div>
 
-<div class="article__title-createdAt">{{ page.date | date: "%m/%d, %y" }}</div>
+<div class="article__title-createdAt">写于{{ page.date | date: "%y年%m月%d日" }}</div>
 
 <div class="end-line">
   <span class="end-line__bull">&bull;</span>
-</div>
-
-<div class="article__attrs">
-  {% if page.src %}
-  <div class="article__attrs-src">
-    <i class="iconfont icon-homepagenormal"></i>：<a href="{{ page.src }}">{{page.src | truncate: 45}}</a>
-  </div>
-  {% endif %}
-
-  {% if page.tags.size > 0 %}
-  <div class="article__attrs-tags">
-    <i class="iconfont icon-Hash-Tag"></i>：
-    {% for tag in page.tags %}
-    <a href="#">{{ tag }}</a>
-    {% endfor %}
-  </div>
-  {% endif %}
 </div>
