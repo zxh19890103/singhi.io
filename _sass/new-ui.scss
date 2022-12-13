@@ -187,24 +187,26 @@ $paperColor: #ffffff;
 	display: -webkit-flex;
 	justify-content: flex-start;
 	align-items: center;
+	margin: 0 -2rem;
+
 	&:before {
 		content: "";
 		flex: 1;
 		height: 1px;
 		margin: 12px 0;
-		background: rgba(0, 0, 0, 0.2);
+		background: #efefef;
 	}
 	&__bull {
 		padding: 0 8px;
 		font-size: 20px;
-		color: rgba(0, 0, 0, 0.2);
+		color: #efefef;
 	}
 	&:after {
 		content: "";
 		flex: 1;
 		height: 1px;
 		margin: 12px 0;
-		background: rgba(0, 0, 0, 0.2);
+		background: #efefef;
 	}
 }
 
