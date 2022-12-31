@@ -7,7 +7,6 @@ $textColor-4: #7a8a9a;
 $paperColor: #ffffff;
 
 @import "./new-ui/mixins";
-@import "./new-ui/font";
 @import "./new-ui/init";
 @import "./new-ui/layout";
 
@@ -289,11 +288,6 @@ $paperColor: #ffffff;
 	@include ifmob() {
 		display: none;
 	}
-}
-
-// font
-.pure-english {
-	font-family: Aspergit;
 }
 
 @import "./new-ui/identities", "./new-ui/github", "./new-ui/table",

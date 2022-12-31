@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The blank paper can speak
+title: 一张白纸
 short: Those Girls holding a blank paper have something to say.
 sort: 20
 date: 2022-11-30
