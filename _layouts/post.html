@@ -3,15 +3,13 @@ layout: with-nonav
 ---
 
 <div class="article__title{% if page.english %} article__title--english{% endif %}">
-  {{ page.title }}
+  {{ page.title }}({{ page.date | date: "%Y%m%d" }})
 </div>
 
 <div
   class="article__body{% if page.song %} article__body--song{% endif %} {% if page.english %} article__body--english{% endif %}">
   {{ content }}
 </div>
-
-<div class="article__title-createdAt">写于{{ page.date | date: "%y年%m月%d日" }}</div>
 
 <div class="end-line">
   <span class="end-line__bull">&bull;</span>

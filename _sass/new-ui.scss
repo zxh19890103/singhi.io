@@ -24,11 +24,22 @@ $paperColor: #ffffff;
 	padding-left: 0 !important;
 	list-style: none !important;
 	&__item {
-		border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+		border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 		margin-bottom: 3rem;
+
+		&-3dots {
+			position: relative;
+			top: 4px;
+			left: 2px;
+			font-size: 1rem;
+			color: #7a8a9a;
+			letter-spacing: 2px;
+		}
+
 		@include ifmob() {
 			margin-bottom: 1rem;
 		}
+
 		&:last-child {
 			border-bottom: none;
 			margin-bottom: 0px;
@@ -57,8 +68,8 @@ $paperColor: #ffffff;
 // Post & Page
 .article {
 	position: relative;
-	margin: 1rem 0 1rem 0;
-	padding: 1rem 0 1rem 0;
+	// margin: 1rem 0 1rem 0;
+	// padding: 1rem 0 1rem 0;
 
 	&__title,
 	.page__title {
@@ -69,13 +80,11 @@ $paperColor: #ffffff;
 		background: rgba($color: $paperColor, $alpha: 0.95);
 		color: $textColor-2;
 		z-index: 1;
-		border-bottom: 1px solid #efefef;
 		font-size: 2rem;
 
 		&-createdAt {
-			font-size: 1.6rem; // as icon's size is 16px
+			font-size: 1.3rem; // as icon's size is 16px
 			text-align: right;
-			color: $textColor-2;
 		}
 
 		&--english {

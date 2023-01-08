@@ -17,10 +17,11 @@ aside {
 	width: 256px;
 	height: 100%;
 	box-sizing: border-box;
-	background-color: #fff;
+	background-color: #234;
+	color: #fff;
 	transition: left 0.3s linear;
 	z-index: 2;
-	border-right: 2px dashed #ddd;
+	// border-right: 2px dashed #ddd;
 
 	@media screen and (max-width: $mobileWidth) {
 		padding-top: $headerHeight;
@@ -30,6 +31,9 @@ aside {
 	left: 0px;
 	.copyright {
 		width: 100%;
+		a {
+			color: inherit;
+		}
 	}
 	.logo {
 		width: 100%;
@@ -69,15 +73,12 @@ main {
 		letter-spacing: 0;
 		font-weight: bold;
 		margin-bottom: 6px;
-		color: lighten($textColor, 15);
 	}
 	&__motto {
-		color: lighten($textColor, 28);
 		line-height: 1.2rem;
 		font-size: 1rem;
 		small {
 			font-size: 0.7em;
-			color: lighten($textColor, 40);
 			line-height: 0;
 			text-transform: uppercase;
 		}
@@ -96,12 +97,11 @@ main {
 		position: relative;
 		display: block;
 		margin: 7px 0;
-		color: $textColor;
+		color: inherit;
 		font-size: 1rem;
 		border-bottom: 2px solid transparent;
 		small {
 			position: absolute;
-			color: $textColor-4;
 			bottom: 0;
 			text-transform: uppercase;
 			font-size: 0.76em;
@@ -111,9 +111,9 @@ main {
 				padding-right: 5px;
 			}
 		}
+
 		&:hover {
-			color: $textColor-3;
-			border-bottom-color: $themeColor;
+			border-bottom-color: #fff;
 		}
 	}
 }

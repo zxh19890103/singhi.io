@@ -10,7 +10,7 @@ collections:
     output: true
   articles:
     title: 观点
-    sort_by: sort
+    sort_by: date
     output: true
 
 plugins:

@@ -48,9 +48,9 @@ blockquote {
 	display: block;
 	padding: 1rem;
 	margin: 0;
-	color: $textColor-2;
+	color: #fff;
 	border-radius: 4px;
-	background: rgba($themeColor, 0.15);
+	background: mediumseagreen;
 	overflow: hidden;
 	&.poem {
 		p {
