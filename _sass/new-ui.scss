@@ -68,13 +68,9 @@ $paperColor: #ffffff;
 // Post & Page
 .article {
 	position: relative;
-	// margin: 1rem 0 1rem 0;
-	// padding: 1rem 0 1rem 0;
 
 	&__title,
 	.page__title {
-		// position: sticky;
-		// top: 0;
 		margin: 0 -2rem 3rem -2rem;
 		padding: 1rem 2rem 1rem 2rem;
 		background: rgba($color: $paperColor, $alpha: 0.95);
@@ -88,8 +84,9 @@ $paperColor: #ffffff;
 		}
 
 		&--english {
-			font-family: Aspergit;
+			font-family: OperatorMonoLig;
 		}
+
 		@include ifmob {
 			position: static;
 			top: 0;
@@ -142,14 +139,17 @@ $paperColor: #ffffff;
 				line-height: 1.5;
 			}
 		}
+
 		a {
 			text-decoration: underline;
 		}
+
 		&--song {
 			text-align: center;
 		}
+
 		&--english {
-			font-family: Aspergit;
+			font-family: OperatorMonoLig;
 		}
 	}
 	&__attrs {
@@ -180,7 +180,6 @@ $paperColor: #ffffff;
 		padding-left: 2em;
 		list-style-position: outside;
 		font-size: 1.15rem;
-		color: #333;
 	}
 	ul {
 		list-style-type: square;
@@ -255,8 +254,6 @@ $paperColor: #ffffff;
 		color: #fff;
 		@include boxSizing(border-box);
 		img {
-			// max-width: 100%;
-			// max-height: 100%;
 			background: #fff;
 			border: 6px solid #fff;
 			box-sizing: border-box;
@@ -270,13 +267,11 @@ $paperColor: #ffffff;
 .photo {
 	margin: 0 -2rem 1rem -2rem;
 	&-wrapper {
-		// todo:
 		cursor: zoom-in;
 	}
+
 	&__entity {
 		max-width: 100%;
-		// "inline" let img has a space bellow.
-		// to remove it.
 		display: block;
 		margin: 0 auto;
 		min-height: 300px;

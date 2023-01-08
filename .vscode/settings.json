@@ -2,6 +2,7 @@
   "editor.fontSize": 18,
   "editor.formatOnSave": false,
   "editor.fontFamily": "Operator Mono Lig, Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
   "prettier.useEditorConfig": true,
   "editor.minimap.enabled": false,
   "editor.fontWeight": "400",
