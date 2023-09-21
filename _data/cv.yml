@@ -2,16 +2,17 @@ title: 张星海，软件工程师（前端）
 email: zhangxinghai79@gmail.com
 phone: +86-18742538743
 address: 广东深圳
-placeOfBirth: 湖北黄冈
+placeOfBirth: 湖北
 nationality: 汉
 eduDegree: 本科
 profile:
-  从事软件行业 9 年，其中 8+ 年的前端经验，高级前端开发
-  具有丰富的项目经验，曾经主导过 8 个以上大中型商业项目，
-  涉及实时可视化监控系统、图形编辑软件、电商、ERP、HIS、CMS、爬虫、公众号等
-  技术扎实，对前端三大框架与流行工具链有相当熟练的运用
-  具备 WEB 应用架构能力
-  对项目管理、代码规范、WEB PERF、CI/CD 有一定了解
+  从事软件行业 10 年，其中 8+ 年的前端经验，高级前端开发，
+  具有丰富的项目经验，曾主导过 8 个以上大中型商业项目，
+  包括，适用于仓库布局的大型图形编辑软件、适用于仓库设备的高性能实时监控系统、电商、ERP、HIS、CMS、爬虫、公众号等。
+  技术扎实，对前端三大框架与流行工具链有相当熟练的运用，
+  具备 WEB 应用架构能力，
+  对项目管理、代码规范、WEB PERF、CI/CD 有一定了解，
+  目前期望（最好）寻找一份远程工作
 
 employments:
   - from : 2021/05
@@ -37,7 +38,10 @@ employments:
           - 实时列表、详情以及图形元素
           - 自定义表单接口约束，系统核心与表单组件分离，使开发更明确、更自由
           - 自定义事件系统、业务对象层
-          - 图形元素分组、动态 SVG 渲染、SVG 与 Layer 互转
+          - React-like 单向渲染流程
+          - 支持协同操作、撤销/恢复、ReactSVGOverlay
+          - 图层管理，可支持 2W+ 货架渲染
+          - 输送线编辑
 
   - from: 2020/01
     to: 2021/05
@@ -50,7 +54,6 @@ employments:
             卡片式架构，基于 webpack 打包；为关键模块添加特性
           highlights:
             - 引入 TypeScript、开展相关培训
-            - 为 Vue 扩展以及应用全局实体添加类型声明
             - 基于 REPL 和 readline 的卡片迁移脚手架
 
         - name: Sentinel Dashboard 项目
@@ -58,9 +61,6 @@ employments:
             基于 angularJs、Bootstrap、G2、Gulp，期间负责控制台应用的前端开发
           highlights:
             - 实现了 Json 文本编辑、展示功能
-            - 实现了可编辑表格
-            - 实现了 QPS 与 RT 曲线镜面展示以及异步 Brush 功能
-            - 构建环境的改进，引入 babel、lazyLoad，分离三方库
             - JSON schema 解析程序的设计、编码
 
   - from: 2018/11
@@ -125,7 +125,7 @@ education:
 skills:
   - 设计并实现了一个高实时 WEB 监控系统（仓储自动化行业）
   - 设计并实现了一个大型协同图形编辑器，基于 leaflet 和 React（仓储自动化行业）
-  - 有多个大型 WEB Application 设计和实现经验
-  - 有一定的团队管理经验、乐于分享
-  - 精于 Web 体系、ES6、TypeScript、React/Vue/Angular
-  - 精于 Design Patterns、编程规范、工程化
+  - 多个大型 WEB App 设计和落地经验
+  - 一定的团队管理经验、乐于分享
+  - 工于 Web 体系、ES6、TypeScript、React/Vue/Angular
+  - 工于 Design Patterns、编程规范、工程化
