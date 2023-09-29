@@ -26,12 +26,14 @@ body {
 }
 
 .cv section {
-	margin: 1rem 0 0 0;
+	margin: 3rem 0 0 0;
 }
 
 main {
 	box-sizing: content-box;
 	-webkit-box-sizing: content-box;
+	box-shadow: none;
 	width: 100%;
+	border: none;
 	padding: 0
 }

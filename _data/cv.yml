@@ -7,14 +7,14 @@ nationality: 汉
 eduDegree: 本科
 profile:
   从事软件行业 10 年，其中 8+ 年的前端经验，高级前端开发，
-  具有丰富的项目经验，曾主导过 8 个以上大中型商业项目：适用于仓库布局的大型图形编辑软件、适用于仓库设备的高性能实时监控系统、电商、ERP、HIS、CMS、爬虫、公众号等。
+  具有丰富的项目经验，主导的商业项目包括：适用于仓库布局的大型图形编辑软件、适用于仓库设备的高性能实时监控系统、电商、ERP、HIS、CMS、爬虫、公众号等。
   技术扎实，对前端三大框架与流行工具链有相当熟练的运用，
   具备 WEB 应用架构能力，
   对项目管理、代码规范、WEB PERF、CI/CD 有一定了解，
-  优先寻找一份远程工作。
+  优先寻找一份远程工作，优先考虑图形化方向。
 
 employments:
-  - from : 2021/05
+  - from : 21/05
     to: Now
     company: 深圳市海柔创新科技有限公司
     position: 高级前端工程师
@@ -42,8 +42,8 @@ employments:
           - 图层管理，可支持 2W+ 货架渲染
           - 输送线编辑
 
-  - from: 2020/01
-    to: 2021/05
+  - from: 20/01
+    to: 21/05
     company: 软通动力信息技术（集团）股份有限公司
     position: 主任工程师
     description: 目前从事华为 BPIT CBGIT 部门的渠道产品相关的研发工作
@@ -62,8 +62,8 @@ employments:
             - 实现了 Json 文本编辑、展示功能
             - JSON schema 解析程序的设计、编码
 
-  - from: 2018/11
-    to: 2020/01
+  - from: 18/11
+    to: 20/01
     company: 丽珠医药集团有限公司（深圳）
     position: 高级前端工程师
     description: 健康阿鹿，丽珠集团旗下品牌，全国连锁诊所，阿鹿云诊所是健康阿鹿独立打造的智慧医疗平台
@@ -77,8 +77,8 @@ employments:
             - 设计 React 应用与 apollo 之间插入转换层
             - 实现药品分类的数据清洗工具
 
-  - from: 2015/03
-    to: 2018/09
+  - from: 15/03
+    to: 18/09
     company: 大唐鸿业科技有限公司（大连）
     position: 前端工程师
     description:
@@ -102,8 +102,8 @@ employments:
             基于 ES6，实现基本的组件库和工具库；
             借助微信 JSSDK 实现微信授权、支付、扫码、拍照等功能
 
-  - from: 2013/09
-    to: 2015/05
+  - from: 13/09
+    to: 15/05
     company: 大连奈特网络科技有限公司
     position: .NET 开发工程师
     description: 小型私企，互联网行业负责 CMS 产品及零售系统的研发，以及日常项目维护，涉及 ASP、PHP、服务器
@@ -114,17 +114,17 @@ employments:
           text: 基于 CMS 系统的基础架构进化而来，其借鉴了著名开源项目 nopCommerce 的业务和技术架构，满足小规模零售商家的线上业务需求
 
 education:
-  from: 2009/09
-  to: 2013/06
+  from: 09/09
+  to: 13/06
   college: 大连大学（本科）
   major: 计算机科学
   description: 在校期间成绩优异，通过大学英语四级考试，曾荣获“大连大学英语写作一等奖”、“大连市数学竞赛三等奖”、“全国高等院校数学竞赛辽宁省三等奖”等
     计算机相关课程包括：C 语言基础、ASP 网页制作、ASP.Net 网站制作、C++ 基础、关系型数据库设计原理、Flash 实践、VB 基础
     独立研究过 Python、Java，毕业设计关于 Python 在物理实验数据处理中的应用
 skills:
-  - 设计并实现了一个高实时 WEB 监控系统（仓储自动化行业）
-  - 设计并实现了一个大型可协同图形编辑器，基于 leaflet 和 React（仓储自动化行业）
+  - 设计、实现了一款高实时性、高性能、易扩展的图形化监控系统（仓储自动化行业）
+  - 设计、实现了一款大型可协同操作的图形编辑器，基于 leaflet 和 React（仓储自动化行业）
   - 有多个大型 WEB App 设计和落地经验
   - 具备一定的团队管理经验、乐于分享
-  - 工于 Web 体系、ES6、TypeScript、React/Vue/Angular
-  - 工于 Design Patterns、编程规范、工程化
+  - 熟悉 Web 体系、ES6、TypeScript、React/Vue/Angular
+  - 了解 Design Patterns、编程规范、工程化

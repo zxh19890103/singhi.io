@@ -17,7 +17,7 @@ aside {
 	width: 256px;
 	height: 100%;
 	box-sizing: border-box;
-	background-color: #234;
+	background-color: $themeColor;
 	color: #fff;
 	transition: left 0.3s linear;
 	z-index: 2;
@@ -54,9 +54,9 @@ main {
 	@include boxSizing(border-box);
 	border-radius: 4px;
 	background-color: $paperColor;
-	box-shadow: 1px 1px 30px 0px #ded;
-	-webkit-box-shadow: 1px 1px 30px 0px #ded;
-	-moz-box-shadow: 1px 1px 30px 0px #ded;
+	box-shadow: 1px 1px 10px 0px $textColor-4;
+	-webkit-box-shadow: 0 0 10px 0px $textColor-4;
+	-moz-box-shadow: 1px 1px 10px 0px $textColor-4;
 	@include ifmob {
 		width: 100%;
 	}

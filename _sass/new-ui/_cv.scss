@@ -1,14 +1,15 @@
 @font-face {
-  font-family: "WawatiSC";
-  src: local('Wawati SC Regular'); /* full url to font needed */
-  unicode-range: U+0000-00FF;
+	font-family: "WawatiSC";
+	src: local("Wawati SC Regular"); /* full url to font needed */
+	unicode-range: U+0000-00FF;
 }
 
 .cv {
-	$head-width: 96px;
+	$head-width: 5rem;
 	$head-width-mobi: 100%;
+
 	white-space: normal;
-	font-family: 'PingFang SC', 'Source Han Sans SC', sans-serif;
+	font-family: "PingFang SC", "Source Han Sans SC", sans-serif;
 	margin-top: 1rem;
 
 	h2 {
@@ -42,7 +43,8 @@
 			-ms-flex: 1;
 		}
 	}
-	&__profile, &__skills {
+	&__profile,
+	&__skills {
 		@include flexBox();
 		h3 {
 			width: 100%;
@@ -50,7 +52,8 @@
 				width: $head-width-mobi;
 			}
 		}
-		ol, ul {
+		ol,
+		ul {
 			font-size: 15px;
 		}
 	}
@@ -59,7 +62,7 @@
 		position: relative;
 		list-style-type: none;
 		li {
-			padding-left: .5rem;
+			padding-left: 0.5rem;
 
 			p {
 				margin: 0;
@@ -108,7 +111,8 @@
 			}
 			&-desc {
 				flex: 1;
-				p, ol {
+				p,
+				ol {
 					font-size: 15px;
 				}
 			}
@@ -129,7 +133,8 @@
 				float: right;
 			}
 			@include ifmob {
-				label, span {
+				label,
+				span {
 					display: block;
 					float: none;
 				}
@@ -163,15 +168,22 @@
 		}
 	}
 
-	$litColor: #AAA;
+	$litColor: #aaa;
 
-	.skill-level-1, .skill-level-2, .skill-level-3, .skill-level-4, .skill-level-5 {
+	.skill-level-1,
+	.skill-level-2,
+	.skill-level-3,
+	.skill-level-4,
+	.skill-level-5 {
 		em:first-child {
 			color: $litColor;
 		}
 	}
 
-	.skill-level-2, .skill-level-3, .skill-level-4, .skill-level-5 {
+	.skill-level-2,
+	.skill-level-3,
+	.skill-level-4,
+	.skill-level-5 {
 		em {
 			&:nth-child(2) {
 				color: $litColor;
@@ -179,7 +191,9 @@
 		}
 	}
 
-	.skill-level-3, .skill-level-4, .skill-level-5 {
+	.skill-level-3,
+	.skill-level-4,
+	.skill-level-5 {
 		em {
 			&:nth-child(3) {
 				color: $litColor;
@@ -187,7 +201,8 @@
 		}
 	}
 
-	.skill-level-4, .skill-level-5 {
+	.skill-level-4,
+	.skill-level-5 {
 		em {
 			&:nth-child(4) {
 				color: $litColor;

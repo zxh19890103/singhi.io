@@ -23,7 +23,9 @@ $paperColor: #ffffff;
 .documents {
 	margin-top: 2rem;
 	padding-left: 0 !important;
+	padding-bottom: 3rem;
 	list-style: none !important;
+
 	&__item {
 		border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 		margin-bottom: 3rem;
@@ -42,7 +44,6 @@ $paperColor: #ffffff;
 		}
 
 		&:last-child {
-			border-bottom: none;
 			margin-bottom: 0px;
 		}
 	}
