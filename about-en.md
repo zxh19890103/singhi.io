@@ -6,29 +6,33 @@ english: 1
 
 ### Who am I?
 
-{% include img.html src="https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/201304291724.jpg" title="2013" %}
+{% include img.html src="https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/201304291724.jpg" title="Lvshun Dalian, in 2013, now I got older" %}
 
 Hello：
 
-My name is Singhi, a software developer, a front-ender.
+My name is Singhi, a software developer, a front-ender. My Chinese name is Xinghai Zhang.
 
-Gratuated on 2013, with 2 years' developing on .NET while I'd produced 2 softwares:
+I was born in Hubei, China, and had lived there for 20+ years. After then, I went to Dalian to start my 4-years college life and then I had worked there for 5 years. Today, I am in Shenzhen city, China. 
+
+I began loving coding when I was in college. I loved C#, C-lang, Java, and even VB/VC, extremely old languages. I knew I would work on coding then. It became true after gratuating. I am loving JavaScript and using it to earn today.
+
+Gratuated in 2013, with 2 years' developing of ASP.NET, during which I created 2 large-scale softwares:
 
 - CMS
 - E-Commerse
 
-I got in web in whole since 2015. Since then, I've systematically learned JS-lang and every popular frameworks and toolchains. I'd lead 6+ projects in middle-large scale which are about e-commerse, tools, HIS, ERP, Crawlers. I believe that I can do some architectures NOW.
+I was fully committed to Web developing in 2015. Since then, I've systematically learned JS-lang and most popular frameworks and toolchains. I led 6+ projects in middle-large scale which are about e-commerse, tools, HIS, ERP, Crawlers. I believe that I can do some architectures NOW.
 
-After 7 years' working, I am still excited in technologies of computer. In spare I like studying new things and ideas.
+After 7 years' working, I am still excited in technologies of computer. In spare time, I love studying new things and ideas, and the most important, reading.
 
-Aspects I like:
+Aspects I love:
 
 - Typescript
 - ES6 & ES of next
 - NodeJs
 - HTML5 & CSS3
 
-Frameworks\Libaries\Tools I've used:
+Frameworks\Libaries\Tools I used:
 
 - Leaflet
 - React / Angular / Vue
