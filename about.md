@@ -60,7 +60,7 @@ title: 关于我
 - [Quora](https://www.quora.com/profile/Singhi-John)
 - [StackOverflow](https://stackoverflow.com/users/5721861/singhi-john)
 
-<p style="text-align: right">
+<p style="text-align: right; margin: 0">
 感谢!
 <br>  
 2018/09/17

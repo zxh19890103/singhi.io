@@ -95,7 +95,9 @@ $paperColor: #ffffff;
 		}
 	}
 	&__body {
-		margin-bottom: 4rem;
+		// margin-bottom: 4rem;
+		padding: 2rem 0;
+
 		h1,
 		.h1,
 		.title {
@@ -199,17 +201,8 @@ $paperColor: #ffffff;
 	padding-bottom: 2rem;
 
 	&:before {
-		content: "";
-		flex: 1;
-		height: 1px;
-		margin: 12px 0;
-		background: #efefef;
 	}
-	&__bull {
-		padding: 0 8px;
-		font-size: 20px;
-		color: #efefef;
-	}
+
 	&:after {
 		content: "";
 		flex: 1;

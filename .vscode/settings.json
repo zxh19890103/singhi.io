@@ -1,11 +1,12 @@
 {
-  "editor.fontSize": 18,
+  "editor.fontSize": 14,
   "editor.formatOnSave": false,
-  "editor.fontFamily": "Operator Mono Lig, Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "Wawati SC, Operator Mono Lig, Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "prettier.useEditorConfig": true,
   "editor.minimap.enabled": false,
   "editor.fontWeight": "400",
+  "window.zoomLevel": 1,
   "files.exclude": {
     "**/node_modules": true
   }
