@@ -13,9 +13,9 @@ title: 记录
           </a>
         </h3>
         <p>
-        <time>{{ post.date | date: "%Y%m%d" }}</time>
-        {% if post.short %} <span>&bull;</span><span> {{ post.short }}</span><a href="{{ post.url }}" class="documents__item-3dots">&dot;&dot;&dot;</a> {% endif %}
+          <time>{{ post.date | date: "%B %d, %Y" }}</time>
         </p>
+        {% if post.short %} <p><span> {{ post.short }}</span><a href="{{ post.url }}" class="documents__item-3dots">&dot;&dot;&dot;</a> </p>{% endif %}
       </div>
     </li>
   {% endfor %}

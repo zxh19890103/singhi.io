@@ -27,15 +27,14 @@ $paperColor: #ffffff;
 	list-style: none !important;
 
 	&__item {
-		border-bottom: 1px solid rgb(246 243 243);
-		margin-bottom: 3rem;
+		// border-bottom: 1px solid rgb(246 243 243);
+		margin-bottom: 4rem;
 
 		&-3dots {
 			position: relative;
 			top: 4px;
 			left: 2px;
 			font-size: 1rem;
-			color: #7a8a9a;
 			letter-spacing: 2px;
 		}
 
@@ -55,9 +54,9 @@ $paperColor: #ffffff;
 	.h3 {
 		margin: 0;
 		font-weight: bold;
+		font-size: 1.3em;
 	}
 	p {
-		color: $textColor-4;
 		margin: 0;
 		height: 1.4rem;
 		line-height: 1.4rem;

@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Taiwan And Me, The Words From A Common One In China
-short: In English words of a old post.
+title:  Taiwan And Me
+short: In English words of a old post, the words from a common one in China 
 english: 1
 ---
 
