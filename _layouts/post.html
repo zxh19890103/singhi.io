@@ -2,25 +2,50 @@
 layout: with-nonav
 ---
 
-<div class="article__title{% if page.english %} article__title--english{% endif %}">
-  {{ page.title }}({{ page.date | date: "%Y%m%d" }})
+<div
+  class="article__title{% if page.english %} article__title--english{% endif %}"
+>
+  <a
+    href="javascript:void(0);"
+    style="margin-right: 1rem; color: grey;"
+    onclick="history.go(-1)"
+    >&larr;</a
+  >{{ page.title }}({{ page.date | date: "%b %d, %Y" }})
 </div>
 
 <div>
-  <a href="#" onclick="showPhotoModal('https://zxh1989.oss-cn-qingdao.aliyuncs.com/20181105/151627_71615.jpg'); return false;" target="_blank"><img style="width: 32px; height: 32px" src="/assets/1871574_chat_circle_logo_media_network_icon.png"></a>
+  <a
+    href="#"
+    onclick="showPhotoModal('https://zxh1989.oss-cn-qingdao.aliyuncs.com/20181105/151627_71615.jpg'); return false;"
+    target="_blank"
+    ><img
+      style="width: 32px; height: 32px"
+      src="/assets/1871574_chat_circle_logo_media_network_icon.png"
+  /></a>
 
   {% if page.tweet %}
-  <a href="https://twitter.com/zhangxinghai64/status/{{ page.tweet }}" target="_blank"><img style="width: 32px; height: 32px" src="/assets/294709_circle_twitter_icon.png"></a>
+  <a
+    href="https://twitter.com/zhangxinghai64/status/{{ page.tweet }}"
+    target="_blank"
+    ><img
+      style="width: 32px; height: 32px"
+      src="/assets/294709_circle_twitter_icon.png"
+  /></a>
   {% else %}
-  <a href="https://twitter.com/intent/tweet?url=https%3A//www.zhangxinghai.cn{{ page.url }}" target="_blank"><img style="width: 32px; height: 32px" src="/assets/294709_circle_twitter_icon.png"></a>
+  <a
+    href="https://twitter.com/intent/tweet?url=https%3A//www.zhangxinghai.cn{{ page.url }}"
+    target="_blank"
+    ><img
+      style="width: 32px; height: 32px"
+      src="/assets/294709_circle_twitter_icon.png"
+  /></a>
   {% endif %}
 </div>
 
 <div
-  class="article__body{% if page.song %} article__body--song{% endif %} {% if page.english %} article__body--english{% endif %}">
+  class="article__body{% if page.song %} article__body--song{% endif %} {% if page.english %} article__body--english{% endif %}"
+>
   {{ content }}
 </div>
 
-<div class="end-line">
-  <span class="end-line__bull">&bull;</span>
-</div>
+<div class="end-line"></div>

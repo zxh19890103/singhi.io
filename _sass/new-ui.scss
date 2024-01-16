@@ -27,20 +27,19 @@ $paperColor: #ffffff;
 	list-style: none !important;
 
 	&__item {
-		border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-		margin-bottom: 3rem;
+		// border-bottom: 1px solid rgb(246 243 243);
+		margin-bottom: 4rem;
 
 		&-3dots {
 			position: relative;
 			top: 4px;
 			left: 2px;
 			font-size: 1rem;
-			color: #7a8a9a;
 			letter-spacing: 2px;
 		}
 
 		@include ifmob() {
-			margin-bottom: 1rem;
+			margin-bottom: 2.5rem;
 		}
 
 		&:last-child {
@@ -55,9 +54,9 @@ $paperColor: #ffffff;
 	.h3 {
 		margin: 0;
 		font-weight: bold;
+		font-size: 1.3em;
 	}
 	p {
-		color: $textColor-4;
 		margin: 0;
 		height: 1.4rem;
 		line-height: 1.4rem;
@@ -95,7 +94,9 @@ $paperColor: #ffffff;
 		}
 	}
 	&__body {
-		margin-bottom: 4rem;
+		// margin-bottom: 4rem;
+		padding: 2rem 0;
+
 		h1,
 		.h1,
 		.title {
@@ -199,17 +200,8 @@ $paperColor: #ffffff;
 	padding-bottom: 2rem;
 
 	&:before {
-		content: "";
-		flex: 1;
-		height: 1px;
-		margin: 12px 0;
-		background: #efefef;
 	}
-	&__bull {
-		padding: 0 8px;
-		font-size: 20px;
-		color: #efefef;
-	}
+
 	&:after {
 		content: "";
 		flex: 1;
