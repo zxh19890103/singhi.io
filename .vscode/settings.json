@@ -1,8 +1,8 @@
 {
   "editor.fontSize": 16,
   "editor.formatOnSave": false,
-  "editor.fontFamily": "Wawati SC, Operator Mono Lig, Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
+  "editor.fontFamily": "'Yuppy SC',Menlo, Monaco, 'Courier New', monospace",
   "prettier.useEditorConfig": true,
   "editor.minimap.enabled": false,
   "editor.fontWeight": "400",
