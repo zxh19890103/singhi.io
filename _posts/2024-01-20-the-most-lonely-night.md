@@ -4,7 +4,7 @@ title: 黑夜里的胡思乱想
 short: 我想我是病了。那么，明天，我便会勇敢地去医院，去修理我的身体，更要修理我的精神
 ---
 
-{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/manually-uploaded/PXL_20240120_081406112.jpg" title="Jan 20, 2024 at Shenzhen Nan'shan Bookstore" %}
+{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/manually-uploaded/PXL_20240120_081406112.jpg?x-oss-process=style/m1080" title="Jan 20, 2024 at Shenzhen Nan'shan Bookstore" %}
 
 黑夜终于降临，我独自坐在公寓第十层的一个房间里。一切都很熟悉自然，只是突然发觉房间里的小物件越来越多了，对于别人来说这根本不算多，但是对于漂泊的我，这实在够多。从前去过几个朋友（或者叫熟人）的出租房里，都总是狭小、混乱，让我难以忍受。我宁愿身无一物，所需不过几本书、一台 Mac、三件衣服，把它们放进小小的行李箱中，今日身在城市 A 闲逛，明日却在城市 B 发呆。
 
@@ -26,7 +26,7 @@ short: 我想我是病了。那么，明天，我便会勇敢地去医院，去�
 
 “嗯，吃好了！”我也礼貌地回以微笑，虽然我知道自己笑起来不好看。
 
-{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/manually-uploaded/PXL_20240120_122941366.jpg" title="Jan 20, 2024 at Shenzhen Gu'shu Xi'wan Park" %}
+{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/manually-uploaded/PXL_20240120_122941366.jpg?x-oss-process=style/m1080" title="Jan 20, 2024 at Shenzhen Gu'shu Xi'wan Park" %}
 
 我走进附近的公园，公园沿着海边。海边风不小，潮水阵阵拍打在石头上，激起一片片白色浪花。今夜公园里人很少，几个跑步的，汗水湿透了衬衫；几对欢快的情侣，手牵手走在水边步道；一个孤单的女孩坐在水边石头上，望着涌动的潮水，听着从海上来的风。而我呢，也是孤单一个人，漫步在海边，思绪万千。
 

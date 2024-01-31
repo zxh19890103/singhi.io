@@ -5,7 +5,7 @@ short: 摘取自克尔凯郭尔《非此即彼》中的“致死的疾病是绝�
 chinese: 1
 ---
 
-{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/manually-uploaded/PXL_20240116_094156290.jpg" title="Jan 16, 2024 at Shenzhen Starbucks" %}
+{% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/manually-uploaded/PXL_20240116_094156290.jpg?x-oss-process=style/m1080" title="Jan 16, 2024 at Shenzhen Starbucks" %}
 
 ## 绝望是“精神”中、“自我”中的疾病，以这样一种方式，可以是一种三重性：绝望地不自觉到具有一个自我（不真正的绝望）；绝望地不想要“是自己”；绝望地想要“是自己”
 
