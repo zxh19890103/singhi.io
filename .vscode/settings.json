@@ -6,7 +6,7 @@
   "prettier.useEditorConfig": true,
   "editor.minimap.enabled": false,
   "editor.fontWeight": "400",
-  "window.zoomLevel": 1.5,
+  "window.zoomLevel": 3,
   "files.exclude": {
     "**/node_modules": true
   }
