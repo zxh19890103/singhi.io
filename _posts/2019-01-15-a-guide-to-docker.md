@@ -4,6 +4,7 @@ title: 使用Docker搭建PHP+MySQL+Apache2开发环境
 short: 记录一下学习并实践Docker的历程，供后续参考；同时，也希望能帮助到正在学习并想使用Docker的你
 tags:
   - Docker
+category: tech
 ---
 
 Docker一词我大概在2015年就有所耳闻。当时，我对Microsoft的.NET Core还颇为热情。

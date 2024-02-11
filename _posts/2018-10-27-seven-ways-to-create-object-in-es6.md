@@ -2,6 +2,7 @@
 layout: post
 title: ES5创建Object的七种模式
 short: ES5中创建Object的模式有很多，每一种模式诞生的背后都暗藏着创作者的经验与智慧，值得我们后人好好学习一下。本篇内容摘自《JavaScript高级程序设计（第三版）》
+category: tech
 ---
 
 ### 工厂模式

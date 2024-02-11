@@ -2,6 +2,7 @@
 layout: post
 title: 梦游天姥吟留别
 short: 海客谈瀛洲，烟涛微茫信难求
+category: journal
 ---
 
 —— 李白

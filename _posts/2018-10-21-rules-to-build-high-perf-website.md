@@ -2,6 +2,7 @@
 layout: post
 title: 高性能网站建设指南
 short: 列举了美国Steve Souders总结的14条性能规则
+category: tech
 ---
 
 ### 绪言A，前端性能的重要性

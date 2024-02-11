@@ -7,6 +7,7 @@ tags:
   - ESLint
   - Prettier
   - Typescript
+category: tech
 ---
 
 ### Get them all clear!

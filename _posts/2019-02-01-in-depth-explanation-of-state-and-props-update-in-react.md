@@ -4,6 +4,7 @@ title: 深度理解：React 中 State 和 Props 更新机制
 short: 理解 React 执行“更新”的机制，所需要的基本知识，我在上一篇作了说明；本篇，我们就来深入“更新”的细节中
 tags:
   - React
+category: tech
 ---
 
 {% include img.html src="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20190129/000731_49174.png" %}

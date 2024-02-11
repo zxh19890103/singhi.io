@@ -5,6 +5,7 @@ short: 如果一个正整数自身是回文数，而且它也是一个回文数�
 tags:
   - LeetCode
   - Palindrome
+category: tech
 ---
 
 ## 题目是这样描述的

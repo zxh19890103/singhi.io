@@ -4,6 +4,7 @@ title: 关于TinyMCE不同步HTML内容的问题
 short: EM...，两个地方采用同样的方式提交表单，结果一个同步了，另一个不同步
 tags:
   - TinyMCE
+category: tech
 ---
 
 我在自己的博客系统中使用了这个TinyMCE富文本编辑器，很久之前，我便遇到了TinyMCE并不自动同步HTML内容到textarea控件的问题。曾经有所解决，并且成功了，再没管这事。现在我又遇到了这个问题，查了几个文档，都建议表单submit之前，执行一下tinymce.triggerSave()，这个没问题，解决了我的问题！但是令我疑惑的是另一个地方能够自动同步。

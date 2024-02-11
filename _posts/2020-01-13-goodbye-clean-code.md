@@ -7,6 +7,7 @@ tags:
  - Dan Abramov
  - Clean Code
  - Translating
+category: tech
 ---
 
 那是一个夜晚。

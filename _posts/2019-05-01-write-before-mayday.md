@@ -5,6 +5,7 @@ short: 二〇一九年的“五一劳动节”毫不意外地走来，这对于�
 tags:
   - 五一
   - 随感
+category: journal
 ---
 
 {% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2019-05-01-write-before-mayday/355843-1606301JK275.jpg" %}

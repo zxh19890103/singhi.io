@@ -2,6 +2,7 @@
 layout: post
 title: 孤独
 short: 每当闲暇时，看着大街上来往的男人和女人，听见他们的愉快的聊天与欢笑，我便觉得孤独
+category: journal
 ---
 
 <blockquote class="poem">

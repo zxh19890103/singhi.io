@@ -8,6 +8,7 @@ tags:
   - React
   - 知乎
 src: https://www.zhihu.com/question/301860721/answer/545031906
+category: journal
 ---
 
 > 作者：尤雨溪 

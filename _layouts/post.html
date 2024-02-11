@@ -5,11 +5,12 @@ layout: with-nonav
 <div
   class="article__title{% if page.english %} article__title--english{% endif %}"
 >
-  <a
-    href="/"
-    style="margin-right: 1rem; color: grey;"
-    >&larr;</a
-  >{{ page.title }}({{ page.date | date: "%b %d, %Y" }})
+  <div>{{ page.title }}</div>
+  <div style="font-size: 0.6em">
+    <a href="#" onclick="history.back();">list</a>
+    {% if page.src %}&bull; <a target="_blank" href="{{page.src}}">origin</a>{% endif %}
+    &bull; {{ page.date | date: "%b %d, %Y" }}
+  </div>
 </div>
 
 <div>

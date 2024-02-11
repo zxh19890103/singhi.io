@@ -2,6 +2,7 @@
 layout: post
 title: 醋栗
 short: 契诃夫 1898 年发布的短篇小说《醋栗》
+category: journal
 ---
 
 {% include img.html src="https://cdn.discordapp.com/attachments/1068007136933720097/1201155099670618163/singhi_two_men_about_40_years_old_in_a_cartoon_style_standing_a_4e93347e-77ea-4f96-ba16-ecca2a635d8c.png?ex=65c8c9dc&is=65b654dc&hm=f3ecf979c957687e3737d0bf9f37653943d96ca67c1b6648c2fb372b23f7e61d&" title="Made by Midjourney" %}

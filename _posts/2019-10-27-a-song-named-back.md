@@ -6,6 +6,7 @@ song: 1
 tags:
   - 回来
   - 罗琦
+category: journal
 ---
 
 {% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/personal-site/wallpapers/a-song-named-back.jpg" %}

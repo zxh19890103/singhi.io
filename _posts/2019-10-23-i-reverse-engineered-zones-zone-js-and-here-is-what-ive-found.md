@@ -5,6 +5,7 @@ short: Zones 是帮助开发人员处理多个有逻辑关联性异步操作的�
 src: https://blog.angularindepth.com/i-reverse-engineered-zones-zone-js-and-here-is-what-ive-found-1f48dc87659b
 tags:
   - Zone.js
+category: tech
 ---
 
 {% include img.html src="https://cn.bing.com/th?id=OHR.CountyBridge_ZH-CN6500717169_UHD.jpg&rf=LaDigue_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4" %}

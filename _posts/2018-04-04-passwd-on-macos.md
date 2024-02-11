@@ -4,6 +4,7 @@ title: Linux中passwd文件数据结构说明
 short: linux系统中，用户信息被存储于/etc/passwd文件中，每一行定义一个用户，这里解释一下其数据定义结构
 tags:
   - Linux
+category: tech
 ---
 
 ### 引言

@@ -6,6 +6,7 @@ tags:
   - Architecture
   - Re-design
   - Web
+category: tech
 ---
 
 ### 背景

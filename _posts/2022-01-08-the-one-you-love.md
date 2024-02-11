@@ -4,6 +4,7 @@ song: 1
 short: “The One You Love” By Glenn Frey in 1982
 title: The One You Love
 english: 1
+category: journal
 ---
 
 ### The One You Love

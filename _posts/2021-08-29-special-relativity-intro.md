@@ -3,6 +3,7 @@ layout: post
 title: 狭义相对论介绍
 short: 过去 200 余年里，牛顿提出的运动方程被认为是对自然的正确描述，而这个自然定律存在的问题首次被发现的时候，解决的方法也一同被提出。此二者均由爱因斯坦于 1905 年提出
 src: https://feynmanlectures.caltech.edu/I_15.html
+category: journal
 ---
 
 翻译自费曼的物理学讲义，大致翻译完，余下“质能等效”一节，以及一些文字矫正的工作。

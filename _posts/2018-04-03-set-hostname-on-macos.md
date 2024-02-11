@@ -2,6 +2,7 @@
 layout: post
 title: CentOS7 设置 hostname
 short: 局域网中一台CentOS机器，为了通过ssh客户端对其访问，但机器局域网IP不固定，可以设置HostName，用HostName来访问之
+category: tech
 ---
 
 

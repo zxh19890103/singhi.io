@@ -5,6 +5,7 @@ short: 项目开发中经常遇到文中提及的错误，只有深刻理解了w
 tags:
   - XHR
   - withCredentials
+category: tech
 ---
 
 ### 问题

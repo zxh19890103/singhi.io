@@ -3,6 +3,7 @@ layout: post
 title: 时间与距离
 short: 这章我们要考虑下时间和距离的概念。我们强调过，物理学，甚或全部的科学，都基于观测
 src: https://feynmanlectures.caltech.edu/I_05.html
+category: journal
 ---
 
 ### 前言

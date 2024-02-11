@@ -2,6 +2,7 @@
 layout: post
 title: Javascript 中 “==” 操作符
 short: 总结了JavaScript中 “==” 操作符的计算法则
+category: tech
 ---
 
 {% include img.html src="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20190317/003621_69137.jpg" title="复习一下 js 中的原型链模型" %}

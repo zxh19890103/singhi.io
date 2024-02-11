@@ -5,6 +5,7 @@ short: 思绪如潮，一首老歌，戴娆唱，十年之前就开始听了，�
 song: 1
 tags:
   - 戴娆
+category: journal
 ---
 
 {% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2019-04-11-an-old-song-by-DR/20141201022315425.jpg.source.jpg" %}

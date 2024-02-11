@@ -5,6 +5,7 @@ short: 有一天 Google 快速排序算法，得到了 Youtobe 上的一些视�
 tags:
   - 排序算法
   - 查找算法
+category: tech
 ---
 
 ### 项目的目的

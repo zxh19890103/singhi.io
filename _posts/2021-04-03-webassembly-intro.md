@@ -3,6 +3,7 @@ layout: post
 title: WebAssembly 系列 - 简介
 short: 你应该听说过，WebAssembly 非常的快。但是使它如此之快的缘故是什么呢？这一系列，我想向你对于这个问题做一个解释
 src: https://hacks.mozilla.org/2017/02/a-cartoon-intro-to-webassembly/
+category: tech
 ---
 
 你应该听说过，WebAssembly 非常的快。但是使它如此之快的缘故是什么呢？这一系列，我想向你对于这个问题做一个解释。

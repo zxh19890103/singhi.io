@@ -5,6 +5,7 @@ short: Armstrong，Erlang 之父，于 4 月 20 日与世长辞，享年 68 岁�
 tags:
   - rlang
   - Armstrong
+category: journal
 ---
 
 > Armstrong，Erlang 之父，于 4 月 20 日与世长辞，享年 68 岁，我虽不了解 Erlang 也不了解 Armstrong，但是，看了他在《编程人生》里提到了编程习惯的改变，觉得会很受用，故摘录之。

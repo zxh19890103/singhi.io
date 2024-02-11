@@ -3,6 +3,7 @@ layout: post
 title: WebAssembly 系列 - Assembly
 short: 要想理解 WebAssembly 是如何工作的，先去理解 assembly 是什么以及编译器是如何生成它的，会很有帮助
 src: https://hacks.mozilla.org/2017/02/a-crash-course-in-assembly/
+category: tech
 ---
 
 这是系列的第三篇，如果你还没有阅读其它篇章，我建议你从首篇开始。

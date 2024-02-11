@@ -3,6 +3,7 @@ layout: post
 title: What did I do today
 short: Today is April 18th, 2020. Now the time is 6 o'clock and a half, afternoon
 english: 1
+category: journal
 ---
 
 Today is April 18th, 2020. Now the time is 6 o'clock and a half, afternoon.

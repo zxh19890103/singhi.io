@@ -4,6 +4,7 @@ title: ES6新特性列举
 short: 列举几个罕用的新玩法，当前用不着的。但是不保证今后什么时候会用上
 tags:
   - ES6
+category: tech
 ---
 
 

@@ -7,6 +7,7 @@ tags:
   - webpack
   - babel7
   - es6
+category: tech
 ---
 
 > 本文将展示，如何使用 @babel/preset-typescript 和 @babel/preset-env 配置一个最小但完整的编译环境，打包工具使用 webpack@4.41.2

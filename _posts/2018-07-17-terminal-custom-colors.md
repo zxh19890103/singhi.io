@@ -2,6 +2,7 @@
 layout: post
 title: Mac/Linux系统Terminal中不同文件类型的颜色
 short: Mac/Linux系统Terminal中不同文件类型的颜色
+category: tech
 ---
 
 <div class="content__body article">

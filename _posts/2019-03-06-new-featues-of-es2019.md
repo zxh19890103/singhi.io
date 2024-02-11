@@ -5,6 +5,7 @@ short: 简单列举 ES2019 的新特性，提供相关文章的链接
 src: http://exploringjs.com/es2018-es2019/ch_overview.html#ecmascript-2019
 tags:
   - ES2019
+category: tech
 ---
 
 Major new features:

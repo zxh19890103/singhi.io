@@ -6,6 +6,7 @@ tags:
   - Windows
   - GIT
   - SSH
+category: tech
 ---
 
 前些日子，在做一个关于植物的本地网站。网站的静态资源、图片服务和 WWW 服务都部署在一个低端的 windows 笔记本上。笔记本性能非常糟糕，打开 VSCode 都比较的卡顿。因此，比较好的方式是，在 mac 上开发，然后，将代码上传到 windows 上，服务自动重启。

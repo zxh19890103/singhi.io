@@ -4,6 +4,7 @@ title: 过去
 short: 我，看着电脑里的一张照片，陷入了对往事的回忆
 sort: 40
 date: 2020-11-13
+category: journal
 ---
 
 {% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/posts/myworld/picture-of-the-past.jpg" title="Photo in the past." %}

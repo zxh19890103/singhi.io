@@ -3,6 +3,7 @@ layout: post
 title: 应试
 short: 面试效果不好，网上找了一篇经验，先分析下答案，试试效果怎么样
 src: https://www.jianshu.com/p/6c6b13329d25
+category: tech
 ---
 
 ### Vue 相关

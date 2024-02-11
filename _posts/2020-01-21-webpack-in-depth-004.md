@@ -6,6 +6,7 @@ tags:
   - webpack
   - 优化
   - 分包
+category: tech
 ---
 
 ### name 是包含 3 个变量的函数

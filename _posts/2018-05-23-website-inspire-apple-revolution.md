@@ -3,6 +3,7 @@ layout: post
 title: 从苹果官网细看20年设计变迁史
 short: 在过去很长一段时间，苹果都一直以自己流线型、极简风格的工业设计闻名全球。而97年乔布斯带着NeXT团队荣归苹果之后，这家传奇企业重获新生，它的高速发展的这个阶段也和互联网快速普及的20年有着高度的重叠。因此，苹果官方网站正式上线之后，它的设计风格也在过去20年间迎来了巨大变化，你可以在每一次设计的转型和改变中看到苹果变革的轨迹
 src: https://www.uisdc.com/website-inspire-apple-revolution
+category: journal
 --- 
 
 {% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2018-05-23-website-inspire-apple-revolution/apple-history-1.jpg" %}

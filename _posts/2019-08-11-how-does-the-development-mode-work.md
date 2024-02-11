@@ -5,6 +5,7 @@ short: 如果你的代码库即便是稍许有些复杂，你可能已经采取�
 src: https://overreacted.io/how-does-the-development-mode-work/
 tags:
   - Development Mode
+category: tech
 ---
 
 如果你的代码库即便是稍许有些复杂，你可能已经采取了某种办法，针对开发和生产环境分别进行打包，从而于不同环境运行不同的代码。

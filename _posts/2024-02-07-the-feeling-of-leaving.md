@@ -2,6 +2,7 @@
 layout: post
 title: 离开
 short: 时间是我们抓不住的东西，我的世界在不断变迁，曾与我共同存在的人和物来又去、出现又消失，我却束手无策
+category: journal
 ---
 
 {% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/manually-uploaded/PXL_20231121_030052232.jpg?x-oss-process=style/m1080" title="Nov 21, 2023 in Kunming Cuihu" %}

@@ -2,6 +2,7 @@
 layout: post
 title: 清明遗书
 short: 32 岁，明日清明，我留下遗书
+category: journal
 ---
 
 <blockquote>

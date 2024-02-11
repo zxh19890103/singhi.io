@@ -3,6 +3,7 @@ layout: post
 title: The speech by Jobs in Stanford
 short: This is the text of the Commencement address by Steve Jobs, CEO of Apple Computer and of Pixar Animation Studios, delivered on June 12, 2005
 english: 1
+category: journal
 ---
 
 "You've got to find what you love." Jobs says. 

@@ -6,6 +6,7 @@ src: http://2ality.com/
 tags:
   - ES2016
   - ES2018
+category: tech
 ---
 
 

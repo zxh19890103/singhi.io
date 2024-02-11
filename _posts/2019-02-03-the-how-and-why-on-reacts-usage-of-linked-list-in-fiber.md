@@ -5,6 +5,7 @@ short: 我在Web逆向工程技术上花了不少的时间，写下了自己的�
 tags:
   - React
   - Fiber
+category: tech
 ---
  
 {% include img.html src="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20190202/225837_64986.png" title="Work loop representation from an amazing talk by Lin Clark at ReactConf 2017" %}

@@ -2,6 +2,7 @@
 layout: post
 title: 记二〇二二台海危机
 short: 因 Pelosi 访问台湾，被 BJ 抓住把柄，借机挑起了的本次事端，这就是事情的本质
+category: journal
 ---
 
 因 Pelosi 访问台湾，被 BJ 抓住把柄，借机挑起了本次台海危机，这就是事情的本质。

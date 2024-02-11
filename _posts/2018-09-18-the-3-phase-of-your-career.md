@@ -2,6 +2,7 @@
 layout: post
 title: 规划职业生涯三大阶段
 short: 一个人的职业生涯长达45年之久，可划分为三大阶段
+category: journal
 ---
 
 大多数人走在错误的职业道路上！

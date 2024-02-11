@@ -2,6 +2,7 @@
 layout: post
 title: 创业自问
 short: 创业前需要回答的问题
+category: journal
 ---
 
 ### 三个疑问

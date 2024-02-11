@@ -4,6 +4,7 @@ title: 关于 Webpack 一些基本
 short: 不解读源码，从表象上来看看 Webpack
 tags:
  - webpack
+category: tech
 ---
 
 ### 历史

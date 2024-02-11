@@ -2,6 +2,7 @@
 layout: post
 title: 也许是吧
 short: 我渴望她的到来，愿她也如此吧
+category: journal
 ---
 
 前日的傍晚，我跑了十公里，今天的早晨感觉良好。

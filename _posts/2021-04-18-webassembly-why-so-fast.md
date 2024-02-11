@@ -3,6 +3,7 @@ layout: post
 title: WebAssembly 系列 - 速度
 short: 因此，这里择偶问题不需纠结。然而，我们希望的是，一些程序员会将部分的 JavaScript 代码切换为 WebAssembly 版本
 src: https://hacks.mozilla.org/2017/02/what-makes-webassembly-fast/
+category: tech
 ---
 
 这是系列的第五篇，如果你还没有阅读之前的内容，我们建议你从头开始。

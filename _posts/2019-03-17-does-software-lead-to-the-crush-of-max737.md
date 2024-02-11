@@ -3,6 +3,7 @@ layout: post
 title: 波音 737 事故，软件化要不要“背锅”？
 short: 两次惨痛空难后再看波音的软件化之路：它曾满载荣光，如今备受质疑
 src: https://www.infoq.cn/article/hvlAb1e*RCQKavmv5FLN
+category: journal
 ---
 
 ### 事件回顾

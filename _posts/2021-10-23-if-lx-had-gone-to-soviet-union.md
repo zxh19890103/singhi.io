@@ -3,6 +3,7 @@ layout: post
 title:  假如鲁迅先生去过苏联
 short: 读《鲁迅全集》，有一个很明显的印象，即鲁迅先生对苏联赞誉有如，充满向往
 src: http://www.xys.org/xys/classics/Lu-Xun/criticism/luxun_soviet.txt
+category: journal
 ---
 
 >近来听喜马拉雅，听到鲁迅在《南腔北调》中为《苏联见闻录》所写序，颇有感慨。本想写一篇文字来表达下自己的想法，但又不知说什么好，觅得吴蓉晖作的《假如鲁迅去过苏联》，其中所言正合我意，遂将之记录在我的博客之下。其文章于 1999 年发表在新语丝网。

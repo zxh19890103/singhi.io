@@ -5,6 +5,7 @@ short: ES2020 新特性列举
 tags:
   - ES2020
 date: 2020-03-10 23:31
+category: tech
 ---
 
 - Promise.allSettled

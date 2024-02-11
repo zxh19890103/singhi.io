@@ -2,6 +2,7 @@
 layout: post
 title: 安倍死了
 short: 习已致电日本现任首相，表达了对安倍意外死亡的哀悼，这不过是政治儿戏
+category: journal
 ---
 
 日本前首相安倍死了，就在昨日。

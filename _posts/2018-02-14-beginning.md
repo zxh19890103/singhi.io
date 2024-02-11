@@ -3,6 +3,7 @@ layout: post
 title: 星博客深夜上线
 short: 此时，2018年2月14日的凌晨2点38
 tags: 创始
+category: journal
 ---
 
 此时，2018年2月14日的凌晨2点38。

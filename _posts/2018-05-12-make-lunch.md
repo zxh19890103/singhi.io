@@ -2,6 +2,7 @@
 layout: post
 title: 做饭
 short: 今日懒床到12点，起来头脑昏沉，本想拿起手机用饿了么订个餐，起了一个念头，于是决定不订餐
+category: journal
 ---
 
 {% include img.html src="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20180513/001319_59097.png" title="当年的画

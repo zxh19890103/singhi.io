@@ -2,6 +2,7 @@
 layout: post
 title: Js查询字符串解析函数
 short: Js查询字符串解析函数，选自《JavaScript高级程序设计——第三版》的BOM-location章节
+category: tech
 ---
 
 这个函数是从著名的《JavaScript高级程序设计》一书摘取。

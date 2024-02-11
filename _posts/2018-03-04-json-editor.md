@@ -5,6 +5,7 @@ short: 一款用于在线可视化编辑JS对象的工具库，增删改均具�
 tags:
   - Json
   - Editor
+category: tech
 ---
 
 

@@ -3,6 +3,7 @@ layout: post
 title: 最不幸的人
 short: 摘取自克尔凯郭尔《非此即彼》中的“最不幸的人”
 chinese: 1
+category: journal
 ---
 
 {% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/2024-01-04-kunming/PXL_20240104_073501921.jpeg?x-oss-process=style/m1080" title="Jan 04, 2024 at Kunming Starbucks" %}

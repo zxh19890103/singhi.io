@@ -3,6 +3,7 @@ layout: post
 title: 周末随感
 short: 又两个月过去了，没有与家人联系，家人亦未与我联系
 date: 2021-10-31
+category: journal
 ---
 
 又两个月过去了，没有与家人联系，家人亦未与我联系。

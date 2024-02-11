@@ -3,6 +3,7 @@ layout: post
 title: 新年快乐
 short: 新年终于到了
 tags: 新年
+category: journal
 ---
 
 新年终于到了

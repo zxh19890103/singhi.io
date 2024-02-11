@@ -6,6 +6,7 @@ src: https://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html
 tags:
   - Translation
   - Uncle Bob
+category: journal
 ---
 
 为了捍卫计算机编程师的职业荣誉，对着我的能力与认知的最高水准，我发誓：

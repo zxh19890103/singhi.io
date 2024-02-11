@@ -3,6 +3,7 @@ layout: post
 title:  Taiwan And Me
 short: In English words of a old post, the words from a common one in China 
 english: 1
+category: journal
 ---
 
 About two years ago, I suddenly had the desire to fly to Taiwan to see that beautiful island which has always had a complex and ambiguous relationship with the mainland since ancient times. So, I searched online for information on how to handle the procedures for visiting the island. To my disappointment, I discovered that since July 2019, the government had already closed the policy of free passage. While it's still possible to travel to Kinmen, Matsu, and Penghu, this is only permitted for residents of certain cities in the economic zone on the west side of the Strait.

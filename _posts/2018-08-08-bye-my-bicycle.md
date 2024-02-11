@@ -2,6 +2,7 @@
 layout: post
 title: 再见！伴我三年的自行车
 short: 2018年07月31日，陪伴我三年的自行车卖给了别人。撰以此文以记之
+category: journal
 ---
 
 ### 去旅顺

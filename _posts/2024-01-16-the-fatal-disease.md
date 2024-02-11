@@ -3,6 +3,7 @@ layout: post
 title: 绝望是致死的疾病
 short: 摘取自克尔凯郭尔《非此即彼》中的“致死的疾病是绝望”
 chinese: 1
+category: journal
 ---
 
 {% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/manually-uploaded/PXL_20240116_094156290.jpg?x-oss-process=style/m1080" title="Jan 16, 2024 at Shenzhen Starbucks" %}

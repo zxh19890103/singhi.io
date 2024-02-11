@@ -5,6 +5,7 @@ short: 最近要使用 TinyMCE，为了在内容里插入代码块，我研究�
 tags:
   - TinyMCE
   - 自定义插件
+category: tech
 ---
 
 ### 概述

@@ -7,6 +7,7 @@ tags:
   - Black Lives Matter
   - America Chaos
   - George Floyd
+category: journal
 ---
 
 ### Amen to George Floyd

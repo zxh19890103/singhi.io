@@ -2,6 +2,7 @@
 layout: post
 title: 前端工程化 - 第四阶段
 short: 当我们要开发一款完整的Web应用时，前端将面临更多的工程问题
+category: tech
 ---
 
 ### 第四阶段

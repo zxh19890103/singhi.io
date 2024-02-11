@@ -2,6 +2,7 @@
 layout: post
 title: 兰亭集序
 short: 永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭，修禊事也
+category: journal
 ---
 
 ——王羲之

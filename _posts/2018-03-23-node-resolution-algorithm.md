@@ -2,6 +2,7 @@
 layout: post
 title: Node Resolution Algorithm
 short: Node 依赖包解析算法
+category: tech
 ---
 
 require(X) from module at path Y

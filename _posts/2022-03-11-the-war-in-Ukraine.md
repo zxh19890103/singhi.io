@@ -2,6 +2,7 @@
 layout: post
 title: 记乌克兰战争
 short: 半个月之前，俄罗斯正式入侵了乌克兰，乌俄战争拉开序幕
+category: journal
 ---
 
 半个月之前，俄罗斯正式入侵了乌克兰，乌俄战争拉开序幕。

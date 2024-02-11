@@ -3,6 +3,7 @@ layout: post
 title: We're all experiencing a big change of the world
 short: COVID-19 brings a big change to the world. How will the world change? I'm not sure. But I feel it will be one
 english: 1
+category: journal
 ---
 
 COVID-19 brings a big change to the world. How will the world change? I'm not sure. But I feel it will be one.

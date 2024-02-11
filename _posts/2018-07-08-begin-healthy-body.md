@@ -2,6 +2,7 @@
 layout: post
 title: 开始健身
 short: 30岁的年纪，身体素质日益下降，我需要健身了
+category: journal
 ---
 
 ### 三角肌

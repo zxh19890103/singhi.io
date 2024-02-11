@@ -3,6 +3,7 @@ layout: post
 title: WebAssembly 系列 - 运行
 short: WebAssembly 是除 JavaScript，另一种可以运行在 web 页面上的编程语言。过去，当你想运行一段代码，以与页面的其它部分交互，唯一的选择就是 JavaScript
 src: https://hacks.mozilla.org/2017/02/creating-and-working-with-webassembly-modules/
+category: tech
 ---
 
 这是系列的第四篇，如果你还没有阅读之前的内容，我们建议你从头开始。

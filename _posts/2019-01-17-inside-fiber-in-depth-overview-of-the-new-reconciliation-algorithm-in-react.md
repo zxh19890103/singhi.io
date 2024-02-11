@@ -5,6 +5,7 @@ short: React16以来，Reconciliation算法已经由基于Stack的实现更新�
 tags:
   - React
   - Fiber
+category: tech
 ---
 
 {% include img.html src="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20190127/145120_44667.png" %}

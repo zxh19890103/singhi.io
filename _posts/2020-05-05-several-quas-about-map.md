@@ -6,6 +6,7 @@ tags:
   - PPI
   - Map
   - Zoom
+category: tech
 ---
 
 ### 我最近在做什么

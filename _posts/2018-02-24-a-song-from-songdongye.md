@@ -6,6 +6,7 @@ song: 1
 tags:
   - 宋冬野
   - 空巷曲
+category: journal
 ---
 
 {% include img.html src="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20180721/184238_56904.jpg" title="冬野" %}

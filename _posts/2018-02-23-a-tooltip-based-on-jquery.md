@@ -6,6 +6,7 @@ tags:
   - jQuery
   - Tooltip
   - Plugins
+category: tech
 ---
 
 ### 概述

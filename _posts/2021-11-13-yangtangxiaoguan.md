@@ -2,6 +2,7 @@
 layout: post
 title: 羊汤小馆
 short: 今天是平常的一天，周六，一觉睡到了十点
+category: journal
 ---
 
 今天是平常的一天，周六，一觉睡到了十点。

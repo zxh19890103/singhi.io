@@ -2,6 +2,7 @@
 layout: post
 title: 黑夜里的胡思乱想
 short: 我想我是病了。那么，明天，我便会勇敢地去医院，去修理我的身体，更要修理我的精神
+category: journal
 ---
 
 {% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/manually-uploaded/PXL_20240120_081406112.jpg?x-oss-process=style/m1080" title="Jan 20, 2024 at Shenzhen Nan'shan Bookstore" %}

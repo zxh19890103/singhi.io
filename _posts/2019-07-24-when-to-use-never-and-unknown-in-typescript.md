@@ -6,6 +6,7 @@ src: https://blog.logrocket.com/when-to-use-never-and-unknown-in-typescript-5e4d
 tags: 
   - Typescript
   - Translation
+category: tech
 ---
 
 {% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/2019-07-24-when-to-use-never-and-unknown-in-typescript/68747470733a2f2f69322e77702e636f6d2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f313630302f312a5f776837502d6a6448326f39784867466931627162772e706e673f726573697a653d31383138253243313039302673736c3d31" title="Philadelphia's Magic Gardens. This place was so cool!" %}

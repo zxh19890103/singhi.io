@@ -2,6 +2,7 @@
 layout: post
 title: 如何介绍你的软件架构
 short: 面对不同的角色需要用不同的思维来表达，对领导汇报用业务图而不能讲技术架构，对开发则可讲具体开发架构，对运维讲运行架构、物理架构，因此需要不同的架构设计来表达
+category: tech
 ---
 
 <blockquote style="overflow: hidden;">

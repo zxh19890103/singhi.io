@@ -3,6 +3,7 @@ layout: post
 title: WebAssembly 系列 - 现在与未来
 short: 今年，2017 年，二月28日，4 大浏览器一致表示他们已经完成了针对 WebAssembly 的 MVP 版本的发布
 src: https://hacks.mozilla.org/2017/02/where-is-webassembly-now-and-whats-next/
+category: tech
 ---
 
 这是系列的第六篇，如果你还没有阅读其它篇章，我们建议你从头开始哦。

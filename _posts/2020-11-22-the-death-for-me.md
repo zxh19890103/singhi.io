@@ -4,6 +4,7 @@ title: 疾病与死亡
 short: 理解死亡，体谅疾病，享受健康与生活
 sort: 50
 date: 2020-11-22
+category: journal
 ---
 
 今天去北大医院看门诊，颇为周折。

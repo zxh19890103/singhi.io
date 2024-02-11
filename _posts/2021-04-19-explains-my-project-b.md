@@ -3,6 +3,7 @@ layout: post
 title: 介绍我做过的项目 - S 项目
 short: 我要介绍下我做过的项目，项目不难，但是都加入了自己的思想，我想把它说出来，以升华自己的思想
 src: https://segmentfault.com/a/1190000022689070
+category: tech
 ---
 
 ### 说什么呢？

@@ -6,6 +6,7 @@ song: 1
 tags:
   - 窦唯
   - 暮春秋色
+category: journal
 ---
 
 {% include img.html src="http://zxh1989.oss-cn-qingdao.aliyuncs.com/20180721/183925_88186.jpg" title="暮春图" %}

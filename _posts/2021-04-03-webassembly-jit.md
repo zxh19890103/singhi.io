@@ -3,6 +3,7 @@ layout: post
 title: WebAssembly 系列 - JIT
 short: JavaScript 开始的时候运行是缓慢的，但是拜 JIT 所赐，执行速度会越来越快。那么，JIT 是如何工作的
 src: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+category: tech
 ---
 
 这是本系列的第二篇，如果你尚未阅读其它篇章，我建议你从首篇开始。

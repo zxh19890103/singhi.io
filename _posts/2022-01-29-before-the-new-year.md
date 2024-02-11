@@ -2,6 +2,7 @@
 layout: post
 title: 这一年
 short: 这一年终于过去，我记得什么呢？我对下一年还期许什么呢
+category: journal
 ---
 
 这一年终于过去，我记得什么呢？我对下一年还期许什么呢？

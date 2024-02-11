@@ -5,6 +5,7 @@ short: CSSO (CSS Optimizer) 是一款CSS压缩工具。它可以实现3种对CSS
 tags:
   - CSSO
   - 前端压缩
+category: tech
 ---
 
 ### 概述

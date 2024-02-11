@@ -6,6 +6,7 @@ src: https://www.cnblogs.com/iceflorence/p/6646344.html
 tags:
   - CSS
   - 兼容性
+category: tech
 ---
 
 ### 浏览器兼容问题
