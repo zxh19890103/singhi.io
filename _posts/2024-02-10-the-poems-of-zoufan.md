@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 走饭写的诗
-short: 走饭写的诗
+short: 躲了一辈子的雨，雨会不会很伤心
 ---
 
 走饭，一个 90 后女孩，学生，在南京上大学，2012 年 3 月 17 日凌晨自杀。
@@ -10,42 +10,7 @@ short: 走饭写的诗
 
 目录：
 
-<a href="#%E6%A2%A6%201">梦 1</a>
-<a href="#%E6%A2%A6%202">梦 2</a>
-<a href="#%E6%A2%A6%203">梦 3</a>
-<a href="#%E6%A2%A6%204">梦 4</a>
-<a href="#%E5%9C%B0%E9%93%81">地铁</a>
-<a href="#%E5%AD%A4%E7%AB%8B%E6%97%A0%E4%BE%9D">孤立无依</a>
-<a href="#%E8%87%AA%E8%A8%80%E8%87%AA%E8%AF%AD">自言自语</a>
-<a href="#%E5%AD%A4%E5%8D%95">孤单</a>
-<a href="#%E5%90%8D%E5%AD%97">名字</a>
-<a href="#%E8%BA%B2%E9%9B%A8">躲雨</a>
-<a href="#%E9%A6%99%E7%93%9C">香瓜</a>
-<a href="#%E9%95%9C%E5%AD%90">镜子</a>
-<a href="#%E8%B7%B3%E6%A5%BC">跳楼</a>
-<a href="#%E4%B8%8D%E5%BC%80%E5%BF%83">不开心</a>
-<a href="#%E8%A3%85%E6%AD%BB">装死</a>
-<a href="#%E7%9C%8B%E4%B9%A6">看书</a>
-<a href="#%E8%A1%A8%E6%BC%94">表演</a>
-<a href="#%E5%93%8E%E5%91%A6">哎呦</a>
-<a href="#%E5%B7%A5%E5%A4%AB">工夫</a>
-<a href="#%E8%B8%A9%E7%82%B9">踩点</a>
-<a href="#%E7%96%BC">疼</a>
-<a href="#%E5%A6%88%E5%A6%88">妈妈</a>
-<a href="#%E8%A7%85%E9%A3%9F">觅食</a>
-<a href="#%E5%8F%8D%E5%BA%94">反应</a>
-<a href="#%E4%BA%8B">事</a>
-<a href="#%E6%B0%B4">水</a>
-<a href="#%E4%B8%8D%E8%AE%B0%E5%BE%97">不记得</a>
-<a href="#%E7%BA%BD%E6%89%A3">纽扣</a>
-<a href="#%E7%BA%A6%E4%BC%9A">约会</a>
-<a href="#%E6%97%B6%E9%97%B4">时间</a>
-<a href="#%E5%BF%8D%E5%BF%8D">忍忍</a>
-<a href="#%E4%B9%A6">书</a>
-<a href="#%E5%93%AD">哭</a>
-<a href="#%E5%B0%8F%E7%8B%97">小狗</a>
-<a href="#%E4%B8%8D%E6%83%B3%E8%AE%A4%E8%AF%86">不想认识</a>
-<a href="#%E6%AD%BB%E4%B8%80%E6%AD%BB">死一死</a>
+<a href="#%E6%A2%A6%201">梦 1</a><a href="#%E6%A2%A6%202">梦 2</a><a href="#%E6%A2%A6%203">梦 3</a><a href="#%E6%A2%A6%204">梦 4</a><a href="#%E5%9C%B0%E9%93%81">地铁</a><a href="#%E5%AD%A4%E7%AB%8B%E6%97%A0%E4%BE%9D">孤立无依</a><a href="#%E8%87%AA%E8%A8%80%E8%87%AA%E8%AF%AD">自言自语</a><a href="#%E5%AD%A4%E5%8D%95">孤单</a><a href="#%E5%90%8D%E5%AD%97">名字</a><a href="#%E8%BA%B2%E9%9B%A8">躲雨</a><a href="#%E9%A6%99%E7%93%9C">香瓜</a><a href="#%E9%95%9C%E5%AD%90">镜子</a><a href="#%E8%B7%B3%E6%A5%BC">跳楼</a><a href="#%E4%B8%8D%E5%BC%80%E5%BF%83">不开心</a><a href="#%E8%A3%85%E6%AD%BB">装死</a><a href="#%E7%9C%8B%E4%B9%A6">看书</a><a href="#%E8%A1%A8%E6%BC%94">表演</a><a href="#%E5%93%8E%E5%91%A6">哎呦</a><a href="#%E5%B7%A5%E5%A4%AB">工夫</a><a href="#%E8%B8%A9%E7%82%B9">踩点</a><a href="#%E7%96%BC">疼</a><a href="#%E5%A6%88%E5%A6%88">妈妈</a><a href="#%E8%A7%85%E9%A3%9F">觅食</a><a href="#%E5%8F%8D%E5%BA%94">反应</a><a href="#%E4%BA%8B">事</a><a href="#%E6%B0%B4">水</a><a href="#%E4%B8%8D%E8%AE%B0%E5%BE%97">不记得</a><a href="#%E7%BA%BD%E6%89%A3">纽扣</a><a href="#%E7%BA%A6%E4%BC%9A">约会</a><a href="#%E6%97%B6%E9%97%B4">时间</a><a href="#%E5%BF%8D%E5%BF%8D">忍忍</a><a href="#%E4%B9%A6">书</a><a href="#%E5%93%AD">哭</a><a href="#%E5%B0%8F%E7%8B%97">小狗</a><a href="#%E4%B8%8D%E6%83%B3%E8%AE%A4%E8%AF%86">不想认识</a><a href="#%E6%AD%BB%E4%B8%80%E6%AD%BB">死一死</a>
 
 ## 梦 1
 
