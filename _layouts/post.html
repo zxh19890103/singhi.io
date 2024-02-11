@@ -8,8 +8,8 @@ layout: with-nonav
   <div>{{ page.title }}</div>
   <div style="font-size: 0.6em">
     <a href="#" onclick="history.back();">list</a>
-    {% if page.src %}&bull; <a target="_blank" href="{{page.src}}">origin</a>{% endif %}
-    &bull; {{ page.date | date: "%b %d, %Y" }}
+    {% if page.src %}&bull; <a target="_blank" href="{{page.src}}">origin</a>{%
+    endif %} &bull; {{ page.date | date: "%b %d, %Y" }}
   </div>
 </div>
 
@@ -47,5 +47,13 @@ layout: with-nonav
 >
   {{ content }}
 </div>
+
+<!-- <div class="comments">
+  <iframe
+    class="comments-page"
+    frameborder="none"
+    src="http://stories.longloneliness.com/query-html.php"
+  ></iframe>
+</div> -->
 
 <div class="end-line"></div>
