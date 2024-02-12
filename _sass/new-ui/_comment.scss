@@ -1,9 +1,28 @@
 .comments {
+	border-left: 2px solid #efefef;
+	padding: 0 0 0 1rem;
+
+	&-create {
+		&-page {
+            border-left: none !important;
+            outline: none;
+            width: 100%;
+			height: 430px;
+		}
+	}
+
 	&-page {
-        border: 1px dashed white;
-        outline: none;
+		border-left: none !important;
+		outline: none;
         width: 100%;
-        min-height: 300px;
-        overflow: hidden;
+		min-height: 176px;
+		overflow: hidden;
+	}
+
+	&-more {
+		background-color: whitesmoke;
+		text-align: center;
+		border: 1px dashed #ddd;
+		padding: 5px 0;
 	}
 }

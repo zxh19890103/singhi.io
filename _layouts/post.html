@@ -48,12 +48,38 @@ layout: with-nonav
   {{ content }}
 </div>
 
-<!-- <div class="comments">
+<div class="comments">
+  {% if page.english %}
+  <h3>Comments:</h3>
+  {% else %}
+  <h3>评论:</h3>
+  {% endif %}
+
   <iframe
     class="comments-page"
     frameborder="none"
-    src="http://stories.longloneliness.com/query-html.php"
+    src="http://stories.longloneliness.com/query-html.php?end=singhi&lang={{ page.english }}&post={{ page.url }}"
   ></iframe>
-</div> -->
+
+  <div>...</div>
+
+  <div class="comments-more">
+    <a
+      target="_blank"
+      href="http://stories.longloneliness.com/query-html.php?end=singhi&post={{ page.url }}"
+    >
+      {% if page.english %} More comments {% else %} 更多评论 {% endif %}
+    </a>
+  </div>
+
+  <div class="comments-create">
+    <iframe
+      class="comments-create-page"
+      frameborder="none"
+      src="http://stories.longloneliness.com/post-html.php?end=singhi&lang={{ page.english }}&post={{ page.url }}"
+    >
+    </iframe>
+  </div>
+</div>
 
 <div class="end-line"></div>
