@@ -8,8 +8,8 @@ layout: with-nonav
   <div>{{ page.title }}</div>
   <div style="font-size: 0.6em">
     <a href="#" onclick="history.back();">list</a>
-    {% if page.src %}&bull; <a target="_blank" href="{{page.src}}">origin</a>{% endif %}
-    &bull; {{ page.date | date: "%b %d, %Y" }}
+    {% if page.src %}&bull; <a target="_blank" href="{{page.src}}">origin</a>{%
+    endif %} &bull; {{ page.date | date: "%b %d, %Y" }}
   </div>
 </div>
 
@@ -46,6 +46,40 @@ layout: with-nonav
   class="article__body{% if page.song %} article__body--song{% endif %} {% if page.english %} article__body--english{% endif %}"
 >
   {{ content }}
+</div>
+
+<div class="comments">
+  {% if page.english %}
+  <h3>Comments:</h3>
+  {% else %}
+  <h3>评论:</h3>
+  {% endif %}
+
+  <iframe
+    class="comments-page"
+    frameborder="none"
+    src="http://stories.longloneliness.com/query-html.php?end=singhi&lang={{ page.english }}&post={{ page.url }}"
+  ></iframe>
+
+  <div>...</div>
+
+  <div class="comments-more">
+    <a
+      target="_blank"
+      href="http://stories.longloneliness.com/query-html.php?end=singhi&post={{ page.url }}"
+    >
+      {% if page.english %} More comments {% else %} 更多评论 {% endif %}
+    </a>
+  </div>
+
+  <div class="comments-create">
+    <iframe
+      class="comments-create-page"
+      frameborder="none"
+      src="http://stories.longloneliness.com/post-html.php?end=singhi&lang={{ page.english }}&post={{ page.url }}"
+    >
+    </iframe>
+  </div>
 </div>
 
 <div class="end-line"></div>
