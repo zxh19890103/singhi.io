@@ -5,13 +5,18 @@ layout: with-nonav
 <div class="article__title{% if page.english %} article__title--english{% endif %}">
   <div>{{ page.title }}</div>
   <div style="font-size: 0.6em; margin-top: 1rem">
-    <a href="#" onclick="history.back();">&Xi;</a>
+    <a href="#" onclick="history.back();">
+      <img  style="width: 24px; vertical-align: middle;" src="/assets/icons/return.svg" />
+    </a>
     <i style="font-size: 0.8em; color: #ddd">&bull;</i>
-    <span style="text-transform: uppercase;">{{ page.category }}</span>
+    <img style="width: 24px; vertical-align: middle;" src="/assets/icons/{{page.category}}.svg" />
     {% if page.src %}<i style="font-size: 0.8em; color: #ddd">&bull;</i>
-    <a target="_blank" href="{{page.src}}">&ldquo;</a>
+    <a target="_blank" href="{{page.src}}" title="Source Aritcle Or Referrences">
+      <img  style="width: 24px; vertical-align: middle;" src="/assets/icons/link.svg" />
+    </a>
     {% endif %}
     <i style="font-size: 0.8em; color: #ddd">&bull;</i>
+    <img  style="width: 24px; vertical-align: middle;" src="/assets/icons/calendar.svg" />
     <time>{{ page.date | date: "%m/%d, %Y" }}</time>
   </div>
 </div>
@@ -25,18 +30,18 @@ layout: with-nonav
   <a href="#"
     onclick="showPhotoModal('https://zxh1989.oss-cn-qingdao.aliyuncs.com/20181105/151627_71615.jpg'); return false;"
     target="_blank"><img style="width: 32px; height: 32px"
-      src="/assets/1871574_chat_circle_logo_media_network_icon.png" /></a>
+      src="/assets/icons/wechat.svg" /></a>
 
   {% if page.tweet %}
-  <a href="https://twitter.com/zhangxinghai64/status/{{ page.tweet }}" target="_blank"><img
-      style="width: 32px; height: 32px" src="/assets/294709_circle_twitter_icon.png" /></a>
+  <a href="https://x.com/zhangxinghai64/status/{{ page.tweet }}" target="_blank"><img
+    style="width: 32px; height: 32px" src="/assets/icons/t.svg" /></a>
   {% else %}
-  <a href="https://twitter.com/intent/tweet?url=https%3A//www.zhangxinghai.cn{{ page.url }}" target="_blank"><img
-      style="width: 32px; height: 32px" src="/assets/294709_circle_twitter_icon.png" /></a>
+  <a href="https://x.com/intent/tweet?url=https%3A//www.zhangxinghai.cn{{ page.url }}" target="_blank"><img
+    style="width: 32px; height: 32px" src="/assets/icons/t.svg" /></a>
   {% endif %}
 </div>
 
-{% if jekyll.environment == "production" %}
+{% if jekyll.environment == "production2" %}
 <div class="comments">
   {% if page.english %}
   <h3>Comments:</h3>
