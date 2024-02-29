@@ -51,12 +51,9 @@ main {
 	min-height: 100vh;
 	margin: 0 auto;
 	padding: 0 2rem;
-	@include boxSizing(border-box);
 	border-radius: 4px;
 	background-color: $paperColor;
-	box-shadow: 1px 1px 10px 0px $textColor-4;
-	-webkit-box-shadow: 0 0 10px 0px $textColor-4;
-	-moz-box-shadow: 1px 1px 10px 0px $textColor-4;
+	@include boxSizing(border-box);
 	@include ifmob {
 		width: 100%;
 	}

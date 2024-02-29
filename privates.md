@@ -4,7 +4,8 @@ title: 私人记录
 ---
 
 <ul class="documents">
-  {% for post in site.articles | sort_natural: "date" %}
+  {% assign articles = site.articles | sort_natural: "date" %}
+  {% for post in articles %}
     <li class="documents__item">
       <div class="document">
         <h3>
