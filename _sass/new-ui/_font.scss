@@ -1,5 +1,13 @@
+// @font-face {
+// 	font-family: OperatorMonoLig;
+// 	font-variant-ligatures: common-ligatures;
+// 	src: url("/assets/fonts/operatormonolig/OperatorMonoLig-Book.otf");
+// }
+
 @font-face {
-	font-family: OperatorMonoLig;
-	font-variant-ligatures: common-ligatures;
-	src: url("/assets/fonts/operatormonolig/OperatorMonoLig-Book.otf");
+  font-family: "BrandonGrotesque";
+  src: url("/assets/fonts/brandon/brandon_reg-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }

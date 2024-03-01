@@ -6,7 +6,8 @@
   "prettier.useEditorConfig": true,
   "editor.minimap.enabled": false,
   "editor.fontWeight": "400",
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 3,
+  "workbench.colorTheme": "Default Dark+",
   "files.exclude": {
     "**/node_modules": true
   }
