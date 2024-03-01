@@ -54,13 +54,13 @@ main {
 	background-color: $paperColor;
 	@include boxSizing(border-box);
 	
-	// @include ifmob {
-	// 	width: 100%;
-	// }
-
-	@media screen and (max-width: 1304px) {
+	@include ifmob {
 		width: 100%;
 	}
+
+	// @media screen and (max-width: 1304px) {
+	// 	width: 100%;
+	// }
 }
 
 .logo {
