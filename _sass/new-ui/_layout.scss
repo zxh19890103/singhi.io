@@ -17,13 +17,12 @@ aside {
 	width: 256px;
 	height: 100%;
 	box-sizing: border-box;
-	background-color: $themeColor;
-	color: #fff;
+	background-color: #fff;
+	color:  $themeColor;
 	transition: left 0.3s linear;
 	z-index: 2;
-	// border-right: 2px dashed #ddd;
 
-	@media screen and (max-width: $mobileWidth) {
+	@media screen and (max-width: 1304px) {
 		padding-top: $headerHeight;
 		display: none;
 	}
@@ -54,7 +53,12 @@ main {
 	border-radius: 4px;
 	background-color: $paperColor;
 	@include boxSizing(border-box);
-	@include ifmob {
+	
+	// @include ifmob {
+	// 	width: 100%;
+	// }
+
+	@media screen and (max-width: 1304px) {
 		width: 100%;
 	}
 }
@@ -101,7 +105,7 @@ main {
 		margin: 7px 0;
 		color: inherit;
 		font-size: 1rem;
-		border-bottom: 2px solid transparent;
+		border-bottom: 1px solid transparent;
 		small {
 			position: absolute;
 			bottom: 0;
@@ -115,7 +119,7 @@ main {
 		}
 
 		&:hover {
-			border-bottom-color: #fff;
+			border-bottom-color: rgba(0, 128, 0, 0.438);
 		}
 	}
 }

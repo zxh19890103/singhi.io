@@ -4,7 +4,7 @@ html {
 	letter-spacing: 0.5px;
 	word-spacing: 1px;
 	box-sizing: border-box;
-	font: 15px/1.6 'Yuanti SC', "YouYuan", Helvetica, Arial, sans-serif;
+	font: 15px/1.6 "Yuanti SC", "YouYuan", Helvetica, Arial, sans-serif;
 	-webkit-text-size-adjust: 100%;
 	background-color: #ffffff;
 	word-break: break-word;
@@ -14,6 +14,10 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeSpeed;
 	font-display: swap;
+
+	// @include ifmob {
+	// 	font-size: 13px;
+	// }
 }
 
 body {
@@ -25,7 +29,12 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	-webkit-background-size: cover;
-	background: linear-gradient(4deg, rgba(238,242,247,1) 0%, rgba(195,215,233,1) 15%, rgba(63,106,175,1) 100%);
+	background: linear-gradient(
+		4deg,
+		rgba(238, 242, 247, 1) 0%,
+		rgba(195, 215, 233, 1) 15%,
+		rgba(63, 106, 175, 1) 100%
+	);
 	// background-image: url(https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/wuhandaqiao.jpg);
 }
 
@@ -58,7 +67,8 @@ blockquote {
 		}
 	}
 	> p,
-	> ul, > ol {
+	> ul,
+	> ol {
 		font-size: 1.1rem !important;
 		white-space: normal !important;
 		margin: 0;
@@ -82,7 +92,6 @@ h6,
 	display: block;
 	font-size: 1.23rem;
 }
-
 
 .sq-root {
 	border-top: 2px solid $textColor;
