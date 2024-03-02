@@ -7,7 +7,7 @@ category: journal
 
 走饭，一个 90 后女孩，学生，在南京上大学，2012 年 3 月 17 日凌晨自杀。
 
-{% include img.html src="https://cdn.midjourney.com/2d3349e6-4d3b-496d-b83b-6bd46cd0182c/0_1.webp" title="Imagination by MidJourney" %}
+{% include img.html src="https://cdn.midjourney.com/2d3349e6-4d3b-496d-b83b-6bd46cd0182c/0_1.webp" title="imagine by MidJourney" %}
 
 以下整理了她写的诗，
 

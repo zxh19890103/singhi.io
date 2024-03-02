@@ -5,6 +5,8 @@ short: 那么多曾与我有所交流的地方和人，它们都正在慢慢远�
 category: journal
 ---
 
+{% include img.html src="https://cdn.midjourney.com/d1d805da-b464-4af4-af68-2b560790801e/0_3.webp" title="imagine by midjourney" %}
+
 这是除夕，中国农历年的最后一天的夜晚。和往常一样，我没有回家，一个人躲在公寓的第十层。
 
 事实上，我已经十多年没有在除夕夜和家人一起过了。

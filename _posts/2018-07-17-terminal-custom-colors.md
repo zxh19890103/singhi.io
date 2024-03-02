@@ -3,6 +3,7 @@ layout: post
 title: Mac/Linux系统Terminal中不同文件类型的颜色
 short: Mac/Linux系统Terminal中不同文件类型的颜色
 category: tech
+english: 1
 ---
 
 <div class="content__body article">
@@ -30,7 +31,7 @@ category: tech
 </tr>
 <tr>
 <td style="height: 18px; background: cyan; color: blue;">eg</td>
-<td style="height: 18px; background: brown; color: #blue;">ed</td>
+<td style="height: 18px; background: brown; color: blue;">ed</td>
 <td style="height: 18px; background: red; color: black;">ab</td>
 </tr>
 <tr>
