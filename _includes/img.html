@@ -8,10 +8,8 @@
       src="{{ include.src }}"
       onload="event.target.classList.add('photo__entity--loaded')"
     />
-    {% if include.title %}
-    <div class="photo__title">
-      {{ include.title }}
-    </div>
-    {% endif %}
   </div>
+  {% if include.title %}
+  <div class="photo__title">{{ include.title }}</div>
+  {% endif %}
 </div>
