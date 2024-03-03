@@ -2,6 +2,7 @@
 layout: post
 title: Today's Mood
 category: journal
+short: It was exceptionally cold today. In the evening, accompanied by a chilly wind, there was a cold drizzle
 english: 1
 ---
 

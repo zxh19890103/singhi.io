@@ -72,11 +72,15 @@ blockquote {
 }
 
 h2,
-h3,
-.h2,
-.h3 {
+.h2 {
 	display: block;
 	font-size: 1.34rem;
+}
+
+h3,
+.h3 {
+	display: block;
+	font-size: 1.28rem;
 }
 
 h4,
