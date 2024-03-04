@@ -1,9 +1,10 @@
 ---
 layout: post
-title: 7大原则 - 里氏替换原则（LSP）
+title: 里氏替换原则（LSP）
 sort: 10
 short: Inheritance should ensure that any property proved about supertype objects also holds for subtype objects.
 date: 2019-09-01
+category: tech
 ---
 
 ### 里氏替换原则的定义

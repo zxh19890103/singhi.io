@@ -2,8 +2,9 @@
 layout: post
 date: 2019-09-08
 short: Composition/Aggregate Reuse Principle，CARP.
-title: 7大原则 - 合成复用原则（DRP）
+title: 合成复用原则（DRP）
 sort: 60
+category: tech
 ---
 
 ### 合成复用原则的定义

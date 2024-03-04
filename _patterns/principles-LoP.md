@@ -1,9 +1,10 @@
 ---
 layout: post
-title: 7大原则 - 迪米特法则（LoD）
+title: 迪米特法则（LoD）
 sort: 50
 short: Talk only to your immediate friends and not to strangers.
 date: 2019-09-05
+category: tech
 ---
 
 ### 迪米特法则的定义

@@ -67,6 +67,7 @@ $paperColor: #ffffff;
 	}
 
 	&__link {
+		line-height: 1;
 		&:visited {
 			color: $textColor-4;
 		}
@@ -91,6 +92,9 @@ $paperColor: #ffffff;
 		color: $textColor-1;
 		z-index: 1;
 		font-size: 2rem;
+		line-height: 1;
+		word-break: keep-all;
+		// word-wrap: break-word;
 
 		&-createdAt {
 			font-size: 1.3rem; // as icon's size is 16px

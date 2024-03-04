@@ -1,9 +1,10 @@
 ---
 layout: post
-title: 7大原则 - 单一职责原则（SRP）
+title: 单一职责原则（SRP）
 short: There should never be more than one reason for a class to change.
 sort: 30
 date: 2019-09-04
+category: tech
 ---
 
 ### 单一职责原则的定义
@@ -38,4 +39,4 @@ date: 2019-09-04
 
 {% include img.html src="//zxh1989.oss-cn-qingdao.aliyuncs.com/principles-SRP/3-1Q113133F4161.gif" title="大学学生工作管理程序的类图" %}
 
-*注意：单一职责同样也适用于方法。一个方法应该尽可能做好一件事情。如果一个方法处理的事情太多，其颗粒度会变得很粗，不利于重用。*
+_注意：单一职责同样也适用于方法。一个方法应该尽可能做好一件事情。如果一个方法处理的事情太多，其颗粒度会变得很粗，不利于重用。_

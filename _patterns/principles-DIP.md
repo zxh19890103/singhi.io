@@ -2,8 +2,9 @@
 layout: post
 date: 2019-09-03
 short: High level modules should not depend upon low level modules. Both should depend upon abstractions. Abstractions should not depend upon details. Details should depend upon abstractions.
-title: 7大原则 - 依赖倒置原则（DIP）
+title: 依赖倒置原则（DIP）
 sort: 20
+category: tech
 ---
 
 ### 依赖倒置原则的定义

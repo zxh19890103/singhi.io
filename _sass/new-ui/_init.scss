@@ -53,15 +53,26 @@ blockquote {
 	display: block;
 	padding: 1rem;
 	margin: 0;
-	color: #fff;
+	color: #000;
 	border-radius: 4px;
-	background: $textColor-3;
+	background-color: antiquewhite;
 	overflow: hidden;
-	&.poem {
-		p {
-			white-space: pre-wrap !important;
-		}
+	position: relative;
+
+	&:before {
+		content: "“";
+		position: absolute;
+		left: 0.2rem;
+		top: 0.2rem;
+		line-height: 1;
+		font-size: 2rem;
+		color: #666;
 	}
+
+	&.poem p {
+		white-space: pre-wrap !important;
+	}
+
 	> p,
 	> ul,
 	> ol {
