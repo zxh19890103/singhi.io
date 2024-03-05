@@ -14,7 +14,9 @@ title: 记录
           <p>
             <time>{{ post.date | date: "%B %d, %Y" }}</time>
           </p>
-          {% if post.short %} <p><span> {{ post.short }}</span><a href="{{ post.url }}" class="documents__item-3dots">&dot;&dot;&dot;</a> </p>{% endif %}
+          {% if post.short %}
+          <p><span> {{ post.short }}</span><span class="documents__item-3dots">&dot;&dot;&dot;</span></p>
+          {% endif %}
         </a>
       </div>
     </li>

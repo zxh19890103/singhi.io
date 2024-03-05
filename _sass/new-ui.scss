@@ -50,6 +50,7 @@ $paperColor: #ffffff;
 
 .document {
 	margin: 0.5rem 0 1rem 0;
+
 	h3,
 	.h3 {
 		margin: 0;
@@ -68,14 +69,20 @@ $paperColor: #ffffff;
 
 	&__link {
 		line-height: 1;
+		transition: color 0.3s linear;
+
 		&:visited {
-			color: $textColor-4;
+			color: $textColor-3;
 		}
 		&:active {
 			color: $textColor-1;
 		}
 		&:link {
 			color: $textColor-2;
+		}
+
+		&:hover {
+			color: #396e07;
 		}
 	}
 }
@@ -271,7 +278,7 @@ $paperColor: #ffffff;
 
 .photo {
 	margin: 0 -2rem 0rem -2rem;
-    background: #345;
+	background: #345;
 
 	&-wrapper {
 		cursor: zoom-in;
