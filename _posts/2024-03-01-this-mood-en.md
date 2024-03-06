@@ -22,7 +22,7 @@ It's quite lonely, especially struggling at this age.
 
 I looked through the slit in the curtains, gazing outside at the pitch-black surroundings with only scattered lights. Of course, most people working wouldn't finish so early. Nevertheless, the scene remained the same, monotonous and boring. I casually noticed a young girl in the opposite building's kitchen, and my thoughts began to drift again.
 
-Why did I end up in this situation? How many nights have I asked myself this question? Is it because I didn't pursue a normal family life? Is there a significant problem with my personality that makes me unsuitable for marriage? Or is it that I can't afford to get married due to economic issues? I don't know.
+Why did I end up in this situation? How many nights have I asked myself this question? Is it because I didn't pursue a normal family life? Is there a significant problem with my personality that makes me unsuitable for marriage? Or is it that I can't afford to get married due to financial issues? I don't know.
 
 But deep down, I don't oppose love. On the contrary, I yearn for it.
 
