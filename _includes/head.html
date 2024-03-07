@@ -8,3 +8,22 @@
 {% else %}
 <script defer src="/assets/bundle.js?v={{ site.version }}"></script>
 {% endif %}
+<script>
+    function __determineThePicDim(e) {
+      const img = e.target
+      // const iW = img.width,
+      //   iH = img.height
+      const clientDiv = img.parentElement
+      // const cW = clientDiv.clientWidth
+      // if (cW > iW) cH = iH
+      // else cH = (cW * iH) / iW
+      // clientDiv.style.height = cH + "px";
+      clientDiv.classList.add("loaded")
+    }
+    function __determineThePicLoadErr(e) {
+      const img = e.target
+      if (img.__err) return
+      img.__err = true
+      img.src = "https://cdn.midjourney.com/a87ae473-e211-43f5-aab6-8364cfc84db0/0_0.webp"
+    }
+  </script>
