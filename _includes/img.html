@@ -2,10 +2,10 @@
   <div class="photo" onclick="showPhotoModal('{{include.src}}')">
     {% assign title = include.title | default: site.title %}
     <img
-      class="photo__entity"
+      class="photo__entity lazy"
       alt="{{ include.alt | default: title }}"
       title="{{ title }}"
-      src="{{ include.src }}"
+      {% if include.lazy %}data-src{% else %}src{% endif %}="{{ include.src }}"
       onload="__determineThePicDim(event)"
       onerror="__determineThePicLoadErr(event)"
     />

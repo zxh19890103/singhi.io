@@ -99,3 +99,11 @@ layout: with-nonav
 </div>
 
 <div class="end-line-v2"></div>
+
+{% if page.lazy %}
+<script>
+  var lazyLoadInstance = new LazyLoad({
+    // Your custom settings go here
+  })
+</script>
+{% endif %}

@@ -4,6 +4,11 @@
 <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico" />
 <link rel="stylesheet" href="/assets/style.css">
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1130957_l9mloe8xyx.css" />
+
+{% if page.lazy %}
+<script src="/assets/lazyload.min.js"></script>
+{% endif %}
+
 {% if include.noBundleJs == "noBundleJs" %}
 {% else %}
 <script defer src="/assets/bundle.js?v={{ site.version }}"></script>
