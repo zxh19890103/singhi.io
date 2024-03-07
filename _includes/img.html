@@ -7,6 +7,7 @@
       title="{{ title }}"
       src="{{ include.src }}"
       onload="__determineThePicDim(event)"
+      onerror="__determineThePicLoadErr(event)"
     />
   </div>
   {% if include.title %}

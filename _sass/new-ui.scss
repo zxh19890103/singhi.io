@@ -124,6 +124,7 @@ $paperColor: #ffffff;
 		h5,
 		h6 {
 			color: $textColor-2;
+			line-height: 1;
 		}
 		h2,
 		h3 {
@@ -262,7 +263,7 @@ $paperColor: #ffffff;
 
 .photo {
 	margin: 0 -2rem 0rem -2rem;
-	min-height: 256px;
+	min-height: 80px;
 
 	@keyframes moveStripes {
 		from {
@@ -273,7 +274,7 @@ $paperColor: #ffffff;
 		}
 	}
 
-	animation: moveStripes 0.3s linear infinite;
+	animation: moveStripes 0.5s linear infinite;
 	background: repeating-linear-gradient(
 		to right bottom,
 		#333333 0,
@@ -303,9 +304,10 @@ $paperColor: #ffffff;
 
 	&__title {
 		font-size: 0.9em;
+		margin-top: 0.3em;
 		color: $textColor-3;
 		text-align: center;
-		padding: 0 2rem;
+		line-height: 1;
 	}
 }
 
