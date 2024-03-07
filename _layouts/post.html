@@ -2,9 +2,7 @@
 layout: with-nonav
 ---
 
-<div
-  class="article__title{% if page.english %} article__title--english{% endif %}"
->
+<div class="article__title{% if page.english %} english{% endif %}">
   <div class="author" style="text-align: center; margin-bottom: 3rem">
     <a href="/">
       <img
@@ -23,7 +21,7 @@ layout: with-nonav
   </div>
 
   <div>{{ page.title }}</div>
-  <div style="font-size: 0.6em; margin-top: 1rem">
+  <div style="font-size: 0.5em; margin-top: 1.1em">
     <a href="/">
       <img
         style="width: 24px; vertical-align: middle"
@@ -59,7 +57,7 @@ layout: with-nonav
 </div>
 
 <div
-  class="article__body{% if page.song %} article__body--song{% endif %} {% if page.english %} article__body--english{% endif %}"
+  class="article__body{% if page.song %} song{% endif %} {% if page.english %} english{% endif %}"
 >
   {{ content }}
 </div>
@@ -67,58 +65,37 @@ layout: with-nonav
 <div>
   <a
     href="#"
+    title="Wechat connect"
     onclick="showPhotoModal('https://zxh1989.oss-cn-qingdao.aliyuncs.com/20181105/151627_71615.jpg'); return false;"
     target="_blank"
     ><img style="width: 32px; height: 32px" src="/assets/icons/wechat.svg"
   /></a>
 
   {% if page.tweet %}
-  <a href="https://x.com/zhangxinghai64/status/{{ page.tweet }}" target="_blank"
+  <a
+    title="X view"
+    href="https://x.com/zhangxinghai64/status/{{ page.tweet }}"
+    target="_blank"
     ><img style="width: 32px; height: 32px" src="/assets/icons/t.svg"
   /></a>
   {% else %}
   <a
+    title="X share"
     href="https://x.com/intent/tweet?url=https%3A//www.zhangxinghai.cn{{ page.url }}"
     target="_blank"
     ><img style="width: 32px; height: 32px" src="/assets/icons/t.svg"
   /></a>
   {% endif %}
+  <a
+    title="comment"
+    href="http://stories.longloneliness.com/query-html.php?end=singhi&lang={{ page.english }}&post={{ page.url }}"
+    target="_blank"
+  >
+    <img
+      style="width: 25px; height: 25px; padding: 3px"
+      src="/assets/icons/comment.svg"
+    />
+  </a>
 </div>
-
-{% if jekyll.environment == "production2" %}
-<div class="comments">
-  {% if page.english %}
-  <h3>Comments:</h3>
-  {% else %}
-  <h3>评论:</h3>
-  {% endif %}
-
-  <iframe
-    class="comments-page"
-    frameborder="none"
-    src="http://stories.longloneliness.com/query-html.php?end=singhi&lang={{ page.english }}&post={{ page.url }}"
-  ></iframe>
-
-  <div>...</div>
-
-  <div class="comments-more">
-    <a
-      target="_blank"
-      href="http://stories.longloneliness.com/query-html.php?end=singhi&post={{ page.url }}"
-    >
-      {% if page.english %} More comments {% else %} 更多评论 {% endif %}
-    </a>
-  </div>
-
-  <div class="comments-create">
-    <iframe
-      class="comments-create-page"
-      frameborder="none"
-      src="http://stories.longloneliness.com/post-html.php?end=singhi&lang={{ page.english }}&post={{ page.url }}"
-    >
-    </iframe>
-  </div>
-</div>
-{% endif %}
 
 <div class="end-line-v2"></div>

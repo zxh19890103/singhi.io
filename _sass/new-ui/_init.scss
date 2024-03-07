@@ -1,3 +1,8 @@
+::selection {
+	background-color: #444; /* Set the background color of the selected text */
+	color: #ffffff; /* Set the text color of the selected text */
+}
+
 html {
 	height: 100%;
 	color: $textColor;
@@ -82,25 +87,17 @@ blockquote {
 	}
 }
 
-h2,
-.h2 {
-	display: block;
+h2 {
 	font-size: 1.34rem;
 }
 
-h3,
-.h3 {
-	display: block;
+h3 {
 	font-size: 1.28rem;
 }
 
 h4,
 h5,
-h6,
-.h4,
-.h5,
-.h6 {
-	display: block;
+h6 {
 	font-size: 1.23rem;
 }
 

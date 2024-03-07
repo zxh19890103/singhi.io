@@ -3,26 +3,32 @@
 
 <!DOCTYPE html>
 <html lang="en_US">
+  <head>
+    {%- feed_meta -%} {%- seo -%} {%- include head.html -%}
+    <script>
+      function __determineThePicDim(e) {
+        const img = e.target
+        // console.log(img.width, img.height,);
+        // console.log(img);
+        const iW = img.width,
+          iH = img.height
+        const clientDiv = img.parentElement
+        const cW = clientDiv.clientWidth
 
-<head>
-  {%- feed_meta -%}
-  {%- seo -%}
-  {%- include head.html -%}
-  <script>
-    function gotoIndexPage() {
-      window.history.go(-1);
-    }
-  </script>
-</head>
+        if (cW > iW) cH = iH
+        else cH = (cW * iH) / iW
 
-<body>
-  <div class="page-wrapper">
-    <main id="page">
-      <article class="article">
-        {{ content }}
-      </article>
-    </main>
-  </div>
-</body>
+        clientDiv.style.height = cH + "px";
+        clientDiv.classList.add('loaded')
+      }
+    </script>
+  </head>
 
+  <body>
+    <div class="page-wrapper">
+      <main id="page">
+        <article class="article">{{ content }}</article>
+      </main>
+    </div>
+  </body>
 </html>

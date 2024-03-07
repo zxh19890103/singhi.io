@@ -55,12 +55,13 @@ $paperColor: #ffffff;
 	.h3 {
 		margin: 0;
 		font-weight: bold;
-		font-size: 1.3em;
+		font-size: 1.5em;
 	}
 
 	p {
 		margin: 0;
 		height: 1.4rem;
+		font-size: 1.2em;
 		line-height: 1.4rem;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -90,68 +91,67 @@ $paperColor: #ffffff;
 // Post & Page
 .article {
 	position: relative;
+	font-size: 1.24rem;
+	line-height: 1.685;
 
 	&__title,
 	.page__title {
 		margin: 0 -2rem 3rem -2rem;
 		padding: 1rem 2rem 1rem 2rem;
-		background: rgba($color: $paperColor, $alpha: 0.95);
 		color: $textColor-1;
 		z-index: 1;
-		font-size: 2rem;
+		font-size: 2em;
 		line-height: 1;
 		word-break: keep-all;
-		// word-wrap: break-word;
-
-		&-createdAt {
-			font-size: 1.3rem; // as icon's size is 16px
-			text-align: right;
-		}
-
-		&--english {
-			font-family: BrandonGrotesque;
-		}
 
 		@include ifmob {
 			position: static;
 			top: 0;
 		}
 	}
+
 	&__body {
 		padding: 2rem 0;
+		font-size: 1em;
 
-		h1,
-		.h1,
-		.title {
-			color: $textColor;
+		&.english {
+			font-size: 1.2em;
 		}
+
 		h2,
 		h3,
 		h4,
-		.h2,
-		.h3,
-		.h4 {
-			color: $textColor-1;
-			position: relative;
+		h5,
+		h6 {
+			color: $textColor-2;
 		}
 		h2,
-		h3,
-		.h2,
-		.h3 {
-			margin: 4rem 0 2rem 0;
+		h3 {
+			margin: 3em 0 1.5em 0;
+		}
+
+		h4 {
+			margin: 2em 0 1em;
+		}
+
+		h2 {
+			font-size: 1.34em;
+		}
+		h3 {
+			font-size: 1.28em;
 		}
 		h4,
-		.h4 {
-			margin: 2rem 0 1rem;
-			display: inline-block;
-			max-width: 61.8%;
+		h5,
+		h6 {
+			font-size: 1.23em;
 		}
+
 		p {
 			word-break: break-word;
 			white-space: pre-wrap;
-			line-height: 1.685;
-			font-size: 1.24rem;
+
 			@include ifmob() {
+				font-size: 1em;
 				line-height: 1.5;
 			}
 		}
@@ -159,32 +159,8 @@ $paperColor: #ffffff;
 		a {
 			text-decoration: underline;
 		}
-
-		&--song {
-			text-align: center;
-		}
-
-		&--english {
-			font-size: 1.2rem;
-			font-family: BrandonGrotesque;
-		}
 	}
-	&__attrs {
-		margin-bottom: 1rem;
-		&-src {
-			color: $textColor-4;
-		}
-		&-tags {
-			color: $textColor-4;
-			a {
-				margin-right: 0.5rem;
-				text-decoration: underline;
-				&:hover {
-					color: lighten($themeColor, 20);
-				}
-			}
-		}
-	}
+
 	hr {
 		padding: 0;
 		margin: 0;
@@ -196,7 +172,7 @@ $paperColor: #ffffff;
 	ul {
 		padding-left: 2em;
 		list-style-position: outside;
-		font-size: 1.15rem;
+		font-size: 0.8em;
 	}
 	ul {
 		list-style-type: square;
@@ -204,6 +180,14 @@ $paperColor: #ffffff;
 	iframe {
 		border-left: 2px solid #efefef;
 	}
+}
+
+.english {
+	font-family: BrandonGrotesque;
+}
+
+.song {
+	text-align: center;
 }
 
 .end-line {
@@ -278,7 +262,31 @@ $paperColor: #ffffff;
 
 .photo {
 	margin: 0 -2rem 0rem -2rem;
-	background: #345;
+	min-height: 256px;
+
+	@keyframes moveStripes {
+		from {
+			background-position: 0 0;
+		}
+		to {
+			background-position: 0 40px; /* Adjust the distance the pattern moves */
+		}
+	}
+
+	animation: moveStripes 0.3s linear infinite;
+	background: repeating-linear-gradient(
+		to right bottom,
+		#333333 0,
+		/* Dark color for the stripes */ #333333 20px,
+		/* Adjust the height of the stripes as needed */ #1a1a1a 20px,
+		/* Darker color for the background of the stripes */ #1a1a1a 40px
+			/* Adjust the total height of each stripe and the next starting point */
+	);
+
+	&.loaded {
+		animation: none;
+		background: #333;
+	}
 
 	&-wrapper {
 		cursor: zoom-in;
@@ -289,14 +297,12 @@ $paperColor: #ffffff;
 		max-width: 100%;
 		display: block;
 		margin: 0 auto;
-		min-height: 300px;
+		min-height: 0;
 		background-image: linear-gradient(to bottom, #fff, #888);
-		&--loaded {
-			min-height: auto;
-		}
 	}
+
 	&__title {
-		font-size: 0.9rem;
+		font-size: 0.9em;
 		color: $textColor-3;
 		text-align: center;
 		padding: 0 2rem;

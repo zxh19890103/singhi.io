@@ -6,7 +6,7 @@
       alt="{{ include.alt | default: title }}"
       title="{{ title }}"
       src="{{ include.src }}"
-      onload="event.target.classList.add('photo__entity--loaded')"
+      onload="__determineThePicDim(event)"
     />
   </div>
   {% if include.title %}
