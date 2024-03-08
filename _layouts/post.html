@@ -3,56 +3,50 @@ layout: with-nonav
 ---
 
 <div class="article__title{% if page.english %} english{% endif %}">
-  <div class="author" style="text-align: center; margin-bottom: 3rem">
+  <div class="Author" style="text-align: center; margin-bottom: 3rem">
     <a href="/">
-      <img
-        src="/assets/dog.jpg"
-        style="
-          filter: contrast(2);
-          width: 40px;
-          border: 2px solid #7ea542;
-          border-radius: 50%;
-        "
-      />
+      <img src="/assets/dog.jpg" class="Author-Profile" />
     </a>
-    <div style="color: #888; line-height: 1; font-size: 1.2rem">
-      <b>{</b>singhi<b>}</b>
-    </div>
+    <div class="Author-Intro"><b>{</b>singhi<b>}</b></div>
   </div>
 
   <div>{{ page.title }}</div>
   <div style="font-size: 0.5em; margin-top: 1.1em">
     <a href="/">
-      <img
-        style="width: 24px; vertical-align: middle"
-        src="/assets/icons/return.svg"
-      />
+      <img class="XSvgIcon" src="/assets/icons/return.svg" />
     </a>
     <i style="font-size: 0.8em; color: #ddd">&bull;</i>
-    <img
-      style="width: 24px; vertical-align: middle"
-      src="/assets/icons/{{page.category}}.svg"
-    />
+    <img class="XSvgIcon" src="/assets/icons/{{page.category}}.svg" />
     {% if page.src %}<i style="font-size: 0.8em; color: #ddd">&bull;</i>
     <a
       target="_blank"
       href="{{page.src}}"
       title="Source Aritcle Or Referrences"
     >
-      <img
-        style="width: 24px; vertical-align: middle"
-        src="/assets/icons/link.svg"
-      />
+      <img class="XSvgIcon" src="/assets/icons/link.svg" />
     </a>
     {% endif %}
     <i style="font-size: 0.8em; color: #ddd">&bull;</i>
-    <img
-      style="width: 24px; vertical-align: middle"
-      src="/assets/icons/calendar.svg"
-    />
-    <time style="color: #888; vertical-align: middle"
-      >{{ page.date | date: "%B %d, %Y" }}</time
+    <a
+      href="javascript:void(0);"
+      onclick="__switchDarkLight(event)"
+      class="ThemeSwitchButton"
+      title="Change The Theme"
     >
+      <img class="XSvgIcon Moon" src="/assets/icons/moon.svg" />
+      <img class="XSvgIcon Sun" src="/assets/icons/sun.svg" />
+    </a>
+    <i style="font-size: 0.8em; color: #ddd">&bull;</i>
+    <a href="#XAfterLinks" title="To Comment">
+      <img
+        class="XSvgIcon"
+        style="padding: 2px"
+        src="/assets/icons/comment.svg"
+      />
+    </a>
+    <i style="font-size: 0.8em; color: #ddd">&bull;</i>
+    <img class="XSvgIcon" src="/assets/icons/calendar.svg" />
+    <time class="Article-Time">{{ page.date | date: "%B %d, %Y" }}</time>
   </div>
 </div>
 
@@ -62,13 +56,13 @@ layout: with-nonav
   {{ content }}
 </div>
 
-<div>
+<div class="AfterLinks" id="XAfterLinks">
   <a
     href="#"
     title="Wechat connect"
     onclick="showPhotoModal('https://zxh1989.oss-cn-qingdao.aliyuncs.com/20181105/151627_71615.jpg'); return false;"
     target="_blank"
-    ><img style="width: 32px; height: 32px" src="/assets/icons/wechat.svg"
+    ><img class="XSvgIcon-lg" src="/assets/icons/wechat.svg"
   /></a>
 
   {% if page.tweet %}
@@ -76,14 +70,14 @@ layout: with-nonav
     title="X view"
     href="https://x.com/zhangxinghai64/status/{{ page.tweet }}"
     target="_blank"
-    ><img style="width: 32px; height: 32px" src="/assets/icons/t.svg"
+    ><img class="XSvgIcon-lg" style="padding: 4px" src="/assets/icons/x.svg"
   /></a>
   {% else %}
   <a
     title="X share"
     href="https://x.com/intent/tweet?url=https%3A//www.zhangxinghai.cn{{ page.url }}"
     target="_blank"
-    ><img style="width: 32px; height: 32px" src="/assets/icons/t.svg"
+    ><img class="XSvgIcon-lg" style="padding: 4px" src="/assets/icons/x.svg"
   /></a>
   {% endif %}
   <a
@@ -92,7 +86,8 @@ layout: with-nonav
     target="_self"
   >
     <img
-      style="width: 25px; height: 25px; padding: 3px"
+      class="XSvgIcon-lg"
+      style="padding: 3px"
       src="/assets/icons/comment.svg"
     />
   </a>

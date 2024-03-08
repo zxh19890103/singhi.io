@@ -1,23 +1,7 @@
-$themeColor: #456;
-$textColor: #1a2a3a;
-$textColor-1: #1a2a3a;
-$textColor-2: #5d646b;
-$textColor-3: #5a6a7a;
-$textColor-4: #7a8a9a;
-$paperColor: #ffffff;
-
 @import "./new-ui/mixins";
 @import "./new-ui/font";
 @import "./new-ui/init";
 @import "./new-ui/layout";
-
-.blur {
-	-webkit-filter: blur(5px);
-	-moz-filter: blur(5px);
-	-o-filter: blur(5px);
-	-ms-filter: blur(5px);
-	filter: blur(5px);
-}
 
 // Listing of documents
 .documents {
@@ -27,7 +11,6 @@ $paperColor: #ffffff;
 	list-style: none !important;
 
 	&__item {
-		// border-bottom: 1px solid rgb(246 243 243);
 		margin-bottom: 4rem;
 
 		&-3dots {
@@ -73,17 +56,13 @@ $paperColor: #ffffff;
 		transition: color 0.3s linear;
 
 		&:visited {
-			color: $textColor-3;
-		}
-		&:active {
-			color: $textColor-1;
+			color: var(--text-color-4);
 		}
 		&:link {
-			color: $textColor-2;
+			color: var(--text-color-2);
 		}
-
 		&:hover {
-			color: #396e07;
+			color: var(--link-active-color);
 		}
 	}
 }
@@ -98,11 +77,13 @@ $paperColor: #ffffff;
 	.page__title {
 		margin: 0 -2rem 3rem -2rem;
 		padding: 1rem 2rem 1rem 2rem;
-		color: $textColor-1;
+		color: var(--text-color-1);
 		z-index: 1;
 		font-size: 2em;
 		line-height: 1;
 		word-break: keep-all;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
 
 		@include ifmob {
 			position: static;
@@ -123,7 +104,7 @@ $paperColor: #ffffff;
 		h4,
 		h5,
 		h6 {
-			color: $textColor-2;
+			color: var(--text-color-2);
 			line-height: 1;
 		}
 		h2,
@@ -148,7 +129,7 @@ $paperColor: #ffffff;
 		}
 
 		p {
-			word-break: break-word;
+			word-break: keep-all;
 			white-space: pre-wrap;
 
 			@include ifmob() {
@@ -159,6 +140,27 @@ $paperColor: #ffffff;
 
 		a {
 			text-decoration: underline;
+		}
+	}
+
+	.Article-Time {
+		color: var(--text-color-5);
+		vertical-align: middle;
+	}
+
+	.Author {
+		&-Profile {
+			filter: contrast(2);
+			width: 40px;
+			height: 40px;
+			border: 2px solid var(--link-active-color);
+			border-radius: 50%;
+		}
+
+		&-Intro {
+			color: var(--text-color-5);
+			line-height: 1;
+			font-size: 1.2rem;
 		}
 	}
 
@@ -191,27 +193,11 @@ $paperColor: #ffffff;
 	text-align: center;
 }
 
-.end-line {
-	display: flex;
-	display: -webkit-flex;
-	justify-content: flex-start;
-	align-items: center;
-	padding-bottom: 2rem;
-
-	&:after {
-		content: "";
-		flex: 1;
-		height: 1px;
-		margin: 12px 0;
-		background: #efefef;
-	}
-}
-
 .end-line-v2 {
 	width: 100%;
 	height: 0; /* Adjust the thickness of the divider */
-	border-top: 1px solid #efefef;
-	padding: 2rem 0;
+	border-top: 4px double #efefef;
+	margin: 1rem 0 2rem 0;
 }
 
 // Photo viewer
@@ -277,11 +263,10 @@ $paperColor: #ffffff;
 	animation: moveStripes 0.5s linear infinite;
 	background: repeating-linear-gradient(
 		to right bottom,
-		#333333 0,
-		/* Dark color for the stripes */ #333333 20px,
-		/* Adjust the height of the stripes as needed */ #1a1a1a 20px,
-		/* Darker color for the background of the stripes */ #1a1a1a 40px
-			/* Adjust the total height of each stripe and the next starting point */
+		#333 0,
+		#333 20px,
+		#000 20px,
+		#000 40px
 	);
 
 	&.loaded {
@@ -299,13 +284,13 @@ $paperColor: #ffffff;
 		display: block;
 		margin: 0 auto;
 		min-height: 0;
-		background-image: linear-gradient(to bottom, #fff, #888);
+		background-image: linear-gradient(to bottom, #fff, #666);
 	}
 
 	&__title {
 		font-size: 0.9em;
 		margin-top: 0.3em;
-		color: $textColor-3;
+		color: var(--text-color-3);
 		text-align: center;
 		line-height: 1;
 	}
@@ -320,4 +305,4 @@ $paperColor: #ffffff;
 @import "./new-ui/identities", "./new-ui/github", "./new-ui/table",
 	"./new-ui/comment", "./new-ui/cardstyle";
 
-@import "./new-ui/cv";
+// @import "./new-ui/cv";

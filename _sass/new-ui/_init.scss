@@ -4,14 +4,54 @@
 }
 
 html {
+	--link-active-color: #396e07;
+	--main-bg-color: #ffffff;
+	--main-color: #000000;
+	--text-color: #0c141b;
+	--text-color-1: #1a2a3a;
+	--text-color-2: #2a2929;
+	--text-color-3: #3f4448;
+	--text-color-4: #43505d;
+	--text-color-5: #7a7979;
+	--blockquote-bg-color: #f9ebd9;
+
+	.Moon {
+		display: none;
+	}
+	.Sun {
+		display: unset;
+	}
+
+	&.dark {
+		--link-active-color: #61ad19;
+		--main-bg-color: #0c141b;
+		--main-color: #fff;
+		--text-color: #fff;
+		--text-color-1: #f2eeee;
+		--text-color-2: #f2eeee;
+		--text-color-3: #f2eeee;
+		--text-color-4: #f2eeee;
+		--text-color-5: #f2eeee;
+		--blockquote-bg-color: #5a4932;
+
+		.Moon {
+			display: unset;
+		}
+		.Sun {
+			display: none;
+		}
+	}
+
 	height: 100%;
-	color: $textColor;
 	letter-spacing: 0.5px;
 	word-spacing: 1px;
 	box-sizing: border-box;
 	font: 14px/1.5 "Yuanti SC", "YouYuan", Helvetica, Arial, sans-serif;
 	-webkit-text-size-adjust: 100%;
-	background-color: #ffffff;
+
+	background-color: var(--main-bg-color);
+	color: var(--text-color);
+
 	word-break: break-word;
 	-ms-overflow-style: -ms-autohiding-scrollbar;
 	-webkit-tap-highlight-color: transparent;
@@ -24,23 +64,15 @@ html {
 body {
 	margin: 0;
 	padding: 0;
-	background: #ffffff;
 	height: 100%;
 	overflow: hidden;
 	background-repeat: no-repeat;
 	background-size: cover;
 	-webkit-background-size: cover;
-	// background: linear-gradient(
-	// 	4deg,
-	// 	rgba(238, 242, 247, 1) 0%,
-	// 	rgba(195, 215, 233, 1) 15%,
-	// 	rgba(63, 106, 175, 1) 100%
-	// );
-	// background-image: url(https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/wuhandaqiao.jpg);
 }
 
 a {
-	color: $themeColor;
+	color: var(--text-color);
 	text-decoration: none;
 }
 
@@ -58,9 +90,9 @@ blockquote {
 	display: block;
 	padding: 1rem;
 	margin: 0;
-	color: #000;
+	color: var(--main-color);
 	border-radius: 4px;
-	background-color: antiquewhite;
+	background-color: var(--blockquote-bg-color);
 	overflow: hidden;
 	position: relative;
 
@@ -71,7 +103,7 @@ blockquote {
 		top: 0.2rem;
 		line-height: 1;
 		font-size: 2rem;
-		color: #666;
+		color: var(--text-color-2);
 	}
 
 	&.poem p {
@@ -102,5 +134,36 @@ h6 {
 }
 
 .sq-root {
-	border-top: 2px solid $textColor;
+	border-top: 2px solid var(--text-color);
+}
+
+.blur {
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+	filter: blur(5px);
+}
+
+.XSvgIcon {
+	box-sizing: border-box;
+	width: 24px;
+	height: 24px;
+	vertical-align: middle;
+}
+
+html.dark .XSvgIcon {
+	// filter: brightness(15);
+	background-color: #fff;
+	border-radius: 50%;
+}
+
+.XSvgIcon-lg {
+	@extend .XSvgIcon;
+	width: 32px;
+	height: 32px;
+}
+
+.iconfont.icon-global {
+	display: none;
 }
