@@ -26,11 +26,14 @@
     img.src =
       "https://cdn.midjourney.com/a87ae473-e211-43f5-aab6-8364cfc84db0/0_0.webp"
   }
-  function __switchDarkLight(evt) {
-    const A = evt.target
+  function __switchDarkLight(evt, init) {
+    const curVal = localStorage.getItem("x-theme")
     const Doc = document.documentElement
-    const oldVal = Doc.className ? Doc.className : "light"
-    const nextVal = oldVal === "light" ? "dark" : "light"
+    const oldVal = curVal ? curVal : "light"
+    const nextVal = init ? curVal : oldVal === "light" ? "dark" : "light"
     Doc.className = nextVal
+    localStorage.setItem("x-theme", nextVal)
   }
+
+  __switchDarkLight(null, true)
 </script>

@@ -129,7 +129,6 @@
 		}
 
 		p {
-			word-break: keep-all;
 			white-space: pre-wrap;
 
 			@include ifmob() {
@@ -146,6 +145,7 @@
 	.Article-Time {
 		color: var(--text-color-5);
 		vertical-align: middle;
+		display: inline-block;
 	}
 
 	.Author {
@@ -250,6 +250,10 @@
 .photo {
 	margin: 0 -2rem 0rem -2rem;
 	min-height: 80px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 
 	@keyframes moveStripes {
 		from {
