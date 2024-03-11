@@ -1,6 +1,6 @@
 ---
 layout: index
-title: 记录
+title: Blog
 ---
 
 <ul class="documents">
