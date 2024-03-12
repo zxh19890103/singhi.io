@@ -6,13 +6,13 @@
 html {
 	--link-active-color: #396e07;
 	--main-bg-color: #ffffff;
-	--main-color: #000000;
-	--text-color: #0c141b;
-	--text-color-1: #1a2a3a;
-	--text-color-2: #2a2929;
-	--text-color-3: #3f4448;
-	--text-color-4: #43505d;
-	--text-color-5: #7a7979;
+	--main-color: #020617;
+	--text-color: #1e293b;
+	--text-color-1: #1e293b;
+	--text-color-2: #334155;
+	--text-color-3: #475569;
+	--text-color-4: #64748b;
+	--text-color-5: #94a3b8;
 	--blockquote-bg-color: #f9ebd9;
 
 	.Moon {
@@ -46,7 +46,7 @@ html {
 	letter-spacing: 0.5px;
 	word-spacing: 1px;
 	box-sizing: border-box;
-	
+
 	font: 14px/1.5 Arial, Calibri, sans-serif;
 
 	-webkit-text-size-adjust: 100%;

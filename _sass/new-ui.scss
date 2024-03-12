@@ -34,11 +34,10 @@
 .document {
 	margin: 0.5rem 0 1rem 0;
 
-	h3,
-	.h3 {
+	h3 {
 		margin: 0;
 		font-weight: bold;
-		font-size: 1.5em;
+		font-size: 1.4em;
 	}
 
 	p {
@@ -59,10 +58,11 @@
 			color: var(--text-color-4);
 		}
 		&:link {
-			color: var(--text-color-2);
+			color: var(--text-color-3);
 		}
 		&:hover {
 			color: var(--link-active-color);
+			text-decoration: underline;
 		}
 	}
 }
@@ -308,5 +308,3 @@
 
 @import "./new-ui/identities", "./new-ui/github", "./new-ui/table",
 	"./new-ui/comment", "./new-ui/cardstyle";
-
-// @import "./new-ui/cv";

@@ -1,0 +1,53 @@
+@import "./new-ui/mixins";
+@import "./new-ui/font";
+@import "./new-ui/init";
+
+body {
+    overflow: auto;
+}
+
+.mycv {
+	margin: 0 auto;
+	background-color: #ffffff;
+	width: 780px;
+	color: #333;
+	box-sizing: border-box;
+	padding: 0 2rem 2rem 2rem;
+	font-size: 16px;
+
+	&__main {
+		width: 100%;
+	}
+
+	h2 {
+		text-align: center;
+	}
+
+	ul {
+		list-style-position: outside;
+		list-style-type: square;
+	}
+
+	ol,
+	ul {
+		font-size: 0.95 * 16px;
+		em {
+			&:after {
+				content: "：";
+			}
+		}
+
+		ul,
+		ol {
+			padding-left: 1rem;
+		}
+	}
+
+	hr {
+		border: none;
+		height: 2px;
+		background-color: #777;
+		// width: 61.8%;
+		margin: 1rem auto;
+	}
+}

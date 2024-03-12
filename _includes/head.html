@@ -5,14 +5,28 @@
   content="width=device-width, initial-scale=1, user-scalable=no"
 />
 <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico" />
+
+{% if include.CV %}
+<!-- <link rel="stylesheet" href="/assets/style.css" /> -->
+{% else %}
 <link rel="stylesheet" href="/assets/style.css" />
+{% endif %}
+
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1130957_l9mloe8xyx.css" />
 
 {% if page.lazy %}
 <script src="/assets/lazyload.min.js"></script>
-{% endif %} {% if include.noBundleJs == "noBundleJs" %} {% else %}
+{% endif %}
+<!--  -->
+{% if include.noBundleJs == "noBundleJs" %}
+<!--  -->
+{% else %}
 <script defer src="/assets/bundle.js?v={{ site.version }}"></script>
 {% endif %}
+<!-- JS -->
+{% if include.CV %}
+<!-- nojs -->
+{% else %}
 <script>
   function __determineThePicDim(e) {
     const img = e.target
@@ -37,3 +51,4 @@
 
   __switchDarkLight(null, true)
 </script>
+{% endif %}
