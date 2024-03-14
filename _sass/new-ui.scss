@@ -300,6 +300,24 @@
 	}
 }
 
+.Tags {
+	padding: 0.4rem;
+	font-size: 0.9rem;
+
+	a {
+		color: #fff;
+	}
+
+	&__Viewport {
+		width: 100%;
+		height: 100%;
+		max-height: 256px;
+		overflow: hidden;
+		box-sizing: border-box;
+		.Words {}
+	}
+}
+
 .hidden-if-mobi {
 	@include ifmob() {
 		display: none;

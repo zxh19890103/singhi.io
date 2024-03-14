@@ -1,0 +1,7 @@
+<div class="TagsGlobal">
+  {% assign tags = site.tags %}
+  <!--  -->
+  {% for tag in tags %}
+  <a class="Words" href="/tags#{{ tag[0] }}">{{ tag[0] }}</a>
+  {% endfor %}
+</div>

@@ -1,0 +1,61 @@
+---
+layout: index
+title: Tags
+---
+
+<div
+  class="TaggedPosts"
+  style="display: flex; flex-wrap: wrap; font-size: 1rem"
+>
+  {% for tag in site.tags %}
+
+  <div class="OneTag">
+    <div
+      class="OneTagContent"
+      style="
+        padding: 0 6px;
+        margin: 3px;
+        background: #ddd;
+        box-sizing: border-box;
+      "
+    >
+      <a
+        href="javascript:void(0);"
+        style="text-decoration: underline"
+        onclick="_onTagClick(event)"
+        >{{ tag[0] }}</a
+      >
+      <ul style="display: none">
+        {% for post in tag[1] %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+
+<script>
+  function _onTagClick(e) {
+    const A = e.target
+    const Ul = A.nextElementSibling
+    const PP = A.parentElement.parentElement
+    const P = A.parentElement
+
+    if (A.isOpen) {
+      PP.style.width = ""
+      P.style.padding = ""
+      P.style.background = "#ddd"
+      Ul.style.display = "none"
+      A.isOpen = false
+    } else {
+      PP.style.width = "100%"
+      P.style.padding = "2rem"
+      P.style.background = "#ffe"
+      P.style.border = "1px dashed #fea"
+      Ul.style.display = "block"
+      A.isOpen = true
+    }
+  }
+</script>
