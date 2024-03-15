@@ -17,7 +17,7 @@ title: 简历
 
 主导的商业项目包括：**适用于仓库布局的大型图形编辑软件**、**适用于仓库设备的高性能实时监控系统**、电商、ERP、HIS、CMS、爬虫、公众号等。 技术扎实，对前端三大框架与流行工具链有相当熟练的运用， 具备 WEB 应用架构能力，对项目管理、代码规范、WEB PERF、CI/CD 有一定了解， 优先考虑**图形化**方向。
 
-最近三年在全球 ACR 引领者海柔创新科技从事前端研发工作，期间成果颇丰，包含：
+最近三年在全球 ACR 引领者[海柔创新科技](https://www.hairobotics.com/company)从事前端研发工作，期间成果颇丰，包含：
 
 - 高性能实时仓库监控系统
 - 海柔仓库布局系统
@@ -44,7 +44,7 @@ title: 简历
 
 负责前端工程建设、高性能仓库实时监控系统设计与开发、仓库图形编辑系统设计与开发、2d/3d 仓库图形库设计与开发。
 
-1. *2d/3d 仓库图形库* 基于 LeafletJS, ThreeJS, BabylonJS, React
+1. _[2d/3d 仓库图形库](https://wik.zhangxinghai.cn)_ 基于 LeafletJS, ThreeJS, BabylonJS, React
 
    - 支持 2d/3d
    - 状态驱动视图
@@ -52,7 +52,7 @@ title: 简历
    - 撤销/恢复
    - 高性能
 
-2. *地图产品* 包括监控系统以及图形编辑器；主要技术包括 TS、React、leaflet、Antd、MaterialUI、glMatrix
+2. _地图产品_ 包括监控系统以及图形编辑器；主要技术包括 TS、React、leaflet、Antd、MaterialUI、glMatrix
 
    - 领域模型驱动
    - 可承载 50 Hz Websocket 消息推送

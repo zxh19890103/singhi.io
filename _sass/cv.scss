@@ -10,13 +10,25 @@ body {
 	margin: 0 auto;
 	background-color: #ffffff;
 	width: 780px;
-	min-width: 480px;
 	color: #333;
 	box-sizing: border-box;
 	padding: 0 2rem 2rem 2rem;
 	font-size: 16px;
 	font-family: "Yuppy SC";
 	line-height: 1.4;
+
+	a {
+		font-style: italic;
+		color: green;
+		text-decoration: underline;
+		&:before {
+			content: "ª";
+			color: #666;
+		}
+		&:hover {
+			color: #333;
+		}
+	}
 
 	&.english {
 		font-family: BrandonGrotesque;
@@ -85,5 +97,8 @@ body {
 		border-top: 1px dotted #ddd;
 		margin: 1rem auto;
 		page-break-after: always;
+		@media only print {
+			border-color: white;
+		}
 	}
 }

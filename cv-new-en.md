@@ -28,9 +28,9 @@ Proficient in front-end frameworks and popular toolchains, with expertise in web
 
 For the past three years, I have been working as a front-end developer at [Hai Robotics](https://www.hairobotics.com/company), a global leader in ACR, achieving significant results including:
 
-High-performance real-time warehouse monitoring system
-Hai Ruo warehouse layout system
-Hai Ruo graphics library
+- High-performance real-time warehouse monitoring system
+- Hai Ruo warehouse layout system
+- Hai Ruo graphics library
 
 Q: Why leave Hai Robotics?
 
@@ -53,7 +53,7 @@ A: I aim to transition into a more specialized role as a front-end developer foc
 
 Responsible for front-end engineering construction, design, and development of high-performance real-time warehouse monitoring systems, warehouse graphic editing systems, and 2D/3D warehouse graphic libraries.
 
-1. _2D/3D Warehouse Graphic Library_ Developed using LeafletJS, ThreeJS, BabylonJS, and React.
+1. _[2D/3D Warehouse Graphic Library](https://wik.zhangxinghai.cn)_ Developed using LeafletJS, ThreeJS, BabylonJS, and React.
 
    - Supports 2D/3D graphics.
    - State-driven views.
