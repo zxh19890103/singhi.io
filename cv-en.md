@@ -2,6 +2,7 @@
 layout: cv
 title: CV
 english: 1
+description: Singhi's CV, Fontend Developer, Graphic Dev, Threejs, React
 ---
 
 <h2>
@@ -11,7 +12,8 @@ Singhi, Software Engineer
 </h2>
 
 - Address: Shenzhen, Guangdong, China
-- Contact: +86-18742538743 / zhangxinghai79@gmail.com
+- Tel: +86-18742538743
+- eMail: zhangxinghai79@gmail.com
 - Ethnicity: Han
 - Native Place: Hubei
 - Education: Bachelor's Degree

@@ -4,12 +4,43 @@
 <!DOCTYPE html>
 <html lang="en_US">
   <head>
-    {%- feed_meta -%} {%- seo -%} {%- include head.html -%}
+    {%- feed_meta -%}
+    <!--  -->
+    {%- seo -%}
+    <!--  -->
+    {%- include head.html -%}
+
+    <script>
+      function __toggleMenuVisible(evt) {
+        const Btn = evt.target
+        const aside = document.querySelector("#aside")
+        if (aside["__visible"]) {
+          aside["__visible"] = false
+          aside.style.left = '-100vw';
+          Btn.innerText = "|||"
+          Btn.style.color = "black"
+        } else {
+          aside["__visible"] = true
+          aside.style.left = '0px';
+          Btn.innerText = "x"
+          Btn.style.color = "white"
+        }
+      }
+    </script>
   </head>
 
   <body>
     <div class="page-wrapper">
-      <aside>
+      <div class="MenuTrigger When-On-Mobile">
+        <div
+          onclick="__toggleMenuVisible(event)"
+          role="button"
+          class="MenuTrigger__triple"
+        >
+          |||
+        </div>
+      </div>
+      <aside id="aside">
         <div class="logo">
           <div class="logo__title">
             <img
@@ -26,9 +57,9 @@
         </div>
         <nav>{%- include menu.html -%}</nav>
         <div class="copyright">
-          <a target="_blank" href="http://www.beian.miit.gov.cn"
-            >辽ICP备17002964号-1</a
-          >
+          <a target="_blank" href="http://www.beian.miit.gov.cn">
+            辽 ICP 备17002964号-1
+          </a>
           <br />
           &copy; singhi's BLOG / 2018 - 2024
         </div>

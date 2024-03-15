@@ -1,9 +1,40 @@
 $headerHeight: 45px;
+$notEnough: 1304px;
 
 .page-wrapper {
 	position: relative;
 	height: 100%;
 	overflow: auto;
+}
+
+.MenuTrigger {
+	position: fixed;
+	top: 1px;
+	right: 1px;
+	width: 60px;
+	height: 45px;
+	font-size: 38px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #666;
+	overflow: hidden;
+	border-radius: 6px;
+	z-index: 903;
+
+	&__triple {
+		width: 60px;
+		height: 45px;
+		line-height: 45px;
+		text-align: center;
+		transform: translate(2px) rotate(90deg);
+		cursor: pointer;
+	}
+}
+
+.When-On-Mobile {
+	display: none;
+	@media only screen and (max-width: $notEnough) {
+		display: block;
+	}
 }
 
 aside {
@@ -19,12 +50,20 @@ aside {
 	box-sizing: border-box;
 	background-color: #333;
 	color: #fff;
-	transition: left 0.3s linear;
 	z-index: 2;
+	transition: left 0.3s linear;
 
-	@media screen and (max-width: 1304px) {
+	@media only screen and (max-width: $notEnough) {
 		padding-top: $headerHeight;
-		display: none;
+		// display: none;
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		overflow: hidden;
+		background-color: rgba(0, 0, 0, 0.9);
+		top: 0;
+		left: -100vw;
+		z-index: 901;
 	}
 
 	left: 0px;

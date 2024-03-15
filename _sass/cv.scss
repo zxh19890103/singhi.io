@@ -19,7 +19,7 @@ body {
 
 	a {
 		font-style: italic;
-		color: green;
+		color: #000;
 		text-decoration: underline;
 		&:before {
 			content: "ª";
@@ -60,6 +60,20 @@ body {
 
 	h4 {
 		margin-top: 3rem;
+		display: flex;
+		justify-content: start;
+		align-items: center;
+
+		a {
+			margin-left: 1rem;
+		}
+
+		em {
+			font-style: normal;
+			font-size: 0.9rem;
+			margin: 0 1rem;
+			color: #999;
+		}
 	}
 
 	ul {
@@ -88,6 +102,17 @@ body {
 		ul,
 		ol {
 			padding-left: 0.5rem;
+		}
+	}
+
+	&.english {
+		ol,
+		ul {
+			em {
+				&:after {
+					content: ": ";
+				}
+			}
 		}
 	}
 
