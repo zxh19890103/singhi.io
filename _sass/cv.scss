@@ -3,29 +3,64 @@
 @import "./new-ui/init";
 
 body {
-    overflow: auto;
+	overflow: auto;
 }
 
 .mycv {
 	margin: 0 auto;
 	background-color: #ffffff;
 	width: 780px;
+	min-width: 480px;
 	color: #333;
 	box-sizing: border-box;
 	padding: 0 2rem 2rem 2rem;
 	font-size: 16px;
+	font-family: "Yuppy SC";
+	line-height: 1.4;
+
+	&.english {
+		font-family: BrandonGrotesque;
+		font-size: 18px;
+	}
+
+	@media only screen and (max-width: 780px) {
+		width: 100%;
+	}
+
+	@media only print {
+		padding: 0;
+	}
 
 	&__main {
 		width: 100%;
 	}
 
 	h2 {
+		font-size: 2.5rem;
 		text-align: center;
+		margin-bottom: 5rem;
+	}
+
+	h3 {
+		font-size: 2rem;
+		margin-top: 5rem;
+	}
+
+	h4 {
+		margin-top: 3rem;
 	}
 
 	ul {
-		list-style-position: outside;
 		list-style-type: square;
+	}
+	ul,
+	ol {
+		list-style-position: outside;
+		padding-inline-start: 2em;
+	}
+
+	ol {
+		list-style: lower-roman;
 	}
 
 	ol,
@@ -35,19 +70,20 @@ body {
 			&:after {
 				content: "：";
 			}
+			text-decoration: underline;
 		}
 
 		ul,
 		ol {
-			padding-left: 1rem;
+			padding-left: 0.5rem;
 		}
 	}
 
 	hr {
 		border: none;
-		height: 2px;
-		background-color: #777;
-		// width: 61.8%;
+		height: 0;
+		border-top: 1px dotted #ddd;
 		margin: 1rem auto;
+		page-break-after: always;
 	}
 }

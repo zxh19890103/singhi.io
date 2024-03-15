@@ -23,7 +23,7 @@
   </head>
 
   <body>
-    <div class="mycv">
+    <div class="mycv{% if page.english%} english{% endif %}">
       <main class="mycv__Main">
         <article>{{ content }}</article>
       </main>
