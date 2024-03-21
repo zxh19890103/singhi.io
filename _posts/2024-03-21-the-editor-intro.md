@@ -15,7 +15,7 @@ category: tech
 
 ## 为什么需要这个编辑器以及其核心功能
 
-原本基于 json 文件编辑的形式比较容易出错，而且非专业人员无法参与这项工作，公司也提供了一两款功能单一、对技术能力要求较高的软件，因此需要一个包含全部仓库地图设计流程的软件，用以简化工作流程，并且保证配置准确。
+原本基于 `JSON` 文件编辑的形式比较容易出错，而且非专业人员无法参与这项工作，公司也提供了一两款功能单一、对技术能力要求较高的软件，因此需要一个包含全部仓库地图设计流程的软件，用以简化工作流程，并且保证配置准确。
 
 核心功能：
 
@@ -26,11 +26,13 @@ category: tech
 - 服务端 undo/redo
 - 输送线编辑
 
-## 最初的设计
+## 设计
 
-### 三个基本接口
+以下是三个基本接口，
 
-1. 对象管理 - Collection
+### 对象管理 - Collection
+
+对象管理 —— 集合，它的作用在于管理图形或非图形元素，元素的增加、删除、修改都需要通过集合进行
 
 ```ts
 interface Collection<M = any> extends Iterable<M> {
@@ -64,7 +66,9 @@ interface Collection<M = any> extends Iterable<M> {
 }
 ```
 
-2. 可持久化对象
+### 可持久化对象
+
+实现了本接口的对象具备与服务器同步数据的能力，
 
 ```ts
 interface PersistableObject {
@@ -123,7 +127,9 @@ interface PersistableObject {
 }
 ```
 
-3. 可持久化对象集合
+### 可持久化对象集合
+
+用于管理可持久化对象，基本逻辑继承“集合”，但同时补充了同步数据的逻辑
 
 ```ts
 export interface IPersistableCollection<
@@ -147,7 +153,9 @@ export interface IPersistableCollection<
 }
 ```
 
-4. 状态
+### 状态
+
+可持久化对象的状态，提交存储的时候，会根据这些状态做出不同的行为
 
 ```ts
 enum PersistableState {
@@ -166,17 +174,60 @@ enum PersistableState {
 3. react
 4. antd components.
 
+Lealfet 是用于构建地图应用的 library，用它来做仓库编辑器似乎不是很妥当。之所以选择它，有其历史原因。
+
+我在开发监控系统的时候，尝试过使用 X6，考虑过 Fabric，X6 采取 SVG 渲染，非常不适合渲染量图形元素，这是做过试验的，大概超过 3000 个点就渲染不动了，尤其体现在后期的交互上。
+
+Fabric 在历史项目中被采用过，对于大批量元素的渲染能力也非常有限。
+
+Leaflet 的渲染包含多种，有供地图使用的瓦片渲染，其实就是图片，有 svg 渲染，也有 canvas 渲染。我测试过使用 canvas 去画 10000 个点，似乎没啥问题，后期的交互依然非常顺畅。这要归因于 leaflet 内部所做的优化工作，即超出视界的部分，leaflet 会忽略掉。
+
+leaflet 是当时的部门经理极力推荐使用的。
+
+以上是在我开发监控软件的时候的选择，其实在现在看来，leaflet 这个 library 比较失败，它过于老旧，API 非常不友好，有许多基本功能需要亲自实现，比如图形的转换。还有很多功能，是根本实现不了的，或者说实现起来会得不偿失。
+
+长期对于 leaflet 的使用，使得我摸清了 leaflet 的底层逻辑，对它的 API 了解非常全面，其提供的视窗交互能力也非常不错，基于这些背景，我们开始做编辑器的时候，我自然也选择它作为图形渲染的基础。
+
+后来我们考察了 pixi 这样的库，性能和 API 真的比 leaflet 好很多。这部分我会在图形库里提及。
+
+Glmatrix 是我在个人研究 3d 渲染的时候使用到的 lib，它提供的各种函数非常全面，我比较熟悉，我使用它对 leaflet 进行了的图形变换的扩展，这里参考了 threejs 的相关实现。
+
+React 用于 dom 渲染，这是公司技术栈的要求。
+
+组件库我们选择了 antd，它提供组件非常全面，口碑佳生态好，是国内组件库的首选，会节省我们大量的时间。
+
 ## 实现中遇到的若干问题以及我如何解决
 
-1. real-time saving and react the changes from sever
-2. undo/redo under the case of the real-time.
-3. big map (1w points and 8k locations.) rendering - layers management, and events can pass through the layer of canvas.
-4. multi users collapration?
+1. 对 leaflet 进行功能扩展，使其具备基本的图形变换能力
+2. 如何做到地图的实时渲染
+3. 如何实现 undo/redo，考虑到地图是实时渲染
+4. 大批量图形元素的渲染如何可能，比如：10w 点
+5. 如何做到多用户同时操作
+
+### 对 leaflet 进行功能扩展，使其具备基本的图形变换能力
+
+我使用了 glmatrix，并参考了 threejs 的实现，写了一个 Mixin，这个 Mixin 会混淆到 leaflet 自己的 layer 上，从而使 leafelt 的图形元素具备了变换能力。
+
+### 如何做到地图的实时渲染
+
+这个比较复杂，首先为什么需要实时渲染？这是因为整个项目的初期设计导致的，最初的开发人员比较少，因此大量的生成和校验计算会丢给后端同事。后端计算之后，会将结果通过 WS 推送到前端，前端要及时响应。因此，编辑器不光需要关注 UI 对它的变更，还需要关注后端（或者 WS）对其提出的变更请求。
+
+这里主要是设计好接口，数据需要经过特定管道流通，最后反映到界面。
+
+### 如何实现 undo/redo，考虑到地图是实时渲染
+
+这个更加困难，因为数据是实时存储的，因此 undo/redo 不能由前端实现，而是后端的事，前端需要管理一个操作队列，用户点击 undo 的时候，请求后端，让后端做出 undo 的操作，然后将变更推送给前端，前端及时做出响应。redo 也是如此。
+
+### 大批量图形元素的渲染如何可能，比如：10w 点
+
+这里主要改写了 leaflet 的图形事件的实现，使得用户可以跨 canvas 交互！可以查看代码。
+
+不同类型的元素会被绘制到不同的 canvas 上，这样渲染 10w 个点是不存在问题的！
 
 ## 我从中收获到了什么？
 
-1. define a pattern to implementing mixin.
-2. graphic elements transform: rotate, translate, scale.
-3. usage of SVG
-4. how does leaflet work. (rewrote its source code in this project)
-5. how to orgainize a large-scale app? separate layers in reason, and separate data from UI.
+1. 定义了一套 mixin 的实现标准，见代码
+2. 明白了 threejs 内部图形变换的实现逻辑
+3. 对 SVG 有了更多的了解
+4. 对 leaflet 这样的地图渲染库有了很多了解
+5. 如何开发一个大型 app，关键在于关注点分离，在编辑器项目中，图形、DOM、Domain、Data 都是严格隔开的，同时要做好通讯机制的设计
