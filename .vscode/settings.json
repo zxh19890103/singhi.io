@@ -2,13 +2,13 @@
   "editor.fontSize": 16,
   "editor.formatOnSave": false,
   "editor.fontLigatures": true,
-  "editor.fontFamily": "'Wawati SC',Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "'Yuppy SC', 'Wawati SC',Menlo, Monaco, 'Courier New', monospace",
   "prettier.useEditorConfig": true,
   "editor.minimap.enabled": false,
   "editor.fontWeight": "400",
-  "window.zoomLevel": 2.6,
-  // "workbench.colorTheme": "Default Light+",
-  "workbench.colorTheme": "Default Dark+",
+  "window.zoomLevel": 1,
+  "workbench.colorTheme": "Default Light+",
+  // "workbench.colorTheme": "Default Dark+",
   "files.exclude": {
     "**/node_modules": true
   }

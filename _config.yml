@@ -41,4 +41,3 @@ exclude:
   - scripts
   - package.json
   - yarn.lock
-  - demo

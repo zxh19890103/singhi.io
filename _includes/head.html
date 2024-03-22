@@ -1,9 +1,6 @@
 <meta charset="utf8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1, user-scalable=no"
-/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico" />
 
 {% if include.CV %}
@@ -50,5 +47,25 @@
   }
 
   __switchDarkLight(null, true)
+
+  function __openCodePresentation(url) {
+    const Page = document.querySelector('#page');
+    const Article = Page.firstElementChild;
+
+    const CodeSection = document.createElement('div')
+    CodeSection.innerHTML = `<iframe frameborder="none" width="100%" height="100%" src="${url}"></iframe>`
+    CodeSection.style.cssText = 'position: fixed; top: 0; right: 0; width: 50vw; height: 100vh; z-index: 1921; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.5); opacity: 0.92;';
+
+    Page.appendChild(CodeSection);
+    const dispose = (evt) => {
+      if (evt.target === CodeSection) return;
+      Page.removeChild(CodeSection)
+      Page.removeEventListener('click', dispose)
+    }
+
+    setTimeout(() => {
+      Page.addEventListener('click', dispose)
+    }, 0);
+  }
 </script>
 {% endif %}
