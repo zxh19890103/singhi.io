@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Introduction to The Graphic Editor Based on Leaflet
-short: I would like to briefly introduce the editor project designed and developed by HaiRou Innovation Technology
+short: I would like to briefly introduce the editor project designed and developed at Hairobotics.
 category: tech
 english: 1
 ---
@@ -31,7 +31,7 @@ Core functionalities:
 
 ### The Structure
 
-{% include img.html src="/demo/images/editor-design.SVG" %}
+{% include img.html src="/demo/images/editor-design.svg" %}
 
 The following are the three core interfaces:
 

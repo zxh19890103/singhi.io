@@ -41,13 +41,18 @@
 	}
 
 	p {
-		margin: 0;
+		margin: 0.25rem 0 0 0;
 		height: 1.4rem;
 		font-size: 1.2em;
 		line-height: 1.4rem;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+
+		time {
+			font-size: 0.9em;
+			color: var(--text-color-4);
+		}
 	}
 
 	&__link {
@@ -121,6 +126,11 @@
 		}
 		h3 {
 			font-size: 1.21em;
+
+			&:before {
+				content: "-";
+				margin: 0 0.5em 0 0;
+			}
 		}
 		h4,
 		h5,
