@@ -1,5 +1,6 @@
 $headerHeight: 45px;
 $notEnough: 1304px;
+$asideWidth: 256px;
 
 .page-wrapper {
 	position: relative;
@@ -95,10 +96,17 @@ main {
 	@include ifmob {
 		width: 100%;
 	}
+}
 
-	// @media screen and (max-width: 1304px) {
-	// 	width: 100%;
-	// }
+.page {
+	&.fullwidth {
+		padding-left: $asideWidth + 14px * 2; // + 2rem
+		width: 100%;
+		box-sizing: border-box;
+		@media only screen and (max-width: $notEnough) {
+			padding-left: 2rem;
+		}
+	}
 }
 
 .logo {

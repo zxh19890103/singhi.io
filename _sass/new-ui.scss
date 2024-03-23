@@ -128,7 +128,7 @@
 			font-size: 1.21em;
 
 			&:before {
-				content: "-";
+				content: "*";
 				margin: 0 0.5em 0 0;
 				vertical-align: text-bottom;
 				color: var(--text-color-3);
@@ -222,6 +222,7 @@
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.56);
 	z-index: 3;
+
 	&__close {
 		position: absolute;
 		top: 3px;

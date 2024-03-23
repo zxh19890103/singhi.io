@@ -4,7 +4,7 @@ title: About
 english: 1
 ---
 
-### Who am I?
+## Who am I?
 
 {% include img.html src="https://plants2019.oss-cn-shenzhen.aliyuncs.com/personalwebsite.plant/201304291724.jpg" title="Lvshun Dalian, in 2013, now I got older" %}
 
@@ -47,14 +47,14 @@ Frameworks\Libaries\Tools I used:
 
 **If you are interested in thechnolgies too, or you've some jobs to give, touch me please.**
 
-### Scan QR-Code to touch me
+## Scan QR-Code to touch me
 {% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/20181105/151627_71615.jpg" alt="My QR Code" %}
 
-### Contacts
+## Contacts
 
-- Email：zhangxinghai79@gmail.com
+- email：zhangxinghai79@gmail.com
 
-### Homepages
+## Homepages
 
 - [zhihu](https://www.zhihu.com/people/zhangxingxing89)
 - [GitHub](https://github.com/zxh19890103)

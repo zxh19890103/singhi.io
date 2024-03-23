@@ -3,7 +3,7 @@ layout: page
 title: 关于我
 ---
 
-### 我是谁
+## 我是谁
 
 <a href="/about-en" class="pure-english">If you're from western contries, welcome to read another version.</a>
 
@@ -43,14 +43,14 @@ title: 关于我
 
 **有好交流技术者或公司有职位推荐，可与我取得联系。**
 
-### 可扫码添加好友
+## 可扫码添加好友
 {% include img.html src="https://zxh1989.oss-cn-qingdao.aliyuncs.com/20181105/151627_71615.jpg" alt="张星海的微信二维码" %}
 
-### 联系方式
+## 联系方式
 
 - 邮箱：zhangxinghai79@gmail.com
 
-### 社交主页
+## 社交主页
 
 - [知乎](https://www.zhihu.com/people/zhangxingxing89)
 - [GitHub](https://github.com/zxh19890103)
