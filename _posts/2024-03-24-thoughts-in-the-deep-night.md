@@ -4,6 +4,7 @@ title: "Reflections of Solitude in the Night"
 short: "Loneliness, existential pondering, and seeking solace in mundane routines; questioning life's purpose and seeking self-repair"
 english: 1
 category: journal
+date: 2024-03-23
 ---
 
 The night has finally descended, and I sit alone in a room on the tenth floor of the apartment. Everything feels familiar and natural, but suddenly I notice that the small objects in the room are increasing. For others, it may not seem like much, but for someone like me, who leads a transient life, it's quite a collection. I've visited a few friends' rented rooms before, always finding them cramped and chaotic, which I find hard to endure. I'd rather have nothing, just a few books, a Mac, and three pieces of clothing, packed into a small suitcase, wandering in City A today and idling in City B tomorrow.
