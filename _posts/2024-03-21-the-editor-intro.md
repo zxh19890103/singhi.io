@@ -30,7 +30,7 @@ category: tech
 
 ### 应用结构
 
-{% include img.html src="/demo/images/editor-design.svg" %}
+{% include img.html src="/demo/images/editor-design.jpg" %}
 
 以下是三个核心接口：
 
@@ -209,7 +209,7 @@ Leaflet 的渲染包含多种：
 
 glMatrix 是早年我私自研究 3D 渲染期间使用到的 lib，它提供的各种变换或三维矢量计算函数非常全面，我比较熟悉。在编辑器项目中，我使用它对 leaflet 进行了图形变换功能的扩展，这里参考了 threejs 的相关实现。
 
-{% include code.html path="/demo/code/editor-intro-transform.ts" %}
+{% include code.html path="editor-intro-transform.ts" %}
 
 React 用于 DOM 渲染，这是公司技术栈的要求。
 
@@ -245,7 +245,7 @@ UI 交互会导致本地状态发生变更，这些变更需要不断地推送�
 
 这里改写了 leaflet 的图形事件的实现，使得用户可以跨 canvas 交互！可以查看代码。
 
-{% include code.html path="/demo/code/leafletCanvasOverrides.ts" %}
+{% include code.html path="leafletCanvasOverrides.ts" %}
 
 不同类型的元素会被绘制到不同的 canvas 上，这样渲染 `10w` 个点是不存在问题的！
 
@@ -270,7 +270,7 @@ UI 交互会导致本地状态发生变更，这些变更需要不断地推送�
 
 ### 定义了一套 mixin 的实现标准，见代码
 
-{% include code.html path="/demo/code/mixin-routine.ts" %}
+{% include code.html path="mixin-routine.ts" %}
 
 ### 明白了 threejs 内部图形变换的实现逻辑
 

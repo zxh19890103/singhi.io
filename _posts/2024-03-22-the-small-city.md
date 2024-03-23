@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A lesser-known Chinese city that few foreigners have heard of or visited.
+title: A lesser-known Chinese city that few foreigners have heard of or visited
 short: "Teng’chong: Serene Yunnan city, unknown to many foreigners but loved by locals for its tranquility, hot springs, and local coffee."
 english: 1
 category: journal

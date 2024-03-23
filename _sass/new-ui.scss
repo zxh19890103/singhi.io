@@ -130,6 +130,8 @@
 			&:before {
 				content: "-";
 				margin: 0 0.5em 0 0;
+				vertical-align: text-bottom;
+				color: var(--text-color-3);
 			}
 		}
 		h4,

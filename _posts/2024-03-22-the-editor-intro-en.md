@@ -31,7 +31,7 @@ Core functionalities:
 
 ### The Structure
 
-{% include img.html src="/demo/images/editor-design.svg" %}
+{% include img.html src="/demo/images/editor-design.jpg" %}
 
 The following are the three core interfaces:
 
@@ -205,7 +205,7 @@ Later, we considered libraries like [Pixi](https://pixijs.com/), which is a 2D g
 
 GlMatrix is a library I used during my personal study of 3D rendering in the early years. It provides comprehensive functions for transformations or 3D vector calculations, which I am familiar with. In the editor project, I extended Leaflet's graphic transformation functionality using it, referencing the implementation in Three.js.
 
-{% include code.html path="/demo/code/editor-intro-transform.ts" %}
+{% include code.html path="editor-intro-transform.ts" %}
 
 React is used for DOM rendering, as required by the company's tech stack.
 
@@ -247,7 +247,7 @@ To address the efficient rendering of large batches of graphic elements, such as
 
 ### Defined a Set of Mixin Implementation Standards, See Code
 
-{% include code.html path="/demo/code/mixin-routine.ts" %}
+{% include code.html path="mixin-routine.ts" %}
 
 ### Gained a Clear Understanding of Three.js' Internal Graphic Transformation Logic
 
