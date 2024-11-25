@@ -10,91 +10,56 @@ layout: with-nonav
     <div class="Author-Intro"><b>{</b>singhi<b>}</b></div>
   </div>
 
+  <div style="text-transform: uppercase;padding: 0.1em 0em; margin: 6px 0px; font-size: .4em; color:#777;">
+    <span>&#127991; {{page.category}}</span>
+  </div>
+
   <div>{{ page.title }}</div>
+
   <div style="font-size: 0.5em; margin-top: 1.1em">
-    <a href="/" class="Hidden-On-XCom">
-      <img class="XSvgIcon" src="/assets/icons/return.svg" />
-    </a>
-    <i class="Hidden-On-XCom" style="font-size: 0.8em; color: #ddd">&bull;</i>
-    <img class="XSvgIcon" src="/assets/icons/{{page.category}}.svg" />
-    {% if page.src %}<i style="font-size: 0.8em; color: #ddd">&bull;</i>
-    <a
-      target="_blank"
-      href="{{page.src}}"
-      title="Source Aritcle Or Referrences"
-    >
-      <img class="XSvgIcon" src="/assets/icons/link.svg" />
-    </a>
-    {% endif %}
-    <i style="font-size: 0.8em; color: #ddd">&bull;</i>
-    <a
-      href="javascript:void(0);"
-      onclick="__switchDarkLight(event)"
-      class="ThemeSwitchButton"
-      title="Change The Theme"
-    >
-      <img class="XSvgIcon Moon" src="/assets/icons/moon.svg" />
-      <img class="XSvgIcon Sun" src="/assets/icons/sun.svg" />
-    </a>
-    <i style="font-size: 0.8em; color: #ddd">&bull;</i>
-    <a
-      href="http://stories.longloneliness.com/query-html.php?end=singhi&lang={{ page.english }}&post={{ page.url }}"
-      target="_self"
-      class="Hidden-On-XCom"
-      title="To Comment"
-    >
-      <img
-        class="XSvgIcon"
-        style="padding: 2px"
-        src="/assets/icons/comment.svg"
-      />
-    </a>
-    <i class="Hidden-On-XCom" style="font-size: 0.8em; color: #ddd">&bull;</i>
-    <img class="XSvgIcon" src="/assets/icons/calendar.svg" />
-    <time class="Article-Time">{{ page.date | date: "%B %d, %Y" }}</time>
+    <a href="/" class="Hidden-On-XCom">&larr;</a>
+    {% if page.src %}<i class="Hidden-On-XCom"">&bull;</i>
+    <a target=" _blank" href="{{page.src}}" title="Source Aritcle Or Referrences">
+      <span>&#128279;</span>
+      </a>
+      {% endif %}
+      <i>&bull;</i>
+      <a href="javascript:void(0);" onclick="__switchDarkLight(event)" class="ThemeSwitchButton"
+        title="Change The Theme">
+        <span class="Moon">&#9728;</span>
+        <span class="Sun">&#127769;</span>
+      </a>
+      <i>&bull;</i>
+      <a href="http://stories.longloneliness.com/query-html.php?end=singhi&lang={{ page.english }}&post={{ page.url }}"
+        target="_self" class="Hidden-On-XCom" title="To Comment">
+        &#128172;
+      </a>
+      <i class="Hidden-On-XCom">&bull;</i>
+      <span>&#128197;</span>
+      <time class="Article-Time">{{ page.date | date: "%b %d, %Y" }}</time>
   </div>
 </div>
 
-<div
-  class="article__body{% if page.song %} song{% endif %} {% if page.english %} english{% endif %}"
->
+<div class="article__body{% if page.song %} song{% endif %} {% if page.english %} english{% endif %}">
   {{ content }}
 </div>
 
 <div class="AfterLinks Hidden-On-XCom" id="XAfterLinks">
-  <a
-    href="#"
-    title="Wechat connect"
+  <a href="#" title="Wechat connect"
     onclick="showPhotoModal('https://zxh1989.oss-cn-qingdao.aliyuncs.com/20181105/151627_71615.jpg'); return false;"
-    target="_blank"
-    ><img class="XSvgIcon-lg" src="/assets/icons/wechat.svg"
-  /></a>
+    target="_blank"><img class="XSvgIcon-lg" src="/assets/icons/wechat.svg" /></a>
 
   {% if page.tweet %}
-  <a
-    title="X view"
-    href="https://x.com/zhangxinghai64/status/{{ page.tweet }}"
-    target="_blank"
-    ><img class="XSvgIcon-lg" style="padding: 4px" src="/assets/icons/x.svg"
-  /></a>
+  <a title="X view" href="https://x.com/zhangxinghai64/status/{{ page.tweet }}" target="_blank"><img class="XSvgIcon-lg"
+      style="padding: 4px" src="/assets/icons/x.svg" /></a>
   {% else %}
-  <a
-    title="X share"
-    href="https://x.com/intent/tweet?url=https%3A//www.zhangxinghai.cn{{ page.url }}"
-    target="_blank"
-    ><img class="XSvgIcon-lg" style="padding: 4px" src="/assets/icons/x.svg"
-  /></a>
+  <a title="X share" href="https://x.com/intent/tweet?url=https%3A//www.zhangxinghai.cn{{ page.url }}"
+    target="_blank"><img class="XSvgIcon-lg" style="padding: 4px" src="/assets/icons/x.svg" /></a>
   {% endif %}
-  <a
-    title="comment"
+  <a title="comment"
     href="http://stories.longloneliness.com/query-html.php?end=singhi&lang={{ page.english }}&post={{ page.url }}"
-    target="_self"
-  >
-    <img
-      class="XSvgIcon-lg"
-      style="padding: 3px"
-      src="/assets/icons/comment.svg"
-    />
+    target="_self">
+    <img class="XSvgIcon-lg" style="padding: 3px" src="/assets/icons/comment.svg" />
   </a>
 </div>
 
