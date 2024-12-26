@@ -1,8 +1,8 @@
 {
+  "editor.fontFamily": "Chalkboard SE, 'Yuppy SC', 'Wawati SC',Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 16,
   "editor.formatOnSave": false,
   "editor.fontLigatures": true,
-  "editor.fontFamily": "'Yuppy SC', 'Wawati SC',Menlo, Monaco, 'Courier New', monospace",
   "prettier.useEditorConfig": true,
   "editor.minimap.enabled": false,
   "editor.fontWeight": "400",
