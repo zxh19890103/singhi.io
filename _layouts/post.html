@@ -30,11 +30,6 @@ layout: with-nonav
         <span class="Sun">&#127769;</span>
       </a>
       <i>&bull;</i>
-      <a href="http://stories.longloneliness.com/query-html.php?end=singhi&lang={{ page.english }}&post={{ page.url }}"
-        target="_self" class="Hidden-On-XCom" title="To Comment">
-        &#128172;
-      </a>
-      <i class="Hidden-On-XCom">&bull;</i>
       <span>&#128197;</span>
       <time class="Article-Time">{{ page.date | date: "%b %d, %Y" }}</time>
   </div>
@@ -56,10 +51,15 @@ layout: with-nonav
   <a title="X share" href="https://x.com/intent/tweet?url=https%3A//www.zhangxinghai.cn{{ page.url }}"
     target="_blank"><img class="XSvgIcon-lg" style="padding: 4px" src="/assets/icons/x.svg" /></a>
   {% endif %}
-  <a title="comment"
+  <!-- <a title="comment"
     href="http://stories.longloneliness.com/query-html.php?end=singhi&lang={{ page.english }}&post={{ page.url }}"
     target="_self">
     <img class="XSvgIcon-lg" style="padding: 3px" src="/assets/icons/comment.svg" />
+  </a> -->
+  <a title="comment"
+    href="https://mail.google.com/mail/?view=cm&fs=1&&su=%5BBlog%20Comment%5D%3A{{ page.title | url_encode}}&to=zhangxinghai79@gmail.com"
+    target="_blank">
+    <img class="XSvgIcon-lg" style="padding: 3px" src="/assets/icons/gmail.svg" />
   </a>
 </div>
 
