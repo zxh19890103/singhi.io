@@ -10,6 +10,12 @@
 	padding-bottom: 3rem;
 	list-style: none !important;
 
+	&.hide-journal {
+		.cat-journal {
+			display: none;
+		}
+	}
+
 	&__item {
 		margin-bottom: 4rem;
 

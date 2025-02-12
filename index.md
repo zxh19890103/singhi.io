@@ -3,9 +3,9 @@ layout: index
 title: Blog
 ---
 
-<ul class="documents">
+<ul class="documents" id="DocumentsIndex">
   {% for post in site.posts %}
-    <li class="documents__item">
+    <li class="documents__item cat-{{post.category}}">
       <div class="document {% if post.english %}english{% endif %}">
         <a class="document__link" href="{{ post.url }}" target="_self">
           <h3>
@@ -22,3 +22,12 @@ title: Blog
     </li>
   {% endfor %}
 </ul>
+
+<script>
+  {
+    const documentsIndex = document.querySelector('#DocumentsIndex');
+    if (/^https:\/\/(www\.)?zhangxinghai\.cn/.test(location.href)) {
+      documentsIndex.classList.add('hide-journal');
+    }
+  }
+</script>
