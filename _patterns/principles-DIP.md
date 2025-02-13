@@ -1,6 +1,7 @@
 ---
-layout: post
+layout: bookdetail
 date: 2019-09-03
+chapter: 一
 short: High level modules should not depend upon low level modules. Both should depend upon abstractions. Abstractions should not depend upon details. Details should depend upon abstractions.
 title: 依赖倒置原则（DIP）
 sort: 20
@@ -43,13 +44,13 @@ _依赖倒置原则是实现开闭原则的重要途径之一，它降低了客�
 
 ### 依赖倒置原则在“顾客购物程序”中的应用
 
-**分析**：本程序反映了 “顾客类”与“商店类”的关系。商店类中有 sell() 方法，顾客类通过该方法购物以下代码定义了顾客类通过T恤网店 TshirtShop 购物：
+**分析**：本程序反映了 “顾客类”与“商店类”的关系。商店类中有 sell() 方法，顾客类通过该方法购物以下代码定义了顾客类通过 T 恤网店 TshirtShop 购物：
 
 ```ts
 class Customer {
   shopping(shop: TshirtShop) {
     //购物
-    console.log(shop.sell());
+    console.log(shop.sell())
   }
 }
 ```
@@ -60,18 +61,18 @@ class Customer {
 class Customer {
   shopping(shop: ShoesShop) {
     //购物
-    console.log(shop.sell());
+    console.log(shop.sell())
   }
 }
 ```
 
-顾客每更换一家商店，都要修改一次代码，这明显违背了开闭原则。存在以上缺点的原因是：顾客类设计时同具体的商店类绑定了，这违背了依赖倒置原则。解决方法是：定义“T恤网店”和“鞋网店”的共同接口 Shop，顾客类面向该接口编程，其代码修改如下：
+顾客每更换一家商店，都要修改一次代码，这明显违背了开闭原则。存在以上缺点的原因是：顾客类设计时同具体的商店类绑定了，这违背了依赖倒置原则。解决方法是：定义“T 恤网店”和“鞋网店”的共同接口 Shop，顾客类面向该接口编程，其代码修改如下：
 
 ```ts
 class Customer {
   shopping(shop: Shop) {
     //购物
-    console.log(shop.sell());
+    console.log(shop.sell())
   }
 }
 ```
@@ -84,35 +85,35 @@ class Customer {
 
 ```ts
 const main = () => {
-  const tshirtShop = new TShirtShop();
-  const shoesShop = new ShoesShop();
-  const customer = new Customer();
-  console.log("顾客购买以下商品：");
-  customer.shopping(tshirtShop);
-  customer.shopping(shoesShop);
-};
+  const tshirtShop = new TShirtShop()
+  const shoesShop = new ShoesShop()
+  const customer = new Customer()
+  console.log("顾客购买以下商品：")
+  customer.shopping(tshirtShop)
+  customer.shopping(shoesShop)
+}
 
-main();
+main()
 
 interface Shop {
-  sell(): string;
+  sell(): string
 }
 
 class TShirtShop implements Shop {
   sell() {
-    return "T恤......";
+    return "T恤......"
   }
 }
 
 class ShoesShop implements Shop {
   sell() {
-    return "鞋子.......";
+    return "鞋子......."
   }
 }
 
 class Customer {
   shopping(shop: Shop) {
-    console.log(shop.sell());
+    console.log(shop.sell())
   }
 }
 ```

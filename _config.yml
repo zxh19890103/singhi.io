@@ -13,6 +13,10 @@ collections:
     title: 观点
     sort_by: date
     output: true
+  tlogs:
+    title: 日记
+    sort_by: sort
+    output: true
 
 plugins:
   - jekyll-feed

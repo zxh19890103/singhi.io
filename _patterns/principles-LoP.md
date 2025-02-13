@@ -1,6 +1,7 @@
 ---
-layout: post
+layout: bookdetail
 title: 迪米特法则（LoD）
+chapter: 四
 sort: 50
 short: Talk only to your immediate friends and not to strangers.
 date: 2019-09-05

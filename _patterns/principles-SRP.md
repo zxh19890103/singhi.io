@@ -1,6 +1,7 @@
 ---
-layout: post
+layout: bookdetail
 title: 单一职责原则（SRP）
+chapter: 七
 short: There should never be more than one reason for a class to change.
 sort: 30
 date: 2019-09-04

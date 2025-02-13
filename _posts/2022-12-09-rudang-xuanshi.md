@@ -2,6 +2,7 @@
 layout: post
 title: 入党宣誓✊
 short: 我志愿加入中国共产党，拥护党的纲领，遵守党的章程
+category: journal
 ---
 
 我志愿加入中国共产党，
