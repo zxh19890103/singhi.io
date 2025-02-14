@@ -76,9 +76,11 @@ body {
 
 		em {
 			font-style: normal;
-			font-size: 0.9rem;
+			font-size: 1rem;
+			width: 0px;
+			border-left: 1px solid #777;
+			overflow: hidden;
 			margin: 0 1rem;
-			color: #999;
 		}
 	}
 
@@ -92,7 +94,8 @@ body {
 	}
 
 	ol {
-		list-style: lower-roman;
+		list-style-type: lower-greek;
+		padding-left: 2em;
 	}
 
 	ol,
@@ -102,12 +105,11 @@ body {
 			&:after {
 				content: "：";
 			}
-			text-decoration: underline;
-		}
 
-		ul,
-		ol {
-			padding-left: 0.5rem;
+			text-decoration-color: #555;
+			text-decoration-line: underline;
+			text-decoration-style: dotted;
+			text-decoration-thickness: from-font;
 		}
 	}
 
