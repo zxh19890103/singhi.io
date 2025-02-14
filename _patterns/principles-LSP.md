@@ -1,6 +1,7 @@
 ---
-layout: post
+layout: bookdetail
 title: 里氏替换原则（LSP）
+chapter: 五
 sort: 10
 short: Inheritance should ensure that any property proved about supertype objects also holds for subtype objects.
 date: 2019-09-01

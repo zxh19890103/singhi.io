@@ -1,7 +1,8 @@
 ---
-layout: post
+layout: bookdetail
 title: 开闭原则（OCP）
 sort: 1
+chapter: 六
 short: Software entities should be open for extension，but closed for modification.
 date: 2019-08-31
 category: tech

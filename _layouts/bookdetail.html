@@ -1,0 +1,26 @@
+---
+layout: with-nonav
+---
+
+<div class="Book">
+  <div
+    class="Book__Title"
+    style="font-size: 2rem; text-align: center; margin: 4rem 0"
+  >
+    第{{page.chapter}}章：{{page.title}}
+  </div>
+  <div class="Book__Content">{{content}}</div>
+  <div class="Book__End" style="height: 1px; background: #ddd; width: 61.8%;margin: 3rem auto"></div>
+  <div class="Book__Page" style="display: flex; justify-content: space-between; margin-bottom: 3rem;">
+    {% if page.previous %}
+    <a href="{{page.previous.url}}">上一章：{{page.previous.title}}</a>
+    {% else %}
+    <a href="javascript:void(0);">开始</a>
+    {% endif %}
+    {% if page.next %}
+    <a href="{{page.next.url}}">下一章：{{page.next.title}}</a>
+    {% else %}
+    <a href="javascript:void(0);">结束</a>
+    {% endif %}
+  </div>
+</div>

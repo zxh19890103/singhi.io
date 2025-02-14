@@ -1,6 +1,7 @@
 ---
-layout: post
+layout: bookdetail
 title: 接口隔离原则（ISP）
+chapter: 三
 sort: 40
 short: The dependency of one class to another one should depend on the smallest possible interface.
 date: 2019-09-05
