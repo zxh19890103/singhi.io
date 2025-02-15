@@ -16,6 +16,13 @@ body {
 	background-color: #ffffff;
 	color: #333;
 
+	em {
+		text-decoration-line: underline;
+		text-decoration-style: wavy;
+		text-decoration-thickness: 1px;
+		text-decoration-color: #666;
+	}
+
 	a {
 		font-style: italic;
 		color: #000;
@@ -88,13 +95,6 @@ body {
 		}
 	}
 
-	h3,
-	ul {
-		// + h4 {
-		// 	margin-bottom: 0;
-		// }
-	}
-
 	ul {
 		list-style-type: square;
 	}
@@ -109,24 +109,28 @@ body {
 		font-size: 0.95 * 16px;
 		list-style-position: outside;
 		padding-inline-start: 2em;
-		em {
+
+		.strong {
 			&:after {
 				content: "：";
 			}
-
-			text-decoration-color: #555;
-			text-decoration-line: underline;
-			text-decoration-style: dotted;
-			text-decoration-thickness: from-font;
+			font-size: 0.9em;
+			color: #444;
+			text-decoration: underline dashed #555 from-font;
+			text-underline-offset: 3px;
 		}
-	}
 
-	&.english {
-		ol,
-		ul {
-			em {
-				&:after {
-					content: ": ";
+		li > strong {
+			@extend .strong;
+		}
+
+		li {
+			ol,
+			ul {
+				li {
+					strong:first-child {
+						@extend .strong;
+					}
 				}
 			}
 		}
