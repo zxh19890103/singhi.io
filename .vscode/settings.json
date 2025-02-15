@@ -1,14 +1,14 @@
 {
   "editor.fontFamily": "Chalkboard SE, 'Yuppy SC', 'Wawati SC',Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontSize": 14,
+  "editor.fontSize": 21,
   "editor.formatOnSave": false,
   "editor.fontLigatures": true,
   "prettier.useEditorConfig": true,
   "editor.minimap.enabled": false,
   "editor.fontWeight": "400",
   "window.zoomLevel": 1,
-  // "workbench.colorTheme": "Atom One Dark",
-  "workbench.colorTheme": "Default Light Modern",
+  "workbench.colorTheme": "Atom One Dark",
+  // "workbench.colorTheme": "Default Light Modern",
   "files.exclude": {
     "**/node_modules": true
   }
