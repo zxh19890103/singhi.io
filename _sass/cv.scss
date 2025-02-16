@@ -6,13 +6,28 @@ body {
 	overflow: auto;
 }
 
+html {
+	font-size: 16px;
+	line-height: 1.4;
+}
+
+/* 如果用户启用了暗黑模式，应用以下样式 */
+@media (prefers-color-scheme: dark) {
+	.mycv {
+		// background-color: #121212;
+		// color: #ffffff;
+	}
+
+	html {
+		// background-color: #121212;
+	}
+}
+
 .mycv {
 	margin: 0 auto;
 	width: 780px;
 	box-sizing: border-box;
 	padding: 0 2rem 2rem 2rem;
-	font-size: 16px;
-	line-height: 1.4;
 	background-color: #ffffff;
 	color: #333;
 
@@ -107,7 +122,7 @@ body {
 
 	ol,
 	ul {
-		font-size: 0.95 * 16px;
+		font-size: 0.95rem;
 		list-style-position: outside;
 		padding-inline-start: 0em;
 
@@ -116,7 +131,6 @@ body {
 				content: "：";
 			}
 			font-size: 0.9em;
-			color: #444;
 			text-decoration: underline dashed #555 from-font;
 			text-underline-offset: 3px;
 		}
