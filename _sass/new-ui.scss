@@ -84,6 +84,10 @@
 	font-size: 1.24rem;
 	line-height: 1.685;
 
+	&.Cat-tech {
+		font-size: 1rem;
+	}
+
 	&__title,
 	.page__title {
 		margin: 0 -2rem 3rem -2rem;
@@ -341,6 +345,26 @@
 .hidden-if-mobi {
 	@include ifmob() {
 		display: none;
+	}
+}
+
+.openGLbox {
+	color: white;
+	padding: 1rem 2rem;
+	margin: 1rem 0;
+	border-radius: 4px 6px;
+	font-size: 0.9em;
+
+	&-green {
+		background-color: #d8f5d8;
+		color: #444;
+		border: 2px solid #afdfaf;
+	}
+
+	&-red {
+		background-color: #ffd2d2;
+		color: #444;
+		border: 2px solid #e0b3b3;
 	}
 }
 
