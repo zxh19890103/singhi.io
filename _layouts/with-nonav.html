@@ -7,6 +7,7 @@
     {%- feed_meta -%}
     {%- seo -%}
     {%- include head.html -%}
+    {% if (page.baseurl)  %} <base href="{{page.baseurl}}" /> {% endif %}
   </head>
 
   <body>

@@ -3,7 +3,7 @@ layout: post
 chapter: 一
 short:
 title: 开始 - 认识 OpenGL
-sort: 2
+sort: 20
 category: tech
 ---
 
