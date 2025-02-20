@@ -11,18 +11,6 @@ html {
 	line-height: 1.4;
 }
 
-/* 如果用户启用了暗黑模式，应用以下样式 */
-@media (prefers-color-scheme: dark) {
-	.mycv {
-		// background-color: #121212;
-		// color: #ffffff;
-	}
-
-	html {
-		// background-color: #121212;
-	}
-}
-
 .mycv {
 	margin: 0 auto;
 	width: 780px;
@@ -89,25 +77,28 @@ html {
 			margin-top: 0;
 		}
 
-		@media only screen and (max-width: 780px) {
+		em {
 			display: block;
+			font-style: normal;
+			font-size: 0.45em;
+			width: 1px;
+			background-color: #999;
+			color: #999;
+			overflow: hidden;
+			margin: 0 1rem;
+		}
+
+		@media only screen and (max-width: 780px) {
+			flex-direction: column;
+			align-items: start;
 			em {
-				display: none;
+				margin: 0;
+				width: 0;
 			}
 		}
 
 		a {
 			margin-left: 1rem;
-		}
-
-		em {
-			display: block;
-			font-style: normal;
-			font-size: 0.62em;
-			width: 1px;
-			background-color: #666;
-			overflow: hidden;
-			margin: 0 1rem;
 		}
 	}
 
@@ -124,7 +115,7 @@ html {
 	ul {
 		font-size: 0.95rem;
 		list-style-position: outside;
-		padding-inline-start: 0em;
+		padding-inline-start: 1em;
 
 		.strong {
 			&:after {
@@ -142,7 +133,6 @@ html {
 		li {
 			ol,
 			ul {
-				padding-inline-start: 1em;
 				li {
 					strong:first-child {
 						@extend .strong;
@@ -160,6 +150,20 @@ html {
 		page-break-after: always;
 		@media only print {
 			border-color: white;
+		}
+	}
+
+	.CVInfo {
+		max-width: 520px;
+		width: 100%;
+		display: flex;
+		list-style-type: none;
+		flex-wrap: wrap;
+		&Item {
+			width: 50%;
+			@media only screen and (max-width: 780px) {
+				width: 100%;
+			}
 		}
 	}
 }
