@@ -4,7 +4,10 @@ title: 前端工程师张星海的个人简历
 description: 张星海的个人简历, 优秀的前端开发, 聚焦前端图形方向, 使用 Threejs, React
 ---
 
-## 张星海 - 全栈工程师
+<div class="CVTitle">
+  <h2>张星海</h2>
+  <h3>全栈工程师</h3>
+</div>
 
 {% include cv-info.html %}
 
@@ -18,8 +21,8 @@ description: 张星海的个人简历, 优秀的前端开发, 聚焦前端图形
 
 ### 技能
 
-- **前端开发** 熟练掌握 `React、Vue、Angular、TypeScript` 和 `ES6`，能够高效开发高性能、可扩展、可维护的 `Web` 应用。
-- **图形化技术** 熟悉 Canvas 和 WebGL API 并且深入掌握 `Leaflet.js、Konva.js、Three.js` 和 `Pixi.js` 等 `2D/3D` 图形库，具备开发高效图形渲染与数据可视化系统的能力。
+- **前端开发** 熟练掌握 `React、Vue、Angular、Tailwind CSS、TypeScript` 和 `ES6`，能够高效开发高性能、可扩展、可维护的 `Web` 应用。
+- **图形化技术** 熟悉 `Canvas` 和 `WebGL API` 并且深入掌握 `Leaflet.js、Konva.js、Three.js` 和 `Pixi.js` 等 `2D/3D` 图形库，具备开发高效图形渲染与数据可视化系统的能力。
 - **架构设计** 具备前端架构设计能力，擅长搭建模块化、组件化的前端架构，解决技术难题，确保项目的高扩展性与可维护性。
 - **后端开发** 掌握 `Node.js、PHP、C#、Express、Koa、Yii2.0` 和 `.NET`，具备搭建基本后端服务和 `API` 的能力。
 - **服务器与数据库** 了解 `Apache、Nginx、IIS` 配置，了解 `MySQL、MSSQL、LevelDB` 数据库的设计。

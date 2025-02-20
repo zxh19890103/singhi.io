@@ -18,12 +18,14 @@ html {
 	padding: 0 2rem 2rem 2rem;
 	background-color: #ffffff;
 	color: #333;
+	font-family: "Yuppy SC";
 
 	em {
 		text-decoration-line: underline;
 		text-decoration-style: wavy;
 		text-decoration-thickness: 1px;
 		text-decoration-color: #666;
+		text-decoration-thickness: 1px;
 	}
 
 	a {
@@ -80,12 +82,13 @@ html {
 		em {
 			display: block;
 			font-style: normal;
-			font-size: 0.45em;
-			width: 1px;
-			background-color: #999;
+			font-size: 1em;
+			line-height: 1;
 			color: #999;
-			overflow: hidden;
 			margin: 0 1rem;
+			width: 0;
+			overflow: hidden;
+			text-decoration: none;
 		}
 
 		@media only screen and (max-width: 780px) {
@@ -153,12 +156,33 @@ html {
 		}
 	}
 
+	.CVTitle {
+		margin: 6em 0;
+		text-align: center;
+
+		h2 {
+			margin: 0;
+			margin-bottom: 0.4em;
+			line-height: 1;
+			font-size: 2.5rem;
+		}
+
+		h3 {
+			margin: 0;
+			line-height: 1;
+			color: #444;
+			font-size: 1.5rem;
+		}
+	}
+
 	.CVInfo {
 		max-width: 520px;
 		width: 100%;
 		display: flex;
 		list-style-type: none;
 		flex-wrap: wrap;
+		padding-inline-start: 0em;
+
 		&Item {
 			width: 50%;
 			@media only screen and (max-width: 780px) {
