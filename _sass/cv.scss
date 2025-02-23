@@ -66,17 +66,23 @@ html {
 
 	h3 {
 		font-size: 2rem;
-		margin-top: 5rem;
+		margin: 2rem 0 0.6em 0;
 	}
 
 	h4 {
-		margin-top: 3rem;
+		margin: 1.5rem 0 0.5em 0;
 		display: flex;
 		justify-content: start;
 		align-items: center;
 
 		+ h4 {
 			margin-top: 0;
+		}
+
+		+ ul {
+			li {
+				margin: 0.1em 0;
+			}
 		}
 
 		em {
@@ -94,6 +100,7 @@ html {
 		@media only screen and (max-width: 780px) {
 			flex-direction: column;
 			align-items: start;
+			line-height: 0.5;
 			em {
 				margin: 0;
 				width: 0;
@@ -157,7 +164,7 @@ html {
 	}
 
 	.CVTitle {
-		margin: 6em 0;
+		margin: 1em 0 1.5em 0;
 		text-align: center;
 
 		h2 {
