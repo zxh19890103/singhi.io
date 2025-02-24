@@ -39,9 +39,10 @@ description: 张星海的个人简历, 优秀的前端开发, 聚焦前端图形
 #### 2024/09-Now _|_ 个人项目 （可演示）
 
 - **3D 仓库监控系统** 基于 `THREE.js` 的智能仓库监控系统，能够展示实时监控数据，包括输送线、机器人、货架等。
-- **照片编辑/照片书** 一款可以在线*实时*编辑照片、制作照片书的 `WEB` 应用，基于`react、nodejs`，支持多种图像处理功能。
-- **地图相册** 基于 `leaflet` 和 `react` 以及 `Electron` 框架开发了一款结合地图和照片管理功能的应用，提供位置相关的照片浏览体验，同时支持桌面版和 web 版。
-- **THREE.js 学习计划** 一个帮助初学者入门 `THREE.js` 的网站，提供丰富的交互，让用户从视觉上深刻理解 `THREE.js` 的各项配置。
+- **照片编辑/照片书** 一款可以在线*实时*编辑照片、制作照片书的 `WEB` 应用，基于`react、nodejs`，支持多种图像处理功能。[文本](https://zxh1989.oss-cn-qingdao.aliyuncs.com/Screen%20Shot%202025-02-24%20at%203.00.14%20PM.png), [滤镜](https://zxh1989.oss-cn-qingdao.aliyuncs.com/Screen%20Shot%202025-02-24%20at%202.59.49%20PM.png)
+- **地图相册** 基于 `leaflet` 和 `react` 以及 `Electron` 框架开发了一款结合地图和照片管理功能的应用，提供位置相关的照片浏览体验，同时支持桌面版和 web 版。[大图查看](https://zxh1989.oss-cn-qingdao.aliyuncs.com/Screen%20Shot%202025-02-24%20at%206.58.04%20PM.png), [为照片编写故事](https://zxh1989.oss-cn-qingdao.aliyuncs.com/Screen%20Shot%202025-02-24%20at%206.57.50%20PM.png), [查看](https://zxh1989.oss-cn-qingdao.aliyuncs.com/Screen%20Shot%202025-02-24%20at%206.57.26%20PM.png), [列表](https://zxh1989.oss-cn-qingdao.aliyuncs.com/Screen%20Shot%202025-02-24%20at%206.56.34%20PM.png)
+- **THREE.js 学习计划** 一个帮助初学者入门 `THREE.js` 的网站，提供丰富的交互，让用户从视觉上深刻理解 `THREE.js` 的各项配置。[Site](https://threelearning.zhangxinghai.cn)
+- **技术博客** [Site](https://www.zhangxinghai.cn)
 - **实践项目** 与输送线厂商合作推出 3D 输送线监控软件。
 
 #### 2021/05-2024/09 _|_ 深圳市海柔创新科技有限公司 _|_ 高级前端工程师
