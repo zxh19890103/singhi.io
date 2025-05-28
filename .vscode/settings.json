@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "Chalkboard SE, 'Yuppy SC', 'Wawati SC',Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "Chalkboard SE, 'Heiti TC', 'Wawati SC',Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 18,
   "editor.formatOnSave": false,
   "editor.fontLigatures": true,
@@ -7,7 +7,7 @@
   "editor.minimap.enabled": false,
   "editor.fontWeight": "400",
   "window.zoomLevel": 1,
-  "workbench.colorTheme": "Atom One Dark",
+  "workbench.colorTheme": "Atom One Light",
   "files.exclude": {
     "**/node_modules": true
   }

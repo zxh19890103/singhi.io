@@ -16,6 +16,12 @@
 		}
 	}
 
+	&.hide-tech {
+		.cat-tech {
+			display: none;
+		}
+	}
+
 	&__item {
 		margin-bottom: 4rem;
 
@@ -85,7 +91,7 @@
 	line-height: 1.685;
 
 	&.Cat-tech {
-		font-size: 1.2rem;
+		font-size: 1.5rem;
 	}
 
 	&__title,
@@ -94,7 +100,7 @@
 		padding: 1rem 2rem 1rem 2rem;
 		color: var(--text-color-1);
 		z-index: 1;
-		font-size: 2em;
+		font-size: 1.6em;
 		line-height: 1;
 		word-break: keep-all;
 		word-wrap: break-word;
@@ -135,7 +141,7 @@
 			font-size: 1.34em;
 		}
 		h3 {
-			font-size: 1.20em;
+			font-size: 1.2em;
 			color: #2a362a;
 
 			&:before {

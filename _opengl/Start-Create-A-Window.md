@@ -1,8 +1,8 @@
 ---
 layout: post
 chapter: 一
-short:
-title: 开始 - 创建一个窗口
+short: 在我们开始创建令人惊叹的图形之前，首先需要做的事情是创建一个 OpenGL 上下文和一个应用窗口来进行绘制。
+title: 开始 &bull; 创建一个窗口
 sort: 30
 category: tech
 ---

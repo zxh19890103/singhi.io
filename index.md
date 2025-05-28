@@ -25,8 +25,12 @@ title: Blog
 
 <script>
   {
+    const url = new URL(window.location.href);
+    const filterValue = url.searchParams.get('filter');
     const documentsIndex = document.querySelector('#DocumentsIndex');
-    if (/^https:\/\/(www\.)?zhangxinghai\.cn/.test(location.href)) {
+    if (filterValue === 'life') {
+      documentsIndex.classList.add('hide-tech');
+      } else {
       documentsIndex.classList.add('hide-journal');
     }
   }

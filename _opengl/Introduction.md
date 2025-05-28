@@ -1,7 +1,7 @@
 ---
 layout: post
 chapter: 一
-short: 
+short: 既然你来到这里，可能是想了解计算机图形学的内部运作，并亲自做一些酷炫的事情。
 title: 介绍
 sort: 1
 category: tech
