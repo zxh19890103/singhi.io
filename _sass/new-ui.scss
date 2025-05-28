@@ -47,16 +47,17 @@
 	margin: 0.5rem 0 1rem 0;
 
 	h3 {
+		color: #000;
 		margin: 0;
-		font-weight: bold;
+		font-weight: normal;
 		font-size: 1.4em;
 	}
 
 	p {
 		margin: 0.25rem 0 0 0;
-		height: 1.4rem;
+		height: 2rem;
 		font-size: 1.2em;
-		line-height: 1.4rem;
+		line-height: 2rem;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -101,6 +102,7 @@
 		color: var(--text-color-1);
 		z-index: 1;
 		font-size: 1.6em;
+		font-weight: 600;
 		line-height: 1;
 		word-break: keep-all;
 		word-wrap: break-word;
