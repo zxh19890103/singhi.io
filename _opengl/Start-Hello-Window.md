@@ -1,11 +1,11 @@
 ---
-layout: post
-chapter: 一
+layout: bookdetail
+chapter: 四
 short:
 title: 开始 &bull; Hello, 窗口
-sort: 40
 src: https://learnopengl.com/Getting-started/Hello-Window
 category: tech
+date: 2025-05-28
 ---
 
 讓我們看看是否可以啟動並運行 `GLFW`。首先，我們創建一個 `.cpp` 文件，然後在其頭部添加以下 `includes`。

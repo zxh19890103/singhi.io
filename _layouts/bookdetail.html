@@ -3,11 +3,27 @@ layout: with-nonav
 ---
 
 <div class="Book">
-  <div
-    class="Book__Title"
-    style="font-size: 2rem; text-align: center; margin: 4rem 0"
-  >
+  <div class="Book__Title" style="font-size: 2rem; text-align: center; margin: 4rem 0">
     第{{page.chapter}}章：{{page.title}}
+  </div>
+  <div>
+    <div class="Book__Meta" style="display: flex; gap: 1.5rem; justify-content: flex-start; margin-bottom: 2rem;">
+      <a href="javascript:void();" onclick="__goBackToIndex();">&larr;</a>
+
+      {% if page.src %}
+      <a href="{{page.src}}" target="_blank" rel="noopener noreferrer">&#128279;</a>
+      {% endif %}
+
+      {% if page.editing %}<span style="color: rgb(143, 95, 7);">狀態：編輯中</span>{% endif %}
+
+      <span>发布时间：{{page.date | date: "%Y-%m-%d"}}</span>
+
+      {% assign words = page.content | number_of_words %}
+      {% assign minutes_float = words | divided_by:200.0 %}
+      {% assign minutes = minutes_float | ceil %}
+
+      <span>阅读时间：{{ minutes }} 分鐘</span>
+    </div>
   </div>
   <div class="Book__Content">{{content}}</div>
   <div class="Book__End" style="height: 1px; background: #ddd; width: 61.8%;margin: 3rem auto"></div>
@@ -15,12 +31,12 @@ layout: with-nonav
     {% if page.previous %}
     <a href="{{page.previous.url}}">上一章：{{page.previous.title}}</a>
     {% else %}
-    <a href="javascript:void(0);">开始</a>
+    <a href="javascript:void(0);" style="color: #777; pointer-events: none;">开始</a>
     {% endif %}
     {% if page.next %}
     <a href="{{page.next.url}}">下一章：{{page.next.title}}</a>
     {% else %}
-    <a href="javascript:void(0);">结束</a>
+    <a href="javascript:void(0);" style="color: #777; pointer-events: none;">结束</a>
     {% endif %}
   </div>
 </div>

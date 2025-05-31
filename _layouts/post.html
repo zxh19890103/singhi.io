@@ -17,7 +17,7 @@ layout: with-nonav
   <div style="line-height: 1.4;">{{ page.title }}</div>
 
   <div style="font-size: 0.5em; margin-top: 1.1em">
-    <a href="/" class="Hidden-On-XCom">&larr;</a>
+    <a href="javascript:void(0);" onclick="__goBackToIndex()" class="Hidden-On-XCom">&larr;</a>
     {% if page.src %}<i class="Hidden-On-XCom"">&bull;</i>
     <a target=" _blank" href="{{page.src}}" title="Source Aritcle Or Referrences">
       <span>&#128279;</span>
@@ -69,7 +69,6 @@ layout: with-nonav
   {
     const urlp = new URLSearchParams(location.search)
     if (urlp.has("xcom")) {
-      console.log("ha")
       document.querySelectorAll(".Hidden-On-XCom").forEach((node) => {
         node.style.display = "none"
       })

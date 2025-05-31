@@ -47,7 +47,7 @@
 	margin: 0.5rem 0 1rem 0;
 
 	h3 {
-		color: #000;
+		color: var(--text-color-1);
 		margin: 0;
 		font-weight: normal;
 		font-size: 1.4em;
@@ -98,7 +98,7 @@
 	&__title,
 	.page__title {
 		margin: 0 -2rem 3rem -2rem;
-		padding: 1rem 2rem 1rem 2rem;
+		padding: 2rem 2rem 1rem 2rem;
 		color: var(--text-color-1);
 		z-index: 1;
 		font-size: 1.6em;
@@ -114,7 +114,8 @@
 		}
 	}
 
-	&__body {
+	&__body,
+	.Book__Content {
 		padding: 2rem 0;
 		font-size: 1em;
 
@@ -144,7 +145,6 @@
 		}
 		h3 {
 			font-size: 1.2em;
-			color: #2a362a;
 
 			&:before {
 				content: "#";
@@ -156,7 +156,7 @@
 		h4,
 		h5,
 		h6 {
-			font-size: 1.18em;
+			font-size: 1.05em;
 		}
 
 		p {
@@ -176,10 +176,19 @@
 				line-height: 1.5;
 			}
 		}
+	}
 
+	&__body,
+	.Book__Content {
 		a {
-			text-decoration: underline;
+			text-decoration-line: underline;
+			text-underline-offset: 0.2em;
+			text-decoration-thickness: 1px;
 		}
+	}
+
+	.Book__Meta {
+		font-size: 1.4rem;
 	}
 
 	.Article-Time {
@@ -308,15 +317,15 @@
 	animation: moveStripes 0.5s linear infinite;
 	background: repeating-linear-gradient(
 		to right bottom,
-		#333 0,
-		#333 20px,
-		#000 20px,
-		#000 40px
+		#ddd 0,
+		#ddd 20px,
+		#fefefe 20px,
+		#fefefe 40px
 	);
 
 	&.loaded {
 		animation: none;
-		background: #333;
+		background: #fefefe;
 	}
 
 	&-wrapper {

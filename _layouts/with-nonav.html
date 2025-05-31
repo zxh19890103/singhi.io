@@ -3,18 +3,32 @@
 
 <!DOCTYPE html>
 <html lang="en_US">
-  <head>
-    {%- feed_meta -%}
-    {%- seo -%}
-    {%- include head.html -%}
-    {% if (page.baseurl)  %} <base href="{{page.baseurl}}" /> {% endif %}
-  </head>
 
-  <body>
-    <div class="page-wrapper">
-      <main id="page">
-        <article class="article Cat-{{page.category}}">{{ content }}</article>
-      </main>
-    </div>
-  </body>
+<head>
+  {%- feed_meta -%}
+  {%- seo -%}
+  {%- include head.html -%}
+  {% if page.baseurl %}
+  <base href="{{page.baseurl}}" /> {% endif %}
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <main id="page">
+      <article class="article Cat-{{page.category}}">{{ content }}</article>
+    </main>
+  </div>
+</body>
+<script>
+  function __goBackToIndex() {
+    const cat = location.pathname.split('/')[1];
+    if (cat === 'tech') location.href = '/';
+    else if (cat === 'journal') {
+      location.href = '/life'
+    } else {
+      location.href = `/${cat}/`
+    }
+  }
+</script>
+
 </html>

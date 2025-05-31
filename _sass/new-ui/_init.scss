@@ -51,7 +51,8 @@ html {
 	word-spacing: 1px;
 	box-sizing: border-box;
 
-	font: 14px/1.5 "BrandonGrotesque", "PingFang TC", "Microsoft JhengHei", "Heiti TC", sans-serif;
+	font: 14px/1.5 "BrandonGrotesque", "PingFang TC", "Microsoft JhengHei",
+		"Heiti TC", sans-serif;
 	// font: 14px/1.5 Arial, Calibri, sans-serif;
 
 	-webkit-text-size-adjust: 100%;
@@ -120,7 +121,6 @@ blockquote {
 	> p,
 	> ul,
 	> ol {
-		font-size: 1.1rem !important;
 		white-space: normal !important;
 		margin: 0;
 	}
