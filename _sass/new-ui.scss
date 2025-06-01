@@ -338,7 +338,9 @@
 		display: block;
 		margin: 0 auto;
 		min-height: 0;
-		background-image: linear-gradient(to bottom, #fff, #666);
+		border: 1px solid #ddd;
+		border-radius: 2px 3px;
+		// background-image: linear-gradient(to bottom, #fff, #666);
 	}
 
 	&__title {

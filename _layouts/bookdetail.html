@@ -11,8 +11,11 @@ layout: with-nonav
       <a href="javascript:void();" onclick="__goBackToIndex();">&larr;</a>
 
       {% if page.src %}
-      <a href="{{page.src}}" target="_blank" rel="noopener noreferrer">&#128279;</a>
+      <a href="{{page.src}}" target="_blank" rel="noopener noreferrer">🔗</a>
       {% endif %}
+
+      <a title="X share" rel="noopener noreferrer"
+        href="https://x.com/intent/tweet?url=https%3A//www.zhangxinghai.cn{{ page.url }}" target="_blank">𝕏</a>
 
       {% if page.editing %}<span style="color: rgb(143, 95, 7);">狀態：編輯中</span>{% endif %}
 

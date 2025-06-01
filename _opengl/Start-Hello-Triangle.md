@@ -6,6 +6,7 @@ title: 开始 &bull; Hello, 三角形
 src: https://learnopengl.com/Getting-started/Hello-Triangle
 category: tech
 date: 2025-05-29
+tweet: 1
 ---
 
 對於 OpenGL 來說，一切都發生在 3D 空間中，但螢幕或視窗其實是由二維像素所組成的陣列，因此 OpenGL 的主要工作之一就是將 3D 座標轉換為適合顯示在螢幕上的 2D 像素。這個從 3D 座標轉換為 2D 像素的過程是由 OpenGL 的圖形管線所處理的。圖形管線可以分為兩個主要部分：第一部分將 3D 座標轉換為 2D 座標，第二部分則將這些 2D 座標轉換為實際的彩色像素。本章將簡要介紹圖形管線的運作方式，並說明我們如何善用它來創造炫麗的像素效果。
@@ -23,14 +24,14 @@ date: 2025-05-29
 我們將一組三個 3D 座標作為圖形管線的輸入，這組數據稱為頂點數據，這些頂點數據組成一個三角形。頂點數據是由多個頂點構成的集合。每個頂點包含一組數據，用頂點屬性（vertex attributes）來表示，這些屬性可以包含任意你想要的數據。不過為了簡化起見，這裡假設每個頂點只包含一個 3D 位置和一些顏色值。
 
 {% include box.html color="green" content="
-為了讓 OpenGL 知道如何處理你這些座標和顏色值的數據集合，你需要告訴它想用這些數據繪製哪種類型的圖形。你是想把這些數據渲染成一組點、一組三角形，還是一條長線？這些指示稱為圖元（primitives），在調用繪製命令時會傳遞給 OpenGL。常見的圖元類型有 GL_POINTS、GL_TRIANGLES 和 GL_LINE_STRIP。
+為了讓 OpenGL 知道如何處理你這些座標和顏色值的數據集合，你需要告訴它想用這些數據繪製哪種類型的圖形。你是想把這些數據渲染成一組點、一組三角形，還是一條長線？這些指示稱為圖元（primitives），在調用繪製命令時會傳遞給 OpenGL。常見的圖元類型有 `GL_POINTS`、`GL_TRIANGLES` 和 `GL_LINE_STRIP`。
 " %}
 
 管線的第一個階段是頂點著色器（vertex shader），它接收單個頂點作為輸入。頂點著色器的主要作用是將 3D 座標轉換成另一組 3D 座標（稍後會詳細說明），同時允許我們對頂點屬性（vertex attributes）進行一些基本處理。
 
 vertex shader 的輸出可選地傳入幾何著色器（geometry shader）。幾何著色器以形成一個圖元的一組頂點作為輸入，並能通過發射新的頂點來生成其他形狀，從而形成新的（或其他）圖元。在本例中，它根據給定的形狀生成了第二個三角形。
 
-基本圖元組裝階段會從頂點著色器（或幾何著色器）接收所有構成一個或多個基本圖元的頂點（如果選擇的是 GL_POINTS，則為單個頂點），並將這些點組合成指定的基本圖元形狀；本例中為兩個三角形。
+基本圖元組裝階段會從頂點著色器（或幾何著色器）接收所有構成一個或多個基本圖元的頂點（如果選擇的是 `GL_POINTS`，則為單個頂點），並將這些點組合成指定的基本圖元形狀；本例中為兩個三角形。
 
 接著，基本圖元組裝階段的輸出會傳入光柵化階段，在這裡它將基本圖元映射到最終屏幕上的相應像素，產生片段供片段著色器使用。在片段著色器運行之前，會先執行裁剪。裁剪會捨棄所有視野之外的片段，從而提升性能。
 
@@ -50,7 +51,7 @@ vertex shader 的輸出可選地傳入幾何著色器（geometry shader）。幾
 
 要開始繪製任何圖形，首先必須將一些頂點資料傳遞給 OpenGL。由於 OpenGL 是一個 3D 圖形函式庫，因此我們在其中所指定的所有座標都是三維的（包含 x、y、z 軸）。
 
-需要注意的是，OpenGL 並不會直接將這些 3D 座標轉換為螢幕上的 2D 像素；它只會處理那些位於特定範圍內的 3D 座標——也就是在 x、y、z 三軸上都落在 -1.0 到 1.0 之間的座標。這個範圍被稱為標準化裝置座標（Normalized Device Coordinates，簡稱 NDC）。所有落在這個範圍內的座標才會被映射到螢幕上呈現；而超出此範圍的座標則會被裁剪，無法顯示出來。
+需要注意的是，OpenGL 並不會直接將這些 3D 座標轉換為螢幕上的 2D 像素；它只會處理那些位於特定範圍內的 3D 座標——也就是在 x、y、z 三軸上都落在 `-1.0` 到 `1.0` 之間的座標。這個範圍被稱為標準化裝置座標（Normalized Device Coordinates，簡稱 NDC）。所有落在這個範圍內的座標才會被映射到螢幕上呈現；而超出此範圍的座標則會被裁剪，無法顯示出來。
 
 由於我們要繪製一個三角形，因此需要定義三個頂點，而每個頂點都必須包含一個三維座標（3D position）。
 
@@ -64,19 +65,19 @@ float vertices[] = {
 };
 ```
 
-由於 OpenGL 處理的是三維空間，我們在渲染一個二維三角形時，會將每個頂點的 z 座標設為 0.0。這樣一來，三角形在深度上的位置就保持一致，讓它看起來像是平面的二維圖形。
+由於 OpenGL 處理的是三維空間，我們在渲染一個二維三角形時，會將每個頂點的 z 座標設為 `0.0`。這樣一來，三角形在深度上的位置就保持一致，讓它看起來像是平面的二維圖形。
 
 {% include box.html color="green" content="
 
 #### 標準設備座標 （NDC）
 
-當你的頂點座標在頂點著色器中處理完成後，它們應該會被轉換到標準化裝置座標系（Normalized Device Coordinates，簡稱 NDC）。NDC 是一個範圍非常小的三維空間，其中 x、y、z 三個軸的座標值都介於 -1.0 到 1.0 之間。任何落在這個範圍之外的座標都會被裁剪（clipped），也就是不會顯示在螢幕上。下圖顯示了我們所定義的三角形，它位於 NDC 空間中（這裡我們忽略 z 軸）：
+當你的頂點座標在頂點著色器中處理完成後，它們應該會被轉換到標準化裝置座標系（Normalized Device Coordinates，簡稱 NDC）。NDC 是一個範圍非常小的三維空間，其中 x、y、z 三個軸的座標值都介於 `-1.0` 到 `1.0` 之間。任何落在這個範圍之外的座標都會被裁剪（clipped），也就是不會顯示在螢幕上。下圖顯示了我們所定義的三角形，它位於 NDC 空間中（這裡我們忽略 z 軸）：
 
 <img src='https://learnopengl.com/img/getting-started/ndc.png'>
 
 與常見的螢幕座標系不同，NDC 空間中 y 軸的正方向是朝上，而 (0, 0) 座標位於螢幕中央，而不是左上角。你必須確保所有經過轉換的頂點座標最終都落在這個 NDC 空間中，否則它們將不會被渲染出來。
 
-接下來，這些 NDC 座標會透過 視口變換（viewport transform） 被轉換為螢幕空間座標。這個轉換使用的是你透過 glViewport 所提供的視口參數。轉換完成後，螢幕座標將會產生對應的 fragment，作為片段著色器的輸入。
+接下來，這些 NDC 座標會透過 視口變換（viewport transform） 被轉換為螢幕空間座標。這個轉換使用的是你透過 `glViewport` 所提供的視口參數。轉換完成後，螢幕座標將會產生對應的 fragment，作為片段著色器的輸入。
 
 " %}
 
@@ -84,39 +85,37 @@ float vertices[] = {
 
 我們透過所謂的 頂點緩衝物件（Vertex Buffer Object, VBO） 來管理這塊記憶體區域，它能在 GPU 的記憶體中儲存大量頂點資料。使用這些緩衝物件的好處在於，我們可以一次性將大量資料批次傳送到顯示卡，並且只要記憶體足夠，資料就會一直保存在那裡，而不必一個頂點一個頂點地發送。由於從 CPU 傳輸資料到顯示卡的速度相對較慢，因此我們盡可能一次送出更多資料。資料一旦儲存在顯示卡記憶體中，頂點著色器便能幾乎即時存取這些頂點，極大地提升了處理效率。
 
-頂點緩衝物件（Vertex Buffer Object，簡稱 VBO）是我們在 [OpenGL](https://learnopengl.com/Getting-Started/OpenGL) 章節中首次接觸到的 OpenGL 物件。跟其他 OpenGL 物件一樣，這個緩衝物件有一個對應的唯一 ID，因此我們可以使用 glGenBuffers 函數來生成這個緩衝物件的 ID：
+頂點緩衝物件（Vertex Buffer Object，簡稱 VBO）是我們在 [OpenGL](https://learnopengl.com/Getting-Started/OpenGL) 章節中首次接觸到的 OpenGL 物件。跟其他 OpenGL 物件一樣，這個緩衝物件有一個對應的唯一 ID，因此我們可以使用 `glGenBuffers` 函數來生成這個緩衝物件的 ID：
 
 ```cpp
 unsigned int VBO;
 glGenBuffers(1, &VBO);
 ```
 
-OpenGL 有多種類型的緩衝物件，而頂點緩衝物件（VBO）所對應的緩衝類型是 GL_ARRAY_BUFFER。OpenGL 允許我們同時綁定多個緩衝物件，只要它們的緩衝類型不同。我們可以使用 glBindBuffer 函數，將新建立的緩衝物件綁定到 GL_ARRAY_BUFFER 目標：
+OpenGL 有多種類型的緩衝物件，而頂點緩衝物件（VBO）所對應的緩衝類型是 `GL_ARRAY_BUFFER`。OpenGL 允許我們同時綁定多個緩衝物件，只要它們的緩衝類型不同。我們可以使用 `glBindBuffer` 函數，將新建立的緩衝物件綁定到 `GL_ARRAY_BUFFER` 目標：
 
 ```cpp
 glBindBuffer(GL_ARRAY_BUFFER, VBO);
 ```
 
-從這時起，對 GL_ARRAY_BUFFER 目標所做的任何緩衝區操作，都會作用於當前綁定的緩衝區，也就是這個頂點緩衝對象（VBO）。接著，我們可以呼叫 glBufferData 函數，將先前定義的頂點資料複製到該緩衝區的記憶體中：
+從這時起，對 `GL_ARRAY_BUFFER` 目標所做的任何緩衝區操作，都會作用於當前綁定的緩衝區，也就是這個頂點緩衝對象（VBO）。接著，我們可以呼叫 `glBufferData` 函數，將先前定義的頂點資料複製到該緩衝區的記憶體中：
 
 ```cpp
 glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 ```
 
-glBufferData 是一個專門用來將用戶定義的數據複製到當前綁定緩衝區的函數。它的第一個參數是要複製數據的緩衝類型，也就是目前綁定在 GL_ARRAY_BUFFER 目標上的頂點緩衝對象。第二個參數指定要傳入緩衝區的數據大小（以字節為單位），這裡通常用 sizeof 來計算頂點數據的大小。第三個參數則是我們要發送的實際數據。
+`glBufferData` 是一個專門用來將用戶定義的數據複製到當前綁定緩衝區的函數。它的第一個參數是要複製數據的緩衝類型，也就是目前綁定在 `GL_ARRAY_BUFFER` 目標上的頂點緩衝對象。第二個參數指定要傳入緩衝區的數據大小（以字節為單位），這裡通常用 `sizeof` 來計算頂點數據的大小。第三個參數則是我們要發送的實際數據。
 
 第四個參數用來指定顯示卡如何管理這些數據，它有三種選項：
 
-- GL_STREAM_DRAW：數據只會發送一次，且通常被 GPU 使用的次數較少（幾次左右）。
-- GL_STATIC_DRAW：數據只會發送一次，但會被 GPU 多次使用，適合靜態數據。
-- GL_DYNAMIC_DRAW：數據會經常修改，並且會被 GPU 多次使用，適合動態變化的數據。
+- *`GL_STREAM_DRAW`*：數據只會發送一次，且通常被 GPU 使用的次數較少（幾次左右）。
+- *`GL_STATIC_DRAW`*：數據只會發送一次，但會被 GPU 多次使用，適合靜態數據。
+- *`GL_DYNAMIC_DRAW`*：數據會經常修改，並且會被 GPU 多次使用，適合動態變化的數據。
 
-三角形的位置數據不會改變，使用頻率高，且每次渲染都保持不變，因此最適合設定 usage type 為 GL_STATIC_DRAW。
-反之，若某個緩衝區內的數據經常被修改，設定為 GL_DYNAMIC_DRAW，能讓顯示卡將數據存放於更適合快速寫入的內存區，提升性能。
+三角形的位置數據不會改變，使用頻率高，且每次渲染都保持不變，因此最適合設定 `usage type` 為 `GL_STATIC_DRAW`。
+反之，若某個緩衝區內的數據經常被修改，設定為 `GL_DYNAMIC_DRAW`，能讓顯示卡將數據存放於更適合快速寫入的內存區，提升性能。
 
 截至目前，我們已經把頂點數據存放在顯示卡的記憶體中，並使用 VBO（頂點緩衝物件）來管理它們。接下來，我們要建立頂點著色器和片段著色器，來真正處理這些數據。那麼，讓我們開始編寫這兩個著色器吧！
-
-## Vertex shader
 
 ## 顶点着色器 （Vertex Shader）
 
@@ -136,17 +135,17 @@ void main()
 
 如你所見，GLSL 的語法和 C 語言相似。每個著色器程式碼開頭都會宣告版本號。從 OpenGL 3.3 開始，GLSL 的版本號會與 OpenGL 的版本號對應（例如，GLSL 版本 420 對應 OpenGL 版本 4.2）。我們也會明確標示出使用的是核心（core）配置的功能。
 
-接下來，我們在頂點著色器中使用 in 關鍵字聲明所有輸入的頂點屬性。目前我們只關心頂點的位置數據，因此只需要一個頂點屬性。GLSL 提供了矢量類型，包含 1 到 4 個浮點數，這個數量由類型名稱後綴的數字決定。由於每個頂點有一個三維座標，我們定義了一個名為 aPos 的 vec3 輸入變量。此外，我們使用 layout(location = 0) 明確指定這個輸入變量的位置（location），稍後你將會看到為什麼這個位置設定是必要的。
+接下來，我們在頂點著色器中使用 in 關鍵字聲明所有輸入的頂點屬性。目前我們只關心頂點的位置數據，因此只需要一個頂點屬性。GLSL 提供了矢量類型，包含 1 到 4 個浮點數，這個數量由類型名稱後綴的數字決定。由於每個頂點有一個三維座標，我們定義了一個名為 `aPos` 的 `vec3` 輸入變量。此外，我們使用 `layout(location = 0)` 明確指定這個輸入變量的位置（location），稍後你將會看到為什麼這個位置設定是必要的。
 
 {% include box.html color="green" content="
 
 #### 向量
 
-在圖形編程中，我們經常使用數學中的矢量概念，因為它能夠簡潔地表示空間中的位置或方向，並且具有許多有用的數學特性。GLSL 中的矢量最大維度為 4，每個分量可以分別通過 vec.x、vec.y、vec.z 和 vec.w 訪問，這些分量對應空間中的不同座標。需要注意的是，vec.w 並不是表示位置空間的坐標（我們處理的是三維空間，不是四維），而是用於一種稱為透視除法（perspective division）的操作。我們會在後面的章節中更深入地探討矢量相關內容。
+在圖形編程中，我們經常使用數學中的矢量概念，因為它能夠簡潔地表示空間中的位置或方向，並且具有許多有用的數學特性。GLSL 中的矢量最大維度為 4，每個分量可以分別通過 `vec.x、vec.y、vec.z` 和 `vec.w` 訪問，這些分量對應空間中的不同座標。需要注意的是，`vec.w` 並不是表示位置空間的坐標（我們處理的是三維空間，不是四維），而是用於一種稱為透視除法（perspective division）的操作。我們會在後面的章節中更深入地探討矢量相關內容。
 
 " %}
 
-要設置頂點著色器的輸出，我們必須將位置數據賦值給預定義的變量 gl_Position，它在底層是一個 vec4 類型的變量。在 main 函數結束時，我們對 gl_Position 的賦值會成為頂點著色器的輸出。由於輸入的頂點位置是三維向量（vec3），我們需要將它轉換成四維向量（vec4）。這可以通過將 vec3 的值放入 vec4 的構造函數中，並將其 w 分量設置為 1.0f 來實現（為什麼要這麼做，我們會在後面的章節詳細解釋）。
+要設置頂點著色器的輸出，我們必須將位置數據賦值給預定義的變量 `gl_Position`，它在底層是一個 vec4 類型的變量。在 main 函數結束時，我們對 `gl_Position` 的賦值會成為頂點著色器的輸出。由於輸入的頂點位置是三維向量（vec3），我們需要將它轉換成四維向量（vec4）。這可以通過將 vec3 的值放入 vec4 的構造函數中，並將其 `w` 分量設置為 `1.0f` 來實現（為什麼要這麼做，我們會在後面的章節詳細解釋）。
 
 目前的頂點著色器可能是我們能想像中最簡單的，因為它沒有對輸入數據進行任何處理，而是直接將數據傳遞到著色器輸出。在實際應用中，輸入的數據通常並不是已經處於標準化設備座標（NDC）空間，因此我們必須先對這些數據進行轉換，將它們映射到 OpenGL 的可視區域內。
 
@@ -163,14 +162,14 @@ const char *vertexShaderSource = "#version 330 core\n"
     "}\0";
 ```
 
-為了讓 OpenGL 能使用這個著色器，它必須在運行時動態地從源碼編譯它。首先，我們需要創建一個著色器對象，這個對象同樣由一個 ID 來標識。因此，我們將頂點著色器存儲在一個無符號整數中，並使用 glCreateShader 函數來創建它：
+為了讓 OpenGL 能使用這個著色器，它必須在運行時動態地從源碼編譯它。首先，我們需要創建一個著色器對象，這個對象同樣由一個 `ID` 來標識。因此，我們將頂點著色器存儲在一個無符號整數中，並使用 `glCreateShader` 函數來創建它：
 
 ```cpp
 unsigned int vertexShader;
 vertexShader = glCreateShader(GL_VERTEX_SHADER);
 ```
 
-我們需要將想要創建的著色器類型作為參數傳入 glCreateShader。因為我們現在要創建的是頂點著色器，所以傳入的參數是 GL_VERTEX_SHADER。
+我們需要將想要創建的著色器類型作為參數傳入 `glCreateShader`。因為我們現在要創建的是頂點著色器，所以傳入的參數是 `GL_VERTEX_SHADER`。
 
 接著，我們把著色器的源代碼附加到著色器對象上，然後編譯該著色器。
 
@@ -179,11 +178,11 @@ glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
 glCompileShader(vertexShader);
 ```
 
-glShaderSource 函數的第一個參數是要編譯的著色器對象。第二個參數指定傳入了多少個字符串作為源代碼，這裡是 1 個。第三個參數是實際的著色器源代碼，而第四個參數通常設為 NULL。
+`glShaderSource` 函數的第一個參數是要編譯的著色器對象。第二個參數指定傳入了多少個字符串作為源代碼，這裡是 1 個。第三個參數是實際的著色器源代碼，而第四個參數通常設為 `NULL`。
 
 {% include box.html color="green" content="
 
-在調用 glCompileShader 之後，你可能會想檢查編譯是否成功。如果編譯失敗，你也會想知道錯誤內容以便調試。檢查編譯錯誤的方法如下：
+在調用 `glCompileShader` 之後，你可能會想檢查編譯是否成功。如果編譯失敗，你也會想知道錯誤內容以便調試。檢查編譯錯誤的方法如下：
 
 ```cpp
 int  success;
@@ -191,7 +190,7 @@ char infoLog[512];
 glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
 ```
 
-首先，我們定義一個整型變量用來表示編譯是否成功，並準備一個緩衝區來存放錯誤訊息（如果有的話）。接著，我們使用 glGetShaderiv 來檢查編譯結果。如果編譯失敗，我們會用 glGetShaderInfoLog 取得錯誤訊息，並將其輸出，以便排查問題。
+首先，我們定義一個整型變量用來表示編譯是否成功，並準備一個緩衝區來存放錯誤訊息（如果有的話）。接著，我們使用 `glGetShaderiv` 來檢查編譯結果。如果編譯失敗，我們會用 `glGetShaderInfoLog` 取得錯誤訊息，並將其輸出，以便排查問題。
 
 ```cpp
 if(!success)
@@ -210,7 +209,7 @@ if(!success)
 要渲染三角形，我們需要創建的第二個也是最後一個著色器是片段著色器。片段著色器負責計算每個像素的輸出顏色。為了簡化起見，這個片段著色器將固定輸出一個橘色調的顏色。
 
 {% include box.html color="green" content="
-在計算機圖形學中，顏色用一個包含四個分量的數組來表示：紅色（Red）、綠色（Green）、藍色（Blue）和透明度（Alpha），通常簡稱為 RGBA。在 OpenGL 或 GLSL 中定義顏色時，我們為每個分量設置一個強度值，範圍從 0.0 到 1.0。例如，如果將紅色分量和綠色分量都設為 1.0，則會混合出黃色。僅憑這三個顏色分量，我們就能生成超過一千六百萬種不同的顏色！
+在計算機圖形學中，顏色用一個包含四個分量的數組來表示：紅色（Red）、綠色（Green）、藍色（Blue）和透明度（Alpha），通常簡稱為 RGBA。在 OpenGL 或 GLSL 中定義顏色時，我們為每個分量設置一個強度值，範圍從 `0.0` 到 `1.0`。例如，如果將紅色分量和綠色分量都設為 `1.0`，則會混合出黃色。僅憑這三個顏色分量，我們就能生成超過一千六百萬種不同的顏色！
 " %}
 
 ```cpp
@@ -223,9 +222,9 @@ void main()
 }
 ```
 
-片段著色器只需要一個輸出變量，這個變量是一個大小為 4 的向量（vec4），用來定義我們自己計算出的最終顏色輸出。我們可以用 out 關鍵字來聲明輸出變量，這裡我們將其命名為 FragColor。接著，我們直接給這個輸出賦值一個 vec4，代表橘色，並將 alpha 設為 1.0（1.0 表示完全不透明）。
+片段著色器只需要一個輸出變量，這個變量是一個大小為 4 的向量（vec4），用來定義我們自己計算出的最終顏色輸出。我們可以用 `out` 關鍵字來聲明輸出變量，這裡我們將其命名為 `FragColor`。接著，我們直接給這個輸出賦值一個 vec4，代表橘色，並將 `alpha` 設為 `1.0`（1.0 表示完全不透明）。
 
-編譯片段著色器的過程和編譯頂點著色器很類似，不同的是這次我們傳入的著色器類型參數是 GL_FRAGMENT_SHADER。
+編譯片段著色器的過程和編譯頂點著色器很類似，不同的是這次我們傳入的著色器類型參數是 `GL_FRAGMENT_SHADER`。
 
 ```cpp
 unsigned int fragmentShader;
@@ -249,7 +248,7 @@ unsigned int shaderProgram;
 shaderProgram = glCreateProgram();
 ```
 
-glCreateProgram 函數會創建一個程序，並返回一個 ID，這個 ID 用來引用新創建的程序對象。接著，我們需要將之前編譯好的著色器附加到這個程序對象上，然後使用 glLinkProgram 函數進行連結。
+`glCreateProgram` 函數會創建一個程序，並返回一個 ID，這個 ID 用來引用新創建的程序對象。接著，我們需要將之前編譯好的著色器附加到這個程序對象上，然後使用 `glLinkProgram` 函數進行連結。
 
 ```cpp
 glAttachShader(shaderProgram, vertexShader);
@@ -257,11 +256,11 @@ glAttachShader(shaderProgram, fragmentShader);
 glLinkProgram(shaderProgram);
 ```
 
-這段代碼很容易理解，我們先將著色器附加到程序，然後通過 glLinkProgram 將它們連結起來。
+這段代碼很容易理解，我們先將著色器附加到程序，然後通過 `glLinkProgram` 將它們連結起來。
 
 {% include box.html color="green" content="
 
-就像編譯著色器一樣，我們也可以檢查著色器程序的連結是否失敗，並取得對應的錯誤日誌。不過這一次，我們不再使用 glGetShaderiv 和 glGetShaderInfoLog，而是改用 glGetProgramiv 和 glGetProgramInfoLog。
+就像編譯著色器一樣，我們也可以檢查著色器程序的連結是否失敗，並取得對應的錯誤日誌。不過這一次，我們不再使用 `glGetShaderiv` 和 `glGetShaderInfoLog`，而是改用 `glGetProgramiv` 和 `glGetProgramInfoLog`。
 
 ```cpp
 glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
@@ -273,13 +272,13 @@ if(!success) {
 
 " %}
 
-最後，我們得到了一个程序对象，可以通过调用 glUseProgram 函数并传入这个新创建的程序对象作为参数来激活它。
+最後，我們得到了一个程序对象，可以通过调用 `glUseProgram` 函数并传入这个新创建的程序对象作为参数来激活它。
 
 ```cpp
 glUseProgram(shaderProgram);
 ```
 
-在呼叫 glUseProgram 之後，之後的每一個著色器與渲染操作都會使用這個程序對象（也就是它所關聯的著色器）。
+在呼叫 `glUseProgram` 之後，之後的每一個著色器與渲染操作都會使用這個程序對象（也就是它所關聯的著色器）。
 
 喔對了，別忘了在著色器被鏈接進程序對象之後就把它們刪掉，因為我們已經不再需要這些著色器對象了。
 
@@ -303,32 +302,32 @@ glDeleteShader(fragmentShader);
 - 每組 3 個值之間沒有其他間隔或數據，這些值在陣列中是緊密排列的。
 - 陣列的第一個值從緩衝區（buffer）的起始位置開始。
 
-有了這些基礎，我們現在可以使用 glVertexAttribPointer 函數，來告訴 OpenGL 如何解析每個頂點屬性的資料。
+有了這些基礎，我們現在可以使用 `glVertexAttribPointer` 函數，來告訴 OpenGL 如何解析每個頂點屬性的資料。
 
 ```cpp
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 glEnableVertexAttribArray(0);
 ```
 
-函數 glVertexAttribPointer 有幾個參數，我們一一仔細講解：
+函數 `glVertexAttribPointer` 有幾個參數，我們一一仔細講解：
 
-- 第一個參數 用來指定要配置的是哪一個頂點屬性。記得我們在頂點著色器中使用 layout(location = 0) 來設定位置屬性的索引位置。這意味著這個屬性位於位置 0，因此這裡我們傳入 0，把資料傳送給它。
+- 第一個參數 用來指定要配置的是哪一個頂點屬性。記得我們在頂點著色器中使用 `layout(location = 0)` 來設定位置屬性的索引位置。這意味著這個屬性位於位置 0，因此這裡我們傳入 0，把資料傳送給它。
 
 - 第二個參數 用來指定此頂點屬性的大小。由於它是一個 vec3，所以包含三個浮點數值。
 
-- 第三個參數 指定資料的類型，這裡為 GL_FLOAT（因為在 GLSL 中，vec\* 是由浮點數組成的）。
+- 第三個參數 指定資料的類型，這裡為 `GL_FLOAT`（因為在 GLSL 中，vec\* 是由浮點數組成的）。
 
-- 第四個參數 指定是否要對數據進行歸一化。當我們輸入整數型數據（如 int 或 byte）並設為 GL_TRUE 時，這些整數會在轉為浮點數時被歸一化為 0 到 1（有符號類型則為 -1 到 1）。不過這與我們目前的資料無關，因此設為 GL_FALSE。
+- 第四個參數 指定是否要對數據進行歸一化。當我們輸入整數型數據（如 int 或 byte）並設為 `GL_TRUE` 時，這些整數會在轉為浮點數時被歸一化為 `0` 到 `1`（有符號類型則為 `-1` 到 `1`）。不過這與我們目前的資料無關，因此設為 `GL_FALSE`。
 
-- 第五個參數 是「步長」（stride），也就是每組頂點屬性之間的間距。因為每個位置屬性由 3 個 float 組成，所以下一組數據剛好在 float 大小的三倍距離處。我們就把這個值當作步長傳入。注意，因為我們的數據是緊密排列的（之間沒有填充空間），我們也可以直接把步長設為 0，讓 OpenGL 自行推斷（這只適用於緊密排列的情況）。當我們有多個頂點屬性時，必須更仔細地定義每個屬性之間的間距——稍後我們會看到更多例子。
+- 第五個參數 是「步長」（stride），也就是每組頂點屬性之間的間距。因為每個位置屬性由 3 個 `float` 組成，所以下一組數據剛好在 `float` 大小的三倍距離處。我們就把這個值當作步長傳入。注意，因為我們的數據是緊密排列的（之間沒有填充空間），我們也可以直接把步長設為 0，讓 OpenGL 自行推斷（這只適用於緊密排列的情況）。當我們有多個頂點屬性時，必須更仔細地定義每個屬性之間的間距——稍後我們會看到更多例子。
 
 - 最後一個參數 是 void\* 類型，因此需要進行一個看起來有點奇怪的強制轉型。它表示的是頂點數據在緩衝區中的起始偏移量。由於我們的頂點資料從緩衝區的開頭開始，所以這裡直接設為 0。這個參數我們之後還會進一步深入探討。
 
 {% include box.html color="green" content="
-每個頂點屬性都會從由 VBO（頂點緩衝對象）管理的內存中獲取數據。它從哪個 VBO 獲取數據，取決於調用 glVertexAttribPointer 時當前綁定到 GL_ARRAY_BUFFER 的 VBO（因為你可以有多個 VBO）。由於在調用 glVertexAttribPointer 之前，之前定義的 VBO 仍然是綁定狀態，所以頂點屬性 0 現在就與這個 VBO 中的頂點數據建立了關聯。
+每個頂點屬性都會從由 VBO（頂點緩衝對象）管理的內存中獲取數據。它從哪個 VBO 獲取數據，取決於調用 `glVertexAttribPointer` 時當前綁定到 `GL_ARRAY_BUFFER` 的 VBO（因為你可以有多個 VBO）。由於在調用 `glVertexAttribPointer` 之前，之前定義的 VBO 仍然是綁定狀態，所以頂點屬性 0 現在就與這個 VBO 中的頂點數據建立了關聯。
 " %}
 
-現在，我們已經告訴了 OpenGL 該如何解析頂點數據，接下來還需要透過 glEnableVertexAttribArray 來啟用對應的頂點屬性，並將屬性的索引位置作為參數傳入；因為所有頂點屬性在預設情況下都是關閉的。
+現在，我們已經告訴了 OpenGL 該如何解析頂點數據，接下來還需要透過 `glEnableVertexAttribArray` 來啟用對應的頂點屬性，並將屬性的索引位置作為參數傳入；因為所有頂點屬性在預設情況下都是關閉的。
 從這裡開始，所有的基本設置就完成了：我們使用頂點緩衝物件（VBO）初始化了頂點數據，建立了頂點著色器和片段著色器，並且告訴 OpenGL 如何將頂點資料與著色器中的頂點屬性連接起來。
 接下來，在 OpenGL 中繪製一個物體的程式碼會長得像這樣：
 
@@ -357,11 +356,9 @@ OpenGL 的核心規範要求我們必須使用 VAO（頂點陣列物件），這
 
 一個頂點數組對象保存了以下內容：
 
-- 調用 glEnableVertexAttribArray 或著 glDisableVertexAttribArray
-
-- 通過 glVertexAttribPointer 進行頂點屬性配置
-
-- 通過調用 glVertexAttribPointer，對頂點緩衝對象關聯到頂點屬性。
+- 調用 `glEnableVertexAttribArray` 或著 `glDisableVertexAttribArray`
+- 通過 `glVertexAttribPointer` 進行頂點屬性配置
+- 通過調用 `glVertexAttribPointer`，對頂點緩衝對象關聯到頂點屬性。
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vertex_array_objects.png" %}
 
@@ -372,7 +369,7 @@ unsigned int VAO;
 glGenVertexArrays(1, &VAO);
 ```
 
-要使用 VAO，你需要做的全部事情是使用 glBindVertexArray 綁定這個 VAO。然後，我們應該綁定/配置對應的 VBO 以及屬性指針，接著，對 VAO 解綁以用於後續。一旦我們要繪製一個物體，首先，我們簡單地使用偏好設置綁定這個 VAO，僅此而已。代碼層面差不多這樣：
+要使用 VAO，你需要做的全部事情是使用 `glBindVertexArray` 綁定這個 VAO。然後，我們應該綁定/配置對應的 VBO 以及屬性指針，接著，對 VAO 解綁以用於後續。一旦我們要繪製一個物體，首先，我們簡單地使用偏好設置綁定這個 VAO，僅此而已。代碼層面差不多這樣：
 
 ```cpp
 // ..:: Initialization code (done once (unless your object frequently changes)) :: ..
@@ -399,7 +396,7 @@ someOpenGLFunctionThatDrawsOurTriangle();
 
 ### 我們一直期待的三角形
 
-為了繪製我們選擇的物體，OpenGL 為我們提供了函數 glDrawArrays，它使用當前激活的著色器、之前定義的頂點屬性配置以及 VBO 下的頂點數據（直接由 VAO 綁定），來繪製圖元，
+為了繪製我們選擇的物體，OpenGL 為我們提供了函數 `glDrawArrays`，它使用當前激活的著色器、之前定義的頂點屬性配置以及 VBO 下的頂點數據（直接由 VAO 綁定），來繪製圖元，
 
 ```cpp
 glUseProgram(shaderProgram);
@@ -407,7 +404,7 @@ glBindVertexArray(VAO);
 glDrawArrays(GL_TRIANGLES, 0, 3);
 ```
 
-glDrawArrays 函數持有的第一個參數是 OpenGL 下的圖元類型。由於我一開始就說我們想畫一個三角形，我不會欺騙你，我們傳入 GL_TRIANGLES。第二個參數指明了頂點數組的起始索引；我們將其設置為 0。最後一個參數指明了我們希望畫多少個頂點，這裡是 3 （我們只通過這些數據繪製一個三角形，只需三個頂點）。
+`glDrawArrays` 函數持有的第一個參數是 OpenGL 下的圖元類型。由於我一開始就說我們想畫一個三角形，我不會欺騙你，我們傳入 `GL_TRIANGLES`。第二個參數指明了頂點數組的起始索引；我們將其設置為 0。最後一個參數指明了我們希望畫多少個頂點，這裡是 3 （我們只通過這些數據繪製一個三角形，只需三個頂點）。
 
 現在，我們編譯代碼，如果有錯誤拋出，我們需要返回檢查。一旦應用編譯好，我們應該看到以下結果：
 
@@ -436,9 +433,9 @@ float vertices[] = {
 };
 ```
 
-如你所見，頂點的聲明上存在一些重複。我們聲明右下角和左上角分別兩次。這產生了 50% 的開銷，因為矩形可以使用 4 個頂點來描述，而非 6 個。這會變得很糟糕，一旦我們的繪製非常複雜的模型，比如它有超過好幾千個三角形，那麼將會有大量的重複頂點。一個好的辦法是，我們只存處唯一頂點，然後將頂點標明序號，再使用序號來查找頂點數據用於繪製。那樣的話，我們只需要為矩形存儲 4 個頂點，接著指定繪製它的頂點順序。OpenGL 為我們提供了一個很棒的的特性，不是嗎？
+如你所見，頂點的聲明上存在一些重複。我們聲明右下角和左上角分別兩次。這產生了 `50%` 的開銷，因為矩形可以使用 4 個頂點來描述，而非 6 個。這會變得很糟糕，一旦我們的繪製非常複雜的模型，比如它有超過好幾千個三角形，那麼將會有大量的重複頂點。一個好的辦法是，我們只存處唯一頂點，然後將頂點標明序號，再使用序號來查找頂點數據用於繪製。那樣的話，我們只需要為矩形存儲 4 個頂點，接著指定繪製它的頂點順序。OpenGL 為我們提供了一個很棒的的特性，不是嗎？
 
-感謝！元素緩衝對象就是那樣工作的。一個 EBO 是一個緩衝，就像頂點緩衝對象一樣，它存儲了頂點的索引，opengGL 按照此索引決定那些頂點需要用於繪製。這就是所謂的索引化繪製，它正好可以解決我們面臨的問題。要使用它，我們首先指定一個唯一的頂點序列，以及一個索引序列，來繪製一個矩形：
+感謝！元素緩衝對象就是那樣工作的。一個 EBO 是一個緩衝，就像頂點緩衝對象一樣，它存儲了頂點的索引，OpenGL 按照此索引決定那些頂點需要用於繪製。這就是所謂的索引化繪製，它正好可以解決我們面臨的問題。要使用它，我們首先指定一個唯一的頂點序列，以及一個索引序列，來繪製一個矩形：
 
 ```cpp
 float vertices[] = {
@@ -460,28 +457,28 @@ unsigned int EBO;
 glGenBuffers(1, &EBO);
 ```
 
-類似於 VBO，我們將 EBO 綁定並將索引拷貝至這個緩衝，使用的是函數 glBufferData。同樣，如 VBO，我們要將對它的調用放在 bind 和 unbind 之間，只是我們這裡需要聲明的緩衝類型是 GL_ELEMENT_ARRAY_BUFFER。
+類似於 VBO，我們將 EBO 綁定並將索引拷貝至這個緩衝，使用的是函數 `glBufferData`。同樣，如 VBO，我們要將對它的調用放在 bind 和 unbind 之間，只是我們這裡需要聲明的緩衝類型是 `GL_ELEMENT_ARRAY_BUFFER`。
 
 ```cpp
 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 ```
 
-注意，我們現在 GL_ELEMENT_ARRAY_BUFFER 作為緩衝目標。最後一件事是將 glDrawArrays 替換為 glDrawElements，它的意思是我們要從索引渲染三角形。當使用 glDrawElements 時，我們會根據元素緩衝對象中提供的索引來繪製圖形：
+注意，我們現在 `GL_ELEMENT_ARRAY_BUFFER` 作為緩衝目標。最後一件事是將 `glDrawArrays` 替換為 `glDrawElements`，它的意思是我們要從索引渲染三角形。當使用 `glDrawElements` 時，我們會根據元素緩衝對象中提供的索引來繪製圖形：
 
 ```cpp
 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 ```
 
-第一個參數指明我們要繪製的模式，類似 glDrawArrays。第二個參數是要繪製的元素數量。我們提供了 6 個索引，因為我們一共要繪製 6 個頂點。第三個參數表示索引的類型，這裡是無符號整型。最後一個讓我們提供 EBO 的偏移（或者傳入一個索引數組，這是在你沒有使用 EBO 的情況下），但是我們這裡將置其為 0。
+第一個參數指明我們要繪製的模式，類似 `glDrawArrays`。第二個參數是要繪製的元素數量。我們提供了 6 個索引，因為我們一共要繪製 6 個頂點。第三個參數表示索引的類型，這裡是無符號整型。最後一個讓我們提供 EBO 的偏移（或者傳入一個索引數組，這是在你沒有使用 EBO 的情況下），但是我們這裡將置其為 0。
 
-glDrawElements 函數會從當前綁定到 GL_ELEMENT_ARRAY_BUFFER 目標的 EBO（元素緩衝對象）中獲取索引數據。這意味著每次我們想用索引來繪製物體時，都需要手動綁定對應的 EBO，這會顯得有些繁瑣。不過，頂點數組對象（VAO）也會記錄與其綁定的元素緩衝對象。在綁定 VAO 的狀態下，最後綁定的 EBO 會被存儲為該 VAO 的元素緩衝對象。這樣一來，當再次綁定該 VAO 時，對應的 EBO 也會自動綁定。
+`glDrawElements` 函數會從當前綁定到 `GL_ELEMENT_ARRAY_BUFFER` 目標的 EBO（元素緩衝對象）中獲取索引數據。這意味著每次我們想用索引來繪製物體時，都需要手動綁定對應的 EBO，這會顯得有些繁瑣。不過，頂點數組對象（VAO）也會記錄與其綁定的元素緩衝對象。在綁定 VAO 的狀態下，最後綁定的 EBO 會被存儲為該 VAO 的元素緩衝對象。這樣一來，當再次綁定該 VAO 時，對應的 EBO 也會自動綁定。
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vertex_array_objects_ebo.png" %}
 
 {% include box.html color="red" content="
-當目標是 GL_ELEMENT_ARRAY_BUFFER 時，VAO 存儲 glBindBuffer 操作。這也意味著它會保存解綁操作，因此確保你沒有在解綁你的 VAO 之前解綁元素數組緩衝，否則會缺少一個 EBO 配置。
+當目標是 `GL_ELEMENT_ARRAY_BUFFER` 時，VAO 存儲 `glBindBuffer` 操作。這也意味著它會保存解綁操作，因此確保你沒有在解綁你的 VAO 之前解綁元素數組緩衝，否則會缺少一個 EBO 配置。
 " %}
 
 最終的初始化和繪製代碼看起來是這樣的：
