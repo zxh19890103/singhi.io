@@ -2,6 +2,7 @@ title: 张星海的个人博客-星博客-前端开发
 description: 张星海的文档,专注前端技术总结,记录生活点滴,网站建设,个人博客搭建,曾经的大连,未来的武汉,分享朴素、实用的前端技术
 version: 1.0.0
 port: 4001
+host: 0.0.0.0
 
 ## collections_dir: group
 collections:

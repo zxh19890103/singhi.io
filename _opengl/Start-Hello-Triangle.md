@@ -242,13 +242,17 @@ In graphics programming we use the mathematical concept of a vector quite often,
 
 To set the output of the vertex shader we have to assign the position data to the predefined gl_Position variable which is a vec4 behind the scenes. At the end of the main function, whatever we set gl_Position to will be used as the output of the vertex shader. Since our input is a vector of size 3 we have to cast this to a vector of size 4. We can do this by inserting the vec3 values inside the constructor of vec4 and set its w component to 1.0f (we will explain why in a later chapter).
 
-
+要為頂點著色器設置輸出（output），我們必須將位置信息設置到預定義的變量 gl_Position，它是一個 vec4 類型的值。最後，在 main 函數，不管 gl_Position 被設置為什麼，它都會作為頂點著色器的輸出。因為我們的輸入是一個大小為 3 的矢量，我們必須將它轉化為大小為 4 的矢量。我們可以通過將這個 vec3 類型的值插入到 vec4 構造函數中，並將 w 設置為 1.0f （我們將在稍後章節解釋為什麼這樣）。
 
 The current vertex shader is probably the most simple vertex shader we can imagine because we did no processing whatsoever on the input data and simply forwarded it to the shader's output. In real applications the input data is usually not already in normalized device coordinates so we first have to transform the input data to coordinates that fall within OpenGL's visible region.
+
+這個頂點著色器可能是我們能想像得到的最簡單的頂點著色器了，因為我們沒有對輸入數據做任何處理，只是簡單地將它傳遞給輸出。在實際的應用當中，輸入數據常常不會是落在 NDC 空間裡的，因此我們首先需要將它做一次轉換，使它能夠落入 OpenGL 的可視區域。
 
 ## Compiling a shader
 
 We take the source code for the vertex shader and store it in a const C string at the top of the code file for now:
+
+我們拿到頂點著色器的代碼，將其存儲在一個 C 語言字符串常量，目前在文件頭部：
 
 ```cpp
 const char *vertexShaderSource = "#version 330 core\n"
@@ -261,6 +265,8 @@ const char *vertexShaderSource = "#version 330 core\n"
 
 In order for OpenGL to use the shader it has to dynamically compile it at run-time from its source code. The first thing we need to do is create a shader object, again referenced by an ID. So we store the vertex shader as an unsigned int and create the shader with glCreateShader:
 
+為了使用著色器，OpenGL 需要在運行時從源碼動態編譯它。首要的事就是我們需要創建一個著色器對象，一樣，它引用於一個 ID。因此我們將這個頂點著色器存儲於一個無符號的整型數字，創建時使用函數 glCreateShader：
+
 ```cpp
 unsigned int vertexShader;
 vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -268,7 +274,11 @@ vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
 We provide the type of shader we want to create as an argument to glCreateShader. Since we're creating a vertex shader we pass in GL_VERTEX_SHADER.
 
+我們提供了著色器的類型，它作為 glCreateShader 的一個參數傳入。由於我們是在創建頂點著色器，因此我們傳入的是 GL_VERTEX_SHADER。
+
 Next we attach the shader source code to the shader object and compile the shader:
+
+接下來，我們將源代碼關聯到這個著色器對象並開始編譯它。
 
 ```cpp
 glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -277,9 +287,13 @@ glCompileShader(vertexShader);
 
 The glShaderSource function takes the shader object to compile to as its first argument. The second argument specifies how many strings we're passing as source code, which is only one. The third parameter is the actual source code of the vertex shader and we can leave the 4th parameter to NULL.
 
+glShaderSource 函數以 shader 對象為第一個參數。第二個參數是我們傳入了多少個字符串，這裡只一個。第三個參數就是著色器的源代碼，我們可以將第四個參數置為 null。
+
 {% include box.html color="green" content="
 
 You probably want to check if compilation was successful after the call to glCompileShader and if not, what errors were found so you can fix those. Checking for compile-time errors is accomplished as follows:
+
+你或許想在調用 glCompileShader 之後檢查一下編譯是否成功，如果沒有成功，那麼你想知道錯誤是什麼，以方便你定位和處理問題。檢查編譯時錯誤可以按照以下方式：
 
 ```cpp
 int  success;
@@ -288,6 +302,8 @@ glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
 ```
 
 First we define an integer to indicate success and a storage container for the error messages (if any). Then we check if compilation was successful with glGetShaderiv. If compilation failed, we should retrieve the error message with glGetShaderInfoLog and print the error message.
+
+首先，我們定義了一個整型，它表示編譯成功，以及一個存儲容器，它存放錯誤內容（若有）。然後，我們檢查編譯是否成功，這裡使用到 glGetShaderiv。入閣編譯失敗，我們應該得到一個錯誤信息，通過調用 glGetShaderInfoLog 可以得到這個信息。
 
 ```cpp
 if(!success)
@@ -301,12 +317,19 @@ if(!success)
 
 If no errors were detected while compiling the vertex shader it is now compiled.
 
+如果編譯時沒有錯誤被檢測到，那它已經編譯通過。
+
 ## Fragment shader
 
 The fragment shader is the second and final shader we're going to create for rendering a triangle. The fragment shader is all about calculating the color output of your pixels. To keep things simple the fragment shader will always output an orange-ish color.
 
+要渲染一個三角形，片段著色器時第二個也是最後一個，我們需要創建的著色器。片段著色器用於計算輸出的像素顏色。簡單起見，片段著色器將總是輸出一個橘色。
+
 {% include box.html color="green" content="
 Colors in computer graphics are represented as an array of 4 values: the red, green, blue and alpha (opacity) component, commonly abbreviated to RGBA. When defining a color in OpenGL or GLSL we set the strength of each component to a value between 0.0 and 1.0. If, for example, we would set red to 1.0 and green to 1.0 we would get a mixture of both colors and get the color yellow. Given those 3 color components we can generate over 16 million different colors!
+
+顏色在計算機圖形學當中使用一個 4 維數組表達：紅色、綠色、藍色，以及 alpha，通常簡寫為 RGBA。當在 OpenGL 或著 glsl 中定義顏色時，我們設置的是其中每個分量的強度，強度值在 0.0 到 1.0 之間。舉個例子，如果我們設置紅色分量為 1.0，綠色分量為 1.0，我們將得到一個兩個顏色的混合，也就是黃色。使用這 3 個分量，我們可以生成 16,000,000 個不同的顏色。
+
 " %}
 
 ```cpp
@@ -321,7 +344,11 @@ void main()
 
 The fragment shader only requires one output variable and that is a vector of size 4 that defines the final color output that we should calculate ourselves. We can declare output values with the out keyword, that we here promptly named FragColor. Next we simply assign a vec4 to the color output as an orange color with an alpha value of 1.0 (1.0 being completely opaque).
 
+片段著色器只需一個輸出變量，它是一個 vec4 結構值，定義了最終輸出的顏色。我們可以使用 out 關鍵字定義輸出值，這裡我們就命名為 FragColor。接下來我們簡單地將一個 vec4 值賦給輸出，它是一個橘色，alpha 為 1.0 （1.0 就是完全不透明）。
+
 The process for compiling a fragment shader is similar to the vertex shader, although this time we use the GL_FRAGMENT_SHADER constant as the shader type:
+
+編譯片段著色器和編譯頂點著色器類似，只是這次我們使用 GL_FRAGMENT_SHADER 作為著色器類型。
 
 ```cpp
 unsigned int fragmentShader;
@@ -332,13 +359,21 @@ glCompileShader(fragmentShader);
 
 Both the shaders are now compiled and the only thing left to do is link both shader objects into a shader program that we can use for rendering. Make sure to check for compile errors here as well!
 
+這兩個著色器現在都已經被編譯，剩下的事就是將兩個著色器對象綁定到著色器程序，使用它我們便可以執行渲染。一樣，確保檢查一下編譯錯誤。
+
 ## Shader program
 
 A shader program object is the final linked version of multiple shaders combined. To use the recently compiled shaders we have to link them to a shader program object and then activate this shader program when rendering objects. The activated shader program's shaders will be used when we issue render calls.
 
+著色器程序對象，是多個著色器結合之後的最終鏈接版本。要使用最近編譯的著色器，我們必須將它們鏈接到著色器程序對象，然後渲染物體的時候激活這個程序。這個激活的程序下的著色器將會在我們發起渲染呼叫的時候被使用到。
+
 When linking the shaders into a program it links the outputs of each shader to the inputs of the next shader. This is also where you'll get linking errors if your outputs and inputs do not match.
 
+將著色器關聯到程序，它將每一個著色器的輸出鏈接到下一個著色器的輸入。如果你的輸出和輸入不匹配，在這裡你也可以攔截鏈接錯誤。
+
 Creating a program object is easy:
+
+創建一個程序對象很簡單：
 
 ```cpp
 unsigned int shaderProgram;
@@ -346,6 +381,8 @@ shaderProgram = glCreateProgram();
 ```
 
 The glCreateProgram function creates a program and returns the ID reference to the newly created program object. Now we need to attach the previously compiled shaders to the program object and then link them with glLinkProgram:
+
+glCreateProgram 函數創建一個程序，返回 id，這個 ID 引用到這個剛創建出來的程序對象。現在我們需要將之前的編譯好的著色器綁定其上，然後使用 glLinkProgram 執行連結。
 
 ```cpp
 glAttachShader(shaderProgram, vertexShader);
@@ -355,8 +392,12 @@ glLinkProgram(shaderProgram);
 
 The code should be pretty self-explanatory, we attach the shaders to the program and link them via glLinkProgram.
 
+這段代碼非常完美地進行了自解釋，我們使用 glLinkProgram 將著色器綁定到程序。
+
 {% include box.html color="green" content="
 Just like shader compilation we can also check if linking a shader program failed and retrieve the corresponding log. However, instead of using glGetShaderiv and glGetShaderInfoLog we now use:
+
+就像著色器編譯，我們也可以檢查連結操作成功與否，並獲得對應的日誌。當然，這裡不是使用 glGetShaderiv，而是 glGetShaderInfoLog：
 
 ```cpp
 glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
@@ -370,13 +411,19 @@ if(!success) {
 
 The result is a program object that we can activate by calling glUseProgram with the newly created program object as its argument:
 
+最後我們得到一個可以通過調用 glUseProgram 函數激活的程序對象，它作為其參數：
+
 ```cpp
 glUseProgram(shaderProgram);
 ```
 
 Every shader and rendering call after glUseProgram will now use this program object (and thus the shaders).
 
+使用 glUseProgram 之後，每一個著色器，以及渲染呼叫，都是使用這個程序對象（因此也包含其中關聯的著色器）。
+
 Oh yeah, and don't forget to delete the shader objects once we've linked them into the program object; we no longer need them anymore:
+
+喔，媽的，不要忘記刪除著色器對象了，因為在一旦我們將它們關聯之後，我們就不再需要它們了。
 
 ```cpp
 glDeleteShader(vertexShader);
@@ -385,11 +432,17 @@ glDeleteShader(fragmentShader);
 
 Right now we sent the input vertex data to the GPU and instructed the GPU how it should process the vertex data within a vertex and fragment shader. We're almost there, but not quite yet. OpenGL does not yet know how it should interpret the vertex data in memory and how it should connect the vertex data to the vertex shader's attributes. We'll be nice and tell OpenGL how to do that.
 
+現在，我們將頂點數據發送給 GPU，並且告訴 GPU 如何在兩個著色器中處理這些頂點數據。我們做得差不多了，但是還有一點事情要做。OpenGL 並不知道如何從內存中解析頂點數據，也不知道如何將頂點數據連結到頂點著色器的屬性。我們最好告訴 OpenGL 該如何做這件事。
+
 ## Linking Vertex Attributes
 
 The vertex shader allows us to specify any input we want in the form of vertex attributes and while this allows for great flexibility, it does mean we have to manually specify what part of our input data goes to which vertex attribute in the vertex shader. This means we have to specify how OpenGL should interpret the vertex data before rendering.
 
+以頂點屬性的形式，頂點著色器允許我們輸入任何內容，這給了我們極大的靈活性。它意味著，我們必須手動的地說明數據的哪些部分走入著色器的哪個屬性。
+
 Our vertex buffer data is formatted as follows:
+
+我們的頂點緩衝數據的格式如下：
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vertex_attribute_pointer.png" %}
 
@@ -398,7 +451,14 @@ Our vertex buffer data is formatted as follows:
 - There is no space (or other values) between each set of 3 values. The values are tightly packed in the array.
 - The first value in the data is at the beginning of the buffer.
 
+- 位置數據以 32 位 （4 字節）浮點數存儲
+- 每個位置由 3 個這樣類型的數字組成
+- 這 3 個數值之間再無其它內容，它們被緊密的壓縮在一個數組當中
+- 數組的第一個值在 buffer 的開頭。
+
 With this knowledge we can tell OpenGL how it should interpret the vertex data (per vertex attribute) using glVertexAttribPointer:
+
+有了這些知識，我們可以告訴 OpenGL 如何通過 glVertexAttribPointer 解析頂點數據（頂點屬性）：
 
 ```cpp
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
@@ -407,18 +467,42 @@ glEnableVertexAttribArray(0);
 
 The function glVertexAttribPointer has quite a few parameters so let's carefully walk through them:
 
-The first parameter specifies which vertex attribute we want to configure. Remember that we specified the location of the position vertex attribute in the vertex shader with layout (location = 0). This sets the location of the vertex attribute to 0 and since we want to pass data to this vertex attribute, we pass in 0.
-The next argument specifies the size of the vertex attribute. The vertex attribute is a vec3 so it is composed of 3 values.
-The third argument specifies the type of the data which is GL_FLOAT (a vec* in GLSL consists of floating point values).
-The next argument specifies if we want the data to be normalized. If we're inputting integer data types (int, byte) and we've set this to GL_TRUE, the integer data is normalized to 0 (or -1 for signed data) and 1 when converted to float. This is not relevant for us so we'll leave this at GL_FALSE.
-The fifth argument is known as the stride and tells us the space between consecutive vertex attributes. Since the next set of position data is located exactly 3 times the size of a float away we specify that value as the stride. Note that since we know that the array is tightly packed (there is no space between the next vertex attribute value) we could've also specified the stride as 0 to let OpenGL determine the stride (this only works when values are tightly packed). Whenever we have more vertex attributes we have to carefully define the spacing between each vertex attribute but we'll get to see more examples of that later on.
-The last parameter is of type void* and thus requires that weird cast. This is the offset of where the position data begins in the buffer. Since the position data is at the start of the data array this value is just 0. We will explore this parameter in more detail later on
+函數 glVertexAttribPointer 有為數不多的幾個參數，讓我們來仔過一遍：
+
+- The first parameter specifies which vertex attribute we want to configure. Remember that we specified the location of the position vertex attribute in the vertex shader with layout (location = 0). This sets the location of the vertex attribute to 0 and since we want to pass data to this vertex attribute, we pass in 0.
+
+- 第一個參數用於說明哪個頂點屬性將被配置。記住，我們使用 layout （location = 0）指定頂點屬性的位置。這樣就可以將屬性的位置設置為 0，因為我們要將數據發送到這個屬性上，傳入 0。
+
+- The next argument specifies the size of the vertex attribute. The vertex attribute is a vec3 so it is composed of 3 values.
+
+- 第二個參數指定屬性的 size，頂點屬性是一個 vec3 結構，因此它由 3 個值組成。
+
+- The third argument specifies the type of the data which is GL_FLOAT (a vec\* in GLSL consists of floating point values).
+
+- 第三個參數指定數據的類型，這裡為 GL_FLOAT （一個 GLSL 浮點型矢量結構）。
+
+- The next argument specifies if we want the data to be normalized. If we're inputting integer data types (int, byte) and we've set this to GL_TRUE, the integer data is normalized to 0 (or -1 for signed
+  data) and 1 when converted to float. This is not relevant for us so we'll leave this at GL_FALSE.
+
+- 接下來，第四個參數指明我們的數據是否需要被歸一化。如果 我們輸入整型數據（int 或著 byte），我們設置其為 GL_TRUE，整型數據向浮點型轉化，會被歸一化為 0（或著是 -1，對於有符號類型）和 1。這和我們沒什麼關係，因此我們將其設置為 GL_FALSE。
+
+- The fifth argument is known as the stride and tells us the space between consecutive vertex attributes. Since the next set of position data is located exactly 3 times the size of a float away we specify that value as the stride. Note that since we know that the array is tightly packed (there is no space between the next vertex attribute value) we could've also specified the stride as 0 to let OpenGL determine the stride (this only works when values are tightly packed). Whenever we have more vertex attributes we have to carefully define the spacing between each vertex attribute but we'll get to see more examples of that later on.
+
+- 第五個參數，步長，它告訴我們在連貫的頂點屬性中的空間大小。因為下一個位置數據剛好在浮點型數值大小的 3 倍處，因此我們將這個計算值設置為步長。注意，由於我們知道數組是被緊密排列的（兩個值之間是沒有間隙的），我們也可以將步長設置為 0，讓 OpenGL 自行確定（這只適用於緊密排列的情況）。如果我們有更多的頂點屬性，我麼還必須仔細定義好屬性之間的間隙，我們後邊會遇到很多這樣的例子。
+
+- The last parameter is of type void\* and thus requires that weird cast. This is the offset of where the position data begins in the buffer. Since the position data is at the start of the data array this value is just 0. We will explore this parameter in more detail later on。
+
+- 最後一個參數，其類型為 void\*，因此需要一個奇怪的轉化。它是位置數據在緩衝起始的偏移。因為位置數據在數組的開頭，因此它的值被設置為 0。我們將稍後詳細了解這個參數。
 
 {% include box.html color="green" content="
 Each vertex attribute takes its data from memory managed by a VBO and which VBO it takes its data from (you can have multiple VBOs) is determined by the VBO currently bound to GL_ARRAY_BUFFER when calling glVertexAttribPointer. Since the previously defined VBO is still bound before calling glVertexAttribPointer vertex attribute 0 is now associated with its vertex data.
+
+每個頂點屬性都會從由 VBO（頂點緩衝對象）管理的內存中獲取數據。它從哪個 VBO 獲取數據，取決於調用 glVertexAttribPointer 時當前綁定到 GL_ARRAY_BUFFER 的 VBO（因為你可以有多個 VBO）。由於在調用 glVertexAttribPointer 之前，之前定義的 VBO 仍然是綁定狀態，所以頂點屬性 0 現在就與這個 VBO 中的頂點數據建立了關聯。
 " %}
 
 Now that we specified how OpenGL should interpret the vertex data we should also enable the vertex attribute with glEnableVertexAttribArray giving the vertex attribute location as its argument; vertex attributes are disabled by default. From that point on we have everything set up: we initialized the vertex data in a buffer using a vertex buffer object, set up a vertex and fragment shader and told OpenGL how to link the vertex data to the vertex shader's vertex attributes. Drawing an object in OpenGL would now look something like this:
+
+現在，我們向 OpenGL 指明了該如何解析頂點數據，我們也需要使用 glEnableVertexAttribArray 開啟頂點屬性，並傳入屬性的位置作為其第一個參數。頂點屬性默認是關閉的。從此開始，我們已經設置好一切：使用頂點緩衝對象對頂點數據進行了初始化；設置了一個頂點和片段著色器，並且告訴了 OpenGL 如何連接頂點數據到著色器的頂點屬性。使用 OpenGL 繪製一個物體看上去是這樣的：
 
 ```cpp
 // 0. copy our vertices array in a buffer for OpenGL to use
@@ -435,23 +519,41 @@ someOpenGLFunctionThatDrawsOurTriangle();
 
 We have to repeat this process every time we want to draw an object. It may not look like that much, but imagine if we have over 5 vertex attributes and perhaps 100s of different objects (which is not uncommon). Binding the appropriate buffer objects and configuring all vertex attributes for each of those objects quickly becomes a cumbersome process. What if there was some way we could store all these state configurations into an object and simply bind this object to restore its state?
 
+每次我們要繪製一個物體時，都需要重複這些步驟。這看起來似乎沒什麼，但試想一下：如果我們有超過 5 個頂點屬性，並且有上百個不同的物體（這在實際應用中並不少見），那麼綁定正確的緩衝對象並為每個物體配置頂點屬性，很快就會變成一個繁瑣的工作。如果有一種方法能夠將這些狀態配置統一存儲到某個對象中，然後只需綁定這個對象就能恢復所有狀態，那該多好？
+
 ### Vertex Array Object
 
 A vertex array object (also known as VAO) can be bound just like a vertex buffer object and any subsequent vertex attribute calls from that point on will be stored inside the VAO. This has the advantage that when configuring vertex attribute pointers you only have to make those calls once and whenever we want to draw the object, we can just bind the corresponding VAO. This makes switching between different vertex data and attribute configurations as easy as binding a different VAO. All the state we just set is stored inside the VAO.
 
+頂點數組對象 （簡稱 VAO）可被綁定，就像頂點緩衝對象那樣，並且任何頂點屬性的子序列呼叫都會被存儲到 VAO。這就有了一種好處，當配置頂點屬性指針，你只需調用它們一次，而且當我們想繪製這個物體的時候，我們可以綁定對應的 VAO。這讓對頂點數據和頂點屬性配置的切換變簡化為一個對 VBO 綁定的操作。我們設置的全部狀態都會被存入 VAO。
+
 {% include box.html color="red" content="
 Core OpenGL requires that we use a VAO so it knows what to do with our vertex inputs. If we fail to bind a VAO, OpenGL will most likely refuse to draw anything.
+
+OpenGL 的核心需要我們使用 VAO，從而它知道如何處理我們的頂點輸入，如果我們綁定 VAO 失敗，OpenGL 大概率會拒絕執行任何繪製。
 " %}
 
 A vertex array object stores the following:
 
+一個頂點數組對象保存了以下內容：
+
 - Calls to glEnableVertexAttribArray or glDisableVertexAttribArray.
+
+- 調用 glEnableVertexAttribArray 或著 glDisableVertexAttribArray
+
 - Vertex attribute configurations via glVertexAttribPointer.
+
+-  通過 glVertexAttribPointer 進行頂點屬性配置
+
 - Vertex buffer objects associated with vertex attributes by calls to glVertexAttribPointer.
+
+- 通過調用 glVertexAttribPointer，對頂點緩衝對象關聯到頂點屬性。
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vertex_array_objects.png" %}
 
 The process to generate a VAO looks similar to that of a VBO:
+
+生成一個 VBO 的方式類似於 VBO：
 
 ```cpp
 unsigned int VAO;
@@ -459,6 +561,8 @@ glGenVertexArrays(1, &VAO);
 ```
 
 To use a VAO all you have to do is bind the VAO using glBindVertexArray. From that point on we should bind/configure the corresponding VBO(s) and attribute pointer(s) and then unbind the VAO for later use. As soon as we want to draw an object, we simply bind the VAO with the preferred settings before drawing the object and that is it. In code this would look a bit like this:
+
+要使用 VAO，你需要做的全部事情是使用 glBindVertexArray 綁定這個 VAO。然後，我們應該綁定/配置對應的 VBO 以及屬性指針，接著，對 VAO 解綁以用於後續。一旦我們要繪製一個物體，首先，我們簡單地使用偏好設置綁定這個 VAO，僅此而已。代碼層面差不多這樣：
 
 ```cpp
 // ..:: Initialization code (done once (unless your object frequently changes)) :: ..
@@ -482,6 +586,8 @@ someOpenGLFunctionThatDrawsOurTriangle();
 ```
 
 And that is it! Everything we did the last few million pages led up to this moment, a VAO that stores our vertex attribute configuration and which VBO to use. Usually when you have multiple objects you want to draw, you first generate/configure all the VAOs (and thus the required VBO and attribute pointers) and store those for later use. The moment we want to draw one of our objects, we take the corresponding VAO, bind it, then draw the object and unbind the VAO again.
+
+就這些了！一切
 
 ### The triangle we've all been waiting for
 
