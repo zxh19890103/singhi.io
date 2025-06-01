@@ -204,10 +204,11 @@ main {
 		float: left;
 	}
 	@include ifmob {
+		background: rgba($color: seagreen, $alpha: 0.86);
+		width: 100%;
+
 		&__title {
 			display: inline;
 		}
-		background: rgba($color: seagreen, $alpha: 0.86);
-		width: 100%;
 	}
 }
