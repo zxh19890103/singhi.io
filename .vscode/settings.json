@@ -7,7 +7,7 @@
   "editor.minimap.enabled": false,
   "editor.fontWeight": "300",
   "window.zoomLevel": 1,
-  "workbench.colorTheme": "Atom One Light",
+  "workbench.colorTheme": "Atom One Dark",
   "files.exclude": {
     "**/node_modules": true
   }
