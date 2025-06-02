@@ -91,7 +91,8 @@
 	font-size: 1.24rem;
 	line-height: 1.685;
 
-	&.Cat-tech, &.Cat-journal {
+	&.Cat-tech,
+	&.Cat-journal {
 		font-size: 1.5rem;
 	}
 
@@ -189,6 +190,55 @@
 
 	.Book__Meta {
 		font-size: 1.4rem;
+	}
+
+	.Book__Side {
+		height: 100vh;
+		padding: 1rem;
+		width: fit-content;
+		overflow-y: auto;
+		font-size: 0.84em;
+		background-color: rgb(30, 40, 49);
+		color: #fff;
+		transition: transform 0.1s ease-in-out;
+
+		a {
+			color: #fff;
+			&:hover {
+				color: #999;
+			}
+		}
+
+		@include ifmob {
+			display: none;
+		}
+	}
+
+	.Book__Chapters {
+		position: fixed;
+		top: 0;
+		left: 15px;
+		transform: translate(-100%, 0);
+
+		&:hover {
+			transform: translateX(-15px);
+		}
+	}
+
+	.Book__Chapter_Menu {
+		position: fixed;
+		top: 0;
+		right: 15px;
+		transform: translate(100%, 0);
+
+		.H3 {
+			padding-left: 1em;
+			font-size: 0.90em;
+		}
+
+		&:hover {
+			transform: translateX(15px);
+		}
 	}
 
 	.Article-Time {

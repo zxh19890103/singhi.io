@@ -8,17 +8,27 @@ date: 2025-06-01
 editing: 1
 ---
 
-As mentioned in the Hello Triangle chapter, shaders are little programs that rest on the GPU. These programs are run for each specific section of the graphics pipeline. In a basic sense, shaders are nothing more than programs transforming inputs to outputs. Shaders are also very isolated programs in that they're not allowed to communicate with each other; the only communication they have is via their inputs and outputs.
+As mentioned in the [Hello Triangle]({{page.previous.url}}) chapter, shaders are little programs that rest on the GPU. These programs are run for each specific section of the graphics pipeline. In a basic sense, shaders are nothing more than programs transforming inputs to outputs. Shaders are also very isolated programs in that they're not allowed to communicate with each other; the only communication they have is via their inputs and outputs.
+
+上章提到，著色器是運行在 GPU 上的小程序。這些程序運行在圖形管線的各個部分。基本來講，著色器不過是將輸入轉換為輸出的程序。著色器同時也是彼此隔離的，它們之間不允許有通訊，唯一的通訊途徑是通過輸入和輸出。
 
 In the previous chapter we briefly touched the surface of shaders and how to properly use them. We will now explain shaders, and specifically the OpenGL Shading Language, in a more general fashion.
+
+在上一章，我們簡要地解除到著色器的表面，以及如何正確地使用它們。我們現在解釋著色器，通常來說就是 OpenGL Shading Language。
 
 ## GLSL
 
 Shaders are written in the C-like language GLSL. GLSL is tailored for use with graphics and contains useful features specifically targeted at vector and matrix manipulation.
 
+著色器使用類-C 語言 GLSL 編寫。GLSL 是專門為計算機圖形設計的，包含了有用地特性，特別是針對 vector （向量）和 matrix （矩陣）操作。
+
 Shaders always begin with a version declaration, followed by a list of input and output variables, uniforms and its main function. Each shader's entry point is at its main function where we process any input variables and output the results in its output variables. Don't worry if you don't know what uniforms are, we'll get to those shortly.
 
+著色器總是開始於版本聲明，跟隨的是一段輸入輸出變量、統一變量（uniforms）、以及 main 函數。每一個著色器的入口都是它的 main 函數，於此我們會處理輸入變量，以及使用輸出變量輸出結果。不要擔心，如果你不知道什麼是 uniforms，我們很快就會涉及。
+
 A shader typically has the following structure:
+
+一個經典的著色器具備以下結構：
 
 ```cpp
 
@@ -41,6 +51,8 @@ void main()
 
 When we're talking specifically about the vertex shader each input variable is also known as a vertex attribute. There is a maximum number of vertex attributes we're allowed to declare limited by the hardware. OpenGL guarantees there are always at least 16 4-component vertex attributes available, but some hardware may allow for more which you can retrieve by querying `GL_MAX_VERTEX_ATTRIBS`:
 
+當我們談論頂點著色器，每一個輸入變量也被稱為點頂點屬性。硬件對頂點屬性的最大數量是有限制的。OpenGL 確保至少有 16 個 4 分量的頂點屬性可供使用，但是有些硬件或許允許更多，你可以通過訪問 `GL_MAX_VERTEX_ATTRIBS` 獲得：
+
 ```cpp
 int nrAttributes;
 glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
@@ -49,25 +61,46 @@ std::cout << "Maximum nr of vertex attributes supported: " << nrAttributes << st
 
 This often returns the minimum of 16 which should be more than enough for most purposes.
 
+這總是返回最小值 16，對於大多數情況應該都是綽綽有餘。
+
 ## Types
+
+## 類型
 
 GLSL has, like any other programming language, data types for specifying what kind of variable we want to work with. GLSL has most of the default basic types we know from languages like C: int, float, double, uint and bool. GLSL also features two container types that we'll be using a lot, namely vectors and matrices. We'll discuss matrices in a later chapter.
 
+和其它編程語言類似，GLSL 有一套數據類型，用於指定我們想使用變量的類型。GLSL 擁有一組來自 C 語言的基本數據類型：int、float、double、unit，以及 bool。GLSL 也包含了兩個我們會經常使用到的容器類型，分別是 vector 和 matrix。我們會在後邊的章節討論 matrix。
+
 ### Vectors
+
+### 向量 （Vector）
 
 A vector in GLSL is a 2,3 or 4 component container for any of the basic types just mentioned. They can take the following form (n represents the number of components):
 
-- vecn: the default vector of n floats.
-- bvecn: a vector of n booleans.
-- ivecn: a vector of n integers.
-- uvecn: a vector of n unsigned integers.
-- dvecn: a vector of n double components.
+GLSL 中的 vector 是一個 2、3 或著 4 分量的容器，分量也就是我們方才提到的基本數據類型。它們可以是以下形式（`n` 代表分量的數量）
+
+- _vecn_: the default vector of n floats.
+- _vecn_: n 個浮點型數值分量的默認向量
+- _bvecn_: a vector of n booleans.
+- _bvecn_: n 個布爾型分量的向量
+- _ivecn_: a vector of n integers.
+- _ivecn_: n 個整型分量的向量
+- _uvecn_: a vector of n unsigned integers.
+- _uvecn_: n 個無符號整型分量的向量
+- _dvecn_: a vector of n double components.
+- _dvecn_: n 個雙浮點型分量的向量
 
 Most of the time we will be using the basic vecn since floats are sufficient for most of our purposes.
 
+大多數時候，我們使用 vecn，因為浮點型適用於大部分情況。
+
 Components of a vector can be accessed via vec.x where x is the first component of the vector. You can use .x, .y, .z and .w to access their first, second, third and fourth component respectively. GLSL also allows you to use rgba for colors or stpq for texture coordinates, accessing the same components.
 
+向量的分量可以通過 vec.x 來訪問，這裡 x 是向量的第一個分量。你可以使用 .x, .y, .z 以及 w 分別訪問它們的第二個、第三個 以及第四個分量。 GLSL 也允許你針對色值使用 rgba，或著針對文理座標使用 stpq，訪問到相同的分量。
+
 The vector datatype allows for some interesting and flexible component selection called swizzling. Swizzling allows us to use syntax like this:
+
+向量使你能夠進行一些有趣和靈活的分量選擇，稱之為 swizzling。Swizzling 允許我們使用類似以下語法：
 
 ```cpp
 vec2 someVec;
@@ -78,6 +111,8 @@ vec4 otherVec = someVec.xxxx + anotherVec.yxzy;
 
 You can use any combination of up to 4 letters to create a new vector (of the same type) as long as the original vector has those components; it is not allowed to access the .z component of a vec2 for example. We can also pass vectors as arguments to different vector constructor calls, reducing the number of arguments required:
 
+你可以使用至多 4 的字母的組合來創建一個新的向量 （相同的類型），只要原向量有這些分量；舉個例子，訪問 vec2 類型向量的 z 分量是不被允許的。我們同樣可以將向量作為參數傳入其它向量的構造函數，以減少所需參數的數量：
+
 ```cpp
 vec2 vect = vec2(0.5, 0.7);
 vec4 result = vec4(vect, 0.0, 0.0);
@@ -85,6 +120,8 @@ vec4 otherResult = vec4(result.xyz, 1.0);
 ```
 
 Vectors are thus a flexible datatype that we can use for all kinds of input and output. Throughout the book you'll see plenty of examples of how we can creatively manage vectors.
+
+向量因此是一種非常靈活的數據類型，我們將其用於個鐘輸入和輸出。這本書，你講會看到大量關於我們如何創意性地使用向量的例子。
 
 ## Ins and outs
 

@@ -42,4 +42,35 @@ layout: with-nonav
     <a href="javascript:void(0);" style="color: #777; pointer-events: none;">结束</a>
     {% endif %}
   </div>
+  <div class="Book__Side Book__Chapters">
+    <h2>章节列表</h2>
+    <ul>
+      {%
+      assign pathSegments = page.url | split: '/';
+      assign zhulanName = pathSegments[1] === 'opengl' ? 'opengl' : 'patterns'
+      %}
+      {% for chapter in site[zhulanName] %}
+        <li>
+          <a href="{{chapter.url}}">{{chapter.chapter}}：{{chapter.title}}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="Book__Side Book__Chapter_Menu">
+    <script>
+      {
+        const bookContent = document.querySelector('.Book__Content');
+        const h2h3 = bookContent.querySelectorAll('h2, h3');
+
+        document.writeln('<h2>目录</h2>');
+        document.writeln('<ul>');
+        h2h3.forEach((el) => {
+          const text = el.textContent;
+          const id = el.id || text.replace(/\s+/g, '-').toLowerCase();
+          document.writeln(`<li class="${el.tagName}"><a href="#${id}">${text}</a></li>`);
+        })
+        document.writeln('</ul>');
+      }
+    </script>
+  </div>
 </div>
