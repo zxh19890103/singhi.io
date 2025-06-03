@@ -74,10 +74,10 @@ layout: with-nonav
     <ul>
       {% assign pathSegments = page.url | split: '/'; %}
       {% assign zhulanName =
-      pathSegments[1] === 'opengl' ? 'opengl' : 'patterns' %} {% for chapter in
-      site[zhulanName] %}
+      pathSegments[1] == 'opengl' ? 'opengl' : 'patterns' %}
+      {% for chapter in site[zhulanName] %}
       <li>
-        <a href="{{chapter.url}}">{{chapter.chapter}}：{{chapter.title}}</a>
+        <a href="{{chapter.url}}" class="{% if page.path == chapter.path %}disabled{% else %}normal{% endif %}">{{chapter.chapter}}：{{chapter.title}}</a>
       </li>
       {% endfor %}
     </ul>

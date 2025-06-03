@@ -177,14 +177,15 @@
 				line-height: 1.5;
 			}
 		}
-	}
 
-	&__body,
-	.Book__Content {
 		a {
 			text-decoration-line: underline;
 			text-underline-offset: 0.2em;
 			text-decoration-thickness: 1px;
+			&:hover {
+				color: var(--link-active-color);
+				text-decoration-color: var(--link-active-color);
+			}
 		}
 	}
 
@@ -204,8 +205,11 @@
 
 		a {
 			color: #fff;
+			text-underline-offset: 0.2em;
+			text-decoration-thickness: 1px;
 			&:hover {
 				color: #999;
+				text-decoration: underline;
 			}
 		}
 
@@ -220,6 +224,12 @@
 		left: 15px;
 		transform: translate(-100%, 0);
 
+		a.disabled {
+			pointer-events: none;
+			color: #999;
+			text-decoration: underline;
+		}
+
 		&:hover {
 			transform: translateX(-15px);
 		}
@@ -233,7 +243,7 @@
 
 		.H3 {
 			padding-left: 1em;
-			font-size: 0.90em;
+			font-size: 0.9em;
 		}
 
 		&:hover {
