@@ -4,6 +4,7 @@ chapter: 三
 short: 在我们开始创建令人惊叹的图形之前，首先需要做的事情是创建一个 OpenGL 上下文和一个应用窗口来进行绘制。
 title: 开始 &bull; 创建一个窗口
 category: tech
+src: https://learnopengl.com/Getting-started/Creating-a-window
 date: 2025-02-19
 ---
 

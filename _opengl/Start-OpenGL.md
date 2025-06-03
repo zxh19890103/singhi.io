@@ -3,6 +3,7 @@ layout: bookdetail
 chapter: 二
 short: 在开始我们的旅程之前，我们首先应该定义一下 OpenGL 实际上是什么。
 title: 开始 &bull; 认识 OpenGL
+src: https://learnopengl.com/Getting-started/OpenGL
 category: tech
 date: 2025-02-18
 ---
