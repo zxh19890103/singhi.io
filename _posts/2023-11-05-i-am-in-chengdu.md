@@ -2,6 +2,7 @@
 layout: post
 title: 我在成都
 short: 我在成都
+category: journal
 ---
 
 辞职已经两个月有余，九月份去了次厦门，而整个十月份，我都在中国西南的各个城市里闲逛。
