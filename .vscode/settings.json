@@ -1,13 +1,13 @@
 {
-  "editor.fontFamily": "Chalkboard SE, 'Heiti TC', 'Wawati TC', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "Chalkboard SE, 'Hannotate TC', 'Heiti TC', 'Wawati TC', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 16,
   "editor.formatOnSave": false,
   "editor.fontLigatures": true,
   "prettier.useEditorConfig": true,
-  "editor.minimap.enabled": false,
+  "editor.minimap.enabled": true,
   "editor.fontWeight": "300",
-  "window.zoomLevel": 1,
-  "workbench.colorTheme": "Atom One Dark",
+  "window.zoomLevel": 2,
+  "workbench.colorTheme": "Atom One Light",
   "files.exclude": {
     "**/node_modules": true
   }

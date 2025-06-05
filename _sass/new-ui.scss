@@ -240,14 +240,29 @@
 		top: 0;
 		right: 15px;
 		transform: translate(100%, 0);
+		&:hover {
+			transform: translateX(15px);
+		}
+
+		li.highlighted {
+			position: relative;
+			&::before {
+				content: "";
+				display: block;
+				width: 2rem;
+				background: aquamarine;
+				height: 100%;
+				border-top-right-radius: 50%;
+				border-bottom-right-radius: 50%;
+				position: absolute;
+				left: -3.5rem;
+				top: 0px;
+			}
+		}
 
 		.H3 {
 			padding-left: 1em;
 			font-size: 0.9em;
-		}
-
-		&:hover {
-			transform: translateX(15px);
 		}
 	}
 
