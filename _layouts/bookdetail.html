@@ -15,28 +15,32 @@ layout: with-nonav
         justify-content: flex-start;
         margin-bottom: 2rem;
       ">
-      <a href="javascript:void();" onclick="__goBackToIndex();">&larr;</a>
+      <a href="javascript:void();" style="color: #333;" title="返回到列表" onclick="__goBackToIndex();">
+        &larr;
+      </a>
 
       {% if page.src %}
-      <a href="{{page.src}}" target="_blank" rel="noopener noreferrer">🔗</a>
+      <a href="{{page.src}}" title="關聯文章" target="_blank" rel="noopener noreferrer">
+        𝕃
+      </a>
       {% endif %}
 
-      <a title="X share" rel="noopener noreferrer"
+      <a title="X(twitter) share" rel="noopener noreferrer"
         href="https://x.com/intent/tweet?url=https%3A//www.zhangxinghai.cn{{ page.url }}" target="_blank">𝕏</a>
 
-      <a title="X share" rel="noopener noreferrer" href="javascript:void(0);"
+      <a title="Webchat(vx) touch" rel="noopener noreferrer" href="javascript:void(0);"
         onclick="showPhotoModal('https://zxh1989.oss-cn-qingdao.aliyuncs.com/20181105/151627_71615.jpg'); return false;"
-        target="_blank">💬</a>
+        target="_blank">𝕍</a>
 
       {% if page.editing %}<span style="color: rgb(143, 95, 7)">狀態：編輯中</span>{% endif %}
 
-      <span>发布时间：{{page.date | date: "%Y-%m-%d"}}</span>
+      <span>發布時間：{{page.date | date: "%Y-%m-%d"}}</span>
 
       {% assign words = page.content | number_of_words %}{% assign
       minutes_float = words | divided_by:200.0 %} {% assign minutes =
       minutes_float | ceil %}
 
-      <span>阅读时间：{{ minutes }} 分鐘</span>
+      <span>閱讀時間：{{ minutes }} 分鐘</span>
     </div>
   </div>
   <div id="Book__Content" class="Book__Content">{{content}}</div>
@@ -53,7 +57,7 @@ layout: with-nonav
     {% endif %}
   </div>
   <div class="Book__Side Book__Chapters">
-    <h2>章节列表</h2>
+    <h2>章節</h2>
     <ul>
       {% assign pathSegments = page.url | split: '/'; %}
       {% assign zhulanName =
