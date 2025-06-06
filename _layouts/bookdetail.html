@@ -15,12 +15,12 @@ layout: with-nonav
         justify-content: flex-start;
         margin-bottom: 2rem;
       ">
-      <a href="javascript:void();" style="color: #333;" title="返回到列表" onclick="__goBackToIndex();">
+      <a href="javascript:void();" style="color: #333;" title="Go back to the list page." onclick="__goBackToIndex();">
         &larr;
       </a>
 
       {% if page.src %}
-      <a href="{{page.src}}" title="關聯文章" target="_blank" rel="noopener noreferrer">
+      <a href="{{page.src}}" title="Go to the source/related article." target="_blank" rel="noopener noreferrer">
         𝕃
       </a>
       {% endif %}
@@ -28,7 +28,7 @@ layout: with-nonav
       <a title="X(twitter) share" rel="noopener noreferrer"
         href="https://x.com/intent/tweet?url=https%3A//www.zhangxinghai.cn{{ page.url }}" target="_blank">𝕏</a>
 
-      <a title="Webchat(vx) touch" rel="noopener noreferrer" href="javascript:void(0);"
+      <a title="Wechat(VX for short, a stupid/terrible IM platform designed and controlled by China.) touch." rel="noopener noreferrer" href="javascript:void(0);"
         onclick="showPhotoModal('https://zxh1989.oss-cn-qingdao.aliyuncs.com/20181105/151627_71615.jpg'); return false;"
         target="_blank">𝕍</a>
 
@@ -78,19 +78,29 @@ layout: with-nonav
         const bookContent = document.querySelector("#Book__Content")
         const h2h3 = bookContent.querySelectorAll("h2, h3")
 
-        document.writeln("<h2>目录</h2>")
+        document.writeln("<h2>目錄</h2>")
         document.writeln("<ul id='Book__Chapter_Menu__List'>")
-        h2h3.forEach((el) => {
+        h2h3.forEach((el, n) => {
           const text = el.textContent
           const id = el.id || text.replace(/\s+/g, "-").toLowerCase()
           document.writeln(
-            `<li class="${el.tagName}"><a href="#${id}">${text}</a></li>`
+            `<li class="${el.tagName}"><a data-index="${n}" href="#${id}">${text}</a></li>`
           )
         })
         document.writeln("</ul>")
 
         setTimeout(() => {
-          const listitems = document.querySelectorAll("#Book__Chapter_Menu__List li")
+          const Book__Chapter_Menu__List = document.querySelector("#Book__Chapter_Menu__List");
+
+          Book__Chapter_Menu__List.addEventListener('click', (evt) => {
+            if (evt.target.tagName === 'A') {
+              const n = + evt.target.getAttribute("data-index");
+              h2h3_highlighted(n);
+            }
+          });
+
+          const listitems = Book__Chapter_Menu__List.querySelectorAll("#Book__Chapter_Menu__List li")
+
           h2h3_highlighted = (n) => {
             listitems.forEach((li, i) => {
               if (i === n) {

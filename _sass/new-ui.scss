@@ -414,8 +414,9 @@
 		display: block;
 		margin: 0 auto;
 		min-height: 0;
-		border: 1px solid #ddd;
+		border: 1px dashed #ddd;
 		border-radius: 2px 3px;
+		padding: 4px;
 		// background-image: linear-gradient(to bottom, #fff, #666);
 	}
 
