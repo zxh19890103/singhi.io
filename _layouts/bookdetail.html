@@ -58,15 +58,15 @@ layout: with-nonav
         >𝕍</a
       >
 
-      {% if page.editing %}<span style="color: rgb(143, 95, 7)"
-        >狀態：編輯中</span
-      >{% endif %}
+      {% if page.editing %}
+        <span style="color: rgb(143, 95, 7)">狀態：編輯中</span>
+      {% endif %}
 
       <span>發布時間：{{page.date | date: "%Y-%m-%d"}}</span>
 
-      {% assign words = page.content | number_of_words: "auto" %} {% assign
-      minutes_float = words | divided_by:200.0 %} {% assign minutes =
-      minutes_float | ceil %}
+      {% assign words = page.content | number_of_words: "auto" %}
+      {% assign minutes_float = words | divided_by:200.0 %}
+      {% assign minutes = minutes_float | ceil %}
 
       <span>閱讀時間：{{ minutes }} 分鐘</span>
     </div>
@@ -83,21 +83,19 @@ layout: with-nonav
     {% if page.previous %}
     <a href="{{page.previous.url}}">上一章：{{page.previous.title}}</a>
     {% else %}
-    <a href="javascript:void(0);" style="color: #777; pointer-events: none"
-      >开始</a
-    >
-    {% endif %} {% if page.next %}
+    <a href="javascript:void(0);" style="color: #777; pointer-events: none">开始</a>
+    {% endif %}
+    
+    {% if page.next %}
     <a href="{{page.next.url}}">下一章：{{page.next.title}}</a>
     {% else %}
-    <a href="javascript:void(0);" style="color: #777; pointer-events: none"
-      >结束</a
-    >
+    <a href="javascript:void(0);" style="color: #777; pointer-events: none">结束</a>
     {% endif %}
   </div>
   <div class="Book__Side Book__Chapters">
     <h2>章節</h2>
     <ul>
-      {% for chapter in site[page.book]  | sort_by: 'date' %}
+      {% for chapter in site[page.book] %}
       <li>
         <a
           href="{{chapter.url}}"
