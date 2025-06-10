@@ -10,33 +10,21 @@ math: 1
 editing: 1
 ---
 
-We now know how to create objects, color them and/or give them a detailed appearance using textures, but they're still not that interesting since they're all static objects. We could try and make them move by changing their vertices and re-configuring their buffers each frame, but that's cumbersome and costs quite some processing power. There are much better ways to transform an object and that's by using (multiple) matrix objects. This doesn't mean we're going to talk about Kung Fu and a large digital artificial world.
+我們現在知道如何創建物件，為它們上顏色，以及如何使用紋理為它們的外觀填充細節。然而，它們至今還是有些無趣，因為它們都是靜止的。我們將嘗試一種新的作法，通過在每一個幀修改它們的頂點以及對它們的緩衝數據進行重新配置來使它們“動”起來，然爾這似乎是一件繁重的任務，同時也會消耗相當多的處理資源。存在一種更好的辦法以變換一個物件，就是使用一個或者多個矩陣對象。這不意味著我們將討論功夫或者什麼數字人工世界之類的玩意。
 
-我們現在知道如何創建物件，為它們上顏色，以及如何使用紋理為它們的外觀填充細節，但它們至今還是有些無趣，因為它們都是靜止的。我們將嘗試通過在每一個幀，修改它們的頂點以及對它們的緩衝數據進行重新配置，來使它們動起來，然爾那看起來是一件繁重的任務，也會消耗相當的處理效能。存在更好的辦法去變換一個物件，那就是使用多個矩陣。這不意味著我們將討論功夫或者什麼數字人工世界。
+矩陣是一種非常強大的數學工具，雖然它初一看上去有些恐怖，但只要你對它們逐漸熟悉，它們將變得非常有用。當我們討論矩陣的時候，我們必須稍微深入地去了解一點數學知識。針對那些對數學更有興趣的讀者，我將補充材料放在文章的最後以供你們擴展閱讀。
 
-Matrices are very powerful mathematical constructs that seem scary at first, but once you'll grow accustomed to them they'll prove extremely useful. When discussing matrices, we'll have to make a small dive into some mathematics and for the more mathematically inclined readers I'll post additional resources for further reading.
+然爾，要完全掌握變換（transformation），在討論矩陣之前，我們首先還必須深入地了解一下向量。這一章的核心關注點是給予你一些基礎的數學知識，以備後續之用。如果主題有些複雜，嘗試儘可能多地去理解，後邊任何時候，如果你需要重新溫習這些概念和知識，可以回到這一章再看看。
 
-矩陣是一種非常強大的數據工具，雖然它看上去有些恐怖，但是一旦你對它逐漸熟練，它們將變得非常有用。當我們討論矩陣的時候，我們必須稍微深入地了解一些數學知識，對於對此更有興趣的讀者，我將補充材料放在最後以供你們閱讀。
+## 向量
 
-However, to fully understand transformations we first have to delve a bit deeper into vectors before discussing matrices. The focus of this chapter is to give you a basic mathematical background in topics we will require later on. If the subjects are difficult, try to understand them as much as you can and come back to this chapter later to review the concepts whenever you need them.
+就大部分基本定義來說，向量就是一些“方向”，再無別的什麼含義。一個向量有一個方向以及一個量（也被稱為強度或著長度）。你可以將向量想像為“藏寶圖”上的指引箭頭：“向左行 10 步，現在，向北行 3 步，然後向右行 5 步”；這裡，“左”就是方向，爾“10 步”就是這個向量的大小。藏寶圖上因此有 3 個向量。向量可以具備任意多的緯度，但我們通常使用 2 到 4 維。如果一個向量有 2 維，它就可以表示平面（想想一個 2D 圖）上的一個方向，爾當它有 3 個緯度的時候，它可以表示 3D 世界的任意方向。
 
-然爾，要完全掌握變換（transformation），在討論矩陣之前，我們首先必須深入地了解向量（矢量）。這一章的核心關注點是給予你基礎一些數學知識，以備後續之用。如果主題有些複雜，嘗試儘量多地理解，後邊任何時候，如果你需要重新溫習這些概念，你可以回到這一章再看看。
-
-## 矢量（向量）
-
-In its most basic definition, vectors are directions and nothing more. A vector has a direction and a magnitude (also known as its strength or length). You can think of vectors like directions on a treasure map: 'go left 10 steps, now go north 3 steps and go right 5 steps'; here 'left' is the direction and '10 steps' is the magnitude of the vector. The directions for the treasure map thus contains 3 vectors. Vectors can have any dimension, but we usually work with dimensions of 2 to 4. If a vector has 2 dimensions it represents a direction on a plane (think of 2D graphs) and when it has 3 dimensions it can represent any direction in a 3D world.
-
-大部分基本定義，向量就是一些方向，再無別的什麼含義。一個向量有一個方向以及一個量（也被稱為強度或著長度）。你可以將向量想像為藏寶圖上的指引箭頭：“向左行 10 步，現在，向北行 3 步，然後向右行 5 步”；這裡，“左”就是方向，爾“10 步”就是這個向量的大小。藏寶圖上的指引因此包含了 3 個向量。向量可以具備任意多的緯度，但我們通常使用 2 到 4 維。如果一個向量有 2 維，它就可以表示平面（想想一個 2D 圖）上的一個方向，爾當它有 3 個緯度的時候，它可以表示 3D 世界的任意方向。
-
-Below you'll see 3 vectors where each vector is represented with (x,y) as arrows in a 2D graph. Because it is more intuitive to display vectors in 2D (rather than 3D) you can think of the 2D vectors as 3D vectors with a z coordinate of 0. Since vectors represent directions, the origin of the vector does not change its value. In the graph below we can see that the vectors $\vec{v}$ and $\vec{w}$ are equal even though their origin is different:
-
-以下，我們看到 3 個向量，每一個都使用 $(x,y)$ 表示 2D 圖上的一個箭頭。由於在 2D 空間顯示向量比在 3D 要更直觀，你可以將 2D 向量看作 z = 0 時的 3D 向量。因為向量表示方向，其起點不會改變它的值。在下圖中，我們可以看到向量 $\vec{v}$ and $\vec{w}$ 是相等的，雖然它們的起始點不同。
+以下，我們看到 3 個向量，每一個都使用 $(x,y)$ 表示 2D 圖上的一個箭頭。由於在 2D 空間顯示向量比在 3D 要更直觀，你可以將 2D 向量看作 $z=0$ 情况下的 3D 向量。因為向量表示方向，其起點不會改變它的值。在下圖中，我們可以看到向量 $\vec{v}$ 和 $\vec{w}$ 是相等的，雖然它們的起始點不同。
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors.png" %}
 
-When describing vectors mathematicians generally prefer to describe vectors as character symbols with a little bar over their head like $\vec{v}$. Also, when displaying vectors in formulas they are generally displayed as follows:
-
-當描述向量的時候，數學家更喜歡將它們表述為一個字符符號，使用一個 hat，像這樣 $\vec{v}$。同時，當在公式裡書寫向量的時候，它們通常如此寫成這樣：
+當描述向量的時候，數學家更喜歡將它們表述為一個字符符號，使用一個帽子，像這樣 $\vec{v}$。同時，當在公式裡書寫向量的時候，它們通常寫成這樣：
 
 ```math
 \vec{v}=\begin{pmatrix}
@@ -46,17 +34,11 @@ z\\
 \end{pmatrix}
 ```
 
-Because vectors are specified as directions it is sometimes hard to visualize them as positions. If we want to visualize vectors as positions we can imagine the origin of the direction vector to be (0,0,0) and then point towards a certain direction that specifies the point, making it a position vector (we could also specify a different origin and then say: 'this vector points to that point in space from this origin'). The position vector (3,5) would then point to (3,5) on the graph with an origin of (0,0). Using vectors we can thus describe directions and positions in 2D and 3D space.
+由於向量被定義為方向，有時候很難像位置那样對它們進行可視化。如果我們要將它們按照位置的方式進行可視化，我們可以將它們的起點設想為 $(0,0,0)$，然後指向一個特定的方向，使得它成為一個位置向量（我們也可以指定一個不同的起點，然後說：這個向量從此起點出發指向空間中的那個點）。這樣，位置向量 $(3,5)$ 就可以在圖上指向 $(3,5)$，它的起點是 $(0,0)$。使用向量，我們就可以在 2D 和 3D 空間裡描述方向和位置。
 
-由於向量被定義為方向，有時候很難對它們進行像位置那樣可視化。入閣我們要將它們按照位置的方式進行可視化，我們可以將它們的起點設想為 (0,0,0)，然後使它指向一個特定的方向，使得它成為一個位置向量（我們也可以指定一個不同的起點，然後說：這個向量從此起點出發指向空間中的那個點）。點向量 (3,5) 這樣就可以在圖上指向 (3,5)，它的起點是 (0,0)。使用向量，我們於是可以在 2D 和 3D 空間裡描述方向和位置。
-
-Just like with normal numbers we can also define several operations on vectors (some of which you've already seen).
-
-和普通的數一樣，我們也可以為向量定義若干操作方法（其中有些你已經看到了）。
+和普通的數一樣，我們也可以為向量定義若干操作方法（其中有些你已經了解）。
 
 ### 標量/向量操作（Scalar/Vector Operations）
-
-A scalar is a single digit. When adding/subtracting/multiplying or dividing a vector with a scalar we simply add/subtract/multiply or divide each element of the vector by the scalar. For addition it would look like this:
 
 標量，是一個單體數字。當使一個向量對一個標量執行加/減/乘或著除的操作，我們簡單地對向量的每一個分量執行這些“標量”操作。對于“加”，它看上去就是：
 
@@ -85,15 +67,11 @@ x\\
 \end{pmatrix}}
 ```
 
-Where $+$ can be $+$ ,$-$ ,$\cdot$ or $\div$ where $\cdot$ is the multiplication operator.
-
 這裡，$+$ 可以是 $+$ ,$-$ ,$\cdot$ 或著 $\div$，其中 $\cdot$ 是乘法運算。
 
 ### 向量取反（Vector negation）
 
-Negating a vector results in a vector in the reversed direction. A vector pointing north-east would point south-west after negation. To negate a vector we add a minus-sign to each component (you can also represent it as a scalar-vector multiplication with a scalar value of -1):
-
-將一個向量取反後得到另一個向量，它和原向量方向相反。一個向量指向東北，取反之後，它將指向西南。要對一個向量取反，我們對其每一個分量加負號（我們也可以將其表述為一個*標量-向量*的乘法操作，乘 -1）：
+將一個向量取反，得到另一個向量，它和原向量方向相反。比如，一個向量指向東北，取反之後，它將指向西南。要對一個向量取反，我們對其每一個分量加負號（我們也可以將其表述為一個*標量-向量*的乘法操作，乘 -1 即可）：
 
 ```math
 -{\vec v} =
@@ -112,9 +90,7 @@ v_z\\
 
 ### 加法和減法
 
-Addition of two vectors is defined as component-wise addition, that is each component of one vector is added to the same component of the other vector like so:
-
-對兩個向量執行加法，被定義為對每個分量進行加法操作，也就是，使向量的每個分量加上另一個向量的同等分量，就像：
+對兩個向量執行加法，被定義為，對向量的每個分量執行加法操作，也就是，使向量的每個分量加上另一個向量的同等分量，就像：
 
 ```math
 {\vec v}=
@@ -128,13 +104,9 @@ Addition of two vectors is defined as component-wise addition, that is each comp
 {\begin{pmatrix} 5\\ 7\\ 9\\ \end{pmatrix}}
 ```
 
-Visually, it looks like this on vectors $v=(4,2)$ and $k=(1,2)$, where the second vector is added on top of the first vector's end to find the end point of the resulting vector (head-to-tail method):
-
-視覺效果上來看，下圖看起來像是向量 $v=(4,2)$ 和 $k=(1,2)$ 的相加，其中第二個向量從第一個向量的終點開始接續，藉此找出結果向量的終點位置（這就是「首尾相接法」）。
+視覺效果上來看，下圖看起來像是向量 $\vec{v}=(4,2)$ 和 $\vec{k}=(1,2)$ 的相加，其中第二個向量從第一個向量的終點開始接續，藉此找出結果向量的終點位置（這就是「首尾相接法」）。
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors_addition.png" %}
-
-Just like normal addition and subtraction, vector subtraction is the same as addition with a negated second vector:
 
 和常規的加法、減法一樣，向量的減法就是對取反後的第二個向量執行加法運算：
 
@@ -150,31 +122,23 @@ Just like normal addition and subtraction, vector subtraction is the same as add
 {\begin{pmatrix} -3\\ -3\\ -3\\ \end{pmatrix}}
 ```
 
-Subtracting two vectors from each other results in a vector that's the difference of the positions both vectors are pointing at. This proves useful in certain cases where we need to retrieve a vector that's the difference between two points.
-
-兩個向量相減得到一個新向量，它是兩個向量所指位置的差。在我們需要獲取一個向量，它為兩個位置之差時，這種方式非常有用。
+兩個向量相減得到一個新向量，它是兩個向量所指位置的差。在我們需要獲取一個向量，并希望它是兩個位置之差時，這種方式非常有用。
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors_subtraction.png" %}
 
 ### 長度
 
-To retrieve the length/magnitude of a vector we use the Pythagoras theorem that you may remember from your math classes. A vector forms a triangle when you visualize its individual **x** and **y** component as two sides of a triangle:
-
-要得到一個向量的 長度/大小 的時候，我們使用 Pythagoras 理論，這個理論你或許在你的數學課上聽說過。當你將一個向量的 x 和 y 分量視為兩個邊，它可以形成一個三角形：
+要得到一個向量的長度/大小，我們使用 Pythagoras 理論，這個理論你或許在你的數學課上聽說過。當你將一個向量的 x 和 y 分量視為兩個邊，它會形成一個三角形：
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors_triangle.png" %}
 
-Since the length of the two sides $(x, y)$ are known and we want to know the length of the tilted side $\vec{v}$ we can calculate it using the Pythagoras theorem as:
-
-由於兩邊 x, y 的長度已知，我們需要知道標記以 $\vec{v}$ 的這條邊的長度，可以使用 Pythagoras 理論計算：
+由於兩個邊 $(x, y)$ 的長度已知，我們需要知道標記以 $\vec{v}$ 的這條邊的長度，可以使用 Pythagoras 理論計算：
 
 ```math
 \lVert{\vec{v}}\rVert={\sqrt{x^2 + y^2}}
 ```
 
-Where $\lVert{\vec{v}}\rVert$ is denoted as the length of vector $\vec{v}$. This is easily extended to 3D by adding $z^2$ to the equation. In this case the length of vector $(4, 2)$ equals:
-
-這裡，$\lVert{\vec{v}}\rVert$ 表示向量 $\vec{v}$ 的長度。通過向此式子加上 $z^2$，很容易將其擴展為 3D 的情境。這個例子當中，向量 $(4, 2)$ 的長度等於：
+這裡，$\lVert{\vec{v}}\rVert$ 表示向量 $\vec{v}$ 的長度。通過向此算式加上 $z^2$，很容易將其擴展為 3D 的情境。這個例子中，向量 $(4, 2)$ 的長度等於：
 
 ```math
 \lVert{\vec{v}}\rVert=
@@ -185,13 +149,9 @@ Where $\lVert{\vec{v}}\rVert$ is denoted as the length of vector $\vec{v}$. This
 =4.47
 ```
 
-Which is **4.47**.
-
 結果是 **4.47**。
 
-There is also a special type of vector that we call a unit vector. A unit vector has one extra property and that is that its length is exactly `1`. We can calculate a unit vector $\hat{n}$ from any vector by dividing each of the vector's components by its length:
-
-有一種特殊向量，我們稱為單位向量。一個單位向量較普通向量有一個額外的屬性，那就是它的長度剛好是 1。我們可以通過對任意向量的每個分量分別除以此向量的長度，得到它的單位向量 $\hat{n}$。
+有一種特殊向量，我們稱為單位向量。一個單位向量較普通向量有一個額外的屬性，那就是它的長度剛好是 **1**。我們可以通過對向量的三個分量除以此向量的長度，得到它的單位向量 $\hat{n}$。
 
 ```math
 \hat{n}
@@ -199,21 +159,15 @@ There is also a special type of vector that we call a unit vector. A unit vector
 \frac{\vec{v}}{\lVert{\vec{v}}\rVert}
 ```
 
-We call this normalizing a vector. Unit vectors are displayed with a little roof over their head and are generally easier to work with, especially when we only care about their directions (the direction does not change if we change a vector's length).
-
-我們將這個操作稱為“向量單位化”。單位向量的寫法是在其頭頂加一個屋頂，它們通常很有用處，特別是在我們僅僅關注它們的方向時（我們改變向量的長度，其方向始終保持不變）。
+我們將這個操作稱為“向量單位化”。單位向量的寫法是在其頭頂加一個帽子。它們通常很有用處，特別是在我們只關注向量方向時（我們改變向量的長度，其方向始終保持不變）。
 
 ### 向量-向量乘法（Vector-vector multiplication）
 
-Multiplying two vectors is a bit of a weird case. Normal multiplication isn't really defined on vectors since it has no visual meaning, but we have two specific cases that we could choose from when multiplying: one is the dot product denoted as $\vec{v} \cdot \vec{k}$ and the other is the cross product denoted as $\vec{v} \times \vec{k}$.
+兩個向量的乘法有些奇怪。常規的乘法並未在向量操作裡定義，因為它不具備視覺上的意義，但是有兩種乘法可供我們選擇：其一是 `dot product`，表述為 $\vec{v} \cdot \vec{k}$，另一個是 `cross product`，表述為 $\vec{v} \times \vec{k}$。
 
-兩個向量的乘法有些奇怪。常規的乘法並未在向量操作裡定義，因為它不具備視覺上的意義，但是有兩個乘法可供我們選擇：其一是 `dot product`，表述為 $\vec{v} \cdot \vec{k}$，另一個是 `cross product`，表述為 $\vec{v} \times \vec{k}$。
+**點積（Dot product）**
 
-**點乘（Dot product）**
-
-The dot product of two vectors is equal to the scalar product of their lengths times the cosine of the angle between them. If this sounds confusing take a look at its formula:
-
-兩個向量的點乘結果等於它們長度的標量之積，再乘以二者之角的 cosine 值。如此聽上去有些困擾，那麼看一下它的公式：
+兩個向量的點積結果等於它們長度的標量之積，再乘以二者之角的 `cosine` 值。如此聽上去有些困惑，那麼看一下它的公式：
 
 ```math
 {\vec{v}} \cdot {\vec{k}}
@@ -229,9 +183,7 @@ The dot product of two vectors is equal to the scalar product of their lengths t
 \cos{\theta}
 ```
 
-Where the angle between them is represented as theta ($\theta$). Why is this interesting? Well, imagine if $\vec{v}$ and $\vec{k}$ are unit vectors then their length would be equal to 1. This would effectively reduce the formula to:
-
-其中，二者的夾角使用 theta ($\theta$) 表示。為何這很有趣呢？好，設想一下，如果 $\vec{v}$ 和 $\vec{k}$ 是單位向量，那麼它們的長度將會是 1。這可以使得上述公式顯著簡化為：
+其中，二者的夾角使用 theta ($\theta$) 表示。為何這很有趣呢？好，設想一下，如果 $\vec{v}$ 和 $\vec{k}$ 是單位向量，那麼它們的長度將會是 **1**。這可以使得上述公式顯著簡化為：
 
 ```math
 {\hat{v}} \cdot {\hat{k}}
@@ -251,20 +203,15 @@ Where the angle between them is represented as theta ($\theta$). Why is this int
 \cos{\theta}
 ```
 
-Now the dot product only defines the angle between both vectors. You may remember that the cosine or cos function becomes **0** when the angle is **90** degrees or 1 when the angle is 0. This allows us to easily test if the two vectors are **orthogonal** or **parallel** to each other using the dot product (orthogonal means the vectors are at a **right-angle** to each other). In case you want to know more about the sin or the cos functions I'd suggest the following [Khan Academy videos](https://www.khanacademy.org/math/trigonometry/basic-trigonometry/basic_trig_ratios/v/basic-trigonometry) about basic trigonometry.
-
-現在，點乘只定義了兩個向量的夾角。你或許記得，當角度是 90 度的時候，其 cosine 或著 cos 值為 0，當角度為 0 的時候，其值為 1。使用 dot product 讓我們可以很輕鬆地測試出兩個向量是**正交**或是**平行** （正交的意思是兩個向量的夾角為直角）。如果你想對 sin 和 cos 函數有更多的了解，我建議你去追尋 [Khan Academy videos](https://www.khanacademy.org/math/trigonometry/basic-trigonometry/basic_trig_ratios/v/basic-trigonometry) 裡關於“三角幾何”部分。
+現在，點積只定義了兩個向量的夾角。你或許記得，當角度是 90 度的時候，其 cosine 或著 cos 值為 0，當角度為 0 的時候，其值為 1。使用點積讓我們可以很輕鬆地測試出兩個向量是**正交**或者**平行** （正交的意思是兩個向量的夾角為直角）。如果你想對 sin 和 cos 函數有更多的了解，我建議你去追尋 [Khan Academy videos](https://www.khanacademy.org/math/trigonometry/basic-trigonometry/basic_trig_ratios/v/basic-trigonometry) 裡關於“三角幾何”部分。
 
 {% include box.html color="green" content="
-You can also calculate the angle between two non-unit vectors, but then you'd have to divide the lengths of both vectors from the result to be left with $\cos{\theta}$.
 
 你也可以計算兩個非單位向量的夾角，不過你需要對結果除以兩個向量的長度，使其只剩下 $\cos{\theta}$。
 
 " %}
 
-So how do we calculate the dot product? The dot product is a component-wise multiplication where we add the results together. It looks like this with two unit vectors (you can verify that both their lengths are exactly 1):
-
-那麼，我們該如何計算點積呢？點積的計算是將向量的每一個分量進行相乘，然後將它們加起來。對於兩個單位向量，這看上去就是（你可以驗證一下它們的長度是否都剛好是 1）：
+那麼，我們該如何計算點積呢？點積的計算是將向量的每一個分量進行相乘，然後將它們加起來。對於兩個單位向量，這看上去就是（你可以驗證一下它們的長度是否都剛好是 **1**）：
 
 ```math
 {\begin{pmatrix}
@@ -294,19 +241,13 @@ So how do we calculate the dot product? The dot product is a component-wise mult
 -0.8
 ```
 
-To calculate the degree between both these unit vectors we use the inverse of the cosine function $\cos^{-1}$ and this results in `143.1` degrees. We now effectively calculated the angle between these two vectors. The dot product proves very useful when doing lighting calculations later on.
-
-為了計算二者的夾角，我們使用 cosine 函數的逆函數 $\cos^{-1}$，它計算的結果是 `143.1` 度。我們現在成功地計算出了這兩個向量的夾角。點積在執行後邊的光線計算時非常有價值。
+為了計算二者的夾角，我們使用 cosine 函數的逆函數 $\cos^{-1}$，它計算的結果是 `143.1` 度。我們現在成功地計算出了這兩個向量的夾角。點積在進行後邊的光線計算時非常有價值。
 
 **叉積（Cross product）**
-
-The cross product is only defined in 3D space and takes two non-parallel vectors as input and produces a third vector that is orthogonal to both the input vectors. If both the input vectors are orthogonal to each other as well, a cross product would result in 3 orthogonal vectors; this will prove useful in the upcoming chapters. The following image shows what this looks like in 3D space:
 
 叉積的定義是，在 3D 空間，它使用兩個向量作為輸入，然後產生第三個向量，它與輸入的兩個向量均呈正交關係。如果兩個輸入向量也是正交關係，那麼三個向量相互正交；這在後續的章節裡非常有用。下圖顯示出這種計算在 3D 空間裡的呈現：
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors_crossproduct.png" %}
-
-Unlike the other operations, the cross product isn't really intuitive without delving into linear algebra so it's best to just memorize the formula and you'll be fine (or don't, you'll probably be fine as well). Below you'll see the cross product between two orthogonal vectors **A** and **B**:
 
 和其它操作不同的是，叉積不那麼直觀，除非你深入研究一下線性代數相關知識，因此最好就是記下這個公式，這樣沒有問題（或著不記住它，那麼沒啥關係）。以下，你將看到兩個正交向量 **A** 和 **B** 的叉積：
 
@@ -330,15 +271,11 @@ A_x \cdot B_y - A_y \cdot B_x \\
 \end{pmatrix}
 ```
 
-As you can see, it doesn't really seem to make sense. However, if you just follow these steps you'll get another vector that is orthogonal to your input vectors.
-
 如你所見，這似乎沒啥意義。然爾，如果你僅僅按照這些步驟去做，你可以得到一個與你所輸入向量均正交的一個向量。
 
-## Matrices
+## 矩陣（Matrices）
 
-Now that we've discussed almost all there is to vectors it is time to enter the matrix! A matrix is a rectangular array of numbers, symbols and/or mathematical expressions. Each individual item in a matrix is called an element of the matrix. An example of a **2x3** matrix is shown below:
-
-現在，我們已經討論了幾乎全部的向量相關的內容，是時候進入到矩陣主題了。矩陣是一個數字的矩形陣列，一種符號，或著一種數學表達。其中的每一個項被稱為矩陣的“元素”。一個 $2\times3$ 矩陣的例子如下：
+現在，我們已經討論了幾乎全部的向量相關的內容，是時候進入到矩陣主題了。矩陣是一個數字的矩形陣列，一種符號，或著一種數學表達。其中的每一項被稱為矩陣的“元素”。一個 $2\times3$ 矩陣的例子如下：
 
 ```math
 \begin{bmatrix}
@@ -347,25 +284,17 @@ Now that we've discussed almost all there is to vectors it is time to enter the 
 \end{bmatrix}
 ```
 
-Matrices are indexed by $(i, j)$ where i is the row and j is the column, that is why the above matrix is called a $2\times3$ matrix (3 columns and 2 rows, also known as the dimensions of the matrix). This is the opposite of what you're used to when indexing 2D graphs as $(x,y)$. To retrieve the value 4 we would index it as $(2,1)$ (second row, first column).
+矩陣以 $(i, j)$ 為索引，這裡 `i` 表示行序號，`j` 表示列序號，這就是為什麼它被稱為 $2 \times 3$ 矩陣 （3 列 2 行，也被稱為矩陣的緯度）。這和你在 2D 圖中所使用的索引——比如 $(x, y)$——是相反的。要獲得數字 4，我們會將使用索引值 $(2,1)$（第二行，第一列）。
 
-矩陣以 $(i, j)$ 被索引，這裡 i 表示行序號，j 表示列序號，這就是為什麼它被稱為 $2x3$ 矩陣 （3 列以及 2 行，也被稱為矩陣的緯度）。這和你在 2D 圖中所使用的索引，比如 $(x, y)$，是相反的。要獲得數字 4，我們會將使用索引值 $(2,1)$（第二行，第一列）。
-
-Matrices are basically nothing more than that, just rectangular arrays of mathematical expressions. They do have a very nice set of mathematical properties and just like vectors we can define several operations on matrices, namely: addition, subtraction and multiplication.
-
-矩陣也就是這樣了，沒有更多，僅僅是一個數學表達上的矩形陣列。它們當然也有一套非常漂亮的數學屬性，就像向量那樣，我們可以針對矩陣定義若干操作，叫做：加法、減法以及乘法。
+矩陣也就是如此，沒有更多，僅僅是一個數學表達上的矩形陣列。它們當然也有一套非常漂亮的數學屬性，就像向量那樣，我們可以針對矩陣定義若干操作，叫做：加法、減法以及乘法。
 
 ### 加法和減法（Addition and subtraction）
 
-Matrix addition and subtraction between two matrices is done on a per-element basis. So the same general rules apply that we're familiar with for normal numbers, but done on the elements of both matrices with the same index. This does mean that addition and subtraction is only defined for matrices of the same dimensions. A 3x2 matrix and a 2x3 matrix (or a 3x3 matrix and a 4x4 matrix) cannot be added or subtracted together. Let's see how matrix addition works on two 2x2 matrices:
-
-矩陣的加法和減法用於兩個矩陣之間，分別對每一個元素進行加減操作。所以，我們熟悉的普通數字運算規則同樣適用，只是運算是針對兩個矩陣中具有相同索引的位置元素進行的。這也意味著加減操作只針對相同緯度的矩陣。一個 $3\times2$ 的矩陣和一個 $2\times3$ 的矩陣是不可能被加減到一起的。讓我們來看看兩個 $2\times2$ 的矩陣的加法如何進行的：
+矩陣的加法和減法用於兩個矩陣之間，分別對每一個元素進行加減操作。所以，我們熟悉的普通數字運算規則同樣適用，只是運算是針對兩個矩陣中具有相同索引的位置元素進行的。這也意味著加減操作只針對相同緯度的矩陣。一個 $3 \times 2$ 的矩陣和一個 $2 \times 3$ 的矩陣是不可能被加減到一起的。讓我們來看看兩個 $2 \times 2$ 的矩陣的加法是如何進行的：
 
 ```math
 \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} + \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix} = \begin{bmatrix} 1 + 5 & 2 + 6 \\ 3 + 7 & 4 + 8 \end{bmatrix} = \begin{bmatrix} 6 & 8 \\ {10} & {12} \end{bmatrix}
 ```
-
-The same rules apply for matrix subtraction:
 
 矩陣減法遵循相同的規則：
 
@@ -375,37 +304,22 @@ The same rules apply for matrix subtraction:
 
 ### 矩陣-標量乘積（Matrix-scalar products）
 
-A matrix-scalar product multiples each element of the matrix by a scalar. The following example illustrates the multiplication:
-
 矩陣-標量的積的計算是，對每一個矩陣元素乘以這個標量。以下的例子演示了這種乘法：
 
 ```math
 {2} \cdot \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} = \begin{bmatrix} {2} \cdot 1 & {2} \cdot 2 \\ {2} \cdot 3 & {2} \cdot 4 \end{bmatrix} = \begin{bmatrix} 2 & 4 \\ 6 & 8 \end{bmatrix}
 ```
 
-Now it also makes sense as to why those single numbers are called scalars. A scalar basically scales all the elements of the matrix by its value. In the previous example, all elements were scaled by 2.
-
-現在我們也能理解，為什麼那些單一的數字會被稱為「標量」。一個標量本質上可以對矩陣的全部元素進行“縮放”（scales）。上一個例子中，全部元素都被放大了 2 倍。
-
-So far so good, all of our cases weren't really too complicated. That is, until we start on matrix-matrix multiplication.
+現在我們也能理解，為什麼那些單一的數字會被稱為「標量」（scalar in English）。一個標量本質上可以對矩陣的全部元素進行“縮放”（scales）。上一個例子中，全部元素都被放大了 2 倍。
 
 到目前為止一切都還算簡單，情況都不算太複雜。但這情況會改變，當我們開始進入矩陣與矩陣的相乘時就不一樣了。
 
 ### 矩陣-矩陣乘法（Matrix-matrix multiplication）
 
-Multiplying matrices is not necessarily complex, but rather difficult to get comfortable with. Matrix multiplication basically means to follow a set of pre-defined rules when multiplying. There are a few restrictions though:
-
 對矩陣進行乘法運算不必然是複雜的，但是要習慣它稍稍困難。矩陣的乘法本質上遵循了一系列預定義的規則。但有幾個限制：
 
-1. You can only multiply two matrices if the number of columns on the left-hand side matrix is equal to the number of rows on the right-hand side matrix.
-
-1. 只有黨左邊矩陣的列數和右邊矩陣的行數一致，你才能對兩個矩陣進行乘法運算。
-
-1. Matrix multiplication is not commutative that is $A \cdot B \neq B \cdot A$.
-
-1. 矩陣的乘法不遵循交換律，也就是 $A \cdot B \neq B \cdot A$。
-
-Let's get started with an example of a matrix multiplication of 2 2x2 matrices:
+1. 只有当當邊矩陣的列數和右邊矩陣的行數一致，你才能對兩個矩陣進行乘法運算。
+2. 矩陣的乘法不遵循交換律，也就是 $A \cdot B \neq B \cdot A$。
 
 我們使用兩個 $2\times2$ 的矩陣的乘法作為例子：
 
@@ -413,60 +327,40 @@ Let's get started with an example of a matrix multiplication of 2 2x2 matrices:
 \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \cdot \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix} = \begin{bmatrix} 1 \cdot 5 + 2 \cdot 7 & 1 \cdot 6 + 2 \cdot 8 \\ 3 \cdot 5 + 4 \cdot 7 & 3 \cdot 6 + 4 \cdot 8 \end{bmatrix} = \begin{bmatrix} 19 & 22 \\ 43 & 50 \end{bmatrix}
 ```
 
-Right now you're probably trying to figure out what the hell just happened? Matrix multiplication is a combination of normal multiplication and addition using the left-matrix's rows with the right-matrix's columns. Let's try discussing this with the following image:
-
 現在，或許你正嘗試理解其中發生了什麼？矩陣乘法是一種將一般的乘法與加法結合起來的運算方式，它是使用左邊矩陣的行與右邊矩陣的列進行運算的。讓我們根據下圖進一步討論：
 
 {% include img.html src="https://learnopengl.com/img/getting-started/matrix_multiplication.png" %}
 
-We first take the upper row of the left matrix and then take a column from the right matrix. The row and column that we picked decides which output value of the resulting 2x2 matrix we're going to calculate. If we take the first row of the left matrix the resulting value will end up in the first row of the result matrix, then we pick a column and if it's the first column the result value will end up in the first column of the result matrix. This is exactly the case of the red pathway. To calculate the bottom-right result we take the bottom row of the first matrix and the rightmost column of the second matrix.
+我們首先取左邊矩陣的頭部的行，然後取右邊矩陣的一列。我們選擇的行和列決定了 $2\times2$ 結果矩陣中的我們要計算的那個值。如果我們取左側矩陣的第一行，計算的值將落在結果矩陣的第一行，然後我們取一列，如果是第一列，計算的值將落在結果矩陣的第一列。這正是“紅色路徑”的情況。要計算右下角的值，我們取第一個矩陣的最後一行和第二個矩陣的最後一列。
 
-我們首先取左邊矩陣的上邊的行，然後取右邊矩陣的一列。我們選擇的行和列決定了 $2\times2$ 結果矩陣中的我們要計算的那個值。如果我們取左側矩陣的第一行，計算的值將落在結果矩陣的第一行，然後我們取一列，如果是第一列，計算的值將落在結果矩陣的第一列。這正是紅色路徑的情況。要計算右下角的值，我們取第一個矩陣的最後一行和第二個矩陣的最後一列。
+要計算出最終的值，我們對行和列的值進行普通的乘法運算，然後對第二個元素進行一樣的計算，接著是第三、第四個，如此等等。單個乘法的結果最後求和，我們拿到了結果。現在我們終於明白，為什麼左側矩陣的列和右側矩陣的行的大小必須一致，否則我們無法完成運算。
 
-To calculate the resulting value we multiply the first element of the row and column together using normal multiplication, we do the same for the second elements, third, fourth etc. The results of the individual multiplications are then summed up and we have our result. Now it also makes sense that one of the requirements is that the size of the left-matrix's columns and the right-matrix's rows are equal, otherwise we can't finish the operations!
-
-要計算結果值，我們對行和列的值進行普通的乘法運算，然後對第二個元素進行一樣的計算，接著是第三、第四個，如此等等。單個乘法的結果最後求和，我們拿到了我們的結果。現在我們也明白了，為什麼左側矩陣的列和右側矩陣的行的大小必須一致，否則我們無法完成運算。
-
-The result is then a matrix that has dimensions of (n,m) where n is equal to the number of rows of the left-hand side matrix and m is equal to the columns of the right-hand side matrix.
-
-結果我們得到了這樣的一個矩陣，它的緯度是 $(n,m)$，其中 n 和左側矩陣的行數相等，爾 m 和右側矩陣的列數相等。
-
-Don't worry if you have difficulties imagining the multiplications inside your head. Just keep trying to do the calculations by hand and return to this page whenever you have difficulties. Over time, matrix multiplication becomes second nature to you.
+結果我們得到了這樣的一個矩陣，它的緯度是 $(n,m)$，其中 `n` 和左側矩陣的行數相等，爾 `m` 和右側矩陣的列數相等。
 
 如果你對腦算其中的乘法感到些許困難，不要擔心，你可以手動去完成計算，然後在你遇到困難的時候，回來再看看這篇文章。隨著時間推移，矩陣的乘法運算對與你會變為次自然的一件事。
 
-Let's finish the discussion of matrix-matrix multiplication with a larger example. Try to visualize the pattern using the colors. As a useful exercise, see if you can come up with your own answer of the multiplication and then compare them with the resulting matrix (once you try to do a matrix multiplication by hand you'll quickly get the grasp of them).
-
-讓我們使用一個更大的例子來結束對矩陣-矩陣的乘法運算的討論吧。試著對這個計算模式進行可視化，可以藉助顏色。按照通常的練習，來看看你是否可以得出自己的答案，然後和結果矩陣比較一下（一旦你嘗試手動完成矩陣的乘法運算，你將很快掌握它們）。
+讓我們使用一個更複雜的例子來結束對矩陣-矩陣的乘法運算的討論吧。試著對這個計算方式進行可視化，可以藉助顏色。作為一種有效的練習，來看看你是否可以計算出自己的答案，然後將其和我們的結果矩陣比較一下（一旦你嘗試手動完成矩陣的乘法運算，你將很快掌握它們）。
 
 ```math
 \begin{bmatrix} 4 & 2 & 0 \\ 0 & 8 & 1 \\ 0 & 1 & 0 \end{bmatrix} \cdot \begin{bmatrix} 4 & 2 & 1 \\ 2 & 0 & 4 \\ 9 & 4 & 2 \end{bmatrix} = \begin{bmatrix} 4 \cdot 4 + 2 \cdot 2 + 0 \cdot 9 & 4 \cdot 2 + 2 \cdot 0 + 0 \cdot 4 & 4 \cdot 1 + 2 \cdot 4 + 0 \cdot 2 \\ 0 \cdot 4 + 8 \cdot 2 + 1 \cdot 9 & 0 \cdot 2 + 8 \cdot 0 + 1 \cdot 4 & 0 \cdot 1 + 8 \cdot 4 + 1 \cdot 2 \\ 0 \cdot 4 + 1 \cdot 2 + 0 \cdot 9 & 0 \cdot 2 + 1 \cdot 0 + 0 \cdot 4 & 0 \cdot 1 + 1 \cdot 4 + 0 \cdot 2 \end{bmatrix}
  = \begin{bmatrix} 20 & 8 & 12 \\ 25 & 4 & 34 \\ 2 & 0 & 4 \end{bmatrix}
 ```
 
-As you can see, matrix-matrix multiplication is quite a cumbersome process and very prone to errors (which is why we usually let computers do this) and this gets problematic real quick when the matrices become larger. If you're still thirsty for more and you're curious about some more of the mathematical properties of matrices I strongly suggest you take a look at these [Khan Academy videos](https://www.khanacademy.org/math/algebra-home/alg-matrices) about matrices.
+如你所見，矩陣-矩陣乘法運算是一種相對複雜的過程，而且非常容易出錯（這也是為什麼我們通常讓計算機來做這件事），而且隨著矩陣變大，問題的出現也會更明顯。如果你渴望了解更多的相關知識，並且你對其更多的數學特徵感到好奇，我強烈推薦你看看這些講解矩陣的[教學視頻](https://www.khanacademy.org/math/algebra-home/alg-matrices)。
 
-如你所見，矩陣-矩陣乘法運算是一種相對複雜的過程，而且非常容易出錯（這也是為什麼我們通常讓計算機來做這件事），而且隨著矩陣變大，問題的出現也會更明顯。如果你渴望更多的相關知識，而且你對其更多的數學特徵剛到好奇，我強烈推薦你看看這些講解矩陣的[教學視頻](https://www.khanacademy.org/math/algebra-home/alg-matrices)。
-
-Anyways, now that we know how to multiply matrices together, we can start getting to the good stuff.
-
-總之，我們現在知道如何將矩陣做乘法了，現在要開始討論一些有趣的內容。
+總之，我們已經知道如何對矩陣做乘法運算了，接下來要開始討論一些有趣的內容。
 
 ## 矩陣-向量乘法（Matrix-Vector multiplication）
 
-Up until now we've had our fair share of vectors. We used them to represent positions, colors and even texture coordinates. Let's move a bit further down the rabbit hole and tell you that a vector is basically a $N \times 1$ matrix where N is the vector's number of components (also known as an N-dimensional vector). If you think about it, it makes a lot of sense. Vectors are just like matrices an array of numbers, but with only 1 column. So, how does this new piece of information help us? Well, if we have a $M \times N$ matrix we can multiply this matrix with our $N \times 1$ vector, since the columns of the matrix are equal to the number of rows of the vector, thus matrix multiplication is defined.
+截止目前，我們已經接觸了不少的向量。我們使用它們來表示位置、顏色，甚至是紋理座標。讓我們再進一步，我告訴你向量其實本質上是一個 $N \times 1$ 矩陣，其中 N 是向量的分量數目（也被稱為 N 維向量）。如果你想一下，就會發現這其實是有道理的。向量其實和矩陣一樣，是一個數字排列，但是只有 **1** 列。那麼，這一信息對我們有什麼幫助呢？好，如果我們有一個 $M \times N$ 的矩陣，我們將它和一個 $N \times 1$ 的向量做乘法運算，由於矩陣的列數和向量的行數一致，矩陣乘法是合法的。
 
-截止目前，我們已經接觸了不少向量相關的知識。我們使用它們來表示位置、顏色，甚至是紋理座標。讓我們再進一步，我告訴你向量其實本質上是一個 $N \times 1$ 矩陣，其中 N 是向量的分量數目（也被稱為 N 維向量）。如果你想一下，就會發現這是有道理的。向量其實和矩陣一樣，是一個數字排列，但是只有 1 列。那麼，這一信息對我們有什麼幫助呢？好，如果我們有一個 $M \times N$ 的矩陣，我們將它和一個 $N \times 1$ 的向量做乘法運算，由於矩陣的列數和向量的行數一致，矩陣乘法是合法的。
-
-But why do we care if we can multiply matrices with a vector? Well, it just so happens that there are lots of interesting 2D/3D transformations we can place inside a matrix, and multiplying that matrix with a vector then transforms that vector. In case you're still a bit confused, let's start with a few examples and you'll soon see what we mean.
-
-但為什麼我們關注這個問題，即我們能否將一個矩陣乘以一個向量？好，之所以如此，因為存在大量有趣的 2D/3D 轉換可以使用矩陣實現，對矩陣乘以一個向量將對這個向量加以轉換。如果你依然對此有些許困惑，讓我們拿出幾個例子來，你將很快明白我們說的是什麼意思。
+然而，為什麼我們關注這個問題，即我們能否將一個矩陣乘以一個向量？是這樣的，之所以如此，因為存在大量有趣的 2D/3D 轉換可以依賴矩陣實現，讓矩陣乘以一個向量將對這個向量加以轉換。如果你依然對此有些許困惑，讓我們拿出幾個例子來，你將很快明白我們說的是什麼意思。
 
 ### 單位矩陣（Identity matrix）
 
 In OpenGL we usually work with **4x4** transformation matrices for several reasons and one of them is that most of the vectors are of size 4. The most simple transformation matrix that we can think of is the identity matrix. The identity matrix is an **NxN** matrix with only 0s except on its diagonal. As you'll see, this transformation matrix leaves a vector completely unharmed:
 
-在 OpenGL 當中，我們常常會和 $4 \times 4$ 的轉換矩陣打交道，這裡涉及一些原因，其中之一就是絕大多數向量都是 4 維的。最最簡單的轉換矩陣，我們能夠想到的，就是單位矩陣。單位矩陣是一個 $N \times N$ 的矩陣，除了對角線上的數字，其餘元素全是 0。如你即將看到，這樣的矩陣對向量完全沒有作用（不會改變向量）。
+在 OpenGL 當中，我們常常會和 $4 \times 4$ 的轉換矩陣打交道，這裡涉及一些背景，其中之一就是絕大多數向量都是 4 維的。最最簡單的轉換矩陣，我們能夠馬上想到的，就是**單位矩陣**。單位矩陣是一個 $N \times N$ 的矩陣，除了對角線上的數字，其餘元素全是 **0**。如你即將看到，這樣的矩陣對向量完全沒有作用（不會改變向量）。
 
 ```math
 \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \cdot \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix} = \begin{bmatrix} 1 \cdot 1 \\ 1 \cdot 2 \\ 1 \cdot 3 \\ 1 \cdot 4 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix}
