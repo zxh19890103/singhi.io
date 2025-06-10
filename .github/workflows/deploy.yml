@@ -18,16 +18,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18 # Adjust the version if needed
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 18 # Adjust the version if needed
 
-      - name: Install Node.js dependencies
-        run: npm install
+      # - name: Install Node.js dependencies
+      #   run: npm install
 
-      - name: Run Node.js build script
-        run: npm run build # Adjust this based on your package.json
+      # - name: Run Node.js build script
+      #   run: npm run build # Adjust this based on your package.json
 
       - name: Setup Ruby and Jekyll
         uses: ruby/setup-ruby@v1
