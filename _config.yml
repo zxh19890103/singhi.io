@@ -12,6 +12,7 @@ collections:
     output: true
   opengl:
     title: OpenGL Learning Plan
+    sort_by: sort
     output: true
   articles:
     title: 观点

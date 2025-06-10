@@ -6,6 +6,7 @@ sort: 10
 short: Inheritance should ensure that any property proved about supertype objects also holds for subtype objects.
 date: 2019-09-01
 category: tech
+book: patterns
 ---
 
 ## 里氏替换原则的定义

@@ -6,6 +6,7 @@ sort: 40
 short: The dependency of one class to another one should depend on the smallest possible interface.
 date: 2019-09-05
 category: tech
+book: patterns
 ---
 
 ## 接口隔离原则的定义

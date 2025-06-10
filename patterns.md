@@ -4,7 +4,7 @@ title: 专栏 - 设计模式
 ---
 
 <ul class="documents">
-{% for doc in site.patterns %}
+{% for doc in site.patterns | sort_by: 'date' %}
   <li class="documents__item">
     <div class="document">
       <h3>

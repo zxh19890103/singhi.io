@@ -6,6 +6,7 @@ short: High level modules should not depend upon low level modules. Both should 
 title: 依赖倒置原则（DIP）
 sort: 20
 category: tech
+book: patterns
 ---
 
 ## 依赖倒置原则的定义

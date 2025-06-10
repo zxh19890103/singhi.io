@@ -7,6 +7,7 @@ category: tech
 src: https://learnopengl.com/Getting-started/Transformations
 date: 2025-06-05
 math: 1
+book: opengl
 ---
 
 我們現在知道如何創建物件，為它們上顏色，以及如何使用紋理為它們的外觀填充細節。然而，它們至今還是有些無趣，因為它們都是靜止的。我們將嘗試一種新的作法，通過在每一個幀修改它們的頂點以及對它們的緩衝數據進行重新配置來使它們“動”起來，然爾這似乎是一件繁重的任務，同時也會消耗相當多的處理資源。存在一種更好的辦法以變換一個物件，就是使用一個或者多個矩陣對象。這不意味著我們將討論功夫或者什麼數字人工世界之類的玩意。
@@ -357,41 +358,59 @@ A_x \cdot B_y - A_y \cdot B_x \\
 
 ### 單位矩陣（Identity matrix）
 
+In OpenGL we usually work with **4x4** transformation matrices for several reasons and one of them is that most of the vectors are of size 4. The most simple transformation matrix that we can think of is the identity matrix. The identity matrix is an **NxN** matrix with only 0s except on its diagonal. As you'll see, this transformation matrix leaves a vector completely unharmed:
+
 在 OpenGL 當中，我們常常會和 $4 \times 4$ 的轉換矩陣打交道，這裡涉及一些背景，其中之一就是絕大多數向量都是 4 維的。最最簡單的轉換矩陣，我們能夠馬上想到的，就是**單位矩陣**。單位矩陣是一個 $N \times N$ 的矩陣，除了對角線上的數字，其餘元素全是 **0**。如你即將看到，這樣的矩陣對向量完全沒有作用（不會改變向量）。
 
 ```math
 \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \cdot \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix} = \begin{bmatrix} 1 \cdot 1 \\ 1 \cdot 2 \\ 1 \cdot 3 \\ 1 \cdot 4 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix}
 ```
 
+The vector is completely untouched. This becomes obvious from the rules of multiplication: the first result element is each individual element of the first row of the matrix multiplied with each element of the vector. Since each of the row's elements are 0 except the first one, we get: $1\cdot1+0\cdot2+0\cdot3+0\cdot4=1$ and the same applies for the other 3 elements of the vector.
+
 向量完全沒有改變。根據矩陣乘法規則，這顯而易見：結果裡的第一個元素為矩陣第一行的每一個元素和向量的每一個元素相乘得到的。由於矩陣第一行裡的元素除了第一個之外全部為 0，我們得到 $1\cdot1+0\cdot2+0\cdot3+0\cdot4=1$，向量的其餘三個元素應用相同的計算辦法。
 
 {% include box.html color="green" content="
+You may be wondering what the use is of a transformation matrix that does not transform? The identity matrix is usually a starting point for generating other transformation matrices and if we dig even deeper into linear algebra, a very useful matrix for proving theorems and solving linear equations.
 
-你或許會感到好奇，這樣一種對向量不做任何改變的矩陣到底有什麼用處呢？單位矩陣通常用於生成其它轉換矩陣，如果我們能夠更加深入地了解線性代數，就會知道它是一種非常有用的矩陣，用於證明理論以及解決線性方程。
-
+你或許會感到好奇，這樣一種對向量不做任何轉化的矩陣有什麼用處呢？單位矩陣通常用於生成其它轉換矩陣，如果我們能夠更加深入地了解線性代數，它是一個非常有用的矩陣，用於證明理論以及解決線性方程。
 " %}
 
 ### 縮放（Scaling）
 
-當我們縮放一個向量的時候，我們增加/縮短其長度以一個我們想要的量，爾方向保持不變。由於我們在二維或者三維空間操作，因此我們可以使用一個包含 2 個或者 3 個縮放因子的向量，使每個分量沿著對應的軸進行縮放。
+When we're scaling a vector we are increasing the length of the arrow by the amount we'd like to scale, keeping its direction the same. Since we're working in either 2 or 3 dimensions we can define scaling by a vector of 2 or 3 scaling variables, each scaling one axis (x, y or z).
 
-讓我們來對向量 $\vec{v}=(3,2)$ 進行縮放。我們將沿著 x 軸對其縮放 0.5 倍，即使其變窄一半。然後，我們沿著 y 軸縮放 2 倍，即使其變高一倍。我們來看看將向量縮放 $\vec{s} = (0.5,2)$ 之後的樣子：
+當我們縮放一個向量的時候，我們增加其長度以一個我們想要的量，爾方向保持不變。由於我們在二維或者三維空間操作，因此我們可以使用一個包含 2 個或者 3 個縮放因子的向量，使每個分量沿著對應的軸進行縮放。
+
+Let's try scaling the vector $\vec{v}=(3,2)$. We will scale the vector along the x-axis by **0.5**, thus making it twice as narrow; and we'll scale the vector by 2 along the y-axis, making it twice as high. Let's see what it looks like if we scale the vector by $(0.5,2)$ as $\vec{s}$:
+
+讓我們來對向量 $\vec{v}=(3,2)$ 進行縮放。我們將沿著 x 軸對其縮放 0.5 倍，即使其變窄一半。然後，我們沿著 y 軸縮放 2 倍，即使其變高一倍。我們來看看對向量縮放 $\vec{s} = (0.5,2)$ 之後的樣子：
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors_scale.png" %}
 
-記住，OpenGL 通常是針對 3D 空間操作的，因此對於這種 2D 的情況，我們可以設置 z 軸方向的縮放因子為 1，這對結果沒有任何影響。我們方才執行的縮放操作是一種非均勻縮放，因為縮放因子在各個軸上不相等。如果縮放因子於三個軸線相等，那麼我們可以將這樣的縮放稱為均勻縮放。
+Keep in mind that OpenGL usually operates in 3D space so for this 2D case we could set the z-axis scale to 1, leaving it unharmed. The scaling operation we just performed is a non-uniform scale, because the scaling factor is not the same for each axis. If the scalar would be equal on all axes it would be called a uniform scale.
 
-我們開始構建一個轉換矩陣，用它來為我們做縮放操作。我們從單位矩陣看到過，對角線上的每一個元素會和對應的向量元素做乘法。如果我們將單位矩陣中的 `1s` 修改為 `3s` 會怎麼樣呢？那種情況下，我們將對向量的每個元素乘以 3，因此這相當於將向量放大了 3 倍。如果我們將縮放因子表述為 $(S_1,S_2,S_3)$，可以將一個作用於任意向量 $(x,y,z)$ 的縮放矩陣定義為：
+記住，OpenGL 通常是針對 3D 空間操作的，因此對於這種 2D 的情況，我們可以設置 z 軸方向的縮放因子為 1，這對結果沒有任何影響。我們方才執行的縮放操作是一個非均勻縮放縮放，因為縮放因子在各個軸上不相等。如果縮放因子於三個軸線相等，那麼我們可以這樣的縮放稱為均勻縮放。
+
+Let's start building a transformation matrix that does the scaling for us. We saw from the identity matrix that each of the diagonal elements were multiplied with its corresponding vector element. What if we were to change the 1s in the identity matrix to 3s? In that case, we would be multiplying each of the vector elements by a value of 3 and thus effectively uniformly scale the vector by 3. If we represent the scaling variables as $(S_1,S_2,S_3)$ we can define a scaling matrix on any vector $(x,y,z)$ as:
+
+我們開始構建一個轉換矩陣，用它來為我們做縮放操作。我們從單位矩陣看到過，對角線上的每一個元素會和對應的向量元素做乘法。如果我們將單位矩陣中的 1s 修改為 3s 會怎麼樣呢？那種情況下，我們將對每個向量元素乘以 3，因此這相當於將向量放大了 3 倍。如果我們將縮放因子表述為 $(S_1,S_2,S_3)$，可以將一個作用於任意向量 $(x,y,z)$ 的縮放矩陣定義為：
 
 ```math
 \begin{bmatrix} {S_1} & 0 & 0 & 0 \\ 0 & {S_2} & 0 & 0 \\ 0 & 0 & {S_3} & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} {S_1} \cdot x \\ {S_2} \cdot y \\ {S_3} \cdot z \\ 1 \end{pmatrix}
 ```
 
+Note that we keep the `4th` scaling value 1. The **w** component is used for other purposes as we'll see later on.
+
 注意，我們始終將第四個縮放因子設置為 1，**w** 分量用於其它用途，我們稍後會了解。
 
 ### 平移（Translation）
 
+Translation is the process of adding another vector on top of the original vector to return a new vector with a different position, thus _moving_ the vector based on a translation vector. We've already discussed vector addition so this shouldn't be too new.
+
 平移是這樣一種操作，它將另一個向量加到原向量的尾部，然後返回一個新的向量，得到一個不同的位置，於是實現了基於一個平移向量來 _移動_ 一個向量的效果。我們已經討論過向量的加法，這應該不算太新鮮吧？
+
+Just like the scaling matrix there are several locations on a 4-by-4 matrix that we can use to perform certain operations and for translation those are the top-3 values of the 4th column. If we represent the translation vector as $(T_x,T_y,T_z)$ we can define the translation matrix by:
 
 就像縮放矩陣，對於一個 $4 \times 4$ 矩陣，有幾個位置可以讓我們用來執行某種操作，對於平移，它們是第四列的前三個值。如果我們將平移向量表述為 $(T_x,T_y,T_z)$，我可以將平移矩陣定義為這樣：
 
@@ -399,29 +418,44 @@ A_x \cdot B_y - A_y \cdot B_x \\
 \begin{bmatrix}  1 & 0 & 0 & {T_x} \\ 0 & 1 & 0 & {T_y} \\ 0 & 0 & 1 & {T_z} \\ 0 & 0 & 0 & 1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} x + {T_x} \\ y + {T_y} \\ z + {T_z} \\ 1 \end{pmatrix}
 ```
 
-這是有效的，因為全部的平移值都會乘以向量的 `w` 列，並且加到向量的原始值上（回憶一下，這是矩陣乘法規則）。這並不適用於 $3 \times 3$ 矩陣。
+This works because all of the translation values are multiplied by the vector's w column and added to the vector's original values (remember the matrix-multiplication rules). This wouldn't have been possible with a 3-by-3 matrix.
+
+這是有效的，因為全部的平移值都會被向量的 w 列，並且加到向量的原始值上（回憶一下，這是矩陣乘法規則）。這並不適用於 $3 \times 3$ 矩陣。
 
 {% include box.html color="green" content="
+
+**Homogeneous coordinates**
 
 **齊次座標（Homogeneous coordinates）**
 
 ---
 
-向量的 **w** 分量也被稱為齊次座標。要從一個齊次向量得到一個 3D 向量，我們將 `x`、`y`、`z` 除以它的 `w` 座標。我們通常沒有注意這個這點，因為 `w` 分量大部分時候都是 1。使用齊次座標有幾個好處：它允許我們對 3D 向量（沒有 `w` 分量，我們無法平移向量）執行矩陣的平移操作，下一章，我們將使用 `w` 分量創建 3D 透視。
+The **w** component of a vector is also known as a homogeneous coordinate. To get the 3D vector from a homogeneous vector we divide the **x**, **y** and **z** coordinate by its **w** coordinate. We usually do not notice this since the **w** component is **1.0** most of the time. Using homogeneous coordinates has several advantages: it allows us to do matrix translations on 3D vectors (without a w component we can't translate vectors) and in the next chapter we'll use the **w** value to create 3D perspective.
+
+向量的 **w** 分量也被稱為齊次座標。要從一個齊次向量得到一個 3D 向量，我們將 x，yz 除以它的 w 座標。我們通常沒有注意這個這點，因為 w 分量大部分時候都是 1。使用齊次座標有幾個好處：它人虛我們對 3D 向量（沒有 w 分量，我們無法平移向量）執行矩陣的平移操作，下一章，我們將使用 w 分量創建 3D 透視。
+
+Also, whenever the homogeneous coordinate is equal to **0**, the vector is specifically known as a direction vector since a vector with a **w** coordinate of **0** cannot be translated.
 
 同時，如果齊次座標為 0，那麼向量被特指方向向量，因為 w 為 0 的的向量無法被平移。
 
 " %}
 
-藉助平移矩陣，我們可以沿著三個軸 $(x, y, z)$ 的方向移動物件，使它成為在轉換操作中的一種非常有用的矩陣。
+With a translation matrix we can move objects in any of the 3 axis directions $(x, y, z)$, making it a very useful transformation matrix for our transformation toolkit.
+
+藉助平移矩陣，我們可以沿著三個軸 $(x, y, z)$ 的方向移動物件，使它成為轉換操作中非常有用的一種矩陣。
 
 ### 旋轉（Rotation）
 
+The last few transformations were relatively easy to understand and visualize in 2D or 3D space, but rotations are a bit trickier. If you want to know exactly how these matrices are constructed I'd recommend that you watch the rotation items of Khan Academy's [linear algebra](https://www.khanacademy.org/math/linear-algebra/matrix_transformations) videos.
+
 上面幾個轉換相對比較容易理解，也容易在 2D 或 3D 空間可視化，但是旋轉會顯得要特別一點。如果你想知道這些矩陣是如何被構造出來的，我建議你去看看這些和旋轉相關的[視頻教程](https://www.khanacademy.org/math/linear-algebra/matrix_transformations)。
+
+First let's define what a rotation of a vector actually is. A rotation in 2D or 3D is represented with an angle. An angle could be in degrees or radians where a whole circle has 360 degrees or 2 [PI](http://en.wikipedia.org/wiki/Pi) radians. I prefer explaining rotations using degrees as we're generally more accustomed to them.
 
 首先，讓我們定義好究竟什麼是向量的旋轉。在 2D 或 3D 空間下，一個旋轉伴隨著一個角度。角度可以是以“度數”為單位，或者是以“弧度”為單位，其中一整個圈將是 $360^\circ$ 或者 $2\pi$ 個弧度。我傾向於使用“度數”來解釋旋轉，鑒於我們一般對它更熟悉一些。
 
 {% include box.html color="green" content="
+Most rotation functions require an angle in radians, but luckily degrees are easily converted to radians:
 
 大多數的旋轉函數需要一個弧度角，但是好在從度數到弧度的轉換很簡單：
 
@@ -430,18 +464,30 @@ angle in degrees = angle in radians * (180 / PI)
 angle in radians = angle in degrees * (PI / 180)
 ```
 
+Where `PI` equals (rounded) `3.14159265359`.
+
 其中 `PI` （四捨五入）等於 `3.14159265359`。
 " %}
 
-旋轉半個圈意為旋轉 `360/2 = 180` 度，爾向右旋轉 `1/5th` 意為向右旋轉 `360/5 = 72` 度。以下演示了一個 2D 向量 $\vec{v}$ 由 $\vec{k}$ 向右（順時針）旋轉 `72` 度的效果。
+Rotating half a circle rotates us `360/2 = 180` degrees and rotating 1/5th to the right means we rotate `360/5 = 72` degrees to the right. This is demonstrated for a basic 2D vector where $\vec{v}$ is rotated `72` degrees to the right, or clockwise, from $\vec{k}$:
+
+旋轉半個圈意為旋轉 `360/2 = 180` 度，爾向右旋轉 1/5th 意為向右旋轉 `360/5 = 72` 度。以下演示了一個 2D 向量 $\vec{v}$ 由 $\vec{k}$ 向右（順時針）旋轉 `72` 度的效果。
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors_angle.png" %}
 
-3D 空間裡的旋轉被指定為一個角度加上一個旋轉軸，角度被指定為物件圍繞旋轉軸旋轉的度數。嘗試想像這個情境：讓你的頭沿著某個旋轉軸持續看著某個方向，同時轉動一定的角度。在 3D 空間旋轉 2D 向量，我們將旋轉軸設置為 z 軸（試著想像一下畫面）。
+Rotations in 3D are specified with an angle and a rotation axis. The angle specified will rotate the object along the rotation axis given. Try to visualize this by spinning your head a certain degree while continually looking down a single rotation axis. When rotating 2D vectors in a 3D world for example, we set the rotation axis to the z-axis (try to visualize this).
 
-使用三角函數，將向量轉換為旋轉某個角度後的向量是可行的。這通常是根據 `sine` 和 `cosine` 函數（術語通常是 `sin` 和 `cos`）的結合實現的。對於旋轉矩陣的生成的討論超出了本章的範圍。
+3D 空間裡的旋轉被指定為一個角度加上一個旋轉軸，角度被指定為物件圍繞旋轉軸旋轉的角度。嘗試想像這個情境：讓你的頭沿著某個旋轉軸持續看著某個方向，同時轉動一定的角度。在 3D 空間旋轉 2D 向量，我們將旋轉軸設置為 z 軸（試著想像一下畫面）。
+
+Using trigonometry it is possible to transform vectors to newly rotated vectors given an angle. This is usually done via a smart combination of the sine and cosine functions (commonly abbreviated to sin and cos). A discussion of how the rotation matrices are generated is out of the scope of this chapter.
+
+使用三角函數，將向量轉換為旋轉某個角度後的向量是可行的。這通常是根據 sine 和 cosine 函數（術語通常是 sin 和 cos）的結合實現的。對於旋轉矩陣的生成的討論超出了本章的範圍。
+
+A rotation matrix is defined for each unit axis in 3D space where the angle is represented as the theta symbol $\theta$.
 
 旋轉矩陣是在三維空間中的每個單位軸上定義的，旋轉角度通常以希臘字母 $\theta$ (theta) 表示。
+
+Rotation around the X-axis:
 
 圍繞 X 軸的旋轉：
 
@@ -449,11 +495,15 @@ angle in radians = angle in degrees * (PI / 180)
 \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & {\cos \theta} & - {\sin \theta} & 0 \\ 0 & {\sin \theta} & {\cos \theta} & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} x \\ {\cos \theta} \cdot y - {\sin \theta} \cdot z \\ {\sin \theta} \cdot y + {\cos \theta} \cdot z \\ 1 \end{pmatrix}
 ```
 
+Rotation around the Y-axis:
+
 圍繞 Y 軸的旋轉：
 
 ```math
 \begin{bmatrix} {\cos \theta} & 0 & {\sin \theta} & 0 \\ 0 & 1 & 0 & 0 \\ - {\sin \theta} & 0 & {\cos \theta} & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} {\cos \theta} \cdot x + {\sin \theta} \cdot z \\ y \\ - {\sin \theta} \cdot x + {\cos \theta} \cdot z \\ 1 \end{pmatrix}
 ```
+
+Rotation around the Z-axis:
 
 圍繞 Z 軸的旋轉：
 
@@ -461,15 +511,21 @@ angle in radians = angle in degrees * (PI / 180)
 \begin{bmatrix} {\cos \theta} & - {\sin \theta} & 0 & 0 \\ {\sin \theta} & {\cos \theta} & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} {\cos \theta} \cdot x - {\sin \theta} \cdot y  \\ {\sin \theta} \cdot x + {\cos \theta} \cdot y \\ z \\ 1 \end{pmatrix}
 ```
 
-使用旋轉矩陣，我們可以對位置向量圍繞三個單位軸的任意一個進行轉換。要圍繞一個任意的 3D 軸旋轉，我們可以將此 3 個旋轉組合起來，先繞 X 軸旋轉，然後繞 Y 軸，最後繞 Z 軸。但是，這很快導致了一個問題，就是 [`Gimbal lock`](https://en.wikipedia.org/wiki/Gimbal_lock#:~:text=In%20a%20three%2Ddimensional%20three,a%20degenerate%20two%2Ddimensional%20space.)。我們不在此詳細探討這個問題，但是一個好的解決方法是直接繞一個任意的單位軸——比如 $(0.662,0.2,0.722)$ ——旋轉，而非將三個旋轉結合起來。有這樣一種（囉嗦的）矩陣存在，如下所示，它的旋轉軸是 $(R_x,R_y,R_z)$。
+Using the rotation matrices we can transform our position vectors around one of the three unit axes. To rotate around an arbitrary 3D axis we can combine all 3 them by first rotating around the X-axis, then Y and then Z for example. However, this quickly introduces a problem called Gimbal lock. We won't discuss the details, but a better solution is to rotate around an arbitrary unit axis e.g. $(0.662,0.2,0.722)$ (note that this is a unit vector) right away instead of combining the rotation matrices. Such a (verbose) matrix exists and is given below with $(R_x,R_y,R_z)$ as the arbitrary rotation axis:
+
+使用旋轉矩陣，我們可以對位置向量圍繞三個單位軸的任意一個進行轉換。要圍繞一個任意的 3D 軸旋轉，我們可以將此 3 個旋轉組合起來，先繞 X 軸旋轉，然後繞 Y 軸，最後繞 Z 軸。但是，這很快導致了一個問題，就是 `Gimbal lock`。我們不在此詳細探討這個問題，但是一個好的解決方法是直接繞一個任意的單位軸，比如 $(0.662,0.2,0.722)$ ，旋轉，而非將三個旋轉結合起來。這樣一種（囉嗦的）矩陣存在，如下所示，它的旋轉軸是 $(R_x,R_y,R_z)$。
 
 ```math
 \begin{bmatrix} \cos \theta + {R_x}^2(1 - \cos \theta) & {R_x}{R_y}(1 - \cos \theta) - {R_z} \sin \theta & {R_x}{R_z}(1 - \cos \theta) + {R_y} \sin \theta & 0 \\ {R_y}{R_x} (1 - \cos \theta) + {R_z} \sin \theta & \cos \theta + {R_y}^2(1 - \cos \theta) & {R_y}{R_z}(1 - \cos \theta) - {R_x} \sin \theta & 0 \\ {R_z}{R_x}(1 - \cos \theta) - {R_y} \sin \theta & {R_z}{R_y}(1 - \cos \theta) + {R_x} \sin \theta & \cos \theta + {R_z}^2(1 - \cos \theta) & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}
 ```
 
-生成它所需要的數學相關的討論不在本章的範圍。但記住，即便這樣一個矩陣，它也無法完全避免 gimbal lock （儘管它讓問題更加難解）。要真正地不讓 Gimbal locks 產生，我們必須將旋轉表述為四元數（Quaternion），它不但安全，而且對計算更加友好。然爾，關於四元數的討論也不在本章範圍，哈哈。
+A mathematical discussion of generating such a matrix is out of the scope of this chapter. Keep in mind that even this matrix does not completely prevent gimbal lock (although it gets a lot harder). To truly prevent Gimbal locks we have to represent rotations using quaternions, that are not only safer, but also more computationally friendly. However, a discussion of quaternions is out of this chapter's scope.
+
+生成它的數學相關的討論不在本章的範圍。記住，即便這樣一個矩陣，它也無法完全避免 gimbal lock （儘管它讓問題更加難解）。要真正地不讓 Gimbal locks 產生，我們必須將旋轉表述為四元數（Quaternion），它不單安全，而且對計算更加有好。然爾，關於四元數的討論也不在本章範圍，哈哈。
 
 ### 合併矩陣（Combining matrices）
+
+The true power from using matrices for transformations is that we can combine multiple transformations in a single matrix thanks to matrix-matrix multiplication. Let's see if we can generate a transformation matrix that combines several transformations. Say we have a vector $(x,y,z)$ and we want to scale it by 2 and then translate it by $(1,2,3)$. We need a translation and a scaling matrix for our required steps. The resulting transformation matrix would then look like:
 
 矩陣真正的厲害之處在於，我們可以根據矩陣的乘法法則，對多個矩陣進行合併，從而形成一個矩陣。讓我們來看看是否真的可以通過合併多個轉換形成一個轉換。比如，我現在有一個向量 $(x,y,z)$，我們想將它縮放 2 倍，然後平移 $(1,2,3)$。要完成這些步驟，我們需要一個平移矩陣和一個縮放矩陣。最後的轉換矩陣看上去是這樣的：
 
@@ -477,23 +533,35 @@ angle in radians = angle in degrees * (PI / 180)
 Trans \cdot Scale = \begin{bmatrix} 1 & 0 & 0 & 1 \\ 0 & 1 & 0 & 2 \\ 0 & 0 & 1 & 3 \\ 0 & 0 & 0 & 1 \end{bmatrix} . \begin{bmatrix} 2 & 0 & 0 & 0 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} = \begin{bmatrix} 2 & 0 & 0 & 1 \\ 0 & 2 & 0 & 2 \\ 0 & 0 & 2 & 3 \\ 0 & 0 & 0 & 1 \end{bmatrix}
 ```
 
-注意，在執行矩陣乘法的時候，我們首先做平移，然後做縮放。矩陣的乘法不支持交換律，這也就意味著它們的順序很重要。當對矩陣做乘法運算的時候，最右側的矩陣首先和向量相乘，因此你需要從右向左地去閱讀矩陣乘法。在合併矩陣的時候，建議先執行縮放操作，然後是旋轉，最後是平移；否則它們可能相互產生（不良的）影響。比如，如果你先平移，然後縮放，那麼平移向量也會被縮放。
+Note that we first do a translation and then a scale transformation when multiplying matrices. Matrix multiplication is not commutative, which means their order is important. When multiplying matrices the right-most matrix is first multiplied with the vector so you should read the multiplications from right to left. It is advised to first do scaling operations, then rotations and lastly translations when combining matrices otherwise they may (negatively) affect each other. For example, if you would first do a translation and then scale, the translation vector would also scale!
 
-對向量應用最後的轉換矩陣，得到以下向量：
+注意，在執行矩陣乘法的時候，我們首先做平移，然後做縮放。矩陣的乘法是不支持交換律的，這也就意味著它們的順序很重要。當對矩陣做乘法運算的時候，最右側的矩陣首先和向量相乘，因此你需要從右向左地去閱讀矩陣乘法。在合併矩陣的時候，建議先執行縮放操作，然後是旋轉，最後是平移；否則它們可能相互右（不好的）影響。比如，如果你先平移，然後縮放，那麼平移向量也會被縮放。
+
+Running the final transformation matrix on our vector results in the following vector:
+
+對我們的向量應用最後的轉換矩陣，得到以下向量：
 
 ```math
 \begin{bmatrix} 2 & 0 & 0 & 1 \\ 0 & 2 & 0 & 2 \\ 0 & 0 & 2 & 3 \\ 0 & 0 & 0 & 1 \end{bmatrix} . \begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix} = \begin{bmatrix} 2x + 1 \\ 2y + 2  \\ 2z + 3 \\ 1 \end{bmatrix}
 ```
 
+Great! The vector is first scaled by two and then translated by $(1,2,3)$.
+
 很好，向量首先被縮放了 2 倍，然後平移 $(1,2,3)$。
 
 ## 應用 （In practice）
 
-現在我們已經對轉換背後的理論進行了解釋，是時候探究一下我們實際如何使用這些知識。OpenGL 不提供任何形式的內置的矩陣和向量功能，因此我們必須定義我們自己的數學類和函數。這本書中，我們不會為全部細微的數學知識抽象出類和函數，而是使用已經寫好的數學庫。幸運的是，有一個容易上手的、也是專為 OpenGL 設計的數學庫，它的名字就是 GLM。
+Now that we've explained all the theory behind transformations, it's time to see how we can actually use this knowledge to our advantage. OpenGL does not have any form of matrix or vector knowledge built in, so we have to define our own mathematics classes and functions. In this book we'd rather abstract from all the tiny mathematical details and simply use pre-made mathematics libraries. Luckily, there is an easy-to-use and tailored-for-OpenGL mathematics library called GLM.
+
+現在我們已經對轉換背後的理論進行了解釋，是時候探究一下我們實際如何使用這些知識。OpenGL 不提供任何形式的內置的矩陣和向量知識，因此我們必須定義我們自己的數學類和函數。這本書中，我們不會為全部的細微的數學知識抽象出類和函數，而是使用已經寫好的數學庫。幸運的事，有一個容易上手的、也是專為 OpenGL 涉及的數學庫，它的名字就是 GLM。
 
 ### GLM
 
-GLM 的全稱是 OpenGL Mathematics，是一個僅包含頭文件的庫，這個意思是我們只需要包含進正確的頭文件即可，我們已經做了這件事。無需 linking 和編譯。GLM 可以從它們的網站上下載，然後將其整個目錄拷貝到你的 includes 文件夾中，開始吧！
+GLM stands for OpenGL Mathematics and is a header-only library, which means that we only have to include the proper header files and we're done; no linking and compiling necessary. GLM can be downloaded from their website. Copy the root directory of the header files into your includes folder and let's get rolling.
+
+GLM 的全稱是 OpenGL Mathematics，是一個僅包含頭文件的庫，這個意思是我們只需要包含進正確的頭文件即可，我們已經做了這件事。無需 linking 和編譯。GLM 可以從它們的網站上下載，然後將其整個目錄拷貝到你的 includes 文件夾，開始吧！
+
+Most of GLM's functionality that we need can be found in 3 headers files that we'll include as follows:
 
 我們所需要的多數 GLM 功能可以在這 3 個頭文件裡找到，以下我們將其包含進來：
 
@@ -503,7 +571,9 @@ GLM 的全稱是 OpenGL Mathematics，是一個僅包含頭文件的庫，這個
 #include <glm/gtc/type_ptr.hpp>
 ```
 
-我們看看是否可以將轉換用於對一個向量 $(1,0,0)$ 平移 $(1,1,0)$（注意我們將向量定義為類型 `glm::vec4`，它包含了齊次座標，數值為 `1.0`）：
+Let's see if we can put our transformation knowledge to good use by translating a vector of $(1,0,0)$ by $(1,1,0)$ (note that we define it as a `glm::vec4` with its homogeneous coordinate set to 1.0):
+
+我們看看是否可以將轉換用於對一個向量 $(1,0,0)$ 平移 $(1,1,0)$（注意我們將向量定義為類型 `glm::vec4`，它包含了齊次座標，數值為 1.0）。
 
 ```c++
 glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f);
@@ -513,11 +583,18 @@ vec = trans * vec;
 std::cout << vec.x << vec.y << vec.z << std::endl;
 ```
 
-我們首先定義了向量，名字為 `vec`，使用的是 GLM 內置的向量類。然後，我們定義了一個 `glm:mat4`，並且直接將其初始化為單位矩陣，並且將對角元素的值設置為 1.0；如果我們不對它進行初始化，它將是一個空矩陣（所有元素的值都是 0），而且接下來的矩陣操作也都將導致一個空矩陣。
+We first define a vector named vec using GLM's built-in vector class. Next we define a mat4 and explicitly initialize it to the identity matrix by initializing the matrix's diagonals to 1.0; if we do not initialize it to the identity matrix the matrix would be a null matrix (all elements 0) and all subsequent matrix operations would end up a null matrix as well.
 
-接下來，通過傳入這個單位矩陣到函數 `glm::translate` 創建一個轉換矩陣，同時傳入一個平移向量（傳入的矩陣會和一個平移矩陣相乘，並將結果返回）。接著，我們將向量乘這個轉換矩陣，輸出平移結果。如果我們還記得平移是如何工作的，最終的向量應該是 $(1+1,0+1,0+0)$，也就是 $(2,1,0)$。這段代碼輸出的結果是 **210**，因此平移矩陣處理得沒有問題。
+我們首先定定義了向量，名字為 vec，使用的是 GLM 內置的向量類。然後，我麼定義了一個 mat4，並且直接將其初始化為單位矩陣，並且將對角元素的值設置為 1.0；如果我麼不對它進行初始化，那麼它將是一個空矩陣（所有元素的值都是 0），而且接下來的矩陣操作也都將導致一個空矩陣。
 
-讓我們來點有意思的，縮放、然後旋轉我們在上一章裡所做的盒子。
+The next step is to create a transformation matrix by passing our identity matrix to the glm::translate function, together with a translation vector (the given matrix is then multiplied with a translation matrix and the resulting matrix is returned).
+Then we multiply our vector by the transformation matrix and output the result. If we still remember how matrix translation works then the resulting vector should be $(1+1,0+1,0+0)$ which is $(2,1,0)$. This snippet of code outputs **210** so the translation matrix did its job.
+
+接下來，通過傳入這個單位矩陣到函數`glm::translate`創建一個轉換矩陣，同時傳入一個平移向量（傳入的矩陣會和一個平移矩陣相乘，並將結果返回）。接著，我們將向量乘這個轉換矩陣，輸出平移結果。如果我麼還記得平移是如何工作的，最終的向量應該是 $(1+1,0+1,0+0)$，也就是 $(2,1,0)$。這段代碼輸出的結果是 **210**，因此平移矩陣處理得沒有問題。
+
+Let's do something more interesting and scale and rotate the container object from the previous chapter:
+
+讓我們來點有意思的，縮放然後旋轉我們在上一章裡做的盒子。
 
 ```c++
 glm::mat4 trans = glm::mat4(1.0f);
@@ -525,9 +602,13 @@ trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
 trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
 ```
 
-首先，我們對盒子繞每個軸縮放 0.5，然後繞 z 軸旋轉了 90 度。GLM 需要的是弧度角，因此我們將度數轉化為弧度，這是通過 `glm::radians` 做到的。注意，我們貼圖後的矩形在 XY 平面，因此我們對 Z 軸旋轉。記住，旋轉所圍繞的軸必須是一個單位向量，因此確保在繞 x/y/z 軸旋轉之前，你首先對其進行了標準化。因為我們將矩陣傳遞給每個 GLM 的函數，GLM 會自動將這些矩陣相乘，從而產生一個合併所有變換的變換矩陣。
+First we scale the container by 0.5 on each axis and then rotate the container 90 degrees around the Z-axis. GLM expects its angles in radians so we convert the degrees to radians using `glm::radians`. Note that the textured rectangle is on the XY plane so we want to rotate around the Z-axis. Keep in mind that the axis that we rotate around should be a unit vector, so be sure to normalize the vector first if you're not rotating around the X, Y, or Z axis. Because we pass the matrix to each of GLM's functions, GLM automatically multiples the matrices together, resulting in a transformation matrix that combines all the transformations.
 
-接下來的一個大問題是：我們如何讓這個轉換矩陣傳入到 shader？我曾簡單地提到過，glsl 裡也有一個數據類型 `mat4`。因此我們可以讓頂點著色器接收一個 `mat4` 類型的 `uniform` 變量，然後使其與向量相乘：
+首先，我們對盒子對每個軸縮放了 0.5，然後繞 z 軸旋轉了 90 度。GLM 需要的是弧度角，因此我們將度數轉化為弧度，這是通過 `glm::radians` 做到的。注意，我們貼圖後的矩形在 XY 平面，因此我們對 Z 軸旋轉。記住，旋轉所圍繞的軸線必須是一個單位向量，因此確保在繞 x/y/z 軸旋轉之前，你是首先對其進行了標準化。因為我們將矩陣傳遞給每個 GLM 的函數，GLM 會自動將這些矩陣相乘，從而產生一個合併所有變換的變換矩陣。
+
+The next big question is: how do we get the transformation matrix to the shaders? We shortly mentioned before that GLSL also has a `mat4` type. So we'll adapt the vertex shader to accept a `mat4` uniform variable and multiply the position vector by the matrix uniform:
+
+接下來的一個大問題是：我們如何讓這個轉換矩陣傳入到 shader？我曾簡單地提到過，glsl 裡也有一個數據類型 mat4。因此我們可以讓頂點著色器接收一個 mat4 類型的 uniform 變量，然後使其與向量相乘：
 
 ```c++
 #version 330 core
@@ -546,25 +627,33 @@ void main()
 ```
 
 {% include box.html color="green" content="
+GLSL also has **mat2** and **mat3** types that allow for swizzling-like operations just like vectors. All the aforementioned math operations (like scalar-matrix multiplication, matrix-vector multiplication and matrix-matrix multiplication) are allowed on the matrix types. Wherever special matrix operations are used we'll be sure to explain what's happening.
 
-GLSL 也有類型 **mat2** 和 **mat3**，它們允許我們進行“類-組合”操作，就像向量的組合操作那樣。之前提到的全部的數學操作（像 `scalar-matrix` 乘法、`matrix-vector` 乘法，以及 `matrix-matrix` 乘法）對於 GLSL 所提供的矩陣類型都是被允許的。凡是使用特殊矩陣運算的地方，我們都會確保說明其背後的原理。
-
+glsl 也有類型 **mat2** 和 **mat3**，它們允許我們進行“類-組合”操作，就像向量的組合操作那樣。之前提到的全部的數學操作（像 scalar-matrix 乘法、matrix-vector 乘法，以及 matrix-matrix 乘法）對於 glsl 的矩陣類型都被允許。凡是使用特殊矩陣運算的地方，我們都會確保說明其背後的原理。
 " %}
 
-我們加上了 `uniform`，並使用轉換矩陣對位置向量做了相乘，最後將位置向量交給 `gl_Position`。我們的箱子該縮小了一半，並且旋轉了 **90** 度（向左傾斜）。但我們還需要將轉換矩陣傳入到著色器。
+We added the uniform and multiplied the position vector with the transformation matrix before passing it to `gl_Position`. Our container should now be twice as small and rotated **90** degrees (tilted to the left). We still need to pass the transformation matrix to the shader though:
+
+我們加上了 uniform，並使用轉換矩陣對位置向量做了相乘，最後將位置向量交給 `gl_Position`。我們的箱子該小了一半，並且旋轉了 **90** 度（向左傾斜）。但我們還需要將轉換矩陣傳入到著色器。
 
 ```c++
 unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
 glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 ```
 
-我們首先查詢了 uniform 變量的位置，然後將 matrix 數據發送給 shader，這裡使用的是 `glUniform\*` 函數，以 `Matrix4fv` 為函數後綴。第一個參數我們很熟悉，就是 uniform 的位置。第二個參數告訴 OpenGL 我們有幾個矩陣需要傳送，這裡是 1 個。第三個參數問我們是否需要 transpose 我們的矩陣，這個意思是將行和列進行調換。OpenGL 的開發者經常使用一種被稱為“列優先”次序的內部矩陣 layout，這在 glm 當中是默認的矩陣 layout，因此我們無需 transpose 這些矩陣；我們將其保留為 `GL_FALSE`。最後一個參數就是實際的矩陣數據了，但 glm 保存矩陣數據的方式不總是讓 OpenGL 滿意，因此我們首先使用 glm 內置的函數 `value_ptr` 將數據進行一次轉換。
+We first query the location of the uniform variable and then send the matrix data to the shaders using `glUniform` with `Matrix4fv` as its postfix. The first argument should be familiar by now which is the uniform's location. The second argument tells OpenGL how many matrices we'd like to send, which is 1. The third argument asks us if we want to transpose our matrix, that is to swap the columns and rows. OpenGL developers often use an internal matrix layout called column-major ordering which is the default matrix layout in GLM so there is no need to transpose the matrices; we can keep it at `GL_FALSE`. The last parameter is the actual matrix data, but GLM stores their matrices' data in a way that doesn't always match OpenGL's expectations so we first convert the data with GLM's built-in function `value_ptr`.
+
+我們首先查詢了 uniform 變量的位置，然後將 matrix 數據發送給 shader，這裡使用的是 glUniform\* 函數，以 Matrix4fv 為函數後綴。第一個參數我們很熟悉，就是 uniform 的位置。第二個參數告訴 OpenGL 我們有幾個矩陣需要傳送，這裡是 1 個。第三個參數問我們是否需要 transpose 我們的矩陣，這個意思是將行和列進行調換。OpenGL 的開發者經常使用一種被稱為“列優先”次序的內部矩陣 layout，這在 glm 當中是默認的矩陣 layout，因此我們無需 transpose 這些矩陣；我們將其保留為 `GL_FALSE`。最後一個參數就是實際的矩陣數據了，但 glm 保存矩陣數據的方式不總是讓 OpenGL 滿意，因此我們首先使用 glm 內置的函數 `value_ptr` 將數據進行一次轉換。
+
+We created a transformation matrix, declared a uniform in the vertex shader and sent the matrix to the shaders where we transform our vertex coordinates. The result should look something like this:
 
 我們創建了一個轉換矩陣，在頂點著色器中聲明了一個 uniform，並且將矩陣發送給了著色器，其中我們對頂點座標進行轉換。最後的結果看上去是這樣的：
 
 {% include img.html src="https://learnopengl.com/img/getting-started/transformations.png" %}
 
-完美！我們箱子現在確實向左側傾斜了，而且比原始大小縮小了兩倍，這說明轉換是成功的。讓我們來點有趣的，看看我們能否讓箱子隨著時間旋轉；同時也是為了有點趣味，我們將箱子的位置修改到窗口的右下方。要隨著時間對箱子進行旋轉，我們還必須在渲染循環中不斷更新轉換矩陣，因為它需要在每次渲染的時候更新。我們使用 GLFW 的 time 函數獲取歲時間變化的角度：
+Perfect! Our container is indeed tilted to the left and twice as small so the transformation was successful. Let's get a little more funky and see if we can rotate the container over time, and for fun we'll also reposition the container at the bottom-right side of the window. To rotate the container over time we have to update the transformation matrix in the render loop because it needs to update each frame. We use GLFW's time function to get an angle over time:
+
+完美！我們箱子現在確實向左側傾斜了，而且比原始大小縮小了兩倍，這說明轉換是成功的。讓我們來點有趣的，看看我們能否讓箱子隨著時間去旋轉，同時也是為了有點趣味，我們將箱子的位置修改到窗口的右下方。要隨著時間對箱子進行旋轉，我們還必須在渲染循環中不斷更新轉換矩陣，因為它需要在每次渲染的時候更新。我們使用 GLFW 的 time 函數獲取歲時間變化的角度：
 
 ```c++
 glm::mat4 trans = glm::mat4(1.0f);
@@ -572,9 +661,15 @@ trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
 trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
 ```
 
-記住，在上一個例子中，我們可以在任何地方聲明一個轉換矩陣，但是現在我們必須在渲染函數裡創建它以持續對它更新。這意味著我們必須在每一幀都重新創建一個轉換矩陣。通常來說，當渲染一個場景的時候，我們有若干矩陣需要在每一幀反覆創建。
+Keep in mind that in the previous case we could declare the transformation matrix anywhere, but now we have to create it every iteration to continuously update the rotation. This means we have to re-create the transformation matrix in each iteration of the render loop. Usually when rendering scenes we have several transformation matrices that are re-created with new values each frame.
+
+記住，在上一個例子中，我們可以在任何地方聲明一個轉換矩陣，但是現在我們必須在渲染函數裡創建它以持續對它更新。這意味著我們必須在每一幀都重新創建一個轉換矩陣。通常來說，當渲染一個場景的時候，我們有若干矩陣需要在每一幀重新創建。
+
+Here we first rotate the container around the origin $(0,0,0)$ and once it's rotated, we translate its rotated version to the bottom-right corner of the screen. Remember that the actual transformation order should be read in reverse: even though in code we first translate and then later rotate, the actual transformations first apply a rotation and then a translation. Understanding all these combinations of transformations and how they apply to objects is difficult to understand. Try and experiment with transformations like these and you'll quickly get a grasp of it.
 
 這裡，我們首先將箱子圍繞原點 $(0,0,0)$ 進行旋轉，之後，我們對旋轉之後的版本進行一個平移，移至屏幕的右下角。記住，實際的轉換操作順序應該反過來讀，雖然在代碼層面，我們先平移再旋轉，但實際上轉換是先應用旋轉再應用平移的。要理解所有這些轉換的合併，以及它們如何對物件進行轉換，是一件不簡單的事情。試著動手像這樣實驗這些變換，你很快就能掌握其中的要領。
+
+If you did things right you should get the following result:
 
 如果做得不錯的話，你應該得到以下結果：
 
@@ -582,9 +677,15 @@ trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
   <source src="https://learnopengl.com/video/getting-started/transformations.mp4" type="video/mp4">
 </video>
 
-你現在完成了！一個平移後的箱子，隨著時間的行走，它不斷旋轉。現在，你應該明白為什麼說矩陣在圖形領域是如此的有用。我們可以定義無數的轉換然後合併它們，使成為一個矩陣，然後我們可以反覆地去使用它。如此將轉換使用在著色器當中幫助我們節省了重新定義頂點數據的精力，也節省了很多處理時間，因為由此我們不用反覆向著色器發送頂點數據（這非常的耗時間）；我們要做的全部的工作就是更新轉換對應的統一（uniform）變量。
+And there you have it. A translated container that's rotated over time, all done by a single transformation matrix! Now you can see why matrices are such a powerful construct in graphics land. We can define an infinite amount of transformations and combine them all in a single matrix that we can re-use as often as we'd like. Using transformations like this in the vertex shader saves us the effort of re-defining the vertex data and saves us some processing time as well, since we don't have to re-send our data all the time (which is quite slow); all we need to do is update the transformation uniform.
+
+你現在完成了！一個平移後的箱子，隨著時間的行走，它不斷旋轉。現在，你應該明白為什麼說矩陣再圖形領域是如此的有用。我們可以定義無數的轉換然後合併它們，使成為一個矩陣，然後我們可以反覆地去使用它。如此將轉換使用在著色器當中幫助我們節省了重新定義頂點數據的精力，也節省了很多處理時間，因為由此我們不用反覆向著色器發送頂點數據（這非常的耗時間）；我們要做的全部的事情就是更新轉換對應的統一變量。
+
+If you didn't get the right result or you're stuck somewhere else, take a look at the [source code](https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/5.1.transformations/transformations.cpp) and the updated [shader](https://learnopengl.com/code_viewer_gh.php?code=includes/learnopengl/shader_m.h) class.
 
 如果你沒有得到正確的結果，或者你遇到了什麼其它的困難，看看這裡的[源代碼](https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/5.1.transformations/transformations.cpp)，以及這份更新後的[著色器類](https://learnopengl.com/code_viewer_gh.php?code=includes/learnopengl/shader_m.h)。
+
+In the next chapter we'll discuss how we can use matrices to define different coordinate spaces for our vertices. This will be our first step into 3D graphics!
 
 下一章，我們將討論如何使用矩陣來為我們的頂點定義各種座標空間（座標系）。這是踏入 3D 圖形的第一步！
 

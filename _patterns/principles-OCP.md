@@ -6,6 +6,7 @@ chapter: 六
 short: Software entities should be open for extension，but closed for modification.
 date: 2019-08-31
 category: tech
+book: patterns
 ---
 
 ## 开闭原则的定义

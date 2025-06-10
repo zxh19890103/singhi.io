@@ -6,6 +6,7 @@ sort: 50
 short: Talk only to your immediate friends and not to strangers.
 date: 2019-09-05
 category: tech
+book: patterns
 ---
 
 ## 迪米特法则的定义

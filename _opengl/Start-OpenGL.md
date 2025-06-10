@@ -6,6 +6,7 @@ title: 开始 &bull; 认识 OpenGL
 src: https://learnopengl.com/Getting-started/OpenGL
 category: tech
 date: 2025-02-18
+book: opengl
 ---
 
 ## OpenGL

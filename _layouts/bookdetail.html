@@ -97,9 +97,7 @@ layout: with-nonav
   <div class="Book__Side Book__Chapters">
     <h2>章節</h2>
     <ul>
-      {% assign pathSegments = page.url | split: '/'; %} {% assign zhulanName =
-      pathSegments[1] == 'opengl' ? 'opengl' : 'patterns' %} {% for chapter in
-      site[zhulanName] %}
+      {% for chapter in site[page.book]  | sort_by: 'date' %}
       <li>
         <a
           href="{{chapter.url}}"
