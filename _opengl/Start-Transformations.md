@@ -7,6 +7,7 @@ category: tech
 src: https://learnopengl.com/Getting-started/Transformations
 date: 2025-06-05
 math: 1
+editing: 1
 ---
 
 We now know how to create objects, color them and/or give them a detailed appearance using textures, but they're still not that interesting since they're all static objects. We could try and make them move by changing their vertices and re-configuring their buffers each frame, but that's cumbersome and costs quite some processing power. There are much better ways to transform an object and that's by using (multiple) matrix objects. This doesn't mean we're going to talk about Kung Fu and a large digital artificial world.
@@ -25,11 +26,17 @@ However, to fully understand transformations we first have to delve a bit deeper
 
 In its most basic definition, vectors are directions and nothing more. A vector has a direction and a magnitude (also known as its strength or length). You can think of vectors like directions on a treasure map: 'go left 10 steps, now go north 3 steps and go right 5 steps'; here 'left' is the direction and '10 steps' is the magnitude of the vector. The directions for the treasure map thus contains 3 vectors. Vectors can have any dimension, but we usually work with dimensions of 2 to 4. If a vector has 2 dimensions it represents a direction on a plane (think of 2D graphs) and when it has 3 dimensions it can represent any direction in a 3D world.
 
+大部分基本定義，向量就是一些方向，再無別的什麼含義。一個向量有一個方向以及一個量（也被稱為強度或著長度）。你可以將向量想像為藏寶圖上的指引箭頭：“向左行 10 步，現在，向北行 3 步，然後向右行 5 步”；這裡，“左”就是方向，爾“10 步”就是這個向量的大小。藏寶圖上的指引因此包含了 3 個向量。向量可以具備任意多的緯度，但我們通常使用 2 到 4 維。如果一個向量有 2 維，它就可以表示平面（想想一個 2D 圖）上的一個方向，爾當它有 3 個緯度的時候，它可以表示 3D 世界的任意方向。
+
 Below you'll see 3 vectors where each vector is represented with (x,y) as arrows in a 2D graph. Because it is more intuitive to display vectors in 2D (rather than 3D) you can think of the 2D vectors as 3D vectors with a z coordinate of 0. Since vectors represent directions, the origin of the vector does not change its value. In the graph below we can see that the vectors $\vec{v}$ and $\vec{w}$ are equal even though their origin is different:
+
+以下，我們看到 3 個向量，每一個都使用 $(x,y)$ 表示 2D 圖上的一個箭頭。由於在 2D 空間顯示向量比在 3D 要更直觀，你可以將 2D 向量看作 z = 0 時的 3D 向量。因為向量表示方向，其起點不會改變它的值。在下圖中，我們可以看到向量 $\vec{v}$ and $\vec{w}$ 是相等的，雖然它們的起始點不同。
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors.png" %}
 
 When describing vectors mathematicians generally prefer to describe vectors as character symbols with a little bar over their head like $\vec{v}$. Also, when displaying vectors in formulas they are generally displayed as follows:
+
+當描述向量的時候，數學家更喜歡將它們表述為一個字符符號，使用一個 hat，像這樣 $\vec{v}$。同時，當在公式裡書寫向量的時候，它們通常如此寫成這樣：
 
 ```math
 \vec{v}=\begin{pmatrix}
@@ -41,11 +48,17 @@ z\\
 
 Because vectors are specified as directions it is sometimes hard to visualize them as positions. If we want to visualize vectors as positions we can imagine the origin of the direction vector to be (0,0,0) and then point towards a certain direction that specifies the point, making it a position vector (we could also specify a different origin and then say: 'this vector points to that point in space from this origin'). The position vector (3,5) would then point to (3,5) on the graph with an origin of (0,0). Using vectors we can thus describe directions and positions in 2D and 3D space.
 
+由於向量被定義為方向，有時候很難對它們進行像位置那樣可視化。入閣我們要將它們按照位置的方式進行可視化，我們可以將它們的起點設想為 (0,0,0)，然後使它指向一個特定的方向，使得它成為一個位置向量（我們也可以指定一個不同的起點，然後說：這個向量從此起點出發指向空間中的那個點）。點向量 (3,5) 這樣就可以在圖上指向 (3,5)，它的起點是 (0,0)。使用向量，我們於是可以在 2D 和 3D 空間裡描述方向和位置。
+
 Just like with normal numbers we can also define several operations on vectors (some of which you've already seen).
 
-### Scalar vector operations
+和普通的數一樣，我們也可以為向量定義若干操作方法（其中有些你已經看到了）。
+
+### 標量/向量操作（Scalar/Vector Operations）
 
 A scalar is a single digit. When adding/subtracting/multiplying or dividing a vector with a scalar we simply add/subtract/multiply or divide each element of the vector by the scalar. For addition it would look like this:
+
+標量，是一個單體數字。當使一個向量對一個標量執行加/減/乘或著除的操作，我們簡單地對向量的每一個分量執行這些“標量”操作。對于“加”，它看上去就是：
 
 ```math
 {\begin{pmatrix}
@@ -72,11 +85,15 @@ x\\
 \end{pmatrix}}
 ```
 
-Where $+$ can be $\+$ ,$-$ ,$\cdot$ or $\div$ where $\cdot$ is the multiplication operator.
+Where $+$ can be $+$ ,$-$ ,$\cdot$ or $\div$ where $\cdot$ is the multiplication operator.
 
-### Vector negation
+這裡，$+$ 可以是 $+$ ,$-$ ,$\cdot$ 或著 $\div$，其中 $\cdot$ 是乘法運算。
+
+### 向量取反（Vector negation）
 
 Negating a vector results in a vector in the reversed direction. A vector pointing north-east would point south-west after negation. To negate a vector we add a minus-sign to each component (you can also represent it as a scalar-vector multiplication with a scalar value of -1):
+
+將一個向量取反後得到另一個向量，它和原向量方向相反。一個向量指向東北，取反之後，它將指向西南。要對一個向量取反，我們對其每一個分量加負號（我們也可以將其表述為一個*標量-向量*的乘法操作，乘 -1）：
 
 ```math
 -{\vec v} =
@@ -93,9 +110,11 @@ v_z\\
 \end{pmatrix}}
 ```
 
-### Addition and subtraction
+### 加法和減法
 
 Addition of two vectors is defined as component-wise addition, that is each component of one vector is added to the same component of the other vector like so:
+
+對兩個向量執行加法，被定義為對每個分量進行加法操作，也就是，使向量的每個分量加上另一個向量的同等分量，就像：
 
 ```math
 {\vec v}=
@@ -111,9 +130,13 @@ Addition of two vectors is defined as component-wise addition, that is each comp
 
 Visually, it looks like this on vectors $v=(4,2)$ and $k=(1,2)$, where the second vector is added on top of the first vector's end to find the end point of the resulting vector (head-to-tail method):
 
+視覺效果上來看，下圖看起來像是向量 $v=(4,2)$ 和 $k=(1,2)$ 的相加，其中第二個向量從第一個向量的終點開始接續，藉此找出結果向量的終點位置（這就是「首尾相接法」）。
+
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors_addition.png" %}
 
 Just like normal addition and subtraction, vector subtraction is the same as addition with a negated second vector:
+
+和常規的加法、減法一樣，向量的減法就是對取反後的第二個向量執行加法運算：
 
 ```math
 {\vec v}=
@@ -129,21 +152,29 @@ Just like normal addition and subtraction, vector subtraction is the same as add
 
 Subtracting two vectors from each other results in a vector that's the difference of the positions both vectors are pointing at. This proves useful in certain cases where we need to retrieve a vector that's the difference between two points.
 
+兩個向量相減得到一個新向量，它是兩個向量所指位置的差。在我們需要獲取一個向量，它為兩個位置之差時，這種方式非常有用。
+
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors_subtraction.png" %}
 
-### Length
+### 長度
 
-To retrieve the length/magnitude of a vector we use the Pythagoras theorem that you may remember from your math classes. A vector forms a triangle when you visualize its individual x and **y** component as two sides of a triangle:
+To retrieve the length/magnitude of a vector we use the Pythagoras theorem that you may remember from your math classes. A vector forms a triangle when you visualize its individual **x** and **y** component as two sides of a triangle:
+
+要得到一個向量的 長度/大小 的時候，我們使用 Pythagoras 理論，這個理論你或許在你的數學課上聽說過。當你將一個向量的 x 和 y 分量視為兩個邊，它可以形成一個三角形：
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors_triangle.png" %}
 
 Since the length of the two sides $(x, y)$ are known and we want to know the length of the tilted side $\vec{v}$ we can calculate it using the Pythagoras theorem as:
+
+由於兩邊 x, y 的長度已知，我們需要知道標記以 $\vec{v}$ 的這條邊的長度，可以使用 Pythagoras 理論計算：
 
 ```math
 \lVert{\vec{v}}\rVert={\sqrt{x^2 + y^2}}
 ```
 
 Where $\lVert{\vec{v}}\rVert$ is denoted as the length of vector $\vec{v}$. This is easily extended to 3D by adding $z^2$ to the equation. In this case the length of vector $(4, 2)$ equals:
+
+這裡，$\lVert{\vec{v}}\rVert$ 表示向量 $\vec{v}$ 的長度。通過向此式子加上 $z^2$，很容易將其擴展為 3D 的情境。這個例子當中，向量 $(4, 2)$ 的長度等於：
 
 ```math
 \lVert{\vec{v}}\rVert=
@@ -156,7 +187,11 @@ Where $\lVert{\vec{v}}\rVert$ is denoted as the length of vector $\vec{v}$. This
 
 Which is **4.47**.
 
+結果是 **4.47**。
+
 There is also a special type of vector that we call a unit vector. A unit vector has one extra property and that is that its length is exactly `1`. We can calculate a unit vector $\hat{n}$ from any vector by dividing each of the vector's components by its length:
+
+有一種特殊向量，我們稱為單位向量。一個單位向量較普通向量有一個額外的屬性，那就是它的長度剛好是 1。我們可以通過對任意向量的每個分量分別除以此向量的長度，得到它的單位向量 $\hat{n}$。
 
 ```math
 \hat{n}
@@ -166,13 +201,19 @@ There is also a special type of vector that we call a unit vector. A unit vector
 
 We call this normalizing a vector. Unit vectors are displayed with a little roof over their head and are generally easier to work with, especially when we only care about their directions (the direction does not change if we change a vector's length).
 
-### Vector-vector multiplication
+我們將這個操作稱為“向量單位化”。單位向量的寫法是在其頭頂加一個屋頂，它們通常很有用處，特別是在我們僅僅關注它們的方向時（我們改變向量的長度，其方向始終保持不變）。
+
+### 向量-向量乘法（Vector-vector multiplication）
 
 Multiplying two vectors is a bit of a weird case. Normal multiplication isn't really defined on vectors since it has no visual meaning, but we have two specific cases that we could choose from when multiplying: one is the dot product denoted as $\vec{v} \cdot \vec{k}$ and the other is the cross product denoted as $\vec{v} \times \vec{k}$.
 
-**Dot product**
+兩個向量的乘法有些奇怪。常規的乘法並未在向量操作裡定義，因為它不具備視覺上的意義，但是有兩個乘法可供我們選擇：其一是 `dot product`，表述為 $\vec{v} \cdot \vec{k}$，另一個是 `cross product`，表述為 $\vec{v} \times \vec{k}$。
+
+**點乘（Dot product）**
 
 The dot product of two vectors is equal to the scalar product of their lengths times the cosine of the angle between them. If this sounds confusing take a look at its formula:
+
+兩個向量的點乘結果等於它們長度的標量之積，再乘以二者之角的 cosine 值。如此聽上去有些困擾，那麼看一下它的公式：
 
 ```math
 {\vec{v}} \cdot {\vec{k}}
@@ -189,6 +230,8 @@ The dot product of two vectors is equal to the scalar product of their lengths t
 ```
 
 Where the angle between them is represented as theta ($\theta$). Why is this interesting? Well, imagine if $\vec{v}$ and $\vec{k}$ are unit vectors then their length would be equal to 1. This would effectively reduce the formula to:
+
+其中，二者的夾角使用 theta ($\theta$) 表示。為何這很有趣呢？好，設想一下，如果 $\vec{v}$ 和 $\vec{k}$ 是單位向量，那麼它們的長度將會是 1。這可以使得上述公式顯著簡化為：
 
 ```math
 {\hat{v}} \cdot {\hat{k}}
@@ -210,11 +253,18 @@ Where the angle between them is represented as theta ($\theta$). Why is this int
 
 Now the dot product only defines the angle between both vectors. You may remember that the cosine or cos function becomes **0** when the angle is **90** degrees or 1 when the angle is 0. This allows us to easily test if the two vectors are **orthogonal** or **parallel** to each other using the dot product (orthogonal means the vectors are at a **right-angle** to each other). In case you want to know more about the sin or the cos functions I'd suggest the following [Khan Academy videos](https://www.khanacademy.org/math/trigonometry/basic-trigonometry/basic_trig_ratios/v/basic-trigonometry) about basic trigonometry.
 
+現在，點乘只定義了兩個向量的夾角。你或許記得，當角度是 90 度的時候，其 cosine 或著 cos 值為 0，當角度為 0 的時候，其值為 1。使用 dot product 讓我們可以很輕鬆地測試出兩個向量是**正交**或是**平行** （正交的意思是兩個向量的夾角為直角）。如果你想對 sin 和 cos 函數有更多的了解，我建議你去追尋 [Khan Academy videos](https://www.khanacademy.org/math/trigonometry/basic-trigonometry/basic_trig_ratios/v/basic-trigonometry) 裡關於“三角幾何”部分。
+
 {% include box.html color="green" content="
 You can also calculate the angle between two non-unit vectors, but then you'd have to divide the lengths of both vectors from the result to be left with $\cos{\theta}$.
+
+你也可以計算兩個非單位向量的夾角，不過你需要對結果除以兩個向量的長度，使其只剩下 $\cos{\theta}$。
+
 " %}
 
 So how do we calculate the dot product? The dot product is a component-wise multiplication where we add the results together. It looks like this with two unit vectors (you can verify that both their lengths are exactly 1):
+
+那麼，我們該如何計算點積呢？點積的計算是將向量的每一個分量進行相乘，然後將它們加起來。對於兩個單位向量，這看上去就是（你可以驗證一下它們的長度是否都剛好是 1）：
 
 ```math
 {\begin{pmatrix}
@@ -246,13 +296,19 @@ So how do we calculate the dot product? The dot product is a component-wise mult
 
 To calculate the degree between both these unit vectors we use the inverse of the cosine function $\cos^{-1}$ and this results in `143.1` degrees. We now effectively calculated the angle between these two vectors. The dot product proves very useful when doing lighting calculations later on.
 
-**Cross product**
+為了計算二者的夾角，我們使用 cosine 函數的逆函數 $\cos^{-1}$，它計算的結果是 `143.1` 度。我們現在成功地計算出了這兩個向量的夾角。點積在執行後邊的光線計算時非常有價值。
+
+**叉積（Cross product）**
 
 The cross product is only defined in 3D space and takes two non-parallel vectors as input and produces a third vector that is orthogonal to both the input vectors. If both the input vectors are orthogonal to each other as well, a cross product would result in 3 orthogonal vectors; this will prove useful in the upcoming chapters. The following image shows what this looks like in 3D space:
+
+叉積的定義是，在 3D 空間，它使用兩個向量作為輸入，然後產生第三個向量，它與輸入的兩個向量均呈正交關係。如果兩個輸入向量也是正交關係，那麼三個向量相互正交；這在後續的章節裡非常有用。下圖顯示出這種計算在 3D 空間裡的呈現：
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors_crossproduct.png" %}
 
 Unlike the other operations, the cross product isn't really intuitive without delving into linear algebra so it's best to just memorize the formula and you'll be fine (or don't, you'll probably be fine as well). Below you'll see the cross product between two orthogonal vectors **A** and **B**:
+
+和其它操作不同的是，叉積不那麼直觀，除非你深入研究一下線性代數相關知識，因此最好就是記下這個公式，這樣沒有問題（或著不記住它，那麼沒啥關係）。以下，你將看到兩個正交向量 **A** 和 **B** 的叉積：
 
 ```math
 \begin{pmatrix}
@@ -276,9 +332,13 @@ A_x \cdot B_y - A_y \cdot B_x \\
 
 As you can see, it doesn't really seem to make sense. However, if you just follow these steps you'll get another vector that is orthogonal to your input vectors.
 
+如你所見，這似乎沒啥意義。然爾，如果你僅僅按照這些步驟去做，你可以得到一個與你所輸入向量均正交的一個向量。
+
 ## Matrices
 
 Now that we've discussed almost all there is to vectors it is time to enter the matrix! A matrix is a rectangular array of numbers, symbols and/or mathematical expressions. Each individual item in a matrix is called an element of the matrix. An example of a **2x3** matrix is shown below:
+
+現在，我們已經討論了幾乎全部的向量相關的內容，是時候進入到矩陣主題了。矩陣是一個數字的矩形陣列，一種符號，或著一種數學表達。其中的每一個項被稱為矩陣的“元素”。一個 $2\times3$ 矩陣的例子如下：
 
 ```math
 \begin{bmatrix}
@@ -287,142 +347,223 @@ Now that we've discussed almost all there is to vectors it is time to enter the 
 \end{bmatrix}
 ```
 
-Matrices are indexed by $(i, j)$ where i is the row and j is the column, that is why the above matrix is called a $2x3$ matrix (3 columns and 2 rows, also known as the dimensions of the matrix). This is the opposite of what you're used to when indexing 2D graphs as $(x,y)$. To retrieve the value 4 we would index it as $(2,1)$ (second row, first column).
+Matrices are indexed by $(i, j)$ where i is the row and j is the column, that is why the above matrix is called a $2\times3$ matrix (3 columns and 2 rows, also known as the dimensions of the matrix). This is the opposite of what you're used to when indexing 2D graphs as $(x,y)$. To retrieve the value 4 we would index it as $(2,1)$ (second row, first column).
+
+矩陣以 $(i, j)$ 被索引，這裡 i 表示行序號，j 表示列序號，這就是為什麼它被稱為 $2x3$ 矩陣 （3 列以及 2 行，也被稱為矩陣的緯度）。這和你在 2D 圖中所使用的索引，比如 $(x, y)$，是相反的。要獲得數字 4，我們會將使用索引值 $(2,1)$（第二行，第一列）。
 
 Matrices are basically nothing more than that, just rectangular arrays of mathematical expressions. They do have a very nice set of mathematical properties and just like vectors we can define several operations on matrices, namely: addition, subtraction and multiplication.
 
-### Addition and subtraction
+矩陣也就是這樣了，沒有更多，僅僅是一個數學表達上的矩形陣列。它們當然也有一套非常漂亮的數學屬性，就像向量那樣，我們可以針對矩陣定義若干操作，叫做：加法、減法以及乘法。
+
+### 加法和減法（Addition and subtraction）
 
 Matrix addition and subtraction between two matrices is done on a per-element basis. So the same general rules apply that we're familiar with for normal numbers, but done on the elements of both matrices with the same index. This does mean that addition and subtraction is only defined for matrices of the same dimensions. A 3x2 matrix and a 2x3 matrix (or a 3x3 matrix and a 4x4 matrix) cannot be added or subtracted together. Let's see how matrix addition works on two 2x2 matrices:
 
+矩陣的加法和減法用於兩個矩陣之間，分別對每一個元素進行加減操作。所以，我們熟悉的普通數字運算規則同樣適用，只是運算是針對兩個矩陣中具有相同索引的位置元素進行的。這也意味著加減操作只針對相同緯度的矩陣。一個 $3\times2$ 的矩陣和一個 $2\times3$ 的矩陣是不可能被加減到一起的。讓我們來看看兩個 $2\times2$ 的矩陣的加法如何進行的：
+
 ```math
-\begin{bmatrix} \color{red}1 & \color{red}2 \\ \color{green}3 & \color{green}4 \end{bmatrix} + \begin{bmatrix} \color{red}5 & \color{red}6 \\ \color{green}7 & \color{green}8 \end{bmatrix} = \begin{bmatrix} \color{red}1 + \color{red}5 & \color{red}2 + \color{red}6 \\ \color{green}3 + \color{green}7 & \color{green}4 + \color{green}8 \end{bmatrix} = \begin{bmatrix} \color{red}6 & \color{red}8 \\ \color{green}{10} & \color{green}{12} \end{bmatrix}
+\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} + \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix} = \begin{bmatrix} 1 + 5 & 2 + 6 \\ 3 + 7 & 4 + 8 \end{bmatrix} = \begin{bmatrix} 6 & 8 \\ {10} & {12} \end{bmatrix}
 ```
 
 The same rules apply for matrix subtraction:
 
+矩陣減法遵循相同的規則：
+
 ```math
-\begin{bmatrix} \color{red}4 & \color{red}2 \\ \color{green}1 & \color{green}6 \end{bmatrix} - \begin{bmatrix} \color{red}2 & \color{red}4 \\ \color{green}0 & \color{green}1 \end{bmatrix} = \begin{bmatrix} \color{red}4 - \color{red}2 & \color{red}2  - \color{red}4 \\ \color{green}1 - \color{green}0 & \color{green}6 - \color{green}1 \end{bmatrix} = \begin{bmatrix} \color{red}2 & -\color{red}2 \\ \color{green}1 & \color{green}5 \end{bmatrix}
+\begin{bmatrix} 4 & 2 \\ 1 & 6 \end{bmatrix} - \begin{bmatrix} 2 & 4 \\ 0 & 1 \end{bmatrix} = \begin{bmatrix} 4 - 2 & 2  - 4 \\ 1 - 0 & 6 - 1 \end{bmatrix} = \begin{bmatrix} 2 & -2 \\ 1 & 5 \end{bmatrix}
 ```
 
-### Matrix-scalar products
+### 矩陣-標量乘積（Matrix-scalar products）
 
 A matrix-scalar product multiples each element of the matrix by a scalar. The following example illustrates the multiplication:
 
+矩陣-標量的積的計算是，對每一個矩陣元素乘以這個標量。以下的例子演示了這種乘法：
+
 ```math
-{\color{green}2} \cdot \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} = \begin{bmatrix} {\color{green}2} \cdot 1 & {\color{green}2} \cdot 2 \\ {\color{green}2} \cdot 3 & {\color{green}2} \cdot 4 \end{bmatrix} = \begin{bmatrix} 2 & 4 \\ 6 & 8 \end{bmatrix}
+{2} \cdot \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} = \begin{bmatrix} {2} \cdot 1 & {2} \cdot 2 \\ {2} \cdot 3 & {2} \cdot 4 \end{bmatrix} = \begin{bmatrix} 2 & 4 \\ 6 & 8 \end{bmatrix}
 ```
 
 Now it also makes sense as to why those single numbers are called scalars. A scalar basically scales all the elements of the matrix by its value. In the previous example, all elements were scaled by 2.
 
+現在我們也能理解，為什麼那些單一的數字會被稱為「標量」。一個標量本質上可以對矩陣的全部元素進行“縮放”（scales）。上一個例子中，全部元素都被放大了 2 倍。
+
 So far so good, all of our cases weren't really too complicated. That is, until we start on matrix-matrix multiplication.
 
-### Matrix-matrix multiplication
+到目前為止一切都還算簡單，情況都不算太複雜。但這情況會改變，當我們開始進入矩陣與矩陣的相乘時就不一樣了。
+
+### 矩陣-矩陣乘法（Matrix-matrix multiplication）
 
 Multiplying matrices is not necessarily complex, but rather difficult to get comfortable with. Matrix multiplication basically means to follow a set of pre-defined rules when multiplying. There are a few restrictions though:
 
+對矩陣進行乘法運算不必然是複雜的，但是要習慣它稍稍困難。矩陣的乘法本質上遵循了一系列預定義的規則。但有幾個限制：
+
 1. You can only multiply two matrices if the number of columns on the left-hand side matrix is equal to the number of rows on the right-hand side matrix.
-2. Matrix multiplication is not commutative that is $A \cdot B \neq B \cdot A$.
+
+1. 只有黨左邊矩陣的列數和右邊矩陣的行數一致，你才能對兩個矩陣進行乘法運算。
+
+1. Matrix multiplication is not commutative that is $A \cdot B \neq B \cdot A$.
+
+1. 矩陣的乘法不遵循交換律，也就是 $A \cdot B \neq B \cdot A$。
 
 Let's get started with an example of a matrix multiplication of 2 2x2 matrices:
 
+我們使用兩個 $2\times2$ 的矩陣的乘法作為例子：
+
 ```math
-\begin{bmatrix} \color{red}1 & \color{red}2 \\ \color{green}3 & \color{green}4 \end{bmatrix} \cdot \begin{bmatrix} \color{blue}5 & \color{purple}6 \\ \color{blue}7 & \color{purple}8 \end{bmatrix} = \begin{bmatrix} \color{red}1 \cdot \color{blue}5 + \color{red}2 \cdot \color{blue}7 & \color{red}1 \cdot \color{purple}6 + \color{red}2 \cdot \color{purple}8 \\ \color{green}3 \cdot \color{blue}5 + \color{green}4 \cdot \color{blue}7 & \color{green}3 \cdot \color{purple}6 + \color{green}4 \cdot \color{purple}8 \end{bmatrix} = \begin{bmatrix} 19 & 22 \\ 43 & 50 \end{bmatrix}
+\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \cdot \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix} = \begin{bmatrix} 1 \cdot 5 + 2 \cdot 7 & 1 \cdot 6 + 2 \cdot 8 \\ 3 \cdot 5 + 4 \cdot 7 & 3 \cdot 6 + 4 \cdot 8 \end{bmatrix} = \begin{bmatrix} 19 & 22 \\ 43 & 50 \end{bmatrix}
 ```
 
 Right now you're probably trying to figure out what the hell just happened? Matrix multiplication is a combination of normal multiplication and addition using the left-matrix's rows with the right-matrix's columns. Let's try discussing this with the following image:
+
+現在，或許你正嘗試理解其中發生了什麼？矩陣乘法是一種將一般的乘法與加法結合起來的運算方式，它是使用左邊矩陣的行與右邊矩陣的列進行運算的。讓我們根據下圖進一步討論：
 
 {% include img.html src="https://learnopengl.com/img/getting-started/matrix_multiplication.png" %}
 
 We first take the upper row of the left matrix and then take a column from the right matrix. The row and column that we picked decides which output value of the resulting 2x2 matrix we're going to calculate. If we take the first row of the left matrix the resulting value will end up in the first row of the result matrix, then we pick a column and if it's the first column the result value will end up in the first column of the result matrix. This is exactly the case of the red pathway. To calculate the bottom-right result we take the bottom row of the first matrix and the rightmost column of the second matrix.
 
+我們首先取左邊矩陣的上邊的行，然後取右邊矩陣的一列。我們選擇的行和列決定了 $2\times2$ 結果矩陣中的我們要計算的那個值。如果我們取左側矩陣的第一行，計算的值將落在結果矩陣的第一行，然後我們取一列，如果是第一列，計算的值將落在結果矩陣的第一列。這正是紅色路徑的情況。要計算右下角的值，我們取第一個矩陣的最後一行和第二個矩陣的最後一列。
+
 To calculate the resulting value we multiply the first element of the row and column together using normal multiplication, we do the same for the second elements, third, fourth etc. The results of the individual multiplications are then summed up and we have our result. Now it also makes sense that one of the requirements is that the size of the left-matrix's columns and the right-matrix's rows are equal, otherwise we can't finish the operations!
+
+要計算結果值，我們對行和列的值進行普通的乘法運算，然後對第二個元素進行一樣的計算，接著是第三、第四個，如此等等。單個乘法的結果最後求和，我們拿到了我們的結果。現在我們也明白了，為什麼左側矩陣的列和右側矩陣的行的大小必須一致，否則我們無法完成運算。
 
 The result is then a matrix that has dimensions of (n,m) where n is equal to the number of rows of the left-hand side matrix and m is equal to the columns of the right-hand side matrix.
 
+結果我們得到了這樣的一個矩陣，它的緯度是 $(n,m)$，其中 n 和左側矩陣的行數相等，爾 m 和右側矩陣的列數相等。
+
 Don't worry if you have difficulties imagining the multiplications inside your head. Just keep trying to do the calculations by hand and return to this page whenever you have difficulties. Over time, matrix multiplication becomes second nature to you.
+
+如果你對腦算其中的乘法感到些許困難，不要擔心，你可以手動去完成計算，然後在你遇到困難的時候，回來再看看這篇文章。隨著時間推移，矩陣的乘法運算對與你會變為次自然的一件事。
 
 Let's finish the discussion of matrix-matrix multiplication with a larger example. Try to visualize the pattern using the colors. As a useful exercise, see if you can come up with your own answer of the multiplication and then compare them with the resulting matrix (once you try to do a matrix multiplication by hand you'll quickly get the grasp of them).
 
+讓我們使用一個更大的例子來結束對矩陣-矩陣的乘法運算的討論吧。試著對這個計算模式進行可視化，可以藉助顏色。按照通常的練習，來看看你是否可以得出自己的答案，然後和結果矩陣比較一下（一旦你嘗試手動完成矩陣的乘法運算，你將很快掌握它們）。
+
 ```math
-\begin{bmatrix} \color{red}4 & \color{red}2 & \color{red}0 \\ \color{green}0 & \color{green}8 & \color{green}1 \\ \color{blue}0 & \color{blue}1 & \color{blue}0 \end{bmatrix} \cdot \begin{bmatrix} \color{red}4 & \color{green}2 & \color{blue}1 \\ \color{red}2 & \color{green}0 & \color{blue}4 \\ \color{red}9 & \color{green}4 & \color{blue}2 \end{bmatrix} \\ = \\ \begin{bmatrix} \color{red}4 \cdot \color{red}4 + \color{red}2 \cdot \color{red}2 + \color{red}0 \cdot \color{red}9 & \color{red}4 \cdot \color{green}2 + \color{red}2 \cdot \color{green}0 + \color{red}0 \cdot \color{green}4 & \color{red}4 \cdot \color{blue}1 + \color{red}2 \cdot \color{blue}4 + \color{red}0 \cdot \color{blue}2 \\ \color{green}0 \cdot \color{red}4 + \color{green}8 \cdot \color{red}2 + \color{green}1 \cdot \color{red}9 & \color{green}0 \cdot \color{green}2 + \color{green}8 \cdot \color{green}0 + \color{green}1 \cdot \color{green}4 & \color{green}0 \cdot \color{blue}1 + \color{green}8 \cdot \color{blue}4 + \color{green}1 \cdot \color{blue}2 \\ \color{blue}0 \cdot \color{red}4 + \color{blue}1 \cdot \color{red}2 + \color{blue}0 \cdot \color{red}9 & \color{blue}0 \cdot \color{green}2 + \color{blue}1 \cdot \color{green}0 + \color{blue}0 \cdot \color{green}4 & \color{blue}0 \cdot \color{blue}1 + \color{blue}1 \cdot \color{blue}4 + \color{blue}0 \cdot \color{blue}2 \end{bmatrix}
- \\ = \\ \begin{bmatrix} 20 & 8 & 12 \\ 25 & 4 & 34 \\ 2 & 0 & 4 \end{bmatrix}
+\begin{bmatrix} 4 & 2 & 0 \\ 0 & 8 & 1 \\ 0 & 1 & 0 \end{bmatrix} \cdot \begin{bmatrix} 4 & 2 & 1 \\ 2 & 0 & 4 \\ 9 & 4 & 2 \end{bmatrix} = \begin{bmatrix} 4 \cdot 4 + 2 \cdot 2 + 0 \cdot 9 & 4 \cdot 2 + 2 \cdot 0 + 0 \cdot 4 & 4 \cdot 1 + 2 \cdot 4 + 0 \cdot 2 \\ 0 \cdot 4 + 8 \cdot 2 + 1 \cdot 9 & 0 \cdot 2 + 8 \cdot 0 + 1 \cdot 4 & 0 \cdot 1 + 8 \cdot 4 + 1 \cdot 2 \\ 0 \cdot 4 + 1 \cdot 2 + 0 \cdot 9 & 0 \cdot 2 + 1 \cdot 0 + 0 \cdot 4 & 0 \cdot 1 + 1 \cdot 4 + 0 \cdot 2 \end{bmatrix}
+ = \begin{bmatrix} 20 & 8 & 12 \\ 25 & 4 & 34 \\ 2 & 0 & 4 \end{bmatrix}
 ```
 
 As you can see, matrix-matrix multiplication is quite a cumbersome process and very prone to errors (which is why we usually let computers do this) and this gets problematic real quick when the matrices become larger. If you're still thirsty for more and you're curious about some more of the mathematical properties of matrices I strongly suggest you take a look at these [Khan Academy videos](https://www.khanacademy.org/math/algebra-home/alg-matrices) about matrices.
 
+如你所見，矩陣-矩陣乘法運算是一種相對複雜的過程，而且非常容易出錯（這也是為什麼我們通常讓計算機來做這件事），而且隨著矩陣變大，問題的出現也會更明顯。如果你渴望更多的相關知識，而且你對其更多的數學特徵剛到好奇，我強烈推薦你看看這些講解矩陣的[教學視頻](https://www.khanacademy.org/math/algebra-home/alg-matrices)。
+
 Anyways, now that we know how to multiply matrices together, we can start getting to the good stuff.
 
-## Matrix-Vector multiplication
+總之，我們現在知道如何將矩陣做乘法了，現在要開始討論一些有趣的內容。
+
+## 矩陣-向量乘法（Matrix-Vector multiplication）
 
 Up until now we've had our fair share of vectors. We used them to represent positions, colors and even texture coordinates. Let's move a bit further down the rabbit hole and tell you that a vector is basically a $N \times 1$ matrix where N is the vector's number of components (also known as an N-dimensional vector). If you think about it, it makes a lot of sense. Vectors are just like matrices an array of numbers, but with only 1 column. So, how does this new piece of information help us? Well, if we have a $M \times N$ matrix we can multiply this matrix with our $N \times 1$ vector, since the columns of the matrix are equal to the number of rows of the vector, thus matrix multiplication is defined.
 
+截止目前，我們已經接觸了不少向量相關的知識。我們使用它們來表示位置、顏色，甚至是紋理座標。讓我們再進一步，我告訴你向量其實本質上是一個 $N \times 1$ 矩陣，其中 N 是向量的分量數目（也被稱為 N 維向量）。如果你想一下，就會發現這是有道理的。向量其實和矩陣一樣，是一個數字排列，但是只有 1 列。那麼，這一信息對我們有什麼幫助呢？好，如果我們有一個 $M \times N$ 的矩陣，我們將它和一個 $N \times 1$ 的向量做乘法運算，由於矩陣的列數和向量的行數一致，矩陣乘法是合法的。
+
 But why do we care if we can multiply matrices with a vector? Well, it just so happens that there are lots of interesting 2D/3D transformations we can place inside a matrix, and multiplying that matrix with a vector then transforms that vector. In case you're still a bit confused, let's start with a few examples and you'll soon see what we mean.
 
-### Identity matrix
+但為什麼我們關注這個問題，即我們能否將一個矩陣乘以一個向量？好，之所以如此，因為存在大量有趣的 2D/3D 轉換可以使用矩陣實現，對矩陣乘以一個向量將對這個向量加以轉換。如果你依然對此有些許困惑，讓我們拿出幾個例子來，你將很快明白我們說的是什麼意思。
+
+### 單位矩陣（Identity matrix）
 
 In OpenGL we usually work with **4x4** transformation matrices for several reasons and one of them is that most of the vectors are of size 4. The most simple transformation matrix that we can think of is the identity matrix. The identity matrix is an **NxN** matrix with only 0s except on its diagonal. As you'll see, this transformation matrix leaves a vector completely unharmed:
 
+在 OpenGL 當中，我們常常會和 $4 \times 4$ 的轉換矩陣打交道，這裡涉及一些原因，其中之一就是絕大多數向量都是 4 維的。最最簡單的轉換矩陣，我們能夠想到的，就是單位矩陣。單位矩陣是一個 $N \times N$ 的矩陣，除了對角線上的數字，其餘元素全是 0。如你即將看到，這樣的矩陣對向量完全沒有作用（不會改變向量）。
+
 ```math
-\begin{bmatrix} \color{red}1 & \color{red}0 & \color{red}0 & \color{red}0 \\ \color{green}0 & \color{green}1 & \color{green}0 & \color{green}0 \\ \color{blue}0 & \color{blue}0 & \color{blue}1 & \color{blue}0 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} \cdot \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix} = \begin{bmatrix} \color{red}1 \cdot 1 \\ \color{green}1 \cdot 2 \\ \color{blue}1 \cdot 3 \\ \color{purple}1 \cdot 4 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix}
+\begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \cdot \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix} = \begin{bmatrix} 1 \cdot 1 \\ 1 \cdot 2 \\ 1 \cdot 3 \\ 1 \cdot 4 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix}
 ```
 
 The vector is completely untouched. This becomes obvious from the rules of multiplication: the first result element is each individual element of the first row of the matrix multiplied with each element of the vector. Since each of the row's elements are 0 except the first one, we get: $1\cdot1+0\cdot2+0\cdot3+0\cdot4=1$ and the same applies for the other 3 elements of the vector.
 
+向量完全沒有改變。根據矩陣乘法規則，這顯而易見：結果裡的第一個元素為矩陣第一行的每一個元素和向量的每一個元素相乘得到的。由於矩陣第一行裡的元素除了第一個之外全部為 0，我們得到 $1\cdot1+0\cdot2+0\cdot3+0\cdot4=1$，向量的其餘三個元素應用相同的計算辦法。
+
 {% include box.html color="green" content="
 You may be wondering what the use is of a transformation matrix that does not transform? The identity matrix is usually a starting point for generating other transformation matrices and if we dig even deeper into linear algebra, a very useful matrix for proving theorems and solving linear equations.
+
+你或許會感到好奇，這樣一種對向量不做任何轉化的矩陣有什麼用處呢？單位矩陣通常用於生成其它轉換矩陣，如果我們能夠更加深入地了解線性代數，它是一個非常有用的矩陣，用於證明理論以及解決線性方程。
 " %}
 
-### Scaling
+### 縮放（Scaling）
 
 When we're scaling a vector we are increasing the length of the arrow by the amount we'd like to scale, keeping its direction the same. Since we're working in either 2 or 3 dimensions we can define scaling by a vector of 2 or 3 scaling variables, each scaling one axis (x, y or z).
 
+當我們縮放一個向量的時候，我們增加其長度以一個我們想要的量，爾方向保持不變。由於我們在二維或者三維空間操作，因此我們可以使用一個包含 2 個或者 3 個縮放因子的向量，使每個分量沿著對應的軸進行縮放。
+
 Let's try scaling the vector $\vec{v}=(3,2)$. We will scale the vector along the x-axis by **0.5**, thus making it twice as narrow; and we'll scale the vector by 2 along the y-axis, making it twice as high. Let's see what it looks like if we scale the vector by $(0.5,2)$ as $\vec{s}$:
+
+讓我們來對向量 $\vec{v}=(3,2)$ 進行縮放。我們將沿著 x 軸對其縮放 0.5 倍，即使其變窄一半。然後，我們沿著 y 軸縮放 2 倍，即使其變高一倍。我們來看看對向量縮放 $\vec{s} = (0.5,2)$ 之後的樣子：
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors_scale.png" %}
 
 Keep in mind that OpenGL usually operates in 3D space so for this 2D case we could set the z-axis scale to 1, leaving it unharmed. The scaling operation we just performed is a non-uniform scale, because the scaling factor is not the same for each axis. If the scalar would be equal on all axes it would be called a uniform scale.
 
-Let's start building a transformation matrix that does the scaling for us. We saw from the identity matrix that each of the diagonal elements were multiplied with its corresponding vector element. What if we were to change the 1s in the identity matrix to 3s? In that case, we would be multiplying each of the vector elements by a value of 3 and thus effectively uniformly scale the vector by 3. If we represent the scaling variables as $(S1,S2,S3)$ we can define a scaling matrix on any vector $(x,y,z)$ as:
+記住，OpenGL 通常是針對 3D 空間操作的，因此對於這種 2D 的情況，我們可以設置 z 軸方向的縮放因子為 1，這對結果沒有任何影響。我們方才執行的縮放操作是一個非均勻縮放縮放，因為縮放因子在各個軸上不相等。如果縮放因子於三個軸線相等，那麼我們可以這樣的縮放稱為均勻縮放。
+
+Let's start building a transformation matrix that does the scaling for us. We saw from the identity matrix that each of the diagonal elements were multiplied with its corresponding vector element. What if we were to change the 1s in the identity matrix to 3s? In that case, we would be multiplying each of the vector elements by a value of 3 and thus effectively uniformly scale the vector by 3. If we represent the scaling variables as $(S_1,S_2,S_3)$ we can define a scaling matrix on any vector $(x,y,z)$ as:
+
+我們開始構建一個轉換矩陣，用它來為我們做縮放操作。我們從單位矩陣看到過，對角線上的每一個元素會和對應的向量元素做乘法。如果我們將單位矩陣中的 1s 修改為 3s 會怎麼樣呢？那種情況下，我們將對每個向量元素乘以 3，因此這相當於將向量放大了 3 倍。如果我們將縮放因子表述為 $(S_1,S_2,S_3)$，可以將一個作用於任意向量 $(x,y,z)$ 的縮放矩陣定義為：
 
 ```math
-\begin{bmatrix} \color{red}{S_1} & \color{red}0 & \color{red}0 & \color{red}0 \\ \color{green}0 & \color{green}{S_2} & \color{green}0 & \color{green}0 \\ \color{blue}0 & \color{blue}0 & \color{blue}{S_3} & \color{blue}0 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} \color{red}{S_1} \cdot x \\ \color{green}{S_2} \cdot y \\ \color{blue}{S_3} \cdot z \\ 1 \end{pmatrix}
+\begin{bmatrix} {S_1} & 0 & 0 & 0 \\ 0 & {S_2} & 0 & 0 \\ 0 & 0 & {S_3} & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} {S_1} \cdot x \\ {S_2} \cdot y \\ {S_3} \cdot z \\ 1 \end{pmatrix}
 ```
 
 Note that we keep the `4th` scaling value 1. The **w** component is used for other purposes as we'll see later on.
 
-### Translation
+注意，我們始終將第四個縮放因子設置為 1，**w** 分量用於其它用途，我們稍後會了解。
+
+### 平移（Translation）
 
 Translation is the process of adding another vector on top of the original vector to return a new vector with a different position, thus _moving_ the vector based on a translation vector. We've already discussed vector addition so this shouldn't be too new.
 
+平移是這樣一種操作，它將另一個向量加到原向量的尾部，然後返回一個新的向量，得到一個不同的位置，於是實現了基於一個平移向量來 _移動_ 一個向量的效果。我們已經討論過向量的加法，這應該不算太新鮮吧？
+
 Just like the scaling matrix there are several locations on a 4-by-4 matrix that we can use to perform certain operations and for translation those are the top-3 values of the 4th column. If we represent the translation vector as $(T_x,T_y,T_z)$ we can define the translation matrix by:
 
+就像縮放矩陣，對於一個 $4 \times 4$ 矩陣，有幾個位置可以讓我們用來執行某種操作，對於平移，它們是第四列的前三個值。如果我們將平移向量表述為 $(T_x,T_y,T_z)$，我可以將平移矩陣定義為這樣：
+
 ```math
-\begin{bmatrix}  \color{red}1 & \color{red}0 & \color{red}0 & \color{red}{T_x} \\ \color{green}0 & \color{green}1 & \color{green}0 & \color{green}{T_y} \\ \color{blue}0 & \color{blue}0 & \color{blue}1 & \color{blue}{T_z} \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} x + \color{red}{T_x} \\ y + \color{green}{T_y} \\ z + \color{blue}{T_z} \\ 1 \end{pmatrix}
+\begin{bmatrix}  1 & 0 & 0 & {T_x} \\ 0 & 1 & 0 & {T_y} \\ 0 & 0 & 1 & {T_z} \\ 0 & 0 & 0 & 1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} x + {T_x} \\ y + {T_y} \\ z + {T_z} \\ 1 \end{pmatrix}
 ```
 
 This works because all of the translation values are multiplied by the vector's w column and added to the vector's original values (remember the matrix-multiplication rules). This wouldn't have been possible with a 3-by-3 matrix.
+
+這是有效的，因為全部的平移值都會被向量的 w 列，並且加到向量的原始值上（回憶一下，這是矩陣乘法規則）。這並不適用於 $3 \times 3$ 矩陣。
 
 {% include box.html color="green" content="
 
 **Homogeneous coordinates**
 
-The w component of a vector is also known as a homogeneous coordinate. To get the 3D vector from a homogeneous vector we divide the **x**, **y** and **z** coordinate by its **w** coordinate. We usually do not notice this since the **w** component is **1.0** most of the time. Using homogeneous coordinates has several advantages: it allows us to do matrix translations on 3D vectors (without a w component we can't translate vectors) and in the next chapter we'll use the **w** value to create 3D perspective.
+**齊次座標（Homogeneous coordinates）**
+
+---
+
+The **w** component of a vector is also known as a homogeneous coordinate. To get the 3D vector from a homogeneous vector we divide the **x**, **y** and **z** coordinate by its **w** coordinate. We usually do not notice this since the **w** component is **1.0** most of the time. Using homogeneous coordinates has several advantages: it allows us to do matrix translations on 3D vectors (without a w component we can't translate vectors) and in the next chapter we'll use the **w** value to create 3D perspective.
+
+向量的 **w** 分量也被稱為齊次座標。要從一個齊次向量得到一個 3D 向量，我們將 x，yz 除以它的 w 座標。我們通常沒有注意這個這點，因為 w 分量大部分時候都是 1。使用齊次座標有幾個好處：它人虛我們對 3D 向量（沒有 w 分量，我們無法平移向量）執行矩陣的平移操作，下一章，我們將使用 w 分量創建 3D 透視。
 
 Also, whenever the homogeneous coordinate is equal to **0**, the vector is specifically known as a direction vector since a vector with a **w** coordinate of **0** cannot be translated.
+
+同時，如果齊次座標為 0，那麼向量被特指方向向量，因為 w 為 0 的的向量無法被平移。
 
 " %}
 
 With a translation matrix we can move objects in any of the 3 axis directions $(x, y, z)$, making it a very useful transformation matrix for our transformation toolkit.
 
-### Rotation
+藉助平移矩陣，我們可以沿著三個軸 $(x, y, z)$ 的方向移動物件，使它成為轉換操作中非常有用的一種矩陣。
+
+### 旋轉（Rotation）
 
 The last few transformations were relatively easy to understand and visualize in 2D or 3D space, but rotations are a bit trickier. If you want to know exactly how these matrices are constructed I'd recommend that you watch the rotation items of Khan Academy's [linear algebra](https://www.khanacademy.org/math/linear-algebra/matrix_transformations) videos.
 
+上面幾個轉換相對比較容易理解，也容易在 2D 或 3D 空間可視化，但是旋轉會顯得要特別一點。如果你想知道這些矩陣是如何被構造出來的，我建議你去看看這些和旋轉相關的[視頻教程](https://www.khanacademy.org/math/linear-algebra/matrix_transformations)。
+
 First let's define what a rotation of a vector actually is. A rotation in 2D or 3D is represented with an angle. An angle could be in degrees or radians where a whole circle has 360 degrees or 2 [PI](http://en.wikipedia.org/wiki/Pi) radians. I prefer explaining rotations using degrees as we're generally more accustomed to them.
+
+首先，讓我們定義好究竟什麼是向量的旋轉。在 2D 或 3D 空間下，一個旋轉伴隨著一個角度。角度可以是以“度數”為單位，或者是以“弧度”為單位，其中一整個圈將是 $360^\circ$ 或者 $2\pi$ 個弧度。我傾向於使用“度數”來解釋旋轉，鑒於我們一般對它更熟悉一些。
 
 {% include box.html color="green" content="
 Most rotation functions require an angle in radians, but luckily degrees are easily converted to radians:
+
+大多數的旋轉函數需要一個弧度角，但是好在從度數到弧度的轉換很簡單：
 
 ```
 angle in degrees = angle in radians * (180 / PI)
@@ -430,71 +571,105 @@ angle in radians = angle in degrees * (PI / 180)
 ```
 
 Where `PI` equals (rounded) `3.14159265359`.
+
+其中 `PI` （四捨五入）等於 `3.14159265359`。
 " %}
 
 Rotating half a circle rotates us `360/2 = 180` degrees and rotating 1/5th to the right means we rotate `360/5 = 72` degrees to the right. This is demonstrated for a basic 2D vector where $\vec{v}$ is rotated `72` degrees to the right, or clockwise, from $\vec{k}$:
+
+旋轉半個圈意為旋轉 `360/2 = 180` 度，爾向右旋轉 1/5th 意為向右旋轉 `360/5 = 72` 度。以下演示了一個 2D 向量 $\vec{v}$ 由 $\vec{k}$ 向右（順時針）旋轉 `72` 度的效果。
 
 {% include img.html src="https://learnopengl.com/img/getting-started/vectors_angle.png" %}
 
 Rotations in 3D are specified with an angle and a rotation axis. The angle specified will rotate the object along the rotation axis given. Try to visualize this by spinning your head a certain degree while continually looking down a single rotation axis. When rotating 2D vectors in a 3D world for example, we set the rotation axis to the z-axis (try to visualize this).
 
+3D 空間裡的旋轉被指定為一個角度加上一個旋轉軸，角度被指定為物件圍繞旋轉軸旋轉的角度。嘗試想像這個情境：讓你的頭沿著某個旋轉軸持續看著某個方向，同時轉動一定的角度。在 3D 空間旋轉 2D 向量，我們將旋轉軸設置為 z 軸（試著想像一下畫面）。
+
 Using trigonometry it is possible to transform vectors to newly rotated vectors given an angle. This is usually done via a smart combination of the sine and cosine functions (commonly abbreviated to sin and cos). A discussion of how the rotation matrices are generated is out of the scope of this chapter.
+
+使用三角函數，將向量轉換為旋轉某個角度後的向量是可行的。這通常是根據 sine 和 cosine 函數（術語通常是 sin 和 cos）的結合實現的。對於旋轉矩陣的生成的討論超出了本章的範圍。
 
 A rotation matrix is defined for each unit axis in 3D space where the angle is represented as the theta symbol $\theta$.
 
+旋轉矩陣是在三維空間中的每個單位軸上定義的，旋轉角度通常以希臘字母 $\theta$ (theta) 表示。
+
 Rotation around the X-axis:
 
+圍繞 X 軸的旋轉：
+
 ```math
-\begin{bmatrix} \color{red}1 & \color{red}0 & \color{red}0 & \color{red}0 \\ \color{green}0 & \color{green}{\cos \theta} & - \color{green}{\sin \theta} & \color{green}0 \\ \color{blue}0 & \color{blue}{\sin \theta} & \color{blue}{\cos \theta} & \color{blue}0 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} x \\ \color{green}{\cos \theta} \cdot y - \color{green}{\sin \theta} \cdot z \\ \color{blue}{\sin \theta} \cdot y + \color{blue}{\cos \theta} \cdot z \\ 1 \end{pmatrix}
+\begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & {\cos \theta} & - {\sin \theta} & 0 \\ 0 & {\sin \theta} & {\cos \theta} & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} x \\ {\cos \theta} \cdot y - {\sin \theta} \cdot z \\ {\sin \theta} \cdot y + {\cos \theta} \cdot z \\ 1 \end{pmatrix}
 ```
 
 Rotation around the Y-axis:
 
+圍繞 Y 軸的旋轉：
+
 ```math
-\begin{bmatrix} \color{red}{\cos \theta} & \color{red}0 & \color{red}{\sin \theta} & \color{red}0 \\ \color{green}0 & \color{green}1 & \color{green}0 & \color{green}0 \\ - \color{blue}{\sin \theta} & \color{blue}0 & \color{blue}{\cos \theta} & \color{blue}0 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} \color{red}{\cos \theta} \cdot x + \color{red}{\sin \theta} \cdot z \\ y \\ - \color{blue}{\sin \theta} \cdot x + \color{blue}{\cos \theta} \cdot z \\ 1 \end{pmatrix}
+\begin{bmatrix} {\cos \theta} & 0 & {\sin \theta} & 0 \\ 0 & 1 & 0 & 0 \\ - {\sin \theta} & 0 & {\cos \theta} & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} {\cos \theta} \cdot x + {\sin \theta} \cdot z \\ y \\ - {\sin \theta} \cdot x + {\cos \theta} \cdot z \\ 1 \end{pmatrix}
 ```
 
 Rotation around the Z-axis:
 
+圍繞 Z 軸的旋轉：
+
 ```math
-\begin{bmatrix} \color{red}{\cos \theta} & - \color{red}{\sin \theta} & \color{red}0 & \color{red}0 \\ \color{green}{\sin \theta} & \color{green}{\cos \theta} & \color{green}0 & \color{green}0 \\ \color{blue}0 & \color{blue}0 & \color{blue}1 & \color{blue}0 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} \color{red}{\cos \theta} \cdot x - \color{red}{\sin \theta} \cdot y  \\ \color{green}{\sin \theta} \cdot x + \color{green}{\cos \theta} \cdot y \\ z \\ 1 \end{pmatrix}
+\begin{bmatrix} {\cos \theta} & - {\sin \theta} & 0 & 0 \\ {\sin \theta} & {\cos \theta} & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} {\cos \theta} \cdot x - {\sin \theta} \cdot y  \\ {\sin \theta} \cdot x + {\cos \theta} \cdot y \\ z \\ 1 \end{pmatrix}
 ```
 
 Using the rotation matrices we can transform our position vectors around one of the three unit axes. To rotate around an arbitrary 3D axis we can combine all 3 them by first rotating around the X-axis, then Y and then Z for example. However, this quickly introduces a problem called Gimbal lock. We won't discuss the details, but a better solution is to rotate around an arbitrary unit axis e.g. $(0.662,0.2,0.722)$ (note that this is a unit vector) right away instead of combining the rotation matrices. Such a (verbose) matrix exists and is given below with $(R_x,R_y,R_z)$ as the arbitrary rotation axis:
 
+使用旋轉矩陣，我們可以對位置向量圍繞三個單位軸的任意一個進行轉換。要圍繞一個任意的 3D 軸旋轉，我們可以將此 3 個旋轉組合起來，先繞 X 軸旋轉，然後繞 Y 軸，最後繞 Z 軸。但是，這很快導致了一個問題，就是 `Gimbal lock`。我們不在此詳細探討這個問題，但是一個好的解決方法是直接繞一個任意的單位軸，比如 $(0.662,0.2,0.722)$ ，旋轉，而非將三個旋轉結合起來。這樣一種（囉嗦的）矩陣存在，如下所示，它的旋轉軸是 $(R_x,R_y,R_z)$。
+
 ```math
-\begin{bmatrix} \cos \theta + \color{red}{R_x}^2(1 - \cos \theta) & \color{red}{R_x}\color{green}{R_y}(1 - \cos \theta) - \color{blue}{R_z} \sin \theta & \color{red}{R_x}\color{blue}{R_z}(1 - \cos \theta) + \color{green}{R_y} \sin \theta & 0 \\ \color{green}{R_y}\color{red}{R_x} (1 - \cos \theta) + \color{blue}{R_z} \sin \theta & \cos \theta + \color{green}{R_y}^2(1 - \cos \theta) & \color{green}{R_y}\color{blue}{R_z}(1 - \cos \theta) - \color{red}{R_x} \sin \theta & 0 \\ \color{blue}{R_z}\color{red}{R_x}(1 - \cos \theta) - \color{green}{R_y} \sin \theta & \color{blue}{R_z}\color{green}{R_y}(1 - \cos \theta) + \color{red}{R_x} \sin \theta & \cos \theta + \color{blue}{R_z}^2(1 - \cos \theta) & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix} \cos \theta + {R_x}^2(1 - \cos \theta) & {R_x}{R_y}(1 - \cos \theta) - {R_z} \sin \theta & {R_x}{R_z}(1 - \cos \theta) + {R_y} \sin \theta & 0 \\ {R_y}{R_x} (1 - \cos \theta) + {R_z} \sin \theta & \cos \theta + {R_y}^2(1 - \cos \theta) & {R_y}{R_z}(1 - \cos \theta) - {R_x} \sin \theta & 0 \\ {R_z}{R_x}(1 - \cos \theta) - {R_y} \sin \theta & {R_z}{R_y}(1 - \cos \theta) + {R_x} \sin \theta & \cos \theta + {R_z}^2(1 - \cos \theta) & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}
 ```
 
 A mathematical discussion of generating such a matrix is out of the scope of this chapter. Keep in mind that even this matrix does not completely prevent gimbal lock (although it gets a lot harder). To truly prevent Gimbal locks we have to represent rotations using quaternions, that are not only safer, but also more computationally friendly. However, a discussion of quaternions is out of this chapter's scope.
 
-### Combining matrices
+生成它的數學相關的討論不在本章的範圍。記住，即便這樣一個矩陣，它也無法完全避免 gimbal lock （儘管它讓問題更加難解）。要真正地不讓 Gimbal locks 產生，我們必須將旋轉表述為四元數（Quaternion），它不單安全，而且對計算更加有好。然爾，關於四元數的討論也不在本章範圍，哈哈。
+
+### 合併矩陣（Combining matrices）
 
 The true power from using matrices for transformations is that we can combine multiple transformations in a single matrix thanks to matrix-matrix multiplication. Let's see if we can generate a transformation matrix that combines several transformations. Say we have a vector $(x,y,z)$ and we want to scale it by 2 and then translate it by $(1,2,3)$. We need a translation and a scaling matrix for our required steps. The resulting transformation matrix would then look like:
 
+矩陣真正的厲害之處在於，我們可以根據矩陣的乘法法則，對多個矩陣進行合併，從而形成一個矩陣。讓我們來看看是否真的可以通過合併多個轉換形成一個轉換。比如，我現在有一個向量 $(x,y,z)$，我們想將它縮放 2 倍，然後平移 $(1,2,3)$。要完成這些步驟，我們需要一個平移矩陣和一個縮放矩陣。最後的轉換矩陣看上去是這樣的：
+
 ```math
-Trans \cdot Scale = \begin{bmatrix} \color{red}1 & \color{red}0 & \color{red}0 & \color{red}1 \\ \color{green}0 & \color{green}1 & \color{green}0 & \color{green}2 \\ \color{blue}0 & \color{blue}0 & \color{blue}1 & \color{blue}3 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} . \begin{bmatrix} \color{red}2 & \color{red}0 & \color{red}0 & \color{red}0 \\ \color{green}0 & \color{green}2 & \color{green}0 & \color{green}0 \\ \color{blue}0 & \color{blue}0 & \color{blue}2 & \color{blue}0 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} = \begin{bmatrix} \color{red}2 & \color{red}0 & \color{red}0 & \color{red}1 \\ \color{green}0 & \color{green}2 & \color{green}0 & \color{green}2 \\ \color{blue}0 & \color{blue}0 & \color{blue}2 & \color{blue}3 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix}
+Trans \cdot Scale = \begin{bmatrix} 1 & 0 & 0 & 1 \\ 0 & 1 & 0 & 2 \\ 0 & 0 & 1 & 3 \\ 0 & 0 & 0 & 1 \end{bmatrix} . \begin{bmatrix} 2 & 0 & 0 & 0 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} = \begin{bmatrix} 2 & 0 & 0 & 1 \\ 0 & 2 & 0 & 2 \\ 0 & 0 & 2 & 3 \\ 0 & 0 & 0 & 1 \end{bmatrix}
 ```
 
 Note that we first do a translation and then a scale transformation when multiplying matrices. Matrix multiplication is not commutative, which means their order is important. When multiplying matrices the right-most matrix is first multiplied with the vector so you should read the multiplications from right to left. It is advised to first do scaling operations, then rotations and lastly translations when combining matrices otherwise they may (negatively) affect each other. For example, if you would first do a translation and then scale, the translation vector would also scale!
 
+注意，在執行矩陣乘法的時候，我們首先做平移，然後做縮放。矩陣的乘法是不支持交換律的，這也就意味著它們的順序很重要。當對矩陣做乘法運算的時候，最右側的矩陣首先和向量相乘，因此你需要從右向左地去閱讀矩陣乘法。在合併矩陣的時候，建議先執行縮放操作，然後是旋轉，最後是平移；否則它們可能相互右（不好的）影響。比如，如果你先平移，然後縮放，那麼平移向量也會被縮放。
+
 Running the final transformation matrix on our vector results in the following vector:
 
+對我們的向量應用最後的轉換矩陣，得到以下向量：
+
 ```math
-\begin{bmatrix} \color{red}2 & \color{red}0 & \color{red}0 & \color{red}1 \\ \color{green}0 & \color{green}2 & \color{green}0 & \color{green}2 \\ \color{blue}0 & \color{blue}0 & \color{blue}2 & \color{blue}3 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} . \begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix} = \begin{bmatrix} \color{red}2x + \color{red}1 \\ \color{green}2y + \color{green}2  \\ \color{blue}2z + \color{blue}3 \\ 1 \end{bmatrix}
+\begin{bmatrix} 2 & 0 & 0 & 1 \\ 0 & 2 & 0 & 2 \\ 0 & 0 & 2 & 3 \\ 0 & 0 & 0 & 1 \end{bmatrix} . \begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix} = \begin{bmatrix} 2x + 1 \\ 2y + 2  \\ 2z + 3 \\ 1 \end{bmatrix}
 ```
 
 Great! The vector is first scaled by two and then translated by $(1,2,3)$.
 
-## In practice
+很好，向量首先被縮放了 2 倍，然後平移 $(1,2,3)$。
+
+## 應用 （In practice）
 
 Now that we've explained all the theory behind transformations, it's time to see how we can actually use this knowledge to our advantage. OpenGL does not have any form of matrix or vector knowledge built in, so we have to define our own mathematics classes and functions. In this book we'd rather abstract from all the tiny mathematical details and simply use pre-made mathematics libraries. Luckily, there is an easy-to-use and tailored-for-OpenGL mathematics library called GLM.
+
+現在我們已經對轉換背後的理論進行了解釋，是時候探究一下我們實際如何使用這些知識。OpenGL 不提供任何形式的內置的矩陣和向量知識，因此我們必須定義我們自己的數學類和函數。這本書中，我們不會為全部的細微的數學知識抽象出類和函數，而是使用已經寫好的數學庫。幸運的事，有一個容易上手的、也是專為 OpenGL 涉及的數學庫，它的名字就是 GLM。
 
 ### GLM
 
 GLM stands for OpenGL Mathematics and is a header-only library, which means that we only have to include the proper header files and we're done; no linking and compiling necessary. GLM can be downloaded from their website. Copy the root directory of the header files into your includes folder and let's get rolling.
 
+GLM 的全稱是 OpenGL Mathematics，是一個僅包含頭文件的庫，這個意思是我們只需要包含進正確的頭文件即可，我們已經做了這件事。無需 linking 和編譯。GLM 可以從它們的網站上下載，然後將其整個目錄拷貝到你的 includes 文件夾，開始吧！
+
 Most of GLM's functionality that we need can be found in 3 headers files that we'll include as follows:
+
+我們所需要的多數 GLM 功能可以在這 3 個頭文件裡找到，以下我們將其包含進來：
 
 ```c++
 #include <glm/glm.hpp>
@@ -502,7 +677,9 @@ Most of GLM's functionality that we need can be found in 3 headers files that we
 #include <glm/gtc/type_ptr.hpp>
 ```
 
-Let's see if we can put our transformation knowledge to good use by translating a vector of $(1,0,0)$ by $(1,1,0)$ (note that we define it as a `glm::vec4` with its homogeneous coordinate set to 1.0:
+Let's see if we can put our transformation knowledge to good use by translating a vector of $(1,0,0)$ by $(1,1,0)$ (note that we define it as a `glm::vec4` with its homogeneous coordinate set to 1.0):
+
+我們看看是否可以將轉換用於對一個向量 $(1,0,0)$ 平移 $(1,1,0)$（注意我們將向量定義為類型 `glm::vec4`，它包含了齊次座標，數值為 1.0）。
 
 ```c++
 glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f);
@@ -514,10 +691,16 @@ std::cout << vec.x << vec.y << vec.z << std::endl;
 
 We first define a vector named vec using GLM's built-in vector class. Next we define a mat4 and explicitly initialize it to the identity matrix by initializing the matrix's diagonals to 1.0; if we do not initialize it to the identity matrix the matrix would be a null matrix (all elements 0) and all subsequent matrix operations would end up a null matrix as well.
 
+我們首先定定義了向量，名字為 vec，使用的是 GLM 內置的向量類。然後，我麼定義了一個 mat4，並且直接將其初始化為單位矩陣，並且將對角元素的值設置為 1.0；如果我麼不對它進行初始化，那麼它將是一個空矩陣（所有元素的值都是 0），而且接下來的矩陣操作也都將導致一個空矩陣。
+
 The next step is to create a transformation matrix by passing our identity matrix to the glm::translate function, together with a translation vector (the given matrix is then multiplied with a translation matrix and the resulting matrix is returned).
 Then we multiply our vector by the transformation matrix and output the result. If we still remember how matrix translation works then the resulting vector should be $(1+1,0+1,0+0)$ which is $(2,1,0)$. This snippet of code outputs **210** so the translation matrix did its job.
 
+接下來，通過傳入這個單位矩陣到函數`glm::translate`創建一個轉換矩陣，同時傳入一個平移向量（傳入的矩陣會和一個平移矩陣相乘，並將結果返回）。接著，我們將向量乘這個轉換矩陣，輸出平移結果。如果我麼還記得平移是如何工作的，最終的向量應該是 $(1+1,0+1,0+0)$，也就是 $(2,1,0)$。這段代碼輸出的結果是 **210**，因此平移矩陣處理得沒有問題。
+
 Let's do something more interesting and scale and rotate the container object from the previous chapter:
+
+讓我們來點有意思的，縮放然後旋轉我們在上一章裡做的盒子。
 
 ```c++
 glm::mat4 trans = glm::mat4(1.0f);
@@ -527,7 +710,11 @@ trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
 
 First we scale the container by 0.5 on each axis and then rotate the container 90 degrees around the Z-axis. GLM expects its angles in radians so we convert the degrees to radians using `glm::radians`. Note that the textured rectangle is on the XY plane so we want to rotate around the Z-axis. Keep in mind that the axis that we rotate around should be a unit vector, so be sure to normalize the vector first if you're not rotating around the X, Y, or Z axis. Because we pass the matrix to each of GLM's functions, GLM automatically multiples the matrices together, resulting in a transformation matrix that combines all the transformations.
 
+首先，我們對盒子對每個軸縮放了 0.5，然後繞 z 軸旋轉了 90 度。GLM 需要的是弧度角，因此我們將度數轉化為弧度，這是通過 `glm::radians` 做到的。注意，我們貼圖後的矩形在 XY 平面，因此我們對 Z 軸旋轉。記住，旋轉所圍繞的軸線必須是一個單位向量，因此確保在繞 x/y/z 軸旋轉之前，你是首先對其進行了標準化。因為我們將矩陣傳遞給每個 GLM 的函數，GLM 會自動將這些矩陣相乘，從而產生一個合併所有變換的變換矩陣。
+
 The next big question is: how do we get the transformation matrix to the shaders? We shortly mentioned before that GLSL also has a `mat4` type. So we'll adapt the vertex shader to accept a `mat4` uniform variable and multiply the position vector by the matrix uniform:
+
+接下來的一個大問題是：我們如何讓這個轉換矩陣傳入到 shader？我曾簡單地提到過，glsl 裡也有一個數據類型 mat4。因此我們可以讓頂點著色器接收一個 mat4 類型的 uniform 變量，然後使其與向量相乘：
 
 ```c++
 #version 330 core
@@ -547,9 +734,13 @@ void main()
 
 {% include box.html color="green" content="
 GLSL also has **mat2** and **mat3** types that allow for swizzling-like operations just like vectors. All the aforementioned math operations (like scalar-matrix multiplication, matrix-vector multiplication and matrix-matrix multiplication) are allowed on the matrix types. Wherever special matrix operations are used we'll be sure to explain what's happening.
+
+glsl 也有類型 **mat2** 和 **mat3**，它們允許我們進行“類-組合”操作，就像向量的組合操作那樣。之前提到的全部的數學操作（像 scalar-matrix 乘法、matrix-vector 乘法，以及 matrix-matrix 乘法）對於 glsl 的矩陣類型都被允許。凡是使用特殊矩陣運算的地方，我們都會確保說明其背後的原理。
 " %}
 
 We added the uniform and multiplied the position vector with the transformation matrix before passing it to `gl_Position`. Our container should now be twice as small and rotated **90** degrees (tilted to the left). We still need to pass the transformation matrix to the shader though:
+
+我們加上了 uniform，並使用轉換矩陣對位置向量做了相乘，最後將位置向量交給 `gl_Position`。我們的箱子該小了一半，並且旋轉了 **90** 度（向左傾斜）。但我們還需要將轉換矩陣傳入到著色器。
 
 ```c++
 unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
@@ -558,11 +749,17 @@ glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 
 We first query the location of the uniform variable and then send the matrix data to the shaders using `glUniform` with `Matrix4fv` as its postfix. The first argument should be familiar by now which is the uniform's location. The second argument tells OpenGL how many matrices we'd like to send, which is 1. The third argument asks us if we want to transpose our matrix, that is to swap the columns and rows. OpenGL developers often use an internal matrix layout called column-major ordering which is the default matrix layout in GLM so there is no need to transpose the matrices; we can keep it at `GL_FALSE`. The last parameter is the actual matrix data, but GLM stores their matrices' data in a way that doesn't always match OpenGL's expectations so we first convert the data with GLM's built-in function `value_ptr`.
 
+我們首先查詢了 uniform 變量的位置，然後將 matrix 數據發送給 shader，這裡使用的是 glUniform\* 函數，以 Matrix4fv 為函數後綴。第一個參數我們很熟悉，就是 uniform 的位置。第二個參數告訴 OpenGL 我們有幾個矩陣需要傳送，這裡是 1 個。第三個參數問我們是否需要 transpose 我們的矩陣，這個意思是將行和列進行調換。OpenGL 的開發者經常使用一種被稱為“列優先”次序的內部矩陣 layout，這在 glm 當中是默認的矩陣 layout，因此我們無需 transpose 這些矩陣；我們將其保留為 `GL_FALSE`。最後一個參數就是實際的矩陣數據了，但 glm 保存矩陣數據的方式不總是讓 OpenGL 滿意，因此我們首先使用 glm 內置的函數 `value_ptr` 將數據進行一次轉換。
+
 We created a transformation matrix, declared a uniform in the vertex shader and sent the matrix to the shaders where we transform our vertex coordinates. The result should look something like this:
+
+我們創建了一個轉換矩陣，在頂點著色器中聲明了一個 uniform，並且將矩陣發送給了著色器，其中我們對頂點座標進行轉換。最後的結果看上去是這樣的：
 
 {% include img.html src="https://learnopengl.com/img/getting-started/transformations.png" %}
 
 Perfect! Our container is indeed tilted to the left and twice as small so the transformation was successful. Let's get a little more funky and see if we can rotate the container over time, and for fun we'll also reposition the container at the bottom-right side of the window. To rotate the container over time we have to update the transformation matrix in the render loop because it needs to update each frame. We use GLFW's time function to get an angle over time:
+
+完美！我們箱子現在確實向左側傾斜了，而且比原始大小縮小了兩倍，這說明轉換是成功的。讓我們來點有趣的，看看我們能否讓箱子隨著時間去旋轉，同時也是為了有點趣味，我們將箱子的位置修改到窗口的右下方。要隨著時間對箱子進行旋轉，我們還必須在渲染循環中不斷更新轉換矩陣，因為它需要在每次渲染的時候更新。我們使用 GLFW 的 time 函數獲取歲時間變化的角度：
 
 ```c++
 glm::mat4 trans = glm::mat4(1.0f);
@@ -572,9 +769,15 @@ trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
 
 Keep in mind that in the previous case we could declare the transformation matrix anywhere, but now we have to create it every iteration to continuously update the rotation. This means we have to re-create the transformation matrix in each iteration of the render loop. Usually when rendering scenes we have several transformation matrices that are re-created with new values each frame.
 
+記住，在上一個例子中，我們可以在任何地方聲明一個轉換矩陣，但是現在我們必須在渲染函數裡創建它以持續對它更新。這意味著我們必須在每一幀都重新創建一個轉換矩陣。通常來說，當渲染一個場景的時候，我們有若干矩陣需要在每一幀重新創建。
+
 Here we first rotate the container around the origin $(0,0,0)$ and once it's rotated, we translate its rotated version to the bottom-right corner of the screen. Remember that the actual transformation order should be read in reverse: even though in code we first translate and then later rotate, the actual transformations first apply a rotation and then a translation. Understanding all these combinations of transformations and how they apply to objects is difficult to understand. Try and experiment with transformations like these and you'll quickly get a grasp of it.
 
+這裡，我們首先將箱子圍繞原點 $(0,0,0)$ 進行旋轉，之後，我們對旋轉之後的版本進行一個平移，移至屏幕的右下角。記住，實際的轉換操作順序應該反過來讀，雖然在代碼層面，我們先平移再旋轉，但實際上轉換是先應用旋轉再應用平移的。要理解所有這些轉換的合併，以及它們如何對物件進行轉換，是一件不簡單的事情。試著動手像這樣實驗這些變換，你很快就能掌握其中的要領。
+
 If you did things right you should get the following result:
+
+如果做得不錯的話，你應該得到以下結果：
 
 <video width="600" height="450" autoplay controls loop="">
   <source src="https://learnopengl.com/video/getting-started/transformations.mp4" type="video/mp4">
@@ -582,11 +785,18 @@ If you did things right you should get the following result:
 
 And there you have it. A translated container that's rotated over time, all done by a single transformation matrix! Now you can see why matrices are such a powerful construct in graphics land. We can define an infinite amount of transformations and combine them all in a single matrix that we can re-use as often as we'd like. Using transformations like this in the vertex shader saves us the effort of re-defining the vertex data and saves us some processing time as well, since we don't have to re-send our data all the time (which is quite slow); all we need to do is update the transformation uniform.
 
+你現在完成了！一個平移後的箱子，隨著時間的行走，它不斷旋轉。現在，你應該明白為什麼說矩陣再圖形領域是如此的有用。我們可以定義無數的轉換然後合併它們，使成為一個矩陣，然後我們可以反覆地去使用它。如此將轉換使用在著色器當中幫助我們節省了重新定義頂點數據的精力，也節省了很多處理時間，因為由此我們不用反覆向著色器發送頂點數據（這非常的耗時間）；我們要做的全部的事情就是更新轉換對應的統一變量。
+
 If you didn't get the right result or you're stuck somewhere else, take a look at the [source code](https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/5.1.transformations/transformations.cpp) and the updated [shader](https://learnopengl.com/code_viewer_gh.php?code=includes/learnopengl/shader_m.h) class.
+
+如果你沒有得到正確的結果，或者你遇到了什麼其它的困難，看看這裡的[源代碼](https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/5.1.transformations/transformations.cpp)，以及這份更新後的[著色器類](https://learnopengl.com/code_viewer_gh.php?code=includes/learnopengl/shader_m.h)。
 
 In the next chapter we'll discuss how we can use matrices to define different coordinate spaces for our vertices. This will be our first step into 3D graphics!
 
-### Further reading
+下一章，我們將討論如何使用矩陣來為我們的頂點定義各種座標空間（座標系）。這是踏入 3D 圖形的第一步！
 
-- [Essence of Linear Algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab): great video tutorial series by Grant Sanderson about the underlying mathematics of transformations and linear algebra.
-- [Matrix Multiplication XYZ](http://matrixmultiplication.xyz/): check out this amazing interactive visual tool for showcasing matrix multiplication. Trying a few of these should help solidify your understanding.
+### 擴展閱讀
+
+- [線性代數基礎](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab): 非常棒的視頻教學課程，作者是 Grant Sanderson，課程設計線性代數轉換的數學理論。
+
+- [矩陣乘法 XYZ](http://matrixmultiplication.xyz/): 去看看這個令人驚嘆的可視化交互工具，它使用圖形展示矩陣乘法，玩幾個會讓你的理解更牢固。

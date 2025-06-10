@@ -148,9 +148,10 @@
 			font-size: 1.2em;
 
 			&:before {
-				content: "#";
-				margin: 0 0.5em 0 0;
-				vertical-align: text-bottom;
+				content: "＃";
+				margin: 0 0.2em 0 0;
+				vertical-align: baseline;
+				font-size: 0.9em;
 				color: var(--text-color-3);
 			}
 		}
@@ -199,6 +200,7 @@
 		width: fit-content;
 		overflow-y: auto;
 		font-size: 0.84em;
+		z-index: 45;
 		background-color: rgb(30, 40, 49);
 		color: #fff;
 		transition: transform 0.1s ease-in-out;

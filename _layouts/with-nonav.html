@@ -16,11 +16,20 @@
   <script defer src="https://threelearning.zhangxinghai.cn/assets/jslibs/katex/katex.min.js"></script>
   <script defer src="https://threelearning.zhangxinghai.cn/assets/jslibs/katex/contrib/auto-render.min.js"></script>
   <style>
+    .katex-display {
+      display: block;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 100vw;
+      margin: 1em 0;
+    }
+
     .katex {
       font-size: 1em;
       max-width: 100%;
-      overflow: auto hidden;
     }
+
     video {
       width: 100%;
     }
