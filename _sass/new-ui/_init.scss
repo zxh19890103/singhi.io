@@ -174,3 +174,13 @@ html.dark .XSvgIcon {
 .iconfont.icon-global {
 	display: none;
 }
+
+.hide-scrollbar {
+	overflow: auto;
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Opera */
+}

@@ -22,6 +22,7 @@
       left: 50%;
       transform: translate(-50%, 0);
       width: 100vw;
+      overflow: auto hidden;
       margin: 1em 0;
     }
 
@@ -38,7 +39,7 @@
 </head>
 
 <body>
-  <div class="page-wrapper">
+  <div class="page-wrapper hide-scrollbar">
     <main id="page">
       <article class="article Cat-{{page.category}}">{{ content }}</article>
     </main>
