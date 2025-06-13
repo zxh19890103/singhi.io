@@ -387,9 +387,15 @@ It does indeed look like the plane is a 3D plane that's resting at some imaginar
 
 ## More 3D
 
+## 更加 3D
+
 So far we've been working with a 2D plane, even in 3D space, so let's take the adventurous route and extend our 2D plane to a 3D cube. To render a cube we need a total of 36 vertices (6 faces _ 2 triangles _ 3 vertices each). 36 vertices are a lot to sum up so you can retrieve them from [here](https://learnopengl.com/code_viewer.php?code=getting-started/cube_vertices).
 
+目前為止，我們處理的只是一個 2D 的平面，雖然我們將它放入 3D 空間了，讓我們來一點更有挑戰的路徑，將我們的 2D 平面 擴展為 3D 的方塊。要渲染一個方塊，我們需要一共 36 個頂點（6 個面 _ 2 個三角形 _ 3 个頂點）。36 個頂點算起來還不少，你可以從[這裡](https://learnopengl.com/code_viewer.php?code=getting-started/cube_vertices)獲取它們。
+
 For fun, we'll let the cube rotate over time:
+
+為了有趣一點，我們讓這個方塊隨著時間選擇起來：
 
 ```cpp
 model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
@@ -397,11 +403,15 @@ model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3
 
 And then we'll draw the cube using glDrawArrays (as we didn't specify indices), but this time with a count of 36 vertices.
 
+然後，我們將使用 glDrawArrays （因為我們沒有指定索引）來繪製這個方塊，但是目前我們使用 36 個頂點。
+
 ```cpp
 glDrawArrays(GL_TRIANGLES, 0, 36);
 ```
 
 You should get something similar to the following:
+
+你應該對以下動畫有些熟悉：
 
 <video width="600" height="450" autoplay controls loop="">
   <source src="https://learnopengl.com/video/getting-started/coordinate_system_no_depth.mp4" type="video/mp4">
@@ -409,13 +419,23 @@ You should get something similar to the following:
 
 It does resemble a cube slightly but something's off. Some sides of the cubes are being drawn over other sides of the cube. This happens because when OpenGL draws your cube triangle-by-triangle, fragment by fragment, it will overwrite any pixel color that may have already been drawn there before. Since OpenGL gives no guarantee on the order of triangles rendered (within the same draw call), some triangles are drawn on top of each other even though one should clearly be in front of the other.
 
+它確實有點像方塊，但是哪裡怪怪的。方塊的有些面畫在了另一些面的上方。這是因為 OpenGL 是逐個三角形、逐個片元繪製的，如此就會覆蓋一些已經畫好的像素。由於 OpenGL 不確保三角形的繪製次序（在一次 draw call 內），有些三角形繪製在彼此的上方，儘管其中一個明顯應該繪製在另一個的前面（立鏡頭更近）。
+
 Luckily, OpenGL stores depth information in a buffer called the z-buffer that allows OpenGL to decide when to draw over a pixel and when not to. Using the z-buffer we can configure OpenGL to do depth-testing.
+
+好消息是，OpenGL 保存了“深度”信息，它們被保存在一個叫 z-buffer 的緩衝對象裡，這允許 OpenGL 判斷什麼時候需要覆蓋像素、什麼時候不需要。使用 z-buffer，我們可以配置 OpenGL 以進行深度測試。
+
+### z-buffer
 
 ### z-buffer
 
 OpenGL stores all its depth information in a z-buffer, also known as a depth buffer. GLFW automatically creates such a buffer for you (just like it has a color-buffer that stores the colors of the output image). The depth is stored within each fragment (as the fragment's z value) and whenever the fragment wants to output its color, OpenGL compares its depth values with the z-buffer. If the current fragment is behind the other fragment it is discarded, otherwise overwritten. This process is called depth testing and is done automatically by OpenGL.
 
+OpenGL 保存了全部的深度信息，放在 z-buffer 當中，也被稱為深度緩衝。GLFW 自動為你創建了這個 buffer（就像它有一個顏色緩衝區，用來儲存輸出影像的顏色一樣）。深度針對每一個片元（作為片元的 z 值）存儲，任何時候片元需要輸出它的顏色，OpenGL 會比較 z-buffer 中的深度值。如果當前的片元在其它片元之後，該片元會被丟棄，否則寫入。這個過程被稱為深度測試，OpenGL 會自動執行這部分。
+
 However, if we want to make sure OpenGL actually performs the depth testing we first need to tell OpenGL we want to enable depth testing; it is disabled by default. We can enable depth testing using glEnable. The glEnable and glDisable functions allow us to enable/disable certain functionality in OpenGL. That functionality is then enabled/disabled until another call is made to disable/enable it. Right now we want to enable depth testing by enabling GL_DEPTH_TEST:
+
+然而，如果我們像確保 OpenGL 執行了深度測試，我們首先需要告訴 OpenGL 我們需要開啟深度測試；它默認是關閉的。我們可以使用 glEnable 開啟深度測試。glEnable 和 glDisable 函數允許我們開啟/關閉 OpenGL 的某些功能。指定的功能於是被打開/關閉，直到再此調用了它對功能進行了關閉/打開操作。現在，我們唷開啟深度測試，要開啟的是 GL_DEPTH_TEST：
 
 ```cpp
 glEnable(GL_DEPTH_TEST);
@@ -423,11 +443,15 @@ glEnable(GL_DEPTH_TEST);
 
 Since we're using a depth buffer we also want to clear the depth buffer before each render iteration (otherwise the depth information of the previous frame stays in the buffer). Just like clearing the color buffer, we can clear the depth buffer by specifying the DEPTH_BUFFER_BIT bit in the glClear function:
 
+由於我們使用了深度緩衝（depth buffer），我們也希望在每一幀之前清除深度緩衝（否則，之前的深度信息會保留在 buffer 裡）。就像清理顏色 buffer 一樣，我們可以清理深度 buffer，這裡需要用到元位標記 DEPTH_BUFFER_BIT，調用的函數是 glClear：
+
 ```cpp
 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 ```
 
 Let's re-run our program and see if OpenGL now performs depth testing:
+
+讓我們重新運行程序，看 OpenGL 是否執行了深度測試：
 
 <video width="600" height="450" autoplay controls loop="">
   <source src="https://learnopengl.com/video/getting-started/coordinate_system_depth.mp4" type="video/mp4">
@@ -435,11 +459,19 @@ Let's re-run our program and see if OpenGL now performs depth testing:
 
 There we go! A fully textured cube with proper depth testing that rotates over time. Check the source code [here](https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/6.2.coordinate_systems_depth/coordinate_systems_depth.cpp).
 
+太好了！正確地使用了深度測試之後，一個完整的、上了紋理的方塊現在雖=隨時間旋轉。你可以參考一下[源代碼](https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/6.2.coordinate_systems_depth/coordinate_systems_depth.cpp)。
+
 ### More cubes!
+
+### 更多的方塊！
 
 Say we wanted to display 10 of our cubes on screen. Each cube will look the same but will only differ in where it's located in the world with each a different rotation. The graphical layout of the cube is already defined so we don't have to change our buffers or attribute arrays when rendering more objects. The only thing we have to change for each object is its model matrix where we transform the cubes into the world.
 
+現在假設，我們希望在屏幕上顯示 10 個這樣的方塊。每一個方塊和此前我繪製的一樣，除了它們出現在世界的位置以及帶有的旋轉角不同之外。方塊的圖形佈局我們已經定義過的，因此在渲染更多方塊的時候，我們不必修改緩衝或者屬性（attributes）。唯一需要我們修改的是，每一個方塊的 model 矩陣，我們用它來將方塊轉換至世界空間。
+
 First, let's define a translation vector for each cube that specifies its position in world space. We'll define 10 cube positions in a `glm::vec3` array:
+
+首先，讓我們為每一個方塊定義平移向量，它指定了方塊的世界位置。我們將定義 10 個方塊的位置，放在 `glm::vec3` 數組當中：
 
 ```cpp
 glm::vec3 cubePositions[] = {
@@ -458,6 +490,8 @@ glm::vec3 cubePositions[] = {
 
 Now, within the render loop we want to call glDrawArrays 10 times, but this time send a different model matrix to the vertex shader each time before we send out the draw call. We will create a small loop within the render loop that renders our object 10 times with a different model matrix each time. Note that we also add a small unique rotation to each container.
 
+現在，在渲染循環函數裡，我們需要調用 glDrawArrays 10 次，但是這次在發送 draw call 請求之前，我們要發送不同的 model 矩陣到頂點著色器。我們將在渲染循環裡創建一個小的循環，以使用不同的 model 矩陣對我們的物體渲染 10 次。注意，我們也需要分別為每一個箱子添加一點旋轉效果。
+
 ```cpp
 glBindVertexArray(VAO);
 for(unsigned int i = 0; i < 10; i++)
@@ -474,8 +508,10 @@ for(unsigned int i = 0; i < 10; i++)
 
 This snippet of code will update the model matrix each time a new cube is drawn and do this 10 times in total. Right now we should be looking into a world filled with 10 oddly rotated cubes:
 
+這段代碼做的事情是，每一個新的方塊被繪製的時，更新它的 model 矩陣，如此執行一共 10 次。現在我們應該可以看到世界放入了 10 個隨機旋轉的方塊：
+
 ![coordinate_systems_multiple_objects](https://learnopengl.com/img/getting-started/coordinate_systems_multiple_objects.png)
 
 Perfect! It looks like our container found some like-minded friends. If you're stuck see if you can compare your code with [the source code](https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/6.3.coordinate_systems_multiple/coordinate_systems_multiple.cpp).
 
----
+完美！看上去，我們的箱子找到了幾個志同道合的朋友 😄。如果你遇到了困難，看看是否可以將你的代碼與[源代碼](https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/6.3.coordinate_systems_multiple/coordinate_systems_multiple.cpp)對照一下。
