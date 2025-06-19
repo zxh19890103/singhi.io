@@ -12,31 +12,31 @@ book: opengl
 image: "https://learnopengl.com/img/getting-started/camera_axes.png"
 ---
 
-In the previous chapter we discussed the view matrix and how we can use the view matrix to move around the scene (we moved backwards a little). OpenGL by itself is not familiar with the concept of a camera, but we can try to simulate one by moving all objects in the scene in the reverse direction, giving the illusion that we are moving.
+上一章，我們討論了 view 矩陣以及如何使用它來移動場景（我們向後移動了一些），OpenGL 自己並不清楚相機這個概念，但是我們可以嘗試模擬一個，方式是使場景裡的所有物件反方向移動，這給了用戶一種幻覺——是我們自己在移動。
 
-In this chapter we'll discuss how we can set up a camera in OpenGL. We will discuss a fly style camera that allows you to freely move around in a 3D scene. We'll also discuss keyboard and mouse input and finish with a custom camera class.
+這一章，我們將討論如何在 OpenGL 裡配置相機。我們將討論 fly 風格的相機，它讓你圍繞 3D 場景自由地移動。我們也將討論鍵盤和鼠標輸入，最後我們會完成一個相機類（class）。
 
-## Camera/View space
+## 相機/視圖空間
 
-When we're talking about camera/view space we're talking about all the vertex coordinates as seen from the camera's perspective as the origin of the scene: the view matrix transforms all the world coordinates into view coordinates that are relative to the camera's position and direction. To define a camera we need its position in world space, the direction it's looking at, a vector pointing to the right and a vector pointing upwards from the camera. A careful reader may notice that we're actually going to create a coordinate system with 3 perpendicular unit axes with the camera's position as the origin.
+當我們在談論相機/視圖空間的時候，我們談論的是所有的頂點座標，那些我們能夠以相機視角——作為場景的中心——看見的頂點座標：此視圖矩陣將全體世界座標轉換為視圖空間座標，即相對相機之位置、朝向。欲定義一個相機，我們需要其在世界的位置，以其所看之方向，一個指向其右側的向量，一個指向其上方的向量。細心讀者或許注意到，我們實際上正創建一個座標系統，憑藉的是 3 個正交的單位軸，相機位置作為原點。
 
 ![Camera Axes](https://learnopengl.com/img/getting-started/camera_axes.png)
 
-### 1. Camera position
+### 1. 相機位置
 
-Getting the camera position is easy. The camera position is a vector in world space that points to the camera's position. We set the camera at the same position we've set the camera in the previous chapter:
+獲取相機位置容易。位置是一個向量，它處於世界空間，指向相機的位置。我們將相機置於此前所放之位置：
 
 ```cpp
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 ```
 
 {% include box.html color="green" content="
-Don't forget that the positive z-axis is going through your screen towards you so if we want the camera to move backwards, we move along the positive z-axis.
+莫忘 z 軸正向乃穿透屏幕指向你，因此若我們要後移相機，沿 z 軸正向即可。
 " %}
 
-### 2. Camera direction
+### 2. 相機方向
 
-The next vector required is the camera's direction e.g. at what direction it is pointing at. For now we let the camera point to the origin of our scene: (0,0,0). Remember that if we subtract two vectors from each other we get a vector that's the difference of these two vectors? Subtracting the camera position vector from the scene's origin vector thus results in the direction vector we want. For the view matrix's coordinate system we want its z-axis to be positive and because by convention (in OpenGL) the camera points towards the negative z-axis we want to negate the direction vector. If we switch the subtraction order around we now get a vector pointing towards the camera's positive z-axis:
+此後所需之向量，乃相機之方向，即相機所指。此時，我們令其指向場景之中心 $(0,0,0)$。記得否，如對二向量行減法，所得是二者之差？故，對相機位置及場景之中心行減法，所得正是我們想要的那個向量：相機方向。至於視圖矩陣所含之座標系統，我們將置其 z 軸為正，因就 OpenGL 慣例所言，相機指向 z 軸之負向，我們將其方向向量行 negate 操作。如將上述減法中二向量順序調換，我們將得到一個指向相機 z 負軸的向量。
 
 ```cpp
 glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -44,27 +44,31 @@ glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
 ```
 
 {% include box.html color="red" content="
-The name direction vector is not the best chosen name, since it is actually pointing in the reverse direction of what it is targeting.
+此處，名稱“方向向量”非最好的名字，因為它實際上指向的是相機所看目標之反方向。
 " %}
 
-### 3. Right axis
+### 3. Right 軸 （Right axis）
 
 The next vector that we need is a right vector that represents the positive x-axis of the camera space. To get the right vector we use a little trick by first specifying an up vector that points upwards (in world space). Then we do a cross product on the up vector and the direction vector from step 2. Since the result of a cross product is a vector perpendicular to both vectors, we will get a vector that points in the positive x-axis's direction (if we would switch the cross product order we'd get a vector that points in the negative x-axis):
+
+此後所需向量，乃 right 向量，亦即相機空間的 x 正向。欲取得此向量，我們使用一個小技巧，其中我們會首先確定一個 up 向量，一個相對世界空間指向上方的向量。然後，我們對 up 向量和 direction 向量執行叉積計算。由於叉積的結果是一個對二向量都正交的向量，我們將得到一個指向 x 軸正方向的向量（如果我們交換叉積算子的順序，我們將得到一個指向 x 軸負向的向量）：
 
 ```cpp
 glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
 ```
 
-### 4. Up axis
+### 4. Up 軸
 
-Now that we have both the x-axis vector and the z-axis vector, retrieving the vector that points to the camera's positive y-axis is relatively easy: we take the cross product of the right and direction vector:
+現在，我們有了 x 軸以及 z 軸，要獲得相機的 y 軸就相對容易了，我們對 right 向量和 direction 向量執行叉積計算：
 
 ```cpp
 glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
 ```
 
 With the help of the cross product and a few tricks we were able to create all the vectors that form the view/camera space. For the more mathematically inclined readers, this process is known as the Gram-Schmidt process in linear algebra. Using these camera vectors we can now create a LookAt matrix that proves very useful for creating a camera.
+
+得益於極叉積法則，以及幾個小技巧，我們能夠創建出相機空間的全部向量。對於對數學有熱情的讀者，這個過程在線性代數，被稱為 Gram-Schmidt 計算。使用相機的這些向量，我們現在可以創建 LookAt 矩陣，它對於相機的創建事實上非常有用！
 
 ## Look At
 

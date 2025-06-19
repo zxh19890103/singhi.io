@@ -121,7 +121,7 @@
 		font-size: 1em;
 
 		&.english {
-			font-size: 1.2em;
+			font-size: 1.05em;
 		}
 
 		h2,
@@ -431,7 +431,7 @@
 		display: block;
 		margin: 0 auto;
 		min-height: 0;
-		border: 1px dashed #ddd;
+		// border: 1px dashed #ddd;
 		border-radius: 2px 3px;
 		padding: 4px;
 		box-sizing: border-box;
@@ -439,11 +439,11 @@
 	}
 
 	&__title {
-		font-size: 0.9em;
+		font-size: 0.76em;
+		line-height: 1.2;
 		margin-top: 0.3em;
 		color: var(--text-color-3);
 		text-align: center;
-		line-height: 1;
 	}
 }
 
