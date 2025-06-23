@@ -10,6 +10,10 @@ collections:
     title: 设计模式
     sort_by: sort
     output: true
+  historydefined:
+    title: 被定義過的歷史故事
+    sort_by: date
+    output: true
   opengl:
     title: OpenGL Learning Plan
     sort_by: sort
@@ -17,10 +21,6 @@ collections:
   articles:
     title: 观点
     sort_by: date
-    output: true
-  tlogs:
-    title: 日记
-    sort_by: sort
     output: true
 
 plugins:

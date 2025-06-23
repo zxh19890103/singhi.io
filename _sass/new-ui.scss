@@ -115,6 +115,13 @@
 		}
 	}
 
+	.When-Where {
+		font-size: 0.9em;
+		&::before {
+			content: "\2014\2014";
+		}
+	}
+
 	&__body,
 	.Book__Content {
 		padding: 2rem 0;
@@ -187,6 +194,18 @@
 			&:hover {
 				color: var(--link-active-color);
 				text-decoration-color: var(--link-active-color);
+			}
+		}
+
+		figure {
+			font-size: 0.9em;
+			text-align: center;
+			color: #777;
+
+			img {
+				max-width: 100%;
+				width: auto;
+				height: auto;
 			}
 		}
 	}

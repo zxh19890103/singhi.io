@@ -1,7 +1,9 @@
 ---
 layout: index
-title: 专栏 - 设计模式
+title: 设计模式
 ---
+
+> 設計模式而已，AI 年代似乎沒啥用了，默哀三分鐘吧！
 
 <ul class="documents">
 {% for doc in site.patterns | sort_by: 'date' %}

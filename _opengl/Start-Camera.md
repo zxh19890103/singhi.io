@@ -6,6 +6,7 @@ description: 在上一章，我們知道了如何使用矩陣作為武器，來�
 title: 开始 &bull; 相機
 category: tech
 src: https://learnopengl.com/Getting-started/Camera
+
 date: 2025-06-14
 math: 1
 book: opengl
@@ -49,8 +50,6 @@ glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
 
 ### 3. Right 軸 （Right axis）
 
-The next vector that we need is a right vector that represents the positive x-axis of the camera space. To get the right vector we use a little trick by first specifying an up vector that points upwards (in world space). Then we do a cross product on the up vector and the direction vector from step 2. Since the result of a cross product is a vector perpendicular to both vectors, we will get a vector that points in the positive x-axis's direction (if we would switch the cross product order we'd get a vector that points in the negative x-axis):
-
 此後所需向量，乃 right 向量，亦即相機空間的 x 正向。欲取得此向量，我們使用一個小技巧，其中我們會首先確定一個 up 向量，一個相對世界空間指向上方的向量。然後，我們對 up 向量和 direction 向量執行叉積計算。由於叉積的結果是一個對二向量都正交的向量，我們將得到一個指向 x 軸正方向的向量（如果我們交換叉積算子的順序，我們將得到一個指向 x 軸負向的向量）：
 
 ```cpp
@@ -66,21 +65,19 @@ glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
 glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
 ```
 
-With the help of the cross product and a few tricks we were able to create all the vectors that form the view/camera space. For the more mathematically inclined readers, this process is known as the Gram-Schmidt process in linear algebra. Using these camera vectors we can now create a LookAt matrix that proves very useful for creating a camera.
-
-得益於極叉積法則，以及幾個小技巧，我們能夠創建出相機空間的全部向量。對於對數學有熱情的讀者，這個過程在線性代數，被稱為 Gram-Schmidt 計算。使用相機的這些向量，我們現在可以創建 LookAt 矩陣，它對於相機的創建事實上非常有用！
+得益於叉積法則，以及幾個小技巧，我們能夠創建出相機空間的全部向量。對於對數學有熱情的讀者，這個過程在線性代數，被稱為 Gram-Schmidt 計算。使用相機的這些向量，我們現在可以創建 LookAt 矩陣，它對於相機的創建事實上非常有用！
 
 ## Look At
 
-A great thing about matrices is that if you define a coordinate space using 3 perpendicular (or non-linear) axes you can create a matrix with those 3 axes plus a translation vector and you can transform any vector to that coordinate space by multiplying it with this matrix. This is exactly what the LookAt matrix does and now that we have 3 perpendicular axes and a position vector to define the camera space we can create our own LookAt matrix:
+矩陣有個有趣的特點，就是當你定義了 3 個相互正交的（或者叫做非線性）軸，使用這三個軸加上一個平移向量，你創建出一個矩陣，藉助這個矩陣，你便可以通過“矩陣-向量”乘法，將任意向量轉入由這“3 個軸和 1 個平移向量”定義的座標空間。
 
 ```math
 LookAt = \begin{bmatrix} \color{red}{R_x} & \color{red}{R_y} & \color{red}{R_z} & 0 \\ \color{green}{U_x} & \color{green}{U_y} & \color{green}{U_z} & 0 \\ \color{blue}{D_x} & \color{blue}{D_y} & \color{blue}{D_z} & 0 \\ 0 & 0 & 0  & 1 \end{bmatrix} * \begin{bmatrix} 1 & 0 & 0 & -\color{purple}{P_x} \\ 0 & 1 & 0 & -\color{purple}{P_y} \\ 0 & 0 & 1 & -\color{purple}{P_z} \\ 0 & 0 & 0  & 1 \end{bmatrix}
 ```
 
-Where $\color{red}{R}$ is the right vector, U is the up vector, D is the direction vector and P is the camera's position vector. Note that the rotation (left matrix) and translation (right matrix) parts are inverted (transposed and negated respectively) since we want to rotate and translate the world in the opposite direction of where we want the camera to move. Using this LookAt matrix as our view matrix effectively transforms all the world coordinates to the view space we just defined. The LookAt matrix then does exactly what it says: it creates a view matrix that looks at a given target.
+其中 $\color{red}{R}$ 是 Right 向量，$\color{green}{U}$ 是 Up 向量，$\color{blue}{D}$ 是 Direction 向量，$\color{purple}{P}$ 是相機的位置向量。注意旋轉（左邊矩陣）以及平移（右邊矩陣）部分被反轉了（分別被 transposed 和 negated），這是因為，我們希望以與相機運動相反的方向旋轉和移動場景（世界）。將這個 LookAt 矩陣作為我們的視圖矩陣，剛好可以將全部的世界座標轉入我們方才定義的相機空間。LookAt 矩陣準確地表述了它的目的：它創建一個視圖矩陣，使看向指定的目標。
 
-Luckily for us, GLM already does all this work for us. We only have to specify a camera position, a target position and a vector that represents the up vector in world space (the up vector we used for calculating the right vector). GLM then creates the LookAt matrix that we can use as our view matrix:
+有幸，GLM 已幫助我們做了全部工作。我們只需指定相機位置，一個目標位置以及一個在世界空間的 Up 向量（我們使用它來計算 Right 向量）。GLM 然後創建 LookAt 矩陣，也就是我們的視圖矩陣：
 
 ```cpp
 glm::mat4 view;
@@ -89,9 +86,9 @@ view = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f),
   		   glm::vec3(0.0f, 1.0f, 0.0f));
 ```
 
-The `glm::LookAt` function requires a position, target and up vector respectively. This example creates a view matrix that is the same as the one we created in the previous chapter.
+`glm::LookAt` 函數需要一個位置、目標以及一個 Up 向量。這個例子創建了一個視圖矩陣，這和上一章我們創建過的那個是一樣的。
 
-Before delving into user input, let's get a little funky first by rotating the camera around our scene. We keep the target of the scene at **(0,0,0)**. We use a little bit of trigonometry to create an x and z coordinate each frame that represents a point on a circle and we'll use these for our camera position. By re-calculating the x and y coordinate over time we're traversing all the points in a circle and thus the camera rotates around the scene. We enlarge this circle by a pre-defined radius and create a new view matrix each frame using GLFW's `glfwGetTime` function:
+在探索“用戶輸入”之前，我們來一點有趣的，首先我們繞著世界轉動我們相機。我們將目標固定在 **(0,0,0)**。使用一點三角函數的知識，在沒一幀創建一個 x 和 z 座標，它們分別表示一個“圓”上的點，我們將會把這個“點”設為相機的位置。通過再計算 x 和 y 座標，我們對圓上的每一個點進行遍歷，於是，相機就會繞著場景（世界）旋轉。爾通過定義好的半徑，我們在每一幀對這個圓擴大，繼而創建一個新的視圖矩陣，使用的是 GLFW 的 `glfwGetTime` 函數獲取時間：
 
 ```cpp
 const float radius = 10.0f;
@@ -101,15 +98,15 @@ glm::mat4 view;
 view = glm::lookAt(glm::vec3(camX, 0.0, camZ), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
 ```
 
-If you run this code you should get something like this:
+如果你的代碼跑起來，應該得到這樣的結果：
 
-https://learnopengl.com/video/getting-started/camera_circle.mp4
+{% include vid.html src="https://learnopengl.com/video/getting-started/camera_circle.mp4" %}
 
-With this little snippet of code the camera now circles around the scene over time. Feel free to experiment with the radius and position/direction parameters to get the feel of how this LookAt matrix works. Also, check the source code if you're stuck.
+使用這一小段代碼，相機現在圍繞場景不斷轉圈。儘管去嘗試修改半徑和位置/方向等參數，這樣你可以感知 LookAt 是如何工作的。同時，如果遇到阻礙，也可以查閱源代碼。
 
-## Walk around
+## 散步（Walk around）
 
-Swinging the camera around a scene is fun, but it's more fun to do all the movement ourselves! First we need to set up a camera system, so it is useful to define some camera variables at the top of our program:
+使相機繞場景旋轉很有趣，然而更有趣的是讓相機的運動受我們控制！首先我們需要設置一個相機系統，如此，在程序的最開始定義一些相機參數非常有用：
 
 ```cpp
 glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f,  3.0f);
@@ -117,7 +114,7 @@ glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f,  0.0f);
 ```
 
-The LookAt function now becomes:
+Look At 函數現在是這樣：
 
 ```cpp
 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
@@ -125,7 +122,11 @@ view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 
 First we set the camera position to the previously defined `cameraPos`. The direction is the current position + the direction vector we just defined. This ensures that however we move, the camera keeps looking at the target direction. Let's play a bit with these variables by updating the `cameraPos` vector when we press some keys.
 
+首先，我們設置相機的位置為方才定義的 `cameraPos`。方向是當前位置加上方才定義的方向向量。這可以確保不管我們如何移動，相機始終看向目的方向。當我們按下某些鍵的時候，我們通過修改 `cameraPos` 向量來把玩一下。
+
 We already defined a `processInput` function to manage GLFW's keyboard input so let's add a few extra key commands:
+
+我們已經定義了函數 `processInput`，它用於管理 GLFW 的鍵盤輸入，讓我們加入幾個額外的按鍵命令：
 
 ```cpp
 void processInput(GLFWwindow *window)
@@ -145,19 +146,27 @@ void processInput(GLFWwindow *window)
 
 Whenever we press one of the WASD keys, the camera's position is updated accordingly. If we want to move forward or backwards we add or subtract the direction vector from the position vector scaled by some speed value. If we want to move sideways we do a cross product to create a right vector and we move along the right vector accordingly. This creates the familiar strafe effect when using the camera.
 
+當我們按下 WASD 的任意一個鍵的時候，相機的位置會被相應改變。如果我們想向前或者向後移動，我們對相機位置向量加或者減這個方向向量 \* 一個移動速度標量。如果我們想向兩側移動相機，使用叉積創建一個 Right 向量，然後我們沿著這個向量移動一個距離。這會在使用攝影機時產生熟悉的平移（Strafe）效果。
+
 {% include box.html color="green" content="
-Note that we normalize the resulting right vector. If we wouldn't normalize this vector, the resulting cross product may return differently sized vectors based on the cameraFront variable. If we would not normalize the vector we would move slow or fast based on the camera's orientation instead of at a consistent movement speed.
+注意，我們對最後的 Right 向量進行了標準化。如果我們沒有這樣做，最後叉積返回的結果會由 `cameraFront` 變量決定，在 `size` 上稍稍不同。缺少了標準化這一步，我們移動的速度會根據相機的朝向時快時慢，而非平緩。
 " %}
 
-By now, you should already be able to move the camera somewhat, albeit at a speed that's system-specific so you may need to adjust `cameraSpeed`.
+此時，你應該已經能夠讓攝影機稍微移動了，儘管速度會因系統而異，因此你可能需要調整 `cameraSpeed`。
 
-### Movement speed
+### 移動速度
 
 Currently we used a constant value for movement speed when walking around. In theory this seems fine, but in practice people's machines have different processing powers and the result of that is that some people are able to render much more frames than others each second. Whenever a user renders more frames than another user he also calls processInput more often. The result is that some people move really fast and some really slow depending on their setup. When shipping your application you want to make sure it runs the same on all kinds of hardware.
 
+目前我們使用一個常量來控制相機移動速度。理論上這似乎沒啥問題，但是實際上，用戶電腦的處理能力和結果會稍稍不同，有些電腦每秒可以渲染更多的幀數。一旦用戶電腦單秒渲染幀數多於其它用戶，其接收輸入也會更頻繁。結果就是有些用戶移動得快，爾有些移動得慢，取決於他們的配置。當發布應用的時候，你一定希望確保其運行效果在所有硬件上是一致的。
+
 Graphics applications and games usually keep track of a deltatime variable that stores the time it took to render the last frame. We then multiply all velocities with this deltaTime value. The result is that when we have a large deltaTime in a frame, meaning that the last frame took longer than average, the velocity for that frame will also be a bit higher to balance it all out. When using this approach it does not matter if you have a very fast or slow pc, the velocity of the camera will be balanced out accordingly so each user will have the same experience.
 
+圖形應用和遊戲常常跟蹤 deltatime 這個變量，它保存了上一幀花銷的時間。我們使用它乘以所有的速度值。結果就是，當 deltaTime 的值很大，也就意味著上一幀花銷的時間長於平均值，那一幀的速度也會稍微快一點，以達到整體的平衡。當使用此辦法，電腦處理快慢就無所謂了，相機速度也會根據用戶設備相應地做出平衡調整，從而使我們獲得一致的體驗。
+
 To calculate the deltaTime value we keep track of 2 global variables:
+
+為了計算 deltaTime，我們跟蹤 2 個全局變量：
 
 ```cpp
 loat deltaTime = 0.0f;	// Time between current frame and last frame
@@ -166,6 +175,8 @@ float lastFrame = 0.0f; // Time of last frame
 
 Within each frame we then calculate the new deltaTime value for later use:
 
+接下來，在幀內，我們計算最新的 deltaTime 值，以後續之用：
+
 ```cpp
 float currentFrame = glfwGetTime();
 deltaTime = currentFrame - lastFrame;
@@ -173,6 +184,8 @@ lastFrame = currentFrame;
 ```
 
 Now that we have deltaTime we can take it into account when calculating the velocities:
+
+現在，我們有了 deltaTime，我們可以在計算速度的時候將它納入考慮：
 
 ```cpp
 void processInput(GLFWwindow _window)
@@ -184,39 +197,63 @@ float cameraSpeed = 2.5f _ deltaTime;
 
 Since we're using deltaTime the camera will now move at a constant speed of 2.5 units per second. Together with the previous section we should now have a much smoother and more consistent camera system for moving around the scene:
 
+由於我們使用了 deltaTime，相機將以一個均衡的速度移動，其值為每秒 2.5 個單位。結合上一章，我們現在應該獲得了一個非常流暢的、非常穩定的相機系統，我們用它來環繞整個場景：
+
 https://learnopengl.com/video/getting-started/camera_smooth.mp4
 
 And now we have a camera that walks and looks equally fast on any system. Again, check the [source code](https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/7.2.camera_keyboard_dt/camera_keyboard_dt.cpp) if you're stuck. We'll see the deltaTime value frequently return with anything movement related.
 
-## Look around
+現在，我們的相機在任何系統上運行速度都是大概一樣的。還是老規矩，看一下源代碼，如果有困難的話。我們將看到凡涉及運動問題， deltaTime 也會常常出現。
+
+## 環視（Look around）
 
 Only using the keyboard keys to move around isn't that interesting. Especially since we can't turn around making the movement rather restricted. That's where the mouse comes in!
 
+僅僅使用鍵盤來實現四處移動並不那麼有趣。特別是，我們無法轉向，這使移動非常受限。於是，鼠標的作用可以派上用場了！
+
 To look around the scene we have to change the cameraFront vector based on the input of the mouse. However, changing the direction vector based on mouse rotations is a little complicated and requires some trigonometry. If you do not understand the trigonometry, don't worry, you can just skip to the code sections and paste them in your code; you can always come back later if you want to know more.
 
-### Euler angles
+要實現場景內環視，我們必須修改向量 cameraFront，可以根據鼠標輸入進行。但基於鼠標的轉動來修改方向向量有點複雜，需要一點三角幾何知識。如果你不懂三角幾何，不要怕，你可以放心跳過閱讀其中的代碼部分，將它們複製到你的項目裡即可。你可以隨時回來閱讀，如果你想了解更多。
+
+### 歐拉角 （Euler angles）
 
 Euler angles are 3 values that can represent any rotation in 3D, defined by Leonhard Euler somewhere in the 1700s. There are 3 Euler angles: pitch, yaw and roll. The following image gives them a visual meaning:
+
+歐拉角由三個數值組成，它可以表達 3D 場景下的任意旋轉。它由 Leonhard Euler 於 1700 年代定義。有 3 個歐拉角度：pitch、yaw 和 roll。下面這個圖給了你它們的視覺含義：
 
 ![camera_pitch_yaw_roll](https://learnopengl.com/img/getting-started/camera_pitch_yaw_roll.png)
 
 The pitch is the angle that depicts how much we're looking up or down as seen in the first image. The second image shows the yaw value which represents the magnitude we're looking to the left or to the right. The roll represents how much we roll as mostly used in space-flight cameras. Each of the Euler angles are represented by a single value and with the combination of all 3 of them we can calculate any rotation vector in 3D.
 
+pitch 表達的是我們在“上下”方向轉動的量，如上方第一張圖所示。第二張圖展示了 yaw 的值，它表達的是“左右”方向轉動的量。roll 意指繞相機鏡頭朝向轉動的量，它經常用於空間飛行相機。歐拉角的每個分量都代表一個角度，將它們三個組合起來，我們就可以計算 3D 空間中的任意旋轉向量。
+
 For our camera system we only care about the yaw and pitch values so we won't discuss the roll value here. Given a pitch and a yaw value we can convert them into a 3D vector that represents a new direction vector. The process of converting yaw and pitch values to a direction vector requires a bit of trigonometry. and we start with a basic case:
 
+對於我們的相機系統，我們只關心 yaw 和 pitch，因此我們無需討論 roll。給定 yaw 和 pitch，我們就可以將它們轉換為一個 3D 向量，它意指一個新的方向向量。將 yaw 和 pitch 轉為方向向量的過程需要一點三角幾何知識，我們以一個基礎的例子開始吧：
+
 Let's start with a bit of a refresher and check the general right triangle case (with one side at a 90 degree angle):
+
+讓我們先來稍微複習一下，並檢查一下一般的直角三角形情況（其中一邊是 90 度的角）。
 
 ![camera_triangle](https://learnopengl.com/img/getting-started/camera_triangle.png)
 
 If we define the hypotenuse to be of length 1 we know from trigonometry (soh cah toa) that the adjacant side's length is ${\cos{x/h}=\cos{x/1}=\cos{x}}$ and that the opposing side's length is $\sin{y/h}=\sin{y/1}=\sin{y}$. This gives us some general formulas for retrieving the length in both the x and y sides on right triangles, depending on the given angle. Let's use this to calculate the components of the direction vector.
 
+如果我們將斜邊定義為 1，我們由三角函數（soh cah toa）知道其鄰邊長度是 ${\cos{x/h}=\cos{x/1}=\cos{x}}$，爾其對邊長度是 $\sin{y/h}=\sin{y/1}=\sin{y}$。這給了我們一種通用公式，對於直角三角形情況，給定其中一個角度，可以由此得到 x 和 y 邊的長度。讓我們使用它計算出方向向量的分量：
+
 Let's imagine this same triangle, but now looking at it from a top perspective with the adjacent and opposite sides being parallel to the scene's x and z axis (as if looking down the y-axis).
+
+讓我們設想一個同樣的三角形，但是我們從正上方視角去觀察它，使它的鄰邊和對邊分別和場景的 x 和 z 軸平行（就像從 y 軸看過去）。
 
 ![camera_yaw](https://learnopengl.com/img/getting-started/camera_yaw.png)
 
 If we visualize the yaw angle to be the counter-clockwise angle starting from the x side we can see that the length of the x side relates to cos(yaw). And similarly how the length of the z side relates to sin(yaw).
 
+如果我們以逆時針方向，並從 x 軸開始，對 yaw 角進行可視化，我們會看到其三角形的 x 邊長度和 $\cos(yaw)$ 相關。類似，z 邊的長度和 $\sin(yaw)$ 相關。
+
 If we take this knowledge and a given yaw value we can use it to create a camera direction vector:
+
+那麼，使用這個知識，給定 yaw 值之後，我們可以用它來創建相機的方向向量：
 
 ```cpp
 glm::vec3 direction;
@@ -226,15 +263,21 @@ direction.z = sin(glm::radians(yaw));
 
 This solves how we can get a 3D direction vector from a yaw value, but pitch needs to be included as well. Let's now look at the y axis side as if we're sitting on the xz plane:
 
+這解決了我們如何通過一個 yaw 值得到一個 3D 方向向量的問題，然而，pitch 也需要被考慮。讓我們現在看向 y 軸，就像我們坐在 xz 平面一樣：
+
 ![camera_pitch](https://learnopengl.com/img/getting-started/camera_pitch.png)
 
 Similarly, from this triangle we can see that the direction's y component equals sin(pitch) so let's fill that in:
+
+類似，由這個三角形，我們可以看到方向的 y 分量等於 $\sin(pitch)$，因此，讓我們將其寫入：
 
 ```cpp
 direction.y = sin(glm::radians(pitch));
 ```
 
 However, from the pitch triangle we can also see the xz sides are influenced by cos(pitch) so we need to make sure this is also part of the direction vector. With this included we get the final direction vector as translated from yaw and pitch Euler angles:
+
+然而，由 pitch 三角形，我們也知道 xz 邊會被 $\cos(pitch)$ 影響，因此我們需要確保它也是方向向量的一部分。考慮這些之後，我們得到了最終的方向向量，它們由 yaw 和 pitch 歐拉角翻譯得來：
 
 ```cpp
 direction.x = cos(glm::radians(yaw)) _ cos(glm::radians(pitch));
@@ -244,14 +287,20 @@ direction.z = sin(glm::radians(yaw)) _ cos(glm::radians(pitch));
 
 This gives us a formula to convert yaw and pitch values to a 3-dimensional direction vector that we can use for looking around.
 
+這給了我們一個公式，由它，我們可以將 yaw 和 pitch 轉為一個 3D 方向向量，使用它，我們可以環視整個場景。
+
 We've set up the scene world so everything's positioned in the direction of the negative z-axis. However, if we look at the x and z yaw triangle we see that a θ
 of 0 results in the camera's direction vector to point towards the positive x-axis. To make sure the camera points towards the negative z-axis by default we can give the yaw a default value of a 90 degree clockwise rotation. Positive degrees rotate counter-clockwise so we set the default yaw value to:
+
+我們已經將場景配置為，使全部物件置於 z 軸的負方向。然而，如果我們看看 x 和 z yaw 三角，我們知道 θ 和 0 會導致相機的指向 x 軸正方向。要使相機指向 z 軸負方向，我們可以將 yaw 的默認值設置為順時針 90 度旋轉。正值會導致逆時針旋轉，因此，我們將 yaw 的默認值設置為：
 
 ```cpp
 yaw = -90.0f;
 ```
 
 You've probably wondered by now: how do we set and modify these yaw and pitch values?
+
+到此，你或許疑惑：我們該如何設置和修改 yaw 和 pitch 值呢？
 
 ### Mouse input
 

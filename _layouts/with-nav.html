@@ -3,70 +3,70 @@
 
 <!DOCTYPE html>
 <html lang="en_US">
-  <head>
-    {%- feed_meta -%}
-    <!--  -->
-    {%- seo -%}
-    <!--  -->
-    {%- include head.html -%}
 
-    <script>
-      function __toggleMenuVisible(evt) {
-        const Btn = evt.target
-        const aside = document.querySelector("#aside")
-        if (aside["__visible"]) {
-          aside["__visible"] = false
-          aside.style.left = '-100vw';
-          Btn.innerText = "|||"
-          Btn.style.color = "black"
-        } else {
-          aside["__visible"] = true
-          aside.style.left = '0px';
-          Btn.innerText = "x"
-          Btn.style.color = "white"
-        }
+<head>
+  {%- feed_meta -%}
+  <!--  -->
+  {%- seo -%}
+  <!--  -->
+  {%- include head.html -%}
+
+  <script>
+    function __toggleMenuVisible(evt) {
+      const Btn = evt.target
+      const aside = document.querySelector("#aside")
+      if (aside["__visible"]) {
+        aside["__visible"] = false
+        aside.style.left = '-100vw';
+        Btn.style.color = "black"
+      } else {
+        aside["__visible"] = true
+        aside.style.left = '0px';
+        Btn.style.color = "white"
       }
-    </script>
-  </head>
+    }
+  </script>
+</head>
 
-  <body>
-    <div class="page-wrapper">
-      <div class="MenuTrigger When-On-Mobile">
-        <div
-          onclick="__toggleMenuVisible(event)"
-          role="button"
-          class="MenuTrigger__triple"
-        >
-          |||
+<body>
+  <div class="page-wrapper">
+    <div class="MenuTrigger When-On-Mobile">
+      <div onclick="__toggleMenuVisible(event)" role="button" class="MenuTrigger__triple">
+        <svg xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M4 6l16 0" />
+          <path d="M4 12l16 0" />
+          <path d="M4 18l16 0" />
+        </svg>
+      </div>
+    </div>
+    <aside id="aside">
+      <div class="logo">
+        <div class="logo__title">
+          <img style="border-radius: 50%" src="/assets/-Qx6RFq__400x400.jpeg" />
+          星海&bull;普通人
+        </div>
+        <div class="logo__motto">
+          分享樸素、實用的前端技術
+          <br />
+          <small> Simple & Practical </small>
         </div>
       </div>
-      <aside id="aside">
-        <div class="logo">
-          <div class="logo__title">
-            <img
-              style="border-radius: 50%"
-              src="/assets/-Qx6RFq__400x400.jpeg"
-            />
-            星海&bull;普通人
-          </div>
-          <div class="logo__motto">
-            分享朴素、实用的前端技术
-            <br />
-            <small> Simple & Practical </small>
-          </div>
-        </div>
-        <nav>{%- include menu.html -%}</nav>
-        <div class="copyright">
-          <a target="_blank" href="http://www.beian.miit.gov.cn">
-            辽 ICP 备17002964号-1
-          </a>
-          <br />
-          &copy; singhi's BLOG / 2018 - 2024
-        </div>
-      </aside>
-      <main id="page" class="page {% if page.fullwidth %}fullwidth{% endif %}">
-        <article class="article">{{ content }}</article>
-      </main>
-    </div>
-  </body>
+      <nav>{%- include menu.html -%}</nav>
+      <div class="copyright">
+        <a target="_blank" href="http://www.beian.miit.gov.cn">
+          辽 ICP 备17002964号-1
+        </a>
+        <br />
+        &copy; singhi's BLOG / 2018 - 2025
+      </div>
+    </aside>
+    <main id="page" class="page {% if page.fullwidth %}fullwidth{% endif %}">
+      <article class="article">{{ content }}</article>
+    </main>
+  </div>
+</body>
+
 </html>

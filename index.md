@@ -3,6 +3,8 @@ layout: index
 title: Blog for Tech
 ---
 
+> 本就一個程序員出身，你叫我不寫代碼，去搞什麼流量、談判、間諜、燒烤、搞笑怪、銷售？
+
 {% assign tutorials = site.posts | where_exp: "post", "post.category == 'tech'" %}
 
 <ul class="documents" id="DocumentsIndex">

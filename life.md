@@ -3,6 +3,8 @@ layout: index
 title: Blog for Life
 ---
 
+> 這裡紀錄了我的一些亂七八糟的心裡話，沒辦法，拙於口舌，只好操之以墨；實非騷者，純胡言亂語！
+
 {% assign articles = site.posts | where_exp: "post", "post.category != 'tech'" %}
 
 <ul class="documents" id="DocumentsIndex">
@@ -24,4 +26,3 @@ title: Blog for Life
     </li>
   {% endfor %}
 </ul>
-

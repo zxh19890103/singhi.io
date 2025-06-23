@@ -1,13 +1,15 @@
 {
-  "editor.fontFamily": "Chalkboard SE, 'Yuppy TC', Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontSize": 16,
+  // "editor.fontFamily": "Chalkboard SE, 'Yuppy TC', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "'Chalkboard SE', 'Yuanti TC'",
+  "editor.fontSize": 18,
+  "editor.letterSpacing": 1,
   "editor.formatOnSave": false,
   "editor.fontLigatures": true,
   "prettier.useEditorConfig": true,
   "editor.minimap.enabled": false,
-  "editor.fontWeight": "300",
+  "editor.fontWeight": "400",
   "window.zoomLevel": 1,
-  "workbench.colorTheme": "Quiet Light",
+  "workbench.colorTheme": "Visual Studio 2017 Light - C++",
   "files.exclude": {
     "**/node_modules": true
   }

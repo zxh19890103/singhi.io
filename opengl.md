@@ -1,7 +1,9 @@
 ---
 layout: index
-title: 专栏 -  学习 OpenGL
+title: 学习 OpenGL
 ---
+
+> 一點一點來，不要急功近利，因為那樣會適得其反，也不要被他人的口水搞亂內心和計畫，好不好？
 
 <ul class="documents" style=" list-style-type: digital">
   {% for post in site.opengl %}
