@@ -210,6 +210,7 @@ ${tooManyPictures ? "lazy: 1" : ""}
 ${english ? "english: 1" : ""}
 ${!english ? `permalink: /historydefined/cn/${story}` : ""}
 ${imgUrlCxt ? `permalink: /historydefined/local/${story}` : ""}
+${imgUrlCxt ? "local: 1" : ""}
 ---
 
 ${Body}
@@ -249,7 +250,7 @@ const Go = async () => {
   GenerateLocalDebug()
 }
 
-const story = "unforgettable-images-from-the-vietnam-war"
+const story = "the-shocking-history-of-the-forbidden-experiment"
 
 const storyFolder = join(__dirname, `../_historydefined/${story}`)
 const imagesSaveTo = join(storyFolder, "./images")
@@ -259,7 +260,7 @@ const postCNSaveTo = storyFolder + "_cn.md"
 const postDebugSaveTo = storyFolder + "_local.md"
 
 const skipIfImgExists = true
-const stopIfDone = false
+const stopIfDone = true
 const tooManyPictures = true
 
 Go()

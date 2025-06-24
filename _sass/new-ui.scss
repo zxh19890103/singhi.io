@@ -498,6 +498,10 @@
 	border-radius: 4px 6px;
 	font-size: 0.9em;
 
+	p {
+		margin: 0;
+	}
+
 	&-green {
 		background-color: #d8f5d8;
 		color: #444;

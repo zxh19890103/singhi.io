@@ -63,6 +63,19 @@ layout: with-nonav
     </a>
     {% endif %}
 
+    {% if page.local %}
+    <a href="javascript: selectArticleContent();">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-copy">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" />
+        <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
+      </svg>
+    </a>
+    {% endif %}
+
     <a href="javascript:void(0);" onclick="__switchDarkLight(event)" class="ThemeSwitchButton" title="Change The Theme">
       <span class="Moon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -87,9 +100,9 @@ layout: with-nonav
 
 <div class="When-Where">
   {% if page.english %}
-  Posted On <span>{{ page.date | date: "%B %d, %Y" }}</span>
+  Posted On <span style=" text-decoration: underline dashed 1px; text-underline-offset: 3px;">{{ page.date | date: "%a, %B %d, %Y" }}</span>
   {% else %}
-  發佈於 <span style="vertical-align: middle; font-size: 1.2em;">{{ page.date | date: "%m/%d %Y" }}</span>
+  發佈於 <span style="vertical-align: middle; font-size: 1.2em;  text-decoration: underline dashed 1px;  text-underline-offset: 3px;">{{ page.date | date: "%a, %m/%d %Y" }}</span>
   {% endif %}
 
   {{page.place}}
@@ -135,13 +148,46 @@ layout: with-nonav
         node.style.display = "none"
       })
     }
-  }
-</script>
 
-{% if page.lazy %}
-<script>
-  var lazyLoadInstance = new LazyLoad({
-    // Your custom settings go here
-  })
+    {% if page.lazy %}
+    var lazyLoadInstance = new LazyLoad({
+      // Your custom settings go here
+    })
+    {% endif %}
+  }
+
+  {% if page.local %}
+  function selectArticleContent() {
+    // 2. Check for browser compatibility (basic check)
+    if (window.getSelection && document.createRange) {
+
+      const ArticleBody = document.querySelector('#page .article__body');
+
+      // 3. Create a new Range object
+      const range = document.createRange();
+
+      // 4. Set the Range to encompass the entire content of the element
+      // selectNodeContents(element) makes the range include all child nodes and text of the element.
+      range.selectNodeContents(ArticleBody);
+
+      // 5. Get the current Selection object
+      const selection = window.getSelection();
+
+      // 6. Clear any existing selections
+      selection.removeAllRanges();
+
+      // 7. Add the new Range to the Selection
+      selection.addRange(range);
+
+      console.log("Content of the element selected.");
+
+      requestAnimationFrame(() => {
+        document.execCommand('copy', true);
+        alert('Copied!');
+      });
+    } else {
+      //
+    }
+  }
+  {% endif %}
 </script>
-{% endif %}
