@@ -51,8 +51,8 @@ html {
 	word-spacing: 1px;
 	box-sizing: border-box;
 
-	font: 14px/1.5 BrandonGrotesque, "Yuanti TC", "PingFang TC",
-		"Microsoft JhengHei", "Heiti TC", sans-serif;
+	font: 14px/1.5 "Yuanti TC", "PingFang TC", "Microsoft JhengHei", sans-serif,
+		monospace;
 	font-weight: 400;
 
 	-webkit-text-size-adjust: 100%;
@@ -66,7 +66,6 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeSpeed;
-	font-display: swap;
 }
 
 body {

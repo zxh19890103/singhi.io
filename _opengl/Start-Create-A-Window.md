@@ -1,7 +1,7 @@
 ---
 layout: bookdetail
 chapter: 三
-short: 在我们开始创建令人惊叹的图形之前，首先需要做的事情是创建一个 OpenGL 上下文和一个应用窗口来进行绘制。
+short: "在我们开始创建令人惊叹的图形之前，首先需要做的事情是创建一个 OpenGL 上下文和一个应用窗口来进行绘制。然而，这些操作在不同的操作系统上是特定的，而 OpenGL 刻意地将自己与这些操作抽象开来。这意味着我们必须自己创建一个窗口、定义一个上下文，并处理用户输入。"
 title: 开始 &bull; 创建一个窗口
 category: tech
 src: https://learnopengl.com/Getting-started/Creating-a-window

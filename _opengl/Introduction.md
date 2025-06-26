@@ -1,7 +1,7 @@
 ---
 layout: bookdetail
 chapter: 一
-short: 既然你来到这里，可能是想了解计算机图形学的内部运作，并亲自做一些酷炫的事情。
+description: 既然你来到这里，可能是想了解计算机图形学的内部运作，并亲自做一些酷炫的事情。自己动手做事非常有趣且富有创造性，而且能让你深入理解图形编程。然而，在开始这段旅程之前，有几个事项需要考虑。
 title: 介绍
 category: tech
 src: https://learnopengl.com/Introduction

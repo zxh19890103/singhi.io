@@ -1,7 +1,7 @@
 ---
 layout: bookdetail
 chapter: 二
-short: 在开始我们的旅程之前，我们首先应该定义一下 OpenGL 实际上是什么。
+description: 在开始我们的旅程之前，我们首先应该定义一下 OpenGL 实际上是什么。OpenGL 主要被视为一个 API（应用程序编程接口），它为我们提供了一组可以用来操作图形和图像的函数。然而，OpenGL 本身并不是一个 API，而只是一个规范，由 [Khronos Group](http://www.khronos.org/) 开发和维护。
 title: 开始 &bull; 认识 OpenGL
 src: https://learnopengl.com/Getting-started/OpenGL
 category: tech

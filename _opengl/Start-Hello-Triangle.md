@@ -1,7 +1,7 @@
 ---
 layout: bookdetail
 chapter: 五
-short: 對於 OpenGL 來說，一切都發生在 3D 空間中，但螢幕或視窗其實是由二維像素所組成的陣列
+short: "對於 OpenGL 來說，一切都發生在 3D 空間中，但螢幕或視窗其實是由二維像素所組成的陣列，因此 OpenGL 的主要工作之一就是將 3D 座標轉換為適合顯示在螢幕上的 2D 像素。這個從 3D 座標轉換為 2D 像素的過程是由 OpenGL 的圖形管線所處理的。圖形管線可以分為兩個主要部分：第一部分將 3D 座標轉換為 2D 座標，第二部分則將這些 2D 座標轉換為實際的彩色像素。本章將簡要介紹圖形管線的運作方式，並說明我們如何善用它來創造炫麗的像素效果。"
 title: 开始 &bull; Hello, 三角形
 src: https://learnopengl.com/Getting-started/Hello-Triangle
 category: tech

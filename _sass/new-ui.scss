@@ -204,6 +204,8 @@
 
 			img {
 				max-width: 100%;
+				min-height: 30px;
+				background-color: #ddd;
 				width: auto;
 				height: auto;
 			}
@@ -347,7 +349,9 @@
 }
 
 .english {
-	font-family: BrandonGrotesque;
+	font-family: KiddySans;
+	-webkit-font-smoothing: auto;
+	-moz-osx-font-smoothing: auto;
 }
 
 .song {

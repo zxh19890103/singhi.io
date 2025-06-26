@@ -1,7 +1,6 @@
 ---
 layout: bookdetail
 chapter: 四
-short:
 title: 开始 &bull; Hello, 窗口
 src: https://learnopengl.com/Getting-started/Hello-Window
 category: tech

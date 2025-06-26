@@ -1,6 +1,11 @@
 const http = require("http")
 const https = require("https")
 const fs = require("fs")
+const {
+  fetchPage,
+  getFormattedDatePadded,
+  getFormattedTime,
+} = require("./_lib")
 const { join, basename } = require("path")
 const { URL } = require("url")
 const TurndownService = require("turndown")
@@ -10,49 +15,6 @@ const TurndownService = require("turndown")
 function getFirstLineAsTitle(text) {
   const match = text.match(/^#\s\s*(.*)$/m)
   return match ? match[1] : ""
-}
-
-function getFormattedDatePadded() {
-  const now = new Date()
-  const year = now.getFullYear()
-  const month = String(now.getMonth() + 1).padStart(2, "0")
-  const day = String(now.getDate()).padStart(2, "0")
-  return `${year}-${month}-${day}`
-}
-
-function getFormattedTime() {
-  const now = new Date()
-  const hours = now.getHours()
-  const minitues = String(now.getMinutes()).padStart(2, "0")
-  const seconds = String(now.getSeconds()).padStart(2, "0")
-  return `${hours}:${minitues}:${seconds}`
-}
-
-function fetchPage(url) {
-  return new Promise((resolve, reject) => {
-    try {
-      const parsedUrl = new URL(url)
-      const lib = parsedUrl.protocol === "https:" ? https : http
-
-      lib
-        .get(parsedUrl, (res) => {
-          let data = ""
-
-          res.on("data", (chunk) => {
-            data += chunk
-          })
-
-          res.on("end", () => {
-            resolve(data)
-          })
-        })
-        .on("error", (err) => {
-          reject(err)
-        })
-    } catch (err) {
-      reject(err)
-    }
-  })
 }
 
 //<!-- #post-## -->
@@ -70,7 +32,28 @@ const extractArticleXML = (html) => {
     const turndownService = new TurndownService({
       headingStyle: "atx",
     })
+
+    turndownService.addRule("figure", {
+      filter: "figure",
+      replacement: (content, node) => {
+        const img = node.querySelector("img")
+        const caption = node.querySelector("figcaption")
+        const imgSrc = img.getAttribute("src") || img.getAttribute("data-src")
+        let words = "no words."
+        if (caption) {
+          words = caption.textContent.trim()
+          if (words.length > 0) {
+            words = words.replace(/"/g, '\\"') // Escape quotes for Markdown
+          } else {
+            words = "no words after cap."
+          }
+        }
+        return `\n\n![](${imgSrc})\n${words}\n\n`
+      },
+    })
+
     const markdownDoc = turndownService.turndown(block)
+
     fs.writeFileSync(rawMdFilePath, markdownDoc, { encoding: "utf-8" })
     console.log("Saved!")
   } else {
@@ -246,21 +229,35 @@ const Go = async () => {
   await ExtractAndDownloadPictures()
 
   GenerateNewPost()
+
   GenerateTranslate()
   GenerateLocalDebug()
 }
 
-const story = "the-shocking-history-of-the-forbidden-experiment"
+/**
+ * Story Name
+ */
+const story = "how-matching-dinosaur-footprints-ended-up-on-opposite-sides-of-the-atlantic-ocean"
 
 const storyFolder = join(__dirname, `../_historydefined/${story}`)
 const imagesSaveTo = join(storyFolder, "./images")
 const rawMdFilePath = join(storyFolder, "./raw.md")
+const rawMdFilePath_cn = join(storyFolder, "./raw_cn.md")
 const postSaveTo = storyFolder + ".md"
 const postCNSaveTo = storyFolder + "_cn.md"
 const postDebugSaveTo = storyFolder + "_local.md"
 
-const skipIfImgExists = true
+/**
+ * 如果已經有了就不再繼續，您可以將其設置為 false 以繼續下載
+ */
 const stopIfDone = true
-const tooManyPictures = true
+/**
+ * 是否跳過已經存在的圖片
+ */
+const skipIfImgExists = true
+/**
+ * 是否圖集
+ */
+const tooManyPictures = false
 
 Go()

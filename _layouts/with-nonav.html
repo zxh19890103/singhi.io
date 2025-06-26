@@ -31,6 +31,10 @@
       max-width: 100%;
     }
 
+    table td {
+      font-size: .7em;
+    }
+
     video {
       width: 100%;
     }
@@ -44,46 +48,48 @@
       <article class="article Cat-{{page.category}}">{{ content }}</article>
     </main>
   </div>
+  <script>
+    function __goBackToIndex() {
+      const cat = location.pathname.split('/')[1];
+      if (cat === 'tech') location.href = '/';
+      else if (cat === 'journal') {
+        location.href = '/life'
+      } else if (cat === 'historydefined') {
+        location.href = '/hisd'
+      } else {
+        location.href = `/${cat}`
+      }
+    }
+  </script>
+  {% if page.math %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const container = document.querySelector('#Book__Content');
+
+      if (!container) {
+        console.warn("No container found for rendering math.");
+        return;
+      }
+
+      renderMathInElement(container, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },  // Block math
+          { left: "\\begin{equation}", right: "\\end{equation}", display: true },  // Block math
+          { left: "$", right: "$", display: false },   // Inline math
+          { left: "\\(", right: "\\)", display: false }    // Inline math
+        ],
+        throwOnError: false
+      });
+
+      container.querySelectorAll("pre code.language-math").forEach((block) => {
+        const tex = block.textContent.trim();
+        const wrapper = document.createElement("div");
+        katex.render(tex, wrapper, { displayMode: true, throwOnError: false });
+        block.replaceWith(wrapper);
+      });
+    });
+  </script>
+  {% endif %}
 </body>
-<script>
-  function __goBackToIndex() {
-    const cat = location.pathname.split('/')[1];
-    if (cat === 'tech') location.href = '/';
-    else if (cat === 'journal') {
-      location.href = '/life'
-    } else if (cat === 'historydefined') {
-      location.href = '/hisd'
-    } else {
-      location.href = `/${cat}`
-    }
-  }
-</script>
-{% if page.math %}
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const container = document.querySelector('#Book__Content');
-
-    if (!container) {
-      console.warn("No container found for rendering math.");
-      return;
-    }
-
-    renderMathInElement(container, {
-      delimiters: [
-        { left: "$$", right: "$$", display: true },  // Block math
-        { left: "$", right: "$", display: false }    // Inline math
-      ],
-      throwOnError: false
-    });
-
-    container.querySelectorAll("pre code.language-math").forEach((block) => {
-      const tex = block.textContent.trim();
-      const wrapper = document.createElement("div");
-      katex.render(tex, wrapper, { displayMode: true, throwOnError: false });
-      block.replaceWith(wrapper);
-    });
-  });
-</script>
-{% endif %}
 
 </html>

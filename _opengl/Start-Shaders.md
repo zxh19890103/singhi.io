@@ -1,7 +1,7 @@
 ---
 layout: bookdetail
 chapter: 六
-short: 在开始我们的旅程之前，我们首先应该定义一下 OpenGL 实际上是什么。
+description: "上章提到，著色器是運行在 GPU 上的小程序。這些程序運行在圖形管線的各個部分。基本來講，著色器不過是將輸入轉換為輸出的程序。著色器同時也是彼此隔離的，它們之間不允許有通訊，唯一的通訊途徑是通過輸入和輸出。"
 title: 开始 &bull; 著色器
 category: tech
 src: https://learnopengl.com/Getting-started/Shaders
