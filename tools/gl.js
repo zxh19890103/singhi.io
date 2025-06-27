@@ -37,7 +37,9 @@ function ExtractHTMLPartialAsMd(html) {
     turndownService.addRule("H12", {
       filter: ["h1", "h2", "h3"],
       replacement: (content, n) => {
-        const suffixDigit = Array(1 + Number(n.tagName[1])).fill("#").join("")
+        const suffixDigit = Array(1 + Number(n.tagName[1]))
+          .fill("#")
+          .join("")
         return `\n${suffixDigit} ` + content + "\n"
       },
     })
@@ -135,15 +137,10 @@ ${mdtext}
   console.log("Saved!")
 }
 
-const category = "Lighting"
-const topic = "Basic-Lighting"
-const mdfile = join(__dirname, "../_opengl", `${category}-${topic}.md`)
-const url = `https://learnopengl.com/${category}/${topic}`
-
 const Go = async () => {
-  // if (fs.existsSync(mdfile)) {
-  //   throw new Error("File Exists!")
-  // }
+  if (quitIfExits && fs.existsSync(mdfile)) {
+    throw new Error("File Exists!")
+  }
 
   console.log("Loading...", url)
   const fullHTML = await fetchPage(url)
@@ -151,5 +148,11 @@ const Go = async () => {
   const picture = Extract1stPictures(content)
   Generate(content, picture)
 }
+
+const category = "Lighting"
+const topic = "Materials"
+const mdfile = join(__dirname, "../_opengl", `${category}-${topic}.md`)
+const url = `https://learnopengl.com/${category}/${topic}`
+const quitIfExits = true
 
 Go()

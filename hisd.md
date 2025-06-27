@@ -10,7 +10,12 @@ title: 歷史故事
     <li class="documents__item cat-{{post.category}}">
       <div class="document">
         <a class="document__link" href="{{ post.url }}" target="_self">
-          <h3 style="margin: 0.3em 0 0.6em 0">{{ post.title }}</h3>
+          <h3 style="margin: 0.3em 0 0.6em 0">
+          {%if post.local%}
+          <span style="color: #ef123d">[LOCAL]</span>
+          {%endif%}
+          {{ post.title }}
+          </h3>
         </a>
         <p style="white-space: normal;overflow: auto; height: auto; color: #555; font-size: 1em">
         {{ post.excerpt | strip_html }}
