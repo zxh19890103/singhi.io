@@ -1,12 +1,12 @@
 {
-  "editor.fontFamily": "'Chalkboard SE', 'Hannotate TC'",
+  "editor.fontFamily": "Chalkboard SE, 'Wawati TC'",
   "editor.fontSize": 16,
-  "editor.letterSpacing": 1,
+  "editor.letterSpacing": 0,
   "editor.formatOnSave": false,
   "editor.fontLigatures": true,
   "prettier.useEditorConfig": true,
   "editor.minimap.enabled": false,
-  "editor.fontWeight": "300",
+  "editor.fontWeight": 300,
   "window.zoomLevel": 1,
   "workbench.colorTheme": "Visual Studio 2017 Light - C++",
   "files.exclude": {

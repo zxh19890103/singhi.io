@@ -237,7 +237,7 @@ const Go = async () => {
 /**
  * Story Name
  */
-const story = "why-are-the-early-middle-ages-called-the-dark-ages"
+const story = "lingchi"
 
 const storyFolder = join(__dirname, `../_historydefined/${story}`)
 const imagesSaveTo = join(storyFolder, "./images")

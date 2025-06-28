@@ -8,7 +8,7 @@ host: 0.0.0.0
 collections:
   patterns:
     title: 设计模式
-    sort_by: sort
+    sort_by: order
     output: true
   historydefined:
     title: 被定義過的歷史故事
@@ -16,7 +16,7 @@ collections:
     output: true
   opengl:
     title: OpenGL Learning Plan
-    sort_by: sort
+    sort_by: order
     output: true
   articles:
     title: 观点

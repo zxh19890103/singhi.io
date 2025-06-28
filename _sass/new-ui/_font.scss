@@ -7,24 +7,8 @@
 
 @font-face {
 	font-family: "KiddySans";
-	src: url("/assets/fonts/kiddySans/kiddySans_bold.otf") format("opentype");
-	font-weight: bold;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "KiddySans";
-	src: url("/assets/fonts/kiddySans/kiddySans_bold.otf") format("opentype");
-	font-weight: bold;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "KiddySans";
-	src: url("/assets/fonts/kiddySans/kiddySans_bold.otf") format("opentype");
-	font-weight: bold;
+	src: url("/assets/fonts/kiddySans/kiddySans.otf") format("opentype");
+	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
 }
@@ -39,9 +23,50 @@
 
 @font-face {
 	font-family: "KiddySans";
+	src: url("/assets/fonts/kiddySans/kiddySans_light.otf") format("opentype");
+	font-weight: lighter;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "KiddySans";
+	src: url("/assets/fonts/kiddySans/kiddySans_light-italic.otf") format("opentype");
+	font-weight: lighter;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "KiddySans";
+	src: url("/assets/fonts/kiddySans/kiddySans_bold.otf") format("opentype");
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "KiddySans";
 	src: url("/assets/fonts/kiddySans/kiddySans_bold_italic.otf")
 		format("opentype");
 	font-weight: bold;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "KiddySans";
+	src: url("/assets/fonts/kiddySans/kiddySans_fat.otf") format("opentype");
+	font-weight: bolder;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "KiddySans";
+	src: url("/assets/fonts/kiddySans/kiddySans_fat_italic.otf")
+		format("opentype");
+	font-weight: bolder;
 	font-style: italic;
 	font-display: swap;
 }

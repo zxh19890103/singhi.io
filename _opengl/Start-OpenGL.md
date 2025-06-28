@@ -7,6 +7,10 @@ src: https://learnopengl.com/Getting-started/OpenGL
 category: tech
 date: 2025-02-18
 book: opengl
+order: 2
+permalink: /opengl/Start/OpenGL
+glcate: Start
+gltopic: OpenGL
 ---
 
 ## OpenGL

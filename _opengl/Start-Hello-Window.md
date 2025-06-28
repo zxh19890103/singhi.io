@@ -6,6 +6,10 @@ src: https://learnopengl.com/Getting-started/Hello-Window
 category: tech
 date: 2025-05-28
 book: opengl
+order: 4
+permalink: /opengl/Start/Hello-Window
+glcate: Start
+gltopic: Hello-Window
 ---
 
 讓我們看看是否可以啟動並運行 `GLFW`。首先，我們創建一個 `.cpp` 文件，然後在其頭部添加以下 `includes`。

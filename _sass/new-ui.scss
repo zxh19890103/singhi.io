@@ -88,12 +88,17 @@
 // Post & Page
 .article {
 	position: relative;
+	// default
 	font-size: 1.24rem;
 	line-height: 1.685;
 
-	&.Cat-tech,
+	&.Cat-tech {
+		font-size: 1.25rem;
+	}
+
+	&.Cat-hisd,
 	&.Cat-journal {
-		font-size: 1.5rem;
+		font-size: 1.3rem;
 	}
 
 	&__title,
@@ -163,10 +168,21 @@
 				color: var(--text-color-3);
 			}
 		}
+
 		h4,
 		h5,
 		h6 {
 			font-size: 1.05em;
+		}
+
+		h4 {
+			&:before {
+				content: "＃＃";
+				margin: 0 0.2em 0 0;
+				vertical-align: baseline;
+				font-size: 0.9em;
+				color: var(--text-color-3);
+			}
 		}
 
 		p {

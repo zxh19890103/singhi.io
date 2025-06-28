@@ -28,7 +28,7 @@ function ExtractHTMLPartialAsMd(html) {
     })
 
     turndownService.addRule("Var", {
-      filter: ["var"],
+      filter: ["var", "def", "fun"],
       replacement: (content, n) => {
         return "`" + content + "`"
       },
@@ -55,13 +55,6 @@ function ExtractHTMLPartialAsMd(html) {
           }
         }
         return content
-      },
-    })
-
-    turndownService.addRule("Fun", {
-      filter: ["fun"],
-      replacement: (content, n) => {
-        return `\`${content}\``
       },
     })
 
@@ -114,13 +107,12 @@ function Extract1stPictures(mdtext) {
  *
  * @param {string} mdtext
  * @param {string} picture
+ * @param {string} saveto
  */
-function Generate(mdtext, picture) {
+function Generate(mdtext, picture, saveto, english = false) {
   const fileContent = `---
 layout: bookdetail
-chapter: 十
-short: "--"
-description: "--"
+chapter: ${chapter}
 title: ${category} &bull; ${topic}
 category: tech
 src: "${url}"
@@ -128,13 +120,18 @@ date: ${getFormattedDatePadded()}
 math: 1
 book: opengl
 image: "${picture}"
+order: ${order}
+lang: ${english ? "en" : "zh"}
+glcate: ${category}
+gltopic: ${topic}
+permalink: /opengl/${english ? "en/" : ""}${category}/${topic}
 ---
 
 ${mdtext}
   `
 
-  fs.writeFileSync(mdfile, fileContent, { encoding: "utf8" })
-  console.log("Saved!")
+  fs.writeFileSync(saveto, fileContent, { encoding: "utf8" })
+  console.log("Saved!", english ? "en" : "zh")
 }
 
 const Go = async () => {
@@ -146,13 +143,19 @@ const Go = async () => {
   const fullHTML = await fetchPage(url)
   const content = ExtractHTMLPartialAsMd(fullHTML)
   const picture = Extract1stPictures(content)
-  Generate(content, picture)
+
+  Generate(content, picture, mdfile, false)
+  Generate(content, picture, mdfile_en, true)
 }
 
-const category = "Lighting"
-const topic = "Materials"
+const category = "Model-Loading"
+const topic = "Assimp"
+const order = 17
+const chapter = "十七"
 const mdfile = join(__dirname, "../_opengl", `${category}-${topic}.md`)
+const mdfile_en = join(__dirname, "../_opengl", `${category}-${topic}_en.md`)
 const url = `https://learnopengl.com/${category}/${topic}`
+
 const quitIfExits = true
 
 Go()

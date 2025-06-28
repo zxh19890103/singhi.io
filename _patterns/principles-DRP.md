@@ -4,9 +4,9 @@ date: 2019-09-08
 chapter: 二
 short: Composition/Aggregate Reuse Principle，CARP.
 title: 合成复用原则（DRP）
-sort: 60
 category: tech
 book: patterns
+order: 2
 ---
 
 ## 合成复用原则的定义

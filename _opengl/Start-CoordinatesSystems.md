@@ -9,6 +9,10 @@ date: 2025-06-11
 math: 1
 book: opengl
 image: https://learnopengl.com/img/getting-started/coordinate_systems.png
+order: 9
+permalink: /opengl/Start/CoordinatesSystems
+glcate: Start
+gltopic: CoordinatesSystems
 ---
 
 在上一章，我們知道了如何使用矩陣作為武器，來實現對頂點的轉換。對於那些你希望被渲染在屏幕上的頂點，OpenGL 要求它們在跑完 shader 代碼之後，全部落在**標準設備座標**（NDC）空間。也就是說，每個頂點的 x、y、z 座標都應該落在 -1.0 到 +1.0 之間；對於此範圍之外的點，它們將無法被看到。我們通常的做法是，在一個範圍（或者空間）裡指定一個座標系，這個座標系由我們自己來決定，然後在頂點著色器裡將頂點座標轉換為標準設備座標。接著這些 NDC 被交給光珊，以將它們轉換為屏幕 2D 座標/像素。

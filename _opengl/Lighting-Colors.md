@@ -8,6 +8,10 @@ src: "https://learnopengl.com/Lighting/Colors"
 date: 2025-06-25
 book: opengl
 image: "https://learnopengl.com/img/lighting/light_reflection.png"
+order: 11
+permalink: /opengl/Lighting/Colros
+glcate: Lighting
+gltopic: Colors
 ---
 
 > 譯者總結：本文首先介紹了物理世界顏色的本質（相對），以及在計算機圖形領域，人們是如何模擬物理世界的色彩。人們將色彩的產生歸因於光源的顏色以及物體本身的顏色，二者相乘，就可以計算出物體被感知的顏色。根據這個模型，筆者寫了一個帶有光源的場景，凡是放置在其中的物件外觀顯示上都會被光源影響。

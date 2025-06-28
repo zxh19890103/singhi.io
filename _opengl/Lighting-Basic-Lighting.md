@@ -9,6 +9,10 @@ date: 2025-06-26
 math: 1
 book: opengl
 image: "https://learnopengl.com/img/lighting/basic_lighting_phong.png"
+order: 12
+permalink: /opengl/Lighting/Basic-Lighting
+glcate: Lighting
+gltopic: Basic-Lighting
 ---
 
 > 譯者總結：本文介紹了 Phong 光照模型！非常基礎，非常容易理解，是一篇極好的解釋圖形領域光照模型存在的現實理由及其實現辦法。Phong 模型裡，物件最終呈現出來的光是三種光的組合：1. 環境光；2. 散光（漫反射）；3. 高光（反射光或者鏡面光）。文章分別對此三者進行的現實意義的解釋以及計算機層面的實現方案。結合最終程序運行，筆者將每一步實現的結果展現給讀者，讓讀者明白筆者說的到底“是什麼”。

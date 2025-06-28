@@ -8,6 +8,7 @@ src: "https://learnopengl.com/Lighting/Materials"
 date: 2025-06-27
 book: opengl
 image: "https://learnopengl.com/img/lighting/materials_real_world.png"
+order: 13
 ---
 
 > 本篇介紹了物體的材質概念，材質是對物體表面反射光組合的描述，目的是使物體看起來更真實，所謂更真實，意思是“像”你肉眼看見的那些自然或人工製造的東西。依然是對三種反射光進行處理，分別是環境光、漫射光和鏡面光。材質描述了物體的這三種光（如何反射太陽光）以及各自的反射強度。

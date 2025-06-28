@@ -1,12 +1,14 @@
 ---
 layout: index
-title: 來，一切學習 OpenGL
+title: 來，一起學習 OpenGL
 ---
 
 > 一點一點來，不要急功近利，因為那樣會適得其反，也不要被他人的口水搞亂內心和計畫，好不好？
 
+{% assign posts = site.opengl | sort: 'order' %}
+
 <ul class="documents" style=" list-style-type: digital">
-  {% for post in site.opengl %}
+  {% for post in posts %}
     <li
     class="documents__item cat-{{post.category}}"
     style="margin: 2.5rem 0.5rem;">

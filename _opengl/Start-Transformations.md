@@ -9,6 +9,10 @@ date: 2025-06-05
 math: 1
 book: opengl
 image: https://learnopengl.com/Getting-started/Transformations
+order: 8
+permalink: /opengl/Start/Transformations
+glcate: Start
+gltopic: Transformations
 ---
 
 我們現在知道如何創建物件，為它們上顏色，以及如何使用紋理為它們的外觀填充細節。然而，它們至今還是有些無趣，因為它們都是靜止的。我們將嘗試一種新的作法，通過在每一個幀修改它們的頂點以及對它們的緩衝數據進行重新配置來使它們“動”起來，然爾這似乎是一件繁重的任務，同時也會消耗相當多的處理資源。存在一種更好的辦法以變換一個物件，就是使用一個或者多個矩陣對象。這不意味著我們將討論功夫或者什麼數字人工世界之類的玩意。

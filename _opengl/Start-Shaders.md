@@ -7,6 +7,10 @@ category: tech
 src: https://learnopengl.com/Getting-started/Shaders
 date: 2025-06-01
 book: opengl
+order: 6
+permalink: /opengl/Start/Shaders
+glcate: Start
+gltopic: Shaders
 ---
 
 [上章]({{page.previous.url}})提到，著色器是運行在 GPU 上的小程序。這些程序運行在圖形管線的各個部分。基本來講，著色器不過是將輸入轉換為輸出的程序。著色器同時也是彼此隔離的，它們之間不允許有通訊，唯一的通訊途徑是通過輸入和輸出。
