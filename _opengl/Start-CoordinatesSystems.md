@@ -10,6 +10,7 @@ math: 1
 book: opengl
 image: https://learnopengl.com/img/getting-started/coordinate_systems.png
 order: 9
+lang: zh
 permalink: /opengl/Start/CoordinatesSystems
 glcate: Start
 gltopic: CoordinatesSystems

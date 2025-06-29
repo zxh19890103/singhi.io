@@ -9,6 +9,7 @@ math: 1
 book: opengl
 image: "https://learnopengl.com/img/textures/container2.png"
 order: 14
+lang: zh
 permalink: /opengl/Lighting/Lighting-maps
 glcate: Lighting
 gltopic: Lighting-maps

@@ -7,6 +7,7 @@ category: tech
 date: 2025-05-28
 book: opengl
 order: 4
+lang: zh
 permalink: /opengl/Start/Hello-Window
 glcate: Start
 gltopic: Hello-Window

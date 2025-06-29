@@ -7,6 +7,7 @@ category: tech
 src: "https://learnopengl.com/Lighting/Materials"
 date: 2025-06-27
 book: opengl
+lang: zh
 image: "https://learnopengl.com/img/lighting/materials_real_world.png"
 order: 13
 ---

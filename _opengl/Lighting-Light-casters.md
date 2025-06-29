@@ -9,6 +9,7 @@ math: 1
 book: opengl
 image: "https://learnopengl.com/img/lighting/light_casters_directional.png"
 order: 15
+lang: zh
 permalink: /opengl/Lighting/Light-casters
 glcate: Lighting
 gltopic: Light-casters

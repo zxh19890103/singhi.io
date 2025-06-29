@@ -8,6 +8,7 @@ src: https://learnopengl.com/Getting-started/Textures
 date: 2025-06-03
 book: opengl
 order: 7
+lang: zh
 permalink: /opengl/Start/Textures
 glcate: Start
 gltopic: Textures

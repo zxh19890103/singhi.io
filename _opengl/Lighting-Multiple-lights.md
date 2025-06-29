@@ -9,6 +9,7 @@ math: 1
 book: opengl
 image: "https://learnopengl.com/img/lighting/multiple_lights_combined.png"
 order: 16
+lang: zh
 permalink: /opengl/Lighting/Multiple-lights
 glcate: Lighting
 gltopic: Multiple-lights

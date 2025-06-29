@@ -8,6 +8,7 @@ src: https://learnopengl.com/Getting-started/Shaders
 date: 2025-06-01
 book: opengl
 order: 6
+lang: zh
 permalink: /opengl/Start/Shaders
 glcate: Start
 gltopic: Shaders

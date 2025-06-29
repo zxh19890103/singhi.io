@@ -10,6 +10,7 @@ math: 1
 book: opengl
 image: "https://learnopengl.com/img/getting-started/camera_axes.png"
 order: 10
+lang: zh
 permalink: /opengl/Start/Camera
 glcate: Start
 gltopic: Camera

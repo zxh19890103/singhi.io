@@ -101,7 +101,7 @@ function Extract1stPictures(mdtext) {
   const regex = /!\[[^\]]*\]\((.*?)\)/g
   const match = regex.exec(mdtext)
   if (match) return match[1]
-  else throw new Error("No 1st Pic!")
+  return "https://learnopengl.com/img/404.png" // Default placeholder image
 }
 /**
  *
@@ -148,10 +148,10 @@ const Go = async () => {
   Generate(content, picture, mdfile_en, true)
 }
 
-const category = "Model-Loading"
-const topic = "Assimp"
-const order = 17
-const chapter = "十七"
+const category = "Advanced-OpenGL"
+const topic = "Face-culling"
+const order = 23
+const chapter = "二十三"
 const mdfile = join(__dirname, "../_opengl", `${category}-${topic}.md`)
 const mdfile_en = join(__dirname, "../_opengl", `${category}-${topic}_en.md`)
 const url = `https://learnopengl.com/${category}/${topic}`

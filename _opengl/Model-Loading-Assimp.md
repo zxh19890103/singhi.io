@@ -1,7 +1,7 @@
 ---
 layout: bookdetail
 chapter: 十七
-title: Model-Loading &bull; Assimp
+title: 模型載入 • Assimp
 category: tech
 src: "https://learnopengl.com/Model-Loading/Assimp"
 date: 2025-06-28

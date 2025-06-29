@@ -237,12 +237,11 @@ const Go = async () => {
 /**
  * Story Name
  */
-const story = "lingchi"
+const story = "lovers-of-valdaro"
 
 const storyFolder = join(__dirname, `../_historydefined/${story}`)
 const imagesSaveTo = join(storyFolder, "./images")
 const rawMdFilePath = join(storyFolder, "./raw.md")
-const rawMdFilePath_cn = join(storyFolder, "./raw_cn.md")
 const postSaveTo = storyFolder + ".md"
 const postCNSaveTo = storyFolder + "_cn.md"
 const postDebugSaveTo = storyFolder + "_local.md"

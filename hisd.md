@@ -8,11 +8,11 @@ title: 歷史故事
 <ul class="documents" style=" list-style-type: digital">
   {% for post in site.historydefined %}
     <li class="documents__item cat-{{post.category}}">
-      <div class="document">
+      <div class="document {% if post.english %}english{% endif %}">
         <a class="document__link" href="{{ post.url }}" target="_self">
           <h3 style="margin: 0.3em 0 0.6em 0">
           {%if post.local%}
-          <span style="color: #ef123d">[LOCAL]</span>
+          <span style="color: #ef1dfd">[local]</span>
           {%endif%}
           {{ post.title }}
           </h3>

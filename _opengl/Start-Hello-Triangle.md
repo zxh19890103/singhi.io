@@ -8,6 +8,7 @@ category: tech
 date: 2025-05-29
 book: opengl
 order: 5
+lang: zh
 permalink: /opengl/Start/Hello-Triangle
 glcate: Start
 gltopic: Hello-Triangle

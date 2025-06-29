@@ -8,6 +8,7 @@ category: tech
 date: 2025-02-18
 book: opengl
 order: 2
+lang: zh
 permalink: /opengl/Start/OpenGL
 glcate: Start
 gltopic: OpenGL

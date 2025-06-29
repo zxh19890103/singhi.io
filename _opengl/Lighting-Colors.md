@@ -9,6 +9,7 @@ date: 2025-06-25
 book: opengl
 image: "https://learnopengl.com/img/lighting/light_reflection.png"
 order: 11
+lang: zh
 permalink: /opengl/Lighting/Colros
 glcate: Lighting
 gltopic: Colors

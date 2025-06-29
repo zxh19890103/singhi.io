@@ -10,6 +10,7 @@ math: 1
 book: opengl
 image: https://learnopengl.com/Getting-started/Transformations
 order: 8
+lang: zh
 permalink: /opengl/Start/Transformations
 glcate: Start
 gltopic: Transformations

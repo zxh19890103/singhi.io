@@ -10,6 +10,7 @@ math: 1
 book: opengl
 image: "https://learnopengl.com/img/lighting/basic_lighting_phong.png"
 order: 12
+lang: zh
 permalink: /opengl/Lighting/Basic-Lighting
 glcate: Lighting
 gltopic: Basic-Lighting

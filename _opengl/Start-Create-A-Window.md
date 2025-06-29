@@ -8,6 +8,7 @@ src: https://learnopengl.com/Getting-started/Creating-a-window
 date: 2025-02-19
 book: opengl
 order: 3
+lang: zh
 permalink: /opengl/Start/Create-A-Window
 glcate: Start
 gltopic: Create-A-Window
