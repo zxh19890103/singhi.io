@@ -89,6 +89,7 @@ glStencilFunc(GL_EQUAL, 1, 0xFF)
 
 然後，對於每個選項，你可以採取以下任何動作：
 
+<div class="table">
 <table>
   <tbody>
     <tr>
@@ -129,6 +130,7 @@ glStencilFunc(GL_EQUAL, 1, 0xFF)
     </tr>
   </tbody>
 </table>
+</div>
 
 預設情況下，`glStencilOp` 函數設定為 `(GL_KEEP, GL_KEEP, GL_KEEP)`，因此無論任何測試的結果如何，模板緩衝區都會保持其值。預設行為不會更新模板緩衝區，因此如果你想寫入模板緩衝區，你需要為任何選項指定至少一個不同的動作。
 

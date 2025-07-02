@@ -123,17 +123,22 @@
 	.When-Where {
 		font-size: 0.9em;
 		&::before {
-			content: "\2014\2014";
+			content: "⎯";
 		}
 	}
 
 	&__body,
 	.Book__Content {
 		padding: 2rem 0;
-		font-size: 1em;
+		font-size: 1.1em;
 
-		&.english {
-			font-size: 1.05em;
+		&.english,
+		&.lang-en {
+			font-size: 1.2em;
+
+			&.kiddy-font-disabled {
+				font-family: QuickSand, sans-serif;
+			}
 		}
 
 		h2,
@@ -157,15 +162,16 @@
 		h2 {
 			font-size: 1.34em;
 		}
+
 		h3 {
 			font-size: 1.2em;
+			color: #b71c6c;
 
 			&:before {
-				content: "＃";
+				content: "#";
 				margin: 0 0.2em 0 0;
 				vertical-align: baseline;
 				font-size: 0.9em;
-				color: var(--text-color-3);
 			}
 		}
 
@@ -176,12 +182,13 @@
 		}
 
 		h4 {
+			color: #0893a2;
+
 			&:before {
-				content: "＃＃";
+				content: "##";
 				margin: 0 0.2em 0 0;
 				vertical-align: baseline;
 				font-size: 0.9em;
-				color: var(--text-color-3);
 			}
 		}
 
@@ -261,11 +268,12 @@
 
 	.Book__Side {
 		height: 100vh;
-		padding: 1rem;
+		padding: 2em 1em;
 		width: fit-content;
 		overflow-y: auto;
 		font-size: 0.84em;
 		z-index: 45;
+		box-sizing: border-box;
 		background-color: rgb(30, 40, 49);
 		color: #fff;
 		transition: transform 0.1s ease-in-out;
@@ -291,6 +299,11 @@
 		left: 15px;
 		transform: translate(-100%, 0);
 
+		ul {
+			list-style-type: none;
+			padding-left: 1em;
+		}
+
 		a.disabled {
 			pointer-events: none;
 			color: #999;
@@ -307,6 +320,12 @@
 		top: 0;
 		right: 15px;
 		transform: translate(100%, 0);
+
+		ul {
+			list-style-type: square;
+			padding-left: 1em;
+		}
+
 		&:hover {
 			transform: translateX(15px);
 		}
@@ -329,8 +348,13 @@
 
 		.H3 {
 			list-style-position: inside;
-			// padding-left: 1em;
 			font-size: 0.9em;
+		}
+
+		.H4 {
+			list-style-position: inside;
+			padding-left: 1em;
+			font-size: 0.87em;
 		}
 	}
 
@@ -377,18 +401,22 @@
 	}
 }
 
-.english {
+.lang-zh {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.english,
+.lang-en {
 	font-family: KiddySans;
 	-webkit-font-smoothing: auto;
 	-moz-osx-font-smoothing: auto;
 
 	strong {
-		color: #000;
-		font-size: 1.1em;
-		text-decoration: underline;
-		text-decoration-style: wavy;
-		text-decoration-thickness: 1px;
-		text-decoration-color: var(--link-active-color);
+		color: rgb(53, 166, 134);
+		text-shadow: 1px 1px 1px rgb(18, 58, 47);
+		text-transform: uppercase;
+		font-size: 0.86em;
 		-webkit-font-smoothing: auto;
 	}
 }

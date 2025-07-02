@@ -1,6 +1,7 @@
 ::selection {
-	background-color: #444; /* Set the background color of the selected text */
+	background-color: #fa7508; /* Set the background color of the selected text */
 	color: #ffffff; /* Set the text color of the selected text */
+	text-shadow: 1px 1px 2px rgb(0, 0, 0); /* Subtle shadow */
 }
 
 html {
@@ -47,23 +48,22 @@ html {
 	}
 
 	height: 100%;
-	letter-spacing: 0.5px;
-	word-spacing: 1px;
+	letter-spacing: 0px;
+	word-spacing: 0px;
 	box-sizing: border-box;
 
-	font: 14px/1.5 "Yuanti TC", "PingFang TC", "Microsoft JhengHei", sans-serif,
-		monospace;
+	font: 14px/1.5 QuickSand, "Yuanti SC", "PingFang TC", "Microsoft JhengHei",
+		sans-serif, monospace;
 	font-weight: 400;
-
-	-webkit-text-size-adjust: 100%;
 
 	background-color: var(--main-bg-color);
 	color: var(--text-color);
 
 	word-break: break-word;
+	-webkit-text-size-adjust: 100%;
 	-ms-overflow-style: -ms-autohiding-scrollbar;
 	-webkit-tap-highlight-color: transparent;
-	-webkit-font-smoothing: antialiased;
+	-webkit-font-smoothing: auto;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeSpeed;
 }
@@ -149,6 +149,10 @@ h6 {
 	-o-filter: blur(5px);
 	-ms-filter: blur(5px);
 	filter: blur(5px);
+}
+
+.pink {
+	color: rgb(190, 148, 155);
 }
 
 .XSvgIcon {

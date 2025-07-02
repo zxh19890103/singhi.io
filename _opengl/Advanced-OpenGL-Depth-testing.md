@@ -61,7 +61,9 @@ glDepthFunc(GL_LESS);
 
 該函數接受多種比較運算符，如下表所示：
 
+<div class="table">
 <table><thead><tr><th>函式 (Function)</th><th>描述 (Description)</th></tr></thead><tbody><tr><td><code>GL_ALWAYS</code></td><td>深度測試永遠通過。</td></tr><tr><td><code>GL_NEVER</code></td><td>深度測試永遠不通過。</td></tr><tr><td><code>GL_LESS</code></td><td>如果片段的深度值小於儲存的深度值，則通過。</td></tr><tr><td><code>GL_EQUAL</code></td><td>如果片段的深度值等於儲存的深度值，則通過。</td></tr><tr><td><code>GL_LEQUAL</code></td><td>如果片段的深度值小於或等於儲存的深度值，則通過。</td></tr><tr><td><code>GL_GREATER</code></td><td>如果片段的深度值大於儲存的深度值，則通過。</td></tr><tr><td><code>GL_NOTEQUAL</code></td><td>如果片段的深度值不等於儲存的深度值，則通過。</td></tr><tr><td><code>GL_GEQUAL</code></td><td>如果片段的深度值大於或等於儲存的深度值，則通過。</td></tr></tbody></table>
+</div>
 
 預設情況下，使用深度函數 `GL_LESS`，它會丟棄所有深度值大於或等於當前深度緩衝區值的片段。
 

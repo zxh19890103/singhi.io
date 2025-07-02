@@ -1,9 +1,9 @@
-@font-face {
-	font-family: "BrandonGrotesque";
-	src: url("/assets/fonts/brandon/brandon_reg-webfont.woff") format("woff");
-	font-style: normal;
-	font-display: swap;
-}
+// @font-face {
+// 	font-family: "BrandonGrotesque";
+// 	src: url("/assets/fonts/brandon/brandon_reg-webfont.woff") format("woff");
+// 	font-style: normal;
+// 	font-display: swap;
+// }
 
 @font-face {
 	font-family: "KiddySans";
@@ -31,7 +31,8 @@
 
 @font-face {
 	font-family: "KiddySans";
-	src: url("/assets/fonts/kiddySans/kiddySans_light-italic.otf") format("opentype");
+	src: url("/assets/fonts/kiddySans/kiddySans_light-italic.otf")
+		format("opentype");
 	font-weight: lighter;
 	font-style: italic;
 	font-display: swap;
@@ -70,3 +71,13 @@
 	font-style: italic;
 	font-display: swap;
 }
+
+@font-face {
+	font-family: "QuickSand";
+	src: url("/assets/fonts/quicksand/Quicksand-VariableFont_wght.ttf")
+		format("truetype");
+	// font-weight: normal;
+	font-display: swap;
+}
+
+// @import "./font_zh";

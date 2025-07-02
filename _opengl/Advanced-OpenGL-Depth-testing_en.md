@@ -57,7 +57,9 @@ glDepthFunc(GL_LESS);
 
 The function accepts several comparison operators that are listed in the table below:
 
+<div class="table">
  <table><tbody><tr><th>Function</th><th>Description</th></tr><tr><td><code>GL_ALWAYS</code></td><td>The depth test always passes.</td></tr><tr><td><code>GL_NEVER</code></td><td>The depth test never passes.</td></tr><tr><td><code>GL_LESS</code></td><td>Passes if the fragment's depth value is less than the stored depth value.</td></tr><tr><td><code>GL_EQUAL</code></td><td>Passes if the fragment's depth value is equal to the stored depth value.</td></tr><tr><td><code>GL_LEQUAL</code></td><td>Passes if the fragment's depth value is less than or equal to the stored depth value.</td></tr><tr><td><code>GL_GREATER</code></td><td>Passes if the fragment's depth value is greater than the stored depth value.</td></tr><tr><td><code>GL_NOTEQUAL</code></td><td>Passes if the fragment's depth value is not equal to the stored depth value.</td></tr><tr><td><code>GL_GEQUAL</code></td><td>Passes if the fragment's depth value is greater than or equal to the stored depth value.</td></tr></tbody></table>
+</div>
 
 By default the depth function `GL_LESS` is used that discards all the fragments that have a depth value higher than or equal to the current depth buffer's value.
 
@@ -82,7 +84,7 @@ Setting it all back to `GL_LESS` gives us the type of scene we're used to:
 
 The depth buffer contains depth values between `0.0` and `1.0` and it compares its content with the z-values of all the objects in the scene as seen from the viewer. These z-values in view space can be any value between the projection-frustum's `near` and `far` plane. We thus need some way to transform these view-space z-values to the range of `[0,1]` and one way is to linearly transform them. The following (linear) equation transforms the z-value to a depth value between `0.0` and `1.0`:
 
-\\begin{equation} F_{depth} = \\frac{z - near}{far - near} \\end{equation}
+\\begin{equation} F\_{depth} = \\frac{z - near}{far - near} \\end{equation}
 
 Here \\(near\\) and \\(far\\) are the _near_ and _far_ values we used to provide to the projection matrix to set the visible frustum (see [coordinate Systems](https://learnopengl.com/Getting-started/Coordinate-Systems)). The equation takes a depth value \\(z\\) within the frustum and transforms it to the range `[0,1]`. The relation between the z-value and its corresponding depth value is presented in the following graph:
 
@@ -94,7 +96,7 @@ In practice however, a `linear depth buffer` like this is almost never used. Bec
 
 Since the non-linear function is proportional to 1/z, z-values between `1.0` and `2.0` would result in depth values between `1.0` and `0.5` which is half of the \[0,1\] range, giving us enormous precision at small z-values. Z-values between `50.0` and `100.0` would account for only 2% of the \[0,1\] range. Such an equation, that also takes near and far distances into account, is given below:
 
-\\begin{equation} F_{depth} = \\frac{1/z - 1/near}{1/far - 1/near} \\end{equation}
+\\begin{equation} F\_{depth} = \\frac{1/z - 1/near}{1/far - 1/near} \\end{equation}
 
 Don't worry if you don't know exactly what is going on with this equation. The important thing to remember is that the values in the depth buffer are not linear in clip-space (they are linear in view-space before the projection matrix is applied). A value of `0.5` in the depth buffer does not mean the pixel's z-value is halfway in the frustum; the z-value of the vertex is actually quite close to the near plane! You can see the non-linear relation between the z-value and the resulting depth buffer's value in the following graph:
 

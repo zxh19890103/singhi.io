@@ -72,11 +72,11 @@ Assimp::Importer importer;
 const aiScene *scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 ```
 
-We first declare an `Importer` object from Assimp's namespace and then call its `ReadFile` function. The function expects a file path and several `post-processing` options as its second argument. Assimp allows us to specify several options that forces Assimp to do extra calculations/operations on the imported data. By setting `aiProcess\_Triangulate` we tell Assimp that if the model does not (entirely) consist of triangles, it should transform all the model's primitive shapes to triangles first. The `aiProcess\_FlipUVs` flips the texture coordinates on the y-axis where necessary during processing (you may remember from the [Textures](https://learnopengl.com/Getting-started/Textures) chapter that most images in OpenGL were reversed around the y-axis; this little postprocessing option fixes that for us). A few other useful options are:
+We first declare an `Importer` object from Assimp's namespace and then call its `ReadFile` function. The function expects a file path and several `post-processing` options as its second argument. Assimp allows us to specify several options that forces Assimp to do extra calculations/operations on the imported data. By setting `aiProcess_Triangulate` we tell Assimp that if the model does not (entirely) consist of triangles, it should transform all the model's primitive shapes to triangles first. The `aiProcess_FlipUVs` flips the texture coordinates on the y-axis where necessary during processing (you may remember from the [Textures](https://learnopengl.com/Getting-started/Textures) chapter that most images in OpenGL were reversed around the y-axis; this little postprocessing option fixes that for us). A few other useful options are:
 
-- `aiProcess\_GenNormals`: creates normal vectors for each vertex if the model doesn't contain normal vectors.
-- `aiProcess\_SplitLargeMeshes`: splits large meshes into smaller sub-meshes which is useful if your rendering has a maximum number of vertices allowed and can only process smaller meshes.
-- `aiProcess\_OptimizeMeshes`: does the reverse by trying to join several meshes into one larger mesh, reducing drawing calls for optimization.
+- `aiProcess_GenNormals`: creates normal vectors for each vertex if the model doesn't contain normal vectors.
+- `aiProcess_SplitLargeMeshes`: splits large meshes into smaller sub-meshes which is useful if your rendering has a maximum number of vertices allowed and can only process smaller meshes.
+- `aiProcess_OptimizeMeshes`: does the reverse by trying to join several meshes into one larger mesh, reducing drawing calls for optimization.
 
 Assimp provides a great set of postprocessing options and you can find all of them [here](http://assimp.sourceforge.net/lib_html/postprocess_8h.html). Loading a model via Assimp is (as you can see) surprisingly easy. The hard work is in using the returned scene object to translate the loaded data to an array of `Mesh` objects.
 
@@ -206,7 +206,7 @@ The `vertex` struct is now completely filled with the required vertex attributes
 
 ### Indices
 
-Assimp's interface defines each mesh as having an array of faces, where each face represents a single primitive, which in our case (due to the `aiProcess\_Triangulate` option) are always triangles. A face contains the indices of the vertices we need to draw in what order for its primitive. So if we iterate over all the faces and store all the face's indices in the `indices` vector we're all set:
+Assimp's interface defines each mesh as having an array of faces, where each face represents a single primitive, which in our case (due to the `aiProcess_Triangulate` option) are always triangles. A face contains the indices of the vertices we need to draw in what order for its primitive. So if we iterate over all the faces and store all the face's indices in the `indices` vector we're all set:
 
 ```cpp
 for(unsigned int i = 0; i < mesh->mNumFaces; i++)
@@ -286,7 +286,7 @@ Then we store all the loaded textures in another vector declared at the top of t
 vector<Texture> textures_loaded;
 ```
 
-In the `loadMaterialTextures` function, we want to compare the texture path with all the textures in the `textures\_loaded` vector to see if the current texture path equals any of those. If so, we skip the texture loading/generation part and simply use the located texture struct as the mesh's texture. The (updated) function is shown below:
+In the `loadMaterialTextures` function, we want to compare the texture path with all the textures in the `textures_loaded` vector to see if the current texture path equals any of those. If so, we skip the texture loading/generation part and simply use the located texture struct as the mesh's texture. The (updated) function is shown below:
 
 ```cpp
 vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, string typeName)

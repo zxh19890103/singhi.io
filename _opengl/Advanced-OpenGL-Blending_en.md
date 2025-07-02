@@ -132,12 +132,14 @@ Now that we've enabled blending we need to tell OpenGL **how** it should actuall
 
 Blending in OpenGL happens with the following equation:
 
-\\begin{equation}\\bar{C}_{result} = \\bar{\\color{green}C}_{source} \* \\color{green}F_{source} + \\bar{\\color{red}C}_{destination} \* \\color{red}F_{destination}\\end{equation}
+```math
+\begin{equation}\bar{C}_{result} = \bar{\color{green}C}_{source} * {\color{green}F}_{source} + \bar{\color{red}C}_{destination} * {\color{red}F}_{destination}\end{equation}
+```
 
-- \\(\\bar{\\color{green}C}_{source}\\): the source color vector. This is the color output of the fragment shader.
-- \\(\\bar{\\color{red}C}_{destination}\\): the destination color vector. This is the color vector that is currently stored in the color buffer.
-- \\(\\color{green}F_{source}\\): the source factor value. Sets the impact of the alpha value on the source color.
-- \\(\\color{red}F_{destination}\\): the destination factor value. Sets the impact of the alpha value on the destination color.
+- $\bar{\color{green}C}_{source}$: the source color vector. This is the color output of the fragment shader.
+- \\(\\bar{\\color{red}C}\_{destination}\\): the destination color vector. This is the color vector that is currently stored in the color buffer.
+- \\({\\color{green}F}\_{source}\\): the source factor value. Sets the impact of the alpha value on the source color.
+- \\({\\color{red}F}\_{destination}\\): the destination factor value. Sets the impact of the alpha value on the destination color.
 
 After the fragment shader has run and all the tests have passed, this `blend equation` is let loose on the fragment's color output and with whatever is currently in the color buffer. The source and destination colors will automatically be set by OpenGL, but the source and destination factor can be set to a value of our choosing. Let's start with a simple example:
 
@@ -145,9 +147,9 @@ After the fragment shader has run and all the tests have passed, this `blend equ
 
 We have two squares where we want to draw the semi-transparent green square on top of the red square. The red square will be the destination color (and thus should be first in the color buffer) and we are now going to draw the green square over the red square.
 
-The question then arises: what do we set the factor values to? Well, we at least want to multiply the green square with its alpha value so we want to set the \\(F_{src}\\) equal to the alpha value of the source color vector which is `0.6`. Then it makes sense to let the destination square have a contribution equal to the remainder of the alpha value. If the green square contributes 60% to the final color we want the red square to contribute 40% of the final color e.g. `1.0 - 0.6`. So we set \\(F_{destination}\\) equal to one minus the alpha value of the source color vector. The equation thus becomes:
+The question then arises: what do we set the factor values to? Well, we at least want to multiply the green square with its alpha value so we want to set the \\(F*{src}\\) equal to the alpha value of the source color vector which is `0.6`. Then it makes sense to let the destination square have a contribution equal to the remainder of the alpha value. If the green square contributes 60% to the final color we want the red square to contribute 40% of the final color e.g. `1.0 - 0.6`. So we set \\(F*{destination}\\) equal to one minus the alpha value of the source color vector. The equation thus becomes:
 
-\\begin{equation}\\bar{C}_{result} = \\begin{pmatrix} \\color{red}{0.0} \\\\ \\color{green}{1.0} \\\\ \\color{blue}{0.0} \\\\ \\color{purple}{0.6} \\end{pmatrix} \* \\color{green}{0.6} + \\begin{pmatrix} \\color{red}{1.0} \\\\ \\color{green}{0.0} \\\\ \\color{blue}{0.0} \\\\ \\color{purple}{1.0} \\end{pmatrix} \* (\\color{red}{1 - 0.6}) \\end{equation}
+\\begin{equation}\\bar{C}\_{result} = \\begin{pmatrix} \\color{red}{0.0} \\\\ \\color{green}{1.0} \\\\ \\color{blue}{0.0} \\\\ \\color{purple}{0.6} \\end{pmatrix} \* \\color{green}{0.6} + \\begin{pmatrix} \\color{red}{1.0} \\\\ \\color{green}{0.0} \\\\ \\color{blue}{0.0} \\\\ \\color{purple}{1.0} \\end{pmatrix} \* (\\color{red}{1 - 0.6}) \\end{equation}
 
 The result is that the combined square fragments contain a color that is 60% green and 40% red:
 
@@ -157,9 +159,11 @@ The resulting color is then stored in the color buffer, replacing the previous c
 
 So this is great and all, but how do we actually tell OpenGL to use factors like that? Well it just so happens that there is a function for this called `glBlendFunc`.
 
-The `glBlendFunc(GLenum sfactor, GLenum dfactor)` function expects two parameters that set the option for the `source` and `destination factor`. OpenGL defined quite a few options for us to set of which we'll list the most common options below. Note that the constant color vector \\(\\bar{\\color{blue}C}_{constant}\\) can be separately set via the `glBlendColor` function.
+The `glBlendFunc(GLenum sfactor, GLenum dfactor)` function expects two parameters that set the option for the `source` and `destination factor`. OpenGL defined quite a few options for us to set of which we'll list the most common options below. Note that the constant color vector \\(\\bar{\\color{blue}C}\_{constant}\\) can be separately set via the `glBlendColor` function.
 
+<div class="table">
  <table><tbody><tr><th>Option</th><th>Value</th></tr><tr><td><code>GL_ZERO</code></td><td>Factor is equal to \(0\).</td></tr><tr><td><code>GL_ONE</code></td><td>Factor is equal to \(1\).</td></tr><tr><td><code>GL_SRC_COLOR</code></td><td>Factor is equal to the source color vector \(\bar{\color{green}C}_{source}\).</td></tr><tr><td><code>GL_ONE_MINUS_SRC_COLOR</code></td><td>Factor is equal to \(1\) minus the source color vector: \(1 - \bar{\color{green}C}_{source}\).</td></tr><tr><td><code>GL_DST_COLOR</code></td><td>Factor is equal to the destination color vector \(\bar{\color{red}C}_{destination}\)</td></tr><tr><td><code>GL_ONE_MINUS_DST_COLOR</code></td><td>Factor is equal to \(1\) minus the destination color vector: \(1 - \bar{\color{red}C}_{destination}\).</td></tr><tr><td><code>GL_SRC_ALPHA</code></td><td>Factor is equal to the \(alpha\) component of the source color vector \(\bar{\color{green}C}_{source}\).</td></tr><tr><td><code>GL_ONE_MINUS_SRC_ALPHA</code></td><td>Factor is equal to \(1 - alpha\) of the source color vector \(\bar{\color{green}C}_{source}\).</td></tr><tr><td><code>GL_DST_ALPHA</code></td><td>Factor is equal to the \(alpha\) component of the destination color vector \(\bar{\color{red}C}_{destination}\).</td></tr><tr><td><code>GL_ONE_MINUS_DST_ALPHA</code></td><td>Factor is equal to \(1 - alpha\) of the destination color vector \(\bar{\color{red}C}_{destination}\).</td></tr><tr><td><code>GL_CONSTANT_COLOR</code></td><td>Factor is equal to the constant color vector \(\bar{\color{blue}C}_{constant}\).</td></tr><tr><td><code>GL_ONE_MINUS_CONSTANT_COLOR</code></td><td>Factor is equal to \(1\) - the constant color vector \(\bar{\color{blue}C}_{constant}\).</td></tr><tr><td><code>GL_CONSTANT_ALPHA</code></td><td>Factor is equal to the \(alpha\) component of the constant color vector \(\bar{\color{blue}C}_{constant}\).</td></tr><tr><td><code>GL_ONE_MINUS_CONSTANT_ALPHA</code></td><td>Factor is equal to \(1 - alpha\) of the constant color vector \(\bar{\color{blue}C}_{constant}\).</td></tr></tbody></table>
+</div>
 
 To get the blending result of our little two square example, we want to take the \\(alpha\\) of the source color vector for the source factor and \\(1 - alpha\\) of the same color vector for the destination factor. This translates to `glBlendFunc` as follows:
 
@@ -177,11 +181,11 @@ This function sets the RGB components as we've set them previously, but only let
 
 OpenGL gives us even more flexibility by allowing us to change the operator between the source and destination part of the equation. Right now, the source and destination components are added together, but we could also subtract them if we want. `glBlendEquation(GLenum mode)` allows us to set this operation and has 5 possible options:
 
-- `GL_FUNC_ADD`: the default, adds both colors to each other: \\(\\bar{C}_{result} = \\color{green}{Src} + \\color{red}{Dst}\\).
-- `GL_FUNC_SUBTRACT`: subtracts both colors from each other: \\(\\bar{C}_{result} = \\color{green}{Src} - \\color{red}{Dst}\\).
-- `GL_FUNC_REVERSE_SUBTRACT`: subtracts both colors, but reverses order: \\(\\bar{C}_{result} = \\color{red}{Dst} - \\color{green}{Src}\\).
-- `GL_MIN`: takes the component-wise minimum of both colors: \\(\\bar{C}_{result} = min(\\color{red}{Dst}, \\color{green}{Src})\\).
-- `GL_MAX`: takes the component-wise maximum of both colors: \\(\\bar{C}_{result} = max(\\color{red}{Dst}, \\color{green}{Src})\\).
+- `GL_FUNC_ADD`: the default, adds both colors to each other: \\(\\bar{C}\_{result} = \\color{green}{Src} + \\color{red}{Dst}\\).
+- `GL_FUNC_SUBTRACT`: subtracts both colors from each other: \\(\\bar{C}\_{result} = \\color{green}{Src} - \\color{red}{Dst}\\).
+- `GL_FUNC_REVERSE_SUBTRACT`: subtracts both colors, but reverses order: \\(\\bar{C}\_{result} = \\color{red}{Dst} - \\color{green}{Src}\\).
+- `GL_MIN`: takes the component-wise minimum of both colors: \\(\\bar{C}\_{result} = min(\\color{red}{Dst}, \\color{green}{Src})\\).
+- `GL_MAX`: takes the component-wise maximum of both colors: \\(\\bar{C}\_{result} = max(\\color{red}{Dst}, \\color{green}{Src})\\).
 
 Usually we can simply omit a call to `glBlendEquation` because `GL_FUNC_ADD` is the preferred blending equation for most operations, but if you're really trying your best to break the mainstream circuit any of the other equations could suit your needs.
 

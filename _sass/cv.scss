@@ -19,9 +19,11 @@ html {
 	background-color: #ffffff;
 	color: #333;
 	font-family: "Yuanti SC";
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 
 	code {
-		font: 1.1rem/1 BrandonGrotesque;
+		font: 1.1rem/1 QuickSand;
 	}
 
 	em {
@@ -47,7 +49,7 @@ html {
 	}
 
 	&.english {
-		font-family: BrandonGrotesque;
+		font-family: QuickSand;
 		font-size: 18px;
 	}
 

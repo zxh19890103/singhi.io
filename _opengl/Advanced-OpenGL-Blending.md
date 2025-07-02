@@ -134,7 +134,11 @@ glEnable(GL_BLEND);
 
 OpenGL 中的混合是透過以下方程式進行的：
 
-\\begin{equation}\\bar{C}\_{result} = \\bar{\\color{green}C}\_{source} \* \\color{green}F\_{source} + \\bar{\\color{red}C}\_{destination} \* \\color{red}F\_{destination}\\end{equation}
+```math
+\begin{equation}
+\bar{C}_{result} = \bar{\color{green}C}_{source} * {\color{green}F}_{source} + \bar{\color{red}C}_{destination} * {\color{red}F}_{destination}
+\end{equation}
+```
 
 - \\(\\bar{\\color{green}C}\_{source}\\): 來源顏色向量。這是片元著色器的顏色輸出。
 - \\(\\bar{\\color{red}C}\_{destination}\\): 目標顏色向量。這是目前儲存在顏色緩衝區中的顏色向量。
@@ -161,6 +165,7 @@ OpenGL 中的混合是透過以下方程式進行的：
 
 `glBlendFunc(GLenum sfactor, GLenum dfactor)` 函數需要兩個參數，用於設定「來源」和「目標因子」的選項。OpenGL 為我們定義了相當多的選項，我們將在下面列出最常見的選項。請注意，常數顏色向量 \\({\\color{blue}C}\_{constant}\\) 可以透過 `glBlendColor` 函數單獨設定。
 
+<div class="table">
 <table>
   <thead>
     <tr>
@@ -252,6 +257,7 @@ OpenGL 中的混合是透過以下方程式進行的：
     </tr>
   </tbody>
 </table>
+</div>
 
 為了獲得我們小小的兩個方塊範例的混合結果，我們希望將來源顏色向量的 \\(alpha\\) 值作為來源因子，並將相同顏色向量的 \\(1 - alpha\\) 值作為目標因子。這在 `glBlendFunc` 中轉換如下：
 

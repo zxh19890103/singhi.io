@@ -8,9 +8,11 @@
   {%- feed_meta -%}
   {%- seo -%}
   {%- include head.html -%}
+
   {% if page.baseurl %}
   <base href="{{page.baseurl}}" />
   {% endif %}
+
   {% if page.math %}
   <link rel="stylesheet" href="https://threelearning.zhangxinghai.cn/assets/jslibs/katex/katex.min.css">
   <script defer src="https://threelearning.zhangxinghai.cn/assets/jslibs/katex/katex.min.js"></script>
@@ -88,6 +90,7 @@
       }
     }
   </script>
+
   {% if page.math %}
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -102,6 +105,7 @@
         delimiters: [
           { left: "$$", right: "$$", display: true },  // Block math
           { left: "\\begin{equation}", right: "\\end{equation}", display: true },  // Block math
+          { left: "\\[", right: "\\]", display: true },  // Block math
           { left: "$", right: "$", display: false },   // Inline math
           { left: "\\(", right: "\\)", display: false }    // Inline math
         ],

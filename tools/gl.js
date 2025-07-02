@@ -61,7 +61,7 @@ function ExtractHTMLPartialAsMd(html) {
     turndownService.addRule("Note", {
       filter: ["note", "warning"],
       replacement: (content, n) => {
-        return `\n {% include box.html content="${content}" color="${
+        return `\n{% include box.html content="\n${content}\n" color="${
           n.tagName === "NOTE" ? "green" : "red"
         }" %}\n`
       },
@@ -70,7 +70,7 @@ function ExtractHTMLPartialAsMd(html) {
     turndownService.addRule("Table", {
       filter: ["table"],
       replacement: (content, n) => {
-        return `\n ${n.outerHTML} \n`
+        return `\n<div class="table">\n${n.outerHTML}\n</div>\n`
       },
     })
 
@@ -79,9 +79,9 @@ function ExtractHTMLPartialAsMd(html) {
       replacement: (content, n) => {
         const src = n.src
         if (src.startsWith("/")) {
-          return `![](https://learnopengl.com${src})`
+          return `\n![](https://learnopengl.com${src})\n`
         } else {
-          return `![](${src})`
+          return `\n![](${src})\n`
         }
       },
     })
@@ -148,13 +148,15 @@ const Go = async () => {
   Generate(content, picture, mdfile_en, true)
 }
 
-const category = "Advanced-OpenGL"
-const topic = "Face-culling"
-const order = 23
-const chapter = "二十三"
+const category = "Advanced-Lighting"
+const subCategory = ""
+const topic = "SSAO"
+const order = 39
+const chapter = "三十九"
+
 const mdfile = join(__dirname, "../_opengl", `${category}-${topic}.md`)
 const mdfile_en = join(__dirname, "../_opengl", `${category}-${topic}_en.md`)
-const url = `https://learnopengl.com/${category}/${topic}`
+const url = `https://learnopengl.com/${category}${subCategory}/${topic}`
 
 const quitIfExits = true
 
