@@ -1,7 +1,7 @@
 ---
 layout: bookdetail
 chapter: 三十二
-title: 高級光照 &bull; Shadow-Mapping
+title: 高級光照 &bull; 陰影貼圖
 category: tech
 src: "https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping"
 date: 2025-07-02

@@ -1,0 +1,367 @@
+---
+---
+
+:root {
+	/* 顏色 */
+	--color-mint-green: #d9f5f0; /* 核心主題色 / 畫布背景 */
+	--color-coral-pink: #ffb2b2; /* 強調色 / 按鈕、高亮 */
+	--color-darker-coral-pink: #ff9999; /* 懸停時的珊瑚粉 */
+	--color-darkest-coral-pink: #e07f7f; /* 點擊時的珊瑚粉 */
+	--color-electric-blue: #00bfff; /* Logo 漸變起始、互動高亮 */
+	--color-sky-blue: #87ceeb; /* Logo 漸變中間 */
+	--color-royal-blue: #4169e1; /* Logo 漸變結束 */
+	--color-dark-gray: #4a4a4a; /* 主要文字顏色 */
+	--color-medium-gray: #888888; /* 輔助文字顏色 */
+	--color-light-gray: #e0e0e0; /* 邊框 / 分隔線 */
+	--color-light-cream: #fffceb; /* 點綴色 / 部分背景 */
+}
+
+@import "new-ui/github";
+
+@font-face {
+	font-family: "QuickSand";
+	src: url("/assets/fonts/quicksand/Quicksand-VariableFont_wght.ttf")
+		format("truetype");
+	font-display: swap;
+}
+
+/* Basic styling for the body and canvas to fill the screen */
+body {
+	margin: 0;
+	overflow: hidden;
+	/* Hide scrollbars */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	/* Ensure full viewport height */
+	background-color: #f0f0f0;
+	color: #4a4a4a;
+	/* Light gray/white background for contrast */
+	font: 16px/1 "QuickSand", sans-serif;
+	/* Using Inter font as per instructions */
+}
+
+canvas {
+	display: block;
+	/* Remove extra space below canvas */
+	background-color: #ffffff;
+	/* Rounded corners for the canvas */
+	/* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+	/* Softer, more pronounced shadow */
+}
+
+.highlighter-rouge {
+	font-size: 0.86rem;
+	margin: 1rem 0;
+}
+
+.fade-text {
+	// max-height: 120px;
+	overflow: hidden;
+	mask-image: linear-gradient(
+		to bottom,
+		transparent,
+		black 20%,
+		black 80%,
+		transparent
+	);
+	-webkit-mask-image: linear-gradient(
+		to bottom,
+		transparent,
+		black 20%,
+		black 80%,
+		transparent
+	);
+}
+
+.Content {
+	position: relative;
+	top: 0;
+	right: 0;
+	height: 100vh;
+	width: 0;
+	flex: 1;
+
+	.Screen {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #ffffff;
+		z-index: 1000; /* 確保在最上層 */
+		display: none;
+
+		&Board {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center; /* 垂直居中 */
+			justify-content: center; /* 水平居中 */
+
+			opacity: 0; /* 初始透明度為 0，用於 JS 控制的淡入 */
+			transform: scale(0.9);
+
+			.Title {
+				color: #000;
+				font-size: 4.5rem;
+				font-weight: 600;
+				margin-bottom: 1rem;
+				animation: bounce-subtle 3s ease-in-out infinite;
+			}
+
+			.TitleTagline {
+				color: var(--color-dark-gray);
+				font-size: 1.875rem; /* 30px */
+				font-weight: 500;
+			}
+		}
+
+		&.playing .ScreenBoard {
+			animation: fadeinout 10s ease-in-out forwards;
+		}
+	}
+
+	/* --- 自定義關鍵幀動畫 --- */
+	@keyframes bounce-subtle {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-5px); /* 輕微向上移動 */
+		}
+	}
+
+	@keyframes fadeinout {
+		0% {
+			opacity: 0;
+			transform: scale(0.9);
+		}
+		10% {
+			opacity: 1;
+			transform: scale(1);
+		}
+		80% {
+			opacity: 1;
+			transform: scale(1);
+		}
+		90%,
+		100% {
+			opacity: 0;
+			transform: scale(0.9);
+		}
+	}
+}
+
+.Side {
+	display: flex;
+	flex-direction: column;
+	width: 20rem;
+	background-color: #fffceb;
+	height: 100vh;
+	padding: 2rem 1.5rem;
+	border-right: 1px solid #f5f2df;
+}
+
+.Words {
+	padding: 1rem;
+	font-size: 1.25rem;
+	line-height: 1.2;
+	flex: 1;
+	height: 0;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+
+	a {
+		color: #ffb2b2; /* 珊瑚粉 */
+		text-decoration: none; /* 默認無下劃線 */
+		// font-weight: 600; /* 略微加粗 */
+		transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out; /* 平滑過渡 */
+
+		svg {
+			display: inline-block;
+			vertical-align: bottom;
+		}
+
+		&:hover {
+			// color: #ffb2b2;
+			// text-underline-offset: -1px;
+			color: #ff9999; /* 略深的珊瑚粉，或者 #00BFFF (電光藍) */
+			text-decoration: underline; /* 顯示下劃線 */
+			text-decoration-color: #ff9999; /* 下劃線顏色與懸停色一致 */
+			text-underline-offset: 4px; /* 下劃線與文字的距離，增加呼吸感 */
+			text-decoration-thickness: 1px; /* 下劃線粗細 */
+		}
+
+		&:active {
+			color: #e07f7f; /* 更深的珊瑚粉 */
+		}
+
+		a:visited {
+			color: #ffb2b2; /* 保持與基礎相同 */
+		}
+	}
+
+	.TextAnchor {
+		margin: 1.4rem 0;
+	}
+
+	.Text {
+		flex: 1;
+		overflow: hidden;
+		p {
+			margin: 1rem 0;
+		}
+
+		.katex {
+			font-size: 1em;
+			line-height: 1;
+			user-select: none;
+		}
+	}
+
+	.Title {
+		font-size: 2rem;
+		line-height: 1;
+		margin: 1rem 0;
+	}
+
+	&::selection {
+		color: #ffb2b2;
+	}
+}
+
+.Bar {
+	user-select: none;
+}
+
+/* 為了範例的完整性，將 CSS 直接放在這裡 */
+
+/* 整體容器佈局 */
+.logo-container {
+	display: flex;
+	flex-direction: column;
+	/* 垂直排列 */
+	align-items: center;
+	/* 水平居中 */
+	justify-content: center;
+	/* 垂直居中，如果父容器有高度 */
+	/* font-family: 'Inter', 'Roboto', sans-serif; */
+	/* 建議使用 Google Fonts，這裡用通用無襯線字體作備選 */
+	/* 如果這個 Logo 是 CSS2DRenderer 的子元素，則它的定位和尺寸會由 JS 動態設置 */
+}
+
+/* 主 Logo 名稱樣式 */
+.logo-main {
+	font-size: 4rem;
+	/* 64px, 類似於 Tailwind 的 text-6xl */
+	font-weight: 900;
+	/* 類似於 Tailwind 的 font-extrabold */
+	letter-spacing: -0.05em;
+	/* 輕微收緊字距，類似於 Tailwind 的 tracking-tight */
+	margin-bottom: 0.25rem;
+	/* 4px, 類似於 Tailwind 的 mb-1 */
+
+	/* 核心：文字漸變色效果 */
+	background: linear-gradient(to right, #00bfff, #87ceeb, #4169e1);
+	/* 從天藍到淡藍再到寶石藍 */
+	-webkit-background-clip: text;
+	/* 將背景剪裁為文字形狀 (Safari/Chrome) */
+	background-clip: text;
+	/* 將背景剪裁為文字形狀 */
+	color: transparent;
+	/* 使文字本身透明，露出背景 */
+
+	/* 微互動動畫 */
+	transition: transform 0.3s ease-out;
+	/* 平滑的過渡效果 */
+}
+
+.logo-main:hover {
+	transform: scale(1.05);
+	/* 鼠標懸停時放大 5% */
+}
+
+/* 副標語樣式 */
+.logo-tagline {
+	font-size: 1.3rem;
+	/* 18px, 類似於 Tailwind 的 text-lg */
+	font-weight: 500;
+	/* 類似於 Tailwind 的 font-medium */
+	color: rgba(191, 219, 254, 0.8);
+	/* 淺藍色 (類似於 Tailwind 的 text-blue-100)，帶有 80% 透明度 */
+	letter-spacing: 0.05em;
+	/* 輕微增加字距，類似於 Tailwind 的 tracking-wider */
+}
+
+.Interact {
+	position: fixed;
+	right: 0.1rem;
+	top: 0.1rem;
+	overflow: hidden auto;
+	padding: 1.5rem;
+	font-size: 1rem;
+	width: 20rem;
+	z-index: 100;
+}
+
+.controls-container {
+	/* 基礎顏色和透明度 #FFB2B2 */
+	background-color: rgba(255, 255, 255, 0.7);
+	/* 毛玻璃效果 */
+	backdrop-filter: blur(10px);
+	/* 調整模糊強度 */
+	-webkit-backdrop-filter: blur(10px);
+	/* 兼容 Safari */
+	/* 圓角，使其看起來更柔和，非銳利方塊 */
+	border-radius: 12px;
+	/* 根據你想要的圓潤度調整 */
+	/* 邊框（可選）：輕微的電光藍邊框，增加質感 */
+	/* #00BFFF 的透明版本 */
+	/* 陰影（可選）：增加懸浮感 */
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 隱藏預設滾動條箭頭（可選，如果不需要） */
+::-webkit-scrollbar-button {
+	display: none;
+}
+
+/* 整個滾動條的樣式 */
+::-webkit-scrollbar {
+	width: 10px; /* 滾動條的寬度 */
+	height: 10px; /* 如果有水平滾動條，這是高度 */
+}
+
+/* 滾動條軌道（背景）的樣式 */
+::-webkit-scrollbar-track {
+	background: #fffceb; /* 淡奶油色作為軌道背景，與你的主題色協調 */
+	border-radius: 8px; /* 軌道的圓角，與可愛風格一致 */
+	box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05); /* 輕微的內陰影增加深度 */
+}
+
+/* 滾動條滑塊（可拖動部分）的樣式 */
+::-webkit-scrollbar-thumb {
+	background-color: #ffb2b2; /* 珊瑚粉作為滑塊顏色，鮮明可愛 */
+	border-radius: 8px; /* 滑塊的圓角，與軌道圓角匹配 */
+	border: 2px solid #fffceb; /* 輕微的邊框，讓滑塊有「浮」在軌道上的感覺 */
+}
+
+/* 滾動條滑塊懸停時的樣式 */
+::-webkit-scrollbar-thumb:hover {
+	background-color: #ff9999; /* 懸停時顏色略深，提供柔和反饋 */
+}
+
+/* 滾動條滑塊被激活（拖動）時的樣式 */
+::-webkit-scrollbar-thumb:active {
+	background-color: #ff8080; /* 點擊時顏色更深，更明確的反饋 */
+}
+
+/* 滾動條角落（水平和垂直滾動條交叉處） */
+::-webkit-scrollbar-corner {
+	background: transparent; /* 通常設置為透明 */
+}

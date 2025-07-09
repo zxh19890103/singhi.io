@@ -3,6 +3,7 @@ description: 张星海的文档,专注前端技术总结,记录生活点滴,网�
 version: 1.0.0
 port: 4001
 host: 0.0.0.0
+tsServerPort: 3000
 
 ## collections_dir: group
 collections:
@@ -46,6 +47,8 @@ feed:
 #   # redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
 
 exclude:
+  - "@play/engine"
+  - "@play/runs"
   - tools
   - node_modules
   - scripts

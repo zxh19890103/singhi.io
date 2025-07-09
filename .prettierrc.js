@@ -6,5 +6,5 @@ module.exports = {
   jsxBracketSameLine: true,
   trailingComma: 'all',
   printWidth: 80,
-  semi: false,
+  semi: true,
 }

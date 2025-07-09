@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en_US">
+
+<head>
+  <title>What it says? | Play -> {{ page.title }}</title>
+  <link rel="icon" href="/@play/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://threelearning.zhangxinghai.cn/assets/jslibs/katex/katex.min.css">
+  <script defer src="https://threelearning.zhangxinghai.cn/assets/jslibs/katex/katex.min.js"></script>
+  <script defer src="https://threelearning.zhangxinghai.cn/assets/jslibs/katex/contrib/auto-render.min.js"></script>
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"
+    integrity="sha512-CQBWl4fJHWbryGE+Pc7UAxWMUMNMWzWxF4SQo9CgkJIN1kx6djDQZjh3Y8SZ1d+6I+1zze6Z7kHXO7q3UyZAWw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <!-- Page Style -->
+  <link id="PageStyleLink" rel="stylesheet" href="/@play/style.css?t={{site.time | date: '%s'}}">
+  {% include tsenv.html %}
+</head>
+
+<body>
+  <div class="Side">
+    <div class="Bar logo-container">
+      <div class="Logo logo-main">
+        Unveil
+      </div>
+      <div class="LogoWords logo-tagline">
+        Animated Explanations
+      </div>
+    </div>
+    <div class="Words">
+      <div class="Title">
+        {{ page.title }}
+      </div>
+      <div class="TextAnchor">
+        <a target="_blank" href="{{ page.src }}#:~:text={{ page.text | escape }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-brand-topbuzz">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M4.417 8.655a.524 .524 0 0 1 -.405 -.622l.986 -4.617a.524 .524 0 0 1 .626 -.404l14.958 3.162c.285 .06 .467 .339 .406 .622l-.987 4.618a.524 .524 0 0 1 -.625 .404l-4.345 -.92c-.198 -.04 -.315 .024 -.353 .197l-2.028 9.49a.527 .527 0 0 1 -.625 .404l-4.642 -.982a.527 .527 0 0 1 -.406 -.622l2.028 -9.493c.037 -.17 -.031 -.274 -.204 -.31l-4.384 -.927z" />
+          </svg>
+          Read Original
+        </a>
+      </div>
+      <div class="Text fade-text" id="Text">
+        {{ content }}
+      </div>
+    </div>
+  </div>
+  <div class="Content" id="Content">
+    <div class="Intro Screen">
+      <div class="ScreenBoard">
+        <div class="Title">{{ page.title }}&nbsp;🤔</div>
+        <div class="TitleTagline"></div>
+      </div>
+    </div>
+    <div class="Outro Screen">
+      <div class="ScreenBoard">
+        <div class="Title">
+          Thanks for Learning!
+        </div>
+        <div class="TitleTagline">
+          {{ page.date | default: "now" | date: '%B %d, %y' }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- it's a float window on the right-bottom corner -->
+  <div class="Interact controls-container" id="ReactApp" />
+  <script>
+    var __sse__ = new EventSource(`${__tsServerOrigin__}sse`);
+
+    __sse__.addEventListener('reload', () => {
+      window.location.reload();
+    })
+
+    function __getTextContent__() {
+      throw new Error('Considering...');
+    }
+
+    {
+
+      // const PageStyleLink = document.head.querySelector('#PageStyleLink');
+      //  <link rel="stylesheet" href="/@play/style.css?t={{site.time | date: '%s'}}" />
+
+      // Style of Tailwind, Serves App
+      const tailwindLinkStyle = document.createElement('link');
+      tailwindLinkStyle.href = `${__tsServerOrigin__}@play/build/tailwind.css`
+      tailwindLinkStyle.rel = 'stylesheet'
+      document.head.appendChild(tailwindLinkStyle)
+
+      // Style of App, Engine!
+      const linkStyle = document.createElement('link');
+      linkStyle.href = `${__tsServerOrigin__}@play/build/style.css`
+      linkStyle.rel = 'stylesheet'
+      document.head.appendChild(linkStyle)
+
+      const importmapScript = document.createElement('script');
+
+      importmapScript.type = 'importmap';
+      importmapScript.textContent = JSON.stringify({
+        "imports": {
+          "three": "/assets/jslibs/three/three.module.js",
+          "three/addons/": "https://threejs.org/examples/jsm/",
+          "react": 'https://cdn.jsdelivr.net/npm/react@19.1.0/+esm',
+          "react/jsx-runtime": 'https://cdn.jsdelivr.net/npm/react@19.1.0/jsx-runtime/+esm',
+          "react-dom": 'https://cdn.jsdelivr.net/npm/react-dom@19.1.0/+esm',
+          "react-dom/client": 'https://cdn.jsdelivr.net/npm/react-dom@19.1.0/client/+esm',
+          "gsap": "https://cdn.skypack.dev/gsap",
+          "@play/engine": `${__tsServerOrigin__}@play/build/engine/index.js`
+        }
+      });
+      document.head.appendChild(importmapScript);
+
+      const dynamicStyleElement = document.createElement('style')
+      document.head.appendChild(dynamicStyleElement);
+
+      __sse__.addEventListener('style', async () => {
+        const css = await fetch(`${__tsServerOrigin__}@play/build/style.css?t=${Date.now()}`).then(r => r.text());
+        dynamicStyleElement.innerHTML = css;
+      })
+
+      const AppModule = document.createElement('script');
+      AppModule.type = 'module';
+      AppModule.src = `${__tsServerOrigin__}@play/build/{{ page.run }}.js?t={{ site.time | date: '%s' }}`;
+
+      document.body.appendChild(AppModule);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const container = document.body.querySelector('#Text');
+
+      renderMathInElement(container, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },  // Block math
+          { left: "$", right: "$", display: false },   // Inline math
+        ],
+        throwOnError: false
+      });
+
+      container.querySelectorAll("pre code.language-math").forEach((block) => {
+        const tex = block.textContent.trim();
+        const wrapper = document.createElement("div");
+        katex.render(tex, wrapper, { displayMode: true, throwOnError: false });
+        block.replaceWith(wrapper);
+      });
+    });
+  </script>
+</body>
+
+</html>

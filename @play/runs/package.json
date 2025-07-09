@@ -1,0 +1,13 @@
+{
+  "name": "runs",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node ./sass.js"
+  },
+  "dependencies": {
+    "@types/three": "^0.178.0"
+  }
+}

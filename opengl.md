@@ -15,7 +15,7 @@ title: 來，一起學習 OpenGL
       <div class="document">
       {% if post.lang == 'en' %}
         <a class="document__link english" href="{{ post.url }}" target="_self">
-          <h3 style="margin: 0.3em 0 0.6em 0">
+          <h3 style="margin: 0.3em 0 0.6em 0" {% if post.slug %}id="{{ post.slug }}"{% endif %}>
           Chapter {{ post.order }}. {{ post.title }}
           </h3>
         </a>

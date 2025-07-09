@@ -54,10 +54,9 @@ layout: with-nonav
       z-index: 40;
       position: fixed;
       width: 100vw;
-      height: fit-content;
       left: 0;
       top: 0;
-      height: 4px;
+      height: 1rem;
       background-color: rgb(30, 40, 49);
   "></div>
 
@@ -217,13 +216,9 @@ layout: with-nonav
     })
   }
 
-  function PlayCourseVideo() {
-    const videoUrl = "{{ page.video }}"
-    if (videoUrl) {
-      window.open(videoUrl, "_blank")
-    } else {
-      alert("No video available for this course.")
-    }
+  function PlayAnimationExplain({ name }) {
+    // console.log("Page is", name)
+    createAndShowFullScreenDialog(`/play/webgl/${name}?t=${Date.now()}`)
   }
 
   function IhateThisKiddyFont() {
@@ -232,3 +227,85 @@ layout: with-nonav
     document.querySelector('.IhateThisKiddyFont').style.display = 'none';
   }
 </script>
+
+{% if page.math %}
+
+{% include tsenv.html %}
+
+<script>
+  // Function to create and show the full-screen dialog
+  function createAndShowFullScreenDialog(iframeUrl) {
+    // 1. Create the <dialog> element
+    const fullScreenDialog = document.createElement('dialog');
+    fullScreenDialog.id = 'fullScreenDialog';
+
+    // 2. Create a content wrapper for positioning the close button and iframe
+    const contentWrapper = document.createElement('div');
+    contentWrapper.classList.add('dialog-content-wrapper');
+
+    // 3. Create the close button
+    const closeButton = document.createElement('button');
+    closeButton.classList.add('close-button');
+    closeButton.innerHTML = '&times;'; // HTML entity for 'x'
+
+    // 4. Create the iframe
+    const iframeElement = document.createElement('iframe');
+    iframeElement.id = 'fullScreenIframe';
+    iframeElement.src = iframeUrl;
+    iframeElement.setAttribute('frameborder', '0'); // Good practice for iframes
+
+    // 5. Append elements to their parents
+    contentWrapper.appendChild(closeButton);
+    contentWrapper.appendChild(iframeElement);
+    fullScreenDialog.appendChild(contentWrapper);
+
+    // 6. Append the dialog to the body
+    document.body.appendChild(fullScreenDialog);
+
+    // 7. Add event listeners
+    closeButton.addEventListener('click', () => {
+      fullScreenDialog.close();
+    });
+
+    // Event listener for when the dialog is closed (e.g., by Escape key or dialog.close())
+    fullScreenDialog.addEventListener('close', () => {
+      iframeElement.src = 'about:blank'; // Clear iframe src
+
+      setTimeout(() => {
+        __sse__.onmessage = null;
+        document.body.removeChild(fullScreenDialog); // Remove dialog from DOM
+      }, 50);
+    });
+
+    // 8. Show the dialog
+    fullScreenDialog.showModal();
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector('#Book__Content');
+
+    if (!container) {
+      console.warn("No container found for rendering math.");
+      return;
+    }
+
+    renderMathInElement(container, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },  // Block math
+        { left: "\\begin{equation}", right: "\\end{equation}", display: true },  // Block math
+        { left: "\\[", right: "\\]", display: true },  // Block math
+        { left: "$", right: "$", display: false },   // Inline math
+        { left: "\\(", right: "\\)", display: false }    // Inline math
+      ],
+      throwOnError: false
+    });
+
+    container.querySelectorAll("pre code.language-math").forEach((block) => {
+      const tex = block.textContent.trim();
+      const wrapper = document.createElement("div");
+      katex.render(tex, wrapper, { displayMode: true, throwOnError: false });
+      block.replaceWith(wrapper);
+    });
+  });
+</script>
+{% endif %}

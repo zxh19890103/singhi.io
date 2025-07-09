@@ -15,64 +15,64 @@ gltopic: Framebuffers
 permalink: /opengl/Advanced-OpenGL/Framebuffers
 ---
 
-So far we've used several types of screen buffers: a color buffer for writing color values, a depth buffer to write and test depth information, and finally a stencil buffer that allows us to discard certain fragments based on some condition. The combination of these buffers is stored somewhere in GPU memory and is called a `framebuffer`. OpenGL gives us the flexibility to define our own framebuffers and thus define our own color (and optionally a depth and stencil) buffer.
+到目前為止，我們已經使用了幾種類型的螢幕緩衝區：用於寫入顏色值的**顏色緩衝區**、用於寫入和測試深度資訊的**深度緩衝區**，以及最後允許我們根據某些條件捨棄特定片段的**模板緩衝區**。這些緩衝區的組合儲存在 GPU 記憶體中的某個位置，並被稱為**幀緩衝區**（`framebuffer`）。OpenGL 賦予我們定義自己幀緩衝區的靈活性，因此我們可以定義自己的顏色（以及可選的深度和模板）緩衝區。
 
-The rendering operations we've done so far were all done on top of the render buffers attached to the `default framebuffer`. The default framebuffer is created and configured when you create your window (GLFW does this for us). By creating our own framebuffer we can get an additional target to render to.
+我們迄今為止所做的所有渲染操作都是在附加到**預設幀緩衝區**（`default framebuffer`）的渲染緩衝區之上完成的。預設幀緩衝區在您建立視窗時（GLFW 為我們完成此操作）被建立和配置。透過建立我們自己的幀緩衝區，我們可以獲得一個額外的渲染目標。
 
-The application of framebuffers may not immediately make sense, but rendering your scene to a different framebuffer allows us to use that result to create mirrors in a scene, or do cool post-processing effects for example. First we'll discuss how they actually work and then we'll use them by implementing those cool post-processing effects.
+幀緩衝區的應用可能不會立即讓人明白，但將您的場景渲染到不同的幀緩衝區，可以讓我們使用該結果在場景中建立鏡像，或者實現酷炫的後製處理效果。首先我們將討論它們的實際運作方式，然後我們將透過實作那些酷炫的後製處理效果來使用它們。
 
-## Creating a framebuffer
+## 建立一個幀緩衝區
 
-Just like any other object in OpenGL we can create a framebuffer object (abbreviated to FBO) by using a function called `glGenFramebuffers`:
+就像 OpenGL 中的任何其他物件一樣，我們可以透過呼叫 `glGenFramebuffers` 函式來建立一個**幀緩衝區物件**（`framebuffer object`，縮寫為 FBO）：
 
 ```cpp
 unsigned int fbo;
 glGenFramebuffers(1, &fbo);
 ```
 
-This pattern of object creation and usage is something we've seen dozens of times now so their usage functions are similar to all the other object's we've seen: first we create a framebuffer object, bind it as the active framebuffer, do some operations, and unbind the framebuffer. To bind the framebuffer we use `glBindFramebuffer`:
+這種物件建立與使用的模式我們已經看過數十次了，所以它們的使用函式與我們見過的其他所有物件都相似：首先我們建立一個幀緩衝區物件，將其綁定為當前活躍的幀緩衝區，執行一些操作，然後解除綁定幀緩衝區。要綁定幀緩衝區，我們使用 `glBindFramebuffer`：
 
 ```cpp
 glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 ```
 
-By binding to the `GL_FRAMEBUFFER` target all the next _read_ and _write_ framebuffer operations will affect the currently bound framebuffer. It is also possible to bind a framebuffer to a read or write target specifically by binding to `GL_READ_FRAMEBUFFER` or `GL_DRAW_FRAMEBUFFER` respectively. The framebuffer bound to `GL_READ_FRAMEBUFFER` is then used for all read operations like `glReadPixels` and the framebuffer bound to `GL_DRAW_FRAMEBUFFER` is used as the destination for rendering, clearing and other write operations. Most of the times you won't need to make this distinction though and you generally bind to both with `GL_FRAMEBUFFER`.
+透過綁定至 **`GL_FRAMEBUFFER`** 目標，接下來所有的**讀取**（read）和**寫入**（write）幀緩衝區操作都將影響當前綁定的幀緩衝區。也可以透過分別綁定至 **`GL_READ_FRAMEBUFFER`** 或 **`GL_DRAW_FRAMEBUFFER`**，將幀緩衝區專門綁定至讀取或寫入目標。綁定至 `GL_READ_FRAMEBUFFER` 的幀緩衝區將用於所有讀取操作，例如 `glReadPixels`；而綁定至 `GL_DRAW_FRAMEBUFFER` 的幀緩衝區則用作渲染、清除及其他寫入操作的目的地。不過，大多數情況下你不需要做這種區分，通常會直接綁定到 `GL_FRAMEBUFFER`，它同時涵蓋讀取和寫入。
 
-Unfortunately, we can't use our framebuffer yet because it is not `complete`. For a framebuffer to be complete the following requirements have to be satisfied:
+遺憾的是，我們的幀緩衝區目前還無法使用，因為它並不「**完整**」（`complete`）。一個幀緩衝區必須滿足以下要求才能算是完整：
 
-- We have to attach at least one buffer (color, depth or stencil buffer).
-- There should be at least one color attachment.
-- All attachments should be complete as well (reserved memory).
-- Each buffer should have the same number of samples.
+- 我們必須至少附加一個緩衝區（顏色、深度或模板緩衝區）。
+- 必須至少有一個顏色附件。
+- 所有附件本身也必須是完整的（即已保留記憶體）。
+- 每個緩衝區應具有相同數量的採樣數（samples）。
 
-Don't worry if you don't know what samples are, we'll get to those in a [later](https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing) chapter.
+如果你不了解採樣數是什麼，別擔心，我們會在[之後的章節](https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing)中討論。
 
-From the requirements it should be clear that we need to create some kind of attachment for the framebuffer and attach this attachment to the framebuffer. After we've completed all requirements we can check if we actually successfully completed the framebuffer by calling `glCheckFramebufferStatus` with `GL_FRAMEBUFFER`. It then checks the currently bound framebuffer and returns any of [these](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/%67lCheckFramebufferStatus.xhtml) values found in the specification. If it returns `GL_FRAMEBUFFER_COMPLETE` we're good to go:
+從這些要求中可以清楚看出，我們需要為幀緩衝區建立某種附件，並將其附加到幀緩衝區。在我們滿足所有要求後，可以透過呼叫 `glCheckFramebufferStatus` 並傳入 `GL_FRAMEBUFFER` 來檢查是否成功完成幀緩衝區的設定。它會檢查當前綁定的幀緩衝區，並回傳規格中列出的[任何這些值](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/%67lCheckFramebufferStatus.xhtml)。如果它回傳 **`GL_FRAMEBUFFER_COMPLETE`**，那麼我們就可以開始使用了。
 
 ```cpp
 if(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE)
   // execute victory dance
 ```
 
-All subsequent rendering operations will now render to the attachments of the currently bound framebuffer. Since our framebuffer is not the default framebuffer, the rendering commands will have no impact on the visual output of your window. For this reason it is called `off-screen rendering` when rendering to a different framebuffer. If you want all rendering operations to have a visual impact again on the main window we need to make the default framebuffer active by binding to `0`:
+所有後續的渲染操作現在都會渲染到目前綁定幀緩衝區的附件上。由於我們的幀緩衝區不是預設幀緩衝區，渲染指令將不會對您視窗的視覺輸出產生任何影響。因此，這種渲染到不同幀緩衝區的行為被稱為「**離屏渲染**」（`off-screen rendering`）。如果您希望所有渲染操作再次對主視窗產生視覺影響，我們需要透過綁定到 `0` 來啟用預設幀緩衝區：
 
 ```cpp
 glBindFramebuffer(GL_FRAMEBUFFER, 0);
 ```
 
-When we're done with all framebuffer operations, do not forget to delete the framebuffer object:
+當我們完成所有幀緩衝區操作後，別忘了刪除幀緩衝區物件：
 
 ```cpp
 glDeleteFramebuffers(1, &fbo);
 ```
 
-Now before the completeness check is executed we need to attach one or more attachments to the framebuffer. An `attachment` is a memory location that can act as a buffer for the framebuffer, think of it as an image. When creating an attachment we have two options to take: textures or `renderbuffer` objects.
+現在，在執行完整性檢查之前，我們需要將一個或多個**附件**（attachment）附加到幀緩衝區。附件是記憶體中的一個位置，可以作為幀緩衝區的緩衝區，你可以將它想像成一張圖片。在建立附件時，我們有兩種選擇：**紋理**（textures）或**渲染緩衝區**（`renderbuffer`）物件。
 
-### Texture attachments
+### 紋理附件
 
-When attaching a texture to a framebuffer, all rendering commands will write to the texture as if it was a normal color/depth or stencil buffer. The advantage of using textures is that the render output is stored inside the texture image that we can then easily use in our shaders.
+當把**紋理**（texture）附加到幀緩衝區時，所有的渲染指令都會寫入到該紋理，就像它是一個普通的顏色/深度或模板緩衝區一樣。使用紋理的優點是，渲染輸出會儲存在紋理圖像中，這樣我們就能在著色器中輕鬆使用它。
 
-Creating a texture for a framebuffer is roughly the same as creating a normal texture:
+為幀緩衝區建立紋理的過程大致與建立普通紋理相同：
 
 ```cpp
 unsigned int texture;
@@ -85,27 +85,27 @@ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 ```
 
-The main differences here is that we set the dimensions equal to the screen size (although this is not required) and we pass `NULL` as the texture's `data` parameter. For this texture, we're only allocating memory and not actually filling it. Filling the texture will happen as soon as we render to the framebuffer. Also note that we do not care about any of the wrapping methods or mipmapping since we won't be needing those in most cases.
+這當中的主要區別在於，我們將紋理的尺寸設定為與螢幕大小相同（儘管這不是強制性的），並且將 `NULL` 作為紋理的 `data` 參數。對於這個紋理，我們只是分配了記憶體，但沒有實際填充它。紋理的填充會在我們渲染到幀緩衝區時發生。另外請注意，我們不關心任何環繞方式或 Mipmap，因為在大多數情況下我們不會用到它們。
 
-{% include box.html content="If you want to render your whole screen to a texture of a smaller or larger size you need to call `glViewport` again (before rendering to your framebuffer) with the new dimensions of your texture, otherwise render commands will only fill part of the texture." color="green" %}
+{% include box.html content="如果你想將整個螢幕渲染到一個尺寸更大或更小的紋理上，你需要再次呼叫 `glViewport`（在渲染到你的幀緩衝區之前），並傳入你的紋理的新尺寸，否則渲染指令只會填充紋理的一部分。" color="green" %}
 
-Now that we've created a texture, the last thing we need to do is actually attach it to the framebuffer:
+現在我們已經建立了一個紋理，最後需要做的就是將它附加到幀緩衝區：
 
 ```cpp
 glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
 ```
 
-The `glFrameBufferTexture2D` function has the following parameters:
+`glFrameBufferTexture2D` 函式具有以下參數：
 
-- `target`: the framebuffer type we're targeting (draw, read or both).
-- `attachment`: the type of attachment we're going to attach. Right now we're attaching a color attachment. Note that the `0` at the end suggests we can attach more than 1 color attachment. We'll get to that in a later chapter.
-- `textarget`: the type of the texture you want to attach.
-- `texture`: the actual texture to attach.
-- `level`: the mipmap level. We keep this at `0`.
+- `target`：我們目標的幀緩衝區類型（繪製、讀取或兩者）。
+- `attachment`：我們要附加的附件類型。現在我們附加的是一個顏色附件。請注意，末尾的 `0` 表示我們可以附加超過 1 個顏色附件。我們將在後續章節中討論這部分。
+- `textarget`：您要附加的紋理類型。
+- `texture`：要附加的實際紋理。
+- `level`：Mipmap 等級。我們將其保持為 `0`。
 
-Next to the color attachments we can also attach a depth and a stencil texture to the framebuffer object. To attach a depth attachment we specify the attachment type as `GL_DEPTH_ATTACHMENT`. Note that the texture's `format` and `internalformat` type should then become `GL_DEPTH_COMPONENT` to reflect the depth buffer's storage format. To attach a stencil buffer you use `GL_STENCIL_ATTACHMENT` as the second argument and specify the texture's formats as `GL_STENCIL_INDEX`.
+除了顏色附件，我們還可以將深度和模板紋理附加到幀緩衝區物件。要附加深度附件，我們將附件類型指定為 **`GL_DEPTH_ATTACHMENT`**。請注意，此時紋理的 `format` 和 `internalformat` 類型應變為 **`GL_DEPTH_COMPONENT`**，以反映深度緩衝區的儲存格式。要附加模板緩衝區，您可以使用 **`GL_STENCIL_ATTACHMENT`** 作為第二個參數，並將紋理的格式指定為 **`GL_STENCIL_INDEX`**。
 
-It is also possible to attach both a depth buffer and a stencil buffer as a single texture. Each 32 bit value of the texture then contains 24 bits of depth information and 8 bits of stencil information. To attach a depth and stencil buffer as one texture we use the `GL_DEPTH_STENCIL_ATTACHMENT` type and configure the texture's formats to contain combined depth and stencil values. An example of attaching a depth and stencil buffer as one texture to the framebuffer is given below:
+也可以將深度緩衝區和模板緩衝區作為單一紋理附加。此時，紋理的每個 32 位元值包含 24 位元的深度資訊和 8 位元的模板資訊。要將深度和模板緩衝區作為一個紋理附加，我們使用 **`GL_DEPTH_STENCIL_ATTACHMENT`** 類型，並將紋理的格式配置為包含組合的深度和模板值。以下是一個將深度和模板緩衝區作為單一紋理附加到幀緩衝區的範例：
 
 ```cpp
 glTexImage2D(
@@ -116,50 +116,50 @@ glTexImage2D(
 glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, texture, 0);
 ```
 
-### Renderbuffer object attachments
+### 渲染緩衝區物件附件
 
-`Renderbuffer objects` were introduced to OpenGL after textures as a possible type of framebuffer attachment, Just like a texture image, a renderbuffer object is an actual buffer e.g. an array of bytes, integers, pixels or whatever. However, a renderbuffer object can not be directly read from. This gives it the added advantage that OpenGL can do a few memory optimizations that can give it a performance edge over textures for off-screen rendering to a framebuffer.
+`渲染緩衝區物件`是在紋理之後，作為一種可能的幀緩衝區附件類型被引入 OpenGL 的。就像紋理圖像一樣，渲染緩衝區物件是一個實際的緩衝區，例如位元組、整數、像素等陣列。然而，渲染緩衝區物件不能直接讀取。這賦予它額外的優勢，即 OpenGL 可以執行一些記憶體最佳化，這可以在對幀緩衝區進行離屏渲染時，提供比紋理更好的效能。
 
-Renderbuffer objects store all the render data directly into their buffer without any conversions to texture-specific formats, making them faster as a writeable storage medium. You cannot read from them directly, but it is possible to read from them via the slow `glReadPixels`. This returns a specified area of pixels from the currently bound framebuffer, but not directly from the attachment itself.
+渲染緩衝區物件將所有渲染資料直接儲存到其緩衝區中，無需轉換為紋理特定格式，這使得它們作為可寫儲存介質更快。你不能直接從它們讀取，但可以透過緩慢的 `glReadPixels` 讀取。這會從當前綁定的幀緩衝區返回指定區域的像素，而不是直接從附件本身讀取。
 
-Because their data is in a native format they are quite fast when writing data or copying data to other buffers. Operations like switching buffers are therefore quite fast when using renderbuffer objects. The `glfwSwapBuffers` function we've been using at the end of each frame may as well be implemented with renderbuffer objects: we simply write to a renderbuffer image, and swap to the other one at the end. Renderbuffer objects are perfect for these kind of operations.
+由於它們的資料是原生格式，因此在寫入資料或將資料複製到其他緩衝區時，它們的速度非常快。因此，在使用渲染緩衝區物件時，切換緩衝區等操作非常快。我們在每幀結束時使用的 `glfwSwapBuffers` 函式，很可能就是使用渲染緩衝區物件實現的：我們簡單地寫入一個渲染緩衝區圖像，並在結束時切換到另一個。渲染緩衝區物件非常適合這類操作。
 
-Creating a renderbuffer object looks similar to the framebuffer's code:
+建立渲染緩衝區物件的程式碼與幀緩衝區的程式碼相似：
 
 ```cpp
 unsigned int rbo;
 glGenRenderbuffers(1, &rbo);
 ```
 
-And similarly we want to bind the renderbuffer object so all subsequent renderbuffer operations affect the current `rbo`:
+同樣地，我們需要綁定渲染緩衝區物件，這樣所有後續的渲染緩衝區操作都會影響當前的 `rbo`：
 
 ```cpp
 glBindRenderbuffer(GL_RENDERBUFFER, rbo);
 ```
 
-Since renderbuffer objects are write-only they are often used as depth and stencil attachments, since most of the time we don't really need to read values from them, but we do care about depth and stencil testing. We **need** the depth and stencil values for testing, but don't need to _sample_ these values so a renderbuffer object suits this perfectly. When we're not sampling from these buffers, a renderbuffer object is generally preferred.
+由於渲染緩衝區物件是唯寫的，它們經常被用作深度和模板附件，因為大多數時候我們並不需要真正從中讀取值，但我們確實關心深度和模板測試。我們**需要**深度和模板值進行測試，但不需要**採樣**這些值，因此渲染緩衝區物件非常適合此用途。當我們不從這些緩衝區採樣時，通常會優先選擇渲染緩衝區物件。
 
-Creating a depth and stencil renderbuffer object is done by calling the `glRenderbufferStorage` function:
+建立深度和模板渲染緩衝區物件是透過呼叫 `glRenderbufferStorage` 函式來完成的：
 
 ```cpp
 glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 800, 600);
 ```
 
-Creating a renderbuffer object is similar to texture objects, the difference being that this object is specifically designed to be used as a framebuffer attachment, instead of a general purpose data buffer like a texture. Here we've chosen `GL_DEPTH24_STENCIL8` as the internal format, which holds both the depth and stencil buffer with 24 and 8 bits respectively.
+建立渲染緩衝區物件與紋理物件類似，不同之處在於，渲染緩衝區物件是專門設計用作幀緩衝區附件，而非像紋理那樣的通用資料緩衝區。這裡我們選擇了 `GL_DEPTH24_STENCIL8` 作為內部格式，它分別以 24 位元和 8 位元儲存深度和模板緩衝區。
 
-The last thing left to do is to actually attach the renderbuffer object:
+最後剩下的就是實際附加渲染緩衝區物件：
 
 ```cpp
 glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
 ```
 
-Renderbuffer objects can be more efficient for use in your off-screen render projects, but it is important to realize when to use renderbuffer objects and when to use textures. The general rule is that if you never need to sample data from a specific buffer, it is wise to use a renderbuffer object for that specific buffer. If you need to sample data from a specific buffer like colors or depth values, you should use a texture attachment instead.
+渲染緩衝區物件在您的離屏渲染專案中可能更有效率，但重要的是要了解何時使用渲染緩衝區物件，以及何時使用紋理。一般原則是，如果您從不需要從特定緩衝區採樣資料，那麼為該特定緩衝區使用渲染緩衝區物件是明智的選擇。如果您需要從特定緩衝區（如顏色或深度值）採樣資料，則應該改用紋理附件。
 
-## Rendering to a texture
+## 渲染到紋理
 
-Now that we know how framebuffers (sort of) work it's time to put them to good use. We're going to render the scene into a color texture attached to a framebuffer object we created and then draw this texture over a simple quad that spans the whole screen. The visual output is then exactly the same as without a framebuffer, but this time it's all printed on top of a single quad. Now why is this useful? In the next section we'll see why.
+既然我們（或多或少）了解了幀緩衝區的運作方式，現在是時候好好利用它們了。我們將場景渲染到一個附加到我們所建立幀緩衝區物件的顏色紋理中，然後將這個紋理繪製到一個覆蓋整個螢幕的簡單四邊形上。這樣一來，視覺輸出將與沒有幀緩衝區時完全相同，但這次所有內容都呈現在一個單一的四邊形上。那麼，這有什麼用呢？在下一節中我們將看到原因。
 
-First thing to do is to create an actual framebuffer object and bind it, this is all relatively straightforward:
+首先要做的是建立一個實際的幀緩衝區物件並將其綁定，這一切都相對簡單：
 
 ```cpp
 unsigned int framebuffer;
@@ -167,7 +167,7 @@ glGenFramebuffers(1, &framebuffer);
 glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 ```
 
-Next we create a texture image that we attach as a color attachment to the framebuffer. We set the texture's dimensions equal to the width and height of the window and keep its data uninitialized:
+接下來，我們建立一個紋理圖像，並將其作為顏色附件附加到幀緩衝區。我們將紋理的尺寸設定為與視窗的寬度與高度相同，並讓其資料保持未初始化：
 
 ```cpp
 // generate texture
@@ -183,9 +183,9 @@ glBindTexture(GL_TEXTURE_2D, 0);
 glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer, 0);
 ```
 
-We also want to make sure OpenGL is able to do depth testing (and optionally stencil testing) so we have to make sure to add a depth (and stencil) attachment to the framebuffer. Since we'll only be sampling the color buffer and not the other buffers we can create a renderbuffer object for this purpose.
+我們也需要確保 OpenGL 能夠進行**深度測試**（並且可選地進行模板測試），因此我們必須確保為幀緩衝區添加一個**深度**（以及模板）附件。由於我們只會採樣顏色緩衝區，而不會採樣其他緩衝區，因此我們可以為此目的建立一個**渲染緩衝區物件**。
 
-Creating a renderbuffer object isn't too hard. The only thing we have to remember is that we're creating it as a depth **and** stencil attachment renderbuffer object. We set its _internal format_ to `GL_DEPTH24_STENCIL8` which is enough precision for our purposes:
+建立渲染緩衝區物件並不困難。我們唯一需要記住的是，我們將其建立為**深度**和**模板**附件的渲染緩衝區物件。我們將其**內部格式**設定為 `GL_DEPTH24_STENCIL8`，這對我們的目的來說已經足夠精確了：
 
 ```cpp
 unsigned int rbo;
@@ -195,15 +195,15 @@ glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 800, 600);
 glBindRenderbuffer(GL_RENDERBUFFER, 0);
 ```
 
-Once we've allocated enough memory for the renderbuffer object we can unbind the renderbuffer.
+一旦我們為渲染緩衝區物件分配了足夠的記憶體，就可以解除綁定該渲染緩衝區。
 
-Then, as a final step before we complete the framebuffer, we attach the renderbuffer object to the depth **and** stencil attachment of the framebuffer:
+接著，在完成幀緩衝區之前的最後一步，我們將渲染緩衝區物件附加到幀緩衝區的深度**和**模板附件：
 
 ```cpp
 glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
 ```
 
-Then we want to check if the framebuffer is complete and if it's not, we print an error message.
+接著，我們要檢查幀緩衝區是否完整，如果沒有，就印出錯誤訊息。
 
 ```cpp
 if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
@@ -211,19 +211,19 @@ if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 glBindFramebuffer(GL_FRAMEBUFFER, 0);
 ```
 
-Be sure to unbind the framebuffer to make sure we're not accidentally rendering to the wrong framebuffer.
+請務必**解除綁定**幀緩衝區，以確保我們不會意外地渲染到錯誤的幀緩衝區。
 
-Now that the framebuffer is complete, all we need to do to render to the framebuffer's buffers instead of the default framebuffers is to simply bind the framebuffer object. All subsequent render commands will then influence the currently bound framebuffer. All the depth and stencil operations will also read from the currently bound framebuffer's depth and stencil attachments if they're available. If you were to omit a depth buffer for example, all depth testing operations will no longer work.
+現在幀緩衝區已完整，要將場景渲染到幀緩衝區的緩衝區而非預設幀緩衝區，只需簡單地**綁定**該幀緩衝區物件即可。所有後續的渲染指令都將影響當前綁定的幀緩衝區。如果深度和模板附件可用，所有深度和模板操作也會從當前綁定的幀緩衝區中讀取。例如，如果您省略了深度緩衝區，所有深度測試操作將不再起作用。
 
-So, to draw the scene to a single texture we'll have to take the following steps:
+因此，要將場景繪製到單一紋理上，我們必須採取以下步驟：
 
-1.  Render the scene as usual with the new framebuffer bound as the active framebuffer.
-2.  Bind to the default framebuffer.
-3.  Draw a quad that spans the entire screen with the new framebuffer's color buffer as its texture.
+1.  如往常一樣，將新的幀緩衝區綁定為活躍幀緩衝區，然後渲染場景。
+2.  綁定回預設幀緩衝區。
+3.  繪製一個覆蓋整個螢幕的四邊形，並將新幀緩衝區的顏色緩衝區作為其紋理。
 
-We'll render the same scene we've used in the [depth testing](https://learnopengl.com/Advanced-OpenGL/Depth-testing) chapter, but this time with the old-school [container](https://learnopengl.com/img/textures/container.jpg) texture.
+我們將渲染在[深度測試](https://learnopengl.com/Advanced-OpenGL/Depth-testing)章節中使用過的相同場景，但這次使用舊式的[容器](https://learnopengl.com/img/textures/container.jpg)紋理。
 
-To render the quad we're going to create a fresh set of simple shaders. We're not going to include fancy matrix transformations since we'll be supplying the [vertex coordinates as normalized device coordinates](https://learnopengl.com/code_viewer.php?code=advanced/framebuffers_quad_vertices) so we can directly forward them as output of the vertex shader. The vertex shader looks like this:
+為了渲染這個四邊形，我們將建立一套全新的簡單著色器。我們不會包含複雜的矩陣變換，因為我們將以[正規化設備座標](https://learnopengl.com/code_viewer.php?code=advanced/framebuffers_quad_vertices)的形式提供頂點座標，這樣我們就可以直接將它們作為頂點著色器的輸出。頂點著色器如下所示：
 
 ```cpp
 #version 330 core
@@ -239,7 +239,7 @@ void main()
 }
 ```
 
-Nothing too fancy. The fragment shader is even more basic since the only thing we have to do is sample from a texture:
+沒什麼特別花俏的。片段著色器甚至更為基本，因為我們唯一需要做的就是從紋理中取樣：
 
 ```cpp
 #version 330 core
@@ -255,7 +255,7 @@ void main()
 }
 ```
 
-It is then up to you to create and configure a VAO for the screen quad. A single render iteration of the framebuffer procedure has the following structure:
+由你來為螢幕四邊形建立並配置一個 VAO。幀緩衝區程序的單次渲染迭代具有以下結構：
 
 ```cpp
 // first pass
@@ -277,27 +277,27 @@ glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
 glDrawArrays(GL_TRIANGLES, 0, 6);
 ```
 
-There are a few things to note. First, since each framebuffer we're using has its own set of buffers, we want to clear each of those buffers with the appropriate bits set by calling `glClear`. Second, when drawing the quad, we're disabling depth testing since we want to make sure the quad always renders in front of everything else; we'll have to enable depth testing again when we draw the normal scene though.
+有幾點需要注意。首先，由於我們使用的每個幀緩衝區都有自己的一組緩衝區，因此我們需要透過呼叫 `glClear` 並設定適當的位元來清除每個緩衝區。其次，在繪製四邊形時，我們禁用了深度測試，因為我們希望確保四邊形始終在其他所有物體的前面渲染；但在繪製正常場景時，我們必須再次啟用深度測試。
 
-There are quite some steps that could go wrong here, so if you have no output, try to debug where possible and re-read the relevant sections of the chapter. If everything did work out successfully you'll get a visual result that looks like this:
+這裡有很多步驟都可能出錯，所以如果你沒有任何輸出，請盡可能嘗試偵錯並重新閱讀章節中的相關部分。如果一切順利，你將會得到一個看起來像這樣的視覺結果：
 
 ![](https://learnopengl.com/img/advanced/framebuffers_screen_texture.png)
 
-The left shows the visual output, exactly the same as we've seen in the [depth testing](https://learnopengl.com/Advanced-OpenGL/Depth-testing) chapter, but this time rendered on a simple quad. If we render the scene in wireframe it's obvious we've only drawn a single quad in the default framebuffer.
+左側顯示的是視覺輸出，與我們在[深度測試](https://learnopengl.com/Advanced-OpenGL/Depth-testing)章節中看到的完全相同，但這次是渲染在一個簡單的四邊形上。如果我們以線框模式渲染場景，就能清楚地看到我們在預設幀緩衝區中只繪製了一個單一的四邊形。
 
-You can find the source code of the application [here](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/5.1.framebuffers/framebuffers.cpp).
+您可以在[這裡](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/5.1.framebuffers/framebuffers.cpp)找到該應用程式的原始碼。
 
-So what was the use of this again? Well, because we can now freely access each of the pixels of the completely rendered scene as a single texture image, we can create some interesting effects in the fragment shader.
+那麼，這到底有什麼用呢？嗯，由於我們現在可以自由地將完整渲染的場景中每個像素作為單一紋理圖像來存取，我們就能在片段著色器中創造出一些有趣的特效了。
 
-## Post-processing
+## 後期處理
 
-Now that the entire scene is rendered to a single texture we can create cool `post-processing` effects by manipulating the scene texture. In this section we'll show you some of the more popular post-processing effects and how you may create your own with some added creativity.
+現在整個場景都渲染到單一紋理上，我們可以透過操作場景紋理來創造出酷炫的**後期處理**（`post-processing`）效果。在本節中，我們將向您展示一些較受歡迎的後期處理效果，以及您如何憑藉一些額外的創意來創造自己的效果。
 
-Let's start with one of the simplest post-processing effects.
+讓我們從一個最簡單的後期處理效果開始。
 
-### Inversion
+### 反相
 
-We have access to each of the colors of the render output so it's not so hard to return the inverse of these colors in the fragment shader. We can take the color of the screen texture and inverse it by subtracting it from `1.0`:
+我們可以存取渲染輸出的每個顏色，因此在片段著色器中回傳這些顏色的反相並不難。我們可以取螢幕紋理的顏色，並透過將其從 `1.0` 中減去來反相：
 
 ```cpp
 void main()
@@ -306,15 +306,15 @@ void main()
 }
 ```
 
-While inversion is a relatively simple post-processing effect it already creates funky results:
+儘管反相是一個相對簡單的後期處理效果，但它已經能產生奇特的效果：
 
 ![](https://learnopengl.com/img/advanced/framebuffers_inverse.png)
 
-The entire scene now has all its colors inversed with a single line of code in the fragment shader. Pretty cool huh?
+整個場景的顏色現在都透過片段著色器中的一行程式碼實現了反相。是不是很酷？
 
-### Grayscale
+### 灰階
 
-Another interesting effect is to remove all colors from the scene except the white, gray and black colors; effectively grayscaling the entire image. An easy way to do this is by taking all the color components and averaging their results:
+另一個有趣的效果是將場景中除了白色、灰色和黑色之外的所有顏色移除，有效地將整個圖像灰階化。一個簡單的方法是取所有顏色分量並將它們的結果平均：
 
 ```cpp
 void main()
@@ -325,7 +325,7 @@ void main()
 }
 ```
 
-This already creates pretty good results, but the human eye tends to be more sensitive to green colors and the least to blue. So to get the most physically accurate results we'll need to use weighted channels:
+這樣做已經能產生相當不錯的結果，但人眼對綠色比較敏感，對藍色則最不敏感。所以為了獲得最符合物理真實的結果，我們需要使用加權通道：
 
 ```cpp
 void main()
@@ -338,23 +338,23 @@ void main()
 
 ![](https://learnopengl.com/img/advanced/framebuffers_grayscale.png)
 
-You probably won't notice the difference right away, but with more complicated scenes, such a weighted grayscaling effect tends to be more realistic.
+你可能不會馬上注意到差異，但對於更複雜的場景，這種加權灰階效果通常會更真實。
 
-## Kernel effects
+## 核心效果
 
-Another advantage about doing post-processing on a single texture image is that we can sample color values from other parts of the texture not specific to that fragment. We could for example take a small area around the current texture coordinate and sample multiple texture values around the current texture value. We can then create interesting effects by combining them in creative ways.
+在單一紋理圖像上進行後期處理的另一個優勢是，我們可以從紋理中採樣不屬於該片段的其他部分的顏色值。例如，我們可以圍繞當前紋理座標取一個小區域，並在當前紋理值周圍採樣多個紋理值。然後，我們可以透過創意組合它們來創造出有趣的效果。
 
-A `kernel` (or convolution matrix) is a small matrix-like array of values centered on the current pixel that multiplies surrounding pixel values by its kernel values and adds them all together to form a single value. We're adding a small offset to the texture coordinates in surrounding directions of the current pixel and combine the results based on the kernel. An example of a kernel is given below:
+**核心**（`kernel`，或稱卷積矩陣）是一個以當前像素為中心的小型矩陣狀數值陣列，它將周圍像素值乘以其核心值，並將它們全部加起來形成一個單一值。我們透過對當前像素周圍的方向紋理座標添加一個小的偏移量，並根據核心組合結果。以下是一個核心的範例：
 
 ```math
 \begin{bmatrix}2 & 2 & 2 \\ 2 & -15 & 2 \\ 2 & 2 & 2 \end{bmatrix}
 ```
 
-This kernel takes 8 surrounding pixel values and multiplies them by `2` and the current pixel by `-15`. This example kernel multiplies the surrounding pixels by several weights determined in the kernel and balances the result by multiplying the current pixel by a large negative weight.
+這個核心（kernel）會取 8 個周圍的像素值，將它們乘以 `2`，然後將當前像素乘以 `-15`。這個範例核心將周圍像素乘以核心中預設的幾個權重，並透過將當前像素乘以一個較大的負權重來平衡結果。
 
-{% include box.html content="Most kernels you'll find over the internet all sum up to `1` if you add all the weights together. If they don't add up to `1` it means that the resulting texture color ends up brighter or darker than the original texture value." color="green" %}
+{% include box.html content="你在網路上找到的大多數核心，如果將所有權重加起來，總和都會是 `1`。如果它們的總和不為 `1`，則表示最終的紋理顏色會比原始紋理值更亮或更暗。" color="green" %}
 
-Kernels are an extremely useful tool for post-processing since they're quite easy to use and experiment with, and a lot of examples can be found online. We do have to slightly adapt the fragment shader a bit to actually support kernels. We make the assumption that each kernel we'll be using is a 3x3 kernel (which most kernels are):
+核心是後期處理極其有用的工具，因為它們使用和實驗起來都相當容易，而且網路上可以找到許多範例。我們確實需要稍微修改片段著色器，才能真正支援核心。我們假設每個我們將要使用的核心都是 3x3 的（大多數核心都是如此）：
 
 ```cpp
 const float offset = 1.0 / 300.0;
@@ -392,23 +392,23 @@ void main()
 }
 ```
 
-In the fragment shader we first create an array of 9 `vec2` offsets for each surrounding texture coordinate. The offset is a constant value that you could customize to your liking. Then we define the kernel, which in this case is a `sharpen` kernel that sharpens each color value by sampling all surrounding pixels in an interesting way. Lastly, we add each offset to the current texture coordinate when sampling and multiply these texture values with the weighted kernel values that we add together.
+在片段著色器中，我們首先為每個周圍紋理座標建立一個包含 9 個 `vec2` 偏移量的陣列。這個偏移量是一個常數值，你可以根據喜好自訂。然後我們定義核心（kernel），在這裡是一個 `sharpen` 核心，它透過一種有趣的方式採樣所有周圍像素來銳化每個顏色值。最後，我們在採樣時將每個偏移量加到當前紋理座標上，並將這些紋理值與我們相加的加權核心值相乘。
 
-This particular sharpen kernel looks like this:
+這個特定的銳化核心看起來像這樣：
 
 ![](https://learnopengl.com/img/advanced/framebuffers_sharpen.png)
 
-This could be the base of some interesting effects where your player may be on a narcotic adventure.
+這可能會是一些有趣效果的基礎，例如你的玩家可能正在進行一場麻醉冒險。
 
-### Blur
+### 模糊
 
-A kernel that creates a `blur` effect is defined as follows:
+產生「**模糊**」（`blur`）效果的核心定義如下：
 
 ```math
 {\begin{bmatrix} 1 & 2 & 1 \\ 2 & 4 & 2 \\ 1 & 2 & 1 \end{bmatrix}} / 16
 ```
 
-Because all values add up to 16, directly returning the combined sampled colors would result in an extremely bright color so we have to divide each value of the kernel by `16`. The resulting kernel array then becomes:
+由於所有數值加起來等於 16，直接返回組合後的採樣顏色會導致顏色極度明亮，因此我們必須將核心中的每個數值都除以 `16`。這樣，最終的核心陣列就變成了：
 
 ```cpp
 float kernel[9] = float[](
@@ -418,24 +418,24 @@ float kernel[9] = float[](
 );
 ```
 
-By only changing the kernel array in the fragment shader we can completely change the post-processing effect. It now looks something like this:
+透過只更改片段著色器中的核心陣列，我們就能徹底改變後期處理效果。它現在看起來像這樣：
 
 ![](https://learnopengl.com/img/advanced/framebuffers_blur.png)
 
-Such a blur effect creates interesting possibilities. We could vary the blur amount over time to create the effect of someone being drunk, or increase the blur whenever the main character is not wearing glasses. Blurring can also be a useful tool for smoothing color values which we'll see use of in later chapters.
+這種模糊效果創造了許多有趣的**可能性**。我們可以隨時間變化模糊量，以營造出某人喝醉酒的效果，或者在主角沒有戴眼鏡時增加模糊。模糊也是平滑顏色值的實用工具，我們將在後續章節中看到它的應用。
 
-You can see that once we have such a little kernel implementation in place it is quite easy to create cool post-processing effects. Let's show you a last popular effect to finish this discussion.
+你可以看到，一旦我們有了這樣一個小型的核心（kernel）實作，創造酷炫的後期處理效果就變得相當容易了。讓我們向你展示最後一個流行的效果，以結束這次討論。
 
-### Edge detection
+### 邊緣偵測
 
-Below you can find an `edge-detection` kernel that is similar to the sharpen kernel:
+以下是一個類似銳化核心的「**邊緣偵測**」（`edge-detection`）核心：
 
 ```math
 \begin{bmatrix}2 & 2 & 2 \\ 2 & -15 & 2 \\ 2 & 2 & 2 \end{bmatrix}
 ```
 
-This kernel highlights all edges and darkens the rest, which is pretty useful when we only care about edges in an image.
+這個核心能凸顯所有邊緣並使其他部分變暗，這在我們只關心圖像中的邊緣時非常有用。
 
 ![](https://learnopengl.com/img/advanced/framebuffers_edge_detection.png)
 
-It probably does not come as a surprise that kernels like this are used as image-manipulating tools/filters in tools like Photoshop. Because of a graphic card's ability to process fragments with extreme parallel capabilities, we can manipulate images on a per-pixel basis in real-time with relative ease. Image-editing tools therefore tend to use graphics cards for image-processing.
+您說的沒錯！像這類核心確實被廣泛應用於 Photoshop 等圖像處理工具的濾鏡功能中。由於圖形處理器 (GPU) 具備極強的平行處理能力，能夠同時處理大量的片段（像素），這使得我們能以相對輕鬆的方式，即時地對圖像進行逐像素的操作。因此，圖像編輯工具傾向於利用圖形卡來進行圖像處理。

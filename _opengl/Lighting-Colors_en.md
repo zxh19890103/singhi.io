@@ -15,7 +15,7 @@ gltopic: Colors
 permalink: /opengl/en/Lighting/Colors
 ---
 
-We briefly used and manipulated colors in the previous chapters, but never defined them properly. Here we'll discuss what colors are and start building the scene for the upcoming Lighting chapters.
+We briefly used and manipulated colors in the previous chapters, but never defined them properly. Here we'll discuss what colors are and start building the scene for the upcoming Lighting chapters. {% include play.html name="creating-a-window" %}
 
 In the real world, colors can take any known color value with each object having its own color(s). In the digital world we need to map the (infinite) real colors to (limited) digital values and therefore not all real-world colors can be represented digitally. Colors are digitally represented using a `red`, `green` and `blue` component commonly abbreviated as `RGB`. Using different combinations of just those 3 values, within a range of `[0,1]`, we can represent almost any color there is. For example, to get a _coral_ color, we define a color vector as:
 

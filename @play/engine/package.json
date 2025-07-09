@@ -1,0 +1,15 @@
+{
+  "type": "module",
+  "name": "@play/engine",
+  "version": "0.1.0",
+  "description": "The core engine for Play, providing the foundational functionality.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node ./sass.js"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/gsap": "^3.0.0",
+    "@types/three": "^0.178.0"
+  }
+}

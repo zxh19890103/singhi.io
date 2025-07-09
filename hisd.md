@@ -10,7 +10,7 @@ title: 歷史故事
     <li class="documents__item cat-{{post.category}}">
       <div class="document {% if post.english %}english{% endif %}">
         <a class="document__link" href="{{ post.url }}" target="_self">
-          <h3 style="margin: 0.3em 0 0.6em 0">
+          <h3 style="margin: 0.3em 0 0.6em 0" {% if post.slug %}id="{{post.slug}}"{% endif %}>
           {%if post.local%}
           <span style="color: #ef1dfd">[local]</span>
           {%endif%}

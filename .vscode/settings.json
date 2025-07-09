@@ -1,5 +1,6 @@
 {
-  "editor.fontFamily": "Chalkboard SE, 'Yuppy TC'",
+  "editor.fontFamily": "'Chalkboard SE', 'Yuppy TC'",
+  "editor.tabSize": 2,
   "editor.fontSize": 16,
   "editor.letterSpacing": 0,
   "editor.formatOnSave": false,
@@ -8,7 +9,8 @@
   "editor.minimap.enabled": false,
   "editor.fontWeight": 300,
   "window.zoomLevel": 1,
-  "workbench.colorTheme": "Visual Studio 2017 Light - C++",
+  "prettier.trailingComma": "all",
+  "workbench.colorTheme": "Atom One Light",
   "files.exclude": {
     "**/node_modules": true
   }

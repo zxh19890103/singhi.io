@@ -8,9 +8,9 @@ src: https://learnopengl.com/Introduction
 date: 2025-02-17
 book: opengl
 order: 1
-permalink: /opengl/Introducation/index
-glcate: "Introducation"
-gltopic: index
+permalink: /opengl/Introduction
+glcate: "Introduction"
+gltopic: ""
 lang: zh
 ---
 
