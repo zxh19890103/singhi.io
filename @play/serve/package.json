@@ -1,0 +1,13 @@
+{
+  "name": "serve",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "serve": "node index.js"
+  },
+  "dependencies": {
+    "typescript": "^5.8.3"
+  }
+}
