@@ -82,78 +82,6 @@ canvas {
 	height: 100vh;
 	width: 0;
 	flex: 1;
-
-	.Screen {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: #ffffff;
-		z-index: 1000; /* 確保在最上層 */
-		display: none;
-
-		&Board {
-			width: 100%;
-			height: 100%;
-			display: flex;
-			flex-direction: column;
-			align-items: center; /* 垂直居中 */
-			justify-content: center; /* 水平居中 */
-
-			opacity: 0; /* 初始透明度為 0，用於 JS 控制的淡入 */
-			transform: scale(0.9);
-
-			.Title {
-				color: #000;
-				font-size: 4.5rem;
-				font-weight: 600;
-				margin-bottom: 1rem;
-				animation: bounce-subtle 3s ease-in-out infinite;
-			}
-
-			.TitleTagline {
-				color: var(--color-dark-gray);
-				font-size: 1.875rem; /* 30px */
-				font-weight: 500;
-			}
-		}
-
-		&.playing .ScreenBoard {
-			animation: fadeinout 10s ease-in-out forwards;
-		}
-	}
-
-	/* --- 自定義關鍵幀動畫 --- */
-	@keyframes bounce-subtle {
-		0%,
-		100% {
-			transform: translateY(0);
-		}
-		50% {
-			transform: translateY(-5px); /* 輕微向上移動 */
-		}
-	}
-
-	@keyframes fadeinout {
-		0% {
-			opacity: 0;
-			transform: scale(0.9);
-		}
-		10% {
-			opacity: 1;
-			transform: scale(1);
-		}
-		80% {
-			opacity: 1;
-			transform: scale(1);
-		}
-		90%,
-		100% {
-			opacity: 0;
-			transform: scale(0.9);
-		}
-	}
 }
 
 .Side {
@@ -163,7 +91,7 @@ canvas {
 	background-color: #fffceb;
 	height: 100vh;
 	padding: 2rem 1.5rem;
-	border-right: 1px solid #f5f2df;
+	// border-right: 1px solid #f5f2df;
 }
 
 .Words {
@@ -296,34 +224,6 @@ canvas {
 	/* 淺藍色 (類似於 Tailwind 的 text-blue-100)，帶有 80% 透明度 */
 	letter-spacing: 0.05em;
 	/* 輕微增加字距，類似於 Tailwind 的 tracking-wider */
-}
-
-.Interact {
-	position: fixed;
-	right: 0.1rem;
-	top: 0.1rem;
-	overflow: hidden auto;
-	padding: 1.5rem;
-	font-size: 1rem;
-	width: 20rem;
-	z-index: 100;
-}
-
-.controls-container {
-	/* 基礎顏色和透明度 #FFB2B2 */
-	background-color: rgba(255, 255, 255, 0.7);
-	/* 毛玻璃效果 */
-	backdrop-filter: blur(10px);
-	/* 調整模糊強度 */
-	-webkit-backdrop-filter: blur(10px);
-	/* 兼容 Safari */
-	/* 圓角，使其看起來更柔和，非銳利方塊 */
-	border-radius: 12px;
-	/* 根據你想要的圓潤度調整 */
-	/* 邊框（可選）：輕微的電光藍邊框，增加質感 */
-	/* #00BFFF 的透明版本 */
-	/* 陰影（可選）：增加懸浮感 */
-	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* 隱藏預設滾動條箭頭（可選，如果不需要） */

@@ -1,0 +1,398 @@
+@use "sass:math";
+
+.ProgressBar {
+	$size: 6px;
+	$margin: 6px;
+	$dot-size: $margin * 2 + $size;
+
+	width: 100%;
+	height: $size;
+	margin: $margin 0;
+	background-color: rgba(60, 60, 60, 0.3);
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	border-radius: 3px;
+	cursor: pointer;
+
+	&:hover {
+		background-color: rgba(60, 60, 60, 0.7);
+	}
+
+	&Progress {
+		position: relative;
+		background-color: #f41200ff;
+		width: 0%;
+		height: $size;
+		border-radius: 3px;
+
+		&:hover {
+			background-color: rgba(#e41200ff, 0.7);
+		}
+
+		button {
+			position: absolute;
+			right: math.div(-$dot-size, 2);
+			top: -$margin;
+			background-color: #e41200;
+			outline: none;
+			border: none;
+			height: $dot-size;
+			width: $dot-size;
+			border-radius: 50%;
+			pointer-events: none;
+		}
+	}
+
+	&Controls {
+		width: 30px;
+		height: 30px;
+		background-color: rgba($color: #000000, $alpha: 0.78);
+		z-index: 1000;
+		margin-top: $margin * 2;
+		border-radius: 3px;
+
+		svg {
+			width: 30px;
+			height: 30px;
+			pointer-events: none;
+		}
+
+		&.Playing {
+			.Pause {
+				display: block;
+			}
+			.Play {
+				display: none;
+			}
+		}
+
+		.Control {
+			display: block;
+			width: 30px;
+			height: 30px;
+			text-decoration: none;
+			color: #fff;
+		}
+
+		.Pause {
+			display: none;
+		}
+	}
+
+	&Box {
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		width: 100%;
+		padding: 0 1rem;
+		height: fit-content;
+		z-index: 9999;
+		overflow: hidden;
+	}
+}
+
+.PlayCanvas {
+	color: #333;
+
+	.card {
+		background: rgba(
+			255,
+			255,
+			255,
+			0.2
+		); /* Semi-transparent white background */
+		backdrop-filter: blur(10px); /* The magic behind the frosted glass effect */
+		-webkit-backdrop-filter: blur(10px); /* For Safari compatibility */
+		border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter, semi-transparent border */
+		border-radius: 12px; /* More rounded corners for the glass look */
+		padding: 20px 25px; /* Ample padding */
+		box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); /* Deeper shadow for depth */
+	}
+
+	.Text {
+		font-size: 1.67rem;
+	}
+
+	.Title {
+		font-size: 3rem;
+	}
+
+	.Label {
+	}
+
+	.Formula {
+		font-size: 1.1rem;
+		@extend .card;
+	}
+
+	/* Base Table Styles */
+	.Table {
+		border-collapse: collapse; /* Crucial for clean lines between cells */
+		@extend .card;
+
+		/* Table Header Styles */
+		thead th {
+			background-color: #f8f8f8; /* Very light grey background for headers */
+			color: #555; /* Slightly lighter text for headers */
+			text-align: left; /* Align header text to the left */
+			padding: 12px 15px; /* Ample padding for header cells */
+			border-bottom: 2px solid #e0e0e0; /* A slightly more prominent bottom border for the header */
+			font-weight: bold; /* Make header text bold */
+			letter-spacing: 0.5px; /* A little letter spacing can enhance cleanliness */
+			// text-transform: uppercase; /* Optional: uppercase headers for a clean, formal look */
+			font-size: 0.9em; /* Slightly smaller font size for headers */
+		}
+
+		/* Table Body Cell Styles */
+		tbody td {
+			padding: 10px 15px; /* Consistent padding for data cells */
+			border-bottom: 1px solid #eeeeee; /* Light border for separation */
+			font-size: 0.95em; /* Slightly smaller font size for data */
+			line-height: 1.4; /* Good line height for readability */
+		}
+
+		/* Zebra Striping (Optional, for Loveliness and Readability) */
+		tbody tr:nth-child(even) {
+			background-color: #fdfdfd; /* Very subtle off-white for even rows */
+		}
+
+		/* Hover Effect (Optional, for Interactivity and Loveliness) */
+		tbody tr:hover {
+			background-color: #f0f8ff; /* A gentle light blue on hover */
+			cursor: pointer; /* Indicate interactivity */
+		}
+
+		/* Remove bottom border from the last row for a cleaner finish */
+		tbody tr:last-child td {
+			border-bottom: none;
+		}
+	}
+
+	.Chart {
+		@extend .card;
+		width: 400px;
+		height: 300px;
+
+		canvas {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+.PlayForm {
+	/* 基礎顏色和透明度 #FFB2B2 */
+	background-color: rgba(255, 255, 255, 0.7);
+	border-radius: 12px;
+	padding: 1.5rem;
+	/* 毛玻璃效果 */
+	backdrop-filter: blur(10px);
+	/* 調整模糊強度 */
+	-webkit-backdrop-filter: blur(10px);
+
+	&.inputting {
+		border: 2px dotted #FFB2B2;
+	}
+}
+
+.Interact {
+	position: absolute;
+	right: 0.1rem;
+	top: 0.1rem;
+	overflow: hidden auto;
+	font-size: 1rem;
+	width: 20rem;
+	z-index: 1002;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.Screen {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ffffff;
+	z-index: 1000; /* 確保在最上層 */
+
+	&Board {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center; /* 垂直居中 */
+		justify-content: center; /* 水平居中 */
+
+		.Title {
+			color: #000;
+			font-size: 4.5rem;
+			font-weight: 600;
+			margin-bottom: 1rem;
+			animation: bounce-subtle 3s ease-in-out infinite;
+		}
+
+		.TitleTagline {
+			color: var(--color-dark-gray);
+			font-size: 1.875rem; /* 30px */
+			font-weight: 500;
+		}
+
+		.play-button {
+			/* 基础样式 */
+			display: inline-flex; /* 让内容在同一行并居中 */
+			align-items: center; /* 垂直居中图标和文字 */
+			justify-content: center; /* 水平居中内容 */
+			padding: 10px 20px; /* 按钮内部填充，提供足够的空间 */
+			border: none; /* 移除默认边框 */
+			border-radius: 9999px; /* 巨大圆角，使其成为药丸状或圆形 */
+			cursor: pointer; /* 鼠标悬停时显示手型 */
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* 选择一个简洁的字体 */
+			font-size: 16px; /* 适中的字号 */
+			font-weight: 600; /* 略粗的字体，增加可读性 */
+			line-height: 1; /* 确保文字和图标对齐 */
+			text-decoration: none; /* 移除可能的下划线 */
+
+			/* 可爱的颜色 */
+			background-color: #8a2be2; /* 紫罗兰色，可爱又活泼 */
+			color: #ffffff; /* 白色文字，与背景形成良好对比 */
+			box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3); /* 柔和的阴影，增加立体感 */
+
+			/* 过渡效果，让交互更顺滑 */
+			transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+		}
+
+		.play-button:hover {
+			background-color: #9932cc; /* 悬停时颜色略深 */
+			box-shadow: 0 6px 16px rgba(138, 43, 226, 0.4); /* 阴影略微扩大 */
+			transform: translateY(-2px); /* 向上微移，增加动感 */
+		}
+
+		.play-button:active {
+			background-color: #7b00b4; /* 点击时颜色更深 */
+			box-shadow: 0 2px 8px rgba(138, 43, 226, 0.2); /* 阴影收缩 */
+			transform: translateY(0); /* 回到原始位置 */
+		}
+
+		/* 播放图标样式 */
+		.play-button .play-icon {
+			pointer-events: none;
+			margin-right: 8px; /* 图标与文字之间留白 */
+			font-size: 18px; /* 图标大小 */
+			/* 如果使用 SVG，这里的样式可能需要调整 */
+		}
+
+		/* 文本样式（确保与图标对齐）*/
+		.play-button .button-text {
+			pointer-events: none;
+			position: relative; /* 辅助定位，确保文本基线对齐 */
+			top: 1px; /* 根据实际情况微调，让文本和图标看起来更居中 */
+		}
+	}
+
+	/* --- 自定義關鍵幀動畫 --- */
+	@keyframes bounce-subtle {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-5px); /* 輕微向上移動 */
+		}
+	}
+}
+
+.Controls {
+	position: absolute;
+	bottom: 3px;
+	left: 3px;
+	width: fit-content;
+	z-index: 1000;
+
+	/* 基础控制按钮样式 - 沿用播放按钮的通用样式 */
+	.control-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 10px 20px;
+		border: none;
+		border-radius: 9999px;
+		cursor: pointer;
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 1;
+		text-decoration: none;
+
+		/* 保持与播放按钮一致的颜色和阴影基调 */
+		background-color: #8a2be2; /* 紫罗兰色 */
+		color: #ffffff;
+		box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+
+		transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+		span {
+			pointer-events: none;
+		}
+	}
+
+	.control-button:hover {
+		background-color: #9932cc;
+		box-shadow: 0 6px 16px rgba(138, 43, 226, 0.4);
+		transform: translateY(-2px);
+	}
+
+	.control-button:active {
+		background-color: #7b00b4;
+		box-shadow: 0 2px 8px rgba(138, 43, 226, 0.2);
+		transform: translateY(0);
+	}
+
+	/* 文本样式，保持与播放按钮一致 */
+	.control-button .button-text {
+		position: relative;
+		top: 1px;
+	}
+
+	/* 暂停按钮特有样式 */
+	.pause-button .control-icon {
+		/* 保持图标与文字的间距 */
+		// margin-right: 8px;
+		/* 调整图标大小以匹配播放图标 */
+		font-size: 18px;
+	}
+
+	/* 继续按钮特有样式 */
+	.resume-button .control-icon {
+		/* 保持图标与文字的间距 */
+		// margin-right: 8px;
+		/* 调整图标大小以匹配播放图标 */
+		font-size: 18px;
+	}
+
+	/* 继续按钮特有样式 */
+	.play-button .control-icon {
+		/* 保持图标与文字的间距 */
+		// margin-right: 8px;
+		/* 调整图标大小以匹配播放图标 */
+		font-size: 18px;
+	}
+
+	.resume-button {
+		display: none;
+	}
+
+	&.paused .resume-button {
+		display: inline-block;
+	}
+
+	&.paused .pause-button {
+		display: none;
+	}
+
+	/* 继续按钮的颜色、阴影和过渡效果与 .control-button (即 .play-button 的基础) 完全一致 */
+	/* 如果要让它在视觉上和“播放”按钮完全一样，只需要复用 .play-button 的类名即可 */
+	/* 例如：<button class="play-button"> 或 <button class="control-button"> */
+}

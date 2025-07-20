@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "The core engine for Play, providing the foundational functionality.",
   "scripts": {
-    "build": "tsc -p tsconfig.json && node ./sass.js"
+    "build": "tsc -p tsconfig.json && node ../serve/scss-build.js && node ../serve/tw-build.js"
   },
   "main": "index.js",
   "license": "MIT",

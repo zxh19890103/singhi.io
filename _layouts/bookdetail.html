@@ -230,8 +230,6 @@ layout: with-nonav
 
 {% if page.math %}
 
-{% include tsenv.html %}
-
 <script>
   // Function to create and show the full-screen dialog
   function createAndShowFullScreenDialog(iframeUrl) {
@@ -272,7 +270,6 @@ layout: with-nonav
       iframeElement.src = 'about:blank'; // Clear iframe src
 
       setTimeout(() => {
-        __sse__.onmessage = null;
         document.body.removeChild(fullScreenDialog); // Remove dialog from DOM
       }, 50);
     });

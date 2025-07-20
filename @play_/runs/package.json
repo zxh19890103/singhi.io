@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.json && node ./sass.js"
+    "build": "tsc -p tsconfig.json && node ../serve/scss-build.js && node ../serve/tw-build.js"
   },
   "dependencies": {
     "@types/three": "^0.178.0"

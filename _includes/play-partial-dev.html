@@ -1,0 +1,61 @@
+<script>
+  var __JekllEnv__ = "{{ jekyll.environment }}";
+  var __tsServerPort__ = "{{ site.tsServerPort | default: 3000 }}";
+  var __tsServerOrigin__ = __JekllEnv__ === 'development' ? `${location.protocol}//${location.hostname}:${__tsServerPort__}/` : "/";
+
+  var __sse__ = new EventSource(`${__tsServerOrigin__}sse`);
+
+  __sse__.addEventListener('reload', () => {
+    window.location.reload();
+  })
+
+  function __getTextContent__() {
+    throw new Error('Considering...');
+  }
+
+  {
+    // Style of Tailwind, Serves App
+    const tailwindLinkStyle = document.createElement('link');
+    tailwindLinkStyle.href = `${__tsServerOrigin__}@play/tailwind.css`
+    tailwindLinkStyle.rel = 'stylesheet'
+    document.head.appendChild(tailwindLinkStyle)
+
+    // Style of App, Engine!
+    const linkStyle = document.createElement('link');
+    linkStyle.href = `${__tsServerOrigin__}@play/style.css`
+    linkStyle.rel = 'stylesheet'
+    document.head.appendChild(linkStyle)
+
+    const importmapScript = document.createElement('script');
+
+    importmapScript.type = 'importmap';
+    importmapScript.textContent = JSON.stringify({
+      "imports": {
+        "three": "/assets/jslibs/three/three.module.js",
+        "three/addons/": "https://threejs.org/examples/jsm/",
+        "react": 'https://cdn.jsdelivr.net/npm/react@19.1.0/+esm',
+        "react/jsx-runtime": 'https://cdn.jsdelivr.net/npm/react@19.1.0/jsx-runtime/+esm',
+        "react-dom": 'https://cdn.jsdelivr.net/npm/react-dom@19.1.0/+esm',
+        "react-dom/client": 'https://cdn.jsdelivr.net/npm/react-dom@19.1.0/client/+esm',
+        "gsap": "https://cdn.skypack.dev/gsap",
+        "@play/engine": `${__tsServerOrigin__}@play/engine/index.js`
+      }
+    });
+    document.head.appendChild(importmapScript);
+
+    const dynamicStyleElement = document.createElement('style')
+    document.head.appendChild(dynamicStyleElement);
+
+    // Update CSS..
+    __sse__.addEventListener('style', async () => {
+      const css = await fetch(`${__tsServerOrigin__}@play/style.css?t=${Date.now()}`).then(r => r.text());
+      dynamicStyleElement.innerHTML = css;
+    })
+
+    const AppModule = document.createElement('script');
+    AppModule.type = 'module';
+    AppModule.src = `${__tsServerOrigin__}@play/runs/{{ page.run }}.js?t={{ site.time | date: '%s' }}`;
+
+    document.body.appendChild(AppModule);
+  }
+</script>

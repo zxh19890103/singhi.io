@@ -15,8 +15,16 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <!-- Page Style -->
-  <link id="PageStyleLink" rel="stylesheet" href="/@play/style.css?t={{site.time | date: '%s'}}">
-  {% include tsenv.html %}
+  <link rel="stylesheet" href="/@play/style.css?t={{site.time | date: '%s'}}">
+
+  {% if jekyll.environment == "production" %}
+  <link rel="stylesheet" href="/@play/engine/style.css?t={{site.time | date: '%s'}}">
+  <link rel="stylesheet" href="/@play/engine/tw.css?t={{site.time | date: '%s'}}">
+  <link rel="stylesheet" href="/@play/runs/style.css?t={{site.time | date: '%s'}}">
+  <link rel="stylesheet" href="/@play/runs/tw.css?t={{site.time | date: '%s'}}">
+  {% else %}
+  <!-- no .. -->
+  {% endif %}
 </head>
 
 <body>
@@ -50,87 +58,15 @@
       </div>
     </div>
   </div>
-  <div class="Content" id="Content">
-    <div class="Intro Screen">
-      <div class="ScreenBoard">
-        <div class="Title">{{ page.title }}&nbsp;🤔</div>
-        <div class="TitleTagline"></div>
-      </div>
-    </div>
-    <div class="Outro Screen">
-      <div class="ScreenBoard">
-        <div class="Title">
-          Thanks for Learning!
-        </div>
-        <div class="TitleTagline">
-          {{ page.date | default: "now" | date: '%B %d, %y' }}
-        </div>
-      </div>
+  <div class="Content" id="Content" />
 
-    </div>
-  </div>
-  <!-- it's a float window on the right-bottom corner -->
-  <div class="Interact controls-container" id="ReactApp" />
+  {% if jekyll.environment == "production" %}
+    {% include play-partial-prod.html %}
+  {% else %}
+    {% include play-partial-dev.html %}
+  {% endif %}
+
   <script>
-    var __sse__ = new EventSource(`${__tsServerOrigin__}sse`);
-
-    __sse__.addEventListener('reload', () => {
-      window.location.reload();
-    })
-
-    function __getTextContent__() {
-      throw new Error('Considering...');
-    }
-
-    {
-
-      // const PageStyleLink = document.head.querySelector('#PageStyleLink');
-      //  <link rel="stylesheet" href="/@play/style.css?t={{site.time | date: '%s'}}" />
-
-      // Style of Tailwind, Serves App
-      const tailwindLinkStyle = document.createElement('link');
-      tailwindLinkStyle.href = `${__tsServerOrigin__}@play/build/tailwind.css`
-      tailwindLinkStyle.rel = 'stylesheet'
-      document.head.appendChild(tailwindLinkStyle)
-
-      // Style of App, Engine!
-      const linkStyle = document.createElement('link');
-      linkStyle.href = `${__tsServerOrigin__}@play/build/style.css`
-      linkStyle.rel = 'stylesheet'
-      document.head.appendChild(linkStyle)
-
-      const importmapScript = document.createElement('script');
-
-      importmapScript.type = 'importmap';
-      importmapScript.textContent = JSON.stringify({
-        "imports": {
-          "three": "/assets/jslibs/three/three.module.js",
-          "three/addons/": "https://threejs.org/examples/jsm/",
-          "react": 'https://cdn.jsdelivr.net/npm/react@19.1.0/+esm',
-          "react/jsx-runtime": 'https://cdn.jsdelivr.net/npm/react@19.1.0/jsx-runtime/+esm',
-          "react-dom": 'https://cdn.jsdelivr.net/npm/react-dom@19.1.0/+esm',
-          "react-dom/client": 'https://cdn.jsdelivr.net/npm/react-dom@19.1.0/client/+esm',
-          "gsap": "https://cdn.skypack.dev/gsap",
-          "@play/engine": `${__tsServerOrigin__}@play/build/engine/index.js`
-        }
-      });
-      document.head.appendChild(importmapScript);
-
-      const dynamicStyleElement = document.createElement('style')
-      document.head.appendChild(dynamicStyleElement);
-
-      __sse__.addEventListener('style', async () => {
-        const css = await fetch(`${__tsServerOrigin__}@play/build/style.css?t=${Date.now()}`).then(r => r.text());
-        dynamicStyleElement.innerHTML = css;
-      })
-
-      const AppModule = document.createElement('script');
-      AppModule.type = 'module';
-      AppModule.src = `${__tsServerOrigin__}@play/build/{{ page.run }}.js?t={{ site.time | date: '%s' }}`;
-
-      document.body.appendChild(AppModule);
-    }
-
     document.addEventListener("DOMContentLoaded", function () {
       const container = document.body.querySelector('#Text');
 

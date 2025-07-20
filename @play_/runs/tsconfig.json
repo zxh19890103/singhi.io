@@ -1,0 +1,16 @@
+{
+  "extends": "../serve/tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "baseUrl": "./",
+    "outDir": "../../_site/@play/runs" /* Specify an output folder for all emitted files. */,
+    "paths": {
+      "@play/engine": ["../engine/index.ts"]
+    }
+  },
+  "references": [
+    {
+      "path": "../engine"
+    }
+  ]
+}

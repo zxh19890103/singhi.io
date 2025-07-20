@@ -47,8 +47,7 @@ feed:
 #   # redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
 
 exclude:
-  - "@play/engine"
-  - "@play/runs"
+  - "@play_"
   - tools
   - node_modules
   - scripts

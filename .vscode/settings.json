@@ -1,5 +1,6 @@
 {
-  "editor.fontFamily": "'Chalkboard SE', 'Yuppy TC'",
+  "editor.fontFamily": " Chalkboard, 'Yuppy SC'",
+  // "editor.fontFamily": "Anonymous Pro",
   "editor.tabSize": 2,
   "editor.fontSize": 16,
   "editor.letterSpacing": 0,
@@ -7,11 +8,11 @@
   "editor.fontLigatures": true,
   "prettier.useEditorConfig": true,
   "editor.minimap.enabled": false,
-  "editor.fontWeight": 300,
+  "editor.fontWeight": 400,
   "window.zoomLevel": 1,
   "prettier.trailingComma": "all",
-  "workbench.colorTheme": "Atom One Light",
+  "workbench.colorTheme": "GitHub Light Colorblind (Beta)",
   "files.exclude": {
-    "**/node_modules": true
+    // "**/node_modules": true
   }
 }

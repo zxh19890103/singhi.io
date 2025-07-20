@@ -2,7 +2,10 @@
   "license": "MIT",
   "version": "0.1.0",
   "scripts": {
-    "bundle": "cd ./scripts && rollup -c ./rollup.config.js"
+    "bundle": "cd ./scripts && rollup -c ./rollup.config.js",
+    "serve": "bundle exec jekyll serve",
+    "build": "JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config.prod.yml",
+    "postbuild": "cd @play_ && yarn build"
   },
   "dependencies": {
     "@babel/core": "^7.6.0",
