@@ -4,8 +4,6 @@ title: Webgl, Creating a window
 src: "http://localhost:4001/opengl/en/Lighting/Colors"
 text: "As we can see, the toy has no red and blue"
 permalink: /play/webgl/creating-a-window
-run: "create-a-window"
-react: true
 math: true
 ---
 

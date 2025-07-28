@@ -1,27 +1,18 @@
 import * as THREE from "three"
-import { CSS2DObject } from "three/addons/renderers/CSS2DRenderer.js"
 import { getPlacement, type Placement } from "../utils/index.js"
+import * as core from '../core/index.js'
 
-export class Formula extends CSS2DObject {
+export class Formula extends core.Text {
   constructor(latex: string, placement: Placement = null) {
     const formula = katex.renderToString(latex, { throwOnError: false })
-
-    const box = document.createElement("div")
-    box.className = "Formula"
-    box.innerHTML = formula
-    super(box)
-
-    this.position.copy(getPlacement(placement))
+    super({}, 'Formula')
+    this.$el.innerHTML = formula;
   }
 
   setLatex(latex: string) {
     const formula = katex.renderToString(latex, { throwOnError: false })
-    this.element.innerHTML = formula
+    this.$el.innerHTML = formula
   }
 
   addLatex() {}
-
-  $for(obj3: THREE.Object3D) {
-    obj3.add(this)
-  }
 }

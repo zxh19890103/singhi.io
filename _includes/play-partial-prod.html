@@ -12,4 +12,8 @@
   }
 }
 </script>
+{% if page.run %}
 <script type="module" src="/@play/runs/{{ page.run }}.js?t={{ site.time | date: '%s' }}"></script>
+{% else %}
+<script type="module" src="/@play/runs/{{ page.path | split: '/' | last | replace: '.md', '' }}.js?t={{ site.time | date: '%s' }}"></script>
+{% endif %}

@@ -11,6 +11,8 @@ import { observeDivSizeChange } from "./utils/index.js";
 import { PlayForm } from "./PlayForm.class.js";
 import { PlayFormOverlay } from "./PlayFormOverlay.class.js";
 import type { JSX } from "react/jsx-runtime";
+import * as core from "./core/types.js";
+import { Arrow } from "./elements/index.js";
 
 export abstract class PlayEngine {
   readonly controllerEnabled: boolean = true;
@@ -40,12 +42,12 @@ export abstract class PlayEngine {
     const camera = new THREE.PerspectiveCamera(
       75, // FOV: Vertical field of view in degrees
       clientWidth / clientHeight, // Aspect Ratio: Width divided by height
-      0.1, // Near: Objects closer than this won't be rendered
-      1000, // Far: Objects farther than this won't be rendered
+      1, // Near: Objects closer than this won't be rendered
+      10000, // Far: Objects farther than this won't be rendered
     );
 
     // Position the camera back so we can see the cube
-    camera.position.z = 0.8;
+    camera.position.z = 800;
 
     // --- Renderer Setup ---
     // The WebGLRenderer renders your scene using WebGL.
@@ -222,9 +224,6 @@ export abstract class PlayEngine {
     };
   }
 
-  protected timeline: Timeline = null;
-  protected timelines: Timeline[] = [];
-
   private getControlsHTML() {
     return `
     <button class="control-button pause-button">
@@ -254,21 +253,51 @@ export abstract class PlayEngine {
 
   protected onInit() {}
 
+  /**
+   * the current
+   */
+  protected timeline: Timeline = null;
+  protected timelines: Timeline[] = [];
+
+  private pushTimelineEvent<K extends TimelineEventType>(
+    type: K,
+    args: TimelineEventTypeArgsMap[K],
+  ) {
+    Array.prototype.push.call(this.timeline.events, { type, args });
+  }
+
+  private elements = new Map<symbol, THREE.Object3D>();
+
+  protected arrow(from: symbol, to: symbol) {
+    console.log("arrow");
+    this.pushTimelineEvent("arrow", [from, to]);
+  }
+
+  private _arrow() {}
+
   protected appear<B extends THREE.Object3D, T extends Constructor<B>>(
     C: T,
+    pos: core.Pos,
+    angle: core.Angle,
     ...args: ConstructorArgs<T>
   ) {
-    this.timeline.events.push({
-      type: "appear",
-      args: [C, args],
-    });
+    const id = Symbol(`id for an instance of ${C.name}`);
+    this.pushTimelineEvent("appear", [C, id, pos, angle, args]);
+    return id;
   }
 
   private _appear<B extends THREE.Object3D, T extends Constructor<B>>(
     C: T,
+    id: symbol,
+    pos: core.Pos,
+    angle: core.Angle,
     ...args: ConstructorArgs<T>
   ) {
     const t = new C(...args);
+    this.elements.set(id, t);
+    t.position.set(...pos);
+    t.rotation.z = angle * THREE.MathUtils.DEG2RAD;
+
     /**
      * default:
      * for Canvas Objects, we use Tween to fade in.
@@ -286,15 +315,17 @@ export abstract class PlayEngine {
     return t;
   }
 
-  protected disappear<B extends THREE.Object3D>() {
-    this.timeline.events.push({
-      type: "disappear",
-      args: [],
-    });
+  protected getElement(id: symbol) {}
+  protected deleteElement(id: symbol) {}
+
+  /**
+   * @param id optional, if provided, disapear the element whose id equals to this, otherwise, choose the last element just created!
+   */
+  protected disappear(id: symbol, ...more: symbol[]) {
+    this.pushTimelineEvent("disappear", [id, ...more]);
   }
 
   private _disappear<B extends THREE.Object3D>(t: B) {
-    // this.world.remove(t);
     this.elementOutroSound.play();
 
     if (t instanceof CSS2DObject) {
@@ -305,50 +336,28 @@ export abstract class PlayEngine {
   }
 
   protected wait(s: number = 1) {
-    this.timeline.events.push({
-      type: "wait",
-      args: [s],
-    });
+    this.pushTimelineEvent("wait", [s]);
   }
 
   /** after alive(), the elements created above will disappear. */
-  protected alive(s: number) {
-    this.timeline.events.push({
-      type: "alive",
-      args: [s],
-    });
+  protected alive(s: number, ...ids: symbol[]) {
+    this.pushTimelineEvent("alive", [s, ...ids]);
   }
 
-  protected activity<T extends THREE.Object3D>(
-    fn: (tl: gsap.core.Timeline, ...elements: T[]) => void,
-  ) {
-    this.timeline.events.push({
-      type: "activity",
-      args: [fn],
-    });
+  protected activity(fn: ActivityFn, ...ids: symbol[]) {
+    this.pushTimelineEvent("activity", [, ...ids]);
   }
 
-  protected interact<T extends THREE.Object3D>(
-    fn: (form: PlayForm, tl: gsap.core.Timeline, ...elements: T[]) => void,
-  ) {
-    this.timeline.events.push({
-      type: "interact",
-      args: [fn],
-    });
+  protected interact(fn: InteractFn, ...ids: symbol[]) {
+    this.pushTimelineEvent("interact", [fn, ...ids]);
   }
 
-  protected interactWith<T extends THREE.Object3D, S extends {}>(
-    ui: (...args: any[]) => JSX.Element,
-    fn: (
-      form: PlayFormOverlay<S>,
-      tl: gsap.core.Timeline,
-      ...elements: T[]
-    ) => void,
+  protected interactWith(
+    ui: InteractUIBuilder,
+    fn: InteractWithFn,
+    ...ids: symbol[]
   ) {
-    this.timeline.events.push({
-      type: "interactWith",
-      args: [ui, fn],
-    });
+    this.pushTimelineEvent("interactWith", [ui, fn, ...ids]);
   }
 
   public playForm: PlayForm = new PlayForm();
@@ -376,10 +385,6 @@ export abstract class PlayEngine {
 
     const { events } = tl;
     const aliveThings: Map<number, AliveThing> = new Map();
-
-    let waitToAlive = [];
-    let waitToActivity = [];
-    let waitToInteract = [];
 
     let eventCursor = 0;
 
@@ -423,27 +428,23 @@ export abstract class PlayEngine {
 
       switch (event.type) {
         case "appear": {
-          const [C, args] = event.args;
-          const t = this._appear(C, ...args);
+          const [C, id, pos, angle, args] = event.args;
+          const t = this._appear(C, id, pos, angle, ...args);
           aliveThings.set(t.id, {
             t,
             age: 0,
             lifetime: 0,
             appearAt: clock.getElapsedTime(),
           });
-
-          waitToAlive.push(t);
-          waitToActivity.unshift(t);
-          waitToInteract.unshift(t);
           break;
         }
         case "disappear": {
-          const t = waitToAlive.pop();
-
-          waitToActivity[0] = null;
-          waitToInteract[0] = null;
-
-          if (!t) break;
+          const [id] = event.args;
+          const t = this.elements.get(id);
+          if (!t) {
+            console.warn(`The element you are finding does not exist.`);
+            break;
+          }
           this._disappear(t);
           aliveThings.delete(t.id);
           break;
@@ -455,36 +456,29 @@ export abstract class PlayEngine {
         }
         case "alive": {
           howToNext = 2;
-          const lifetime = event.args[0]; // s
-          for (const t of waitToAlive) {
+          const [lifetime, ...ids] = event.args; // s
+          const elements = ids.map((id) => this.elements.get(id));
+          for (const t of elements) {
             const at = aliveThings.get(t.id);
             at.lifetime = at.age + lifetime;
           }
-
-          waitToAlive = [];
-          waitToActivity = [];
-          waitToInteract = [];
 
           _delayNext("wait to die", lifetime);
           break;
         }
         case "activity": {
           howToNext = 3;
-          const activityFn = event.args[0]; // fn
+          const [activityFn, ...ids] = event.args; // fn
           const tl = gsap.timeline();
-          activityFn(tl, ...waitToActivity);
-
-          // tl.play();
+          activityFn(tl, ...ids.map((id) => this.elements.get(id)));
           this.mainTimeline.add(tl);
           onTlComplete(tl);
-
-          waitToActivity = [];
           break;
         }
         case "interact": {
           howToNext = 3;
 
-          const interactFn = event.args[0]; // fn
+          const [interactFn, ...ids] = event.args; // fn
           const tl = gsap.timeline();
 
           this.playForm.focus();
@@ -492,37 +486,40 @@ export abstract class PlayEngine {
           /**
            * may be has a bug?
            */
-          interactFn(this.playForm, tl, ...waitToInteract);
+          interactFn(
+            this.playForm,
+            tl,
+            ...ids.map((id) => this.elements.get(id)),
+          );
           this.playForm.wait().then(() => {
             this.resume();
             onTlComplete(tl);
           });
-          waitToInteract = [];
           tl.play();
           break;
         }
         case "interactWith": {
           howToNext = 3;
 
-          const [ui, interactFn] = event.args; // fn
+          const [ui, interactFn, ...ids] = event.args; // fn
+          const elements = ids.map((id) => this.elements.get(id));
           const tl = gsap.timeline();
-          const first = waitToInteract[0];
+
+          const first = elements[0];
 
           const playForm = new PlayFormOverlay({}, "top").createUI(ui);
-          // playForm.focus();
-          // playForm.addTo(this.world);
           this.pause();
           playForm.$for(first);
-          /**
-           * may be has a bug?
-           */
-          interactFn(playForm, tl, ...waitToInteract);
-          // this.playForm.wait().then(() => {
-          //   this.resume();
-          //   onTlComplete(tl);
-          // });
-          waitToInteract = [];
+          interactFn(playForm, tl, ...elements);
           tl.play();
+          break;
+        }
+        case "arrow": {
+          console.log("arrow line");
+          const [from, to] = event.args;
+          const el0 = this.elements.get(from);
+          const el1 = this.elements.get(to);
+          this.world.add(new Arrow(el0.position, el1.position));
           break;
         }
       }
@@ -630,6 +627,15 @@ export abstract class PlayEngine {
     };
   }
 
+  //#region  animations
+  fadein(status: symbol, arg1: number) {}
+  place(controlCenter: symbol, arg1: string, edgeDevice: symbol) {}
+  popup(sensor: symbol, arg1: number) {
+    console.log("not implemented!");
+  }
+  move(edgeDevice: symbol, arg1: string, arg2: number[], arg3: number) {}
+  //#endregion
+
   resume() {
     console.log("resume");
     this.mainTimeline.resume();
@@ -654,8 +660,6 @@ export abstract class PlayEngine {
   seek(progress: number) {}
 }
 
-type ComponentName = string;
-
 type AliveThing = {
   t: THREE.Object3D;
   age: number;
@@ -664,26 +668,45 @@ type AliveThing = {
   disappearAt?: number;
 };
 
-type TimelineEventType =
-  | "appear"
-  | "wait"
-  | "alive"
-  | "disappear"
-  | "activity"
-  | "interact"
-  | "interactWith";
+type ActivityFn = (
+  tl: gsap.core.Timeline,
+  ...elements: THREE.Object3D[]
+) => void;
 
-/**
- * @todo
- */
+type InteractFn = (
+  form: PlayForm,
+  tl: gsap.core.Timeline,
+  ...elements: THREE.Object3D[]
+) => void;
+
+type InteractUIBuilder = (...args: any[]) => JSX.Element;
+
+type InteractWithFn = (
+  form: PlayFormOverlay<Record<string, any>>,
+  tl: gsap.core.Timeline,
+  ...elements: THREE.Object3D[]
+) => void;
+
 type TimelineEventTypeArgsMap = {
-  appear: [];
+  appear: [any, symbol, core.Pos, core.Angle, any[]];
+  wait: [number];
+  arrow: [symbol, symbol];
+  alive: [number, ...symbol[]];
+  disappear: [symbol, ...symbol[]];
+  activity: [ActivityFn, ...symbol[]];
+  interact: [InteractFn, ...symbol[]];
+  interactWith: [InteractUIBuilder, InteractWithFn, ...symbol[]];
 };
 
-type TimelineEvent = {
-  type: TimelineEventType;
-  args: any[];
+type TimelineEventType = keyof TimelineEventTypeArgsMap;
+type TimelineEventTypeEventMap = {
+  [K in keyof TimelineEventTypeArgsMap]: {
+    type: K;
+    args: TimelineEventTypeArgsMap[K];
+  };
 };
+
+type TimelineEvent = TimelineEventTypeEventMap[TimelineEventType];
 
 type Timeline = {
   id: number;

@@ -64,7 +64,20 @@ export class PlayFormOverlay<S extends Record<string, any>> {
           this._render = undefined;
         };
       }, []);
-      return builder(this);
+      return React.createElement(
+        "div",
+        {},
+        builder(this),
+        React.createElement(
+          "button",
+          {
+            onClick: () => {
+              console.log("hi");
+            },
+          },
+          "click",
+        ),
+      );
     };
     createRoot(this._el).render(createElement(Wrapper));
     return this;

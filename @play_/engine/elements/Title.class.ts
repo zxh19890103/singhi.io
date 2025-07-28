@@ -1,17 +1,9 @@
-import * as THREE from "three";
-import { CSS2DObject } from "three/addons/renderers/CSS2DRenderer.js";
 import { type Placement, getPlacement } from "../utils/index.js";
+import * as core from "../core/index.js";
 
-export class Title extends CSS2DObject {
+export class Title extends core.Text {
   constructor(text: string, placement: Placement = null) {
-    const box = document.createElement("div");
-    box.className = "Title";
-    box.innerHTML = `<h2>${text}</h2>`;
-    super(box);
-    this.position.copy(getPlacement(placement));
-  }
-
-  $for(obj3: THREE.Object3D) {
-    obj3.add(this);
+    super({}, "Title");
+    this.$el.innerText = text;
   }
 }

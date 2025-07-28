@@ -7,49 +7,31 @@ import { App } from "./color-blend-form.js";
 class Play extends PlayEngine {
   readonly controllerEnabled = true;
 
-  /**
-   * multiple threads.
-   */
-  async play1() {
-    this.thread();
-
-    this.appear(elements.Title, "So, transparent = true");
-    this.wait(4);
-    this.disappear();
-    this.appear(elements.Color, 0xfe1001, 0.2, 0.7);
-    this.appear(elements.Color, 0x12ef91, 0.1, 0.4);
-
-    this.activity((tl, color1, color2) => {
-      tl.to(color1.position, { x: -0.3, duration: 6 }, 0);
-      tl.to(color2.position, { x: 0.3, duration: 6 }, 0);
-    });
-
-    this.wait(2);
-    this.appear(elements.Title, "now interact!");
-
-    this.activity((tl, title) => {
-      tl.to(title.position, {
-        y: -0.2,
-        duration: 4,
-      });
-    });
-
-    this.interact((form, tl, title, color2: elements.Color, color1) => {
-      form.spy("key1", (size: number) => {
-        console.log("key1's value = ", size);
-        color2.scale.multiplyScalar(2);
-      });
-    });
-
-    this.alive(4);
-    this.appear(elements.Title, "fine!");
-  }
-
   play(): void {
     this.thread();
-    this.appear(elements.Title, "Hi");
-    this.interactWith(() => <div>Hello</div>, (form, tl, title) => {
+
+    const sensor = this.appear(elements.Circle, [100, 300], 0, 0xfe9100, {
+      radius: 30,
+      label: "感測器",
     });
+    this.popup(sensor, 2);
+
+    const edgeDevice = this.appear(elements.Box, [300, 300], 0, 0xfe0190, {
+      size: [80, 40, 30],
+      label: "邊緣裝置",
+    });
+
+    // this.move(edgeDevice, "to", [300, 300], 2);
+    const controlCenter = this.appear(elements.Box, [500, 300], 0, 0xfe0010, {
+      size: [100, 50],
+      label: "控制中心",
+    });
+    // this.place(controlCenter, "above", edgeDevice);
+    const status = this.appear(elements.Label, [500, 230], 0, "狀態顯示");
+    // this.fadein(status, 1);
+    this.arrow(sensor, edgeDevice);
+    this.arrow(edgeDevice, controlCenter);
+    // this.appear(elements.Line, controlCenter, status);
   }
 
   protected override onInit(): void {

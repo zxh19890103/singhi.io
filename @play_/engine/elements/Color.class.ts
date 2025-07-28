@@ -1,17 +1,23 @@
 import * as THREE from "three";
+import * as core from "../core/index.js";
 
-export class Color extends THREE.Mesh {
-  constructor(color: number, size: number = 0.1, alpha: number = 0) {
-    const geometry = new THREE.PlaneGeometry(size, size);
+type Options = { size: number; alpha: number };
+
+export class Color extends core.Mesh<Options> {
+  constructor(color: THREE.ColorRepresentation, options: core.InputOptions<Options>) {
+    const geometry = new THREE.PlaneGeometry(options.size, options.size);
     const material = new THREE.MeshBasicMaterial({
       color: color,
       transparent: true,
-      opacity: alpha,
+      opacity: options.alpha,
       side: THREE.DoubleSide,
     });
-    super(geometry, material);
 
-    this.geometry.computeBoundingSphere();
-    this.geometry.computeBoundingBox();
+    super({
+      geometry,
+      material,
+      color,
+      ...options,
+    });
   }
 }

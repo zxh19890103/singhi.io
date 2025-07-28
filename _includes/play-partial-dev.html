@@ -2,6 +2,8 @@
   var __JekllEnv__ = "{{ jekyll.environment }}";
   var __tsServerPort__ = "{{ site.tsServerPort | default: 3000 }}";
   var __tsServerOrigin__ = __JekllEnv__ === 'development' ? `${location.protocol}//${location.hostname}:${__tsServerPort__}/` : "/";
+  var __MdFileName = "{{ page.path | split: '/' | last | replace: '.md', '' }}";
+  var __RUNJS__ = "{{ page.run }}" || __MdFileName;
 
   var __sse__ = new EventSource(`${__tsServerOrigin__}sse`);
 
@@ -54,7 +56,7 @@
 
     const AppModule = document.createElement('script');
     AppModule.type = 'module';
-    AppModule.src = `${__tsServerOrigin__}@play/runs/{{ page.run }}.js?t={{ site.time | date: '%s' }}`;
+    AppModule.src = `${__tsServerOrigin__}@play/runs/${__RUNJS__}.js?t={{ site.time | date: '%s' }}`;
 
     document.body.appendChild(AppModule);
   }

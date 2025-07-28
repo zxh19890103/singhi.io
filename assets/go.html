@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>光合作用動畫</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to top, #d0f4f7, #ffffff);
+      font-family: sans-serif;
+    }
+
+    #info {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 24px;
+      color: #2c3e50;
+      text-shadow: 1px 1px 2px white;
+      z-index: 1;
+    }
+
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="info"></div>
+<script type="importmap">
+{
+  "imports": {
+    "three": "/assets/jslibs/three/three.module.js",
+    "three/addons/": "https://threejs.org/examples/jsm/"
+  }
+}
+</script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 3, 8);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enablePan = false;
+    controls.enableDamping = true;
+
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(5, 10, 7);
+    scene.add(light);
+
+    // 地面
+    const ground = new THREE.Mesh(
+      new THREE.PlaneGeometry(20, 20),
+      new THREE.MeshStandardMaterial({ color: '#8BC34A' })
+    );
+    ground.rotation.x = -Math.PI / 2;
+    scene.add(ground);
+
+    // 小樹
+    const trunk = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.1, 0.15, 1),
+      new THREE.MeshStandardMaterial({ color: '#8B5A2B' })
+    );
+    trunk.position.y = 0.5;
+    scene.add(trunk);
+
+    const leaves = new THREE.Mesh(
+      new THREE.SphereGeometry(0.6, 16, 16),
+      new THREE.MeshStandardMaterial({ color: '#2E7D32' })
+    );
+    leaves.position.y = 1.3;
+    scene.add(leaves);
+
+    // 太陽
+    const sun = new THREE.Mesh(
+      new THREE.SphereGeometry(0.5, 16, 16),
+      new THREE.MeshBasicMaterial({ color: '#FFEB3B' })
+    );
+    sun.position.set(-4, 4, -2);
+    scene.add(sun);
+
+    // 光線效果
+    const lightBeam = new THREE.Mesh(
+      new THREE.ConeGeometry(1.5, 4, 32, 1, true),
+      new THREE.MeshBasicMaterial({ color: '#FFFF0088', transparent: true, opacity: 0.5, side: THREE.DoubleSide })
+    );
+    lightBeam.rotation.x = -Math.PI / 2;
+    lightBeam.position.set(0, 3, 0);
+    lightBeam.scale.set(0, 0, 0);
+    scene.add(lightBeam);
+
+    // 文字顯示
+    const info = document.getElementById('info');
+    const steps = [
+      '光合作用是什麼？',
+      '太陽光照射到植物葉片',
+      '吸收 CO₂（二氧化碳）與水',
+      '合成葡萄糖並釋放氧氣',
+      '植物利用能量生長！'
+    ];
+
+    let timer = 0;
+
+    function showStep(s) {
+      info.textContent = steps[s] || '';
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+
+      timer++;
+
+      if (timer === 60) {
+        showStep(1);
+        lightBeam.scale.set(1, 1, 1);
+      }
+      if (timer === 120) {
+        showStep(2);
+        leaves.material.color.set('#4CAF50');
+      }
+      if (timer === 180) {
+        showStep(3);
+        leaves.material.emissive = new THREE.Color('#66BB6A');
+      }
+      if (timer === 240) {
+        showStep(4);
+        trunk.scale.y = 1.2;
+        leaves.scale.set(1.2, 1.2, 1.2);
+      }
+    }
+
+    showStep(0);
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+
+</html>

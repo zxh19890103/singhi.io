@@ -1,18 +1,17 @@
-import * as THREE from "three"
-import { CSS2DObject } from "three/addons/renderers/CSS2DRenderer.js"
-import { getPlacement, type Placement } from "../utils/index.js"
-import type { Chart as ChartType } from "chart.js"
+import * as THREE from "three";
+import { CSS2DObject } from "three/addons/renderers/CSS2DRenderer.js";
+import { getPlacement, type Placement } from "../utils/index.js";
+import type { Chart as ChartType } from "chart.js";
+import * as core from "../core/index.js";
 
-export class LineChart extends CSS2DObject {
-  readonly chart: ChartType
+export class LineChart extends core.Text {
+  readonly chart: ChartType;
 
   constructor(data: any, placement: Placement = null) {
-    const box = document.createElement("div")
-    const canvas = document.createElement("canvas")
-    box.appendChild(canvas)
-    box.className = "Chart"
+    super({}, "Chart");
 
-    super(box)
+    const canvas = document.createElement("canvas");
+    this.$el.appendChild(canvas);
 
     this.chart = new Chart(canvas, {
       type: "line",
@@ -33,9 +32,9 @@ export class LineChart extends CSS2DObject {
           },
         },
       },
-    })
+    });
 
-    this.position.copy(getPlacement(placement))
+    this.position.copy(getPlacement(placement));
   }
 
   setData(data: string) {}
@@ -43,11 +42,7 @@ export class LineChart extends CSS2DObject {
     this.chart.data.datasets[0].data.push({
       x: factor,
       y: result,
-    })
-    this.chart.update()
-  }
-
-  $for(obj3: THREE.Object3D) {
-    obj3.add(this)
+    });
+    this.chart.update();
   }
 }
