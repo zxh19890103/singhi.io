@@ -275,7 +275,7 @@
 		font-size: 0.84em;
 		z-index: 45;
 		box-sizing: border-box;
-		background-color: rgb(30, 40, 49);
+		background-color: rgb(0, 0, 0);
 		color: #fff;
 		transition: transform 0.1s ease-in-out;
 
@@ -292,6 +292,10 @@
 		@include ifmob {
 			display: none;
 		}
+	}
+
+	.Book_Top_Bar, .Book_Read_Progress, .Book__Side {
+		background-color: #000;
 	}
 
 	.Book__Chapters {

@@ -57,7 +57,6 @@ layout: with-nonav
       left: 0;
       top: 0;
       height: 1rem;
-      background-color: rgb(30, 40, 49);
   "></div>
 
   <div class="Book_Read_Progress" style="
@@ -67,7 +66,6 @@ layout: with-nonav
       height: fit-content;
       left: 0;
       bottom: 0;
-      background-color: rgb(30, 40, 49);
     ">
     <div class="IN" style="
         font-size: 0.8rem;
@@ -226,10 +224,36 @@ layout: with-nonav
     BookContent.classList.add('kiddy-font-disabled');
     document.querySelector('.IhateThisKiddyFont').style.display = 'none';
   }
+
+  function openFullscreen(evt) {
+    const elem = document.documentElement; // 預設全屏整個頁面
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { // Safari
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { // IE11
+      elem.msRequestFullscreen();
+    }
+
+    evt.target.style.display = 'none';
+    evt.target.nextElementSibling.style.display = '';
+  }
+
+  function closeFullscreen(evt) {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { // Safari
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // IE11
+      document.msExitFullscreen();
+    }
+
+    evt.target.style.display = 'none';
+    evt.target.previousElementSibling.style.display = '';
+  }
 </script>
 
 {% if page.math %}
-
 <script>
   // Function to create and show the full-screen dialog
   function createAndShowFullScreenDialog(iframeUrl) {
