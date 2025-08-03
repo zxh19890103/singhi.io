@@ -53,7 +53,7 @@ void main()
 }
 ```
 
-既然我們已經知道如何載入透明紋理，現在是時候將它應用到實踐中，在[深度測試](https://learnopengl.com/Advanced-OpenGL/Depth-testing)章節介紹的基礎場景中添加幾片草葉。
+既然我們已經知道如何載入透明紋理，現在是時候將它應用到實踐中，在[深度測試](/opengl/Advanced-OpenGL/Depth-testing)章節介紹的基礎場景中添加幾片草葉。
 
 我們創建一個小的 `vector` 陣列，其中添加了幾個 `glm::vec3` 向量來表示草葉的位置：
 

@@ -338,7 +338,7 @@ RenderQuad();
 
 ## 複雜物件
 
-我們已經展示了如何使用法線貼圖以及切線空間變換，透過手動計算切線和副切線向量來實現。幸運的是，我們不需要經常手動計算這些向量。大多數情況下，你只需要在自訂模型加載器中實現一次，或者像我們這裡一樣，使用基於 Assimp 的[模型加載器](https://learnopengl.com/Model-Loading/Assimp)。
+我們已經展示了如何使用法線貼圖以及切線空間變換，透過手動計算切線和副切線向量來實現。幸運的是，我們不需要經常手動計算這些向量。大多數情況下，你只需要在自訂模型加載器中實現一次，或者像我們這裡一樣，使用基於 Assimp 的[模型加載器](/opengl/Model-Loading/Assimp)。
 
 Assimp 提供了一個非常實用的配置選項，叫做 `aiProcess_CalcTangentSpace`，在加載模型時可以啟用它。當你將 `aiProcess_CalcTangentSpace` 位元傳給 Assimp 的 `ReadFile` 函式時，Assimp 會為每個載入的頂點計算平滑的切線和副切線向量，類似於我們本章節所做的。
 

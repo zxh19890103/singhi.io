@@ -17,7 +17,7 @@ permalink: /opengl/en/Lighting/Light-casters
 
 All the lighting we've used so far came from a single source that is a single point in space. It gives good results, but in the real world we have several types of light that each act different. A light source that _casts_ light upon objects is called a `light caster`. In this chapter we'll discuss several different types of light casters. Learning to simulate different light sources is yet another tool in your toolbox to further enrich your environments.
 
-We'll first discuss a directional light, then a point light which is an extension of what we had before, and lastly we'll discuss spotlights. In the [next](https://learnopengl.com/Lighting/Multiple-lights) chapter we'll combine several of these different light types into one scene.
+We'll first discuss a directional light, then a point light which is an extension of what we had before, and lastly we'll discuss spotlights. In the [next](/opengl/en/Lighting/Multiple-lights) chapter we'll combine several of these different light types into one scene.
 
 ## Directional Light
 
@@ -52,7 +52,7 @@ Note that we first negate the `light.direction` vector. The lighting calculation
 
 The resulting `lightDir` vector is then used as before in the diffuse and specular computations.
 
-To clearly demonstrate that a directional light has the same effect on multiple objects we revisit the container party scene from the end of the [Coordinate systems](https://learnopengl.com/Getting-started/Coordinate-Systems) chapter. In case you missed the party we defined 10 different [container positions](https://learnopengl.com/code_viewer.php?code=lighting/light_casters_container_positions) and generated a different model matrix per container where each model matrix contained the appropriate local-to-world transformations:
+To clearly demonstrate that a directional light has the same effect on multiple objects we revisit the container party scene from the end of the [Coordinate systems](/opengl/en/Getting-started/Coordinate-Systems) chapter. In case you missed the party we defined 10 different [container positions](https://learnopengl.com/code_viewer.php?code=lighting/light_casters_container_positions) and generated a different model matrix per container where each model matrix contained the appropriate local-to-world transformations:
 
 ```cpp
 for(unsigned int i = 0; i < 10; i++)

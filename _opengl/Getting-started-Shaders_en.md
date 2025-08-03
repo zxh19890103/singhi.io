@@ -15,7 +15,7 @@ gltopic: Shaders
 permalink: /opengl/en/Getting-started/Shaders
 ---
 
-As mentioned in the [Hello Triangle](https://learnopengl.com/Getting-started/Hello-Triangle) chapter, shaders are little programs that rest on the GPU. These programs are run for each specific section of the graphics pipeline. In a basic sense, shaders are nothing more than programs transforming inputs to outputs. Shaders are also very isolated programs in that they're not allowed to communicate with each other; the only communication they have is via their inputs and outputs.
+As mentioned in the [Hello Triangle](/opengl/en/Getting-started/Hello-Triangle) chapter, shaders are little programs that rest on the GPU. These programs are run for each specific section of the graphics pipeline. In a basic sense, shaders are nothing more than programs transforming inputs to outputs. Shaders are also very isolated programs in that they're not allowed to communicate with each other; the only communication they have is via their inputs and outputs.
 
 In the previous chapter we briefly touched the surface of shaders and how to properly use them. We will now explain shaders, and specifically the OpenGL Shading Language, in a more general fashion.
 

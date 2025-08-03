@@ -70,7 +70,7 @@ To enable face culling we only have to enable OpenGL's `GL_CULL_FACE` option:
 glEnable(GL_CULL_FACE);
 ```
 
-From this point on, all the faces that are not front-faces are discarded (try flying inside the cube to see that all inner faces are indeed discarded). Currently we save over 50% of performance on rendering fragments if OpenGL decides to render the back faces first (otherwise depth testing would've discarded them already). Do note that this only really works with closed shapes like a cube. We do have to disable face culling again when we draw the grass leaves from the [previous](https://learnopengl.com/Advanced-OpenGL/Blending) chapter, since their front **and** back face should be visible.
+From this point on, all the faces that are not front-faces are discarded (try flying inside the cube to see that all inner faces are indeed discarded). Currently we save over 50% of performance on rendering fragments if OpenGL decides to render the back faces first (otherwise depth testing would've discarded them already). Do note that this only really works with closed shapes like a cube. We do have to disable face culling again when we draw the grass leaves from the [previous](/opengl/en/Advanced-OpenGL/Blending) chapter, since their front **and** back face should be visible.
 
 OpenGL allows us to change the type of face we want to cull as well. What if we want to cull front faces and not the back faces? We can define this behavior with `glCullFace`:
 

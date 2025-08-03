@@ -23,7 +23,7 @@ You can see that with shadows it becomes much more obvious how the objects relat
 
 Shadows are a bit tricky to implement though, specifically because in current real-time (rasterized graphics) research a perfect shadow algorithm hasn't been developed yet. There are several good shadow approximation techniques, but they all have their little quirks and annoyances which we have to take into account.
 
-One technique used by most videogames that gives decent results and is relatively easy to implement is `shadow mapping`. Shadow mapping is not too difficult to understand, doesn't cost too much in performance and quite easily extends into more advanced algorithms (like [Omnidirectional Shadow Maps](https://learnopengl.com/Advanced-Lighting/Shadows/Point-Shadows) and [Cascaded Shadow Maps](https://learnopengl.com/Guest-Articles/2021/CSM)).
+One technique used by most videogames that gives decent results and is relatively easy to implement is `shadow mapping`. Shadow mapping is not too difficult to understand, doesn't cost too much in performance and quite easily extends into more advanced algorithms (like [Omnidirectional Shadow Maps](/opengl/en/Advanced-Lighting/Shadows/Point-Shadows) and [Cascaded Shadow Maps](https://learnopengl.com/Guest-Articles/2021/CSM)).
 
 ## Shadow mapping
 
@@ -35,7 +35,7 @@ Here all the blue lines represent the fragments that the light source can see. T
 
 We want to get the point on the ray where it first hit an object and compare this _closest point_ to other points on this ray. We then do a basic test to see if a test point's ray position is further down the ray than the closest point and if so, the test point must be in shadow. Iterating through possibly thousands of light rays from such a light source is an extremely inefficient approach and doesn't lend itself too well for real-time rendering. We can do something similar, but without casting light rays. Instead, we use something we're quite familiar with: the depth buffer.
 
-You may remember from the [depth testing](https://learnopengl.com/Advanced-OpenGL/Depth-testing) chapter that a value in the depth buffer corresponds to the depth of a fragment clamped to \[0,1\] from the camera's point of view. What if we were to render the scene from the light's perspective and store the resulting depth values in a texture? This way, we can sample the closest depth values as seen from the light's perspective. After all, the depth values show the first fragment visible from the light's perspective. We store all these depth values in a texture that we call a `depth map` or `shadow map`.
+You may remember from the [depth testing](/opengl/en/Advanced-OpenGL/Depth-testing) chapter that a value in the depth buffer corresponds to the depth of a fragment clamped to \[0,1\] from the camera's point of view. What if we were to render the scene from the light's perspective and store the resulting depth values in a texture? This way, we can sample the closest depth values as seen from the light's perspective. After all, the depth values show the first fragment visible from the light's perspective. We store all these depth values in a texture that we call a `depth map` or `shadow map`.
 
 ![](https://learnopengl.com/img/advanced-lighting/shadow_mapping_theory_spaces.png)
 
@@ -51,7 +51,7 @@ Shadow mapping therefore consists of two passes: first we render the depth map, 
 
 ## The depth map
 
-The first pass requires us to generate a depth map. The depth map is the depth texture as rendered from the light's perspective that we'll be using for testing for shadows. Because we need to store the rendered result of a scene into a texture we're going to need [framebuffers](https://learnopengl.com/Advanced-OpenGL/Framebuffers) again.
+The first pass requires us to generate a depth map. The depth map is the depth texture as rendered from the light's perspective that we'll be using for testing for shadows. Because we need to store the rendered result of a scene into a texture we're going to need [framebuffers](/opengl/en/Advanced-OpenGL/Framebuffers) again.
 
 First we'll create a framebuffer object for rendering the depth map:
 
@@ -186,7 +186,7 @@ glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 Here the `RenderScene` function takes a shader program, calls all relevant drawing functions and sets the corresponding model matrices where necessary.
 
-The result is a nicely filled depth buffer holding the closest depth of each visible fragment from the light's perspective. By rendering this texture onto a 2D quad that fills the screen (similar to what we did in the post-processing section at the end of the [framebuffers](https://learnopengl.com/Advanced-OpenGL/Framebuffers) chapter) we get something like this:
+The result is a nicely filled depth buffer holding the closest depth of each visible fragment from the light's perspective. By rendering this texture onto a 2D quad that fills the screen (similar to what we did in the post-processing section at the end of the [framebuffers](/opengl/en/Advanced-OpenGL/Framebuffers) chapter) we get something like this:
 
 ![](https://learnopengl.com/img/advanced-lighting/shadow_mapping_depth_map.png)
 
@@ -294,7 +294,7 @@ void main()
 }
 ```
 
-The fragment shader is largely a copy from what we used in the [advanced lighting](https://learnopengl.com/Advanced-Lighting/Advanced-Lighting) chapter, but with an added shadow calculation. We declared a function `ShadowCalculation` that does most of the shadow work. At the end of the fragment shader, we multiply the diffuse and specular contributions by the inverse of the `shadow` component e.g. how much the fragment is _not_ in shadow. This fragment shader takes as extra input the light-space fragment position and the depth map generated from the first render pass.
+The fragment shader is largely a copy from what we used in the [advanced lighting](/opengl/en/Advanced-Lighting/Advanced-Lighting) chapter, but with an added shadow calculation. We declared a function `ShadowCalculation` that does most of the shadow work. At the end of the fragment shader, we multiply the diffuse and specular contributions by the inverse of the `shadow` component e.g. how much the fragment is _not_ in shadow. This fragment shader takes as extra input the light-space fragment position and the depth map generated from the first render pass.
 
 The first thing to do to check whether a fragment is in shadow, is transform the light-space fragment position in clip-space to normalized device coordinates. When we output a clip-space vertex position to `gl_Position` in the vertex shader, OpenGL automatically does a perspective divide e.g. transform clip-space coordinates in the range \[`-w`,`w`\] to \[`-1`,`1`\] by dividing the `x`, `y` and `z` component by the vector's `w` component. As the clip-space `FragPosLightSpace` is not passed to the fragment shader through `gl_Position`, we have to do this perspective divide ourselves:
 
@@ -410,7 +410,7 @@ A disadvantage of using a shadow bias is that you're applying an offset to the a
 
 ![](https://learnopengl.com/img/advanced-lighting/shadow_mapping_peter_panning.png)
 
-This shadow artifact is called `peter panning` since objects seem slightly _detached_ from their shadows. We can use a little trick to solve most of the peter panning issue by using front face culling when rendering the depth map. You may remember from the [face culling](https://learnopengl.com/Advanced-OpenGL/Face-Culling) chapter that OpenGL by default culls back-faces. By telling OpenGL we want to cull front faces during the shadow map stage we're switching that order around.
+This shadow artifact is called `peter panning` since objects seem slightly _detached_ from their shadows. We can use a little trick to solve most of the peter panning issue by using front face culling when rendering the depth map. You may remember from the [face culling](/opengl/en/Advanced-OpenGL/Face-Culling) chapter that OpenGL by default culls back-faces. By telling OpenGL we want to cull front faces during the shadow map stage we're switching that order around.
 
 Because we only need depth values for the depth map it shouldn't matter for solid objects whether we take the depth of their front faces or their back faces. Using their back face depths doesn't give wrong results as it doesn't matter if we have shadows inside objects; we can't see there anyways.
 
@@ -520,7 +520,7 @@ There is a difference between rendering the depth map with an orthographic or a 
 
 Perspective projections make most sense for light sources that have actual locations, unlike directional lights. Perspective projections are most often used with spotlights and point lights, while orthographic projections are used for directional lights.
 
-Another subtle difference with using a perspective projection matrix is that visualizing the depth buffer will often give an almost completely white result. This happens because with perspective projection the depth is transformed to non-linear depth values with most of its noticeable range close to the near plane. To be able to properly view the depth values as we did with the orthographic projection you first want to transform the non-linear depth values to linear as we discussed in the [depth testing](https://learnopengl.com/Advanced-OpenGL/Depth-testing) chapter:
+Another subtle difference with using a perspective projection matrix is that visualizing the depth buffer will often give an almost completely white result. This happens because with perspective projection the depth is transformed to non-linear depth values with most of its noticeable range close to the near plane. To be able to properly view the depth values as we did with the orthographic projection you first want to transform the non-linear depth values to linear as we discussed in the [depth testing](/opengl/en/Advanced-OpenGL/Depth-testing) chapter:
 
 ```cpp
 #version 330 core

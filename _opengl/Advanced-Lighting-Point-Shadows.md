@@ -20,12 +20,12 @@ permalink: /opengl/Advanced-Lighting/Point-Shadows
 本章的重點則是如何在**所有方向上**產生動態陰影。這項技術非常適合用於**點光源（point light）**，因為真實世界中的點光源會向所有方向投射陰影。這種技術被稱為**點光源陰影（point shadows）**，更正式一點的名稱是「**全向陰影貼圖（omnidirectional shadow maps）**」。
 
 {% include box.html content="
-本章是建立在前一章 [陰影貼圖](https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping) 的基礎之上，因此若您尚未熟悉傳統的陰影貼圖技術，建議先閱讀該章節。
+本章是建立在前一章 [陰影貼圖](/opengl/Advanced-Lighting/Shadows/Shadow-Mapping) 的基礎之上，因此若您尚未熟悉傳統的陰影貼圖技術，建議先閱讀該章節。
 " color="green" %}
 
 這項技術與方向性陰影貼圖基本上非常類似：我們從光源的視角生成一個深度圖，然後根據當前像素（fragment）的位置來取樣該深度圖，並將每個像素與儲存的深度值進行比較，以判斷該像素是否處於陰影之中。主要的不同點在於**所使用的深度圖類型不同**。
 
-我們需要的深度圖必須從點光源的所有方向來渲染整個場景，因此普通的 2D 深度圖並不適用。那如果我們改用[立方體貼圖（cubemap）](https://learnopengl.com/Advanced-OpenGL/Cubemaps) 呢？由於立方體貼圖能夠以 6 個面來儲存完整的環境資訊，我們可以將整個場景分別渲染到立方體貼圖的每一個面上，並將這些面作為點光源四周的深度資訊來取樣。
+我們需要的深度圖必須從點光源的所有方向來渲染整個場景，因此普通的 2D 深度圖並不適用。那如果我們改用[立方體貼圖（cubemap）](/opengl/Advanced-OpenGL/Cubemaps) 呢？由於立方體貼圖能夠以 6 個面來儲存完整的環境資訊，我們可以將整個場景分別渲染到立方體貼圖的每一個面上，並將這些面作為點光源四周的深度資訊來取樣。
 
 ![](https://learnopengl.com/img/advanced-lighting/point_shadows_diagram.png)
 
@@ -110,7 +110,7 @@ RenderScene();
 
 ### 光源空間變換
 
-設定好幀緩衝和立方體貼圖後，我們需要一種方法將場景的所有幾何體轉換到光源在所有 6 個方向上相關的光源空間。就像[陰影貼圖](https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping)章節一樣，我們需要一個光源空間變換矩陣 \\(T\\)，但這次是每個面一個。
+設定好幀緩衝和立方體貼圖後，我們需要一種方法將場景的所有幾何體轉換到光源在所有 6 個方向上相關的光源空間。就像[陰影貼圖](/opengl/Advanced-Lighting/Shadows/Shadow-Mapping)章節一樣，我們需要一個光源空間變換矩陣 \\(T\\)，但這次是每個面一個。
 
 每個光源空間變換矩陣都包含一個投影矩陣和一個視圖矩陣。對於投影矩陣，我們將使用透視投影矩陣；光源代表空間中的一個點，因此透視投影是最合理的。每個光源空間變換矩陣都使用相同的投影矩陣：
 
@@ -147,7 +147,7 @@ shadowTransforms.push_back(shadowProj *
 
 ### 深度著色器
 
-為了將深度值渲染到深度立方體貼圖，我們總共需要三個著色器：一個頂點著色器、一個片段著色器，以及一個介於兩者之間的[幾何著色器](https://learnopengl.com/Advanced-OpenGL/Geometry-Shader)。
+為了將深度值渲染到深度立方體貼圖，我們總共需要三個著色器：一個頂點著色器、一個片段著色器，以及一個介於兩者之間的[幾何著色器](/opengl/Advanced-OpenGL/Geometry-Shader)。
 
 幾何著色器將負責將所有世界空間頂點轉換到 6 個不同的光源空間。因此，頂點著色器只是簡單地將頂點轉換到世界空間並將它們導向幾何著色器：
 
@@ -349,7 +349,7 @@ float currentDepth = length(fragToLight);
 
 這會回傳一個與 `closestDepth` 相同（或更大）範圍的深度值。
 
-現在我們可以比較這兩個深度值，看看哪個離光源更近，並判斷當前片段是否處於陰影中。我們也包含了陰影偏移（shadow bias），這樣就不會像[上一章](https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping)討論的那樣出現陰影痤瘡（shadow acne）。
+現在我們可以比較這兩個深度值，看看哪個離光源更近，並判斷當前片段是否處於陰影中。我們也包含了陰影偏移（shadow bias），這樣就不會像[上一章](/opengl/Advanced-Lighting/Shadows/Shadow-Mapping)討論的那樣出現陰影痤瘡（shadow acne）。
 
 ```cpp
 float bias = 0.05;

@@ -64,7 +64,7 @@ SSAO 需要幾何資訊，因為我們必須有辦法判斷片段（fragment）�
 由於 SSAO 是螢幕空間技術，我們在一個填滿螢幕的 2D 四邊形（quad）上，對每個片段計算其遮蔽效果。這代表我們並沒有場景的幾何資訊。我們能做的是把每個片段的幾何資料渲染到螢幕空間的貼圖中，之後傳送給 SSAO 著色器使用，這樣就能存取每片段的幾何資料。如果你跟著前一章節的教學，你會發現這跟延遲渲染（deferred rendering）中的 G-buffer 配置非常相似。因此，SSAO 非常適合搭配延遲渲染一起使用，因為 G-buffer 已經包含了位置和法線向量。
 
 {% include box.html content="
-本章將基於稍微簡化版的延遲渲染器（參考[延遲光照](https://learnopengl.com/Advanced-Lighting/Deferred-Shading)章節）來實作 SSAO。如果你不太清楚什麼是延遲光照，建議先閱讀相關章節。
+本章將基於稍微簡化版的延遲渲染器（參考[延遲光照](/opengl/Advanced-Lighting/Deferred-Shading)章節）來實作 SSAO。如果你不太清楚什麼是延遲光照，建議先閱讀相關章節。
 " color="green" %}
 
 由於場景物件的每個片段位置和法線資料都可取得，幾何階段的片段著色器相對簡單：
@@ -114,7 +114,7 @@ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 ## 法線導向的半球 (Normal-oriented hemisphere)
 
-我們需要產生一組取樣點，這些點沿著表面的法線方向排列。正如本章開始時簡單提過的，我們希望生成形成半球形狀的取樣點。由於為每個表面法線方向生成取樣核既困難又不切實際，我們將在[切線空間](https://learnopengl.com/Advanced-Lighting/Normal-Mapping)中生成取樣核，並假設法線向量指向正的 z 軸方向。
+我們需要產生一組取樣點，這些點沿著表面的法線方向排列。正如本章開始時簡單提過的，我們希望生成形成半球形狀的取樣點。由於為每個表面法線方向生成取樣核既困難又不切實際，我們將在[切線空間](/opengl/Advanced-Lighting/Normal-Mapping)中生成取樣核，並假設法線向量指向正的 z 軸方向。
 
 ![](https://learnopengl.com/img/advanced-lighting/ssao_hemisphere.png)
 

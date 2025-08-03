@@ -76,7 +76,7 @@ while(...) // render loop
 }
 ```
 
-The data we'll need to store of each fragment is a **position** vector, a **normal** vector, a **color** vector, and a **specular intensity** value. In the geometry pass we need to render all objects of the scene and store these data components in the G-buffer. We can again use `multiple render targets` to render to multiple color buffers in a single render pass; this was briefly discussed in the [Bloom](https://learnopengl.com/Advanced-Lighting/Bloom) chapter.
+The data we'll need to store of each fragment is a **position** vector, a **normal** vector, a **color** vector, and a **specular intensity** value. In the geometry pass we need to render all objects of the scene and store these data components in the G-buffer. We can again use `multiple render targets` to render to multiple color buffers in a single render pass; this was briefly discussed in the [Bloom](/opengl/en/Advanced-Lighting/Bloom) chapter.
 
 For the geometry pass we'll need to initialize a framebuffer object that we'll call `gBuffer` that has multiple color buffers attached and a single depth renderbuffer object. For the position and normal texture we'd preferably use a high-precision texture (16 or 32-bit float per component). For the albedo and specular values we'll be fine with the default texture precision (8-bit precision per component). Note that we use `GL_RGBA16F` over `GL_RGB16F` as GPUs generally prefer 4-component formats over 3-component formats due to byte alignment; some drivers may fail to complete the framebuffer otherwise.
 
@@ -234,7 +234,7 @@ Running a simple demo with a total of `32` small lights looks a bit like this:
 
 ![](https://learnopengl.com/img/advanced-lighting/deferred_shading.png)
 
-One of the disadvantages of deferred shading is that it is not possible to do [blending](https://learnopengl.com/Advanced-OpenGL/Blending) as all values in the G-buffer are from single fragments, and blending operates on the combination of multiple fragments. Another disadvantage is that deferred shading forces you to use the same lighting algorithm for most of your scene's lighting; you can somehow alleviate this a bit by including more material-specific data in the G-buffer.
+One of the disadvantages of deferred shading is that it is not possible to do [blending](/opengl/en/Advanced-OpenGL/Blending) as all values in the G-buffer are from single fragments, and blending operates on the combination of multiple fragments. Another disadvantage is that deferred shading forces you to use the same lighting algorithm for most of your scene's lighting; you can somehow alleviate this a bit by including more material-specific data in the G-buffer.
 
 To overcome these disadvantages (especially blending) we often split the renderer into two parts: one deferred rendering part, and the other a forward rendering part specifically meant for blending or special shader effects not suited for a deferred rendering pipeline. To illustrate how this works, we'll render the light sources as small cubes using a forward renderer as the light cubes require a special shader (simply output a single light color).
 
@@ -268,7 +268,7 @@ However, these rendered cubes do not take any of the stored geometry depth of th
 
 What we need to do, is first copy the depth information stored in the geometry pass into the default framebuffer's depth buffer and only then render the light cubes. This way the light cubes' fragments are only rendered when on top of the previously rendered geometry.
 
-We can copy the content of a framebuffer to the content of another framebuffer with the help of `glBlitFramebuffer`, a function we also used in the [anti-aliasing](https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing) chapter to resolve multisampled framebuffers. The `glBlitFramebuffer` function allows us to copy a user-defined region of a framebuffer to a user-defined region of another framebuffer.
+We can copy the content of a framebuffer to the content of another framebuffer with the help of `glBlitFramebuffer`, a function we also used in the [anti-aliasing](/opengl/en/Advanced-OpenGL/Anti-Aliasing) chapter to resolve multisampled framebuffers. The `glBlitFramebuffer` function allows us to copy a user-defined region of a framebuffer to a user-defined region of another framebuffer.
 
 We stored the depth of all the objects rendered in the deferred geometry pass in the `gBuffer` FBO. If we were to copy the content of its depth buffer to the depth buffer of the default framebuffer, the light cubes would then render as if all of the scene's geometry was rendered with forward rendering. As briefly explained in the anti-aliasing chapter, we have to specify a framebuffer as the read framebuffer and similarly specify a framebuffer as the write framebuffer:
 
@@ -303,7 +303,7 @@ The trick to this approach is mostly figuring out the size or radius of the ligh
 
 ### Calculating a light's volume or radius
 
-To obtain a light's volume radius we have to solve the attenuation equation for when its light contribution becomes `0.0`. For the attenuation function we'll use the function introduced in the [light casters](https://learnopengl.com/Lighting/Light-casters) chapter:
+To obtain a light's volume radius we have to solve the attenuation equation for when its light contribution becomes `0.0`. For the attenuation function we'll use the function introduced in the [light casters](/opengl/en/Lighting/Light-casters) chapter:
 
 \\\[F\_{light} = \\frac{I}{K_c + K_l \* d + K_q \* d^2}\\\]
 

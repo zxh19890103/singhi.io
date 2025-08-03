@@ -15,7 +15,7 @@ gltopic: Model
 permalink: /opengl/en/Model-Loading/Model
 ---
 
-Now it is time to get our hands dirty with Assimp and start creating the actual loading and translation code. The goal of this chapter is to create another class that represents a model in its entirety, that is, a model that contains multiple meshes, possibly with multiple textures. A house, that contains a wooden balcony, a tower, and perhaps a swimming pool, could still be loaded as a single model. We'll load the model via Assimp and translate it to multiple `Mesh` objects we've created in the [previous](https://learnopengl.com/Model-Loading/Mesh) chapter.
+Now it is time to get our hands dirty with Assimp and start creating the actual loading and translation code. The goal of this chapter is to create another class that represents a model in its entirety, that is, a model that contains multiple meshes, possibly with multiple textures. A house, that contains a wooden balcony, a tower, and perhaps a swimming pool, could still be loaded as a single model. We'll load the model via Assimp and translate it to multiple `Mesh` objects we've created in the [previous](/opengl/en/Model-Loading/Mesh) chapter.
 
 Without further ado, I present you the class structure of the `Model` class:
 
@@ -63,7 +63,7 @@ To import a model and translate it to our own structure, we first need to includ
 #include <assimp/postprocess.h>
 ```
 
-The first function we're calling is `loadModel`, that's directly called from the constructor. Within `loadModel`, we use Assimp to load the model into a data structure of Assimp called a scene object. You may remember from the [first](https://learnopengl.com/Model-Loading/Assimp) chapter of the model loading series that this is the root object of Assimp's data interface. Once we have the scene object, we can access all the data we need from the loaded model.
+The first function we're calling is `loadModel`, that's directly called from the constructor. Within `loadModel`, we use Assimp to load the model into a data structure of Assimp called a scene object. You may remember from the [first](/opengl/en/Model-Loading/Assimp) chapter of the model loading series that this is the root object of Assimp's data interface. Once we have the scene object, we can access all the data we need from the loaded model.
 
 The great thing about Assimp is that it neatly abstracts from all the technical details of loading all the different file formats and does all this with a single one-liner:
 
@@ -72,7 +72,7 @@ Assimp::Importer importer;
 const aiScene *scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 ```
 
-We first declare an `Importer` object from Assimp's namespace and then call its `ReadFile` function. The function expects a file path and several `post-processing` options as its second argument. Assimp allows us to specify several options that forces Assimp to do extra calculations/operations on the imported data. By setting `aiProcess_Triangulate` we tell Assimp that if the model does not (entirely) consist of triangles, it should transform all the model's primitive shapes to triangles first. The `aiProcess_FlipUVs` flips the texture coordinates on the y-axis where necessary during processing (you may remember from the [Textures](https://learnopengl.com/Getting-started/Textures) chapter that most images in OpenGL were reversed around the y-axis; this little postprocessing option fixes that for us). A few other useful options are:
+We first declare an `Importer` object from Assimp's namespace and then call its `ReadFile` function. The function expects a file path and several `post-processing` options as its second argument. Assimp allows us to specify several options that forces Assimp to do extra calculations/operations on the imported data. By setting `aiProcess_Triangulate` we tell Assimp that if the model does not (entirely) consist of triangles, it should transform all the model's primitive shapes to triangles first. The `aiProcess_FlipUVs` flips the texture coordinates on the y-axis where necessary during processing (you may remember from the [Textures](/opengl/en/Getting-started/Textures) chapter that most images in OpenGL were reversed around the y-axis; this little postprocessing option fixes that for us). A few other useful options are:
 
 - `aiProcess_GenNormals`: creates normal vectors for each vertex if the model doesn't contain normal vectors.
 - `aiProcess_SplitLargeMeshes`: splits large meshes into smaller sub-meshes which is useful if your rendering has a maximum number of vertices allowed and can only process smaller meshes.
@@ -336,7 +336,7 @@ Now, declare a `Model` object and pass in the model's file location. The model s
 
 You can find the complete source code [here](https://learnopengl.com/code_viewer_gh.php?code=src/3.model_loading/1.model_loading/model_loading.cpp). Note that we tell `stb_image.h` to flip textures vertically, if you haven't done so already, before we load the model. Otherwise the textures will look all messed up.
 
-We can also get more creative and introduce point lights to the render equation as we learned from the [Lighting](https://learnopengl.com/Lighting/Light-casters) chapters and together with specular maps get amazing results:
+We can also get more creative and introduce point lights to the render equation as we learned from the [Lighting](/opengl/en/Lighting/Light-casters) chapters and together with specular maps get amazing results:
 
 ![](https://learnopengl.com/img/model_loading/model_lighting.png)
 

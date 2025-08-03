@@ -20,12 +20,12 @@ In the last chapter we learned to create dynamic shadows with shadow mapping. It
 What this chapter will focus on is the generation of dynamic shadows in all surrounding directions. The technique we're using is perfect for point lights as a real point light would cast shadows in all directions. This technique is known as point (light) shadows or more formerly as `omnidirectional shadow maps`.
 
 {% include box.html content="
-This chapter builds upon the previous [shadow mapping](https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping) chapter so unless you're familiar with traditional shadow mapping it is advised to read the shadow mapping chapter first.
+This chapter builds upon the previous [shadow mapping](/opengl/en/Advanced-Lighting/Shadows/Shadow-Mapping) chapter so unless you're familiar with traditional shadow mapping it is advised to read the shadow mapping chapter first.
 " color="green" %}
 
 The technique is mostly similar to directional shadow mapping: we generate a depth map from the light's perspective(s), sample the depth map based on the current fragment position, and compare each fragment with the stored depth value to see whether it is in shadow. The main difference between directional shadow mapping and omnidirectional shadow mapping is the depth map we use.
 
-The depth map we need requires rendering a scene from all surrounding directions of a point light and as such a normal 2D depth map won't work; what if we were to use a [cubemap](https://learnopengl.com/Advanced-OpenGL/Cubemaps) instead? Because a cubemap can store full environment data with only 6 faces, it is possible to render the entire scene to each of the faces of a cubemap and sample these as the point light's surrounding depth values.
+The depth map we need requires rendering a scene from all surrounding directions of a point light and as such a normal 2D depth map won't work; what if we were to use a [cubemap](/opengl/en/Advanced-OpenGL/Cubemaps) instead? Because a cubemap can store full environment data with only 6 faces, it is possible to render the entire scene to each of the faces of a cubemap and sample these as the point light's surrounding depth values.
 
 ![](https://learnopengl.com/img/advanced-lighting/point_shadows_diagram.png)
 
@@ -108,7 +108,7 @@ The process is exactly the same as with default shadow mapping, although this ti
 
 ### Light space transform
 
-With the framebuffer and cubemap set, we need some way to transform all the scene's geometry to the relevant light spaces in all 6 directions of the light. Just like the [shadow mapping](https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping) chapter we're going to need a light space transformation matrix \\(T\\), but this time one for each face.
+With the framebuffer and cubemap set, we need some way to transform all the scene's geometry to the relevant light spaces in all 6 directions of the light. Just like the [shadow mapping](/opengl/en/Advanced-Lighting/Shadows/Shadow-Mapping) chapter we're going to need a light space transformation matrix \\(T\\), but this time one for each face.
 
 Each light space transformation matrix contains both a projection and a view matrix. For the projection matrix we're going to use a perspective projection matrix; the light source represents a point in space so perspective projection makes most sense. Each light space transformation matrix uses the same projection matrix:
 
@@ -145,7 +145,7 @@ These transformation matrices are sent to the shaders that render the depth into
 
 ### Depth shaders
 
-To render depth values to a depth cubemap we're going to need a total of three shaders: a vertex and fragment shader, and a [geometry shader](https://learnopengl.com/Advanced-OpenGL/Geometry-Shader) in between.
+To render depth values to a depth cubemap we're going to need a total of three shaders: a vertex and fragment shader, and a [geometry shader](/opengl/en/Advanced-OpenGL/Geometry-Shader) in between.
 
 The geometry shader will be the shader responsible for transforming all world-space vertices to the 6 different light spaces. Therefore, the vertex shader simply transforms vertices to world-space and directs them to the geometry shader:
 
@@ -347,7 +347,7 @@ float currentDepth = length(fragToLight);
 
 This returns a depth value in the same (or larger) range as `closestDepth`.
 
-Now we can compare both depth values to see which is closer than the other and determine whether the current fragment is in shadow. We also include a shadow bias so we don't get shadow acne as discussed in the [previous](https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping) chapter.
+Now we can compare both depth values to see which is closer than the other and determine whether the current fragment is in shadow. We also include a shadow bias so we don't get shadow acne as discussed in the [previous](/opengl/en/Advanced-Lighting/Shadows/Shadow-Mapping) chapter.
 
 ```cpp
 float bias = 0.05;

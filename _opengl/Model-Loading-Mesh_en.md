@@ -197,4 +197,4 @@ We also added `"material."` to the resulting uniform name because we usually sto
 
 You can find the full source code of the `Mesh` class [here](https://learnopengl.com/code_viewer_gh.php?code=includes/learnopengl/mesh.h).
 
-The `Mesh` class we just defined is an abstraction for many of the topics we've discussed in the early chapters. In the [next](https://learnopengl.com/Model-Loading/Model) chapter we'll create a model that acts as a container for several mesh objects and implements Assimp's loading interface.
+The `Mesh` class we just defined is an abstraction for many of the topics we've discussed in the early chapters. In the [next](/opengl/en/Model-Loading/Model) chapter we'll create a model that acts as a container for several mesh objects and implements Assimp's loading interface.

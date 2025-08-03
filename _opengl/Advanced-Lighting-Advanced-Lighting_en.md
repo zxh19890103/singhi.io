@@ -15,7 +15,7 @@ gltopic: Advanced-Lighting
 permalink: /opengl/en/Advanced-Lighting/Advanced-Lighting
 ---
 
-In the [lighting](https://learnopengl.com/Lighting/Basic-Lighting) chapters we briefly introduced the Phong lighting model to bring a basic amount of realism into our scenes. The Phong model looks nice, but has a few nuances we'll focus on in this chapter.
+In the [lighting](/opengl/en/Lighting/Basic-Lighting) chapters we briefly introduced the Phong lighting model to bring a basic amount of realism into our scenes. The Phong model looks nice, but has a few nuances we'll focus on in this chapter.
 
 ## Blinn-Phong
 

@@ -221,7 +221,7 @@ stbi_image_free(data);
 
 ## Applying textures
 
-For the upcoming sections we will use the rectangle shape drawn with `glDrawElements` from the final part of the [Hello Triangle](https://learnopengl.com/Getting-started/Hello-Triangle) chapter. We need to inform OpenGL how to sample the texture so we'll have to update the vertex data with the texture coordinates:
+For the upcoming sections we will use the rectangle shape drawn with `glDrawElements` from the final part of the [Hello Triangle](/opengl/en/Getting-started/Hello-Triangle) chapter. We need to inform OpenGL how to sample the texture so we'll have to update the vertex data with the texture coordinates:
 
 ```cpp
 float vertices[] = {

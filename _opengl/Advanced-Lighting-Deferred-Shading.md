@@ -78,7 +78,7 @@ while(...) // render loop
 }
 ```
 
-我們需要為每個片元儲存的資料包括：**位置向量**、**法線向量**、**顏色向量**，以及一個 **鏡面反射強度值**。在 geometry pass（幾何階段）中，我們要將場景中所有物件繪製出來，並將這些資料寫入 G-buffer。這裡我們同樣可以使用 `multiple render targets`（多重渲染目標），在單次渲染過程中輸出到多個顏色緩衝區；這在之前的 [Bloom](https://learnopengl.com/Advanced-Lighting/Bloom) 章節中有簡略提及。
+我們需要為每個片元儲存的資料包括：**位置向量**、**法線向量**、**顏色向量**，以及一個 **鏡面反射強度值**。在 geometry pass（幾何階段）中，我們要將場景中所有物件繪製出來，並將這些資料寫入 G-buffer。這裡我們同樣可以使用 `multiple render targets`（多重渲染目標），在單次渲染過程中輸出到多個顏色緩衝區；這在之前的 [Bloom](/opengl/Advanced-Lighting/Bloom) 章節中有簡略提及。
 
 在 geometry pass 中，我們需要初始化一個 framebuffer 物件，命名為 `gBuffer`，它要附加多個顏色緩衝紋理，以及一個深度 renderbuffer。對於儲存位置與法線的紋理，我們最好使用高精度格式（每個分量為 16 或 32 位元的浮點數），以確保足夠的精度。而對於 `albedo`（表面色）與鏡面反射值（specular intensity），使用預設的 8 位元精度就足夠了。
 
@@ -242,7 +242,7 @@ void main()
 
 ![](https://learnopengl.com/img/advanced-lighting/deferred_shading.png)
 
-延遲渲染的一個缺點是無法執行[混合](https://learnopengl.com/Advanced-OpenGL/Blending)，因為 G-buffer 中的所有值都來自單一片段，而混合則是多個片段組合的操作。另一個缺點是延遲渲染通常迫使你對場景的大部分光照使用相同的光照算法；不過可以透過在 G-buffer 中包含更多材質特定資料稍微緩解此問題。
+延遲渲染的一個缺點是無法執行[混合](/opengl/Advanced-OpenGL/Blending)，因為 G-buffer 中的所有值都來自單一片段，而混合則是多個片段組合的操作。另一個缺點是延遲渲染通常迫使你對場景的大部分光照使用相同的光照算法；不過可以透過在 G-buffer 中包含更多材質特定資料稍微緩解此問題。
 
 為了解決這些缺點（尤其是混合問題），我們通常將渲染器拆分成兩部分：一部分是延遲渲染，用於大部分場景渲染；另一部分是前向渲染，專門用於混合或不適合延遲渲染管線的特殊著色器效果。為了說明其運作，我們將使用前向渲染器將光源渲染為小立方體，因為光源立方體需要一個特殊著色器（簡單輸出單一光源顏色）。
 
@@ -278,7 +278,7 @@ for (unsigned int i = 0; i < lightPositions.size(); i++)
 
 我們需要先將幾何階段儲存的深度資訊複製到預設幀緩衝的深度緩衝中，然後再渲染光源立方體。這樣，只有當光源立方體的片段位於之前渲染的幾何體之上時，才會被渲染。
 
-我們可以使用 `glBlitFramebuffer` 函數將一個幀緩衝的內容複製到另一個幀緩衝。這個函數也曾在[抗鋸齒](https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing)章節中用於解決多重採樣幀緩衝。`glBlitFramebuffer` 允許我們指定來源幀緩衝和目標幀緩衝的區域進行拷貝。
+我們可以使用 `glBlitFramebuffer` 函數將一個幀緩衝的內容複製到另一個幀緩衝。這個函數也曾在[抗鋸齒](/opengl/Advanced-OpenGL/Anti-Aliasing)章節中用於解決多重採樣幀緩衝。`glBlitFramebuffer` 允許我們指定來源幀緩衝和目標幀緩衝的區域進行拷貝。
 
 我們在延遲幾何階段將所有物體的深度資訊存入 `gBuffer` FBO。如果我們把它的深度緩衝內容複製到預設幀緩衝的深度緩衝，光源立方體就會像在前向渲染中一樣，正確地依照場景幾何體的深度關係渲染。正如抗鋸齒章節所述，我們必須指定一個幀緩衝作為讀取幀緩衝，同時指定另一個幀緩衝作為寫入幀緩衝：
 
@@ -313,7 +313,7 @@ glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 ### 計算光源的體積或半徑
 
-為了取得光源的半徑，我們必須解衰減方程，找出光線貢獻降到 `0.0`（或接近零）的距離。這裡使用的衰減函數是[光源投射](https://learnopengl.com/Lighting/Light-casters)章節介紹的函數：
+為了取得光源的半徑，我們必須解衰減方程，找出光線貢獻降到 `0.0`（或接近零）的距離。這裡使用的衰減函數是[光源投射](/opengl/Lighting/Light-casters)章節介紹的函數：
 
 \\\[F\_{light} = \\frac{I}{K_c + K_l \* d + K_q \* d^2}\\\]
 

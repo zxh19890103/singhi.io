@@ -93,7 +93,7 @@ We can now calculate two completely different fragment shader results and displa
 
 #### gl_FrontFacing
 
-Another interesting input variable in the fragment shader is the `gl_FrontFacing` variable. In the [face culling](https://learnopengl.com/Advanced-OpenGL/Face-culling) chapter we mentioned that OpenGL is able to figure out if a face is a front or back face due to the winding order of the vertices. The `gl_FrontFacing` variable tells us if the current fragment is part of a front-facing or a back-facing face. We could, for example, decide to output different colors for all back faces.
+Another interesting input variable in the fragment shader is the `gl_FrontFacing` variable. In the [face culling](/opengl/en/Advanced-OpenGL/Face-culling) chapter we mentioned that OpenGL is able to figure out if a face is a front or back face due to the winding order of the vertices. The `gl_FrontFacing` variable tells us if the current fragment is part of a front-facing or a back-facing face. We could, for example, decide to output different colors for all back faces.
 
 The `gl_FrontFacing` variable is a `bool` that is `true` if the fragment is part of a front face and `false` otherwise. We could create a cube this way with a different texture on the inside than on the outside:
 
@@ -133,7 +133,7 @@ gl_FragDepth = 0.0; // this fragment now has a depth value of 0.0
 
 If the shader does not write anything to `gl_FragDepth`, the variable will automatically take its value from `gl_FragCoord.z`.
 
-Setting the depth value manually has a major disadvantage however. That is because OpenGL disables `early depth testing` (as discussed in the [depth testing](https://learnopengl.com/Advanced-OpenGL/Depth-testing) chapter) as soon as we write to `gl_FragDepth` in the fragment shader. It is disabled, because OpenGL cannot know what depth value the fragment will have _before_ we run the fragment shader, since the fragment shader may actually change this value.
+Setting the depth value manually has a major disadvantage however. That is because OpenGL disables `early depth testing` (as discussed in the [depth testing](/opengl/en/Advanced-OpenGL/Depth-testing) chapter) as soon as we write to `gl_FragDepth` in the fragment shader. It is disabled, because OpenGL cannot know what depth value the fragment will have _before_ we run the fragment shader, since the fragment shader may actually change this value.
 
 By writing to `gl_FragDepth` you should take this performance penalty into consideration. From OpenGL 4.2 however, we can still sort of mediate between both sides by redeclaring the `gl_FragDepth` variable at the top of the fragment shader with a `depth condition`:
 
@@ -192,7 +192,7 @@ void main()
 }
 ```
 
-This time we declared an interface block called `vs_out` that groups together all the output variables we want to send to the next shader. This is kind of a trivial example, but you can imagine that this helps organize your shaders' inputs/outputs. It is also useful when we want to group shader input/output into arrays as we'll see in the [next](https://learnopengl.com/Advanced-OpenGL/Geometry-Shader) chapter about geometry shaders.
+This time we declared an interface block called `vs_out` that groups together all the output variables we want to send to the next shader. This is kind of a trivial example, but you can imagine that this helps organize your shaders' inputs/outputs. It is also useful when we want to group shader input/output into arrays as we'll see in the [next](/opengl/en/Advanced-OpenGL/Geometry-Shader) chapter about geometry shaders.
 
 Then we also need to declare an input interface block in the next shader which is the fragment shader. The `block name` (`VS_OUT`) should be the same in the fragment shader, but the `instance name` (`vs_out` as used in the vertex shader) can be anything we like - avoiding confusing names like `vs_out` for a fragment struct containing input values.
 

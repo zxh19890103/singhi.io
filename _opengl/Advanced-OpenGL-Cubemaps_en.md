@@ -218,7 +218,7 @@ glDepthMask(GL_TRUE);
 
 If you run this you will get into difficulties though. We want the skybox to be centered around the player so that no matter how far the player moves, the skybox won't get any closer, giving the impression the surrounding environment is extremely large. The current view matrix however transforms all the skybox's positions by rotating, scaling and translating them, so if the player moves, the cubemap moves as well! We want to remove the translation part of the view matrix so only rotation will affect the skybox's position vectors.
 
-You may remember from the [basic lighting](https://learnopengl.com/Lighting/Basic-Lighting) chapter that we can remove the translation section of transformation matrices by taking the upper-left 3x3 matrix of the 4x4 matrix. We can achieve this by converting the view matrix to a 3x3 matrix (removing translation) and converting it back to a 4x4 matrix:
+You may remember from the [basic lighting](/opengl/en/Lighting/Basic-Lighting) chapter that we can remove the translation section of transformation matrices by taking the upper-left 3x3 matrix of the 4x4 matrix. We can achieve this by converting the view matrix to a 3x3 matrix (removing translation) and converting it back to a 4x4 matrix:
 
 ```cpp
 glm::mat4 view = glm::mat4(glm::mat3(camera.GetViewMatrix()));
@@ -238,7 +238,7 @@ Right now we've rendered the skybox first before we rendered all the other objec
 
 So to give us a slight performance boost we're going to render the skybox last. This way, the depth buffer is completely filled with all the scene's depth values so we only have to render the skybox's fragments wherever the early depth test passes, greatly reducing the number of fragment shader calls. The problem is that the skybox will most likely render on top of all other objects since it's only a 1x1x1 cube, succeeding most depth tests. Simply rendering it without depth testing is not a solution since the skybox will then still overwrite all the other objects in the scene as it's rendered last. We need to trick the depth buffer into believing that the skybox has the maximum depth value of `1.0` so that it fails the depth test wherever there's a different object in front of it.
 
-In the [coordinate systems](https://learnopengl.com/Getting-started/Coordinate-Systems) chapter we said that _perspective division_ is performed after the vertex shader has run, dividing the `gl_Position`'s `xyz` coordinates by its `w` component. We also know from the [depth testing](https://learnopengl.com/Advanced-OpenGL/Depth-testing) chapter that the `z` component of the resulting division is equal to that vertex's depth value. Using this information we can set the `z` component of the output position equal to its `w` component which will result in a `z` component that is always equal to `1.0`, because when the perspective division is applied its `z` component translates to `w` / `w` = `1.0`:
+In the [coordinate systems](/opengl/en/Getting-started/Coordinate-Systems) chapter we said that _perspective division_ is performed after the vertex shader has run, dividing the `gl_Position`'s `xyz` coordinates by its `w` component. We also know from the [depth testing](/opengl/en/Advanced-OpenGL/Depth-testing) chapter that the `z` component of the resulting division is equal to that vertex's depth value. Using this information we can set the `z` component of the output position equal to its `w` component which will result in a `z` component that is always equal to `1.0`, because when the perspective division is applied its `z` component translates to `w` / `w` = `1.0`:
 
 ```cpp
 void main()
@@ -329,7 +329,7 @@ Compiling and running your code gives you a container that acts like a perfect m
 
 You can find the full source code [here](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/6.2.cubemaps_environment_mapping/cubemaps_environment_mapping.cpp).
 
-When reflection is applied to an entire object (like the container) the object looks as if it has a high reflective material like steel or chrome. If we were to load a more interesting object (like the backpack model from the [model loading](https://learnopengl.com/Model-Loading/Model) chapters) we'd get the effect that the object looks to be entirely made out of chrome:
+When reflection is applied to an entire object (like the container) the object looks as if it has a high reflective material like steel or chrome. If we were to load a more interesting object (like the backpack model from the [model loading](/opengl/en/Model-Loading/Model) chapters) we'd get the effect that the object looks to be entirely made out of chrome:
 
 ![](https://learnopengl.com/img/advanced/cubemaps_reflection_nanosuit.png)
 

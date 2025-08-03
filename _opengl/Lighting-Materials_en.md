@@ -39,7 +39,7 @@ With these 4 components that define an object's material we can simulate many re
 
 ![](https://learnopengl.com/img/lighting/materials_real_world.png)
 
-As you can see, by correctly specifying the material properties of a surface it seems to change the perception we have of the object. The effects are clearly noticeable, but for the more realistic results we'll need to replace the cube with something more complicated. In the [Model Loading](https://learnopengl.com/Model-Loading/Assimp) chapters we'll discuss more complicated shapes.
+As you can see, by correctly specifying the material properties of a surface it seems to change the perception we have of the object. The effects are clearly noticeable, but for the more realistic results we'll need to replace the cube with something more complicated. In the [Model Loading](/opengl/en/Model-Loading/Assimp) chapters we'll discuss more complicated shapes.
 
 Figuring out the right material settings for an object is a difficult feat that mostly requires experimentation and a lot of experience. It's not that uncommon to completely destroy the visual quality of an object by a misplaced material.
 
@@ -107,7 +107,7 @@ So each material property of the object is returned with full intensity for each
 vec3 ambient = vec3(0.1) * material.ambient;
 ```
 
-We can influence the diffuse and specular intensity of the light source in the same way. This is closely similar to what we did in the [previous](https://learnopengl.com/Lighting/Basic-Lighting) chapter; you could say we already created some light properties to influence each lighting component individually. We'll want to create something similar to the material struct for the light properties:
+We can influence the diffuse and specular intensity of the light source in the same way. This is closely similar to what we did in the [previous](/opengl/en/Lighting/Basic-Lighting) chapter; you could say we already created some light properties to influence each lighting component individually. We'll want to create something similar to the material struct for the light properties:
 
 ```cpp
 struct Light {
@@ -151,7 +151,7 @@ So far we used light colors to only vary the intensity of their individual compo
 
 ![](https://learnopengl.com/img/lighting/materials_light_colors.png)
 
-As you can see, a different light color greatly influences the object's color output. Since the light color directly influences what colors the object can reflect (as you may remember from the [Colors](https://learnopengl.com/Lighting/Colors) chapter) it has a significant impact on the visual output.
+As you can see, a different light color greatly influences the object's color output. Since the light color directly influences what colors the object can reflect (as you may remember from the [Colors](/opengl/en/Lighting/Colors) chapter) it has a significant impact on the visual output.
 
 We can easily change the light's colors over time by changing the light's ambient and diffuse colors via `sin` and `glfwGetTime`:
 

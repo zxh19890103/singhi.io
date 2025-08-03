@@ -23,7 +23,7 @@ permalink: /opengl/Advanced-Lighting/Shadow-Mapping
 
 然而，陰影的實作有點棘手，特別是因為在目前的即時（光柵化圖形）研究中，尚未開發出完美的陰影演算法。有幾種不錯的陰影近似技術，但它們都有各自的小怪癖和惱人之處，我們必須將其考慮在內。
 
-大多數電玩遊戲中使用的一種技術，能提供不錯的結果且相對容易實作，那就是**陰影貼圖（shadow mapping）**。陰影貼圖不難理解，效能開銷不大，而且很容易擴展到更進階的演算法（例如[全向陰影貼圖](https://learnopengl.com/Advanced-Lighting/Shadows/Point-Shadows)和[級聯陰影貼圖](https://learnopengl.com/Guest-Articles/2021/CSM)）。
+大多數電玩遊戲中使用的一種技術，能提供不錯的結果且相對容易實作，那就是**陰影貼圖（shadow mapping）**。陰影貼圖不難理解，效能開銷不大，而且很容易擴展到更進階的演算法（例如[全向陰影貼圖](/opengl/Advanced-Lighting/Shadows/Point-Shadows)和[級聯陰影貼圖](https://learnopengl.com/Guest-Articles/2021/CSM)）。
 
 ## 陰影貼圖
 
@@ -35,7 +35,7 @@ permalink: /opengl/Advanced-Lighting/Shadow-Mapping
 
 我們想獲取光線第一次擊中物體的那個點，並將這個\*\*最近點（closest point）\*\*與這條光線上的其他點進行比較。然後我們做一個基本測試，看看一個測試點的光線位置是否比最近點更靠後，如果是，那麼該測試點就必然處於陰影中。然而，對光源發出的數千條光線進行迭代是一種極其低效的方法，不適用於即時渲染。我們可以做類似的事情，但無需投射光線。相反，我們使用我們相當熟悉的東西：深度緩衝區（depth buffer）。
 
-你可能還記得在[深度測試](https://learnopengl.com/Advanced-OpenGL/Depth-testing)章節中，深度緩衝區中的值對應於從攝影機視角來看，被限制在 $[0,1]$ 範圍內的片段深度。如果我們從光源的角度渲染場景，並將結果深度值儲存在紋理中呢？這樣，我們就可以從光源的角度採樣最近的深度值。畢竟，深度值顯示了從光源視角可見的第一個片段。我們將所有這些深度值儲存在一個紋理中，我們稱之為**深度貼圖（depth map）或陰影貼圖（shadow map）**。
+你可能還記得在[深度測試](/opengl/Advanced-OpenGL/Depth-testing)章節中，深度緩衝區中的值對應於從攝影機視角來看，被限制在 $[0,1]$ 範圍內的片段深度。如果我們從光源的角度渲染場景，並將結果深度值儲存在紋理中呢？這樣，我們就可以從光源的角度採樣最近的深度值。畢竟，深度值顯示了從光源視角可見的第一個片段。我們將所有這些深度值儲存在一個紋理中，我們稱之為**深度貼圖（depth map）或陰影貼圖（shadow map）**。
 
 ![](https://learnopengl.com/img/advanced-lighting/shadow_mapping_theory_spaces.png)
 
@@ -51,7 +51,7 @@ permalink: /opengl/Advanced-Lighting/Shadow-Mapping
 
 ## 深度貼圖
 
-第一個階段要求我們生成一個深度貼圖。深度貼圖是從光源角度渲染的深度紋理，我們將用它來測試陰影。因為我們需要將場景的渲染結果儲存在紋理中，所以我們將再次需要[幀緩衝區](https://learnopengl.com/Advanced-OpenGL/Framebuffers)。
+第一個階段要求我們生成一個深度貼圖。深度貼圖是從光源角度渲染的深度紋理，我們將用它來測試陰影。因為我們需要將場景的渲染結果儲存在紋理中，所以我們將再次需要[幀緩衝區](/opengl/Advanced-OpenGL/Framebuffers)。
 
 首先我們將創建一個幀緩衝區物件，用於渲染深度貼圖：
 
@@ -186,7 +186,7 @@ glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 這裡的 `RenderScene` 函式接受一個著色器程式，呼叫所有相關的繪圖函式並在必要時設定對應的模型矩陣。
 
-結果就是一個填充良好的深度緩衝區，其中包含從光源角度看每個可見片段的最近深度。透過將這個紋理渲染到一個填滿螢幕的 2D 四邊形上（類似於我們在[幀緩衝區](https://learnopengl.com/Advanced-OpenGL/Framebuffers)章節末尾的後處理部分所做的那樣），我們將得到類似這樣的結果：
+結果就是一個填充良好的深度緩衝區，其中包含從光源角度看每個可見片段的最近深度。透過將這個紋理渲染到一個填滿螢幕的 2D 四邊形上（類似於我們在[幀緩衝區](/opengl/Advanced-OpenGL/Framebuffers)章節末尾的後處理部分所做的那樣），我們將得到類似這樣的結果：
 
 ![](https://learnopengl.com/img/advanced-lighting/shadow_mapping_depth_map.png)
 
@@ -294,7 +294,7 @@ void main()
 }
 ```
 
-這個片段著色器基本上是我們在[進階光照](https://learnopengl.com/Advanced-Lighting/Advanced-Lighting)章節中使用過的副本，但增加了一個陰影計算。我們宣告了一個 `ShadowCalculation` 函式，它負責大部分的陰影工作。在片段著色器的末尾，我們將漫反射和鏡面反射的貢獻乘以 `shadow` 分量的倒數，也就是片段**不在**陰影中的程度。這個片段著色器將光照空間中的片段位置和從第一個渲染階段生成的深度貼圖作為額外輸入。
+這個片段著色器基本上是我們在[進階光照](/opengl/Advanced-Lighting/Advanced-Lighting)章節中使用過的副本，但增加了一個陰影計算。我們宣告了一個 `ShadowCalculation` 函式，它負責大部分的陰影工作。在片段著色器的末尾，我們將漫反射和鏡面反射的貢獻乘以 `shadow` 分量的倒數，也就是片段**不在**陰影中的程度。這個片段著色器將光照空間中的片段位置和從第一個渲染階段生成的深度貼圖作為額外輸入。
 
 檢查片段是否在陰影中的第一件事，是將光照空間中的片段位置從裁剪空間轉換為標準化設備座標。當我們在頂點著色器中將裁剪空間的頂點位置輸出到 `gl_Position` 時，OpenGL 會自動執行透視除法，例如透過將 `x`、`y` 和 `z` 分量除以向量的 `w` 分量，將裁剪空間座標從 `[-w, w]` 範圍轉換到 `[-1, 1]` 範圍。由於裁剪空間的 `FragPosLightSpace` 並未透過 `gl_Position` 傳遞到片段著色器，我們必須自己執行這個透視除法：
 
@@ -410,7 +410,7 @@ float bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.005);
 
 ![](https://learnopengl.com/img/advanced-lighting/shadow_mapping_peter_panning.png)
 
-這種陰影瑕疵被稱為「彼得潘症候群」（peter panning），因為物體看起來似乎與其陰影稍微「分離」了。我們可以使用一個小技巧來解決大部分的彼得潘問題，即在渲染深度貼圖時使用正向剔除（front face culling）。你可能還記得在[面剔除](https://learnopengl.com/Advanced-OpenGL/Face-Culling)章節中，OpenGL 預設剔除背面。透過在陰影貼圖階段告訴 OpenGL 我們要剔除正面，我們就將這個順序反轉了。
+這種陰影瑕疵被稱為「彼得潘症候群」（peter panning），因為物體看起來似乎與其陰影稍微「分離」了。我們可以使用一個小技巧來解決大部分的彼得潘問題，即在渲染深度貼圖時使用正向剔除（front face culling）。你可能還記得在[面剔除](/opengl/Advanced-OpenGL/Face-Culling)章節中，OpenGL 預設剔除背面。透過在陰影貼圖階段告訴 OpenGL 我們要剔除正面，我們就將這個順序反轉了。
 
 因為我們只需要深度貼圖的深度值，所以對於實心物體來說，無論我們是取其正面還是背面的深度都無關緊要。使用背面的深度並不會產生錯誤的結果，因為物體內部的陰影對我們來說並不重要；反正我們也看不到那裡。
 
@@ -520,7 +520,7 @@ shadow /= 9.0;
 
 透視投影矩陣最適合用於具有實際位置的光源，而不是定向光源。透視投影通常用於聚光燈和點光源，而正交投影則用於定向光源。
 
-另一個使用透視投影矩陣時的細微差別是，視覺化深度緩衝區時，結果通常會幾乎完全是白色的。這是因為透視投影會將深度轉換為非線性深度值，並且大多數可察覺的範圍都接近近裁剪平面。為了能夠正確地查看深度值，就像我們使用正交投影時一樣，你首先需要將非線性深度值轉換為線性深度值，就像我們在[深度測試](https://learnopengl.com/Advanced-OpenGL/Depth-testing)章節中討論的那樣：
+另一個使用透視投影矩陣時的細微差別是，視覺化深度緩衝區時，結果通常會幾乎完全是白色的。這是因為透視投影會將深度轉換為非線性深度值，並且大多數可察覺的範圍都接近近裁剪平面。為了能夠正確地查看深度值，就像我們使用正交投影時一樣，你首先需要將非線性深度值轉換為線性深度值，就像我們在[深度測試](/opengl/Advanced-OpenGL/Depth-testing)章節中討論的那樣：
 
 ```cpp
 #version 330 core

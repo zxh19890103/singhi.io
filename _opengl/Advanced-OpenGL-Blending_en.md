@@ -53,7 +53,7 @@ void main()
 }
 ```
 
-Now that we know how to load transparent textures it's time to put it to the test by adding several of these leaves of grass throughout the basic scene introduced in the [depth testing](https://learnopengl.com/Advanced-OpenGL/Depth-testing) chapter.
+Now that we know how to load transparent textures it's time to put it to the test by adding several of these leaves of grass throughout the basic scene introduced in the [depth testing](/opengl/en/Advanced-OpenGL/Depth-testing) chapter.
 
 We create a small `vector` array where we add several `glm::vec3` vectors to represent the location of the grass leaves:
 

@@ -67,7 +67,7 @@ In the upcoming chapters we'll be creating interesting visuals by simulating rea
 
 The first thing we need is an object to cast the light on and we'll use the infamous container cube from the previous chapters. We'll also be needing a light object to show where the light source is located in the 3D scene. For simplicity's sake we'll represent the light source with a cube as well (we already have the [vertex data](https://learnopengl.com/code_viewer.php?code=getting-started/cube_vertices_pos) right?).
 
-So, filling a vertex buffer object, setting vertex attribute pointers and all that jazz should be familiar for you by now so we won't walk you through those steps. If you still have no idea what's going on with those I suggest you review the [previous chapters](https://learnopengl.com/Getting-started/Hello-Triangle), and work through the exercises if possible, before continuing.
+So, filling a vertex buffer object, setting vertex attribute pointers and all that jazz should be familiar for you by now so we won't walk you through those steps. If you still have no idea what's going on with those I suggest you review the [previous chapters](/opengl/en/Getting-started/Hello-Triangle), and work through the exercises if possible, before continuing.
 
 So, the first thing we'll need is a vertex shader to draw the container. The vertex positions of the container remain the same (although we won't be needing texture coordinates this time) so the code should be nothing new. We'll be using a stripped down version of the vertex shader from the last chapters:
 
@@ -175,4 +175,4 @@ Not really much to look at right now, but I'll promise it'll get more interestin
 
 If you have difficulties finding out where all the code snippets fit together in the application as a whole, check the source code [here](https://learnopengl.com/code_viewer_gh.php?code=src/2.lighting/1.colors/colors.cpp) and carefully work your way through the code/comments.
 
-Now that we have a fair bit of knowledge about colors and created a basic scene for experimenting with lighting we can jump to the [next](https://learnopengl.com/Lighting/Basic-Lighting) chapter where the real magic begins.
+Now that we have a fair bit of knowledge about colors and created a basic scene for experimenting with lighting we can jump to the [next](/opengl/en/Lighting/Basic-Lighting) chapter where the real magic begins.

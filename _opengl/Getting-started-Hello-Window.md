@@ -46,7 +46,7 @@ glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 由於本書聚焦於 OpenGL 3.3 版本，我們將告訴 GLFW 3.3 是我們希望用到的 OpenGL 版本。這確保當用戶沒有按轉合適的 OpenGL 版本時，GLFW 將運行不起來。我們設置了主版本和次版本都為 3。我們也會告訴 GLFW 我們希望顯式地使用核心配置。告訴 GLFW 我們要用到核心配置的意思是，我們可以訪問到 OpenGL 特性的最小集合，排除向後兼容的那些特性，因為我們不需要那些。注意，Mac OS X 上，你需要添加 `glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);` 到你的初始化代碼，確保它能工作。
 
-{% include box.html color="green" content="請確保你的系統或硬體上安裝了 OpenGL 3.3 版本或更高，否則應用程式可能會崩潰或出現未定義的行為。要查看你電腦上的 OpenGL 版本，在 Linux 系統上可以使用 glxinfo 指令，Windows 上則可使用 OpenGL 擴展查看工具（[OpenGL Extension Viewer](https://learnopengl.com/Getting-started/Hello-Window#:~:text=OpenGL%20Extension%20Viewer)）。如果你的支持版本較低，請檢查你的顯卡是否支持 OpenGL 3.3 以上（否則顯卡可能非常老舊），並嘗試更新驅動程式。" %}
+{% include box.html color="green" content="請確保你的系統或硬體上安裝了 OpenGL 3.3 版本或更高，否則應用程式可能會崩潰或出現未定義的行為。要查看你電腦上的 OpenGL 版本，在 Linux 系統上可以使用 glxinfo 指令，Windows 上則可使用 OpenGL 擴展查看工具（[OpenGL Extension Viewer](/opengl/Getting-started/Hello-Window#:~:text=OpenGL%20Extension%20Viewer)）。如果你的支持版本較低，請檢查你的顯卡是否支持 OpenGL 3.3 以上（否則顯卡可能非常老舊），並嘗試更新驅動程式。" %}
 
 接下來，我們需要創建一個窗口對象。這個對象保存了所有與窗口相關的資料，是大多數 GLFW 函數所依賴的。
 
@@ -155,7 +155,7 @@ return 0;
 <img src="https://learnopengl.com/img/getting-started/hellowindow.png" class="right" alt="Image of GLFW window output as most basic example">
 
 如果你看到的是一個非常單調無聊的黑色畫面，那麼你做得很正確。
-如果你沒有得到預期的畫面，或者對上述代碼的結構感到疑惑，可以查看完整的[原始碼](https://learnopengl.com/Getting-started/Hello-Window#:~:text=full%20source%20code-,here,-(and%20if%20it))（如果畫面開始閃爍多種顏色，那就繼續往下看）。
+如果你沒有得到預期的畫面，或者對上述代碼的結構感到疑惑，可以查看完整的[原始碼](/opengl/Getting-started/Hello-Window#:~:text=full%20source%20code-,here,-(and%20if%20it))（如果畫面開始閃爍多種顏色，那就繼續往下看）。
 
 如果你在編譯應用程式時遇到問題，首先請確認你的 linker 配置是否正確，並且已經在 IDE 中正確引入了相關目錄（如上一章所提及）。同時，也要確保你的程式碼沒有錯誤；你可以將你的程式碼與完整原始碼進行比對來核對。
 

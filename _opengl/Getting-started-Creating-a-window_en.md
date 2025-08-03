@@ -145,7 +145,7 @@ After the previous steps, you should be able to add the following include direct
 #include <glad/glad.h>
 ```
 
-Hitting the compile button shouldn't give you any errors, at which point we're set to go for the [next](https://learnopengl.com/Getting-started/Hello-Window) chapter where we'll discuss how we can actually use GLFW and GLAD to configure an OpenGL context and spawn a window. Be sure to check that all your include and library directories are correct and that the library names in the linker settings match the corresponding libraries.
+Hitting the compile button shouldn't give you any errors, at which point we're set to go for the [next](/opengl/en/Getting-started/Hello-Window) chapter where we'll discuss how we can actually use GLFW and GLAD to configure an OpenGL context and spawn a window. Be sure to check that all your include and library directories are correct and that the library names in the linker settings match the corresponding libraries.
 
 ## Additional resources
 

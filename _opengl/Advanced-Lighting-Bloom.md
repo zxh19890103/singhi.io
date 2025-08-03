@@ -23,7 +23,7 @@ permalink: /opengl/Advanced-Lighting/Bloom
 
 Bloom 能讓物體的亮度有明顯的視覺提示。如果輕微且適度使用（但許多遊戲未能做到這點），Bloom 可以大幅提升場景的光影表現，並帶來各種戲劇化的效果。
 
-Bloom 最適合與 [HDR](https://learnopengl.com/Advanced-Lighting/HDR) 渲染結合使用。很多人誤以為 HDR 就是 Bloom，甚至將兩者混用，然而它們其實是完全不同的技術，目標和用途也不同。Bloom 可以在傳統的 8-bit 色深幀緩衝區(framebuffer)上實現，HDR 也可以在不使用 Bloom 的情況下實現。只是 HDR 讓 Bloom 更容易發揮其效果（稍後我們會看到）。
+Bloom 最適合與 [HDR](/opengl/Advanced-Lighting/HDR) 渲染結合使用。很多人誤以為 HDR 就是 Bloom，甚至將兩者混用，然而它們其實是完全不同的技術，目標和用途也不同。Bloom 可以在傳統的 8-bit 色深幀緩衝區(framebuffer)上實現，HDR 也可以在不使用 Bloom 的情況下實現。只是 HDR 讓 Bloom 更容易發揮其效果（稍後我們會看到）。
 
 要實作 Bloom，我們先像平常一樣渲染出一個有光照的場景，接著取出場景的 HDR 色彩緩衝區，並額外取出一張只包含明亮區域的圖像。這張明亮區域圖像會被模糊處理，然後再將結果疊加回原始 HDR 場景圖像上。
 
@@ -64,7 +64,7 @@ layout (location = 1) out vec4 BrightColor;
 
 這個方法只有在我們實際有多個緩衝區可寫入時才有效。使用多重片段著色器輸出的一個必要條件是：當前綁定的幀緩衝區物件（framebuffer object）必須附加多個顏色緩衝區（color buffers）。
 
-你可能還記得在[幀緩衝區（framebuffers）](https://learnopengl.com/Advanced-OpenGL/Framebuffers)章節中，我們可以在將紋理作為幀緩衝區的顏色緩衝時，指定顏色附件號（color attachment number）。到目前為止，我們一直使用 `GL_COLOR_ATTACHMENT0`，但如果同時使用 `GL_COLOR_ATTACHMENT1`，我們就可以讓一個幀緩衝物件附加兩個顏色緩衝區，如下所示：
+你可能還記得在[幀緩衝區（framebuffers）](/opengl/Advanced-OpenGL/Framebuffers)章節中，我們可以在將紋理作為幀緩衝區的顏色緩衝時，指定顏色附件號（color attachment number）。到目前為止，我們一直使用 `GL_COLOR_ATTACHMENT0`，但如果同時使用 `GL_COLOR_ATTACHMENT1`，我們就可以讓一個幀緩衝物件附加兩個顏色緩衝區，如下所示：
 
 ```cpp
 // set up floating point framebuffer to render scene to
@@ -243,7 +243,7 @@ glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 ## 混合兩個紋理
 
-當我們擁有了場景的 HDR 紋理以及經過模糊處理的場景亮度紋理後，只需將兩者結合即可實現著名的 Bloom（泛光）或發光效果。在最終的片段著色器中（大致與我們在 [HDR](https://learnopengl.com/Advanced-Lighting/HDR) 章節中使用的相似），我們對這兩個紋理進行加法混合：
+當我們擁有了場景的 HDR 紋理以及經過模糊處理的場景亮度紋理後，只需將兩者結合即可實現著名的 Bloom（泛光）或發光效果。在最終的片段著色器中（大致與我們在 [HDR](/opengl/Advanced-Lighting/HDR) 章節中使用的相似），我們對這兩個紋理進行加法混合：
 
 ```cpp
 #version 330 core

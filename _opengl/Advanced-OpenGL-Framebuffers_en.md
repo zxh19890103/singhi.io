@@ -45,7 +45,7 @@ Unfortunately, we can't use our framebuffer yet because it is not `complete`. Fo
 - All attachments should be complete as well (reserved memory).
 - Each buffer should have the same number of samples.
 
-Don't worry if you don't know what samples are, we'll get to those in a [later](https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing) chapter.
+Don't worry if you don't know what samples are, we'll get to those in a [later](/opengl/en/Advanced-OpenGL/Anti-Aliasing) chapter.
 
 From the requirements it should be clear that we need to create some kind of attachment for the framebuffer and attach this attachment to the framebuffer. After we've completed all requirements we can check if we actually successfully completed the framebuffer by calling `glCheckFramebufferStatus` with `GL_FRAMEBUFFER`. It then checks the currently bound framebuffer and returns any of [these](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/%67lCheckFramebufferStatus.xhtml) values found in the specification. If it returns `GL_FRAMEBUFFER_COMPLETE` we're good to go:
 
@@ -221,7 +221,7 @@ So, to draw the scene to a single texture we'll have to take the following steps
 2.  Bind to the default framebuffer.
 3.  Draw a quad that spans the entire screen with the new framebuffer's color buffer as its texture.
 
-We'll render the same scene we've used in the [depth testing](https://learnopengl.com/Advanced-OpenGL/Depth-testing) chapter, but this time with the old-school [container](https://learnopengl.com/img/textures/container.jpg) texture.
+We'll render the same scene we've used in the [depth testing](/opengl/en/Advanced-OpenGL/Depth-testing) chapter, but this time with the old-school [container](https://learnopengl.com/img/textures/container.jpg) texture.
 
 To render the quad we're going to create a fresh set of simple shaders. We're not going to include fancy matrix transformations since we'll be supplying the [vertex coordinates as normalized device coordinates](https://learnopengl.com/code_viewer.php?code=advanced/framebuffers_quad_vertices) so we can directly forward them as output of the vertex shader. The vertex shader looks like this:
 
@@ -283,7 +283,7 @@ There are quite some steps that could go wrong here, so if you have no output, t
 
 ![](https://learnopengl.com/img/advanced/framebuffers_screen_texture.png)
 
-The left shows the visual output, exactly the same as we've seen in the [depth testing](https://learnopengl.com/Advanced-OpenGL/Depth-testing) chapter, but this time rendered on a simple quad. If we render the scene in wireframe it's obvious we've only drawn a single quad in the default framebuffer.
+The left shows the visual output, exactly the same as we've seen in the [depth testing](/opengl/en/Advanced-OpenGL/Depth-testing) chapter, but this time rendered on a simple quad. If we render the scene in wireframe it's obvious we've only drawn a single quad in the default framebuffer.
 
 You can find the source code of the application [here](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/5.1.framebuffers/framebuffers.cpp).
 

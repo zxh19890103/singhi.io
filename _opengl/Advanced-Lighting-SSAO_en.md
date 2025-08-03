@@ -64,7 +64,7 @@ Using a per-fragment view-space position we can orient a sample hemisphere kerne
 As SSAO is a screen-space technique we calculate its effect on each fragment on a screen-filled 2D quad. This does mean we have no geometrical information of the scene. What we could do, is render the geometrical per-fragment data into screen-space textures that we then later send to the SSAO shader so we have access to the per-fragment geometrical data. If you've followed along with the previous chapter you'll realize this looks quite like a deferred renderer's G-buffer setup. For that reason SSAO is perfectly suited in combination with deferred rendering as we already have the position and normal vectors in the G-buffer.
 
 {% include box.html content="
-In this chapter we're going to implement SSAO on top of a slightly simplified version of the deferred renderer from the [deferred shading](https://learnopengl.com/Advanced-Lighting/Deferred-Shading) chapter. If you're not sure what deferred shading is, be sure to first read up on that.
+In this chapter we're going to implement SSAO on top of a slightly simplified version of the deferred renderer from the [deferred shading](/opengl/en/Advanced-Lighting/Deferred-Shading) chapter. If you're not sure what deferred shading is, be sure to first read up on that.
 " color="green" %}
 
 As we should have per-fragment position and normal data available from the scene objects, the fragment shader of the geometry stage is fairly simple:
@@ -114,7 +114,7 @@ Next, we need the actual hemisphere sample kernel and some method to randomly ro
 
 ## Normal-oriented hemisphere
 
-We need to generate a number of samples oriented along the normal of a surface. As we briefly discussed at the start of this chapter, we want to generate samples that form a hemisphere. As it is difficult nor plausible to generate a sample kernel for each surface normal direction, we're going to generate a sample kernel in [tangent space](https://learnopengl.com/Advanced-Lighting/Normal-Mapping), with the normal vector pointing in the positive z direction.
+We need to generate a number of samples oriented along the normal of a surface. As we briefly discussed at the start of this chapter, we want to generate samples that form a hemisphere. As it is difficult nor plausible to generate a sample kernel for each surface normal direction, we're going to generate a sample kernel in [tangent space](/opengl/en/Advanced-Lighting/Normal-Mapping), with the normal vector pointing in the positive z direction.
 
 ![](https://learnopengl.com/img/advanced-lighting/ssao_hemisphere.png)
 

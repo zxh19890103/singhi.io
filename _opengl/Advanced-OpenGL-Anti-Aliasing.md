@@ -103,7 +103,7 @@ The cube does indeed look a lot smoother and the same will apply for any other o
 
 Because GLFW takes care of creating the multisampled buffers, enabling MSAA is quite easy. If we want to use our own framebuffers however, we have to generate the multisampled buffers ourselves; now we **do** need to take care of creating multisampled buffers.
 
-There are two ways we can create multisampled buffers to act as attachments for framebuffers: texture attachments and renderbuffer attachments. Quite similar to normal attachments like we've discussed in the [framebuffers](https://learnopengl.com/Advanced-OpenGL/Framebuffers) chapter.
+There are two ways we can create multisampled buffers to act as attachments for framebuffers: texture attachments and renderbuffer attachments. Quite similar to normal attachments like we've discussed in the [framebuffers](/opengl/Advanced-OpenGL/Framebuffers) chapter.
 
 ### Multisampled texture attachments
 
@@ -141,7 +141,7 @@ Rendering to a multisampled framebuffer is straightforward. Whenever we draw any
 
 A multisampled image contains much more information than a normal image so what we need to do is downscale or `resolve` the image. Resolving a multisampled framebuffer is generally done through `glBlitFramebuffer` that copies a region from one framebuffer to the other while also resolving any multisampled buffers.
 
-`glBlitFramebuffer` transfers a given `source` region defined by 4 screen-space coordinates to a given `target` region also defined by 4 screen-space coordinates. You may remember from the [framebuffers](https://learnopengl.com/Advanced-OpenGL/Framebuffers) chapter that if we bind to `GL_FRAMEBUFFER` we're binding to both the read and draw framebuffer targets. We could also bind to those targets individually by binding framebuffers to `GL_READ_FRAMEBUFFER` and `GL_DRAW_FRAMEBUFFER` respectively. The `glBlitFramebuffer` function reads from those two targets to determine which is the source and which is the target framebuffer. We could then transfer the multisampled framebuffer output to the actual screen by `blitting` the image to the default framebuffer like so:
+`glBlitFramebuffer` transfers a given `source` region defined by 4 screen-space coordinates to a given `target` region also defined by 4 screen-space coordinates. You may remember from the [framebuffers](/opengl/Advanced-OpenGL/Framebuffers) chapter that if we bind to `GL_FRAMEBUFFER` we're binding to both the read and draw framebuffer targets. We could also bind to those targets individually by binding framebuffers to `GL_READ_FRAMEBUFFER` and `GL_DRAW_FRAMEBUFFER` respectively. The `glBlitFramebuffer` function reads from those two targets to determine which is the source and which is the target framebuffer. We could then transfer the multisampled framebuffer output to the actual screen by `blitting` the image to the default framebuffer like so:
 
 ```cpp
 glBindFramebuffer(GL_READ_FRAMEBUFFER, multisampledFBO);
@@ -184,7 +184,7 @@ while(!glfwWindowShouldClose(window))
 }
 ```
 
-If we then implement this into the post-processing code of the [framebuffers](https://learnopengl.com/Advanced-OpenGL/Framebuffers) chapter we're able to create all kinds of cool post-processing effects on a texture of a scene with (almost) no jagged edges. With a grayscale postprocessing filter applied it'll look something like this:
+If we then implement this into the post-processing code of the [framebuffers](/opengl/Advanced-OpenGL/Framebuffers) chapter we're able to create all kinds of cool post-processing effects on a texture of a scene with (almost) no jagged edges. With a grayscale postprocessing filter applied it'll look something like this:
 
 ![](https://learnopengl.com/img/advanced/anti_aliasing_post_processing.png)
 

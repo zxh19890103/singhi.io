@@ -56,10 +56,10 @@ Ambient lighting by itself doesn't produce the most interesting results, but dif
 
 To the left we find a light source with a light ray targeted at a single fragment of our object. We need to measure at what angle the light ray touches the fragment. If the light ray is perpendicular to the object's surface the light has the greatest impact. To measure the angle between the light ray and the fragment we use something called a `normal vector`, that is a vector perpendicular to the fragment's surface (here depicted as a yellow arrow); we'll get to that later. The angle between the two vectors can then easily be calculated with the dot product.
 
-You may remember from the [transformations](https://learnopengl.com/Getting-started/Transformations) chapter that, the lower the angle between two unit vectors, the more the dot product is inclined towards a value of 1. When the angle between both vectors is 90 degrees, the dot product becomes 0. The same applies to \\(\\theta\\): the larger \\(\\theta\\) becomes, the less of an impact the light should have on the fragment's color.
+You may remember from the [transformations](/opengl/en/Getting-started/Transformations) chapter that, the lower the angle between two unit vectors, the more the dot product is inclined towards a value of 1. When the angle between both vectors is 90 degrees, the dot product becomes 0. The same applies to \\(\\theta\\): the larger \\(\\theta\\) becomes, the less of an impact the light should have on the fragment's color.
 
 {% include box.html content="
-Note that to get (only) the cosine of the angle between both vectors we will work with _unit vectors_ (vectors of length `1`) so we need to make sure all the vectors are normalized, otherwise the dot product returns more than just the cosine (see [Transformations](https://learnopengl.com/Getting-started/Transformations)).
+Note that to get (only) the cosine of the angle between both vectors we will work with _unit vectors_ (vectors of length `1`) so we need to make sure all the vectors are normalized, otherwise the dot product returns more than just the cosine (see [Transformations](/opengl/en/Getting-started/Transformations)).
 " color="green" %}
 
 The resulting dot product thus returns a scalar that we can use to calculate the light's impact on the fragment's color, resulting in differently lit fragments based on their orientation towards the light.
@@ -149,7 +149,7 @@ in vec3 FragPos;
 
 This `in` variable will be interpolated from the 3 world position vectors of the triangle to form the `FragPos` vector that is the per-fragment world position. Now that all the required variables are set we can start the lighting calculations.
 
-The first thing we need to calculate is the direction vector between the light source and the fragment's position. From the previous section we know that the light's direction vector is the difference vector between the light's position vector and the fragment's position vector. As you may remember from the [transformations](https://learnopengl.com/Getting-started/Transformations) chapter we can easily calculate this difference by subtracting both vectors from each other. We also want to make sure all the relevant vectors end up as unit vectors so we normalize both the normal and the resulting direction vector:
+The first thing we need to calculate is the direction vector between the light source and the fragment's position. From the previous section we know that the light's direction vector is the difference vector between the light's position vector and the fragment's position vector. As you may remember from the [transformations](/opengl/en/Getting-started/Transformations) chapter we can easily calculate this difference by subtracting both vectors from each other. We also want to make sure all the relevant vectors end up as unit vectors so we normalize both the normal and the resulting direction vector:
 
 ```cpp
 vec3 norm = normalize(Normal);
@@ -244,7 +244,7 @@ Now that we have all the required variables we can calculate the specular intens
 float specularStrength = 0.5;
 ```
 
-If we would set this to `1.0f` we'd get a really bright specular component which is a bit too much for a coral cube. In the [next](https://learnopengl.com/Lighting/Materials) chapter we'll talk about properly setting all these lighting intensities and how they affect the objects. Next we calculate the view direction vector and the corresponding reflect vector along the normal axis:
+If we would set this to `1.0f` we'd get a really bright specular component which is a bit too much for a coral cube. In the [next](/opengl/en/Lighting/Materials) chapter we'll talk about properly setting all these lighting intensities and how they affect the objects. Next we calculate the view direction vector and the corresponding reflect vector along the normal axis:
 
 ```cpp
 vec3 viewDir = normalize(viewPos - FragPos);
@@ -287,4 +287,4 @@ When the Phong lighting model is implemented in the vertex shader it is called `
 
 " color="green" %}
 
-By now you should be starting to see just how powerful shaders are. With little information shaders are able to calculate how lighting affects the fragment's colors for all our objects. In the [next](https://learnopengl.com/Lighting/Materials) chapters we'll be delving much deeper into what we can do with the lighting model.
+By now you should be starting to see just how powerful shaders are. With little information shaders are able to calculate how lighting affects the fragment's colors for all our objects. In the [next](/opengl/en/Lighting/Materials) chapters we'll be delving much deeper into what we can do with the lighting model.

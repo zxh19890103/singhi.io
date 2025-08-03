@@ -36,45 +36,9 @@
     .katex-display>.katex {
       padding: 0 3em;
     }
-
-    .table {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      left: 50%;
-      transform: translate(-50%, 0);
-      width: 100vw;
-      overflow: auto hidden;
-      margin: 1em 0;
-      padding: 0 1em;
-      box-sizing: border-box;
-    }
-
-    .table table {
-      width: auto;
-      max-width: 100%;
-    }
-
-    table th {
-      text-align: left;
-      font-size: .66em;
-    }
-
-    table td {
-      font-size: .7em;
-    }
-
-    video {
-      width: 100%;
-    }
-
-    code.highlighter-rouge {
-      background-color: #fff;
-      color: #575b5f;
-      padding: 3px 6px;
-    }
   </style>
   {% endif %}
+
   {% if page.book == 'opengl' %}
   <style>
     /* Basic body styling for context */
@@ -169,6 +133,41 @@
       /* Space for the close button */
       box-sizing: border-box;
       /* Include padding in element's total size */
+    }
+
+    .table {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 100vw;
+      overflow: auto hidden;
+      margin: 1em 0;
+      padding: 0 1em;
+      box-sizing: border-box;
+    }
+
+    .table table {
+      width: auto;
+      max-width: 100%;
+    }
+
+    table th {
+      text-align: left;
+      font-size: .66em;
+    }
+
+    table td {
+      font-size: .7em;
+    }
+
+    video {
+      width: 100%;
+    }
+
+    code.highlighter-rouge {
+      background-color: transparent;
     }
   </style>
   {% endif %}

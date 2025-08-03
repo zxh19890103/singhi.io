@@ -136,7 +136,7 @@ GLAD 现在应该已经提供了一个包含两个 include 文件夹和一个 gl
 #include <glad/glad.h>
 ```
 
-此时，点击编译按钮应该不会再报错。接下来，你就可以进入 [下一章节](https://learnopengl.com/Getting-started/Hello-Window)，在这一章中我们将讨论如何使用 GLFW 和 GLAD 来配置一个 OpenGL 上下文并创建一个窗口。确保检查所有的 `include` 和 `library` 目录是否正确，并确保链接器设置中的库名称与相应的库文件匹配。
+此时，点击编译按钮应该不会再报错。接下来，你就可以进入 [下一章节](/opengl/Getting-started/Hello-Window)，在这一章中我们将讨论如何使用 GLFW 和 GLAD 来配置一个 OpenGL 上下文并创建一个窗口。确保检查所有的 `include` 和 `library` 目录是否正确，并确保链接器设置中的库名称与相应的库文件匹配。
 
 ## 其它资源
 

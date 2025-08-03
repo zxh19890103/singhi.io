@@ -218,7 +218,7 @@ glDepthMask(GL_TRUE);
 
 然而，如果您運行此程式碼，您將會遇到困難。我們希望天空盒以玩家為中心，這樣無論玩家移動多遠，天空盒都不會更靠近，給人一種周圍環境極其巨大的印象。然而，當前的視圖矩陣會旋轉、縮放和平移所有天空盒的位置，因此如果玩家移動，立方體貼圖也會移動！我們希望移除視圖矩陣的平移部分，這樣只有旋轉會影響天空盒的位置向量。
 
-您可能還記得在[基本光照](https://learnopengl.com/Lighting/Basic-Lighting)章節中，我們可以透過從 4x4 矩陣中取出左上角 3x3 矩陣來移除轉換矩陣的平移部分。我們可以透過將視圖矩陣轉換為 3x3 矩陣（移除平移）並將其轉換回 4x4 矩陣來實現此目的：
+您可能還記得在[基本光照](/opengl/Lighting/Basic-Lighting)章節中，我們可以透過從 4x4 矩陣中取出左上角 3x3 矩陣來移除轉換矩陣的平移部分。我們可以透過將視圖矩陣轉換為 3x3 矩陣（移除平移）並將其轉換回 4x4 矩陣來實現此目的：
 
 ```cpp
 glm::mat4 view = glm::mat4(glm::mat3(camera.GetViewMatrix()));
@@ -238,7 +238,7 @@ glm::mat4 view = glm::mat4(glm::mat3(camera.GetViewMatrix()));
 
 所以為了稍微提升性能，我們將最後渲染天空盒。這樣，深度緩衝區將完全填充所有場景的深度值，所以我們只需要在早期深度測試通過的地方渲染天空盒的片段，大大減少了片段著色器調用次數。問題是天空盒很可能會渲染在所有其他物件之上，因為它只是一個 1x1x1 的立方體，會通過大多數深度測試。簡單地不進行深度測試就渲染它並不是一個解決方案，因為天空盒在最後渲染時仍然會覆蓋場景中的所有其他物件。我們需要欺騙深度緩衝區，讓它相信天空盒具有最大的深度值 `1.0`，這樣當它前面有不同的物件時，它就會無法通過深度測試。
 
-在[座標系統](https://learnopengl.com/Getting-started/Coordinate-Systems)章節中，我們提到 _透視除法 (perspective division)_ 在頂點著色器執行後進行，將 `gl_Position` 的 `xyz` 座標除以其 `w` 分量。我們也從[深度測試](https://learnopengl.com/Advanced-OpenGL/Depth-testing)章節中得知，結果除法的 `z` 分量等於該頂點的深度值。利用這些資訊，我們可以將輸出位置的 `z` 分量設定為等於其 `w` 分量，這將導致 `z` 分量始終等於 `1.0`，因為當應用透視除法時，其 `z` 分量轉換為 `w` / `w` = `1.0`：
+在[座標系統](/opengl/Getting-started/Coordinate-Systems)章節中，我們提到 _透視除法 (perspective division)_ 在頂點著色器執行後進行，將 `gl_Position` 的 `xyz` 座標除以其 `w` 分量。我們也從[深度測試](/opengl/Advanced-OpenGL/Depth-testing)章節中得知，結果除法的 `z` 分量等於該頂點的深度值。利用這些資訊，我們可以將輸出位置的 `z` 分量設定為等於其 `w` 分量，這將導致 `z` 分量始終等於 `1.0`，因為當應用透視除法時，其 `z` 分量轉換為 `w` / `w` = `1.0`：
 
 ```cpp
 void main()
@@ -329,7 +329,7 @@ glDrawArrays(GL_TRIANGLES, 0, 36);
 
 您可以在[這裡](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/6.2.cubemaps_environment_mapping/cubemaps_environment_mapping.cpp)找到完整的原始碼。
 
-當反射應用於整個物件（如容器）時，物件看起來就像是具有高反射材料，例如鋼或鉻。如果我們載入一個更有趣的物件（如[模型載入](https://learnopengl.com/Model-Loading/Model)章節中的背包模型），我們會得到物件看起來完全由鉻製成的效果：
+當反射應用於整個物件（如容器）時，物件看起來就像是具有高反射材料，例如鋼或鉻。如果我們載入一個更有趣的物件（如[模型載入](/opengl/Model-Loading/Model)章節中的背包模型），我們會得到物件看起來完全由鉻製成的效果：
 
 ![](https://learnopengl.com/img/advanced/cubemaps_reflection_nanosuit.png)
 

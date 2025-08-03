@@ -108,7 +108,7 @@ void main()
 
 色調映射是將浮點色彩值轉換到預期的 $`0.0`, `1.0`$ 範圍內（即低動態範圍，LDR）的過程，同時盡量不損失太多細節，且通常會搭配特定的風格化色彩平衡。
 
-其中一種較簡單的色調映射演算法是「Reinhard 色調映射」，它是通過將整個 HDR 色彩值除以（加上）LDR 色彩值來完成。Reinhard 色調映射演算法能夠均勻地將所有亮度值平衡到 LDR 範圍內。我們將 Reinhard 色調映射加入之前的片段著色器中，並且為了效果更佳，同時加上 [伽瑪校正](https://learnopengl.com/Advanced-Lighting/Gamma-Correction) 過濾（包括使用 sRGB 色彩空間的紋理）。
+其中一種較簡單的色調映射演算法是「Reinhard 色調映射」，它是通過將整個 HDR 色彩值除以（加上）LDR 色彩值來完成。Reinhard 色調映射演算法能夠均勻地將所有亮度值平衡到 LDR 範圍內。我們將 Reinhard 色調映射加入之前的片段著色器中，並且為了效果更佳，同時加上 [伽瑪校正](/opengl/Advanced-Lighting/Gamma-Correction) 過濾（包括使用 sRGB 色彩空間的紋理）。
 
 ```cpp
 void main()

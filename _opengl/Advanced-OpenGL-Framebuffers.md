@@ -45,7 +45,7 @@ glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 - 所有附件本身也必須是完整的（即已保留記憶體）。
 - 每個緩衝區應具有相同數量的採樣數（samples）。
 
-如果你不了解採樣數是什麼，別擔心，我們會在[之後的章節](https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing)中討論。
+如果你不了解採樣數是什麼，別擔心，我們會在[之後的章節](/opengl/Advanced-OpenGL/Anti-Aliasing)中討論。
 
 從這些要求中可以清楚看出，我們需要為幀緩衝區建立某種附件，並將其附加到幀緩衝區。在我們滿足所有要求後，可以透過呼叫 `glCheckFramebufferStatus` 並傳入 `GL_FRAMEBUFFER` 來檢查是否成功完成幀緩衝區的設定。它會檢查當前綁定的幀緩衝區，並回傳規格中列出的[任何這些值](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/%67lCheckFramebufferStatus.xhtml)。如果它回傳 **`GL_FRAMEBUFFER_COMPLETE`**，那麼我們就可以開始使用了。
 
@@ -221,7 +221,7 @@ glBindFramebuffer(GL_FRAMEBUFFER, 0);
 2.  綁定回預設幀緩衝區。
 3.  繪製一個覆蓋整個螢幕的四邊形，並將新幀緩衝區的顏色緩衝區作為其紋理。
 
-我們將渲染在[深度測試](https://learnopengl.com/Advanced-OpenGL/Depth-testing)章節中使用過的相同場景，但這次使用舊式的[容器](https://learnopengl.com/img/textures/container.jpg)紋理。
+我們將渲染在[深度測試](/opengl/Advanced-OpenGL/Depth-testing)章節中使用過的相同場景，但這次使用舊式的[容器](https://learnopengl.com/img/textures/container.jpg)紋理。
 
 為了渲染這個四邊形，我們將建立一套全新的簡單著色器。我們不會包含複雜的矩陣變換，因為我們將以[正規化設備座標](https://learnopengl.com/code_viewer.php?code=advanced/framebuffers_quad_vertices)的形式提供頂點座標，這樣我們就可以直接將它們作為頂點著色器的輸出。頂點著色器如下所示：
 
@@ -283,7 +283,7 @@ glDrawArrays(GL_TRIANGLES, 0, 6);
 
 ![](https://learnopengl.com/img/advanced/framebuffers_screen_texture.png)
 
-左側顯示的是視覺輸出，與我們在[深度測試](https://learnopengl.com/Advanced-OpenGL/Depth-testing)章節中看到的完全相同，但這次是渲染在一個簡單的四邊形上。如果我們以線框模式渲染場景，就能清楚地看到我們在預設幀緩衝區中只繪製了一個單一的四邊形。
+左側顯示的是視覺輸出，與我們在[深度測試](/opengl/Advanced-OpenGL/Depth-testing)章節中看到的完全相同，但這次是渲染在一個簡單的四邊形上。如果我們以線框模式渲染場景，就能清楚地看到我們在預設幀緩衝區中只繪製了一個單一的四邊形。
 
 您可以在[這裡](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/5.1.framebuffers/framebuffers.cpp)找到該應用程式的原始碼。
 

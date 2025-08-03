@@ -138,6 +138,7 @@
 
 			&.kiddy-font-disabled {
 				font-family: QuickSand, sans-serif;
+				-webkit-font-smoothing: auto;
 			}
 		}
 
@@ -294,7 +295,9 @@
 		}
 	}
 
-	.Book_Top_Bar, .Book_Read_Progress, .Book__Side {
+	.Book_Top_Bar,
+	.Book_Read_Progress,
+	.Book__Side {
 		background-color: #000;
 	}
 
@@ -408,8 +411,9 @@
 
 .chinese,
 .lang-zh {
+	// if not using this value, the words will be very bold.
 	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	// -moz-osx-font-smoothing: ;
 
 	strong {
 		font-weight: normal;

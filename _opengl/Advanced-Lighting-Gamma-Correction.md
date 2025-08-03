@@ -112,7 +112,7 @@ glTexImage2D(GL_TEXTURE_2D, 0, GL_SRGB, width, height, 0, GL_RGB, GL_UNSIGNED_BY
 
 如果你也想在紋理中包含 alpha 分量，你必須將紋理的內部格式指定為 `GL_SRGB_ALPHA`。
 
-在 sRGB 空間中指定紋理時應該小心，因為並非所有紋理都實際在 sRGB 空間中。用於著色物體（如漫反射紋理）的紋理幾乎總是在 sRGB 空間中。用於檢索光照參數（如[鏡面貼圖](https://learnopengl.com/Lighting/Lighting-maps)和[法線貼圖](https://learnopengl.com/Advanced-Lighting/Normal-Mapping)）的紋理幾乎總是在線性空間中，所以如果你將這些紋理配置為 sRGB 紋理，光照會看起來很奇怪。請注意你將哪些紋理指定為 sRGB。
+在 sRGB 空間中指定紋理時應該小心，因為並非所有紋理都實際在 sRGB 空間中。用於著色物體（如漫反射紋理）的紋理幾乎總是在 sRGB 空間中。用於檢索光照參數（如[鏡面貼圖](/opengl/Lighting/Lighting-maps)和[法線貼圖](/opengl/Advanced-Lighting/Normal-Mapping)）的紋理幾乎總是在線性空間中，所以如果你將這些紋理配置為 sRGB 紋理，光照會看起來很奇怪。請注意你將哪些紋理指定為 sRGB。
 
 透過將我們的漫反射紋理指定為 sRGB 紋理，你將再次獲得預期的視覺輸出，但這次所有內容都只進行了一次伽馬校正。
 
@@ -124,7 +124,7 @@ glTexImage2D(GL_TEXTURE_2D, 0, GL_SRGB, width, height, 0, GL_RGB, GL_UNSIGNED_BY
 float attenuation = 1.0 / (distance * distance);
 ```
 
-然而，當使用這個方程式時，衰減效果通常會過於強烈，導致光線半徑很小，看起來不符合物理現實。因此，會使用其他衰減函數（就像我們在[基礎光照](https://learnopengl.com/Lighting/Basic-Lighting)章節中討論的那樣），這些函數提供更多的控制，或者使用線性等效函數：
+然而，當使用這個方程式時，衰減效果通常會過於強烈，導致光線半徑很小，看起來不符合物理現實。因此，會使用其他衰減函數（就像我們在[基礎光照](/opengl/Lighting/Basic-Lighting)章節中討論的那樣），這些函數提供更多的控制，或者使用線性等效函數：
 
 ```cpp
 float attenuation = 1.0 / distance;
@@ -135,7 +135,7 @@ float attenuation = 1.0 / distance;
 造成這種差異的原因是光衰減函數會改變亮度，由於我們沒有在線性空間中可視化我們的場景，我們選擇了在我們的顯示器上看起來最好的衰減函數，但它們並不符合物理原理。想想平方衰減函數：如果我們在沒有伽馬校正的情況下使用這個函數，當顯示在顯示器上時，衰減函數實際上會變成：$(1.0 / \\text{distance}^2)^{2.2}$。這會產生比我們最初預期的更大的衰減。這也解釋了為什麼在沒有伽馬校正的情況下，線性等效函數更有意義，因為它實際上會變成 $(1.0 / \\text{distance})^{2.2} = 1.0 / \\text{distance}^{2.2}$，這與其物理等效函數更為相似。
 
 {% include box.html content="
-我們在[基礎光照](https://learnopengl.com/Lighting/Basic-Lighting)章節中討論的更高級的衰減函數在伽馬校正場景中仍然有其作用，因為它提供了對精確衰減的更多控制（但當然在伽馬校正場景中需要不同的參數）。
+我們在[基礎光照](/opengl/Lighting/Basic-Lighting)章節中討論的更高級的衰減函數在伽馬校正場景中仍然有其作用，因為它提供了對精確衰減的更多控制（但當然在伽馬校正場景中需要不同的參數）。
 " color="green" %}
 
 你可以在[這裡](https://learnopengl.com/code_viewer_gh.php?code=src/5.advanced_lighting/2.gamma_correction/gamma_correction.cpp)找到這個簡單範例場景的原始碼。透過按下空格鍵，我們可以在伽馬校正和未校正的場景之間切換，兩個場景都使用其紋理和衰減等效值。這不是最令人印象深刻的範例，但它確實展示了如何實際應用所有技術。

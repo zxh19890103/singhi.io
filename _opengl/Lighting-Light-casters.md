@@ -17,7 +17,7 @@ gltopic: Light-casters
 
 我們目前為止使用的所有光線都來自空間中的單一光源。這能提供不錯的效果，但在現實世界中，我們有幾種不同類型的光線，它們各自有不同的作用。會「投射」光線到物體上的光源稱為 `light caster`（光線投射器）。在本章中，我們將討論幾種不同的光線投射器類型。學習模擬不同的光源是你的工具箱中的另一個工具，可以進一步豐富你的環境。
 
-我們將首先討論定向光，然後是點光源（這是我們之前討論的擴展），最後我們將討論聚光燈。在[下一章](https://learnopengl.com/Lighting/Multiple-lights)中，我們將把幾種不同的光線類型組合到一個場景中。
+我們將首先討論定向光，然後是點光源（這是我們之前討論的擴展），最後我們將討論聚光燈。在[下一章](/opengl/Lighting/Multiple-lights)中，我們將把幾種不同的光線類型組合到一個場景中。
 
 ## 定向光
 
@@ -50,7 +50,7 @@ void main()
 
 然後，得到的 `lightDir` 向量像以前一樣用於漫反射和鏡面反射計算。
 
-為了清楚地證明定向光對多個物體產生相同的效果，我們重新審視[座標系統](https://learnopengl.com/Getting-started/Coordinate-Systems)章節末尾的容器派對場景。如果你錯過了派對，我們定義了 10 個不同的[容器位置](https://learnopengl.com/code_viewer.php?code=lighting/light_casters_container_positions)，並為每個容器生成了一個不同的模型矩陣，其中每個模型矩陣都包含適當的局部到世界變換：
+為了清楚地證明定向光對多個物體產生相同的效果，我們重新審視[座標系統](/opengl/Getting-started/Coordinate-Systems)章節末尾的容器派對場景。如果你錯過了派對，我們定義了 10 個不同的[容器位置](https://learnopengl.com/code_viewer.php?code=lighting/light_casters_container_positions)，並為每個容器生成了一個不同的模型矩陣，其中每個模型矩陣都包含適當的局部到世界變換：
 
 ```cpp
 for(unsigned int i = 0; i < 10; i++)

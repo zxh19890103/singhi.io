@@ -15,7 +15,7 @@ gltopic: Lighting-maps
 permalink: /opengl/en/Lighting/Lighting-maps
 ---
 
-In the [previous](https://learnopengl.com/Lighting/Materials) chapter we discussed the possibility of each object having a unique material of its own that reacts differently to light. This is great for giving each object a unique look in comparison to other objects, but still doesn't offer much flexibility on the visual output of an object.
+In the [previous](/opengl/en/Lighting/Materials) chapter we discussed the possibility of each object having a unique material of its own that reacts differently to light. This is great for giving each object a unique look in comparison to other objects, but still doesn't offer much flexibility on the visual output of an object.
 
 In the previous chapter we defined a material for an entire object as a whole. Objects in the real world however usually do not consist of a single material, but of several materials. Think of a car: its exterior consists of a shiny fabric, it has windows that partly reflect the surrounding environment, its tires are all but shiny so they don't have specular highlights and it has rims that are super shiny (if you actually washed your car alright). The car also has diffuse and ambient colors that are not the same for the entire object; a car displays many different ambient/diffuse colors. All by all, such an object has different material properties for each of its different parts.
 
@@ -25,7 +25,7 @@ So the material system in the previous chapter isn't sufficient for all but the 
 
 What we want is some way to set the diffuse colors of an object for each individual fragment. Some sort of system where we can retrieve a color value based on the fragment's position on the object?
 
-This should probably all sound familiar and we've been using such a system for a while now. This sounds just like _textures_ we've extensively discussed in one of the [earlier](https://learnopengl.com/Getting-started/Textures) chapters and it basically is just that: a texture. We're just using a different name for the same underlying principle: using an image wrapped around an object that we can index for unique color values per fragment. In lit scenes this is usually called a `diffuse map` (this is generally how 3D artists call them before PBR) since a texture image represents all of the object's diffuse colors.
+This should probably all sound familiar and we've been using such a system for a while now. This sounds just like _textures_ we've extensively discussed in one of the [earlier](/opengl/en/Getting-started/Textures) chapters and it basically is just that: a texture. We're just using a different name for the same underlying principle: using an image wrapped around an object that we can index for unique color values per fragment. In lit scenes this is usually called a `diffuse map` (this is generally how 3D artists call them before PBR) since a texture image represents all of the object's diffuse colors.
 
 To demonstrate diffuse maps we're going to use the [following image](https://learnopengl.com/img/textures/container2.png) of a wooden container with a steel border:
 
@@ -119,7 +119,7 @@ Using tools like _Photoshop_ or _Gimp_ it is relatively easy to transform a diff
 
 ### Sampling specular maps
 
-A specular map is just like any other texture so the code is similar to the diffuse map code. Make sure to properly load the image and generate a texture object. Since we're using another texture sampler in the same fragment shader we have to use a different texture unit (see [Textures](https://learnopengl.com/Getting-started/Textures)) for the specular map so let's bind it to the appropriate texture unit before rendering:
+A specular map is just like any other texture so the code is similar to the diffuse map code. Make sure to properly load the image and generate a texture object. Since we're using another texture sampler in the same fragment shader we have to use a different texture unit (see [Textures](/opengl/en/Getting-started/Textures)) for the specular map so let's bind it to the appropriate texture unit before rendering:
 
 ```cpp
 lightingShader.setInt("material.specular", 1);

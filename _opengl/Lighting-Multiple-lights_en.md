@@ -48,7 +48,7 @@ The actual code will likely differ per implementation, but the general structure
 
 We want to define a function in the fragment shader that calculates the contribution a directional light has on the corresponding fragment: a function that takes a few parameters and returns the calculated directional lighting color.
 
-First we need to set the required variables that we minimally need for a directional light source. We can store the variables in a struct called `DirLight` and define it as a uniform. The struct's variables should be familiar from the [previous](https://learnopengl.com/Lighting/Light-casters) chapter:
+First we need to set the required variables that we minimally need for a directional light source. We can store the variables in a struct called `DirLight` and define it as a uniform. The struct's variables should be familiar from the [previous](/opengl/en/Lighting/Light-casters) chapter:
 
 ```cpp
 struct DirLight {

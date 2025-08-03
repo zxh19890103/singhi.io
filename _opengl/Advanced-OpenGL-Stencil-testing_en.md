@@ -121,7 +121,7 @@ void main()
 }
 ```
 
-Using the scene from the [previous](https://learnopengl.com/Advanced-OpenGL/Depth-testing) chapter we're going to add object outlining to the two containers, so we'll leave the floor out of it. We want to first draw the floor, then the two containers (while writing to the stencil buffer), and then draw the scaled-up containers (while discarding the fragments that write over the previously drawn container fragments).
+Using the scene from the [previous](/opengl/en/Advanced-OpenGL/Depth-testing) chapter we're going to add object outlining to the two containers, so we'll leave the floor out of it. We want to first draw the floor, then the two containers (while writing to the stencil buffer), and then draw the scaled-up containers (while discarding the fragments that write over the previously drawn container fragments).
 
 We first need to enable stencil testing:
 

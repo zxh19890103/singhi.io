@@ -15,13 +15,13 @@ gltopic: Depth-testing
 permalink: /opengl/en/Advanced-OpenGL/Depth-testing
 ---
 
-In the [coordinate systems](https://learnopengl.com/Getting-started/Coordinate-Systems) chapter we've rendered a 3D container and made use of a `depth buffer` to prevent triangles rendering in the front while they're supposed to be behind other triangles. In this chapter we're going to elaborate a bit more on those `depth values` the depth buffer (or z-buffer) stores and how it actually determines if a fragment is in front.
+In the [coordinate systems](/opengl/en/Getting-started/Coordinate-Systems) chapter we've rendered a 3D container and made use of a `depth buffer` to prevent triangles rendering in the front while they're supposed to be behind other triangles. In this chapter we're going to elaborate a bit more on those `depth values` the depth buffer (or z-buffer) stores and how it actually determines if a fragment is in front.
 
 The depth-buffer is a buffer that, just like the `color buffer` (that stores all the fragment colors: the visual output), stores information per fragment and has the same width and height as the color buffer. The depth buffer is automatically created by the windowing system and stores its depth values as `16`, `24` or `32` bit floats. In most systems you'll see a depth buffer with a precision of `24` bits.
 
 When depth testing is enabled, OpenGL tests the depth value of a fragment against the content of the depth buffer. OpenGL performs a depth test and if this test passes, the fragment is rendered and the depth buffer is updated with the new depth value. If the depth test fails, the fragment is discarded.
 
-Depth testing is done in screen space after the fragment shader has run (and after the stencil test which we'll get to in the [next](https://learnopengl.com/Advanced-OpenGL/Stencil-testing) chapter). The screen space coordinates relate directly to the viewport defined by OpenGL's `glViewport` function and can be accessed via GLSL's built-in `gl_FragCoord` variable in the fragment shader. The x and y components of `gl_FragCoord` represent the fragment's screen-space coordinates (with (0,0) being the bottom-left corner). The `gl_FragCoord` variable also contains a z-component which contains the depth value of the fragment. This z value is the value that is compared to the depth buffer's content.
+Depth testing is done in screen space after the fragment shader has run (and after the stencil test which we'll get to in the [next](/opengl/en/Advanced-OpenGL/Stencil-testing) chapter). The screen space coordinates relate directly to the viewport defined by OpenGL's `glViewport` function and can be accessed via GLSL's built-in `gl_FragCoord` variable in the fragment shader. The x and y components of `gl_FragCoord` represent the fragment's screen-space coordinates (with (0,0) being the bottom-left corner). The `gl_FragCoord` variable also contains a z-component which contains the depth value of the fragment. This z value is the value that is compared to the depth buffer's content.
 
 {% include box.html content="Today most GPUs support a hardware feature called `early depth testing`. Early depth testing allows the depth test to run before the fragment shader runs. Whenever it is clear a fragment isn't going to be visible (it is behind other objects) we can prematurely discard the fragment.
 
@@ -86,7 +86,7 @@ The depth buffer contains depth values between `0.0` and `1.0` and it compares i
 
 \\begin{equation} F\_{depth} = \\frac{z - near}{far - near} \\end{equation}
 
-Here \\(near\\) and \\(far\\) are the _near_ and _far_ values we used to provide to the projection matrix to set the visible frustum (see [coordinate Systems](https://learnopengl.com/Getting-started/Coordinate-Systems)). The equation takes a depth value \\(z\\) within the frustum and transforms it to the range `[0,1]`. The relation between the z-value and its corresponding depth value is presented in the following graph:
+Here \\(near\\) and \\(far\\) are the _near_ and _far_ values we used to provide to the projection matrix to set the visible frustum (see [coordinate Systems](/opengl/en/Getting-started/Coordinate-Systems)). The equation takes a depth value \\(z\\) within the frustum and transforms it to the range `[0,1]`. The relation between the z-value and its corresponding depth value is presented in the following graph:
 
 ![](https://learnopengl.com/img/advanced/depth_linear_graph.png)
 

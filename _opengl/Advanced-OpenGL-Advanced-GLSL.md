@@ -1,10 +1,10 @@
 ---
 layout: bookdetail
 chapter: 二十七
-title: Advanced-OpenGL &bull; Advanced-GLSL
+title: 高級 OpenGL &bull; 高級 GLSL
 category: tech
 src: "https://learnopengl.com/Advanced-OpenGL/Advanced-GLSL"
-date: 2025-06-30
+date: 2025-08-03
 math: 1
 book: opengl
 image: "https://learnopengl.com/img/advanced/advanced_glsl_pointsize.png"
@@ -15,33 +15,33 @@ gltopic: Advanced-GLSL
 permalink: /opengl/Advanced-OpenGL/Advanced-GLSL
 ---
 
-This chapter won't really show you super advanced cool new features that give an enormous boost to your scene's visual quality. This chapter goes more or less into some interesting aspects of GLSL and some nice tricks that may help you in your future endeavors. Basically some _good to knows_ and _features that may make your life easier_ when creating OpenGL applications in combination with GLSL.
+這一章節不會向你展示什麼超級先進、能夠極大提升場景視覺品質的新功能。這個章節或多或少會深入探討 GLSL 的一些有趣面向，以及一些在未來開發中可能對你有幫助的實用技巧。基本上，這是一些在結合 GLSL 建立 OpenGL 應用程式時，「值得了解」以及「可以讓生活更輕鬆」的功能。
 
-We'll discuss some interesting `built-in variables`, new ways to organize shader input and output, and a very useful tool called `uniform buffer objects`.
+我們會討論一些有趣的 `內建變數`（built-in variables）、組織著色器輸入與輸出資料的新方法，以及一個非常實用的工具，叫做 `uniform 緩衝物件`（uniform buffer objects）。
 
-## GLSL's built-in variables
+## GLSL 的內建變數
 
-Shaders are extremely pipelined, if we need data from any other source outside of the current shader we'll have to pass data around. We learned to do this via vertex attributes, uniforms, and samplers. There are however a few extra variables defined by GLSL prefixed with `gl_` that give us an extra means to gather and/or write data. We've already seen two of them in the chapters so far: `gl_Position` that is the output vector of the vertex shader, and the fragment shader's `gl_FragCoord`.
+著色器是極度管線化的，如果我們需要來自當前著色器以外的任何其他來源的資料，我們就必須傳遞這些資料。我們學會了透過頂點屬性（vertex attributes）、uniforms 和取樣器（samplers）來做到這一點。然而，GLSL 還定義了一些額外的變數，它們以 `gl_` 為前綴，為我們提供了額外的途徑來收集或寫入資料。到目前為止，我們已經在之前的章節中看過其中兩個：`gl_Position`，它是頂點著色器的輸出向量；以及片段著色器的 `gl_FragCoord`。
 
-We'll discuss a few interesting built-in input and output variables that are built-in in GLSL and explain how they may benefit us. Note that we won't discuss all built-in variables that exist in GLSL so if you want to see all built-in variables you can check OpenGL's [wiki](<https://www.khronos.org/opengl/wiki/Built-in_Variable_(GLSL)>).
+我們將討論一些 GLSL 內建的、有趣的輸入與輸出變數，並解釋它們如何能帶給我們好處。請注意，我們不會討論 GLSL 中所有存在的內建變數，所以如果你想看所有內建變數，可以查看 OpenGL 的 [wiki](<https://www.khronos.org/opengl/wiki/Built-in_Variable_(GLSL)>)。
 
-### Vertex shader variables
+### 頂點著色器變數
 
-We've already seen `gl_Position` which is the clip-space output position vector of the vertex shader. Setting `gl_Position` in the vertex shader is a strict requirement if you want to render anything on the screen. Nothing we haven't seen before.
+我們已經看過 `gl_Position`，它是頂點著色器的剪輯空間（clip-space）輸出位置向量。在頂點著色器中設定 `gl_Position` 是渲染任何東西到螢幕上的嚴格要求。這沒什麼我們以前沒見過的。
 
 #### gl_PointSize
 
-One of the render primitives we're able to choose from is `GL_POINTS` in which case each single vertex is a primitive and rendered as a point. It is possible to set the size of the points being rendered via OpenGL's `glPointSize` function, but we can also influence this value in the vertex shader.
+我們能夠選擇的渲染圖元（render primitives）之一是 `GL_POINTS`，在這種情況下，每個單獨的頂點都是一個圖元，並被渲染為一個點。雖然可以透過 OpenGL 的 `glPointSize` 函式來設定點的大小，但我們也可以在頂點著色器中影響這個值。
 
-One output variable defined by GLSL is called `gl_PointSize` that is a `float` variable where you can set the point's width and height in pixels. By setting the point's size in the vertex shader we get per-vertex control over this point's dimensions.
+GLSL 定義的一個輸出變數叫做 `gl_PointSize`，它是一個 `float` 變數，你可以用它來設定點的寬度和高度，單位是像素。透過在頂點著色器中設定點的大小，我們可以對每個頂點的點尺寸進行個別控制。
 
-Influencing the point sizes in the vertex shader is disabled by default, but if you want to enable this you'll have to enable OpenGL's `GL_PROGRAM_POINT_SIZE`:
+在頂點著色器中影響點的大小預設是禁用的，但如果你想啟用此功能，你必須啟用 OpenGL 的 `GL_PROGRAM_POINT_SIZE`：
 
 ```cpp
 glEnable(GL_PROGRAM_POINT_SIZE);
 ```
 
-A simple example of influencing point sizes is by setting the point size equal to the clip-space position's z value which is equal to the vertex's distance to the viewer. The point size should then increase the further we are from the vertices as the viewer.
+一個影響點大小的簡單範例是將點的大小設定為與剪輯空間（clip-space）位置的 Z 值相等，這個 Z 值等於頂點到觀察者的距離。如此一來，當觀察者離頂點越遠，點的大小就應該越大。
 
 ```cpp
 void main()
@@ -51,29 +51,29 @@ void main()
 }
 ```
 
-The result is that the points we've drawn are rendered larger the more we move away from them:
+結果就是，當我們離點越遠，我們所繪製的點就會渲染得越大：
 
 ![](https://learnopengl.com/img/advanced/advanced_glsl_pointsize.png)
 
-You can imagine that varying the point size per vertex is interesting for techniques like particle generation.
+你可以想像，針對每個頂點來改變點的大小，對於像粒子生成這類技術來說是相當有趣的。
 
 #### gl_VertexID
 
-The `gl_Position` and `gl_PointSize` are _output variables_ since their value is read as output from the vertex shader; we can influence the result by writing to them. The vertex shader also gives us an interesting _input variable_, that we can only read from, called `gl_VertexID`.
+`gl_Position` 和 `gl_PointSize` 是「輸出變數」，因為它們的值是從頂點著色器中被讀取為輸出；我們可以透過對它們寫入來影響結果。頂點著色器也給了我們一個有趣的「輸入變數」，我們只能從中讀取，它叫做 `gl_VertexID`。
 
-The integer variable `gl_VertexID` holds the current ID of the vertex we're drawing. When doing _indexed rendering_ (with `glDrawElements`) this variable holds the current index of the vertex we're drawing. When drawing without indices (via `glDrawArrays`) this variable holds the number of the currently processed vertex since the start of the render call.
+整數變數 `gl_VertexID` 儲存了我們正在繪製的頂點的當前 ID。當進行「索引繪圖」（indexed rendering）（使用 `glDrawElements`）時，這個變數儲存了我們正在繪製的頂點的當前索引。當沒有索引繪圖（透過 `glDrawArrays`）時，這個變數儲存了自渲染呼叫開始以來，當前正在處理的頂點的編號。
 
-### Fragment shader variables
+### 片段著色器變數
 
-Within the fragment shader we also have access to some interesting variables. GLSL gives us two interesting input variables called `gl_FragCoord` and `gl_FrontFacing`.
+在片段著色器中，我們也可以存取一些有趣的變數。GLSL 給了我們兩個有趣的輸入變數，叫做 `gl_FragCoord` 和 `gl_FrontFacing`。
 
 #### gl_FragCoord
 
-We've seen the `gl_FragCoord` a couple of times before during the discussion of depth testing, because the `z` component of the `gl_FragCoord` vector is equal to the depth value of that particular fragment. However, we can also use the x and y component of that vector for some interesting effects.
+在討論深度測試（depth testing）時，我們已經看過 `gl_FragCoord` 幾次了，因為 `gl_FragCoord` 向量的 `z` 分量等於該片段的深度值。然而，我們也可以利用該向量的 x 和 y 分量來實現一些有趣的效果。
 
-The `gl_FragCoord`'s `x` and `y` component are the window- or screen-space coordinates of the fragment, originating from the bottom-left of the window. We specified a render window of 800x600 with `glViewport` so the screen-space coordinates of the fragment will have `x` values between 0 and 800, and `y` values between 0 and 600.
+`gl_FragCoord` 的 `x` 和 `y` 分量是片段的視窗或螢幕空間座標，原點位於視窗的左下角。我們用 `glViewport` 設定了一個 800x600 的渲染視窗，所以片段的螢幕空間座標的 `x` 值將介於 0 和 800 之間，而 `y` 值將介於 0 和 600 之間。
 
-Using the fragment shader we could calculate a different color value based on the screen coordinate of the fragment. A common usage for the `gl_FragCoord` variable is for comparing visual output of different fragment calculations, as usually seen in tech demos. We could for example split the screen in two by rendering one output to the left side of the window and another output to the right side of the window. An example fragment shader that outputs a different color based on the fragment's screen coordinates is given below:
+使用片段著色器，我們可以根據片段的螢幕座標來計算不同的顏色值。`gl_FragCoord` 變數的一個常見用途是比較不同片段計算的視覺輸出，這在技術展示（tech demos）中很常見。例如，我們可以將螢幕一分為二，將一種輸出渲染到視窗的左側，另一種輸出渲染到視窗的右側。下面是一個範例片段著色器，它根據片段的螢幕座標輸出不同的顏色：
 
 ```cpp
 void main()
@@ -85,17 +85,17 @@ void main()
 }
 ```
 
-Because the width of the window is equal to 800, whenever a pixel's x-coordinate is less than 400 it must be at the left side of the window and we'll give that fragment a different color.
+由於視窗的寬度等於 800，因此當一個像素的 x 座標小於 400 時，它必定位於視窗的左側，此時我們會給予該片段一個不同的顏色。
 
 ![](https://learnopengl.com/img/advanced/advanced_glsl_fragcoord.png)
 
-We can now calculate two completely different fragment shader results and display each of them on a different side of the window. This is great for testing out different lighting techniques for example.
+我們現在可以計算出兩種完全不同的片段著色器結果，並將它們各自顯示在視窗的不同側。舉例來說，這對於測試不同的光照技術來說非常棒。
 
 #### gl_FrontFacing
 
-Another interesting input variable in the fragment shader is the `gl_FrontFacing` variable. In the [face culling](https://learnopengl.com/Advanced-OpenGL/Face-culling) chapter we mentioned that OpenGL is able to figure out if a face is a front or back face due to the winding order of the vertices. The `gl_FrontFacing` variable tells us if the current fragment is part of a front-facing or a back-facing face. We could, for example, decide to output different colors for all back faces.
+在片段著色器中，另一個有趣的輸入變數是 `gl_FrontFacing` 變數。在[面剔除](/opengl/Advanced-OpenGL/Face-culling)的章節中，我們提到 OpenGL 能夠根據頂點的環繞順序來判斷一個面是正面還是反面。`gl_FrontFacing` 變數告訴我們當前的片段是正面還是反面的一部分。舉例來說，我們可以決定為所有的反面輸出不同的顏色。
 
-The `gl_FrontFacing` variable is a `bool` that is `true` if the fragment is part of a front face and `false` otherwise. We could create a cube this way with a different texture on the inside than on the outside:
+`gl_FrontFacing` 變數是一個 `bool` 類型，如果片段是正面的一部分，它就是 `true`，否則就是 `false`。我們可以用這種方式建立一個立方體，它的內部和外部有不同的紋理：
 
 ```cpp
 #version 330 core
@@ -115,41 +115,41 @@ void main()
 }
 ```
 
-If we take a peek inside the container we can now see a different texture being used.
+如果我們往容器內部看，現在就能看到使用了不同的紋理。
 
 ![](https://learnopengl.com/img/advanced/advanced_glsl_frontfacing.png)
 
-Note that if you enabled face culling you won't be able to see any faces inside the container and using `gl_FrontFacing` would then be pointless.
+請注意，如果你啟用了面剔除（face culling），你將無法看到容器內部的任何面，因此使用 `gl_FrontFacing` 將會變得毫無意義。
 
 #### gl_FragDepth
 
-The input variable `gl_FragCoord` is an input variable that allows us to read screen-space coordinates and get the depth value of the current fragment, but it is a `read-only` variable. We can't influence the screen-space coordinates of the fragment, but it is possible to set the depth value of the fragment. GLSL gives us an output variable called `gl_FragDepth` that we can use to manually set the depth value of the fragment within the shader.
+輸入變數 `gl_FragCoord` 是一個輸入變數，它讓我們能夠讀取螢幕空間座標並獲得當前片段的深度值，但它是一個「唯讀」（read-only）變數。我們無法影響片段的螢幕空間座標，但可以設定片段的深度值。GLSL 給了我們一個叫做 `gl_FragDepth` 的輸出變數，我們可以用它在著色器內手動設定片段的深度值。
 
-To set the depth value in the shader we write any value between `0.0` and `1.0` to the output variable:
+要在著色器中設定深度值，我們將任何介於 `0.0` 和 `1.0` 之間的值寫入此輸出變數：
 
 ```cpp
 gl_FragDepth = 0.0; // this fragment now has a depth value of 0.0
 ```
 
-If the shader does not write anything to `gl_FragDepth`, the variable will automatically take its value from `gl_FragCoord.z`.
+如果著色器沒有向 `gl_FragDepth` 寫入任何內容，這個變數將會自動從 `gl_FragCoord.z` 取值。
 
-Setting the depth value manually has a major disadvantage however. That is because OpenGL disables `early depth testing` (as discussed in the [depth testing](https://learnopengl.com/Advanced-OpenGL/Depth-testing) chapter) as soon as we write to `gl_FragDepth` in the fragment shader. It is disabled, because OpenGL cannot know what depth value the fragment will have _before_ we run the fragment shader, since the fragment shader may actually change this value.
+然而，手動設定深度值有一個主要的缺點。那就是一旦我們在片段著色器中寫入 `gl_FragDepth`，OpenGL 就會停用「早期深度測試」（early depth testing）（這在[深度測試](/opengl/Advanced-OpenGL/Depth-testing)章節中討論過）。停用的原因是，OpenGL 在執行片段著色器「之前」無法知道片段將會有什麼深度值，因為片段著色器實際上可能會改變這個值。
 
-By writing to `gl_FragDepth` you should take this performance penalty into consideration. From OpenGL 4.2 however, we can still sort of mediate between both sides by redeclaring the `gl_FragDepth` variable at the top of the fragment shader with a `depth condition`:
+透過寫入 `gl_FragDepth`，你應該將這種效能損失考慮在內。然而，從 OpenGL 4.2 開始，我們可以透過在片段著色器的頂部用「深度條件」（depth condition）重新宣告 `gl_FragDepth` 變數來在兩者之間進行協調：
 
 ```cpp
 layout (depth_<condition>) out float gl_FragDepth;
 ```
 
-This `condition` can take the following values:
+這個 `condition` 可以採用以下值：
 
 <div class="table">
-<table><tbody><tr><th>Condition</th><th>Description</th></tr><tr><td><code>any</code></td><td>The default value. Early depth testing is disabled.</td></tr><tr><td><code>greater</code></td><td>You can only make the depth value larger compared to <code>gl_FragCoord.z</code>.</td></tr><tr><td><code>less</code></td><td>You can only make the depth value smaller compared to <code>gl_FragCoord.z</code>.</td></tr><tr><td><code>unchanged</code></td><td>If you write to <code>gl_FragDepth</code>, you will write exactly <code>gl_FragCoord.z</code>.</td></tr></tbody></table>
+<table><tbody><tr><th>條件</th><th>描述</th></tr><tr><td><code>any</code></td><td>The default value. Early depth testing is disabled.</td></tr><tr><td><code>greater</code></td><td>You can only make the depth value larger compared to <code>gl_FragCoord.z</code>.</td></tr><tr><td><code>less</code></td><td>You can only make the depth value smaller compared to <code>gl_FragCoord.z</code>.</td></tr><tr><td><code>unchanged</code></td><td>If you write to <code>gl_FragDepth</code>, you will write exactly <code>gl_FragCoord.z</code>.</td></tr></tbody></table>
 </div>
 
-By specifying `greater` or `less` as the depth condition, OpenGL can make the assumption that you'll only write depth values larger or smaller than the fragment's depth value. This way OpenGL is still able to do early depth testing when the depth buffer value is part of the other direction of `gl_FragCoord.z`.
+透過將 `greater` 或 `less` 指定為深度條件，OpenGL 可以假設你只會寫入比片段深度值更大或更小的值。這樣一來，當深度緩衝區的值朝著 `gl_FragCoord.z` 的另一個方向時，OpenGL 仍然能夠進行早期深度測試。
 
-An example of where we increase the depth value in the fragment shader, but still want to preserve some of the early depth testing is shown in the fragment shader below:
+下面顯示了一個片段著色器，其中我們在片段著色器中增加了深度值，但仍希望保留部分早期深度測試功能：
 
 ```cpp
 #version 420 core // note the GLSL version!
@@ -163,13 +163,13 @@ void main()
 }
 ```
 
-Do note that this feature is only available from OpenGL version 4.2 or higher.
+請注意，此功能僅在 OpenGL 4.2 或更高版本中可用。
 
-## Interface blocks
+## 介面區塊（Interface blocks）
 
-So far, every time we sent data from the vertex to the fragment shader we declared several matching input/output variables. Declaring these one at a time is the easiest way to send data from one shader to another, but as applications become larger you probably want to send more than a few variables over.
+到目前為止，每次我們從頂點著色器傳送資料到片段著色器時，我們都宣告了幾個相匹配的輸入/輸出變數。一次宣告一個變數是將資料從一個著色器傳送到另一個著色器最簡單的方式，但隨著應用程式變得越來越大，你可能會希望傳送的變數不只幾個。
 
-To help us organize these variables GLSL offers us something called `interface blocks` that allows us to group variables together. The declaration of such an interface block looks a lot like a `struct` declaration, except that it is now declared using an `in` or `out` keyword based on the block being an input or an output block.
+為了幫助我們組織這些變數，GLSL 提供了「介面區塊」（interface blocks）功能，讓我們能夠將變數分組在一起。這種介面區塊的宣告方式非常像 `struct` 的宣告，不同之處在於它是使用 `in` 或 `out` 關鍵字來宣告，取決於該區塊是輸入區塊還是輸出區塊。
 
 ```cpp
 #version 330 core
@@ -192,9 +192,9 @@ void main()
 }
 ```
 
-This time we declared an interface block called `vs_out` that groups together all the output variables we want to send to the next shader. This is kind of a trivial example, but you can imagine that this helps organize your shaders' inputs/outputs. It is also useful when we want to group shader input/output into arrays as we'll see in the [next](https://learnopengl.com/Advanced-OpenGL/Geometry-Shader) chapter about geometry shaders.
+這次我們宣告了一個名為 `vs_out` 的介面區塊，它將所有我們想傳送到下一個著色器的輸出變數組合在一起。這是一個有點瑣碎的範例，但你可以想像這有助於組織著色器的輸入/輸出。當我們想將著色器輸入/輸出分組為陣列時，這也很有用，我們會在[下一章](/opengl/Advanced-OpenGL/Geometry-Shader)關於幾何著色器（geometry shaders）的內容中看到這一點。
 
-Then we also need to declare an input interface block in the next shader which is the fragment shader. The `block name` (`VS_OUT`) should be the same in the fragment shader, but the `instance name` (`vs_out` as used in the vertex shader) can be anything we like - avoiding confusing names like `vs_out` for a fragment struct containing input values.
+然後，我們還需要在下一個著色器（也就是片段著色器）中宣告一個輸入介面區塊。片段著色器中的「區塊名稱」（`VS_OUT`）應該要與頂點著色器相同，但「實例名稱」（instance name）（在頂點著色器中使用的 `vs_out`）可以是我們喜歡的任何名稱——避免像 `vs_out` 這樣容易混淆的名稱，用來表示一個包含輸入值的片段結構。
 
 ```cpp
 #version 330 core
@@ -213,15 +213,15 @@ void main()
 }
 ```
 
-As long as both interface block names are equal, their corresponding input and output is matched together. This is another useful feature that helps organize your code and proves useful when crossing between certain shader stages like the geometry shader.
+只要兩個介面區塊的名稱相等，它們對應的輸入和輸出就會匹配在一起。這是另一個有用的功能，有助於組織你的程式碼，並且在跨越某些著色器階段（如幾何著色器）時會非常實用。
 
-## Uniform buffer objects
+## Uniform 緩衝物件
 
-We've been using OpenGL for quite a while now and learned some pretty cool tricks, but also a few annoyances. For example, when using more than one shader we continuously have to set uniform variables where most of them are exactly the same for each shader.
+我們使用 OpenGL 已經有一段時間了，學到了一些非常酷的技巧，但也遇到了一些惱人的地方。舉例來說，當使用多個著色器時，我們必須不斷地設定 uniform 變數，而其中大部分對於每個著色器來說都是完全相同的。
 
-OpenGL gives us a tool called `uniform buffer objects` that allow us to declare a set of _global_ uniform variables that remain the same over any number of shader programs. When using uniform buffer objects we set the relevant uniforms only **once** in fixed GPU memory. We do still have to manually set the uniforms that are unique per shader. Creating and configuring a uniform buffer object requires a bit of work though.
+OpenGL 給了我們一個叫做 `uniform 緩衝物件` 的工具，它允許我們宣告一組「全域」（global）uniform 變數，這些變數在任何數量的著色器程式中都保持不變。當使用 uniform 緩衝物件時，我們只需要在固定的 GPU 記憶體中**一次**性設定相關的 uniforms。我們仍然需要手動設定每個著色器獨有的 uniforms。不過，建立和配置一個 uniform 緩衝物件需要一些工作。
 
-Because a uniform buffer object is a buffer like any other buffer we can create one via `glGenBuffers`, bind it to the `GL_UNIFORM_BUFFER` buffer target and store all the relevant uniform data into the buffer. There are certain rules as to how the data for uniform buffer objects should be stored and we'll get to that later. First, we'll take a simple vertex shader and store our `projection` and `view` matrix in a so called `uniform block`:
+因為 uniform 緩衝物件就像任何其他緩衝區一樣，我們可以透過 `glGenBuffers` 函式來建立一個，將它綁定到 `GL_UNIFORM_BUFFER` 緩衝區目標，然後將所有相關的 uniform 資料儲存到緩衝區中。關於 uniform 緩衝物件的資料應該如何儲存，有一些特定的規則，我們稍後會討論。首先，我們將使用一個簡單的頂點著色器，並將我們的 `projection` 和 `view` 矩陣儲存在一個所謂的「uniform 區塊」（uniform block）中：
 
 ```cpp
 #version 330 core
@@ -241,17 +241,17 @@ void main()
 }
 ```
 
-In most of our samples we set a projection and view uniform matrix every frame for each shader we're using. This is a perfect example of where uniform buffer objects become useful since now we only have to store these matrices once.
+在我們大多數的範例中，我們為每個著色器在每一幀都設定一個投影（projection）和觀察（view）uniform 矩陣。這正是 uniform 緩衝物件變得有用的完美範例，因為現在我們只需要儲存這些矩陣一次。
 
-Here we declared a uniform block called `Matrices` that stores two 4x4 matrices. Variables in a uniform block can be directly accessed without the block name as a prefix. Then we store these matrix values in a buffer somewhere in the OpenGL code and each shader that declares this uniform block has access to the matrices.
+在這裡，我們宣告了一個名為 `Matrices` 的 uniform 區塊，它儲存了兩個 4x4 矩陣。uniform 區塊中的變數可以直接存取，無需加上區塊名稱作為前綴。然後，我們在 OpenGL 程式碼的某個地方將這些矩陣值儲存在一個緩衝區中，每個宣告了這個 uniform 區塊的著色器都可以存取這些矩陣。
 
-You're probably wondering right now what the `layout` `(std140)` statement means. What this says is that the currently defined uniform block uses a specific memory layout for its content; this statement sets the `uniform block layout`.
+你現在可能想知道 `layout` `(std140)` 語句是什麼意思。這句話的意思是，當前定義的 uniform 區塊使用特定的記憶體佈局來儲存其內容；這個語句設定了「uniform 區塊佈局」（uniform block layout）。
 
-### Uniform block layout
+### Uniform 區塊佈局
 
-The content of a uniform block is stored in a buffer object, which is effectively nothing more than a reserved piece of global GPU memory. Because this piece of memory holds no information on what kind of data it holds, we need to tell OpenGL what parts of the memory correspond to which uniform variables in the shader.
+uniform 區塊的內容儲存在一個緩衝區物件中，這實際上不過是一塊預留的 GPU 全域記憶體。因為這塊記憶體沒有關於它所儲存資料類型的資訊，我們需要告訴 OpenGL 哪一部分的記憶體對應於著色器中的哪個 uniform 變數。
 
-Imagine the following uniform block in a shader:
+想像一下著色器中有以下 uniform 區塊：
 
 ```cpp
 layout (std140) uniform ExampleBlock
@@ -265,21 +265,21 @@ layout (std140) uniform ExampleBlock
 };
 ```
 
-What we want to know is the size (in bytes) and the offset (from the start of the block) of each of these variables so we can place them in the buffer in their respective order. The size of each of the elements is clearly stated in OpenGL and directly corresponds to C++ data types; vectors and matrices being (large) arrays of floats. What OpenGL doesn't clearly state is the `spacing` between the variables. This allows the hardware to position or pad variables as it sees fit. The hardware is able to place a `vec3` adjacent to a `float` for example. Not all hardware can handle this and pads the `vec3` to an array of 4 floats before appending the `float`. A great feature, but inconvenient for us.
+我們想知道的是這些變數的（以位元組為單位的）大小，以及每個變數的偏移量（從區塊開頭算起），這樣我們才能按它們各自的順序將它們放入緩衝區中。每個元素的大小在 OpenGL 中有明確規定，並直接對應於 C++ 資料類型；向量和矩陣則是（大型）浮點數陣列。OpenGL 沒有明確說明的是變數之間的「間距」（spacing）。這讓硬體可以根據其需要來定位或填充變數。舉例來說，硬體能夠將一個 `vec3` 緊鄰一個 `float` 放置。並非所有硬體都能處理這種情況，它會先將 `vec3` 填充為一個 4 個浮點數的陣列，然後再附加 `float`。這是一個很棒的功能，但對我們來說很不方便。
 
-By default, GLSL uses a uniform memory layout called a `shared` layout - shared because once the offsets are defined by the hardware, they are consistently _shared_ between multiple programs. With a shared layout GLSL is allowed to reposition the uniform variables for optimization as long as the variables' order remains intact. Because we don't know at what offset each uniform variable will be we don't know how to precisely fill our uniform buffer. We can query this information with functions like `glGetUniformIndices`, but that's not the approach we're going to take in this chapter.
+預設情況下，GLSL 使用一種叫做 `shared` 佈局的 uniform 記憶體佈局——之所以叫做 shared（共享），是因為一旦偏移量由硬體定義後，它們就會在多個程式之間保持一致的「共享」。使用 shared 佈局時，只要變數的順序保持不變，GLSL 就可以為了最佳化而重新定位 uniform 變數。由於我們不知道每個 uniform 變數的偏移量是多少，我們就無法確切地知道如何精確地填寫我們的 uniform 緩衝區。雖然我們可以使用 `glGetUniformIndices` 等函式來查詢這些資訊，但這不是我們在本章要採用的方法。
 
-While a shared layout gives us some space-saving optimizations, we'd need to query the offset for each uniform variable which translates to a lot of work. The general practice however is to not use the shared layout, but to use the `std140` layout. The std140 layout **explicitly** states the memory layout for each variable type by standardizing their respective offsets governed by a set of rules. Since this is standardized we can manually figure out the offsets for each variable.
+雖然 shared 佈局為我們提供了一些節省空間的最佳化，但我們需要查詢每個 uniform 變數的偏移量，這會帶來大量的工作。然而，一般的做法是不用 shared 佈局，而是使用 `std140` 佈局。std140 佈局透過標準化每個變數類型的偏移量來**明確地**規定了它們的記憶體佈局，這些偏移量受一套規則所約束。因為這是標準化的，我們可以手動計算出每個變數的偏移量。
 
-Each variable has a `base alignment` equal to the space a variable takes (including padding) within a uniform block using the std140 layout rules. For each variable, we calculate its `aligned offset`: the byte offset of a variable from the start of the block. The aligned byte offset of a variable **must** be equal to a multiple of its base alignment. This is a bit of a mouthful, but we'll get to see some examples soon enough to clear things up.
+每個變數都有一個「基本對齊」（base alignment），它等於一個變數在使用 std140 佈局規則的 uniform 區塊中佔用的空間（包括填充）。對於每個變數，我們計算它的「對齊偏移量」（aligned offset）：從區塊開始處算起的變數位元組偏移量。變數的對齊位元組偏移量**必須**是其基本對齊的倍數。這聽起來有點饒口，但我們很快就會看到一些範例來澄清這點。
 
-The exact layout rules can be found at OpenGL's uniform buffer specification [here](http://www.opengl.org/registry/specs/ARB/uniform_buffer_object.txt), but we'll list the most common rules below. Each variable type in GLSL such as `int`, `float` and `bool` are defined to be four-byte quantities with each entity of 4 bytes represented as `N`.
+確切的佈局規則可以在 OpenGL 的 uniform 緩衝區規範中找到[這裡](http://www.opengl.org/registry/specs/ARB/uniform_buffer_object.txt)，但我們會在下面列出最常見的規則。每個 GLSL 中的變數類型，如 `int`、`float` 和 `bool`，都被定義為四位元組量，每個 4 位元組實體表示為 `N`。
 
 <div class="table">
 <table><tbody><tr><th>Type</th><th>Layout rule</th></tr><tr><td>Scalar e.g. <fun>int</fun> or <fun>bool</fun></td><td>Each scalar has a base alignment of N.</td></tr><tr><td>Vector</td><td>Either 2N or 4N. This means that a <fun>vec3</fun> has a base alignment of 4N.</td></tr><tr><td>Array of scalars or vectors</td><td>Each element has a base alignment equal to that of a <fun>vec4</fun>.</td></tr><tr><td>Matrices</td><td>Stored as a large array of column vectors, where each of those vectors has a base alignment of <fun>vec4</fun>.</td></tr><tr><td>Struct</td><td>Equal to the computed size of its elements according to the previous rules, but padded to a multiple of the size of a <fun>vec4</fun>.</td></tr></tbody></table>
 </div>
 
-Like most of OpenGL's specifications it's easier to understand with an example. We're taking the uniform block called `ExampleBlock` we introduced earlier and calculate the aligned offset for each of its members using the std140 layout:
+如同大多數的 OpenGL 規範一樣，透過範例來理解會更容易。我們將使用前面介紹的 `ExampleBlock` uniform 區塊，並使用 std140 佈局來計算其每個成員的對齊偏移量：
 
 ```cpp
 layout (std140) uniform ExampleBlock
@@ -299,15 +299,15 @@ layout (std140) uniform ExampleBlock
 };
 ```
 
-As an exercise, try to calculate the offset values yourself and compare them to this table. With these calculated offset values, based on the rules of the std140 layout, we can fill the buffer with data at the appropriate offsets using functions like `glBufferSubData`. While not the most efficient, the std140 layout does guarantee us that the memory layout remains the same over each program that declared this uniform block.
+作為一個練習，試著自己計算偏移量，然後與這張表格進行比較。有了這些根據 std140 佈局規則計算出的偏移量，我們就可以使用像 `glBufferSubData` 這樣的函式，將資料填充到緩衝區中適當的偏移位置。雖然這不是最高效的方法，但 std140 佈局確實保證了在每個宣告了這個 uniform 區塊的程式中，記憶體佈局都保持一致。
 
-By adding the statement `layout` `(std140)` in the definition of the uniform block we tell OpenGL that this uniform block uses the std140 layout. There are two other layouts to choose from that require us to query each offset before filling the buffers. We've already seen the `shared` layout, with the other remaining layout being `packed`. When using the `packed` layout, there is no guarantee that the layout remains the same between programs (not shared) because it allows the compiler to optimize uniform variables away from the uniform block which may differ per shader.
+透過在 uniform 區塊的定義中加入 `layout` `(std140)` 語句，我們告訴 OpenGL 這個 uniform 區塊使用 std140 佈局。還有另外兩種佈局可以選擇，它們要求我們在填充緩衝區之前查詢每個偏移量。我們已經看過 `shared` 佈局，而另一種剩下的佈局是 `packed`。當使用 `packed` 佈局時，無法保證佈局在程式之間保持一致（不共享），因為它允許編譯器將 uniform 變數從 uniform 區塊中最佳化掉，這在不同的著色器之間可能會有所不同。
 
-### Using uniform buffers
+### 使用 uniform 緩衝區
 
-We've defined uniform blocks and specified their memory layout, but we haven't discussed how to actually use them yet.
+我們已經定義了 uniform 區塊並指定了它們的記憶體佈局，但我們還沒有討論如何實際使用它們。
 
-First, we need to create a uniform buffer object which is done via the familiar `glGenBuffers`. Once we have a buffer object we bind it to the `GL_UNIFORM_BUFFER` target and allocate enough memory by calling `glBufferData`.
+首先，我們需要建立一個 uniform 緩衝區物件，這透過熟悉的 `glGenBuffers` 來完成。一旦我們有了緩衝區物件，我們就將它綁定到 `GL_UNIFORM_BUFFER` 目標，並呼叫 `glBufferData` 來分配足夠的記憶體。
 
 ```cpp
 unsigned int uboExampleBlock;
@@ -317,26 +317,26 @@ glBufferData(GL_UNIFORM_BUFFER, 152, NULL, GL_STATIC_DRAW); // allocate 152 byte
 glBindBuffer(GL_UNIFORM_BUFFER, 0);
 ```
 
-Now whenever we want to update or insert data into the buffer, we bind to `uboExampleBlock` and use `glBufferSubData` to update its memory. We only have to update this uniform buffer once, and all shaders that use this buffer now use its updated data. But, how does OpenGL know what uniform buffers correspond to which uniform blocks?
+現在，無論何時我們想更新或插入資料到緩衝區中，我們就綁定到 `uboExampleBlock` 並使用 `glBufferSubData` 來更新它的記憶體。我們只需要更新這個 uniform 緩衝區一次，所有使用這個緩衝區的著色器現在都會使用它的最新資料。但是，OpenGL 怎麼知道哪個 uniform 緩衝區對應哪個 uniform 區塊呢？
 
-In the OpenGL context there is a number of `binding points` defined where we can link a uniform buffer to. Once we created a uniform buffer we link it to one of those binding points and we also link the uniform block in the shader to the same binding point, effectively linking them together. The following diagram illustrates this:
+在 OpenGL 的上下文中，定義了一些「綁定點」（binding points），我們可以將 uniform 緩衝區連結到這些綁定點上。一旦我們建立了一個 uniform 緩衝區，我們就將它連結到其中一個綁定點，同時我們也將著色器中的 uniform 區塊連結到相同的綁定點，從而有效地將它們連結在一起。下面的圖表說明了這一點：
 
 ![](https://learnopengl.com/img/advanced/advanced_glsl_binding_points.png)
 
-As you can see we can bind multiple uniform buffers to different binding points. Because shader A and shader B both have a uniform block linked to the same binding point `0`, their uniform blocks share the same uniform data found in `uboMatrices`; a requirement being that both shaders defined the same `Matrices` uniform block.
+如你所見，我們可以將多個 uniform 緩衝區綁定到不同的綁定點。因為著色器 A 和著色器 B 都將一個 uniform 區塊連結到相同的綁定點 `0`，它們的 uniform 區塊共享了在 `uboMatrices` 中找到的相同 uniform 資料；前提是兩個著色器都定義了相同的 `Matrices` uniform 區塊。
 
-To set a shader uniform block to a specific binding point we call `glUniformBlockBinding` that takes a program object, a uniform block index, and the binding point to link to. The `uniform block index` is a location index of the defined uniform block in the shader. This can be retrieved via a call to `glGetUniformBlockIndex` that accepts a program object and the name of the uniform block. We can set the `Lights` uniform block from the diagram to binding point `2` as follows:
+要將著色器的 uniform 區塊設定到特定的綁定點，我們呼叫 `glUniformBlockBinding`，它接受一個程式物件、一個 uniform 區塊索引，以及要連結到的綁定點。`uniform 區塊索引` 是著色器中定義的 uniform 區塊的位置索引。這可以透過呼叫 `glGetUniformBlockIndex` 來取得，它接受一個程式物件和 uniform 區塊的名稱。我們可以將圖表中的 `Lights` uniform 區塊設定到綁定點 `2`，如下所示：
 
 ```cpp
 unsigned int lights_index = glGetUniformBlockIndex(shaderA.ID, "Lights");
 glUniformBlockBinding(shaderA.ID, lights_index, 2);
 ```
 
-Note that we have to repeat this process for **each** shader.
+請注意，我們必須為**每個**著色器重複這個過程。
 
 {% include box.html content="
 
-From OpenGL version 4.2 and onwards it is also possible to store the binding point of a uniform block explicitly in the shader by adding another layout specifier, saving us the calls to `glGetUniformBlockIndex` and `glUniformBlockBinding`. The following code sets the binding point of the `Lights` uniform block explicitly:
+從 OpenGL 4.2 版開始，也可以透過在著色器中加入另一個佈局指定符（layout specifier），來明確地儲存 uniform 區塊的綁定點，從而省去了呼叫 `glGetUniformBlockIndex` 和 `glUniformBlockBinding` 的麻煩。以下程式碼明確地設定了 `Lights` uniform 區塊的綁定點：
 
 ```cpp
 layout(std140, binding = 2) uniform Lights { ... };
@@ -344,7 +344,7 @@ layout(std140, binding = 2) uniform Lights { ... };
 
 " color="green" %}
 
-Then we also need to bind the uniform buffer object to the same binding point and this can be accomplished with either `glBindBufferBase` or `glBindBufferRange`.
+然後我們還需要將 uniform 緩衝區物件綁定到相同的綁定點，這可以透過 `glBindBufferBase` 或 `glBindBufferRange` 來實現。
 
 ```cpp
 glBindBufferBase(GL_UNIFORM_BUFFER, 2, uboExampleBlock);
@@ -352,9 +352,9 @@ glBindBufferBase(GL_UNIFORM_BUFFER, 2, uboExampleBlock);
 glBindBufferRange(GL_UNIFORM_BUFFER, 2, uboExampleBlock, 0, 152);
 ```
 
-The function `glBindbufferBase` expects a target, a binding point index and a uniform buffer object. This function links `uboExampleBlock` to binding point `2`; from this point on, both sides of the binding point are linked. You can also use `glBindBufferRange` that expects an extra offset and size parameter - this way you can bind only a specific range of the uniform buffer to a binding point. Using `glBindBufferRange` you could have multiple different uniform blocks linked to a single uniform buffer object.
+`glBindbufferBase` 函式需要一個目標（target）、一個綁定點索引（binding point index）和一個 uniform 緩衝區物件。這個函式將 `uboExampleBlock` 連結到綁定點 `2`；從這一刻起，綁定點的兩端都連結起來了。你也可以使用 `glBindBufferRange`，它需要額外的偏移量和大小參數——透過這種方式，你可以只將 uniform 緩衝區的一個特定範圍綁定到一個綁定點。使用 `glBindBufferRange`，你可以將多個不同的 uniform 區塊連結到一個 uniform 緩衝區物件。
 
-Now that everything is set up, we can start adding data to the uniform buffer. We could add all the data as a single byte array, or update parts of the buffer whenever we feel like it using `glBufferSubData`. To update the uniform variable `boolean` we could update the uniform buffer object as follows:
+現在所有設定都已完成，我們可以開始向 uniform 緩衝區中添加資料了。我們可以將所有資料作為一個單一的位元組陣列添加，或者隨時使用 `glBufferSubData` 更新緩衝區的部分內容。要更新 `boolean` 這個 uniform 變數，我們可以如下更新 uniform 緩衝區物件：
 
 ```cpp
 glBindBuffer(GL_UNIFORM_BUFFER, uboExampleBlock);
@@ -363,13 +363,13 @@ glBufferSubData(GL_UNIFORM_BUFFER, 144, 4, &b);
 glBindBuffer(GL_UNIFORM_BUFFER, 0);
 ```
 
-And the same procedure applies for all the other uniform variables inside the uniform block, but with different range arguments.
+同樣的程序也適用於 uniform 區塊內的所有其他 uniform 變數，只是範圍參數不同。
 
-### A simple example
+### 一個簡單的範例
 
-So let's demonstrate a real example of uniform buffer objects. If we look back at all the previous code samples we've continually been using 3 matrices: the projection, view and model matrix. Of all those matrices, only the model matrix changes frequently. If we have multiple shaders that use this same set of matrices, we'd probably be better off using uniform buffer objects.
+那麼，讓我們來展示一個 uniform 緩衝物件的實際範例。如果我們回顧所有之前的程式碼範例，我們會發現我們一直在使用 3 個矩陣：投影（projection）、觀察（view）和模型（model）矩陣。在這些矩陣中，只有模型矩陣會頻繁變化。如果我們有多個著色器使用這組相同的矩陣，使用 uniform 緩衝物件可能會更好。
 
-We're going to store the projection and view matrix in a uniform block called `Matrices`. We're not going to store the model matrix in there since the model matrix tends to change frequently between shaders, so we wouldn't really benefit from uniform buffer objects.
+我們將把投影和觀察矩陣儲存在一個名為 `Matrices` 的 uniform 區塊中。我們不會把模型矩陣儲存在裡面，因為模型矩陣在著色器之間變化頻繁，所以我們從 uniform 緩衝物件中得不到什麼好處。
 
 ```cpp
 #version 330 core
@@ -388,9 +388,9 @@ void main()
 }
 ```
 
-Not much going on here, except that we now use a uniform block with a std140 layout. What we're going to do in our sample application is display 4 cubes where each cube is displayed with a different shader program. Each of the 4 shader programs uses the same vertex shader, but has a unique fragment shader that only outputs a single color that differs per shader.
+這裡沒什麼特別的，除了我們現在使用了帶有 std140 佈局的 uniform 區塊。在我們的範例應用程式中，我們將會顯示 4 個立方體，每個立方體都使用不同的著色器程式來顯示。這 4 個著色器程式都使用相同的頂點著色器，但每個都有一個獨特的片段著色器，只輸出一個單獨的顏色，且這個顏色在不同的著色器之間是不同的。
 
-First, we set the uniform block of the vertex shaders equal to binding point `0`. Note that we have to do this for each shader:
+首先，我們將頂點著色器的 uniform 區塊設定為綁定點 `0`。請注意，我們必須為每個著色器都這樣做：
 
 ```cpp
 unsigned int uniformBlockIndexRed    = glGetUniformBlockIndex(shaderRed.ID, "Matrices");
@@ -404,7 +404,7 @@ glUniformBlockBinding(shaderBlue.ID,   uniformBlockIndexBlue, 0);
 glUniformBlockBinding(shaderYellow.ID, uniformBlockIndexYellow, 0);
 ```
 
-Next we create the actual uniform buffer object and bind that buffer to binding point `0`:
+接下來，我們建立實際的 uniform 緩衝區物件，並將該緩衝區綁定到綁定點 `0`：
 
 ```cpp
 unsigned int uboMatrices
@@ -417,9 +417,9 @@ glBindBuffer(GL_UNIFORM_BUFFER, 0);
 glBindBufferRange(GL_UNIFORM_BUFFER, 0, uboMatrices, 0, 2 * sizeof(glm::mat4));
 ```
 
-First we allocate enough memory for our buffer which is equal to 2 times the size of `glm::mat4`. The size of GLM's matrix types correspond directly to `mat4` in GLSL. Then we link a specific range of the buffer, in this case the entire buffer, to binding point `0`.
+首先，我們為緩衝區分配足夠的記憶體，它等於 `glm::mat4` 的 2 倍大小。GLM 的矩陣類型大小直接對應於 GLSL 中的 `mat4`。然後，我們將緩衝區的一個特定範圍（在本例中是整個緩衝區）連結到綁定點 `0`。
 
-Now all that's left to do is fill the buffer. If we keep the _field of view_ value constant of the projection matrix (so no more camera zoom) we only have to update it once in our application - this means we only have to insert this into the buffer only once as well. Because we already allocated enough memory in the buffer object we can use `glBufferSubData` to store the projection matrix before we enter the render loop:
+現在，剩下的就是填充緩衝區了。如果我們保持投影矩陣的「視角」（field of view）值不變（所以不再有相機縮放），我們只需在應用程式中更新它一次——這也意味著我們只需將它插入緩衝區一次。因為我們已經在緩衝區物件中分配了足夠的記憶體，我們可以在進入渲染迴圈之前使用 `glBufferSubData` 來儲存投影矩陣：
 
 ```cpp
 glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)width/(float)height, 0.1f, 100.0f);
@@ -428,7 +428,7 @@ glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(glm::mat4), glm::value_ptr(projecti
 glBindBuffer(GL_UNIFORM_BUFFER, 0);
 ```
 
-Here we store the first half of the uniform buffer with the projection matrix. Then before we render the objects each frame we update the second half of the buffer with the view matrix:
+在這裡，我們用投影矩陣儲存了 uniform 緩衝區的前半部分。然後，在每一幀渲染物件之前，我們用觀察矩陣更新緩衝區的後半部分：
 
 ```cpp
 glm::mat4 view = camera.GetViewMatrix();
@@ -437,7 +437,7 @@ glBufferSubData(GL_UNIFORM_BUFFER, sizeof(glm::mat4), sizeof(glm::mat4), glm::va
 glBindBuffer(GL_UNIFORM_BUFFER, 0);
 ```
 
-And that's it for uniform buffer objects. Each vertex shader that contains a `Matrices` uniform block will now contain the data stored in `uboMatrices`. So if we now were to draw 4 cubes using 4 different shaders, their projection and view matrix should be the same:
+Uniform 緩衝物件的部分就到此為止了。現在，每個包含 `Matrices` uniform 區塊的頂點著色器都會包含儲存在 `uboMatrices` 中的資料。所以，如果我們現在使用 4 個不同的著色器來繪製 4 個立方體，它們的投影和觀察矩陣應該是相同的：
 
 ```cpp
 glBindVertexArray(cubeVAO);
@@ -451,12 +451,12 @@ glDrawArrays(GL_TRIANGLES, 0, 36);
 // ... draw Yellow Cube
 ```
 
-The only uniform we still need to set is the `model` uniform. Using uniform buffer objects in a scenario like this saves us from quite a few uniform calls per shader. The result looks something like this:
+我們唯一仍然需要設定的 uniform 是 `model` uniform。在這種情況下使用 uniform 緩衝物件可以為我們每個著色器省下不少 uniform 呼叫。結果看起來像這樣：
 
 ![](https://learnopengl.com/img/advanced/advanced_glsl_uniform_buffer_objects.png)
 
-Each of the cubes is moved to one side of the window by translating the model matrix and, thanks to the different fragment shaders, their colors differ per object. This is a relatively simple scenario of where we could use uniform buffer objects, but any large rendering application can have over hundreds of shader programs active which is where uniform buffer objects really start to shine.
+每個立方體都透過平移模型矩陣被移到視窗的一側，並且由於片段著色器不同，它們的顏色在每個物件上都不同。這是一個使用 uniform 緩衝物件的相對簡單情境，但任何大型渲染應用程式都可能有多達數百個著色器程式處於活動狀態，這就是 uniform 緩衝物件真正開始大放異彩的地方。
 
-You can find the full source code of the uniform example application [here](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/8.advanced_glsl_ubo/advanced_glsl_ubo.cpp).
+你可以在[這裡](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/8.advanced_glsl_ubo/advanced_glsl_ubo.cpp)找到 uniform 範例應用程式的完整原始碼。
 
-Uniform buffer objects have several advantages over single uniforms. First, setting a lot of uniforms at once is faster than setting multiple uniforms one at a time. Second, if you want to change the same uniform over several shaders, it is much easier to change a uniform once in a uniform buffer. One last advantage that is not immediately apparent is that you can use a lot more uniforms in shaders using uniform buffer objects. OpenGL has a limit to how much uniform data it can handle which can be queried with `GL_MAX_VERTEX_UNIFORM_COMPONENTS`. When using uniform buffer objects, this limit is much higher. So whenever you reach a maximum number of uniforms (when doing skeletal animation for example) there's always uniform buffer objects.
+Uniform 緩衝物件相對於單一 uniform 有幾個優點。首先，一次設定大量的 uniforms 比一個一個設定要快得多。其次，如果你想在多個著色器中更改同一個 uniform，在 uniform 緩衝區中更改一次要容易得多。最後一個優點雖然不那麼明顯，但就是使用 uniform 緩衝物件時，你可以在著色器中使用多得多的 uniforms。OpenGL 對它可以處理的 uniform 資料量有限制，可以用 `GL_MAX_VERTEX_UNIFORM_COMPONENTS` 查詢。當使用 uniform 緩衝物件時，這個限制要高得多。所以，無論何時你達到最大 uniform 數量（例如在進行骨骼動畫時），總有 uniform 緩衝物件可以幫你。

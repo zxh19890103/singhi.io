@@ -43,7 +43,7 @@ permalink: /opengl/Advanced-Lighting/Parallax-Mapping
 
 ![錯誤偏移示意](https://learnopengl.com/img/advanced-lighting/parallax_mapping_incorrect_p.png)
 
-另外一個問題是，如果表面經過任意旋轉，我們要從向量 \\(\color{brown}{\bar{P}}\\) 取哪兩個分量作為偏移就不容易判斷了。理想情況是我們希望偏移的 x 和 y 分量總是對齊材質表面座標系的方向。這時候，如果你有看過[法線映射章節](https://learnopengl.com/Advanced-Lighting/Normal-Mapping)，你可能已經猜到答案：我們會在切線空間（tangent space）裡做視差映射。
+另外一個問題是，如果表面經過任意旋轉，我們要從向量 \\(\color{brown}{\bar{P}}\\) 取哪兩個分量作為偏移就不容易判斷了。理想情況是我們希望偏移的 x 和 y 分量總是對齊材質表面座標系的方向。這時候，如果你有看過[法線映射章節](/opengl/Advanced-Lighting/Normal-Mapping)，你可能已經猜到答案：我們會在切線空間（tangent space）裡做視差映射。
 
 只要把片元到視點方向向量 \\(\color{orange}{\bar{V}}\\) 轉換到切線空間，計算出來的偏移向量 \\(\color{brown}{\bar{P}}\\) 就能保證 x、y 分量和表面上的切線（tangent）及副切線（bitangent）方向一致。因為切線和副切線方向與材質貼圖的座標軸方向相同，我們就能直接用這兩個分量當作偏移量，無論表面如何旋轉都沒問題。
 

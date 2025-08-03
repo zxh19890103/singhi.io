@@ -15,7 +15,7 @@ gltopic: Advanced-Lighting
 permalink: /opengl/Advanced-Lighting/Advanced-Lighting
 ---
 
-在[光照](https://learnopengl.com/Lighting/Basic-Lighting)章節中，我們簡要介紹了 Phong 光照模型，為場景帶來基本的真實感。Phong 模型看起來不錯，但在本章中我們將重點關注它的一些細微差別。
+在[光照](/opengl/Lighting/Basic-Lighting)章節中，我們簡要介紹了 Phong 光照模型，為場景帶來基本的真實感。Phong 模型看起來不錯，但在本章中我們將重點關注它的一些細微差別。
 
 ## Blinn-Phong
 

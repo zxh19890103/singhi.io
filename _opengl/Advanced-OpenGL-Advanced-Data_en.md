@@ -110,4 +110,4 @@ glBindBuffer(GL_COPY_WRITE_BUFFER, vbo2);
 glCopyBufferSubData(GL_ARRAY_BUFFER, GL_COPY_WRITE_BUFFER, 0, 0, 8 * sizeof(float));
 ```
 
-With some extra knowledge about how to manipulate buffers we can already use them in more interesting ways. The further you get in OpenGL, the more useful these new buffer methods start to become. In the [next](https://learnopengl.com/Advanced-OpenGL/Advanced-GLSL) chapter, where we'll discuss `uniform buffer objects`, we'll make good use of `glBufferSubData`.
+With some extra knowledge about how to manipulate buffers we can already use them in more interesting ways. The further you get in OpenGL, the more useful these new buffer methods start to become. In the [next](/opengl/en/Advanced-OpenGL/Advanced-GLSL) chapter, where we'll discuss `uniform buffer objects`, we'll make good use of `glBufferSubData`.

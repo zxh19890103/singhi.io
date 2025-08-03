@@ -112,7 +112,7 @@ glTexImage2D(GL_TEXTURE_2D, 0, GL_SRGB, width, height, 0, GL_RGB, GL_UNSIGNED_BY
 
 If you also want to include alpha components in your texture you'll have to specify the texture's internal format as `GL_SRGB_ALPHA`.
 
-You should be careful when specifying your textures in sRGB space as not all textures will actually be in sRGB space. Textures used for coloring objects (like diffuse textures) are almost always in sRGB space. Textures used for retrieving lighting parameters (like [specular maps](https://learnopengl.com/Lighting/Lighting-maps) and [normal maps](https://learnopengl.com/Advanced-Lighting/Normal-Mapping)) are almost always in linear space, so if you were to configure these as sRGB textures the lighting will look odd. Be careful in which textures you specify as sRGB.
+You should be careful when specifying your textures in sRGB space as not all textures will actually be in sRGB space. Textures used for coloring objects (like diffuse textures) are almost always in sRGB space. Textures used for retrieving lighting parameters (like [specular maps](/opengl/en/Lighting/Lighting-maps) and [normal maps](/opengl/en/Advanced-Lighting/Normal-Mapping)) are almost always in linear space, so if you were to configure these as sRGB textures the lighting will look odd. Be careful in which textures you specify as sRGB.
 
 With our diffuse textures specified as sRGB textures you get the visual output you'd expect again, but this time everything is gamma corrected only once.
 
@@ -124,7 +124,7 @@ Something else that's different with gamma correction is lighting attenuation. I
 float attenuation = 1.0 / (distance * distance);
 ```
 
-However, when using this equation the attenuation effect is usually way too strong, giving lights a small radius that doesn't look physically right. For that reason other attenuation functions were used (like we discussed in the [basic lighting](https://learnopengl.com/Lighting/Basic-Lighting) chapter) that give much more control, or the linear equivalent is used:
+However, when using this equation the attenuation effect is usually way too strong, giving lights a small radius that doesn't look physically right. For that reason other attenuation functions were used (like we discussed in the [basic lighting](/opengl/en/Lighting/Basic-Lighting) chapter) that give much more control, or the linear equivalent is used:
 
 ```cpp
 float attenuation = 1.0 / distance;
@@ -137,7 +137,7 @@ The linear equivalent gives more plausible results compared to its quadratic var
 The cause of this difference is that light attenuation functions change brightness, and as we weren't visualizing our scene in linear space we chose the attenuation functions that looked best on our monitor, but weren't physically correct. Think of the squared attenuation function: if we were to use this function without gamma correction, the attenuation function effectively becomes: \\((1.0 / distance^2)^{2.2}\\) when displayed on a monitor. This creates a much larger attenuation from what we originally anticipated. This also explains why the linear equivalent makes much more sense without gamma correction as this effectively becomes \\((1.0 / distance)^{2.2} = 1.0 / distance^{2.2}\\) which resembles its physical equivalent a lot more.
 
 {% include box.html content="
-The more advanced attenuation function we discussed in the [basic lighting](https://learnopengl.com/Lighting/Basic-Lighting) chapter still has its place in gamma corrected scenes as it gives more control over the exact attenuation (but of course requires different parameters in a gamma corrected scene).
+The more advanced attenuation function we discussed in the [basic lighting](/opengl/en/Lighting/Basic-Lighting) chapter still has its place in gamma corrected scenes as it gives more control over the exact attenuation (but of course requires different parameters in a gamma corrected scene).
 " color="green" %}
 
 You can find the source code of this simple demo scene [here](https://learnopengl.com/code_viewer_gh.php?code=src/5.advanced_lighting/2.gamma_correction/gamma_correction.cpp). By pressing the spacebar we switch between a gamma corrected and un-corrected scene with both scenes using their texture and attenuation equivalents. It's not the most impressive demo, but it does show how to actually apply all techniques.

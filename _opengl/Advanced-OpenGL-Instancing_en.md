@@ -208,7 +208,7 @@ Imagine a scene where we have one large planet that's at the center of a large a
 
 To demonstrate the impact of instanced rendering we're first going to render a scene of asteroids hovering around a planet _without_ instanced rendering. The scene will contain a large planet model that can be downloaded from [here](https://learnopengl.com/data/models/planet.zip) and a large set of asteroid rocks that we properly position around the planet. The asteroid rock model can be downloaded [here](https://learnopengl.com/data/models/rock.zip).
 
-Within the code samples we load the models using the model loader we've previously defined in the [model loading](https://learnopengl.com/Model-Loading/Assimp) chapters.
+Within the code samples we load the models using the model loader we've previously defined in the [model loading](/opengl/en/Model-Loading/Assimp) chapters.
 
 To achieve the effect we're looking for we'll be generating a model transformation matrix for each asteroid. The transformation matrix first translates the rock somewhere in the asteroid ring - then we'll add a small random displacement value to the offset to make the ring look more natural. From there we also apply a random scale and a random rotation. The result is a transformation matrix that translates each asteroid somewhere around the planet while also giving it a more natural and unique look compared to the other asteroids.
 

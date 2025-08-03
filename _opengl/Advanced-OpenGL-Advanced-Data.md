@@ -110,4 +110,4 @@ glBindBuffer(GL_COPY_WRITE_BUFFER, vbo2);
 glCopyBufferSubData(GL_ARRAY_BUFFER, GL_COPY_WRITE_BUFFER, 0, 0, 8 * sizeof(float));
 ```
 
-有了這些操作緩衝區的額外知識，我們就能以更有趣的方式運用它們。你越深入學習 OpenGL，這些新的緩衝區方法就越發實用。在[下一個](https://learnopengl.com/Advanced-OpenGL/Advanced-GLSL)章節中，我們將討論**統一緩衝區物件**（`uniform buffer objects`），屆時會大量使用 `glBufferSubData`。
+有了這些操作緩衝區的額外知識，我們就能以更有趣的方式運用它們。你越深入學習 OpenGL，這些新的緩衝區方法就越發實用。在[下一個](/opengl/Advanced-OpenGL/Advanced-GLSL)章節中，我們將討論**統一緩衝區物件**（`uniform buffer objects`），屆時會大量使用 `glBufferSubData`。

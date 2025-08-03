@@ -23,7 +23,7 @@ This light bleeding, or glow effect, is achieved with a post-processing effect c
 
 Bloom gives noticeable visual cues about the brightness of objects. When done in a subtle fashion (which some games drastically fail to do) Bloom significantly boosts the lighting of your scene and allows for a large range of dramatic effects.
 
-Bloom works best in combination with [HDR](https://learnopengl.com/Advanced-Lighting/HDR) rendering. A common misconception is that HDR is the same as Bloom as many people use the terms interchangeably. They are however completely different techniques used for different purposes. It is possible to implement Bloom with default 8-bit precision framebuffers, just as it is possible to use HDR without the Bloom effect. It is simply that HDR makes Bloom more effective to implement (as we'll later see).
+Bloom works best in combination with [HDR](/opengl/en/Advanced-Lighting/HDR) rendering. A common misconception is that HDR is the same as Bloom as many people use the terms interchangeably. They are however completely different techniques used for different purposes. It is possible to implement Bloom with default 8-bit precision framebuffers, just as it is possible to use HDR without the Bloom effect. It is simply that HDR makes Bloom more effective to implement (as we'll later see).
 
 To implement Bloom, we render a lit scene as usual and extract both the scene's HDR color buffer and an image of the scene with only its bright regions visible. This extracted brightness image is then blurred and the result added on top of the original HDR scene image.
 
@@ -60,7 +60,7 @@ layout (location = 0) out vec4 FragColor;
 layout (location = 1) out vec4 BrightColor;
 ```
 
-This only works if we actually have multiple buffers to write to. As a requirement for using multiple fragment shader outputs we need multiple color buffers attached to the currently bound framebuffer object. You may remember from the [framebuffers](https://learnopengl.com/Advanced-OpenGL/Framebuffers) chapter that we can specify a color attachment number when linking a texture as a framebuffer's color buffer. Up until now we've always used `GL_COLOR_ATTACHMENT0`, but by also using `GL_COLOR_ATTACHMENT1` we can have two color buffers attached to a framebuffer object:
+This only works if we actually have multiple buffers to write to. As a requirement for using multiple fragment shader outputs we need multiple color buffers attached to the currently bound framebuffer object. You may remember from the [framebuffers](/opengl/en/Advanced-OpenGL/Framebuffers) chapter that we can specify a color attachment number when linking a texture as a framebuffer's color buffer. Up until now we've always used `GL_COLOR_ATTACHMENT0`, but by also using `GL_COLOR_ATTACHMENT1` we can have two color buffers attached to a framebuffer object:
 
 ```cpp
 // set up floating point framebuffer to render scene to
@@ -235,7 +235,7 @@ The last step to complete the Bloom effect is to combine this blurred brightness
 
 ## Blending both textures
 
-With the scene's HDR texture and a blurred brightness texture of the scene we only need to combine the two to achieve the infamous Bloom or glow effect. In the final fragment shader (largely similar to the one we used in the [HDR](https://learnopengl.com/Advanced-Lighting/HDR) chapter) we additively blend both textures:
+With the scene's HDR texture and a blurred brightness texture of the scene we only need to combine the two to achieve the infamous Bloom or glow effect. In the final fragment shader (largely similar to the one we used in the [HDR](/opengl/en/Advanced-Lighting/HDR) chapter) we additively blend both textures:
 
 ```cpp
 #version 330 core
