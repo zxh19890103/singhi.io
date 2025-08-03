@@ -112,7 +112,7 @@ struct PointLight {
 uniform PointLight pointLights[NR_POINT_LIGHTS];
 ```
 
-As you can see we used a pre-processor directive in GLSL to define the number of point lights we want to have in our scene. We then use this `NR\_POINT\_LIGHTS` constant to create an array of `PointLight` structs. Arrays in GLSL are just like C arrays and can be created by the use of two square brackets. Right now we have 4 `PointLight` structs to fill with data.
+As you can see we used a pre-processor directive in GLSL to define the number of point lights we want to have in our scene. We then use this `NR_POINT_LIGHTS` constant to create an array of `PointLight` structs. Arrays in GLSL are just like C arrays and can be created by the use of two square brackets. Right now we have 4 `PointLight` structs to fill with data.
 
 The prototype of the point light's function is as follows:
 

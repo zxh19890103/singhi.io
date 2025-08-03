@@ -71,7 +71,7 @@ With the help of the cross product and a few tricks we were able to create all t
 
 ## Look At
 
-A great thing about matrices is that if you define a coordinate space using 3 perpendicular (or non-linear) axes you can create a matrix with those 3 axes plus a translation vector and you can transform any vector to that coordinate space by multiplying it with this matrix. This is exactly what the _LookAt_ matrix does and now that we have 3 perpendicular axes and a position vector to define the camera space we can create our own LookAt matrix: \\\[LookAt = \\begin{bmatrix} \\color{red}{R*x} & \\color{red}{R_y} & \\color{red}{R_z} & 0 \\\\ \\color{green}{U_x} & \\color{green}{U_y} & \\color{green}{U_z} & 0 \\\\ \\color{blue}{D_x} & \\color{blue}{D_y} & \\color{blue}{D_z} & 0 \\\\ 0 & 0 & 0 & 1 \\end{bmatrix} \* \\begin{bmatrix} 1 & 0 & 0 & -\\color{purple}{P_x} \\\\ 0 & 1 & 0 & -\\color{purple}{P_y} \\\\ 0 & 0 & 1 & -\\color{purple}{P_z} \\\\ 0 & 0 & 0 & 1 \\end{bmatrix} \\\] Where \\(\\color{red}R\\) is the right vector, \\(\\color{green}U\\) is the up vector, \\(\\color{blue}D\\) is the direction vector and \\(\\color{purple}P\\) is the camera's position vector. Note that the rotation (left matrix) and translation (right matrix) parts are inverted (transposed and negated respectively) since we want to rotate and translate the world in the opposite direction of where we want the camera to move. Using this LookAt matrix as our view matrix effectively transforms all the world coordinates to the view space we just defined. The LookAt matrix then does exactly what it says: it creates a view matrix that \_looks* at a given target.
+A great thing about matrices is that if you define a coordinate space using 3 perpendicular (or non-linear) axes you can create a matrix with those 3 axes plus a translation vector and you can transform any vector to that coordinate space by multiplying it with this matrix. This is exactly what the _LookAt_ matrix does and now that we have 3 perpendicular axes and a position vector to define the camera space we can create our own LookAt matrix: \\\[LookAt = \\begin{bmatrix} \\color{red}{R*x} & \\color{red}{R_y} & \\color{red}{R_z} & 0 \\\\ \\color{green}{U_x} & \\color{green}{U_y} & \\color{green}{U_z} & 0 \\\\ \\color{blue}{D_x} & \\color{blue}{D_y} & \\color{blue}{D_z} & 0 \\\\ 0 & 0 & 0 & 1 \\end{bmatrix} \* \\begin{bmatrix} 1 & 0 & 0 & -\\color{purple}{P_x} \\\\ 0 & 1 & 0 & -\\color{purple}{P_y} \\\\ 0 & 0 & 1 & -\\color{purple}{P_z} \\\\ 0 & 0 & 0 & 1 \\end{bmatrix} \\\] Where \\(\\color{red}R\\) is the right vector, \\(\\color{green}U\\) is the up vector, \\(\\color{blue}D\\) is the direction vector and \\(\\color{purple}P\\) is the camera's position vector. Note that the rotation (left matrix) and translation (right matrix) parts are inverted (transposed and negated respectively) since we want to rotate and translate the world in the opposite direction of where we want the camera to move. Using this LookAt matrix as our view matrix effectively transforms all the world coordinates to the view space we just defined. The LookAt matrix then does exactly what it says: it creates a view matrix that *looks* at a given target.
 
 Luckily for us, GLM already does all this work for us. We only have to specify a camera position, a target position and a vector that represents the up vector in world space (the up vector we used for calculating the right vector). GLM then creates the LookAt matrix that we can use as our view matrix:
 
@@ -263,7 +263,7 @@ To calculate the pitch and yaw values we need to tell GLFW to listen to mouse-mo
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 ```
 
-Here `xpos` and `ypos` represent the current mouse positions. As soon as we register the callback function with GLFW each time the mouse moves, the `mouse\_callback` function is called:
+Here `xpos` and `ypos` represent the current mouse positions. As soon as we register the callback function with GLFW each time the mouse moves, the `mouse_callback` function is called:
 
 ```cpp
 glfwSetCursorPosCallback(window, mouse_callback);
@@ -392,7 +392,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 }
 ```
 
-When scrolling, the `yoffset` value tells us the amount we scrolled vertically. When the `scroll\_callback` function is called we change the content of the globally declared `fov` variable. Since `45.0` is the default fov value we want to constrain the zoom level between `1.0` and `45.0`.
+When scrolling, the `yoffset` value tells us the amount we scrolled vertically. When the `scroll_callback` function is called we change the content of the globally declared `fov` variable. Since `45.0` is the default fov value we want to constrain the zoom level between `1.0` and `45.0`.
 
 We now have to upload the perspective projection matrix to the GPU each frame, but this time with the `fov` variable as its field of view:
 
