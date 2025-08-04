@@ -148,11 +148,11 @@ const Go = async () => {
   Generate(content, picture, mdfile_en, true)
 }
 
-const category = "Advanced-Lighting"
-const subCategory = ""
-const topic = "SSAO"
-const order = 39
-const chapter = "三十九"
+const category = "PBR"
+const subCategory = "/IBL"
+const topic = "Specular-IBL"
+const order = 43
+const chapter = "四十三"
 
 const mdfile = join(__dirname, "../_opengl", `${category}-${topic}.md`)
 const mdfile_en = join(__dirname, "../_opengl", `${category}-${topic}_en.md`)

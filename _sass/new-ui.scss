@@ -416,9 +416,13 @@
 	// -moz-osx-font-smoothing: ;
 
 	strong {
+		text-emphasis-position: under left;
+		text-emphasis-style: filled;
+		text-emphasis-color: black;
 		font-weight: normal;
 		letter-spacing: 0.4em;
 		margin: 0 0.4em;
+		font-size: 0.9em;
 	}
 }
 
