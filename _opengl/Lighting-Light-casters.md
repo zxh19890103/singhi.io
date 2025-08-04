@@ -50,7 +50,7 @@ void main()
 
 然後，得到的 `lightDir` 向量像以前一樣用於漫反射和鏡面反射計算。
 
-為了清楚地證明定向光對多個物體產生相同的效果，我們重新審視[座標系統](/opengl/Getting-started/Coordinate-Systems)章節末尾的容器派對場景。如果你錯過了派對，我們定義了 10 個不同的[容器位置](https://learnopengl.com/code_viewer.php?code=lighting/light_casters_container_positions)，並為每個容器生成了一個不同的模型矩陣，其中每個模型矩陣都包含適當的局部到世界變換：
+為了清楚地證明定向光對多個物體產生相同的效果，我們重新審視[座標系統](/opengl/Getting-started/Coordinates-Systems)章節末尾的容器派對場景。如果你錯過了派對，我們定義了 10 個不同的[容器位置](https://learnopengl.com/code_viewer.php?code=lighting/light_casters_container_positions)，並為每個容器生成了一個不同的模型矩陣，其中每個模型矩陣都包含適當的局部到世界變換：
 
 ```cpp
 for(unsigned int i = 0; i < 10; i++)

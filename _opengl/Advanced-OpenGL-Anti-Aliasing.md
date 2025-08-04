@@ -1,7 +1,7 @@
 ---
 layout: bookdetail
 chapter: 二十九
-title: Advanced-OpenGL &bull; Anti-Aliasing
+title: 高級 OpenGL &bull; Anti-Aliasing
 category: tech
 src: "https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing"
 date: 2025-06-30
@@ -15,99 +15,99 @@ gltopic: Anti-Aliasing
 permalink: /opengl/Advanced-OpenGL/Anti-Aliasing
 ---
 
-Somewhere in your adventurous rendering journey you probably came across some jagged saw-like patterns along the edges of your models. The reason these `jagged edges` appear is due to how the rasterizer transforms the vertex data into actual fragments behind the scene. An example of what these jagged edges look like can already be seen when drawing a simple cube:
+在您充滿冒險精神的渲染旅程中，您可能遇到過模型邊緣出現的一些鋸齒狀圖案。這些「鋸齒邊緣（jagged edges）」之所以會出現，是因為光柵器（rasterizer）在幕後將頂點資料轉換為實際片段（fragments）的方式。在繪製一個簡單的立方體時，就可以看到這些鋸齒狀邊緣是什麼樣子：
 
 ![](https://learnopengl.com/img/advanced/anti_aliasing_aliasing.png)
 
-While not immediately visible, if you take a closer look at the edges of the cube you'll see a jagged pattern. If we zoom in you'd see the following:
+雖然沒有立即顯現，但如果你仔細觀察立方體的邊緣，你會看到鋸齒狀的圖案。如果我們放大來看，你會看到以下內容：
 
 ![](https://learnopengl.com/img/advanced/anti_aliasing_zoomed.png)
 
-This is clearly not something we want in a final version of an application. This effect, of clearly seeing the pixel formations an edge is composed of, is called `aliasing`. There are quite a few techniques out there called `anti-aliasing` techniques that fight this aliasing behavior by producing _smoother_ edges.
+這顯然不是我們在應用程式最終版本中想要的東西。這種清楚地看到構成邊緣的像素形狀的效果被稱為「鋸齒（aliasing）」。目前有許多被稱為「反鋸齒（anti-aliasing）」的技術，它們透過產生「更平滑」的邊緣來對抗這種鋸齒現象。
 
-At first we had a technique called `super sample anti-aliasing` (SSAA) that temporarily uses a much higher resolution render buffer to render the scene in (super sampling). Then when the full scene is rendered, the resolution is downsampled back to the normal resolution. This _extra_ resolution was used to prevent these jagged edges. While it did provide us with a solution to the aliasing problem, it came with a major performance drawback since we have to draw **a lot** more fragments than usual. This technique therefore only had a short glory moment.
+最初我們有一種叫做「超級取樣反鋸齒（super sample anti-aliasing）」（SSAA）的技術，它會暫時使用一個更高的解析度渲染緩衝區來渲染場景（超級取樣）。然後，當整個場景渲染完成後，解析度會被降取樣（downsampled）回正常的解析度。這個「額外」的解析度被用來防止這些鋸齒邊緣。雖然它確實為我們提供了鋸齒問題的解決方案，但它帶來了主要的效能缺點，因為我們必須繪製比平常多得多的片段。因此，這項技術只經歷了一個短暫的輝煌時刻。
 
-This technique did give birth to a more modern technique called `multisample anti-aliasing` or MSAA that borrows from the concepts behind SSAA while implementing a much more efficient approach. In this chapter we'll be extensively discussing this MSAA technique that is built-in in OpenGL.
+這項技術確實催生了一種更現代的技術，稱為「多重取樣反鋸齒（multisample anti-aliasing）」或 MSAA，它借鑒了 SSAA 背後的概念，同時實施了更有效的方法。在本章中，我們將深入討論這種內建於 OpenGL 的 MSAA 技術。
 
-## Multisampling
+## 多重取樣（Multisampling）
 
-To understand what multisampling is and how it works into solving the aliasing problem we first need to delve a bit further into the inner workings of OpenGL's rasterizer.
+要了解多重取樣是什麼以及它是如何解決鋸齒問題的，我們首先需要更深入地研究 OpenGL 光柵器的內部運作。
 
-The rasterizer is the combination of all algorithms and processes that sit between your final processed vertices and the fragment shader. The rasterizer takes all vertices belonging to a single primitive and transforms this to a set of fragments. Vertex coordinates can theoretically have any coordinate, but fragments can't since they are bound by the resolution of your screen. There will almost never be a one-on-one mapping between vertex coordinates and fragments, so the rasterizer has to determine in some way what fragment/screen-coordinate each specific vertex will end up at.
+光柵器是所有演算法和處理過程的組合，位於最終處理的頂點和片段著色器之間。光柵器會將屬於單個圖元的所有頂點，轉換為一組片段。頂點座標理論上可以有任何座標，但片段不能，因為它們受限於螢幕的解析度。頂點座標和片段之間幾乎永遠不會有一對一的映射，所以光柵器必須以某種方式確定每個特定的頂點最終將會落在哪個片段／螢幕座標上。
 
 ![](https://learnopengl.com/img/advanced/anti_aliasing_rasterization.png)
 
-Here we see a grid of screen pixels where the center of each pixel contains a `sample point` that is used to determine if a pixel is covered by the triangle. The red sample points are covered by the triangle and a fragment will be generated for that covered pixel. Even though some parts of the triangle edges still enter certain screen pixels, the pixel's sample point is not covered by the inside of the triangle so this pixel won't be influenced by any fragment shader.
+在這裡，我們看到一個螢幕像素網格，每個像素的中心都包含一個「取樣點（sample point）」，用來判斷一個像素是否被三角形覆蓋。紅色的取樣點被三角形覆蓋，並且會為該被覆蓋的像素生成一個片段。儘管三角形邊緣的某些部分仍然進入了某些螢幕像素，但該像素的取樣點沒有被三角形內部覆蓋，所以這個像素不會受到任何片段著色器的影響。
 
-You can probably already figure out the origin of aliasing right now. The complete rendered version of the triangle would look like this on your screen:
+你現在可能已經能弄清楚鋸齒的起源了。渲染出的完整三角形在你的螢幕上看起來會是這樣：
 
 ![](https://learnopengl.com/img/advanced/anti_aliasing_rasterization_filled.png)
 
-Due to the limited amount of screen pixels, some pixels will be rendered along an edge and some won't. The result is that we're rendering primitives with non-smooth edges giving rise to the jagged edges we've seen before.
+由於螢幕像素數量有限，一些像素將沿著邊緣渲染，而另一些則不會。結果就是我們渲染的圖元邊緣不平滑，從而產生了我們之前看到的鋸齒邊緣。
 
-What multisampling does, is not use a single sampling point for determining coverage of the triangle, but multiple sample points (guess where it got its name from). Instead of a single sample point at the center of each pixel we're going to place `4` `subsamples` in a general pattern and use those to determine pixel coverage.
+多重取樣所做的，不是使用單個取樣點來判斷三角形的覆蓋範圍，而是使用多個取樣點（猜猜它的名字從何而來）。我們不是在每個像素的中心放置一個單獨的取樣點，而是在每個像素中以一種通用模式放置 `4` 個「子取樣（subsamples）」，並使用這些點來確定像素的覆蓋範圍。
 
 ![](https://learnopengl.com/img/advanced/anti_aliasing_sample_points.png)
 
-The left side of the image shows how we would normally determine the coverage of a triangle. This specific pixel won't run a fragment shader (and thus remains blank) since its sample point wasn't covered by the triangle. The right side of the image shows a multisampled version where each pixel contains `4` sample points. Here we can see that only `2` of the sample points cover the triangle.
+圖片的左側展示了我們通常如何判斷三角形的覆蓋範圍。這個特定的像素不會執行片段著色器（因此保持空白），因為它的取樣點沒有被三角形覆蓋。圖片的右側展示了一個多重取樣版本，其中每個像素包含 `4` 個取樣點。在這裡我們可以看到，只有 `2` 個取樣點覆蓋了三角形。
 
 {% include box.html content="
-The amount of sample points can be any number we'd like with more samples giving us better coverage precision.
+取樣點的數量可以是我們想要的任何數字，更多的取樣點會給我們更好的覆蓋精確度。
 " color="green" %}
 
-This is where multisampling becomes interesting. We determined that `2` subsamples were covered by the triangle so the next step is to determine a color for this specific pixel. Our initial guess would be that we run the fragment shader for each covered subsample and later average the colors of each subsample per pixel. In this case we'd run the fragment shader twice on the interpolated vertex data at each subsample and store the resulting color in those sample points. This is (fortunately) **not** how it works, because this would mean we need to run a lot more fragment shaders than without multisampling, drastically reducing performance.
+這就是多重取樣變得有趣的地方。我們確定了 `2` 個子取樣被三角形覆蓋，所以下一步是為這個特定像素確定一個顏色。我們最初的猜測可能是，我們為每個被覆蓋的子取樣執行片段著色器，然後再將每個像素中每個子取樣的顏色進行平均。在這種情況下，我們將在每個子取樣處對插值後的頂點資料執行兩次片段著色器，並將得到的顏色儲存在那些取樣點中。這（幸運地）**不是**它的運作方式，因為這將意味著我們需要執行比沒有多重取樣時多得多的片段著色器，這會急劇降低效能。
 
-How MSAA really works is that the fragment shader is only run **once** per pixel (for each primitive) regardless of how many subsamples the triangle covers; the fragment shader runs with the vertex data interpolated to the **center** of the pixel. MSAA then uses a larger depth/stencil buffer to determine subsample coverage. The number of subsamples covered determines how much the pixel color contributes to the framebuffer. Because only 2 of the 4 samples were covered in the previous image, half of the triangle's color is mixed with the framebuffer color (in this case the clear color) resulting in a light blue-ish color.
+MSAA 的實際運作方式是，片段著色器每個像素（對於每個圖元）只執行**一次**，無論三角形覆蓋了多少個子取樣；片段著色器在插值到像素**中心**的頂點資料上運行。然後，MSAA 使用一個更大的深度/模板緩衝區來確定子取樣的覆蓋範圍。被覆蓋的子取樣數量決定了該像素的顏色對畫面緩衝區（framebuffer）的貢獻程度。因為在之前的圖片中，4 個取樣中只有 2 個被覆蓋，所以三角形顏色的一半會與畫面緩衝區顏色（在本例中是清除顏色）混合，產生一個淺藍色的顏色。
 
-The result is a higher resolution buffer (with higher resolution depth/stencil) where all the primitive edges now produce a smoother pattern. Let's see what multisampling looks like when we determine the coverage of the earlier triangle:
+結果是一個更高解析度的緩衝區（帶有更高解析度的深度/模板），其中所有的圖元邊緣現在都產生了更平滑的圖案。讓我們看看當我們確定之前那個三角形的覆蓋範圍時，多重取樣看起來像什麼：
 
 ![](https://learnopengl.com/img/advanced/anti_aliasing_rasterization_samples.png)
 
-Here each pixel contains 4 subsamples (the irrelevant samples were hidden) where the blue subsamples are covered by the triangle and the gray sample points aren't. Within the inner region of the triangle all pixels will run the fragment shader once where its color output is stored directly in the framebuffer (assuming no blending). At the inner edges of the triangle however not all subsamples will be covered so the result of the fragment shader won't fully contribute to the framebuffer. Based on the number of covered samples, more or less of the triangle fragment's color ends up at that pixel.
+在這裡，每個像素包含 4 個子取樣（不相關的取樣已被隱藏），其中藍色子取樣被三角形覆蓋，而灰色取樣點則沒有。在三角形的內部區域中，所有像素都會執行一次片段著色器，其顏色輸出直接儲存在畫面緩衝區中（假設沒有混合）。然而，在三角形的內部邊緣，並非所有的子取樣都會被覆蓋，因此片段著色器的結果不會完全貢獻給畫面緩衝區。根據被覆蓋的取樣數量，三角形片段顏色或多或少會影響該像素。
 
-For each pixel, the less subsamples are part of the triangle, the less it takes the color of the triangle. If we were to fill in the actual pixel colors we get the following image:
+對於每個像素，屬於三角形的子取樣越少，它採用的三角形顏色就越少。如果我們填入實際的像素顏色，我們就會得到以下圖片：
 
 ![](https://learnopengl.com/img/advanced/anti_aliasing_rasterization_samples_filled.png)
 
-The hard edges of the triangle are now surrounded by colors slightly lighter than the actual edge color, which causes the edge to appear smooth when viewed from a distance.
+三角形的硬邊現在被比實際邊緣顏色略淺的顏色包圍，這使得從遠處看時邊緣顯得平滑。
 
-Depth and stencil values are stored per subsample and, even though we only run the fragment shader once, color values are stored per subsample as well for the case of multiple triangles overlapping a single pixel. For depth testing the vertex's depth value is interpolated to each subsample before running the depth test, and for stencil testing we store the stencil values per subsample. This does mean that the size of the buffers are now increased by the amount of subsamples per pixel.
+深度和模板值是按子取樣儲存的，並且，儘管我們只執行一次片段著色器，但對於多個三角形重疊單個像素的情況，顏色值也是按子取樣儲存的。對於深度測試，頂點的深度值在執行深度測試之前被插值到每個子取樣，而對於模板測試，我們將模板值按子取樣儲存。這確實意味著緩衝區的大小現在會根據每個像素的子取樣數量而增加。
 
-What we've discussed so far is a basic overview of how multisampled anti-aliasing works behind the scenes. The actual logic behind the rasterizer is a bit more complicated, but this brief description should be enough to understand the concept and logic behind multisampled anti-aliasing; enough to delve into the practical aspects.
+到目前為止我們討論的，是多重取樣反鋸齒在幕後如何運作的一個基本概述。光柵器背後的實際邏輯要複雜一些，但這個簡短的描述應該足以理解多重取樣反鋸齒背後的概念和邏輯；這足以深入研究實際應用層面了。
 
-## MSAA in OpenGL
+## OpenGL 中的 MSAA
 
-If we want to use MSAA in OpenGL we need to use a buffer that is able to store more than one sample value per pixel. We need a new type of buffer that can store a given amount of multisamples and this is called a `multisample buffer`.
+如果我們想在 OpenGL 中使用 MSAA，我們需要一個能夠儲存每個像素超過一個取樣值的緩衝區。我們需要一種能夠儲存給定數量多重取樣的新型緩衝區，這被稱為「多重取樣緩衝區（multisample buffer）」。
 
-Most windowing systems are able to provide us a multisample buffer instead of a default buffer. GLFW also gives us this functionality and all we need to do is _hint_ GLFW that we'd like to use a multisample buffer with N samples instead of a normal buffer by calling `glfwWindowHint` before creating the window:
+大多數視窗系統都能夠為我們提供一個多重取樣緩衝區，而不是一個預設緩衝區。GLFW 也為我們提供了這個功能，我們所需要做的，就是在建立視窗之前呼叫 `glfwWindowHint`，來「提示（hint）」GLFW 我們想要使用一個帶有 N 個取樣的多重取樣緩衝區，而不是一個普通的緩衝區：
 
 ```cpp
 glfwWindowHint(GLFW_SAMPLES, 4);
 ```
 
-When we now call `glfwCreateWindow` we create a rendering window, but this time with a buffer containing 4 subsamples per screen coordinate. This does mean that the size of the buffer is increased by 4.
+現在，當我們呼叫 `glfwCreateWindow` 時，我們建立了一個渲染視窗，但這次它的緩衝區每個螢幕座標包含 4 個子取樣。這確實意味著緩衝區的大小增加了 4 倍。
 
-Now that we asked GLFW for multisampled buffers we need to enable multisampling by calling `glEnable` with `GL_MULTISAMPLE`. On most OpenGL drivers, multisampling is enabled by default so this call is then a bit redundant, but it's usually a good idea to enable it anyways. This way all OpenGL implementations have multisampling enabled.
+現在我們已經要求 GLFW 提供多重取樣緩衝區，我們需要透過使用 `GL_MULTISAMPLE` 呼叫 `glEnable` 來啟用多重取樣。在大多數 OpenGL 驅動程式上，多重取樣預設是啟用的，所以這個呼叫有點多餘，但無論如何啟用它通常是個好主意。這樣，所有 OpenGL 實作都將啟用多重取樣。
 
 ```cpp
 glEnable(GL_MULTISAMPLE);
 ```
 
-Because the actual multisampling algorithms are implemented in the rasterizer in your OpenGL drivers there's not much else we need to do. If we now were to render the green cube from the start of this chapter we should see smoother edges:
+因為實際的多重取樣演算法是在你的 OpenGL 驅動程式中的光柵器中實作的，所以我們不需要做太多其他的事情。如果我們現在要渲染本章開頭的那個綠色立方體，我們應該會看到更平滑的邊緣：
 
 ![](https://learnopengl.com/img/advanced/anti_aliasing_multisampled.png)
 
-The cube does indeed look a lot smoother and the same will apply for any other object you're drawing in your scene. You can find the source code for this simple example [here](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/11.1.anti_aliasing_msaa/anti_aliasing_msaa.cpp).
+立方體看起來確實平滑了許多，對於你在場景中繪製的任何其他物件也同樣適用。你可以在[這裡](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/11.1.anti_aliasing_msaa/anti_aliasing_msaa.cpp)找到這個簡單範例的原始碼。
 
-## Off-screen MSAA
+## 離屏 MSAA（Off-screen MSAA）
 
-Because GLFW takes care of creating the multisampled buffers, enabling MSAA is quite easy. If we want to use our own framebuffers however, we have to generate the multisampled buffers ourselves; now we **do** need to take care of creating multisampled buffers.
+因為 GLFW 負責建立多重取樣緩衝區，所以啟用 MSAA 非常容易。然而，如果我們想使用自己的畫面緩衝區，我們就必須自己生成多重取樣緩衝區；現在我們確實需要**自己**來處理建立多重取樣緩衝區的工作。
 
-There are two ways we can create multisampled buffers to act as attachments for framebuffers: texture attachments and renderbuffer attachments. Quite similar to normal attachments like we've discussed in the [framebuffers](/opengl/Advanced-OpenGL/Framebuffers) chapter.
+有兩種方法可以建立多重取樣緩衝區，以充當畫面緩衝區的附著：紋理附著（texture attachments）和渲染緩衝區附著（renderbuffer attachments）。這與我們在[畫面緩衝區](https://www.google.com/search?q=/opengl/Advanced-OpenGL/Framebuffers)章節中討論過的普通附著非常相似。
 
-### Multisampled texture attachments
+### 多重取樣紋理附著
 
-To create a texture that supports storage of multiple sample points we use `glTexImage2DMultisample` instead of `glTexImage2D` that accepts `GL_TEXTURE_2D_MULTISAPLE` as its texture target:
+要建立一個支援儲存多個取樣點的紋理，我們使用 `glTexImage2DMultisample` 來代替 `glTexImage2D`，它接受 `GL_TEXTURE_2D_MULTISAPLE` 作為其紋理目標：
 
 ```cpp
 glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, tex);
@@ -115,33 +115,33 @@ glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, samples, GL_RGB, width, heigh
 glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
 ```
 
-The second argument sets the number of samples we'd like the texture to have. If the last argument is set to `GL_TRUE`, the image will use identical sample locations and the same number of subsamples for each texel.
+第二個參數設定了我們希望紋理擁有的取樣數量。如果最後一個參數設定為 `GL_TRUE`，則圖像將為每個紋素（texel）使用相同的取樣位置和相同數量的子取樣。
 
-To attach a multisampled texture to a framebuffer we use `glFramebufferTexture2D`, but this time with `GL_TEXTURE_2D_MULTISAMPLE` as the texture type:
+要將多重取樣紋理附著到畫面緩衝區，我們使用 `glFramebufferTexture2D`，但這次使用 `GL_TEXTURE_2D_MULTISAMPLE` 作為紋理類型：
 
 ```cpp
 glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, tex, 0);
 ```
 
-The currently bound framebuffer now has a multisampled color buffer in the form of a texture image.
+目前繫結的畫面緩衝區現在有一個以紋理圖像形式存在的多重取樣顏色緩衝區。
 
-### Multisampled renderbuffer objects
+### 多重取樣渲染緩衝區物件
 
-Like textures, creating a multisampled renderbuffer object isn't difficult. It is even quite easy since all we need to change is `glRenderbufferStorage` to `glRenderbufferStorageMultisample` when we configure the (currently bound) renderbuffer's memory storage:
+與紋理一樣，創建一個多重取樣渲染緩衝區物件並不困難。它甚至相當簡單，因為當我們配置（目前繫結的）渲染緩衝區的記憶體儲存時，我們所需要做的，就是將 `glRenderbufferStorage` 改為 `glRenderbufferStorageMultisample`：
 
 ```cpp
 glRenderbufferStorageMultisample(GL_RENDERBUFFER, 4, GL_DEPTH24_STENCIL8, width, height);
 ```
 
-The one thing that changed here is the extra second parameter where we set the amount of samples we'd like to use; 4 in this particular case.
+這裡改變的一點是額外的第二個參數，我們在其中設定了我們想要使用的取樣數量；在本例中為 4。
 
-### Render to multisampled framebuffer
+### 渲染到多重取樣畫面緩衝區
 
-Rendering to a multisampled framebuffer is straightforward. Whenever we draw anything while the framebuffer object is bound, the rasterizer will take care of all the multisample operations. However, because a multisampled buffer is a bit special, we can't directly use the buffer for other operations like sampling it in a shader.
+渲染到多重取樣畫面緩衝區是簡單明瞭的。每當我們在畫面緩衝區物件被繫結時繪製任何東西，光柵器都會處理所有多重取樣操作。然而，因為多重取樣緩衝區有點特別，我們不能直接將緩衝區用於其他操作，例如在著色器中對其進行取樣。
 
-A multisampled image contains much more information than a normal image so what we need to do is downscale or `resolve` the image. Resolving a multisampled framebuffer is generally done through `glBlitFramebuffer` that copies a region from one framebuffer to the other while also resolving any multisampled buffers.
+多重取樣圖像包含比普通圖像多得多的資訊，所以我們需要做的是將圖像降取樣（downscale）或「解析（resolve）」。解析一個多重取樣畫面緩衝區通常是透過 `glBlitFramebuffer` 來完成的，它將一個區域從一個畫面緩衝區複製到另一個，同時也會解析任何多重取樣緩衝區。
 
-`glBlitFramebuffer` transfers a given `source` region defined by 4 screen-space coordinates to a given `target` region also defined by 4 screen-space coordinates. You may remember from the [framebuffers](/opengl/Advanced-OpenGL/Framebuffers) chapter that if we bind to `GL_FRAMEBUFFER` we're binding to both the read and draw framebuffer targets. We could also bind to those targets individually by binding framebuffers to `GL_READ_FRAMEBUFFER` and `GL_DRAW_FRAMEBUFFER` respectively. The `glBlitFramebuffer` function reads from those two targets to determine which is the source and which is the target framebuffer. We could then transfer the multisampled framebuffer output to the actual screen by `blitting` the image to the default framebuffer like so:
+`glBlitFramebuffer` 將一個由 4 個螢幕空間座標定義的給定「來源（source）」區域，傳輸到一個同樣由 4 個螢幕空間座標定義的給定「目標（target）」區域。你可能還記得在[畫面緩衝區](https://www.google.com/search?q=/opengl/Advanced-OpenGL/Framebuffers)章節中，如果我們繫結到 `GL_FRAMEBUFFER`，我們就是同時繫結到讀取和繪製畫面緩衝區目標。我們也可以透過分別將畫面緩衝區繫結到 `GL_READ_FRAMEBUFFER` 和 `GL_DRAW_FRAMEBUFFER` 來單獨繫結到這些目標。`glBlitFramebuffer` 函式從這兩個目標中讀取，以確定哪個是來源，哪個是目標畫面緩衝區。然後，我們可以透過將圖像「位元區塊傳輸（blitting）」到預設畫面緩衝區，將多重取樣畫面緩衝區的輸出傳輸到實際的螢幕上，如下所示：
 
 ```cpp
 glBindFramebuffer(GL_READ_FRAMEBUFFER, multisampledFBO);
@@ -149,13 +149,13 @@ glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_COLOR_BUFFER_BIT, GL_NEAREST);
 ```
 
-If we then were to render the same application we should get the same output: a lime-green cube displayed with MSAA and again showing significantly less jagged edges:
+如果我們現在要渲染相同的應用程式，我們應該會得到相同的輸出：一個帶有 MSAA 的檸檬綠立方體，再次顯示出明顯更少的鋸齒邊緣：
 
 ![](https://learnopengl.com/img/advanced/anti_aliasing_multisampled.png)
 
-You can find the source code [here](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/11.2.anti_aliasing_offscreen/anti_aliasing_offscreen.cpp).
+你可以在[這裡](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/11.2.anti_aliasing_offscreen/anti_aliasing_offscreen.cpp)找到原始碼。
 
-But what if we wanted to use the texture result of a multisampled framebuffer to do stuff like post-processing? We can't directly use the multisampled texture(s) in the fragment shader. What we can do however is blit the multisampled buffer(s) to a different FBO with a non-multisampled texture attachment. We then use this ordinary color attachment texture for post-processing, effectively post-processing an image rendered via multisampling. This does mean we have to generate a new FBO that acts solely as an intermediate framebuffer object to resolve the multisampled buffer into; a normal 2D texture we can use in the fragment shader. This process looks a bit like this in pseudocode:
+但是，如果我們想使用多重取樣畫面緩衝區的紋理結果來進行後處理（post-processing）之類的事情該怎麼辦？我們無法直接在片段著色器中使用多重取樣紋理。然而，我們可以做的是將多重取樣緩衝區位元區塊傳輸到一個帶有非多重取樣紋理附著的不同 FBO。然後，我們使用這個普通的顏色附著紋理進行後處理，有效地對透過多重取樣渲染的圖像進行後處理。這確實意味著我們必須生成一個新的 FBO，它僅僅作為一個中間畫面緩衝區物件，用於將多重取樣緩衝區解析為一個普通的 2D 紋理，供我們在片段著色器中使用。這個過程用虛擬碼表示如下：
 
 ```cpp
 unsigned int msFBO = CreateFBOWithMultiSampledAttachments();
@@ -184,30 +184,30 @@ while(!glfwWindowShouldClose(window))
 }
 ```
 
-If we then implement this into the post-processing code of the [framebuffers](/opengl/Advanced-OpenGL/Framebuffers) chapter we're able to create all kinds of cool post-processing effects on a texture of a scene with (almost) no jagged edges. With a grayscale postprocessing filter applied it'll look something like this:
+如果我們將其實現到[畫面緩衝區](https://www.google.com/search?q=/opengl/Advanced-OpenGL/Framebuffers)章節的後處理程式碼中，我們就能夠在一個（幾乎）沒有鋸齒邊緣的場景紋理上，創建各種很酷的後處理效果。應用灰階後處理濾鏡後，它看起來會像這樣：
 
 ![](https://learnopengl.com/img/advanced/anti_aliasing_post_processing.png)
 
 {% include box.html content="
-Because the screen texture is a normal (non-multisampled) texture again, some post-processing filters like _edge-detection_ will introduce jagged edges again. To accommodate for this you could blur the texture afterwards or create your own anti-aliasing algorithm.
+因為螢幕紋理再次是一個普通的（非多重取樣）紋理，所以像「邊緣偵測（edge-detection）」這樣的某些後處理濾鏡會再次引入鋸齒邊緣。為了應對這個問題，你可以在之後對紋理進行模糊處理，或者建立你自己的反鋸齒演算法。
 " color="green" %}
 
-You can see that when we want to combine multisampling with off-screen rendering we need to take care of some extra steps. The steps are worth the extra effort though since multisampling significantly boosts the visual quality of your scene. Do note that enabling multisampling can noticeably reduce performance the more samples you use.
+您可以看到，當我們想要將多重取樣與離屏渲染結合時，我們需要處理一些額外的步驟。然而，這些步驟是值得額外付出的努力的，因為多重取樣會顯著提升場景的視覺品質。請注意，使用的取樣越多，啟用多重取樣可能會顯著降低效能。
 
-## Custom Anti-Aliasing algorithm
+## 自訂反鋸齒演算法
 
-It is possible to directly pass a multisampled texture image to a fragment shader instead of first resolving it. GLSL gives us the option to sample the texture image per subsample so we can create our own custom anti-aliasing algorithms.
+可以將多重取樣紋理圖像直接傳遞給片段著色器，而不是先對其進行解析。GLSL 讓我們能夠按子取樣來對紋理圖像進行取樣，這樣我們就可以建立自己的自訂反鋸齒演算法。
 
-To get a texture value per subsample you'd have to define the texture uniform sampler as a `sampler2DMS` instead of the usual `sampler2D`:
+要獲取每個子取樣的紋理值，你必須將紋理 uniform 取樣器定義為 `sampler2DMS`，而不是通常的 `sampler2D`：
 
 ```cpp
 uniform sampler2DMS screenTextureMS;
 ```
 
-Using the `texelFetch` function it is then possible to retrieve the color value per sample:
+然後，使用 `texelFetch` 函式，就可以檢索每個取樣的顏色值：
 
 ```cpp
 vec4 colorSample = texelFetch(screenTextureMS, TexCoords, 3);  // 4th subsample
 ```
 
-We won't go into the details of creating custom anti-aliasing techniques here, but this may be enough to get started on building one yourself.
+我們不會在這裡深入探討創建自訂反鋸齒技術的細節，但這可能足以讓您開始自己構建一個。

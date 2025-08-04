@@ -1,7 +1,7 @@
 ---
 layout: bookdetail
 chapter: 二十八
-title: Advanced-OpenGL &bull; Instancing
+title: 高級 OpenGL &bull; 實例化
 category: tech
 src: "https://learnopengl.com/Advanced-OpenGL/Instancing"
 date: 2025-06-30
@@ -15,9 +15,9 @@ gltopic: Instancing
 permalink: /opengl/Advanced-OpenGL/Instancing
 ---
 
-Say you have a scene where you're drawing a lot of models where most of these models contain the same set of vertex data, but with different world transformations. Think of a scene filled with grass leaves: each grass leave is a small model that consists of only a few triangles. You'll probably want to draw quite a few of them and your scene may end up with thousands or maybe tens of thousands of grass leaves that you need to render each frame. Because each leaf is only a few triangles, the leaf is rendered almost instantly. However, the thousands of render calls you'll have to make will drastically reduce performance.
+假設一個場景中，你要繪製許多模型，而這些模型中的大部分都包含相同的頂點資料，只是世界座標變換（world transformations）不同。想像一個長滿草葉的場景：每一片草葉都是一個由幾個三角形組成的小模型。你可能會想畫很多片草葉，而你的場景最後可能會需要每幀渲染成千上萬，甚至上萬片的草葉。因為每一片葉子都只有幾個三角形，所以單獨繪製一片葉子幾乎是瞬間完成。然而，你必須進行數千次的繪製呼叫（render calls），這會大幅降低效能。
 
-If we were to actually render such a large amount of objects it will look a bit like this in code:
+如果我們真的要渲染如此大量的物體，程式碼看起來會像這樣：
 
 ```cpp
 for(unsigned int i = 0; i < amount_of_models_to_draw; i++)
@@ -27,21 +27,21 @@ for(unsigned int i = 0; i < amount_of_models_to_draw; i++)
 }
 ```
 
-When drawing many `instances` of your model like this you'll quickly reach a performance bottleneck because of the many draw calls. Compared to rendering the actual vertices, telling the GPU to render your vertex data with functions like `glDrawArrays` or `glDrawElements` eats up quite some performance since OpenGL must make necessary preparations before it can draw your vertex data (like telling the GPU which buffer to read data from, where to find vertex attributes and all this over the relatively slow CPU to GPU bus). So even though rendering your vertices is super fast, giving your GPU the commands to render them isn't.
+當像這樣繪製模型的許多「實例（instances）」時，由於大量的繪製呼叫，你很快就會遇到效能瓶頸。與實際渲染頂點相比，用 `glDrawArrays` 或 `glDrawElements` 函式告訴 GPU 渲染你的頂點資料會佔用相當多的效能，因為 OpenGL 必須在繪製頂點資料之前進行必要的準備工作（例如，告訴 GPU 從哪個緩衝區讀取資料、在哪裡找到頂點屬性，以及所有這些都透過相對較慢的 CPU 到 GPU 匯流排來完成）。所以，儘管渲染頂點本身超級快，但給 GPU 下達渲染它們的命令卻不是。
 
-It would be much more convenient if we could send data over to the GPU once, and then tell OpenGL to draw multiple objects using this data with a single drawing call. Enter `instancing`.
+如果我們可以將資料一次性發送到 GPU，然後告訴 OpenGL 用一次繪製呼叫來繪製多個使用這些資料的物件，那將會方便得多。這就是「實例化（instancing）」的登場時機。
 
-Instancing is a technique where we draw many (equal mesh data) objects at once with a single render call, saving us all the CPU -> GPU communications each time we need to render an object. To render using instancing all we need to do is change the render calls `glDrawArrays` and `glDrawElements` to `glDrawArraysInstanced` and `glDrawElementsInstanced` respectively. These _instanced_ versions of the classic rendering functions take an extra parameter called the `instance count` that sets the number of instances we want to render. We sent all the required data to the GPU once, and then tell the GPU how it should draw all these instances with a single call. The GPU then renders all these instances without having to continually communicate with the CPU.
+實例化是一種技術，我們可以用一次繪製呼叫來一次性繪製許多（網格資料相同）的物件，省去了每次需要渲染一個物件時所產生的所有 CPU -> GPU 通訊。要使用實例化進行渲染，我們所需要做的就是將渲染呼叫 `glDrawArrays` 和 `glDrawElements` 分別更改為 `glDrawArraysInstanced` 和 `glDrawElementsInstanced`。這些「實例化」版本的經典渲染函式會多一個名為 `instance count` 的額外參數，用於設定我們想要渲染的實例數量。我們將所有需要的資料一次性發送給 GPU，然後用一次呼叫告訴 GPU 應該如何繪製所有這些實例。接著，GPU 會渲染所有這些實例，而無需持續與 CPU 通訊。
 
-By itself this function is a bit useless. Rendering the same object a thousand times is of no use to us since each of the rendered objects is rendered exactly the same and thus also at the same location; we would only see one object! For this reason GLSL added another built-in variable in the vertex shader called `gl_InstanceID`.
+單獨來看，這個功能有點沒用。將同一個物件渲染一千次對我們來說沒有任何意義，因為每個被渲染的物件都完全相同，因此也都在同一個位置；我們只會看到一個物件！為此，GLSL 在頂點著色器中增加了一個名為 `gl_InstanceID` 的內建變數。
 
-When drawing with one of the instanced rendering calls, `gl_InstanceID` is incremented for each instance being rendered starting from `0`. If we were to render the 43th instance for example, `gl_InstanceID` would have the value `42` in the vertex shader. Having a unique value per instance means we could now for example index into a large array of position values to position each instance at a different location in the world.
+當使用實例化渲染呼叫之一進行繪製時，`gl_InstanceID` 會隨著每個被渲染的實例而遞增，從 `0` 開始。舉例來說，如果我們正在渲染第 43 個實例，那麼在頂點著色器中 `gl_InstanceID` 的值將會是 `42`。每個實例都有一個獨特的值，這意味著我們現在可以索引到一個大型的位置值陣列中，從而將每個實例定位在世界中的不同位置。
 
-To get a feel for instanced drawing we're going to demonstrate a simple example that renders a hundred 2D quads in normalized device coordinates with just one render call. We accomplish this by uniquely positioning each instanced quad by indexing a uniform array of `100` offset vectors. The result is a neatly organized grid of quads that fill the entire window:
+為了對實例化繪製有感覺，我們將演示一個簡單的範例，它只用一個渲染呼叫，在標準化裝置座標（normalized device coordinates）中渲染一百個 2D 四邊形。我們透過索引一個包含 100 個位移向量的 uniform 陣列，來為每個實例化的四邊形進行獨特的定位。結果是一個整齊排列、填滿整個視窗的四邊形網格：
 
 ![](https://learnopengl.com/img/advanced/instancing_quads.png)
 
-Each quad consists of 2 triangles with a total of 6 vertices. Each vertex contains a 2D NDC position vector and a color vector. Below is the vertex data used for this example - the triangles are small enough to properly fit the screen when there's a 100 of them:
+每個四邊形由 2 個三角形組成，總共有 6 個頂點。每個頂點包含一個 2D 的 NDC 位置向量和一個顏色向量。以下是用於此範例的頂點資料——當有 100 個四邊形時，這些三角形足夠小，可以適當地填滿螢幕：
 
 ```cpp
 float quadVertices[] = {
@@ -56,7 +56,7 @@ float quadVertices[] = {
 };
 ```
 
-The quads are colored in the fragment shader that receives a color vector from the vertex shader and sets it as its output:
+四邊形是在片段著色器中著色的，片段著色器從頂點著色器接收一個顏色向量，並將其設為它的輸出：
 
 ```cpp
 #version 330 core
@@ -70,7 +70,7 @@ void main()
 }
 ```
 
-Nothing new so far, but at the vertex shader it's starting to get interesting:
+到目前為止還沒有什麼新東西，但在頂點著色器中，事情開始變得有趣了：
 
 ```cpp
 #version 330 core
@@ -89,9 +89,9 @@ void main()
 }
 ```
 
-Here we defined a uniform array called `offsets` that contain a total of `100` offset vectors. Within the vertex shader we retrieve an offset vector for each instance by indexing the `offsets` array using `gl_InstanceID`. If we now were to draw `100` quads with instanced drawing we'd get `100` quads located at different positions.
+在這裡我們定義了一個名為 `offsets` 的 uniform 陣列，其中包含了總共 `100` 個位移向量。在頂點著色器中，我們透過使用 `gl_InstanceID` 來索引 `offsets` 陣列，從而為每個實例取得一個位移向量。如果我們現在要用實例化繪製來繪製 `100` 個四邊形，我們就會得到 `100` 個位於不同位置的四邊形。
 
-We do need to actually set the offset positions that we calculate in a nested for-loop before we enter the render loop:
+我們確實需要在進入渲染迴圈之前，在一個巢狀 for 迴圈中計算並設定這些位移位置：
 
 ```cpp
 glm::vec2 translations[100];
@@ -109,7 +109,7 @@ for(int y = -10; y < 10; y += 2)
 }
 ```
 
-Here we create a set of `100` translation vectors that contains an offset vector for all positions in a 10x10 grid. In addition to generating the `translations` array, we'd also need to transfer the data to the vertex shader's uniform array:
+在這裡我們建立了一組 `100` 個的平移向量，其中包含 10x10 網格中所有位置的位移向量。除了產生 `translations` 陣列之外，我們還需要將資料傳輸到頂點著色器的 uniform 陣列中：
 
 ```cpp
 shader.use();
@@ -119,24 +119,24 @@ for(unsigned int i = 0; i < 100; i++)
 }
 ```
 
-Within this snippet of code we transform the for-loop counter `i` to a `string` to dynamically create a location string for querying the uniform location. For each item in the `offsets` uniform array we then set the corresponding translation vector.
+在這段程式碼中，我們將 for 迴圈計數器 `i` 轉換為 `string`，以動態地建立一個用於查詢 uniform 位置的位置字串。然後，我們為 `offsets` uniform 陣列中的每個項目設定對應的平移向量。
 
-Now that all the preparations are finished we can start rendering the quads. To draw via instanced rendering we call `glDrawArraysInstanced` or `glDrawElementsInstanced`. Since we're not using an element index buffer we're going to call the `glDrawArrays` version:
+現在所有準備工作都已完成，我們可以開始渲染四邊形了。要透過實例化渲染進行繪製，我們呼叫 `glDrawArraysInstanced` 或 `glDrawElementsInstanced`。由於我們沒有使用元素索引緩衝區，因此我們將呼叫 `glDrawArrays` 版本：
 
 ```cpp
 glBindVertexArray(quadVAO);
 glDrawArraysInstanced(GL_TRIANGLES, 0, 6, 100);
 ```
 
-The parameters of `glDrawArraysInstanced` are exactly the same as `glDrawArrays` except the last parameter that sets the number of instances we want to draw. Since we want to display `100` quads in a 10x10 grid we set it equal to `100`. Running the code should now give you the familiar image of `100` colorful quads.
+`glDrawArraysInstanced` 的參數與 `glDrawArrays` 完全相同，除了最後一個參數，它設定了我們想要繪製的實例數量。因為我們想要在 10x10 的網格中顯示 `100` 個四邊形，所以我們將其設定為等於 `100`。執行程式碼後，你應該會得到那張熟悉的，包含 `100` 個彩色四邊形的圖片。
 
-## Instanced arrays
+## 實例化陣列（Instanced arrays）
 
-While the previous implementation works fine for this specific use case, whenever we are rendering a lot more than `100` instances (which is quite common) we will eventually hit a [limit](https://www.khronos.org/opengl/wiki/GLSL_Uniform#Implementation_limits) on the amount of uniform data we can send to the shaders. One alternative option is known as `instanced arrays`. Instanced arrays are defined as a vertex attribute (allowing us to store much more data) that are updated per instance instead of per vertex.
+儘管先前的實作對於這個特定的用例運作良好，但當我們渲染的實例數量遠超過 `100` 個（這很常見）時，我們最終會達到可以發送到著色器的 uniform 資料量的 [限制](https://www.khronos.org/opengl/wiki/GLSL_Uniform#Implementation_limits)。另一種選擇被稱為「實例化陣列（instanced arrays）」。實例化陣列被定義為一種頂點屬性（允許我們儲存更多的資料），它會「每個實例」而不是「每個頂點」更新一次。
 
-With vertex attributes, at the start of each run of the vertex shader, the GPU will retrieve the next set of vertex attributes that belong to the current vertex. When defining a vertex attribute as an instanced array however, the vertex shader only updates the content of the vertex attribute per instance. This allows us to use the standard vertex attributes for data per vertex and use the instanced array for storing data that is unique per instance.
+對於頂點屬性，在頂點著色器的每次執行開始時，GPU 會取得屬於當前頂點的下一組頂點屬性。然而，當將頂點屬性定義為實例化陣列時，頂點著色器只會「每個實例」更新一次頂點屬性的內容。這使我們能夠使用標準的頂點屬性來處理每個頂點的資料，並使用實例化陣列來儲存每個實例獨有的資料。
 
-To give you an example of an instanced array we're going to take the previous example and convert the offset uniform array to an instanced array. We'll have to update the vertex shader by adding another vertex attribute:
+為了給您一個實例化陣列的範例，我們將沿用先前的範例，並將位移 uniform 陣列轉換為實例化陣列。我們必須透過添加另一個頂點屬性來更新頂點著色器：
 
 ```cpp
 #version 330 core
@@ -153,9 +153,9 @@ void main()
 }
 ```
 
-We no longer use `gl_InstanceID` and can directly use the `offset` attribute without first indexing into a large uniform array.
+我們不再使用 `gl_InstanceID`，而是可以直接使用 `offset` 屬性，而無需先索引到一個大型 uniform 陣列中。
 
-Because an instanced array is a vertex attribute, just like the `position` and `color` variables, we need to store its content in a vertex buffer object and configure its attribute pointer. We're first going to store the `translations` array (from the previous section) in a new buffer object:
+因為實例化陣列是一個頂點屬性，就像 `position` 和 `color` 變數一樣，我們需要將其內容儲存在頂點緩衝物件（vertex buffer object）中，並配置它的屬性指標（attribute pointer）。我們首先將 `translations` 陣列（來自前一節）儲存到一個新的緩衝物件中：
 
 ```cpp
 unsigned int instanceVBO;
@@ -165,7 +165,7 @@ glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * 100, &translations[0], GL_STAT
 glBindBuffer(GL_ARRAY_BUFFER, 0);
 ```
 
-Then we also need to set its vertex attribute pointer and enable the vertex attribute:
+然後我們還需要設定它的頂點屬性指標並啟用頂點屬性：
 
 ```cpp
 glEnableVertexAttribArray(2);
@@ -175,15 +175,15 @@ glBindBuffer(GL_ARRAY_BUFFER, 0);
 glVertexAttribDivisor(2, 1);
 ```
 
-What makes this code interesting is the last line where we call `glVertexAttribDivisor`. This function tells OpenGL **when** to update the content of a vertex attribute to the next element. Its first parameter is the vertex attribute in question and the second parameter the `attribute divisor`. By default, the attribute divisor is `0` which tells OpenGL to update the content of the vertex attribute each iteration of the vertex shader. By setting this attribute to `1` we're telling OpenGL that we want to update the content of the vertex attribute when we start to render a new instance. By setting it to `2` we'd update the content every 2 instances and so on. By setting the attribute divisor to `1` we're effectively telling OpenGL that the vertex attribute at attribute location `2` is an instanced array.
+這段程式碼有趣的地方在於我們呼叫 `glVertexAttribDivisor` 的最後一行。這個函式告訴 OpenGL **何時**將頂點屬性的內容更新到下一個元素。它的第一個參數是要處理的頂點屬性，第二個參數是 `attribute divisor`。預設情況下，屬性除數是 `0`，這告訴 OpenGL 在頂點著色器的每次迭代中更新頂點屬性內容。透過將此屬性設為 `1`，我們是在告訴 OpenGL，當我們開始渲染一個新實例時，我們想要更新頂點屬性的內容。如果將其設為 `2`，我們將每隔 2 個實例更新一次內容，以此類推。透過將屬性除數設為 `1`，我們有效地告訴 OpenGL，屬性位置 `2` 的頂點屬性是一個實例化陣列。
 
-If we now were to render the quads again with `glDrawArraysInstanced` we'd get the following output:
+如果我們現在再次使用 `glDrawArraysInstanced` 來渲染四邊形，我們會得到以下輸出：
 
 ![](https://learnopengl.com/img/advanced/instancing_quads.png)
 
-This is exactly the same as the previous example, but now with instanced arrays, which allows us to pass a lot more data (as much as memory allows us) to the vertex shader for instanced drawing.
+這與先前的範例完全相同，但現在使用了實例化陣列，這使我們能夠將更多的資料（多到記憶體允許的範圍）傳遞給頂點著色器，以進行實例化繪製。
 
-For fun we could slowly downscale each quad from top-right to bottom-left using `gl_InstanceID` again, because why not?
+為了好玩，我們也可以再次使用 `gl_InstanceID`，從右上到左下慢慢縮小每個四邊形，何樂而不為呢？
 
 ```cpp
 void main()
@@ -194,23 +194,23 @@ void main()
 }
 ```
 
-The result is that the first instances of the quads are drawn extremely small and the further we're in the process of drawing the instances, the closer `gl_InstanceID` gets to `100` and thus the more the quads regain their original size. It's perfectly legal to use instanced arrays together with `gl_InstanceID` like this.
+結果是，最前面的幾個實例（instances）的四邊形被繪製得非常小，而當我們在繪製實例的過程中越往後，`gl_InstanceID` 就越接近 `100`，因此四邊形也越能恢復到它們原始的大小。像這樣將實例化陣列（instanced arrays）與 `gl_InstanceID` 一起使用是完全合法的。
 
 ![](https://learnopengl.com/img/advanced/instancing_quads_arrays.png)
 
-If you're still a bit unsure about how instanced rendering works or want to see how everything fits together you can find the full source code of the application [here](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/10.1.instancing_quads/instancing_quads.cpp).
+如果您對於實例化渲染的工作方式仍然有點不確定，或者想看看所有東西是如何組合在一起的，您可以在[這裡](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/10.1.instancing_quads/instancing_quads.cpp)找到完整的應用程式原始碼。
 
-While fun and all, these examples aren't really good examples of instancing. Yes, they do give you an easy overview of how instancing works, but instancing gets most of its power when drawing an enormous amount of similar objects. For that reason we're going to venture into space.
+雖然很有趣，但這些例子並不是實例化的絕佳範例。是的，它們確實為您提供了實例化工作原理的簡單概述，但實例化的大部分威力在於繪製大量相似的物件時才能發揮出來。出於這個原因，我們將冒險進入太空。
 
-## An asteroid field
+## 小行星帶
 
-Imagine a scene where we have one large planet that's at the center of a large asteroid ring. Such an asteroid ring could contain thousands or tens of thousands of rock formations and quickly becomes un-renderable on any decent graphics card. This scenario proves itself particularly useful for instanced rendering, since all the asteroids can be represented with a single model. Each single asteroid then gets its variation from a transformation matrix unique to each asteroid.
+想像一個場景，我們有一個巨大的行星，它位於一個大型小行星環的中心。這樣一個小行星環可能包含數千或數萬個岩石結構，並且很快就會讓任何不錯的顯示卡都難以渲染。這種場景證明了實例化渲染特別有用，因為所有小行星都可以用一個單一模型來表示。然後，每個單獨的小行星都從一個獨屬於它自己的變換矩陣中獲得變化。
 
-To demonstrate the impact of instanced rendering we're first going to render a scene of asteroids hovering around a planet _without_ instanced rendering. The scene will contain a large planet model that can be downloaded from [here](https://learnopengl.com/data/models/planet.zip) and a large set of asteroid rocks that we properly position around the planet. The asteroid rock model can be downloaded [here](https://learnopengl.com/data/models/rock.zip).
+為了展示實例化渲染的影響，我們將首先**不**使用實例化渲染來渲染一個圍繞行星盤旋的小行星場景。該場景將包含一個可以從[這裡](https://learnopengl.com/data/models/planet.zip)下載的巨大行星模型，以及一組我們適當放置在行星周圍的大量小行星岩石。小行星岩石模型可以從[這裡](https://learnopengl.com/data/models/rock.zip)下載。
 
-Within the code samples we load the models using the model loader we've previously defined in the [model loading](/opengl/Model-Loading/Assimp) chapters.
+在程式碼範例中，我們使用之前在[模型載入（model loading）](https://www.google.com/search?q=/opengl/Model-Loading/Assimp)章節中定義的模型載入器來載入模型。
 
-To achieve the effect we're looking for we'll be generating a model transformation matrix for each asteroid. The transformation matrix first translates the rock somewhere in the asteroid ring - then we'll add a small random displacement value to the offset to make the ring look more natural. From there we also apply a random scale and a random rotation. The result is a transformation matrix that translates each asteroid somewhere around the planet while also giving it a more natural and unique look compared to the other asteroids.
+為了達到我們想要的效果，我們將為每個小行星生成一個模型變換矩陣。變換矩陣首先將岩石平移到小行星環的某個地方——然後我們將向位移（offset）添加一個小的隨機位移值，使星環看起來更自然。從那裡我們還應用一個隨機的縮放和隨機的旋轉。結果是一個變換矩陣，它將每個小行星平移到行星周圍的某個位置，同時與其他小行星相比，也賦予了它更自然和獨特的外觀。
 
 ```cpp
 unsigned int amount = 1000;
@@ -245,9 +245,9 @@ for(unsigned int i = 0; i < amount; i++)
 }
 ```
 
-This piece of code may look a little daunting, but we basically transform the x and z position of the asteroid along a circle with a radius defined by `radius` and randomly displace each asteroid a little around the circle by `\-offset` and `offset`. We give the `y` displacement less of an impact to create a more flat asteroid ring. Then we apply scale and rotation transformations and store the resulting transformation matrix in `modelMatrices` that is of size `amount`. Here we generate `1000` model matrices, one per asteroid.
+這段程式碼可能看起來有點嚇人，但我們基本上是沿著一個由 `radius` 定義的圓圈來變換小行星的 x 和 z 位置，並透過 `\-offset` 和 `offset` 隨機地讓每個小行星在圓圈周圍產生一點位移。我們讓 `y` 方向的位移影響較小，以創建一個更平坦的小行星環。然後我們應用縮放和旋轉變換，並將最終的變換矩陣儲存在大小為 `amount` 的 `modelMatrices` 中。在這裡我們為每個小行星產生了 `1000` 個模型矩陣。
 
-After loading the planet and rock models and compiling a set of shaders, the rendering code then looks a bit like this:
+載入行星和岩石模型並編譯一組著色器之後，渲染程式碼看起來會像這樣：
 
 ```cpp
 // draw planet
@@ -266,17 +266,17 @@ for(unsigned int i = 0; i < amount; i++)
 }
 ```
 
-First we draw the planet model, that we translate and scale a bit to accommodate the scene, and then we draw a number of rock models equal to the `amount` of transformations we generated previously. Before we draw each rock however, we first set the corresponding model transformation matrix within the shader.
+我們首先繪製行星模型，對其進行平移和縮放以適應場景，然後我們繪製數量等於我們之前產生的變換矩陣 `amount` 的岩石模型。然而，在我們繪製每一塊岩石之前，我們首先在著色器中設定對應的模型變換矩陣。
 
-The result is then a space-like scene where we can see a natural-looking asteroid ring around a planet:
+結果就是一個類太空的場景，我們可以看到一個圍繞行星、看起來很自然的小行星環：
 
 ![](https://learnopengl.com/img/advanced/instancing_asteroids.png)
 
-This scene contains a total of `1001` rendering calls per frame of which `1000` are of the rock model. You can find the source code for this scene [here](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/10.2.asteroids/asteroids.cpp).
+這個場景每幀總共包含 `1001` 次渲染呼叫，其中 `1000` 次是岩石模型的。你可以在[這裡](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/10.2.asteroids/asteroids.cpp)找到這個場景的原始碼。
 
-As soon as we start to increase this number we will quickly notice that the scene stops running smoothly and the number of frames we're able to render per second reduces drastically. As soon as we set `amount` to something close to `2000` the scene already becomes so slow on our GPU that it becomes difficult to move around.
+一旦我們開始增加這個數字，我們就會很快注意到場景不再流暢運行，並且我們每秒能夠渲染的幀數會急劇減少。一旦我們將 `amount` 設定為接近 `2000`，在我們的 GPU 上場景就已經變得非常慢，以至於難以四處移動。
 
-Let's now try to render the same scene, but this time with instanced rendering. We first need to adjust the vertex shader a little:
+現在讓我們嘗試渲染相同的場景，但這次使用實例化渲染。我們首先需要稍微調整頂點著色器：
 
 ```cpp
 #version 330 core
@@ -296,9 +296,9 @@ void main()
 }
 ```
 
-We're no longer using a model uniform variable, but instead declare a `mat4` as a vertex attribute so we can store an instanced array of transformation matrices. However, when we declare a datatype as a vertex attribute that is greater than a `vec4` things work a bit differently. The maximum amount of data allowed for a vertex attribute is equal to a `vec4`. Because a `mat4` is basically 4 `vec4`s, we have to reserve 4 vertex attributes for this specific matrix. Because we assigned it a location of `3`, the columns of the matrix will have vertex attribute locations of `3`, `4`, `5`, and `6`.
+我們不再使用 model uniform 變數，而是將 `mat4` 宣告為頂點屬性，這樣我們就可以儲存一個由變換矩陣組成的實例化陣列。然而，當我們將資料型態宣告為大於 `vec4` 的頂點屬性時，事情就會有點不同。頂點屬性所允許的最大資料量等於一個 `vec4`。由於 `mat4` 本質上是 4 個 `vec4`，我們必須為這個特定的矩陣保留 4 個頂點屬性。因為我們將其位置設為 `3`，所以矩陣的各欄將會擁有頂點屬性位置 `3`、`4`、`5` 和 `6`。
 
-We then have to set each of the attribute pointers of those `4` vertex attributes and configure them as instanced arrays:
+然後我們必須設定這 4 個頂點屬性中的每一個的屬性指標，並將它們配置為實例化陣列：
 
 ```cpp
 // vertex buffer object
@@ -331,9 +331,9 @@ for(unsigned int i = 0; i < rock.meshes.size(); i++)
 }
 ```
 
-Note that we cheated a little by declaring the `VAO` variable of the `Mesh` as a public variable instead of a private variable so we could access its vertex array object. This is not the cleanest solution, but just a simple modification to suit this example. Aside from the little hack, this code should be clear. We're basically declaring how OpenGL should interpret the buffer for each of the matrix's vertex attributes and that each of those vertex attributes is an instanced array.
+請注意，我們透過將 `Mesh` 的 `VAO` 變數宣告為 public 而不是 private，來作弊了一下，這樣我們就可以存取它的頂點陣列物件。這並不是最乾淨的解決方案，但只是一個簡單的修改，以適應這個範例。除了這個小伎倆之外，這段程式碼應該很清楚。我們基本上是在宣告 OpenGL 應該如何為矩陣的每個頂點屬性解釋緩衝區，以及這些頂點屬性中的每一個都是一個實例化陣列。
 
-Next we take the `VAO` of the mesh(es) again and this time draw using `glDrawElementsInstanced`:
+接著我們再次取出網格的 `VAO`，這次使用 `glDrawElementsInstanced` 進行繪製：
 
 ```cpp
 // draw meteorites
@@ -347,14 +347,14 @@ for(unsigned int i = 0; i < rock.meshes.size(); i++)
 }
 ```
 
-Here we draw the same `amount` of asteroids as the previous example, but this time with instanced rendering. The results should be exactly the same, but once we increase the `amount` you'll really start to see the power of instanced rendering. Without instanced rendering we were able to smoothly render around `1000` to `1500` asteroids. With instanced rendering we can now set this value to `100000`. This, with the rock model having `576` vertices, would equal around `57` million vertices drawn each frame without significant performance drops; and only 2 draw calls!
+在這裡，我們繪製與前一個範例相同數量的 `amount` 小行星，但這次是使用實例化渲染。結果應該完全相同，但一旦我們增加 `amount`，你就會真正開始看到實例化渲染的威力。在沒有實例化渲染的情況下，我們能夠流暢地渲染大約 `1000` 到 `1500` 個小行星。使用實例化渲染，我們現在可以將這個值設定為 `100000`。由於岩石模型有 `576` 個頂點，這將相當於每幀繪製大約 `57` 萬個頂點而沒有顯著的性能下降；而且只需要 2 次繪製呼叫！
 
 ![](https://learnopengl.com/img/advanced/instancing_asteroids_quantity.png)
 
-This image was rendered with `100000` asteroids with a radius of `150.0f` and an offset equal to `25.0f`. You can find the source code of the instanced rendering demo [here](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/10.3.asteroids_instanced/asteroids_instanced.cpp).
+這張圖片是用 `100000` 個小行星渲染的，半徑為 `150.0f`，位移等於 `25.0f`。你可以在[這裡](https://learnopengl.com/code_viewer_gh.php?code=src/4.advanced_opengl/10.3.asteroids_instanced/asteroids_instanced.cpp)找到實例化渲染範例的原始碼。
 
 {% include box.html content="
-On different machines an asteroid count of `100000` may be a bit too high, so try tweaking the values till you reach an acceptable framerate.
+在不同的機器上，100000 個小行星的數量可能有點太高，所以請嘗試調整這些值，直到達到一個可接受的幀率。
 " color="green" %}
 
-As you can see, with the right type of environments, instanced rendering can make an enormous difference to the rendering capabilities of your application. For this reason, instanced rendering is commonly used for grass, flora, particles, and scenes like this - basically any scene with many repeating shapes can benefit from instanced rendering.
+正如你所看到的，在合適的環境類型下，實例化渲染可以對應用程式的渲染能力產生巨大的影響。出於這個原因，實例化渲染通常用於草地、植物、粒子以及像這樣的場景——基本上任何包含許多重複形狀的場景都可以從實例化渲染中受益。

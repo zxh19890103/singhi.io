@@ -15,7 +15,7 @@ gltopic: Depth-testing
 permalink: /opengl/en/Advanced-OpenGL/Depth-testing
 ---
 
-In the [coordinate systems](/opengl/en/Getting-started/Coordinate-Systems) chapter we've rendered a 3D container and made use of a `depth buffer` to prevent triangles rendering in the front while they're supposed to be behind other triangles. In this chapter we're going to elaborate a bit more on those `depth values` the depth buffer (or z-buffer) stores and how it actually determines if a fragment is in front.
+In the [coordinate systems](/opengl/en/Getting-started/Coordinates-Systems) chapter we've rendered a 3D container and made use of a `depth buffer` to prevent triangles rendering in the front while they're supposed to be behind other triangles. In this chapter we're going to elaborate a bit more on those `depth values` the depth buffer (or z-buffer) stores and how it actually determines if a fragment is in front.
 
 The depth-buffer is a buffer that, just like the `color buffer` (that stores all the fragment colors: the visual output), stores information per fragment and has the same width and height as the color buffer. The depth buffer is automatically created by the windowing system and stores its depth values as `16`, `24` or `32` bit floats. In most systems you'll see a depth buffer with a precision of `24` bits.
 
@@ -86,7 +86,7 @@ The depth buffer contains depth values between `0.0` and `1.0` and it compares i
 
 \\begin{equation} F\_{depth} = \\frac{z - near}{far - near} \\end{equation}
 
-Here \\(near\\) and \\(far\\) are the _near_ and _far_ values we used to provide to the projection matrix to set the visible frustum (see [coordinate Systems](/opengl/en/Getting-started/Coordinate-Systems)). The equation takes a depth value \\(z\\) within the frustum and transforms it to the range `[0,1]`. The relation between the z-value and its corresponding depth value is presented in the following graph:
+Here \\(near\\) and \\(far\\) are the _near_ and _far_ values we used to provide to the projection matrix to set the visible frustum (see [coordinate Systems](/opengl/en/Getting-started/Coordinates-Systems)). The equation takes a depth value \\(z\\) within the frustum and transforms it to the range `[0,1]`. The relation between the z-value and its corresponding depth value is presented in the following graph:
 
 ![](https://learnopengl.com/img/advanced/depth_linear_graph.png)
 

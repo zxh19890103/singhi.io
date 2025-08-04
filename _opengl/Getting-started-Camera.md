@@ -12,7 +12,7 @@ image: "https://learnopengl.com/img/getting-started/camera_axes.png"
 order: 10
 lang: zh
 permalink: /opengl/Getting-started/Camera
-glcate: Start
+glcate: Getting-started
 gltopic: Camera
 ---
 

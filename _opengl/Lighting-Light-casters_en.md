@@ -52,7 +52,7 @@ Note that we first negate the `light.direction` vector. The lighting calculation
 
 The resulting `lightDir` vector is then used as before in the diffuse and specular computations.
 
-To clearly demonstrate that a directional light has the same effect on multiple objects we revisit the container party scene from the end of the [Coordinate systems](/opengl/en/Getting-started/Coordinate-Systems) chapter. In case you missed the party we defined 10 different [container positions](https://learnopengl.com/code_viewer.php?code=lighting/light_casters_container_positions) and generated a different model matrix per container where each model matrix contained the appropriate local-to-world transformations:
+To clearly demonstrate that a directional light has the same effect on multiple objects we revisit the container party scene from the end of the [Coordinate systems](/opengl/en/Getting-started/Coordinates-Systems) chapter. In case you missed the party we defined 10 different [container positions](https://learnopengl.com/code_viewer.php?code=lighting/light_casters_container_positions) and generated a different model matrix per container where each model matrix contained the appropriate local-to-world transformations:
 
 ```cpp
 for(unsigned int i = 0; i < 10; i++)

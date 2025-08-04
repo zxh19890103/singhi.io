@@ -1,7 +1,7 @@
 ---
 layout: bookdetail
 chapter: 二十六
-title: 高級 OpenGL &bull; Advanced-Data
+title: 高級 OpenGL &bull; 高級 Data
 category: tech
 src: "https://learnopengl.com/Advanced-OpenGL/Advanced-Data"
 date: 2025-06-30
