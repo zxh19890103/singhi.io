@@ -70,15 +70,14 @@ layout: with-nonav
           endif %}</span>
       </a>
     </div>
-
     {{content}}
+
+    <div>
+      <a href="javascript:void(0);" onclick="IveReadIt()">i've read it</a>
+    </div>
   </div>
 
   <div class="Book__End" style="height: 1px; background: #ddd; width: 61.8%; margin: 3rem auto"></div>
-
-  <!-- <div style="margin: 2rem 0; text-align: center;">
-    <a href="{{ site.opengl }}">read next</a>
-  </div> -->
 
   <div>
     {% include bookdetail_meta.html %}
@@ -339,6 +338,13 @@ layout: with-nonav
       __set_isFullscreen__(!__isFullscreen__);
     }
   })
+</script>
+
+<script>
+  function IveReadIt() {
+    localStorage.setItem(location.pathname, { done: true });
+    alert('done');
+  }
 </script>
 
 {% if page.math %}
