@@ -1,7 +1,7 @@
 ---
 layout: bookdetail
 chapter: 四十一
-title: PBR &bull; Lighting
+title: PBR &bull; 光照
 category: tech
 src: "https://learnopengl.com/PBR/Lighting"
 date: 2025-08-04
@@ -15,23 +15,23 @@ gltopic: Lighting
 permalink: /opengl/PBR/Lighting
 ---
 
-In the [previous](/opengl/en/PBR/Theory) chapter we laid the foundation for getting a realistic physically based renderer off the ground. In this chapter we'll focus on translating the previously discussed theory into an actual renderer that uses direct (or analytic) light sources: think of point lights, directional lights, and/or spotlights.
+在[上一章](/opengl/PBR/Theory)中，我們為一個逼真的物理基礎渲染器奠定了基礎。在本章中，我們將專注於將先前討論的理論轉化為一個實際的渲染器，該渲染器使用直接（或解析）光源：例如點光源（point lights）、定向光源（directional lights）和/或聚光燈（spotlights）。
 
-Let's start by re-visiting the final reflectance equation from the previous chapter:
+讓我們從回顧上一章的最終反射方程開始：
 
 \\\[ L_o(p,\\omega_o) = \\int\\limits\_{\\Omega} (k_d\\frac{c}{\\pi} + \\frac{DFG}{4(\\omega_o \\cdot n)(\\omega_i \\cdot n)}) L_i(p,\\omega_i) n \\cdot \\omega_i d\\omega_i \\\]
 
-We now know mostly what's going on, but what still remained a big unknown is how exactly we're going to represent irradiance, the total radiance \\(L\\), of the scene. We know that radiance \\(L\\) (as interpreted in computer graphics land) measures the radiant flux \\(\\phi\\) or light energy of a light source over a given solid angle \\(\\omega\\). In our case we assumed the solid angle \\(\\omega\\) to be infinitely small in which case radiance measures the flux of a light source over a single light ray or direction vector.
+我們現在大致了解發生了什麼，但仍然是一個巨大的未知數是，我們究竟要如何表示輻照度（irradiance），也就是場景的總輻射（total radiance）\\(L\\)。我們知道，輻射（radiance）\\(L\\)（在電腦圖學領域的解釋）是測量給定立體角 \\(\\omega\\) 上光源的輻射通量（radiant flux）\\(\\phi\\) 或光能。在我們的案例中，我們假設立體角 \\(\\omega\\) 是無限小的，在這種情況下，輻射測量的是光源在單一光線或方向向量上的通量。
 
-Given this knowledge, how do we translate this into some of the lighting knowledge we've accumulated from previous chapters? Well, imagine we have a single point light (a light source that shines equally bright in all directions) with a radiant flux of `(23.47, 21.31, 20.79)` as translated to an RGB triplet. The radiant intensity of this light source equals its radiant flux at all outgoing direction rays. However, when shading a specific point \\(p\\) on a surface, of all possible incoming light directions over its hemisphere \\(\\Omega\\), only one incoming direction vector \\(w_i\\) directly comes from the point light source. As we only have a single light source in our scene, assumed to be a single point in space, all other possible incoming light directions have zero radiance observed over the surface point \\(p\\):
+有了這些知識，我們該如何將其轉化為我們從先前章節中累積的一些光照知識呢？好吧，想像我們有一個點光源（point light source，一個在所有方向上都發出相同亮度的光源），其輻射通量轉換為 RGB 三元組為 `(23.47, 21.31, 20.79)`。這個光源的輻射強度（radiant intensity）等於它在所有出射方向上的輻射通量。然而，當我們對表面上的一個特定點 \\(p\\) 進行著色時，在其半球 \\(\\Omega\\) 上所有可能的入射光方向中，只有一個入射方向向量 \\(w_i\\) 是直接來自點光源的。因為我們的場景中只有一個光源，並且假設它是一個空間中的單點，所以在表面點 \\(p\\) 上觀察到的所有其他可能的入射光方向的輻射都為零：
 
 ![](https://learnopengl.com/img/pbr/lighting_radiance_direct.png)
 
-If at first, we assume that light attenuation (dimming of light over distance) does not affect the point light source, the radiance of the incoming light ray is the same regardless of where we position the light (excluding scaling the radiance by the incident angle \\(\\cos \\theta\\)). This, because the point light has the same radiant intensity regardless of the angle we look at it, effectively modeling its radiant intensity as its radiant flux: a constant vector `(23.47, 21.31, 20.79)`.
+如果我們一開始假設光線衰減（光線隨距離變暗）不影響點光源，那麼無論我們將光源放置在哪裡，入射光線的輻射都是相同的（不包括用入射角 \\(\\cos \\theta\\) 對輻射進行縮放）。這是因為點光源的輻射強度與我們觀察它的角度無關，有效地將其輻射強度模擬為其輻射通量：一個常數向量 `(23.47, 21.31, 20.79)`。
 
-However, radiance also takes a position \\(p\\) as input and as any realistic point light source takes light attenuation into account, the radiant intensity of the point light source is scaled by some measure of the distance between point \\(p\\) and the light source. Then, as extracted from the original radiance equation, the result is scaled by the dot product between the surface normal \\(n\\) and the incoming light direction \\(w_i\\).
+然而，輻射也將位置 \\(p\\) 作為輸入，並且由於任何逼真的點光源都會考慮光線衰減，因此點光源的輻射強度會根據點 \\(p\\) 和光源之間距離的一些測量值進行縮放。然後，根據從原始輻射方程中提取的內容，結果會根據表面法線 \\(n\\) 和入射光方向 \\(w_i\\) 之間的點積進行縮放。
 
-To put this in more practical terms: in the case of a direct point light the radiance function \\(L\\) measures the light color, attenuated over its distance to \\(p\\) and scaled by \\(n \\cdot w_i\\), but only over the single light ray \\(w_i\\) that hits \\(p\\) which equals the light's direction vector from \\(p\\). In code this translates to:
+用更實際的術語來說：在直接點光源的情況下，輻射函數 \\(L\\) 測量的是光的顏色，根據其與 \\(p\\) 的距離進行衰減，並根據 \\(n \\cdot w_i\\) 進行縮放，但僅限於撞擊 \\(p\\) 的單一光線 \\(w_i\\)，該光線等於從 \\(p\\) 到光源的方向向量。在程式碼中，這轉化為：
 
 ```cpp
 vec3  lightColor  = vec3(23.47, 21.31, 20.79);
@@ -41,19 +41,19 @@ float attenuation = calculateAttenuation(fragPos, lightPos);
 vec3  radiance    = lightColor * attenuation * cosTheta;
 ```
 
-Aside from the different terminology, this piece of code should be awfully familiar to you: this is exactly how we've been doing diffuse lighting so far. When it comes to direct lighting, radiance is calculated similarly to how we've calculated lighting before as only a single light direction vector contributes to the surface's radiance.
+除了術語不同之外，這段程式碼對您來說應該非常熟悉：這正是我們到目前為止一直在做的漫射照明。對於直接照明，輻射的計算方式與我們之前計算照明的方式類似，因為只有一個光線方向向量會影響表面的輻射。
 
 {% include box.html content="
-Note that this assumption holds as point lights are infinitely small and only a single point in space. If we were to model a light that has area or volume, its radiance would be non-zero in more than one incoming light direction.
+請注意，這個假設成立是因為點光源是無限小且僅為空間中的單個點。如果我們要模擬一個具有面積或體積的光源，它的輻射在多個入射光方向上將是非零的。
 " color="green" %}
 
-For other types of light sources originating from a single point we calculate radiance similarly. For instance, a directional light source has a constant \\(w_i\\) without an attenuation factor. And a spotlight would not have a constant radiant intensity, but one that is scaled by the forward direction vector of the spotlight.
+對於源自單個點的其他類型光源，我們也以類似的方式計算輻射。例如，定向光源具有恆定的 \\(w_i\\) 而沒有衰減因子。而聚光燈的輻射強度則不是恆定的，而是會根據聚光燈的前向方向向量進行縮放。
 
-This also brings us back to the integral \\(\\int\\) over the surface's hemisphere \\(\\Omega\\) . As we know beforehand the single locations of all the contributing light sources while shading a single surface point, it is not required to try and solve the integral. We can directly take the (known) number of light sources and calculate their total irradiance, given that each light source has only a single light direction that influences the surface's radiance. This makes PBR on direct light sources relatively simple as we effectively only have to loop over the contributing light sources. When we later take environment lighting into account in the [IBL](/opengl/PBR/Diffuse-irradiance) chapters we do have to take the integral into account as light can come from any direction.
+這也讓我們回到表面半球 \\(\\Omega\\) 上的積分 \\(\\int\\)。由於我們在著色單個表面點時，事先知道所有貢獻光源的單一位置，因此不需要嘗試求解積分。我們可以直接取得（已知）光源的數量，並計算它們的總輻照度，前提是每個光源只有一個光線方向會影響表面的輻射。這使得在直接光源上的 PBR 相對簡單，因為我們實際上只需要遍歷貢獻光源即可。當我們稍後在 [IBL](/opengl/PBR/Diffuse-irradiance) 章節中考慮環境光照時，我們確實必須考慮積分，因為光線可以來自任何方向。
 
-## A PBR surface model
+## 一個 PBR 表面模型
 
-Let's start by writing a fragment shader that implements the previously described PBR models. First, we need to take the relevant PBR inputs required for shading the surface:
+讓我們從編寫一個實作上述 PBR 模型的片段著色器開始。首先，我們需要取得對表面著色所必需的 PBR 相關輸入：
 
 ```cpp
 #version 330 core
@@ -70,9 +70,9 @@ uniform float roughness;
 uniform float ao;
 ```
 
-We take the standard inputs as calculated from a generic vertex shader and a set of constant material properties over the surface of the object.
+我們使用從通用頂點著色器計算出的標準輸入，以及物件表面的一組恆定材質屬性。
 
-Then at the start of the fragment shader we do the usual calculations required for any lighting algorithm:
+然後在片段著色器的一開始，我們進行任何照明演算法所需的常見計算：
 
 ```cpp
 void main()
@@ -83,9 +83,9 @@ void main()
 }
 ```
 
-### Direct lighting
+### 直接光照
 
-In this chapter's example demo we have a total of 4 point lights that together represent the scene's irradiance. To satisfy the reflectance equation we loop over each light source, calculate its individual radiance and sum its contribution scaled by the BRDF and the light's incident angle. We can think of the loop as solving the integral \\(\\int\\) over \\(\\Omega\\) for direct light sources. First, we calculate the relevant per-light variables:
+在本章的範例演示中，我們總共有 4 個點光源，它們共同代表了場景的輻照度。為了滿足反射方程，我們遍歷每個光源，計算其各自的輻射，並將其貢獻（由 BRDF 和光的入射角縮放）相加。我們可以將這個迴圈視為針對直接光源求解 \\(\\Omega\\) 上的積分 \\(\\int\\)。首先，我們計算每個光源的相關變數：
 
 ```cpp
 vec3 Lo = vec3(0.0);
@@ -100,17 +100,17 @@ for(int i = 0; i < 4; ++i)
     [...]
 ```
 
-As we calculate lighting in linear space (we'll [gamma correct](/opengl/en/Advanced-Lighting/Gamma-Correction) at the end of the shader) we attenuate the light sources by the more physically correct `inverse-square law`.
+由於我們在線性空間中計算光照（我們會在著色器末尾進行 [gamma 校正](/opengl/Advanced-Lighting/Gamma-Correction)），我們使用更符合物理的「平方反比定律」來衰減光源。
 
 {% include box.html content="
-While physically correct, you may still want to use the constant-linear-quadratic attenuation equation that (while not physically correct) can offer you significantly more control over the light's energy falloff.
+雖然這符合物理，但您可能仍然希望使用 constant-linear-quadratic 衰減方程，它（雖然不符合物理）可以讓您對光的能量衰減有更多控制。
 " color="green" %}
 
-Then, for each light we want to calculate the full Cook-Torrance specular BRDF term:
+然後，對於每個光源，我們需要計算完整的 Cook-Torrance 高光 BRDF 項：
 
 \\\[ \\frac{DFG}{4(\\omega_o \\cdot n)(\\omega_i \\cdot n)} \\\]
 
-The first thing we want to do is calculate the ratio between specular and diffuse reflection, or how much the surface reflects light versus how much it refracts light. We know from the [previous](/opengl/en/PBR/Theory) chapter that the Fresnel equation calculates just that (note the `clamp` here to prevent black spots):
+我們想做的第一件事是計算高光反射和漫射反射之間的比例，或者說表面反射光線的比例與折射光線的比例。我們從[上一章](/opengl/PBR/Theory)知道，Fresnel 方程正好計算了這個值（請注意這裡的 `clamp` 是為了防止出現黑點）：
 
 ```cpp
 vec3 fresnelSchlick(float cosTheta, vec3 F0)
@@ -119,7 +119,7 @@ vec3 fresnelSchlick(float cosTheta, vec3 F0)
 }
 ```
 
-The Fresnel-Schlick approximation expects a `F0` parameter which is known as the _surface reflection at zero incidence_ or how much the surface reflects if looking directly at the surface. The `F0` varies per material and is tinted on metals as we find in large material databases. In the PBR metallic workflow we make the simplifying assumption that most dielectric surfaces look visually correct with a constant `F0` of `0.04`, while we do specify `F0` for metallic surfaces as then given by the albedo value. This translates to code as follows:
+Fresnel-Schlick 近似需要一個 `F0` 參數，它被稱為**零入射下的表面反射率**，或者說如果直接看著表面時，表面會反射多少光。`F0` 因材質而異，並且在金屬上會被染色，就像我們在大型材質資料庫中發現的那樣。在 PBR 金屬工作流程中，我們做了一個簡化的假設：大多數電介質表面在 `F0` 為 `0.04` 的情況下看起來是視覺上正確的，而我們則將金屬表面的 `F0` 指定為反照率值。這轉化為程式碼如下：
 
 ```cpp
 vec3 F0 = vec3(0.04);
@@ -127,11 +127,11 @@ F0      = mix(F0, albedo, metallic);
 vec3 F  = fresnelSchlick(max(dot(H, V), 0.0), F0);
 ```
 
-As you can see, for non-metallic surfaces `F0` is always `0.04`. For metallic surfaces, we vary `F0` by linearly interpolating between the original `F0` and the albedo value given the `metallic` property.
+如您所見，對於非金屬表面，`F0` 始終為 `0.04`。對於金屬表面，我們根據 `metallic` 屬性在原始 `F0` 和反照率值之間進行線性插值來改變 `F0`。
 
-Given \\(F\\), the remaining terms to calculate are the normal distribution function \\(D\\) and the geometry function \\(G\\).
+有了 \\(F\\) 之後，剩下的需要計算的項是法線分佈函數 \\(D\\) 和幾何函數 \\(G\\)。
 
-In a direct PBR lighting shader their code equivalents are:
+在一個直接 PBR 光照著色器中，它們對應的程式碼是：
 
 ```cpp
 float DistributionGGX(vec3 N, vec3 H, float roughness)
@@ -169,16 +169,16 @@ float GeometrySmith(vec3 N, vec3 V, vec3 L, float roughness)
 }
 ```
 
-What's important to note here is that in contrast to the [theory](/opengl/en/PBR/Theory) chapter, we pass the roughness parameter directly to these functions; this way we can make some term-specific modifications to the original roughness value. Based on observations by Disney and adopted by Epic Games, the lighting looks more correct squaring the roughness in both the geometry and normal distribution function.
+這裡需要注意的是，與[理論](/opengl/PBR/Theory)章節相反，我們將粗糙度（roughness）參數直接傳遞給這些函數；透過這種方式，我們可以對原始粗糙度值進行一些特定於項目的修改。根據 Disney 的觀察並被 Epic Games 採納，在幾何（geometry）和法線分佈（normal distribution）函數中將粗糙度平方，光照看起來會更正確。
 
-With both functions defined, calculating the NDF and the G term in the reflectance loop is straightforward:
+定義了這兩個函數後，在反射迴圈中計算 NDF 和 G 項就變得簡單了：
 
 ```cpp
 float NDF = DistributionGGX(N, H, roughness);
 float G   = GeometrySmith(N, V, L, roughness);
 ```
 
-This gives us enough to calculate the Cook-Torrance BRDF:
+這讓我們有足夠的資訊來計算 Cook-Torrance BRDF：
 
 ```cpp
 vec3 numerator    = NDF * G * F;
@@ -186,9 +186,9 @@ float denominator = 4.0 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0)  + 0.0001;
 vec3 specular     = numerator / denominator;
 ```
 
-Note that we add `0.0001` to the denominator to prevent a divide by zero in case any dot product ends up `0.0`.
+請注意，我們在分母中加上了 `0.0001`，以防止在任何點積結果為 `0.0` 時發生除以零的錯誤。
 
-Now we can finally calculate each light's contribution to the reflectance equation. As the Fresnel value directly corresponds to \\(k_S\\) we can use `F` to denote the specular contribution of any light that hits the surface. From \\(k_S\\) we can then calculate the ratio of refraction \\(k_D\\):
+現在我們終於可以計算每個光源對反射方程的貢獻了。由於 Fresnel 值直接對應於 \\(k_S\\)，我們可以使用 `F` 來表示任何擊中表面的光的鏡面反射貢獻。然後，我們可以從 \\(k_S\\) 計算折射的比例 \\(k_D\\)：
 
 ```cpp
 vec3 kS = F;
@@ -197,7 +197,7 @@ vec3 kD = vec3(1.0) - kS;
 kD *= 1.0 - metallic;
 ```
 
-Seeing as `kS` represents the energy of light that gets reflected, the remaining ratio of light energy is the light that gets refracted which we store as `kD`. Furthermore, because metallic surfaces don't refract light and thus have no diffuse reflections we enforce this property by nullifying `kD` if the surface is metallic. This gives us the final data we need to calculate each light's outgoing reflectance value:
+考慮到 `kS` 代表被反射的光能，剩餘的光能比例就是被折射的光，我們將其儲存為 `kD`。此外，因為金屬表面不折射光，因此也沒有漫反射，我們透過在表面是金屬時將 `kD` 歸零來強制執行此屬性。這為我們提供了計算每個光源的出射反射值所需的最終資料：
 
 ```cpp
 const float PI = 3.14159265359;
@@ -207,33 +207,33 @@ const float PI = 3.14159265359;
 }
 ```
 
-The resulting `Lo` value, or the outgoing radiance, is effectively the result of the reflectance equation's integral \\(\\int\\) over \\(\\Omega\\). We don't really have to try and solve the integral for all possible incoming light directions as we know exactly the 4 incoming light directions that can influence the fragment. Because of this, we can directly loop over these incoming light directions e.g. the number of lights in the scene.
+得到的 `Lo` 值，也就是出射輻射（outgoing radiance），實際上是反射方程在 \\(\\Omega\\) 上的積分 \\(\\int\\) 的結果。我們不需要試圖求解所有可能入射光方向的積分，因為我們確切地知道有 4 個入射光方向會影響這個片段（fragment）。因此，我們可以直接遍歷這些入射光方向，也就是場景中的光源數量。
 
-What's left is to add an (improvised) ambient term to the direct lighting result `Lo` and we have the final lit color of the fragment:
+剩下的就是給直接照明結果 `Lo` 添加一個（臨時的）環境光項，然後我們就得到了片段的最終光照顏色：
 
 ```cpp
 vec3 ambient = vec3(0.03) * albedo * ao;
 vec3 color   = ambient + Lo;
 ```
 
-### Linear and HDR rendering
+### 線性與 HDR 渲染
 
-So far we've assumed all our calculations to be in linear color space and to account for this we need to [gamma correct](/opengl/en/Advanced-Lighting/Gamma-Correction) at the end of the shader. Calculating lighting in linear space is incredibly important as PBR requires all inputs to be linear. Not taking this into account will result in incorrect lighting. Additionally, we want light inputs to be close to their physical equivalents such that their radiance or color values can vary wildly over a high spectrum of values. As a result, `Lo` can rapidly grow really high which then gets clamped between `0.0` and `1.0` due to the default low dynamic range (LDR) output. We fix this by taking `Lo` and tone or exposure map the [high dynamic range](/opengl/en/Advanced-Lighting/HDR) (HDR) value correctly to LDR before gamma correction:
+到目前為止，我們假設所有的計算都在線性色彩空間中進行，為此我們需要在著色器的末尾進行 [gamma 校正](/opengl/Advanced-Lighting/Gamma-Correction)。在線性空間中計算光照至關重要，因為 PBR 要求所有輸入都是線性的。不考慮這一點將導致不正確的光照結果。此外，我們希望光照輸入接近其物理等效值，這樣它們的輻射或顏色值可以在高光譜範圍內劇烈變化。結果，`Lo` 的值可能會迅速變得非常高，然後因為預設的低動態範圍（LDR）輸出而被限制在 `0.0` 和 `1.0` 之間。我們透過在 gamma 校正之前，對 `Lo` 進行色調或曝光映射，將 [高動態範圍](/opengl/Advanced-Lighting/HDR)（HDR）值正確地對應到 LDR 來解決這個問題：
 
 ```cpp
 color = color / (color + vec3(1.0));
 color = pow(color, vec3(1.0/2.2));
 ```
 
-Here we tone map the HDR color using the Reinhard operator, preserving the high dynamic range of a possibly highly varying irradiance, after which we gamma correct the color. We don't have a separate framebuffer or post-processing stage so we can directly apply both the tone mapping and gamma correction step at the end of the forward fragment shader.
+在這裡，我們使用 Reinhard 運算子對 HDR 顏色進行色調映射，保留了可能高度變化的輻照度所帶來的高動態範圍，然後我們對顏色進行 gamma 校正。我們沒有獨立的幀緩衝區或後處理階段，所以我們可以直接在前向片段著色器的末尾同時應用色調映射和 gamma 校正步驟。
 
 ![](https://learnopengl.com/img/pbr/lighting_linear_vs_non_linear_and_hdr.png)
 
-Taking both linear color space and high dynamic range into account is incredibly important in a PBR pipeline. Without these it's impossible to properly capture the high and low details of varying light intensities and your calculations end up incorrect and thus visually unpleasing.
+在 PBR 管線中，考慮線性色彩空間和高動態範圍至關重要。如果沒有這些，就不可能正確地捕捉不同光強度的細節，您的計算會出錯，導致視覺上不討喜。
 
-### Full direct lighting PBR shader
+### 完整的直接光照 PBR 著色器
 
-All that's left now is to pass the final tone mapped and gamma corrected color to the fragment shader's output channel and we have ourselves a direct PBR lighting shader. For completeness' sake, the complete `main` function is listed below:
+現在剩下的就是將最終經過色調映射和 gamma 校正的顏色傳遞到片段著色器的輸出通道，我們就有了一個直接 PBR 光照著色器。為了完整起見，完整的 `main` 函數如下：
 
 ```cpp
 #version 330 core
@@ -308,17 +308,17 @@ void main()
 }
 ```
 
-Hopefully, with the [theory](/opengl/en/PBR/Theory) from the previous chapter and the knowledge of the reflectance equation this shader shouldn't be as daunting anymore. If we take this shader, 4 point lights, and quite a few spheres where we vary both their metallic and roughness values on their vertical and horizontal axis respectively, we'd get something like this:
+希望藉由上一章的[理論](/opengl/PBR/Theory)和反射方程的知識，這個著色器不再那麼令人畏懼。如果我們拿這個著色器、4 個點光源，以及相當多的球體，並在它們的垂直和水平軸上分別改變它們的金屬度和粗糙度值，我們會得到類似以下的結果：
 
 ![](https://learnopengl.com/img/pbr/lighting_result.png)
 
-From bottom to top the metallic value ranges from `0.0` to `1.0`, with roughness increasing left to right from `0.0` to `1.0`. You can see that by only changing these two simple to understand parameters we can already display a wide array of different materials.
+從下到上，金屬度（metallic）值從 `0.0` 到 `1.0`，粗糙度（roughness）從左到右從 `0.0` 增加到 `1.0`。您可以看到，僅僅透過改變這兩個簡單易懂的參數，我們就可以展示各種不同的材質。
 
-You can find the full source code of the demo [here](https://learnopengl.com/code_viewer_gh.php?code=src/6.pbr/1.1.lighting/lighting.cpp).
+您可以在[這裡](https://learnopengl.com/code_viewer_gh.php?code=src/6.pbr/1.1.lighting/lighting.cpp)找到這個範例的完整原始碼。
 
-## Textured PBR
+## 紋理化 PBR (Textured PBR)
 
-Extending the system to now accept its surface parameters as textures instead of uniform values gives us per-fragment control over the surface material's properties:
+將系統擴展為現在可以將其表面參數作為紋理（textures）而不是 uniform 值來接收，這使我們能夠針對每個片段（per-fragment）來控制表面材質的屬性：
 
 ```cpp
 [...]
@@ -339,12 +339,12 @@ void main()
 }
 ```
 
-Note that the albedo textures that come from artists are generally authored in sRGB space which is why we first convert them to linear space before using albedo in our lighting calculations. Based on the system artists use to generate ambient occlusion maps you may also have to convert these from sRGB to linear space as well. Metallic and roughness maps are almost always authored in linear space.
+請注意，藝術家提供的反照率紋理（albedo textures）通常是在 sRGB 空間中製作的，這就是為什麼我們在使用反照率進行光照計算之前，先將它們轉換為線性空間。根據藝術家用於生成環境遮蔽貼圖（ambient occlusion maps）的系統，您可能也需要將它們從 sRGB 轉換為線性空間。而金屬度和粗糙度貼圖幾乎總是在線性空間中製作。
 
-Replacing the material properties of the previous set of spheres with textures, already shows a major visual improvement over the previous lighting algorithms we've used:
+用紋理替換上一組球體的材質屬性，已經顯示出比我們之前使用的光照演算法有顯著的視覺提升：
 
 ![](https://learnopengl.com/img/pbr/lighting_textured.png)
 
-You can find the full source code of the textured demo [here](https://learnopengl.com/code_viewer_gh.php?code=src/6.pbr/1.2.lighting_textured/lighting_textured.cpp) and the texture set used [here](http://freepbr.com/materials/rusted-iron-pbr-metal-material-alt/) (with a white ao map). Keep in mind that metallic surfaces tend to look too dark in direct lighting environments as they don't have diffuse reflectance. They do look more correct when taking the environment's specular ambient lighting into account, which is what we'll focus on in the next chapters.
+您可以在[這裡](https://learnopengl.com/code_viewer_gh.php?code=src/6.pbr/1.2.lighting_textured/lighting_textured.cpp)找到帶有紋理的範例完整原始碼，並在[這裡](http://freepbr.com/materials/rusted-iron-pbr-metal-material-alt/)找到使用的紋理集（帶有一個白色的 ao 貼圖）。請記住，金屬表面在直接光照環境中往往看起來太暗，因為它們沒有漫反射。當考慮環境的鏡面反射環境光照（specular ambient lighting）時，它們看起來會更正確，這正是我們在接下來的章節中將重點關注的內容。
 
-While not as visually impressive as some of the PBR render demos you find out there, given that we don't yet have [image based lighting](/opengl/en/PBR/Diffuse-irradiance) built in, the system we have now is still a physically based renderer, and even without IBL you'll see your lighting look a lot more realistic.
+儘管我們還沒有內建[基於影像的光照（image based lighting）](/openglPBR/Diffuse-irradiance)，因此我們的渲染器不像您在網路上找到的一些 PBR 渲染範例那樣令人印象深刻，但我們現在擁有的系統仍然是一個物理基礎的渲染器，即使沒有 IBL，您也會看到您的光照看起來真實很多。

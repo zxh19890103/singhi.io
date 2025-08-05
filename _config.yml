@@ -16,7 +16,7 @@ collections:
     sort_by: date
     output: true
   opengl:
-    title: OpenGL Learning Plan
+    title: "OpenGL Learning Plan"
     sort_by: order
     output: true
   articles:

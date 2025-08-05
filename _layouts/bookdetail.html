@@ -50,10 +50,11 @@ layout: with-nonav
           <path d="M12 6l0 13" />
           <path d="M21 6l0 13" />
         </svg>
-        <span style="pointer-events: none; color: green;">{% if page.lang == 'en' %}enter reading mode (make a better expericence to read.){% else %}沈浸閱讀（讓你更專注於閱讀）{% endif %}</span>
+        <span style="pointer-events: none; color: green;">{% if page.lang == 'en' %}enter reading mode (make a better
+          expericence to read.){% else %}沈浸閱讀（讓你更專注於閱讀）{% endif %}</span>
       </a>
-      <a href="javascript:void(0);" onclick="closeFullscreen(event)" style="display: none; color: green; width: 24px; height: 24px;"
-        rel="noopener noreferrer">
+      <a href="javascript:void(0);" onclick="closeFullscreen(event)"
+        style="display: none; color: green; width: 24px; height: 24px;" rel="noopener noreferrer">
         <svg xmlns="http://www.w3.org/2000/svg" style="pointer-events: none; vertical-align: middle;" width="24"
           height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-book-off">
@@ -65,13 +66,19 @@ layout: with-nonav
           <path d="M21 6v11" />
           <path d="M3 3l18 18" />
         </svg>
-        <span style="pointer-events: none; color: green;">{% if page.lang == 'en' %}exit reading mode{% else %}退出閱讀模式{% endif %}</span>
+        <span style="pointer-events: none; color: green;">{% if page.lang == 'en' %}exit reading mode{% else %}退出閱讀模式{%
+          endif %}</span>
       </a>
     </div>
+
     {{content}}
   </div>
 
   <div class="Book__End" style="height: 1px; background: #ddd; width: 61.8%; margin: 3rem auto"></div>
+
+  <!-- <div style="margin: 2rem 0; text-align: center;">
+    <a href="{{ site.opengl }}">read next</a>
+  </div> -->
 
   <div>
     {% include bookdetail_meta.html %}

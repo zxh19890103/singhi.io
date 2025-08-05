@@ -15,34 +15,31 @@ gltopic: Specular-IBL
 permalink: /opengl/en/PBR/Specular-IBL
 ---
 
-## Specular IBL
-## PBR/IBL/Specular-IBL
+In the [previous](/opengl/en/PBR/Diffuse-irradiance) chapter we've set up PBR in combination with image based lighting by pre-computing an irradiance map as the lighting's indirect diffuse portion. In this chapter we'll focus on the specular part of the reflectance equation:
 
-In the [previous](https://learnopengl.com/PBR/IBL/Diffuse-irradiance) chapter we've set up PBR in combination with image based lighting by pre-computing an irradiance map as the lighting's indirect diffuse portion. In this chapter we'll focus on the specular part of the reflectance equation:
-
-\\\[ L\_o(p,\\omega\_o) = \\int\\limits\_{\\Omega} (k\_d\\frac{c}{\\pi} + k\_s\\frac{DFG}{4(\\omega\_o \\cdot n)(\\omega\_i \\cdot n)}) L\_i(p,\\omega\_i) n \\cdot \\omega\_i d\\omega\_i \\\]
+\\\[ L_o(p,\\omega_o) = \\int\\limits\_{\\Omega} (k_d\\frac{c}{\\pi} + k_s\\frac{DFG}{4(\\omega_o \\cdot n)(\\omega_i \\cdot n)}) L_i(p,\\omega_i) n \\cdot \\omega_i d\\omega_i \\\]
 
 You'll notice that the Cook-Torrance specular portion (multiplied by \\(kS\\)) isn't constant over the integral and is dependent on the incoming light direction, but **also** the incoming view direction. Trying to solve the integral for all incoming light directions including all possible view directions is a combinatorial overload and way too expensive to calculate on a real-time basis. Epic Games proposed a solution where they were able to pre-convolute the specular part for real time purposes, given a few compromises, known as the `split sum approximation`.
 
 The split sum approximation splits the specular part of the reflectance equation into two separate parts that we can individually convolute and later combine in the PBR shader for specular indirect image based lighting. Similar to how we pre-convoluted the irradiance map, the split sum approximation requires an HDR environment map as its convolution input. To understand the split sum approximation we'll again look at the reflectance equation, but this time focus on the specular part:
 
-\\\[ L\_o(p,\\omega\_o) = \\int\\limits\_{\\Omega} (k\_s\\frac{DFG}{4(\\omega\_o \\cdot n)(\\omega\_i \\cdot n)} L\_i(p,\\omega\_i) n \\cdot \\omega\_i d\\omega\_i = \\int\\limits\_{\\Omega} f\_r(p, \\omega\_i, \\omega\_o) L\_i(p,\\omega\_i) n \\cdot \\omega\_i d\\omega\_i \\\]
+\\\[ L_o(p,\\omega_o) = \\int\\limits\_{\\Omega} (k_s\\frac{DFG}{4(\\omega_o \\cdot n)(\\omega_i \\cdot n)} L_i(p,\\omega_i) n \\cdot \\omega_i d\\omega_i = \\int\\limits\_{\\Omega} f_r(p, \\omega_i, \\omega_o) L_i(p,\\omega_i) n \\cdot \\omega_i d\\omega_i \\\]
 
-For the same (performance) reasons as the irradiance convolution, we can't solve the specular part of the integral in real time and expect a reasonable performance. So preferably we'd pre-compute this integral to get something like a specular IBL map, sample this map with the fragment's normal, and be done with it. However, this is where it gets a bit tricky. We were able to pre-compute the irradiance map as the integral only depended on \\(\\omega\_i\\) and we could move the constant diffuse albedo terms out of the integral. This time, the integral depends on more than just \\(\\omega\_i\\) as evident from the BRDF:
+For the same (performance) reasons as the irradiance convolution, we can't solve the specular part of the integral in real time and expect a reasonable performance. So preferably we'd pre-compute this integral to get something like a specular IBL map, sample this map with the fragment's normal, and be done with it. However, this is where it gets a bit tricky. We were able to pre-compute the irradiance map as the integral only depended on \\(\\omega_i\\) and we could move the constant diffuse albedo terms out of the integral. This time, the integral depends on more than just \\(\\omega_i\\) as evident from the BRDF:
 
-\\\[ f\_r(p, w\_i, w\_o) = \\frac{DFG}{4(\\omega\_o \\cdot n)(\\omega\_i \\cdot n)} \\\]
+\\\[ f_r(p, w_i, w_o) = \\frac{DFG}{4(\\omega_o \\cdot n)(\\omega_i \\cdot n)} \\\]
 
-The integral also depends on \\(w\_o\\), and we can't really sample a pre-computed cubemap with two direction vectors. The position \\(p\\) is irrelevant here as described in the previous chapter. Pre-computing this integral for every possible combination of \\(\\omega\_i\\) and \\(\\omega\_o\\) isn't practical in a real-time setting.
+The integral also depends on \\(w_o\\), and we can't really sample a pre-computed cubemap with two direction vectors. The position \\(p\\) is irrelevant here as described in the previous chapter. Pre-computing this integral for every possible combination of \\(\\omega_i\\) and \\(\\omega_o\\) isn't practical in a real-time setting.
 
 Epic Games' split sum approximation solves the issue by splitting the pre-computation into 2 individual parts that we can later combine to get the resulting pre-computed result we're after. The split sum approximation splits the specular integral into two separate integrals:
 
-\\\[ L\_o(p,\\omega\_o) = \\int\\limits\_{\\Omega} L\_i(p,\\omega\_i) d\\omega\_i \* \\int\\limits\_{\\Omega} f\_r(p, \\omega\_i, \\omega\_o) n \\cdot \\omega\_i d\\omega\_i \\\]
+\\\[ L_o(p,\\omega_o) = \\int\\limits\_{\\Omega} L_i(p,\\omega_i) d\\omega_i \* \\int\\limits\_{\\Omega} f_r(p, \\omega_i, \\omega_o) n \\cdot \\omega_i d\\omega_i \\\]
 
 The first part (when convoluted) is known as the `pre-filtered environment map` which is (similar to the irradiance map) a pre-computed environment convolution map, but this time taking roughness into account. For increasing roughness levels, the environment map is convoluted with more scattered sample vectors, creating blurrier reflections. For each roughness level we convolute, we store the sequentially blurrier results in the pre-filtered map's mipmap levels. For instance, a pre-filtered environment map storing the pre-convoluted result of 5 different roughness values in its 5 mipmap levels looks as follows:
 
 ![](https://learnopengl.com/img/pbr/ibl_prefilter_map.png)
 
-We generate the sample vectors and their scattering amount using the normal distribution function (NDF) of the Cook-Torrance BRDF that takes as input both a normal and view direction. As we don't know beforehand the view direction when convoluting the environment map, Epic Games makes a further approximation by assuming the view direction (and thus the specular reflection direction) to be equal to the output sample direction \\(\\omega\_o\\). This translates itself to the following code:
+We generate the sample vectors and their scattering amount using the normal distribution function (NDF) of the Cook-Torrance BRDF that takes as input both a normal and view direction. As we don't know beforehand the view direction when convoluting the environment map, Epic Games makes a further approximation by assuming the view direction (and thus the specular reflection direction) to be equal to the output sample direction \\(\\omega_o\\). This translates itself to the following code:
 
 ```cpp
 vec3 N = normalize(w_o);
@@ -54,11 +51,11 @@ This way, the pre-filtered environment convolution doesn't need to be aware of t
 
 ![](https://learnopengl.com/img/pbr/ibl_grazing_angles.png)
 
-The second part of the split sum equation equals the BRDF part of the specular integral. If we pretend the incoming radiance is completely white for every direction (thus \\(L(p, x) = 1.0\\)) we can pre-calculate the BRDF's response given an input roughness and an input angle between the normal \\(n\\) and light direction \\(\\omega\_i\\), or \\(n \\cdot \\omega\_i\\). Epic Games stores the pre-computed BRDF's response to each normal and light direction combination on varying roughness values in a 2D lookup texture (LUT) known as the `BRDF integration` map. The 2D lookup texture outputs a scale (red) and a bias value (green) to the surface's Fresnel response giving us the second part of the split specular integral:
+The second part of the split sum equation equals the BRDF part of the specular integral. If we pretend the incoming radiance is completely white for every direction (thus \\(L(p, x) = 1.0\\)) we can pre-calculate the BRDF's response given an input roughness and an input angle between the normal \\(n\\) and light direction \\(\\omega_i\\), or \\(n \\cdot \\omega_i\\). Epic Games stores the pre-computed BRDF's response to each normal and light direction combination on varying roughness values in a 2D lookup texture (LUT) known as the `BRDF integration` map. The 2D lookup texture outputs a scale (red) and a bias value (green) to the surface's Fresnel response giving us the second part of the split specular integral:
 
 ![](https://learnopengl.com/img/pbr/ibl_brdf_lut.png)
 
-We generate the lookup texture by treating the horizontal texture coordinate (ranged between `0.0` and `1.0`) of a plane as the BRDF's input \\(n \\cdot \\omega\_i\\), and its vertical texture coordinate as the input roughness value. With this BRDF integration map and the pre-filtered environment map we can combine both to get the result of the specular integral:
+We generate the lookup texture by treating the horizontal texture coordinate (ranged between `0.0` and `1.0`) of a plane as the BRDF's input \\(n \\cdot \\omega_i\\), and its vertical texture coordinate as the input roughness value. With this BRDF integration map and the pre-filtered environment map we can combine both to get the result of the specular integral:
 
 ```cpp
 float lod             = getMipLevelFromRoughness(roughness);
@@ -69,7 +66,7 @@ vec3 indirectSpecular = prefilteredColor * (F * envBRDF.x + envBRDF.y)
 
 This should give you a bit of an overview on how Epic Games' split sum approximation roughly approaches the indirect specular part of the reflectance equation. Let's now try and build the pre-convoluted parts ourselves.
 
-### Pre-filtering an HDR environment map
+## Pre-filtering an HDR environment map
 
 Pre-filtering an environment map is quite similar to how we convoluted an irradiance map. The difference being that we now account for roughness and store sequentially rougher reflections in the pre-filtered map's mip levels.
 
@@ -86,13 +83,13 @@ for (unsigned int i = 0; i < 6; ++i)
 glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); 
+glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
 ```
 
-Note that because we plan to sample `prefilterMap`'s mipmaps you'll need to make sure its minification filter is set to `GL\_LINEAR\_MIPMAP\_LINEAR` to enable trilinear filtering. We store the pre-filtered specular reflections in a per-face resolution of 128 by 128 at its base mip level. This is likely to be enough for most reflections, but if you have a large number of smooth materials (think of car reflections) you may want to increase the resolution.
+Note that because we plan to sample `prefilterMap`'s mipmaps you'll need to make sure its minification filter is set to `GL_LINEAR_MIPMAP_LINEAR` to enable trilinear filtering. We store the pre-filtered specular reflections in a per-face resolution of 128 by 128 at its base mip level. This is likely to be enough for most reflections, but if you have a large number of smooth materials (think of car reflections) you may want to increase the resolution.
 
 In the previous chapter we convoluted the environment map by generating sample vectors uniformly spread over the hemisphere \\(\\Omega\\) using spherical coordinates. While this works just fine for irradiance, for specular reflections it's less efficient. When it comes to specular reflections, based on the roughness of a surface, the light reflects closely or roughly around a reflection vector \\(r\\) over a normal \\(n\\), but (unless the surface is extremely rough) around the reflection vector nonetheless:
 
@@ -102,7 +99,7 @@ The general shape of possible outgoing light reflections is known as the `specul
 
 When it comes to the microsurface model, we can imagine the specular lobe as the reflection orientation about the microfacet halfway vectors given some incoming light direction. Seeing as most light rays end up in a specular lobe reflected around the microfacet halfway vectors, it makes sense to generate the sample vectors in a similar fashion as most would otherwise be wasted. This process is known as `importance sampling`.
 
-#### Monte Carlo integration and importance sampling
+### Monte Carlo integration and importance sampling
 
 To fully get a grasp of importance sampling it's relevant we first delve into the mathematical construct known as `Monte Carlo integration`. Monte Carlo integration revolves mostly around a combination of statistics and probability theory. Monte Carlo helps us in discretely solving the problem of figuring out some statistic or value of a population without having to take **all** of the population into consideration.
 
@@ -136,14 +133,14 @@ Given our newly obtained knowledge of Monte Carlo and Quasi-Monte Carlo integrat
 
 This is in essence what importance sampling is about: generate sample vectors in some region constrained by the roughness oriented around the microfacet's halfway vector. By combining Quasi-Monte Carlo sampling with a low-discrepancy sequence and biasing the sample vectors using importance sampling, we get a high rate of convergence. Because we reach the solution at a faster rate, we'll need significantly fewer samples to reach an approximation that is sufficient enough.
 
-#### A low-discrepancy sequence
+### A low-discrepancy sequence
 
 In this chapter we'll pre-compute the specular portion of the indirect reflectance equation using importance sampling given a random low-discrepancy sequence based on the Quasi-Monte Carlo method. The sequence we'll be using is known as the `Hammersley Sequence` as carefully described by [Holger Dammertz](http://holger.dammertz.org/stuff/notes_HammersleyOnHemisphere.html). The Hammersley sequence is based on the `Van Der Corput` sequence which mirrors a decimal binary representation around its decimal point.
 
 Given some neat bit tricks, we can quite efficiently generate the Van Der Corput sequence in a shader program which we'll use to get a Hammersley sequence sample `i` over `N` total samples:
 
 ```cpp
-float RadicalInverse_VdC(uint bits) 
+float RadicalInverse_VdC(uint bits)
 {
     bits = (bits << 16u) | (bits >> 16u);
     bits = ((bits & 0x55555555u) << 1u) | ((bits & 0xAAAAAAAAu) >> 1u);
@@ -162,7 +159,7 @@ vec2 Hammersley(uint i, uint N)
 The GLSL `Hammersley` function gives us the low-discrepancy sample `i` of the total sample set of size `N`.
 
 {% include box.html content="
-**Hammersley sequence without bit operator support**  
+**Hammersley sequence without bit operator support**
 
 Not all OpenGL related drivers support bit operators (WebGL and OpenGL ES 2.0 for instance) in which case you may want to use an alternative version of the Van Der Corput Sequence that doesn't rely on bit operators:
 
@@ -195,9 +192,9 @@ vec2 HammersleyNoBitOps(uint i, uint N)
 
 Note that due to GLSL loop restrictions in older hardware, the sequence loops over all possible `32` bits. This version is less performant, but does work on all hardware if you ever find yourself without bit operators.
 
-
 " color="green" %}
-#### GGX Importance sampling
+
+### GGX Importance sampling
 
 Instead of uniformly or randomly (Monte Carlo) generating sample vectors over the integral's hemisphere \\(\\Omega\\), we'll generate sample vectors biased towards the general reflection orientation of the microsurface halfway vector based on the surface's roughness. The sampling process will be similar to what we've seen before: begin a large loop, generate a random (low-discrepancy) sequence value, take the sequence value to generate a sample vector in tangent space, transform to world space, and sample the scene's radiance. What's different is that we now use a low-discrepancy sequence value as input to generate a sample vector:
 
@@ -208,28 +205,28 @@ for(uint i = 0u; i < SAMPLE_COUNT; ++i)
     vec2 Xi = Hammersley(i, SAMPLE_COUNT);
 ```
 
-Additionally, to build a sample vector, we need some way of orienting and biasing the sample vector towards the specular lobe of some surface roughness. We can take the NDF as described in the [theory](https://learnopengl.com/PBR/Theory) chapter and combine the GGX NDF in the spherical sample vector process as described by Epic Games:
+Additionally, to build a sample vector, we need some way of orienting and biasing the sample vector towards the specular lobe of some surface roughness. We can take the NDF as described in the [theory](/opengl/en/PBR/Theory) chapter and combine the GGX NDF in the spherical sample vector process as described by Epic Games:
 
 ```cpp
 vec3 ImportanceSampleGGX(vec2 Xi, vec3 N, float roughness)
 {
     float a = roughness*roughness;
-	
+
     float phi = 2.0 * PI * Xi.x;
     float cosTheta = sqrt((1.0 - Xi.y) / (1.0 + (a*a - 1.0) * Xi.y));
     float sinTheta = sqrt(1.0 - cosTheta*cosTheta);
-	
+
     // from spherical coordinates to cartesian coordinates
     vec3 H;
     H.x = cos(phi) * sinTheta;
     H.y = sin(phi) * sinTheta;
     H.z = cosTheta;
-	
+
     // from tangent-space vector to world-space sample vector
     vec3 up        = abs(N.z) < 0.999 ? vec3(0.0, 0.0, 1.0) : vec3(1.0, 0.0, 0.0);
     vec3 tangent   = normalize(cross(up, N));
     vec3 bitangent = cross(N, tangent);
-	
+
     vec3 sampleVec = tangent * H.x + bitangent * H.y + N * H.z;
     return normalize(sampleVec);
 }
@@ -252,16 +249,16 @@ const float PI = 3.14159265359;
 float RadicalInverse_VdC(uint bits);
 vec2 Hammersley(uint i, uint N);
 vec3 ImportanceSampleGGX(vec2 Xi, vec3 N, float roughness);
-  
+
 void main()
-{		
-    vec3 N = normalize(localPos);    
+{
+    vec3 N = normalize(localPos);
     vec3 R = N;
     vec3 V = R;
 
     const uint SAMPLE_COUNT = 1024u;
-    float totalWeight = 0.0;   
-    vec3 prefilteredColor = vec3(0.0);     
+    float totalWeight = 0.0;
+    vec3 prefilteredColor = vec3(0.0);
     for(uint i = 0u; i < SAMPLE_COUNT; ++i)
     {
         vec2 Xi = Hammersley(i, SAMPLE_COUNT);
@@ -283,9 +280,9 @@ void main()
 
 We pre-filter the environment, based on some input roughness that varies over each mipmap level of the pre-filter cubemap (from `0.0` to `1.0`), and store the result in `prefilteredColor`. The resulting `prefilteredColor` is divided by the total sample weight, where samples with less influence on the final result (for small `NdotL`) contribute less to the final weight.
 
-#### Capturing pre-filter mipmap levels
+### Capturing pre-filter mipmap levels
 
-What's left to do is let OpenGL pre-filter the environment map with different roughness values over multiple mipmap levels. This is actually fairly easy to do with the original setup of the [irradiance](https://learnopengl.com/PBR/IBL/Diffuse-irradiance) chapter:
+What's left to do is let OpenGL pre-filter the environment map with different roughness values over multiple mipmap levels. This is actually fairly easy to do with the original setup of the [irradiance](/opengl/en/PBR/IBL/Diffuse-irradiance) chapter:
 
 ```cpp
 prefilterShader.use();
@@ -310,7 +307,7 @@ for (unsigned int mip = 0; mip < maxMipLevels; ++mip)
     for (unsigned int i = 0; i < 6; ++i)
     {
         prefilterShader.setMat4("view", captureViews[i]);
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, 
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
                                GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, prefilterMap, mip);
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -334,17 +331,17 @@ We get a result that indeed looks like a blurrier version of the original enviro
 
 If it looks somewhat similar you've successfully pre-filtered the HDR environment map. Play around with different mipmap levels to see the pre-filter map gradually change from sharp to blurry reflections on increasing mip levels.
 
-### Pre-filter convolution artifacts
+## Pre-filter convolution artifacts
 
 While the current pre-filter map works fine for most purposes, sooner or later you'll come across several render artifacts that are directly related to the pre-filter convolution. I'll list the most common here including how to fix them.
 
-#### Cubemap seams at high roughness
+### Cubemap seams at high roughness
 
 Sampling the pre-filter map on surfaces with a rough surface means sampling the pre-filter map on some of its lower mip levels. When sampling cubemaps, OpenGL by default doesn't linearly interpolate **across** cubemap faces. Because the lower mip levels are both of a lower resolution and the pre-filter map is convoluted with a much larger sample lobe, the lack of _between-cube-face filtering_ becomes quite apparent:
 
 ![](https://learnopengl.com/img/pbr/ibl_prefilter_seams.png)
 
-Luckily for us, OpenGL gives us the option to properly filter across cubemap faces by enabling `GL\_TEXTURE\_CUBE\_MAP\_SEAMLESS`:
+Luckily for us, OpenGL gives us the option to properly filter across cubemap faces by enabling `GL_TEXTURE_CUBE_MAP_SEAMLESS`:
 
 ```cpp
 glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
@@ -352,7 +349,7 @@ glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 
 Simply enable this property somewhere at the start of your application and the seams will be gone.
 
-#### Bright dots in the pre-filter convolution
+### Bright dots in the pre-filter convolution
 
 Due to high frequency details and wildly varying light intensities in specular reflections, convoluting the specular reflections requires a large number of samples to properly account for the wildly varying nature of HDR environmental reflections. We already take a very large number of samples, but on some environments it may still not be enough at some of the rougher mip levels in which case you'll start seeing dotted patterns emerge around bright areas:
 
@@ -362,7 +359,7 @@ One option is to further increase the sample count, but this won't be enough for
 
 ```cpp
 float D   = DistributionGGX(NdotH, roughness);
-float pdf = (D * NdotH / (4.0 * HdotV)) + 0.0001; 
+float pdf = (D * NdotH / (4.0 * HdotV)) + 0.0001;
 
 float resolution = 512.0; // resolution of source cubemap (per face)
 float saTexel  = 4.0 * PI / (6.0 * resolution * resolution);
@@ -390,39 +387,39 @@ glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
 
 This works surprisingly well and should remove most, if not all, dots in your pre-filter map on rougher surfaces.
 
-### Pre-computing the BRDF
+## Pre-computing the BRDF
 
 With the pre-filtered environment up and running, we can focus on the second part of the split-sum approximation: the BRDF. Let's briefly review the specular split sum approximation again:
 
-\\\[ L\_o(p,\\omega\_o) = \\int\\limits\_{\\Omega} L\_i(p,\\omega\_i) d\\omega\_i \* \\int\\limits\_{\\Omega} f\_r(p, \\omega\_i, \\omega\_o) n \\cdot \\omega\_i d\\omega\_i \\\]
+\\\[ L_o(p,\\omega_o) = \\int\\limits\_{\\Omega} L_i(p,\\omega_i) d\\omega_i \* \\int\\limits\_{\\Omega} f_r(p, \\omega_i, \\omega_o) n \\cdot \\omega_i d\\omega_i \\\]
 
-We've pre-computed the left part of the split sum approximation in the pre-filter map over different roughness levels. The right side requires us to convolute the BRDF equation over the angle \\(n \\cdot \\omega\_o\\), the surface roughness, and Fresnel's \\(F\_0\\). This is similar to integrating the specular BRDF with a solid-white environment or a constant radiance \\(L\_i\\) of `1.0`. Convoluting the BRDF over 3 variables is a bit much, but we can try to move \\(F\_0\\) out of the specular BRDF equation:
+We've pre-computed the left part of the split sum approximation in the pre-filter map over different roughness levels. The right side requires us to convolute the BRDF equation over the angle \\(n \\cdot \\omega_o\\), the surface roughness, and Fresnel's \\(F_0\\). This is similar to integrating the specular BRDF with a solid-white environment or a constant radiance \\(L_i\\) of `1.0`. Convoluting the BRDF over 3 variables is a bit much, but we can try to move \\(F_0\\) out of the specular BRDF equation:
 
-\\\[ \\int\\limits\_{\\Omega} f\_r(p, \\omega\_i, \\omega\_o) n \\cdot \\omega\_i d\\omega\_i = \\int\\limits\_{\\Omega} f\_r(p, \\omega\_i, \\omega\_o) \\frac{F(\\omega\_o, h)}{F(\\omega\_o, h)} n \\cdot \\omega\_i d\\omega\_i \\\]
+\\\[ \\int\\limits\_{\\Omega} f_r(p, \\omega_i, \\omega_o) n \\cdot \\omega_i d\\omega_i = \\int\\limits\_{\\Omega} f_r(p, \\omega_i, \\omega_o) \\frac{F(\\omega_o, h)}{F(\\omega_o, h)} n \\cdot \\omega_i d\\omega_i \\\]
 
 With \\(F\\) being the Fresnel equation. Moving the Fresnel denominator to the BRDF gives us the following equivalent equation:
 
-\\\[ \\int\\limits\_{\\Omega} \\frac{f\_r(p, \\omega\_i, \\omega\_o)}{F(\\omega\_o, h)} F(\\omega\_o, h) n \\cdot \\omega\_i d\\omega\_i \\\]
+\\\[ \\int\\limits\_{\\Omega} \\frac{f_r(p, \\omega_i, \\omega_o)}{F(\\omega_o, h)} F(\\omega_o, h) n \\cdot \\omega_i d\\omega_i \\\]
 
 Substituting the right-most \\(F\\) with the Fresnel-Schlick approximation gives us:
 
-\\\[ \\int\\limits\_{\\Omega} \\frac{f\_r(p, \\omega\_i, \\omega\_o)}{F(\\omega\_o, h)} (F\_0 + (1 - F\_0){(1 - \\omega\_o \\cdot h)}^5) n \\cdot \\omega\_i d\\omega\_i \\\]
+\\\[ \\int\\limits\_{\\Omega} \\frac{f_r(p, \\omega_i, \\omega_o)}{F(\\omega_o, h)} (F_0 + (1 - F_0){(1 - \\omega_o \\cdot h)}^5) n \\cdot \\omega_i d\\omega_i \\\]
 
-Let's replace \\({(1 - \\omega\_o \\cdot h)}^5\\) by \\(\\alpha\\) to make it easier to solve for \\(F\_0\\):
+Let's replace \\({(1 - \\omega_o \\cdot h)}^5\\) by \\(\\alpha\\) to make it easier to solve for \\(F_0\\):
 
-\\\[ \\int\\limits\_{\\Omega} \\frac{f\_r(p, \\omega\_i, \\omega\_o)}{F(\\omega\_o, h)} (F\_0 + (1 - F\_0)\\alpha) n \\cdot \\omega\_i d\\omega\_i \\\] \\\[ \\int\\limits\_{\\Omega} \\frac{f\_r(p, \\omega\_i, \\omega\_o)}{F(\\omega\_o, h)} (F\_0 + 1\*\\alpha - F\_0\*\\alpha) n \\cdot \\omega\_i d\\omega\_i \\\] \\\[ \\int\\limits\_{\\Omega} \\frac{f\_r(p, \\omega\_i, \\omega\_o)}{F(\\omega\_o, h)} (F\_0 \* (1 - \\alpha) + \\alpha) n \\cdot \\omega\_i d\\omega\_i \\\]
+\\\[ \\int\\limits\_{\\Omega} \\frac{f_r(p, \\omega_i, \\omega_o)}{F(\\omega_o, h)} (F_0 + (1 - F_0)\\alpha) n \\cdot \\omega_i d\\omega_i \\\] \\\[ \\int\\limits\_{\\Omega} \\frac{f_r(p, \\omega_i, \\omega_o)}{F(\\omega_o, h)} (F_0 + 1\*\\alpha - F_0\*\\alpha) n \\cdot \\omega_i d\\omega_i \\\] \\\[ \\int\\limits\_{\\Omega} \\frac{f_r(p, \\omega_i, \\omega_o)}{F(\\omega_o, h)} (F_0 \* (1 - \\alpha) + \\alpha) n \\cdot \\omega_i d\\omega_i \\\]
 
 Then we split the Fresnel function \\(F\\) over two integrals:
 
-\\\[ \\int\\limits\_{\\Omega} \\frac{f\_r(p, \\omega\_i, \\omega\_o)}{F(\\omega\_o, h)} (F\_0 \* (1 - \\alpha)) n \\cdot \\omega\_i d\\omega\_i + \\int\\limits\_{\\Omega} \\frac{f\_r(p, \\omega\_i, \\omega\_o)}{F(\\omega\_o, h)} (\\alpha) n \\cdot \\omega\_i d\\omega\_i \\\]
+\\\[ \\int\\limits\_{\\Omega} \\frac{f_r(p, \\omega_i, \\omega_o)}{F(\\omega_o, h)} (F_0 \* (1 - \\alpha)) n \\cdot \\omega_i d\\omega_i + \\int\\limits\_{\\Omega} \\frac{f_r(p, \\omega_i, \\omega_o)}{F(\\omega_o, h)} (\\alpha) n \\cdot \\omega_i d\\omega_i \\\]
 
-This way, \\(F\_0\\) is constant over the integral and we can take \\(F\_0\\) out of the integral. Next, we substitute \\(\\alpha\\) back to its original form giving us the final split sum BRDF equation:
+This way, \\(F_0\\) is constant over the integral and we can take \\(F_0\\) out of the integral. Next, we substitute \\(\\alpha\\) back to its original form giving us the final split sum BRDF equation:
 
-\\\[ F\_0 \\int\\limits\_{\\Omega} f\_r(p, \\omega\_i, \\omega\_o)(1 - {(1 - \\omega\_o \\cdot h)}^5) n \\cdot \\omega\_i d\\omega\_i + \\int\\limits\_{\\Omega} f\_r(p, \\omega\_i, \\omega\_o) {(1 - \\omega\_o \\cdot h)}^5 n \\cdot \\omega\_i d\\omega\_i \\\]
+\\\[ F_0 \\int\\limits\_{\\Omega} f_r(p, \\omega_i, \\omega_o)(1 - {(1 - \\omega_o \\cdot h)}^5) n \\cdot \\omega_i d\\omega_i + \\int\\limits\_{\\Omega} f_r(p, \\omega_i, \\omega_o) {(1 - \\omega_o \\cdot h)}^5 n \\cdot \\omega_i d\\omega_i \\\]
 
-The two resulting integrals represent a scale and a bias to \\(F\_0\\) respectively. Note that as \\(f\_r(p, \\omega\_i, \\omega\_o)\\) already contains a term for \\(F\\) they both cancel out, removing \\(F\\) from \\(f\_r\\).
+The two resulting integrals represent a scale and a bias to \\(F_0\\) respectively. Note that as \\(f_r(p, \\omega_i, \\omega_o)\\) already contains a term for \\(F\\) they both cancel out, removing \\(F\\) from \\(f_r\\).
 
-In a similar fashion to the earlier convoluted environment maps, we can convolute the BRDF equations on their inputs: the angle between \\(n\\) and \\(\\omega\_o\\), and the roughness. We store the convoluted results in a 2D lookup texture (LUT) known as a `BRDF integration` map that we later use in our PBR lighting shader to get the final convoluted indirect specular result.
+In a similar fashion to the earlier convoluted environment maps, we can convolute the BRDF equations on their inputs: the angle between \\(n\\) and \\(\\omega_o\\), and the roughness. We store the convoluted results in a 2D lookup texture (LUT) known as a `BRDF integration` map that we later use in our PBR lighting shader to get the final convoluted indirect specular result.
 
 The BRDF convolution shader operates on a 2D plane, using its 2D texture coordinates directly as inputs to the BRDF convolution (`NdotV` and `roughness`). The convolution code is largely similar to the pre-filter convolution, except that it now processes the sample vector according to our BRDF's geometry function and Fresnel-Schlick's approximation:
 
@@ -465,16 +462,16 @@ vec2 IntegrateBRDF(float NdotV, float roughness)
     return vec2(A, B);
 }
 // ----------------------------------------------------------------------------
-void main() 
+void main()
 {
     vec2 integratedBRDF = IntegrateBRDF(TexCoords.x, TexCoords.y);
     FragColor = integratedBRDF;
 }
 ```
 
-As you can see, the BRDF convolution is a direct translation from the mathematics to code. We take both the angle \\(\\theta\\) and the roughness as input, generate a sample vector with importance sampling, process it over the geometry and the derived Fresnel term of the BRDF, and output both a scale and a bias to \\(F\_0\\) for each sample, averaging them in the end.
+As you can see, the BRDF convolution is a direct translation from the mathematics to code. We take both the angle \\(\\theta\\) and the roughness as input, generate a sample vector with importance sampling, process it over the geometry and the derived Fresnel term of the BRDF, and output both a scale and a bias to \\(F_0\\) for each sample, averaging them in the end.
 
-You may recall from the [theory](https://learnopengl.com/PBR/Theory) chapter that the geometry term of the BRDF is slightly different when used alongside IBL as its \\(k\\) variable has a slightly different interpretation:
+You may recall from the [theory](/opengl/en/PBR/Theory) chapter that the geometry term of the BRDF is slightly different when used alongside IBL as its \\(k\\) variable has a slightly different interpretation:
 
 \\\[ k\_{direct} = \\frac{(\\alpha + 1)^2}{8} \\\] \\\[ k\_{IBL} = \\frac{\\alpha^2}{2} \\\]
 
@@ -520,7 +517,7 @@ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 ```
 
-Note that we use a 16-bit precision floating format as recommended by Epic Games. Be sure to set the wrapping mode to `GL\_CLAMP\_TO\_EDGE` to prevent edge sampling artifacts.
+Note that we use a 16-bit precision floating format as recommended by Epic Games. Be sure to set the wrapping mode to `GL_CLAMP_TO_EDGE` to prevent edge sampling artifacts.
 
 Then, we re-use the same framebuffer object and run this shader over an NDC screen-space quad:
 
@@ -544,7 +541,7 @@ The convoluted BRDF part of the split sum integral should give you the following
 
 With both the pre-filtered environment map and the BRDF 2D LUT we can re-construct the indirect specular integral according to the split sum approximation. The combined result then acts as the indirect or ambient specular light.
 
-### Completing the IBL reflectance
+## Completing the IBL reflectance
 
 To get the indirect specular part of the reflectance equation up and running we need to stitch both parts of the split sum approximation together. Let's start by adding the pre-computed lighting data to the top of our PBR shader:
 
@@ -559,15 +556,15 @@ First, we get the indirect specular reflections of the surface by sampling the p
 void main()
 {
     [...]
-    vec3 R = reflect(-V, N);   
+    vec3 R = reflect(-V, N);
 
     const float MAX_REFLECTION_LOD = 4.0;
-    vec3 prefilteredColor = textureLod(prefilterMap, R,  roughness * MAX_REFLECTION_LOD).rgb;    
+    vec3 prefilteredColor = textureLod(prefilterMap, R,  roughness * MAX_REFLECTION_LOD).rgb;
     [...]
 }
 ```
 
-In the pre-filter step we only convoluted the environment map up to a maximum of 5 mip levels (0 to 4), which we denote here as `MAX\_REFLECTION\_LOD` to ensure we don't sample a mip level where there's no (relevant) data.
+In the pre-filter step we only convoluted the environment map up to a maximum of 5 mip levels (0 to 4), which we denote here as `MAX_REFLECTION_LOD` to ensure we don't sample a mip level where there's no (relevant) data.
 
 Then we sample from the BRDF lookup texture given the material's roughness and the angle between the normal and view vector:
 
@@ -577,25 +574,25 @@ vec2 envBRDF  = texture(brdfLUT, vec2(max(dot(N, V), 0.0), roughness)).rg;
 vec3 specular = prefilteredColor * (F * envBRDF.x + envBRDF.y);
 ```
 
-Given the scale and bias to \\(F\_0\\) (here we're directly using the indirect Fresnel result `F`) from the BRDF lookup texture, we combine this with the left pre-filter portion of the IBL reflectance equation and re-construct the approximated integral result as `specular`.
+Given the scale and bias to \\(F_0\\) (here we're directly using the indirect Fresnel result `F`) from the BRDF lookup texture, we combine this with the left pre-filter portion of the IBL reflectance equation and re-construct the approximated integral result as `specular`.
 
-This gives us the indirect specular part of the reflectance equation. Now, combine this with the diffuse IBL part of the reflectance equation from the [last](https://learnopengl.com/PBR/IBL/Diffuse-irradiance) chapter and we get the full PBR IBL result:
+This gives us the indirect specular part of the reflectance equation. Now, combine this with the diffuse IBL part of the reflectance equation from the [last](/opengl/en/PBR/Diffuse-irradiance) chapter and we get the full PBR IBL result:
 
 ```cpp
 vec3 F = FresnelSchlickRoughness(max(dot(N, V), 0.0), F0, roughness);
 
 vec3 kS = F;
 vec3 kD = 1.0 - kS;
-kD *= 1.0 - metallic;	  
-  
+kD *= 1.0 - metallic;
+
 vec3 irradiance = texture(irradianceMap, N).rgb;
 vec3 diffuse    = irradiance * albedo;
-  
+
 const float MAX_REFLECTION_LOD = 4.0;
-vec3 prefilteredColor = textureLod(prefilterMap, R,  roughness * MAX_REFLECTION_LOD).rgb;   
+vec3 prefilteredColor = textureLod(prefilterMap, R,  roughness * MAX_REFLECTION_LOD).rgb;
 vec2 envBRDF  = texture(brdfLUT, vec2(max(dot(N, V), 0.0), roughness)).rg;
 vec3 specular = prefilteredColor * (F * envBRDF.x + envBRDF.y);
-  
+
 vec3 ambient = (kD * diffuse + specular) * ao;
 ```
 
@@ -619,7 +616,7 @@ I'm sure we can all agree that our lighting now looks a lot more convincing. Wha
 
 Well, this PBR adventure turned out to be quite a long journey. There are a lot of steps and thus a lot that could go wrong so carefully work your way through the [sphere scene](https://learnopengl.com/code_viewer_gh.php?code=src/6.pbr/2.2.1.ibl_specular/ibl_specular.cpp) or [textured scene](https://learnopengl.com/code_viewer_gh.php?code=src/6.pbr/2.2.2.ibl_specular_textured/ibl_specular_textured.cpp) code samples (including all shaders) if you're stuck, or check and ask around in the comments.
 
-#### What's next?
+## What's next?
 
 Hopefully, by the end of this tutorial you should have a pretty clear understanding of what PBR is about, and even have an actual PBR renderer up and running. In these tutorials, we've pre-computed all the relevant PBR image-based lighting data at the start of our application, before the render loop. This was fine for educational purposes, but not too great for any practical use of PBR. First, the pre-computation only really has to be done once, not at every startup. And second, the moment you use multiple environment maps you'll have to pre-compute each and every one of them at every startup which tends to build up.
 
@@ -629,14 +626,11 @@ Furthermore, we've described the **total** process in these tutorials, including
 
 One point we've skipped over is pre-computed cubemaps as `reflection probes`: cubemap interpolation and parallax correction. This is the process of placing several reflection probes in your scene that take a cubemap snapshot of the scene at that specific location, which we can then convolute as IBL data for that part of the scene. By interpolating between several of these probes based on the camera's vicinity we can achieve local high-detail image-based lighting that is simply limited by the amount of reflection probes we're willing to place. This way, the image-based lighting could correctly update when moving from a bright outdoor section of a scene to a darker indoor section for instance. I'll write a tutorial about reflection probes somewhere in the future, but for now I recommend the article by Chetan Jags below to give you a head start.
 
-### Further reading
+## Further reading
 
-*   [Real Shading in Unreal Engine 4](http://blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf): explains Epic Games' split sum approximation. This is the article the IBL PBR code is based of.
-*   [Physically Based Shading and Image Based Lighting](http://www.trentreed.net/blog/physically-based-shading-and-image-based-lighting/): great blog post by Trent Reed about integrating specular IBL into a PBR pipeline in real time.
-*   [Image Based Lighting](https://chetanjags.wordpress.com/2015/08/26/image-based-lighting/): very extensive write-up by Chetan Jags about specular-based image-based lighting and several of its caveats, including light probe interpolation.
-*   [Moving Frostbite to PBR](https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf): well written and in-depth overview of integrating PBR into a AAA game engine by Sébastien Lagarde and Charles de Rousiers.
-*   [Physically Based Rendering – Part Three](https://jmonkeyengine.github.io/wiki/jme3/advanced/pbr_part3.html): high level overview of IBL lighting and PBR by the JMonkeyEngine team.
-*   [Implementation Notes: Runtime Environment Map Filtering for Image Based Lighting](https://placeholderart.wordpress.com/2015/07/28/implementation-notes-runtime-environment-map-filtering-for-image-based-lighting/): extensive write-up by Padraic Hennessy about pre-filtering HDR environment maps and significantly optimizing the sample process.
-
-HI
-  
+- [Real Shading in Unreal Engine 4](http://blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf): explains Epic Games' split sum approximation. This is the article the IBL PBR code is based of.
+- [Physically Based Shading and Image Based Lighting](http://www.trentreed.net/blog/physically-based-shading-and-image-based-lighting/): great blog post by Trent Reed about integrating specular IBL into a PBR pipeline in real time.
+- [Image Based Lighting](https://chetanjags.wordpress.com/2015/08/26/image-based-lighting/): very extensive write-up by Chetan Jags about specular-based image-based lighting and several of its caveats, including light probe interpolation.
+- [Moving Frostbite to PBR](https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf): well written and in-depth overview of integrating PBR into a AAA game engine by Sébastien Lagarde and Charles de Rousiers.
+- [Physically Based Rendering – Part Three](https://jmonkeyengine.github.io/wiki/jme3/advanced/pbr_part3.html): high level overview of IBL lighting and PBR by the JMonkeyEngine team.
+- [Implementation Notes: Runtime Environment Map Filtering for Image Based Lighting](https://placeholderart.wordpress.com/2015/07/28/implementation-notes-runtime-environment-map-filtering-for-image-based-lighting/): extensive write-up by Padraic Hennessy about pre-filtering HDR environment maps and significantly optimizing the sample process.
