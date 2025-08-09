@@ -11,7 +11,7 @@ layout: with-nonav
   </div>
 
   <div style="padding: 0.1em 0em; margin: 6px 0px; font-size: 1rem; opacity: 0.67;">
-    <span>ᜍ</span>
+    <span>ᝤ</span>
     <span class="english">{{page.category}}</span>
   </div>
 
@@ -148,15 +148,19 @@ layout: with-nonav
 
 <div class="When-Where">
   {% if page.english %}
-  Posted On <span style=" text-decoration: underline dashed 1px; text-underline-offset: 3px;">{{ page.date | date: "%a,
-    %B %d, %Y" }}</span>
+  Posted On
+  <span style=" text-decoration: underline dashed 1px; text-underline-offset: 3px;">
+    {{ page.date | date: "%a, %B %d, %Y" }}
+  </span>
   {% else %}
-  發佈於 <span
-    style="vertical-align: middle; font-size: 1.2em;  text-decoration: underline dashed 1px;  text-underline-offset: 3px;">{{
-    page.date | date: "%a, %m/%d %Y" }}</span>
+  發佈於
+  <span
+    style="vertical-align: middle; font-size: 1.2em;  text-decoration: underline dashed 1px;  text-underline-offset: 3px;">
+    {{page.date | date: "%a, %m/%d %Y" }}
+  </span>
   {% endif %}
 
-  {{page.place}}
+  <a href="https://www.google.com/maps/place/{{page.place}}" target="_blank" style="text-decoration: underline;"> 𖦋 {{page.place}}</a>
 
   {{page.weather}}
 </div>
