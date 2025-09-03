@@ -1,7 +1,7 @@
 ---
 layout: post
 slug: poveglia-island
-title: "The Horrifying Plague Filled History Of Poveglia Island"
+title: "波維利亞島上充滿恐怖瘟疫的歷史"
 src: "https://www.historydefined.net/poveglia-island/"
 category: hisd
 date: 2025-07-03
@@ -9,137 +9,141 @@ time: 15:33:29
 permalink: /historydefined/cn/poveglia-island
 ---
 
-Isolated in the Venetian Lagoon, Poveglia Island is a place that has long been shrouded in mystery. Geographically, it’s just a few miles from Venice, Italy.
+隔離在威尼斯潟湖中，波維利亞島（Poveglia Island）是一個長期以來籠罩在神秘氛圍中的地方。從地理位置上看，它距離義大利威尼斯僅數英里之遙。
 
-The island has a long and dark history, dating back to the Roman Empire. Over the years, it has served many purposes, but ultimately it ended up abandoned and off-limits to tourists.
+這座島嶼有著漫長而黑暗的歷史，可追溯到羅馬帝國時期。多年來，它曾被用作多種用途，但最終還是被廢棄，不對遊客開放。
 
-In this post, we will explore the history of Poveglia Island and what makes it so notable.
+在這篇文章中，我們將探討波維利亞島的歷史，以及是什麼讓它如此引人注目。
 
 <figure>
   <img src="https://www.historydefined.net/wp-content/uploads/2022/04/1920px-Poveglia_Closeup_of_Hospital-1024x768.jpeg">
   <figcaption>Poveglia Island Hospital. CC BY-SA 3.0</figcaption>
 </figure>
 
-## The Earliest Recorded History Of Poveglia Island
+## 波維利亞島最早的歷史記載
 
-Poveglia Island has a long and varied history, dating back to the Roman Empire. It’s unclear why many tourists wish to visit this place, but to this day, it attracts anyone interested in Poveglia’s dark past.
+波維利亞島有著漫長而多樣的歷史，可追溯到羅馬帝國時期。目前尚不清楚為何許多遊客希望造訪此地，但時至今日，它仍吸引著所有對波維利亞黑暗過往感興趣的人。
 
-In the early fifth century, the island was used as a refuge for the [Italian citizens](https://curioushistorian.com/the-dark-history-of-poveglia) while the city was attacked by **Alaric the Goth** and **Attila the Hun**.
+在五世紀初，當義大利城市遭受**西哥德王阿拉里克（Alaric the Goth）**和**匈人王阿提拉（Attila the Hun）**攻擊時，這座島被用作[義大利公民](https://curioushistorian.com/the-dark-history-of-poveglia)的避難所。
 
-However, historians speculate that inhabitants known as the **Euganei** may have used the island around 2,000 BC. The island’s location in the lagoon about the other islands makes it easier to defend, and the residents lived peacefully until the 14th century BC.
+然而，歷史學家推測，早在西元前 2000 年左右，一群被稱為**尤金尼人（Euganei）**的居民可能就曾使用過這座島嶼。由於該島在潟湖中的地理位置使其更容易防禦，島上居民得以安居樂業，直到西元前 14 世紀。
+
+您希望我接下來翻譯關於波維利亞島歷史的哪一個部分？
 
 <figure>
   <img src="https://www.historydefined.net/wp-content/uploads/2022/06/Poveglia-Island-Wirestock-Images-via-shutterstock-1280x854-1-1024x683.jpeg">
   <figcaption>Poveglia Island via shutterstock</figcaption>
 </figure>
 
-Fast forward to 1379, as Venice became a significant power, they needed a secure location to combat enemy ships that tried to invade Venice.
+當威尼斯在 1379 年成為一個重要的強權時，他們需要一個安全的據點來對抗試圖入侵威尼斯的敵艦。
 
-During the **Chioggia War** with **Genoa**, the government forced the current residents of Poveglia Island to move to a different island within the lagoon.
+在與**熱那亞（Genoa）**爆發的**基奧賈戰爭（Chioggia War）**期間，威尼斯政府強迫波維利亞島上的現有居民遷往潟湖內的另一座島嶼。
 
-Once the residents were gone, officials built an octagon fort complete with naval artillery, which allowed [Venice to control the lagoon](https://www.historicmysteries.com/poveglia-island-venice-italy/) from its defensible position.
+居民離開後，官員們建造了一座配備海軍火砲的八角形堡壘，這使得[威尼斯能夠從其防禦性的位置控制潟湖](https://www.historicmysteries.com/poveglia-island-venice-italy/)。
 
-Afterward, the island was vacant for approximately two hundred years, but this is where the island’s genuinely gruesome history begins.
+此後，該島空置了約兩百年，但這也是這座島真正駭人歷史的開端。
 
-## The Island Becomes a Plague Colony
+## 島嶼成為瘟疫隔離區
 
-In the 14th century, when [the Bubonic Plague](https://www.historydefined.net/what-happened-after-the-black-death/ "What Happened After the Black Death Ended?") began to decimate Europe, Poveglia Island became a [plague colony](https://allthatsinteresting.com/poveglia-island). What was meant as a temporary solution to the overwhelming number of infected populace later became a permanent solution.
+在 14 世紀，當[黑死病（the Bubonic Plague）](https://www.historydefined.net/what-happened-after-the-black-death/ "黑死病結束後發生了什麼？")開始肆虐歐洲時，波維利亞島成為了一個[瘟疫隔離區](https://allthatsinteresting.com/poveglia-island)。這個原本是為了應對大量受感染人口的臨時解決方案，後來變成了永久性的辦法。
 
-The plague swept through Venice a few times, but after the first occurrence in 1348, the city knew more about how the sickness spread and acted accordingly.
+瘟疫幾次席捲威尼斯，但在 1348 年首次爆發後，威尼斯城對這種疾病的傳播方式有了更多了解，並採取了相應的行動。
 
 <figure>
   <img src="https://www.historydefined.net/wp-content/uploads/2022/06/Poveglia-Wirestock-Images-via-shutterstock-1280x854-1-1024x683.jpeg">
   <figcaption>Poveglia Island via shutterstock</figcaption>
 </figure>
 
-At that time, half the population succumbed to the disease, and the survivors more or less learned how the disease spread. When the second wave of the plague ravaged the country again, it took Venice’s current ruler with it.
+當時，一半的人口死於該疾病，而倖存者或多或少地學會了疾病的傳播方式。當第二波瘟疫再次肆虐這個國家時，連當時威尼斯的統治者也未能倖免。
 
-At first, they dumped the infected corpses into two separate burial sites outside the city limits. However, the Venetians had to take more drastic measures when the massive pits overflowed with the dead.
+起初，他們將受感染的屍體傾倒在城外兩個獨立的墓地。然而，當巨大的屍坑被死者填滿時，威尼斯人不得不採取更為激烈的措施。
 
-The government then exiled all infected people to Poveglia Island and the smaller islands, creating the [**Lazaretto**](https://historyofyesterday.com/the-chilling-history-of-the-haunted-venetian-island-of-poveglia-fb329f78d4c7).
+政府隨後將所有感染者流放到波維利亞島及周圍較小的島嶼上，建立了[**檢疫所（Lazaretto）**](https://historyofyesterday.com/the-chilling-history-of-the-haunted-venetian-island-of-poveglia-fb329f78d4c7)。
 
-While not officially associated with Poveglia, **Lazzaretto Vecchio** was another smaller island and the location of the first lazaretto.
+儘管與波維利亞沒有正式關聯，但**古檢疫所島（Lazzaretto Vecchio）**是另一座較小的島嶼，也是第一個檢疫所的所在地。
 
-Conditions were so desolate in this lazaretto that a chronicler from the 16th century named [Rocco Benedetti](https://allthatsinteresting.com/poveglia-island) mentions that at least 500 people a day died at **Lazzaretto Vecchio**, and it reminded him of hell.
+這個檢疫所的環境極為荒涼，以至於一位 16 世紀的編年史家[羅科·貝內代蒂（Rocco Benedetti）](https://allthatsinteresting.com/poveglia-island)提到，在**古檢疫所島**上每天至少有 500 人死亡，這讓他想起了地獄。
 
-The Venetian government decided to use Poveglia as a dumping ground for the city’s infected citizens. During this time, officials sent large barges of dead victims to Poveglia to dump.
+威尼斯政府決定將波維利亞作為城市受感染公民的棄屍地。在此期間，官員們將裝滿死者的大駁船運送到波維利亞進行傾倒。
 
-At the same time, government officials also sent anyone suspected of having plague symptoms to the island.
+同時，政府官員也會將任何被懷疑有瘟疫症狀的人送往該島。
 
-Unfortunately, officials left over 100,000 to 160,000 people on the island, making it a lonely and terrifying place. The conditions on the island were unsanitary, and the plague victims were left to die.
+不幸的是，官員們在島上遺棄了超過 10 萬至 16 萬人，使其成為一個孤獨而可怕的地方。島上的環境極不衛生，瘟疫患者被任其自生自滅。
 
-The island soon became known as the “**Island of Death**.”
+這座島嶼很快就被稱為「**死亡之島**」。
 
-## Poveglia Becomes A Checkpoint
+## 波維利亞成為檢查站
 
-Generally, the infected population would have to wait 40 days to die or recover, but the latter rarely happened. If citizens stole or committed other crimes, the government would send them to Poveglia Island to live out the rest of their days.
+通常，受感染的人口需要等待 40 天才能死亡或康復，但後者極少發生。如果公民犯下盜竊或其他罪行，政府也會將他們送往波維利亞島度過餘生。
 
-There were so many dead, dying, and sick people on the island that it became challenging to bury them all. History says workers spent entire days carrying and tossing bodies into piles at Poveglia with no breaks.
+島上的死者、垂死者和病患數量之多，使得掩埋他們變得極具挑戰性。歷史記載，工人們整天都在波維利亞搬運和拋擲屍體成堆，沒有任何休息。
 
-At this point, the Venetians were [forced to start burning the bodies](https://www.livitaly.com/poveglia-venice-ghost-island/) to prevent the plague from spreading and to make room for more victims.
+到了這個階段，威尼斯人[被迫開始焚燒屍體](https://www.livitaly.com/poveglia-venice-ghost-island/)，以防止瘟疫蔓延並騰出空間給更多的受害者。
 
-Due to the nature of the disease, those who were too sick to speak were often mistaken for dead and burned alive. Ash rained down from the sky, and smoke from the burning bodies choked and polluted the air.
+由於這種疾病的特性，那些病重到無法說話的人經常被誤認為已死並被活活焚燒。骨灰從天而降，焚燒屍體產生的煙霧令人窒息並污染了空氣。
 
-The consistent burning of plague victims and the sheer number of infected people sparked a rumor among future generations of Venetians. According to the story, the soil on Poveglia Island is 50% human ash due to the constant burning of bodies.
+持續不斷地焚燒瘟疫受害者以及受感染者的龐大數量，在後來的威尼斯人世代中引發了一個謠言。據說，由於不斷焚燒屍體，波維利亞島上的土壤有 50%是人類骨灰。
 
-Whether this is 100% untrue, it is still a terrifying thought. An archaeological excavation would later reveal the skeletal remains of 1,500 victims who died from the plague.
+無論這是否完全不真實，這仍然是一個令人毛骨悚然的想法。後來的考古挖掘揭示了 1500 名死於瘟疫的受害者的骨骸。
 
-Scientists believe the lazaretto held more remains than they found at the time. To this day, human charred human bones still wash up on Poveglia’s shores.
+科學家們認為，當時發現的遺骸數量比檢疫所實際埋葬的要多。時至今日，燒焦的人類骨頭仍然會被沖上波維利亞的海岸。
 
-Not surprisingly, fishermen [steer clear](https://www.ranker.com/list/creepy-facts-about-poveglia-the-italian-black-plague-island/cheryl-adams-richkoff) of Poveglia out of fear of pulling up human bones in their nets.
+毫不奇怪，漁民[因擔心在漁網中撈起人骨](https://www.ranker.com/list/creepy-facts-about-poveglia-the-italian-black-plague-island/cheryl-adams-richkoff)而避開波維利亞。
 
-The plague came through again around 1777 and decimated the population once more. This time, Poveglia was the sole location of a checkpoint for ships that would pass through Venice on business.
+大約在 1777 年，瘟疫再次來襲，再次摧毀了人口。這一次，波維利亞成為了途經威尼斯進行貿易的船隻唯一的檢查站。
 
-The **Magistrate of Health** decided that anyone who showed any plague symptoms would be quarantined on Poveglia Island. Venice was a trade hub and was subject to countless diseases during this time.
+**衛生裁判官（Magistrate of Health）**決定，任何表現出瘟疫症狀的人都將被隔離在波維利亞島。威尼斯是一個貿易樞紐，在此期間遭受了無數疾病的侵襲。
 
-Thus, any ship heading to Venice had to endure rigorous inspections, which often caused delays and disputes. In 1790, two boats failed to pass the examinations, and thus Poveglia became known as the “Island of Death” for a second time.
+因此，任何駛向威尼斯的船隻都必須經歷嚴格的檢查，這常常導致延誤和爭議。在 1790 年，有兩艘船未能通過檢查，因此波維利亞第二次被稱為「死亡之島」。
 
-[Under the rule of Napoleon](https://www.historydefined.net/facts-about-napoleon-bonaparte/ "8 Interesting Facts About Napoleon Bonaparte"), the island was permanently used for isolation colony purposes until the hospital closed in 1814.
+[在拿破崙的統治下](https://www.historydefined.net/facts-about-napoleon-bonaparte/ "關於拿破崙·波拿巴的8個有趣事實")，該島被永久用作隔離區，直到 1814 年醫院關閉。
 
-## Poveglia Is Abandoned
+## 波維利亞被遺棄
 
-The Venetians abandoned the island in 1868 after the Venetian authorities decided it was no longer necessary to have a quarantine station.
+1868 年，在威尼斯當局決定不再需要檢疫站後，威尼斯人遺棄了該島。
 
-The Venetians also agreed that they would no longer have to deal with the smell of burning bodies and the plague victims. The island was essentially abandoned, left to rot and decay.
+威尼斯人也認為他們將不再需要處理焚燒屍體的氣味和瘟疫受害者。該島基本上被遺棄，任其腐朽和崩壞。
 
-## The Island’s Darkest Days: Poveglia Becomes a Mental Hospital
+## 島上最黑暗的日子：波維利亞成為精神病院
 
-The island’s dark past has made it one of the most haunted places in the world. Many legends and stories of ghosts haunt the island. It is widely believed that the spirits of the plague victims and the exiled criminals to the island still linger there today.
+這座島嶼黑暗的歷史使其成為世界上最鬧鬼的地方之一。關於幽靈的許多傳說和故事困擾著這座島。人們普遍認為，瘟疫受害者和被流放到島上的罪犯的靈魂至今仍徘徊在那裡。
 
-Although its history is dark and terrifying up to the early 19th century, it seems that Poveglia’s history could grow darker still.
+儘管其歷史在 19 世紀初之前都是黑暗而可怕的，但波維利亞的歷史似乎還能變得更加黑暗。
 
-In 1922, a mental hospital was built on Poveglia Island, and it soon became known for its inhumane treatment. The government repurposed the buildings for mentally ill patients. Multiple sources state that the hospital was supervised by a man named **Dr. Paolo**.
+1922 年，波維利亞島上建了一座精神病院，並很快因其不人道的對待而聞名。政府將這些建築改作收容精神病患者。多個消息來源指出，這家醫院由一位名叫**保羅醫生（Dr. Paolo）**的人監管。
 
-At the time, mental illness wasn’t as clearly defined as it is today. Hence, the hospital was home to many patients with physical disabilities, mental conditions, and neurological problems.
+當時，精神疾病的定義不像今天這樣清晰。因此，這家醫院收容了許多患有身體殘疾、精神狀況和神經問題的病人。
 
-In addition, since mental illness wasn’t clearly defined, anyone who behaved outside of the cultural norms often was associated with mental illness and forced to go to the island.
+此外，由於精神疾病的定義不清晰，任何行為舉止偏離文化規範的人通常都會被視為精神病患者，並被迫送往該島。
 
-With these patients out of sight and out of mind, Poveglia soon became a nightmarish place.
+隨著這些病人被隔離在島上，波維利亞很快就變成了一個噩夢般的地方。
 
-Unfortunately, this [doctor](https://italicsmag.com/2020/03/28/italian-ghost-stories-poveglia-island/) was known for performing barbaric and torturous treatments on his patients, such as electric shocks, lobotomies, and force-feeding. Dr. Paolo performed these procedures using hammers, chisels, and drills without caring for anesthesia or cleanliness.
+不幸的是，這位[醫生](https://italicsmag.com/2020/03/28/italian-ghost-stories-poveglia-island/)以對病人實施野蠻和殘酷的治療而聞名，例如電擊、腦葉切除術和強迫餵食。保羅醫生使用鐵鎚、鑿子和鑽頭進行這些手術，毫不在意麻醉或清潔。
 
-Like before, being sent to Poveglia was a death sentence, and there was no chance for rehabilitation of the doctor’s patients. Patients were often chained to their beds or left in dark rooms for days.
+就像以前一樣，被送往波維利亞就意味著死刑，醫生對病人根本沒有復健的可能。病人常常被鐵鍊鎖在床上或被遺棄在黑暗的房間裡好幾天。
 
-Many patients died under Dr. Paolo’s care, and their bodies were buried in unmarked graves on the island. Reports indicate that Dr. Paolo would later be discovered dead near the bell tower located on the island.
+許多病人在保羅醫生的照護下死去，他們的屍體被埋在島上沒有標記的墳墓裡。報告指出，保羅醫生後來被發現死在島上的鐘樓附近。
 
-In 1968, the hospital closed and was abandoned again, and soon, the buildings were left to decay and fall apart.
+1968 年，醫院關閉並再次被遺棄，不久之後，這些建築物任其腐朽和崩壞。
 
-## The Island Is Sold to Private Owners
+## 島嶼被出售給私人業主
 
-Regardless of Poveglia’s dark history, the government has tried to [find buyers](https://curioushistorian.com/the-dark-history-of-poveglia) for the island over the years. In 2014, the Venetians sold the island to a private owner with redevelopment plans.
+儘管波維利亞有著黑暗的歷史，但多年來政府一直試圖[尋找買家](https://curioushistorian.com/the-dark-history-of-poveglia)來接手這座島。在 2014 年，威尼斯人將這座島賣給了一位有重建計畫的私人業主。
 
-The sale of the island has caused a lot of concern among the public, as they are worried that the new owner will exploit the island’s dark past and turn it into a tourist attraction.
+出售該島引起了公眾的極大關注，因為他們擔心新主人會利用該島黑暗的歷史，並將其變成一個旅遊景點。
 
-## Poveglia’s Reputation Has Turned It Into A Hub Of Paranormal Activity
+## 波維利亞的聲譽使其成為超自然活動的中心
 
-In recent years, Poveglia Island has developed a name for itself as one of the most haunted places in the world. It’s a place that is shrouded in mystery and terror.
+近年來，波維利亞島為自己贏得了世界上最鬧鬼的地方之一的稱號。這是一個籠罩在神秘和恐怖氛圍中的地方。
 
-Visitors and thrill seekers often visit the island, hoping to catch a glimpse of one of the ghosts that are said to haunt it. Many stories and legends of hauntings on the island and the spirits of the plague victims exiled to the island still linger there today.
+遊客和尋求刺激者經常造訪這座島，希望能瞥見據說困擾著它的幽靈。關於島上鬧鬼的故事和傳說不勝枚舉，而那些被流放到島上的瘟疫受害者的靈魂至今仍徘徊在那裡。
 
-Poveglia has often been the subject of [television programs](https://www.historicmysteries.com/poveglia-island-venice-italy/), highlighting the potential for paranormal activity on the island. The island has even become the subject of TV shows like *Ghost Adventures* and *Scariest Places On Earth*.
+波維利亞經常成為[電視節目](https://www.historicmysteries.com/poveglia-island-venice-italy/)的主題，重點介紹島上潛在的超自然活動。該島甚至成為《靈異偵查》（_Ghost Adventures_）和《地球上最嚇人的地方》（_Scariest Places On Earth_）等電視節目的主題。
 
-Despite the sinister reputation of the island, it still manages to draw thrill-seekers from all over the world. For instance, in 2016, some American tourists were caught trying to sneak onto the island in the middle of the night.
+儘管這座島嶼聲名狼藉，但它仍然吸引著來自世界各地的尋求刺激者。例如，在 2016 年，一些美國遊客被發現試圖在半夜潛入島上。
 
-Firefighters were sent to the island to rescue them when a passing boat could hear their screams. So, it’s easy to see why Poveglia has developed its particular reputation.
+當一艘路過的船隻聽到他們的尖叫聲時，消防員被派往島上營救他們。因此，不難理解為什麼波維利亞會形成它特有的聲譽。
 
-And with the island’s terrifying history, it’s no wonder it’s illegal to visit Poveglia Island without special permission from the government. So, until Poveglia is suitable for something else, it will be a dark and haunted place.
+而且，鑑於這座島嶼可怕的歷史，在沒有政府特別許可的情況下參觀波維利亞島是非法的，這一點也就不足為奇了。因此，在波維利亞適合用於其他用途之前，它將繼續是一個黑暗而鬧鬼的地方。
+
+您希望我下一步怎麼幫您呢？例如，我們可以深入探討波維利亞島的超自然傳說，或者我可以幫您翻譯其他主題的文章。

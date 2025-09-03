@@ -1,0 +1,121 @@
+# Jayne Mansfield: Photos of one of the most stunning stars of the 50s and 60s.
+
+By [Carl Seaver](https://www.historydefined.net/author/historydefined_y7dh75/ "View all posts by Carl Seaver")
+
+Last updated on May 7th, 2025 at 07:50 pm
+
+Jayne Mansfield was a highly successful American actress who significantly impacted the entertainment industry during her short career.
+
+Apart from her acting skills, Mansfield was also a talented nightclub entertainer, singer, and one of the early Playboy Playmates. She was known for pushing boundaries with publicity stunts, including wardrobe malfunctions.
+
+Despite being married and divorced thrice and having five children, Mansfield was allegedly involved with multiple high-profile men, including both Robert and John F. Kennedy.
+
+However, Jayne Mansfield’s glamorous life came to an untimely end when she lost her life in a tragic car accident in Eastern New Orleans at the age of 34. Even though she lived a short life, she left a lasting impact on the entertainment industry as a confident, talented, and glamorous perform.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/9uyexksrw6u81-838x1024.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/actress-jayne-mansfield-poses-during-a-photo-shoot-by-a-v0-uf80zyxuywtc1.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/actress-jayne-mansfield-with-her-husband-mickey-hargitay-v0-6hdo2eloy43c1.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/clint-eastwood-and-jayne-mansfield-1962-v0-ddylqlielvec1.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/fka3xzrws5t61-724x1024.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/gosg0vgx2u071.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/jayne-mansfield-1950s-holiday-cheer-v0-84a5ow14806c1-825x1024.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/jayne-mansfield-1950s-v0-rctbi98an9lc1-893x1024.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/jayne-mansfield-1957-v0-iz9r0nax9tvb1.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/jayne-mansfield-1958-v0-53yyauqh4o4c1-765x1024.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/jayne-mansfield-1960-v0-1b227oa812ac1-1017x1024.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/jayne-mansfield-1960s-v0-a1it8tv9xvk81-890x1024.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/jayne-mansfield-1962-v0-4vnl3oh20wfc1.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/jayne-mansfield-grocery-shopping-in-las-vegas-with-her-dogs-v0-dbcfhgfc3y3c1.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/jayne-mansfield-in-1957-mother-of-mariska-hargitay-v0-4p9ijb92unlc1-1024x804.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/jayne-mansfield-mariska-hargitay-1960s-v0-7jk1hl5k59hc1-844x1024.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/jayne-mansfield-photographed-strolling-in-new-york-city-v0-pzfdlkgskusc1-1024x1010.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/jayne-mansfield-pictured-in-a-film-still-for-will-success-v0-kahjy99qnisc1-737x1024.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/ka9sshhk3or91-585x1024.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/my-grandpa-snagged-some-great-pics-of-jayne-mansfield-v0-ey02finhvrhc1-1024x710.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/my-grandpa-trying-to-steal-a-kiss-from-jayne-mansfield-on-v0-hiZrSqfTtPtJh2f0sDMU-LwluVAwSLPtgfzNM_T_uvs-788x1024.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/sophia-loren-and-jayne-mansfield-1957-v0-088fdsdz39lc1-933x1024.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/ucbc18z80i631-768x1024.webp)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/young-jayne-mansfield-1.jpg)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/young-jayne-mansfield-2.jpg)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/young-jayne-mansfield-3.jpg)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/young-jayne-mansfield-4.jpg)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/young-jayne-mansfield-5.jpg)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/young-jayne-mansfield-6.jpg)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/young-jayne-mansfield-7.jpg)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/young-jayne-mansfield-8.jpg)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/young-jayne-mansfield-9.jpg)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/young-jayne-mansfield-10.jpg)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/young-jayne-mansfield-11.jpg)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/young-jayne-mansfield-13.jpg)
+no words.
+
+![](https://www.historydefined.net/wp-content/uploads/2024/04/young-jayne-mansfield-14-1.jpg)
+no words.
