@@ -6,7 +6,8 @@ title: 歷史故事
 > 歷史故事，也是事故，收集在此，供好者閱讀！
 
 <ul class="documents" style=" list-style-type: digital">
-  {% for post in site.historydefined %}
+  {% assign posts = site.historydefined | reverse %}
+  {% for post in posts %}
     <li class="documents__item cat-{{post.category}}">
       <div class="document {% if post.english %}english{% endif %}">
         <a class="document__link" href="{{ post.url }}" target="_self">

@@ -239,7 +239,7 @@ const Go = async () => {
 /**
  * Story Name
  */
-const story = "jayne-mansfield-photos";
+const story = "beautiful-claudia-cardinale-photos";
 
 const storyFolder = join(__dirname, `../_historydefined/${story}`);
 const imagesSaveTo = join(storyFolder, "./images");
@@ -251,7 +251,7 @@ const postDebugSaveTo = storyFolder + "_local.md";
 /**
  * 如果已經有了就不再繼續，您可以將其設置為 false 以繼續下載
  */
-const stopIfDone = false;
+const stopIfDone = true;
 /**
  * 是否跳過已經存在的圖片
  */

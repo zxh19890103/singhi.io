@@ -1,7 +1,7 @@
 ---
 layout: post
 slug: jayne-mansfield-photos
-title: "珍·曼斯菲爾德"
+title: "Jayne Mansfield: Photos of one of the most stunning stars of the 50s and 60s."
 src: "https://www.historydefined.net/jayne-mansfield-photos/"
 category: hisd
 date: 2025-09-03
